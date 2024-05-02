@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgty58ccnncxy"]
+
+[ext_resource type="Script" path="res://Camera/camera_locker.gd" id="1_0mlkh"]
+
+[node name="CameraLocker" type="Area2D"]
+script = ExtResource("1_0mlkh")
+
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]

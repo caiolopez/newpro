@@ -1,0 +1,92 @@
+[gd_scene load_steps=9 format=3 uid="uid://1xi1vmc3x5ck"]
+
+[ext_resource type="PackedScene" uid="uid://ctbx6yfgdfo4b" path="res://block.tscn" id="1_weaqc"]
+[ext_resource type="PackedScene" uid="uid://1md1m8n6iq5x" path="res://hero.tscn" id="2_acvau"]
+[ext_resource type="PackedScene" uid="uid://c48ye6g4s5ufc" path="res://Camera/camera.tscn" id="3_o6dt5"]
+[ext_resource type="PackedScene" uid="uid://bgty58ccnncxy" path="res://Camera/camera_locker.tscn" id="4_d4cnc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c3qgc"]
+size = Vector2(239.597, 150.842)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r07qy"]
+size = Vector2(239.597, 133.842)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eqodu"]
+size = Vector2(158, 141.352)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cf3a5"]
+size = Vector2(158, 100.176)
+
+[node name="Level" type="Node"]
+
+[node name="Block" parent="." instance=ExtResource("1_weaqc")]
+position = Vector2(582, 626)
+scale = Vector2(14.4838, 0.87853)
+
+[node name="Hero" parent="." instance=ExtResource("2_acvau")]
+
+[node name="Camera" parent="." node_paths=PackedStringArray("hero") instance=ExtResource("3_o6dt5")]
+hero = NodePath("../Hero")
+
+[node name="CameraLocker" parent="." instance=ExtResource("4_d4cnc")]
+position = Vector2(1201, 430)
+axes_to_lock = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLocker"]
+position = Vector2(-499, 63.421)
+shape = SubResource("RectangleShape2D_c3qgc")
+debug_color = Color(1, 0, 1, 0.5)
+
+[node name="Marker2D" type="Marker2D" parent="CameraLocker"]
+position = Vector2(-515, 90)
+gizmo_extents = 59.6
+
+[node name="CameraLocker2" parent="." instance=ExtResource("4_d4cnc")]
+position = Vector2(379, 430)
+center_at_edge = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLocker2"]
+position = Vector2(70, 70.921)
+shape = SubResource("RectangleShape2D_r07qy")
+debug_color = Color(0, 0, 1, 0.5)
+
+[node name="Marker2D" type="Marker2D" parent="CameraLocker2"]
+position = Vector2(103, 83)
+gizmo_extents = 59.6
+
+[node name="CameraLocker3" parent="." instance=ExtResource("4_d4cnc")]
+position = Vector2(379, 430)
+axes_to_lock = 1
+center_at_edge = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLocker3"]
+position = Vector2(-153, 59.6758)
+shape = SubResource("RectangleShape2D_eqodu")
+debug_color = Color(1, 0, 0, 0.5)
+
+[node name="Marker2D" type="Marker2D" parent="CameraLocker3"]
+position = Vector2(103, 83)
+gizmo_extents = 59.6
+
+[node name="CameraLocker4" parent="." instance=ExtResource("4_d4cnc")]
+position = Vector2(379, 430)
+axes_to_lock = 1
+center_at_edge = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLocker4"]
+position = Vector2(-350, 87.088)
+shape = SubResource("RectangleShape2D_cf3a5")
+debug_color = Color(1, 0, 0, 0.5)
+
+[node name="Marker2D" type="Marker2D" parent="CameraLocker4"]
+position = Vector2(103, 83)
+gizmo_extents = 0.0
+
+[connection signal="hero_entered" from="CameraLocker" to="Camera" method="lock_camera"]
+[connection signal="hero_exited" from="CameraLocker" to="Camera" method="unlock_camera"]
+[connection signal="hero_entered" from="CameraLocker2" to="Camera" method="lock_camera"]
+[connection signal="hero_exited" from="CameraLocker2" to="Camera" method="unlock_camera"]
+[connection signal="hero_entered" from="CameraLocker3" to="Camera" method="lock_camera"]
+[connection signal="hero_exited" from="CameraLocker3" to="Camera" method="unlock_camera"]
+[connection signal="hero_entered" from="CameraLocker4" to="Camera" method="lock_camera"]
+[connection signal="hero_exited" from="CameraLocker4" to="Camera" method="unlock_camera"]
