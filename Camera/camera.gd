@@ -40,7 +40,7 @@ func unlock_camera(origin, axes: Constants.Axes, reset_lerp: bool) -> void:
 		if locker.origin.get_instance_id() == origin.get_instance_id():
 			lockers.erase(locker)
 	
-func lerpVector2(v1: Vector2, v2: Vector2, ratio: Vector2) -> Vector2:
+func lerp_vector2(v1: Vector2, v2: Vector2, ratio: Vector2) -> Vector2:
 	return Vector2(
 		lerp(v1.x, v2.x, ratio.x),
 		lerp(v1.y, v2.y, ratio.y)
