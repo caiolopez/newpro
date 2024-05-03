@@ -1,15 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://c48ye6g4s5ufc"]
+[gd_scene load_steps=7 format=3 uid="uid://c48ye6g4s5ufc"]
 
 [ext_resource type="Script" path="res://Camera/camera.gd" id="1_465f0"]
 [ext_resource type="Script" path="res://state_machine.gd" id="2_51bgi"]
 [ext_resource type="Script" path="res://Camera/state_locked.gd" id="3_bvwu3"]
 [ext_resource type="Script" path="res://Camera/state_follow_hero.gd" id="3_u7uha"]
+[ext_resource type="Texture2D" uid="uid://b8rg54dkjrvw4" path="res://Camera/marker_icon_a.png" id="5_kga7k"]
+[ext_resource type="Texture2D" uid="uid://prl8d6n0ya3v" path="res://Camera/marker_icon_b.png" id="6_0iqy3"]
 
 [node name="Camera" type="Camera2D" node_paths=PackedStringArray("state_machine")]
 editor_draw_limits = true
 editor_draw_drag_margin = true
 script = ExtResource("1_465f0")
 state_machine = NodePath("StateMachine")
+lookahead_amount = Vector2(200, 200)
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("2_51bgi")
@@ -19,3 +22,9 @@ script = ExtResource("3_u7uha")
 
 [node name="StateLocked" type="Node" parent="StateMachine"]
 script = ExtResource("3_bvwu3")
+
+[node name="CameraMarker" type="Sprite2D" parent="."]
+texture = ExtResource("5_kga7k")
+
+[node name="TargetMarker" type="Sprite2D" parent="."]
+texture = ExtResource("6_0iqy3")
