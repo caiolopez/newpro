@@ -4,9 +4,6 @@ func on_enter():
 	pass
 
 func on_process(delta: float):
-	if camera.lockers.size() > 0:
-		machine.set_state("StateLocked")
-		return
 	
 	var hero_vel = camera.hero.get_velocity()
 	var hero_dir = camera.hero.facing_direction
@@ -30,8 +27,15 @@ func on_process(delta: float):
 		camera.current_lookahead.y = lerp(camera.current_lookahead.y, la_amount.y, 0.1)
 	else: camera.current_lookahead.y = lerp(camera.current_lookahead.y, 0.0, 0.1)
 	
-	# Target acquisition 
+	# Target acquisition
 	camera.target = camera.hero.global_position + camera.current_lookahead
+	for top_locker in camera.lockers:
+		if top_locker.axes == Constants.Axes.x:
+			camera.target.x = top_locker.lock_position.x 
+		elif top_locker.axes == Constants.Axes.y:
+			camera.target.y = top_locker.lock_position.y
+		elif top_locker.axes == Constants.Axes.both:
+			camera.target = top_locker.lock_position
 	
 	# Move camera smoothly towards target
 	camera.position = camera.lerpVector2(camera.position, camera.target, camera.current_lerp_ratio)
