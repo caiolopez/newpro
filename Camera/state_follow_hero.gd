@@ -32,11 +32,13 @@ func on_process(delta: float):
 	for top_locker in camera.lockers:
 		if top_locker.axes == Constants.Axes.x:
 			camera.target.x = top_locker.lock_position.x 
-			if top_locker.reset_lerp: camera.current_lerp_ratio = camera.lerp_ratio
+			if top_locker.reset_lerp: camera.current_lerp_ratio.x = camera.lerp_ratio.x
 		elif top_locker.axes == Constants.Axes.y:
 			camera.target.y = top_locker.lock_position.y
+			if top_locker.reset_lerp: camera.current_lerp_ratio.y = camera.lerp_ratio.y
 		elif top_locker.axes == Constants.Axes.both:
 			camera.target = top_locker.lock_position
+			if top_locker.reset_lerp: camera.current_lerp_ratio = camera.lerp_ratio
 	
 	# Move camera smoothly towards target
 	camera.position = camera.lerp_vector2(camera.position, camera.target, camera.current_lerp_ratio)

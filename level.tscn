@@ -5,16 +5,16 @@
 [ext_resource type="PackedScene" uid="uid://c48ye6g4s5ufc" path="res://Camera/camera.tscn" id="3_o6dt5"]
 [ext_resource type="PackedScene" uid="uid://bgty58ccnncxy" path="res://Camera/camera_locker.tscn" id="4_d4cnc"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_e0d7o"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fxeel"]
 size = Vector2(239.597, 150.842)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_14wrx"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_umtnm"]
 size = Vector2(239.597, 133.842)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ml0tf"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_16gt1"]
 size = Vector2(158, 141.352)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_t82er"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bqd1q"]
 size = Vector2(158, 100.176)
 
 [node name="Level" type="Node"]
@@ -35,10 +35,11 @@ hero = NodePath("../Hero")
 [node name="CameraLocker" parent="." instance=ExtResource("4_d4cnc")]
 position = Vector2(1201, 430)
 axes_to_lock = 2
+reset_lerp = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLocker"]
 position = Vector2(-499, 63.421)
-shape = SubResource("RectangleShape2D_e0d7o")
+shape = SubResource("RectangleShape2D_fxeel")
 debug_color = Color(1, 0, 1, 0.5)
 
 [node name="Marker2D" type="Marker2D" parent="CameraLocker"]
@@ -48,10 +49,11 @@ gizmo_extents = 59.6
 [node name="CameraLocker2" parent="." instance=ExtResource("4_d4cnc")]
 position = Vector2(379, 430)
 center_at_edge = true
+reset_lerp = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLocker2"]
 position = Vector2(70, 70.921)
-shape = SubResource("RectangleShape2D_14wrx")
+shape = SubResource("RectangleShape2D_umtnm")
 debug_color = Color(0, 0, 1, 0.5)
 
 [node name="Marker2D" type="Marker2D" parent="CameraLocker2"]
@@ -61,25 +63,25 @@ gizmo_extents = 59.6
 [node name="CameraLocker3" parent="." instance=ExtResource("4_d4cnc")]
 position = Vector2(379, 430)
 axes_to_lock = 1
-center_at_edge = true
+reset_lerp = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLocker3"]
-position = Vector2(-153, 59.6758)
-shape = SubResource("RectangleShape2D_ml0tf")
+position = Vector2(-240, 65)
+shape = SubResource("RectangleShape2D_16gt1")
 debug_color = Color(1, 0, 0, 0.5)
 
 [node name="Marker2D" type="Marker2D" parent="CameraLocker3"]
-position = Vector2(103, 83)
+position = Vector2(-241, -106)
 gizmo_extents = 59.6
 
 [node name="CameraLocker4" parent="." instance=ExtResource("4_d4cnc")]
 position = Vector2(379, 430)
 axes_to_lock = 1
-center_at_edge = true
+reset_lerp = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLocker4"]
 position = Vector2(-350, 87.088)
-shape = SubResource("RectangleShape2D_t82er")
+shape = SubResource("RectangleShape2D_bqd1q")
 debug_color = Color(1, 0, 0, 0.5)
 
 [node name="Marker2D" type="Marker2D" parent="CameraLocker4"]
