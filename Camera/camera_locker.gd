@@ -1,8 +1,8 @@
 @tool
 class_name CameraLocker extends Area2D
 
-signal hero_entered(camera_locker: CameraLocker, axes: Constants.Axes, lock_position: Vector2, reset_lerp: bool)
-signal hero_exited(camera_locker: CameraLocker, axes: Constants.Axes, reset_lerp: bool)
+signal hero_entered(camera_locker: CameraLocker, axes: Constants.Axes, lock_position: Vector2)
+signal hero_exited(camera_locker: CameraLocker, axes: Constants.Axes)
 
 const debug_color_x: Color = Color(0, 0, 1, 0.5)
 const debug_color_y: Color = Color(1, 0, 0, 0.5)
@@ -15,7 +15,6 @@ const debug_color_both: Color = Color(1, 0, 1, 0.5)
 		queue_redraw()
 		axes_to_lock = value
 @export var center_at_edge: bool
-@export var reset_lerp: bool
 var center_at: Marker2D
 
 func _ready():
@@ -42,11 +41,11 @@ func on_hero_entered(body: Node2D):
 	else:
 		lock_position = center_at.global_position
 		
-	hero_entered.emit(self, axes_to_lock, lock_position, reset_lerp)
+	hero_entered.emit(self, axes_to_lock, lock_position)
 
 func on_hero_exited(body: Node2D):
 	if not body.is_in_group("heroes"): return
-	hero_exited.emit(self, axes_to_lock, reset_lerp)
+	hero_exited.emit(self, axes_to_lock)
 	
 func debug_color_changer():
 	var color: Color
