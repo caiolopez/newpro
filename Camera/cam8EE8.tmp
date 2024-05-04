@@ -24,7 +24,7 @@ script = ExtResource("3_u7uha")
 script = ExtResource("3_bvwu3")
 
 [node name="CameraMarker" type="Sprite2D" parent="."]
-texture = ExtResource("6_0iqy3")
+texture = ExtResource("5_kga7k")
 
 [node name="TargetMarker" type="Sprite2D" parent="."]
-texture = ExtResource("5_kga7k")
+texture = ExtResource("6_0iqy3")

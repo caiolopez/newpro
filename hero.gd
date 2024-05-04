@@ -28,6 +28,5 @@ func _physics_process(delta):
 		velocity.x = facing_direction * SPEED
 		
 	else: velocity.x = 0
-	
 
 	move_and_slide()
