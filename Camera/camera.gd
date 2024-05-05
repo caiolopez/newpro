@@ -24,7 +24,7 @@ var target: Vector2
 
 
 func _ready():
-	state_machine.start() # starts state machine
+	state_machine.start()
 
 func _process(delta):
 	# debug

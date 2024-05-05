@@ -1,7 +1,7 @@
 extends CameraState
 
 func on_enter():
-	("locked")
+	pass
 
 func on_process(delta: float):
 	if camera.lockers.size() == 0:
