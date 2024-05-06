@@ -28,7 +28,7 @@ func on_physics_process(_delta:float) -> void:
 
 func exit() -> void:
 	active = false
-	print("exit_state ", name)
+	#print("exit_state ", name)
 	on_exit()
 	pass
 

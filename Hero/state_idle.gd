@@ -8,7 +8,7 @@ func on_process(delta: float):
 
 		
 func on_physics_process(delta: float):
-	if hero.is_on_floor() and hero.velocity.x == 0: machine.set_state("StateIdle")
+	if hero.velocity.x != 0: machine.set_state("StateWalking")
 	if not hero.is_on_floor() and hero.velocity.y > 0: machine.set_state("StateFalling")
 	if not hero.is_on_floor() and hero.velocity.y < 0: machine.set_state("StateJumping")
 
