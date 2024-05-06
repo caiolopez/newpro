@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://1md1m8n6iq5x"]
+[gd_scene load_steps=12 format=3 uid="uid://1md1m8n6iq5x"]
 
 [ext_resource type="Script" path="res://Hero/hero.gd" id="1_dmqn8"]
 [ext_resource type="Texture2D" uid="uid://d2gdo5bbgykv2" path="res://icon.svg" id="1_l0t87"]
@@ -10,7 +10,6 @@
 [ext_resource type="Script" path="res://Hero/state_gliding.gd" id="8_4k4qv"]
 [ext_resource type="Script" path="res://Hero/state_wall_grabbing.gd" id="9_d343a"]
 [ext_resource type="Script" path="res://Hero/state_blunder_falling.gd" id="10_1ag0f"]
-[ext_resource type="Script" path="res://Hero/state_wall_climbing.gd" id="11_gxos4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_361o4"]
 size = Vector2(128, 128)
@@ -49,14 +48,3 @@ script = ExtResource("9_d343a")
 
 [node name="StateBlunderFalling" type="Node" parent="StateMachine"]
 script = ExtResource("10_1ag0f")
-
-[node name="StateWallClimbing" type="Node" parent="StateMachine"]
-script = ExtResource("11_gxos4")
-
-[node name="TimerCoyoteJump" type="Timer" parent="StateMachine"]
-wait_time = 0.5
-one_shot = true
-
-[node name="TimerBufferJump" type="Timer" parent="StateMachine"]
-wait_time = 0.5
-one_shot = true
