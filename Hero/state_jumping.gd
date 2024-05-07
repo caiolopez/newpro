@@ -1,7 +1,7 @@
 extends HeroState
 
 func on_enter():
-	pass
+	hero.velocity.y = hero.JUMP_VELOCITY
 
 func on_process(delta: float):
 	pass

@@ -13,14 +13,10 @@ func on_physics_process(delta: float):
 		get_node("../TimerCoyoteJump").start()
 		machine.set_state("StateFalling")
 		return
-	if not hero.is_on_floor() and hero.velocity.y < 0: machine.set_state("StateJumping")
-	
+	if Input.is_action_just_pressed('jump'): machine.set_state("StateJumping")
 
 	hero.step_grav(delta)
 	hero.step_lateral_mov(delta)
-
-	if Input.is_action_just_pressed('jump'): hero.velocity.y = hero.JUMP_VELOCITY
-	if Input.is_action_just_released('jump'): hero.velocity.y = 0
 
 	hero.move_and_slide()
 

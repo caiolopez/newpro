@@ -13,11 +13,19 @@ func on_physics_process(delta: float):
 		machine.set_state("StateWallClimbing")
 		return
 	if Input.is_action_just_pressed('jump') and not get_node("../TimerCoyoteJump").is_stopped():
-		hero.velocity.y = hero.JUMP_VELOCITY
 		machine.set_state("StateJumping")
+		return
+	if (hero.facing_direction == round(hero.get_wall_normal().x)) \
+		and not get_node("../TimerCoyoteWallJump").is_stopped() \
+		and Input.is_action_just_pressed('jump'):
+		machine.set_state("StateWallJumping")
 		return
 	if Input.is_action_pressed('jump'): machine.set_state("StateGliding")
 	
+	
+	
+	if Input.is_action_just_pressed('jump'):
+		get_node("../TimerBufferJump").start()
 	
 	hero.step_grav(delta)
 	hero.step_lateral_mov(delta)
