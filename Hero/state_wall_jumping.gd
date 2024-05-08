@@ -1,7 +1,7 @@
 extends HeroState
 
 func on_enter():
-	pass
+	get_node("../TimerBufferJump").stop()
 	hero.velocity.x = hero.WALLJUMP_VELOCITY.x * round(hero.get_wall_normal().x)
 	hero.velocity.y = hero.WALLJUMP_VELOCITY.y
 

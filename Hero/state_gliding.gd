@@ -3,7 +3,6 @@ extends HeroState
 func on_enter():
 	if hero.is_on_wall_only():
 		get_node("../TimerCoyoteWallJump").start()
-		print("STARTED COYOTE")
 
 func on_process(delta: float):
 	pass
@@ -20,7 +19,6 @@ func on_physics_process(delta: float):
 		machine.set_state("StateWallGrabbing")
 		return
 	if not hero.is_pushing_wall() and not get_node("../TimerCoyoteWallJump").is_stopped() and (Input.is_action_just_pressed("move_left") or Input.is_action_just_pressed("move_right")):
-		print("***")
 		machine.set_state("StateWallJumping")
 		return
 	
@@ -28,6 +26,9 @@ func on_physics_process(delta: float):
 
 
 	if Input.is_action_pressed("jump"): hero.velocity.y = hero.GLIDE_VELOCITY
+	
+	if hero.is_on_wall_only() and hero.is_move_dir_away_from_last_wall():
+		get_node("../TimerCoyoteWallJump").start()
 	
 	hero.step_lateral_mov(delta)
 	

@@ -14,7 +14,7 @@ func _ready():
 	state_machine.start()
 
 func _physics_process(delta):
-	#is_pushing_away_from_wall()
+	is_move_dir_away_from_last_wall()
 	pass
 
 func step_grav(delta):
@@ -38,3 +38,9 @@ func is_pushing_wall() -> bool:
 	if is_on_wall() and (push_left or push_right):
 			pushing_wall = facing_direction == -round(get_wall_normal().x)
 	return pushing_wall
+
+func is_move_dir_away_from_last_wall() -> bool:
+	var mov_away = (round(get_wall_normal().x) == -1 and Input.is_action_just_pressed('move_left'))\
+	or (round(get_wall_normal().x) == 1 and Input.is_action_just_pressed('move_right'))
+	#print(mov_away)
+	return mov_away
