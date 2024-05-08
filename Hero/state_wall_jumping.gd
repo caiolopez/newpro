@@ -4,6 +4,7 @@ func on_enter():
 	get_node("../TimerCoyoteWallJumpA").stop()
 	get_node("../TimerCoyoteWallJumpB").stop()
 	get_node("../TimerCoyoteWallJumpC").stop()
+	get_node("../TimerWallJumpDuration").start()
 	hero.velocity.x = hero.WALLJUMP_VELOCITY.x * round(hero.get_wall_normal().x)
 	hero.velocity.y = hero.WALLJUMP_VELOCITY.y
 
@@ -12,11 +13,19 @@ func on_process(delta: float):
 
 		
 func on_physics_process(delta: float):
-	if not hero.is_on_floor() and hero.velocity.y > 0: machine.set_state("StateFalling")
+	if not hero.is_on_floor() and hero.velocity.y > 0:
+		get_node("../TimerWallJumpDuration").stop()
+		machine.set_state("StateFalling")
+		return
+	if Input.is_action_just_released("jump"):
+		get_node("../TimerWallJumpDuration").stop()
+		machine.set_state("StateFalling")
+		return
 
 
 	hero.step_grav(delta)
-	hero.step_lateral_mov(delta)
+	if get_node("../TimerWallJumpDuration").is_stopped():
+		hero.step_lateral_mov(delta)
 
 	hero.move_and_slide()
 

@@ -1,6 +1,7 @@
 extends HeroState
 
 func on_enter():
+	get_node("../TimerBufferWallJump").stop()
 	hero.velocity.y = hero.CLIMB_VELOCITY
 
 func on_process(delta: float):
