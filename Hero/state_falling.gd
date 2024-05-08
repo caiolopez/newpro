@@ -26,12 +26,15 @@ func on_physics_process(delta: float):
 		machine.set_state("StateWallJumping")
 		print('aaa')
 		return
-	if Input.is_action_pressed('jump'): machine.set_state("StateGliding")
-	
-	
-	
 	if Input.is_action_just_pressed('jump'):
 		get_node("../TimerBufferJump").start()
+	if Input.is_action_pressed('jump'):
+		machine.set_state("StateGliding")
+		return
+	
+	
+	
+
 		
 	if hero.is_on_wall_only() and hero.is_move_dir_away_from_last_wall(true):
 		get_node("../TimerCoyoteWallJumpA").start()

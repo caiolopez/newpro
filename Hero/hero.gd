@@ -13,6 +13,9 @@ func _ready():
 	set_safe_margin(0.08)
 	state_machine.start()
 
+func _process(delta):
+	if Input.is_action_just_pressed("shoot"): print("-------------------------------------")
+
 func _physics_process(delta):
 	pass
 

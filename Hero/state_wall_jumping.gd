@@ -3,6 +3,7 @@ extends HeroState
 func on_enter():
 	get_node("../TimerCoyoteWallJumpA").stop()
 	get_node("../TimerCoyoteWallJumpB").stop()
+	get_node("../TimerCoyoteWallJumpC").stop()
 	hero.velocity.x = hero.WALLJUMP_VELOCITY.x * round(hero.get_wall_normal().x)
 	hero.velocity.y = hero.WALLJUMP_VELOCITY.y
 
