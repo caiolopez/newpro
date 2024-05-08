@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var SPEED = 300.0 ## The moving speed of the hero.
 @export var JUMP_VELOCITY = -400.0 ## The speed the hero jumps when grounded.
-@export var WALLJUMP_VELOCITY = Vector2(300, -400) ## The speed the hero walljumps away from a wall.
+@export var WALLJUMP_VELOCITY = Vector2(400, -400) ## The speed the hero walljumps away from a wall.
 @export var CLIMB_VELOCITY = -400.0 ## The speed the hero jumps upward when jumping to the same side of the wall (Megaman-style walljump).
 @export var GLIDE_VELOCITY = 50.0 ## The speed at which the hero slowly descends when airborne and holding Jump.
 @export var state_machine: StateMachine ## The state machine that governs this player controller. Drag-and-drop the state-machine object to this field.
@@ -14,6 +14,7 @@ func _ready():
 	state_machine.start()
 
 func _physics_process(delta):
+	#is_pushing_away_from_wall()
 	pass
 
 func step_grav(delta):

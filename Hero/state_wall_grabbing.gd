@@ -8,14 +8,15 @@ func on_process(delta: float):
 
 		
 func on_physics_process(delta: float):
-	if hero.is_on_floor(): machine.set_state("StateIdle")
+	if hero.is_on_floor():
+		machine.set_state("StateIdle")
+		return
 	if not hero.is_pushing_wall():
 		machine.set_state("StateGliding")
-		get_node("../TimerCoyoteWallJump").start()
-		print("______________")
-		print(get_node("../TimerCoyoteWallJump").is_stopped())
 		return
-	if Input.is_action_just_released('jump'): machine.set_state("StateFalling")
+	if Input.is_action_just_released('jump'):
+		machine.set_state("StateFalling")
+		return
 	
 	hero.velocity.y = 0
 	hero.step_lateral_mov(delta)
