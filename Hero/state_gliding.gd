@@ -18,8 +18,10 @@ func on_physics_process(delta: float):
 	if hero.is_pushing_wall():
 		machine.set_state("StateWallGrabbing")
 		return
-	if not hero.is_pushing_wall() and not get_node("../TimerCoyoteWallJump").is_stopped() and (Input.is_action_just_pressed("move_left") or Input.is_action_just_pressed("move_right")):
+	if hero.is_move_dir_away_from_last_wall()\
+	and not get_node("../TimerCoyoteWallJump").is_stopped():
 		machine.set_state("StateWallJumping")
+		print("****************")
 		return
 	
 
