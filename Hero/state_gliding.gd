@@ -4,6 +4,9 @@ func on_enter():
 	if hero.is_on_wall_only() and Input.is_action_just_pressed('jump'):
 		get_node("../TimerCoyoteWallJumpC").start()
 		print("CCC")
+	if not hero.is_on_wall() and Input.is_action_just_pressed('jump'):
+		get_node("../TimerBufferWallJump").start()
+		print("BUFFER START START START")
 
 func on_process(delta: float):
 	pass
@@ -15,6 +18,11 @@ func on_physics_process(delta: float):
 		return
 	if not Input.is_action_pressed("jump"):
 		machine.set_state("StateFalling")
+		return
+	if hero.is_pushing_wall()\
+		and not get_node("../TimerBufferWallJump").is_stopped():
+		machine.set_state("StateWallClimbing")
+		print('climbooooooooooooooooooo')
 		return
 	if hero.is_pushing_wall():
 		machine.set_state("StateWallGrabbing")
