@@ -5,16 +5,16 @@
 [ext_resource type="PackedScene" uid="uid://c48ye6g4s5ufc" path="res://Camera/camera.tscn" id="3_o6dt5"]
 [ext_resource type="PackedScene" uid="uid://bgty58ccnncxy" path="res://Camera/camera_locker.tscn" id="4_d4cnc"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xm76i"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r22ak"]
 size = Vector2(239.597, 150.842)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_v1sny"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pjddn"]
 size = Vector2(239.597, 133.842)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sm1pv"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yf6sg"]
 size = Vector2(158, 141.352)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_25t3m"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_boq0v"]
 size = Vector2(158, 100.176)
 
 [node name="Level" type="Node"]
@@ -29,6 +29,10 @@ scale = Vector2(14.4838, 0.87853)
 
 [node name="Block2" parent="." instance=ExtResource("1_weaqc")]
 position = Vector2(1433, 136)
+scale = Vector2(-0.952147, 6.73451)
+
+[node name="Block5" parent="." instance=ExtResource("1_weaqc")]
+position = Vector2(-589, 367)
 scale = Vector2(-0.952147, 6.73451)
 
 [node name="Block4" parent="." instance=ExtResource("1_weaqc")]
@@ -50,7 +54,7 @@ axes_to_lock = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLocker"]
 position = Vector2(-499, 63.421)
-shape = SubResource("RectangleShape2D_xm76i")
+shape = SubResource("RectangleShape2D_r22ak")
 debug_color = Color(1, 0, 1, 0.5)
 
 [node name="Marker2D" type="Marker2D" parent="CameraLocker"]
@@ -63,7 +67,7 @@ center_at_edge = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLocker2"]
 position = Vector2(70, 70.921)
-shape = SubResource("RectangleShape2D_v1sny")
+shape = SubResource("RectangleShape2D_pjddn")
 debug_color = Color(0, 0, 1, 0.5)
 
 [node name="Marker2D" type="Marker2D" parent="CameraLocker2"]
@@ -76,7 +80,7 @@ axes_to_lock = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLocker3"]
 position = Vector2(-240, 65)
-shape = SubResource("RectangleShape2D_sm1pv")
+shape = SubResource("RectangleShape2D_yf6sg")
 debug_color = Color(1, 0, 0, 0.5)
 
 [node name="Marker2D" type="Marker2D" parent="CameraLocker3"]
@@ -89,7 +93,7 @@ axes_to_lock = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLocker4"]
 position = Vector2(-350, 87.088)
-shape = SubResource("RectangleShape2D_25t3m")
+shape = SubResource("RectangleShape2D_boq0v")
 debug_color = Color(1, 0, 0, 0.5)
 
 [node name="Marker2D" type="Marker2D" parent="CameraLocker4"]

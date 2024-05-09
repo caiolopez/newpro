@@ -1,7 +1,6 @@
 extends HeroState
 
 func on_enter():
-	get_node("../TimerBufferWallJump").stop()
 	hero.velocity.y = hero.CLIMB_VELOCITY
 
 func on_process(delta: float):
@@ -9,8 +8,16 @@ func on_process(delta: float):
 
 		
 func on_physics_process(delta: float):
-	if hero.is_on_floor(): machine.set_state("StateIdle")
-	if hero.velocity.y > 0 and not hero.is_on_floor(): machine.set_state("StateFalling")
+	if hero.is_on_floor():
+		machine.set_state("StateIdle")
+		return
+	if hero.velocity.y > 0 and not hero.is_on_floor():
+		machine.set_state("StateFalling")
+		return
+	if hero.is_move_dir_away_from_last_wall(false) and Input.is_action_pressed('jump'):
+		machine.set_state("StateWallJumping")
+		return
+		
 	
 	
 	

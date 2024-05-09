@@ -21,6 +21,7 @@ var lockers: Array[Locker] = []
 var current_lerp_ratio: Vector2
 var current_lookahead: Vector2
 var target: Vector2
+var hero_last_velocity: Vector2
 
 
 func _ready():
@@ -46,3 +47,17 @@ func lerp_vector2(v1: Vector2, v2: Vector2, ratio: Vector2) -> Vector2:
 		lerp(v1.x, v2.x, ratio.x),
 		lerp(v1.y, v2.y, ratio.y)
 	)
+
+func is_hero_just_reduced_velocity(threshold, axes: Constants.Axes) -> bool:
+	var is_breaking = false
+	if axes == Constants.Axes.x:
+		is_breaking = abs(hero_last_velocity.x) > abs(hero.velocity.x) + threshold
+	if axes == Constants.Axes.y:	
+		is_breaking = abs(hero_last_velocity.y) > abs(hero.velocity.y) + threshold
+	hero_last_velocity = Vector2(hero.velocity.x, hero.velocity.y)
+	print(is_breaking)
+	return is_breaking
+
+		
+		
+	

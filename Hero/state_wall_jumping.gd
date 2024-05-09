@@ -4,6 +4,7 @@ func on_enter():
 	get_node("../TimerWallJumpDuration").start()
 	hero.velocity.x = hero.WALLJUMP_VELOCITY.x * round(hero.get_wall_normal().x)
 	hero.velocity.y = hero.WALLJUMP_VELOCITY.y
+	hero.facing_direction = round(hero.get_wall_normal().x)
 
 func on_process(delta: float):
 	pass

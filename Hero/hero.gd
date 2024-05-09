@@ -5,6 +5,10 @@ extends CharacterBody2D
 @export var WALLJUMP_VELOCITY = Vector2(800, -400) ## The speed the hero walljumps away from a wall.
 @export var CLIMB_VELOCITY = -400.0 ## The speed the hero jumps upward when jumping to the same side of the wall (Megaman-style walljump).
 @export var GLIDE_VELOCITY = 50.0 ## The speed at which the hero slowly descends when airborne and holding Jump.
+@export var BLUNDER_AIRBORNE_VELOCITY = Vector2(-800, 0) ## The strenth of the recoil when blunderjumping on air
+@export var BLUNDER_GROUNDED_VELOCITY = Vector2(-800, 0) ## The strenth of the recoil when blunderjumping on ground
+@export var BLUNDER_AIRBORNE_DURATION = 1 ## The duration of the recoil when blunderjumping on air
+@export var BLUNDER_GROUNDED_DURATION = 0.5 ## The duration of the recoil when blunderjumping on ground
 @export var state_machine: StateMachine ## The state machine that governs this player controller. Drag-and-drop the state-machine object to this field.
 var facing_direction = 1
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -14,7 +18,7 @@ func _ready():
 	state_machine.start()
 
 func _process(delta):
-	if Input.is_action_just_pressed("shoot"): print("-------------------------------------")
+	pass
 
 func _physics_process(delta):
 	pass
@@ -50,3 +54,6 @@ func is_move_dir_away_from_last_wall(just: bool) -> bool:
 		mov_away = (round(get_wall_normal().x) == -1 and Input.is_action_pressed('move_left'))\
 		or (round(get_wall_normal().x) == 1 and Input.is_action_pressed('move_right'))
 	return mov_away
+
+func is_input_blunder_shoot() -> bool:
+	return Input.is_action_pressed('duck') and Input.is_action_just_pressed("shoot")

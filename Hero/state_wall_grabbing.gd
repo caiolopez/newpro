@@ -8,6 +8,10 @@ func on_process(delta: float):
 
 		
 func on_physics_process(delta: float):
+	if hero.is_input_blunder_shoot()\
+		and get_node("../TimerBlunderShootCooldown").is_stopped():
+		machine.set_state("StateBlunderShooting")
+		return
 	if hero.is_on_floor():
 		machine.set_state("StateIdle")
 		return

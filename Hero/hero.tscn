@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://1md1m8n6iq5x"]
+[gd_scene load_steps=16 format=3 uid="uid://1md1m8n6iq5x"]
 
 [ext_resource type="Script" path="res://Hero/hero.gd" id="1_dmqn8"]
-[ext_resource type="Texture2D" uid="uid://d2gdo5bbgykv2" path="res://icon.svg" id="1_l0t87"]
+[ext_resource type="Texture2D" uid="uid://0l05qi2ha4p5" path="res://hero.png" id="2_uk1tr"]
+[ext_resource type="Script" path="res://Hero/hero_sprite.gd" id="3_jd25v"]
 [ext_resource type="Script" path="res://state_machine.gd" id="3_oqep4"]
 [ext_resource type="Script" path="res://Hero/state_idle.gd" id="4_t32ch"]
 [ext_resource type="Script" path="res://Hero/state_walking.gd" id="4_wtfn7"]
@@ -12,6 +13,7 @@
 [ext_resource type="Script" path="res://Hero/state_blunder_falling.gd" id="10_1ag0f"]
 [ext_resource type="Script" path="res://Hero/state_wall_climbing.gd" id="11_gxos4"]
 [ext_resource type="Script" path="res://Hero/state_wall_jumping.gd" id="12_foyt3"]
+[ext_resource type="Script" path="res://Hero/state_blunder_shooting.gd" id="14_hvmmj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_361o4"]
 size = Vector2(128, 128)
@@ -21,8 +23,10 @@ script = ExtResource("1_dmqn8")
 state_machine = NodePath("StateMachine")
 metadata/_edit_group_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_l0t87")
+[node name="HeroSprite" type="Sprite2D" parent="."]
+scale = Vector2(16, 16)
+texture = ExtResource("2_uk1tr")
+script = ExtResource("3_jd25v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_361o4")
@@ -57,6 +61,9 @@ script = ExtResource("11_gxos4")
 [node name="StateWallJumping" type="Node" parent="StateMachine"]
 script = ExtResource("12_foyt3")
 
+[node name="StateBlunderShooting" type="Node" parent="StateMachine"]
+script = ExtResource("14_hvmmj")
+
 [node name="TimerCoyoteJump" type="Timer" parent="StateMachine"]
 wait_time = 0.1
 one_shot = true
@@ -83,4 +90,11 @@ one_shot = true
 
 [node name="TimerWallJumpDuration" type="Timer" parent="StateMachine"]
 wait_time = 0.5
+one_shot = true
+
+[node name="TimerBlunderShootDuration" type="Timer" parent="StateMachine"]
+wait_time = 0.5
+one_shot = true
+
+[node name="TimerBlunderShootCooldown" type="Timer" parent="StateMachine"]
 one_shot = true
