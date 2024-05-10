@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://d2gdo5bbgykv2" path="res://icon.svg" id="1_pjdyt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_450i0"]
+radius = 15.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_eo4fx"]
 animations = [{
@@ -16,12 +17,17 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Bullet" type="StaticBody2D"]
+[node name="Bullet" type="Area2D"]
 script = ExtResource("1_hqyxv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_450i0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.117188, 0.117188)
+scale = Vector2(0.197189, 0.197189)
 sprite_frames = SubResource("SpriteFrames_eo4fx")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

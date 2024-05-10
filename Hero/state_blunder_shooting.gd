@@ -12,7 +12,7 @@ func on_enter():
 	get_node("../TimerBlunderShootDuration").start()
 	get_node("../TimerBlunderShootCooldown").start()
 	get_node("../TimerBlunderJumpWindow").start()
-	pass
+	hero.shoot_blunder(4,45)
 
 func on_process(delta: float):
 	pass
