@@ -11,7 +11,7 @@ extends CharacterBody2D
 @export var BLUNDER_GROUNDED_DURATION = 0.5 ## The duration of the recoil when blunderjumping on ground.
 @export var BLUNDER_JUMP_VELOCITY = -400.0 ## The speed the hero jumps after blundershooting airborne.
 @export var state_machine: StateMachine ## The state machine that governs this player controller. Drag-and-drop the state-machine object to this field.
-@export var bullet = preload("res://Bullet/bullet.tscn")
+@export var bullet_manager: Node
 var facing_direction = 1
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -23,14 +23,10 @@ func _process(delta):
 	pass
 
 func _physics_process(delta):
-	if Input.is_action_just_pressed("shoot"):
-		if state_machine.current_state.name not in ["StateBlunderShooting", "StateBlunderJumping"]:
-			shoot_regular()
-		#else:
-			#if Input.is_action_pressed("duck"):
-				#shoot_blunder(3,30)
-			#else:
-				#shoot_regular()
+	#if Input.is_action_just_pressed("shoot")\
+	#and state_machine.current_state.name not in ["StateBlunderShooting", "StateBlunderJumping"]:
+		#shoot_regular()
+		pass
 
 func step_grav(delta):
 	if not is_on_floor(): velocity.y += gravity * delta
@@ -66,21 +62,12 @@ func is_move_dir_away_from_last_wall(just: bool) -> bool:
 
 func is_input_blunder_shoot() -> bool:
 	return Input.is_action_pressed('duck') and Input.is_action_just_pressed("shoot")
-
-func create_bullet(angle := 0.0, offset := Vector2(0.0,0.0), vel := Vector2(200.0,0.0), accel := Vector2(0.0,0.0)) -> Area2D:
-	var bullet = bullet.instantiate()
-	var bullet_angle = deg_to_rad(270+(facing_direction*(90+angle)))
-	get_node("/root").add_child(bullet)
-	bullet.position = position+offset
-	bullet.velocity = vel.rotated(bullet_angle)
-	bullet.acceleration = accel.rotated(bullet_angle)
-	return bullet
 	
 func shoot_regular():
-	var bullet #= create_bullet()
+	var bullet = bullet_manager.create_bullet(facing_direction, position)
 
 func shoot_blunder(amount: int, interval_angle: float):
 	var top_angle =  (amount-1) * interval_angle / 2
 	for i in range(amount):
-		create_bullet(top_angle - interval_angle * i)
+		bullet_manager.create_bullet(facing_direction, position, top_angle - interval_angle * i)
 	

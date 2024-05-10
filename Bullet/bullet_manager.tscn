@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://j6oxe1axyrgk"]
 
-[ext_resource type="Script" path="res://bullet_manager.gd" id="1_hgf6u"]
+[ext_resource type="Script" path="res://Bullet/bullet_manager.gd" id="1_hgf6u"]
 
 [node name="BulletManager" type="Node"]
 script = ExtResource("1_hgf6u")

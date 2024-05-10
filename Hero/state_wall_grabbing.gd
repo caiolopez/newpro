@@ -22,6 +22,8 @@ func on_physics_process(delta: float):
 		machine.set_state("StateFalling")
 		return
 	
+	if Input.is_action_just_pressed("shoot"): hero.shoot_regular()
+	
 	hero.velocity.y = 0
 	hero.step_lateral_mov(delta)
 	

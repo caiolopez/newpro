@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://1md1m8n6iq5x"]
+[gd_scene load_steps=16 format=3 uid="uid://1md1m8n6iq5x"]
 
 [ext_resource type="Script" path="res://Hero/hero.gd" id="1_dmqn8"]
 [ext_resource type="Texture2D" uid="uid://0l05qi2ha4p5" path="res://hero.png" id="2_uk1tr"]
@@ -10,7 +10,6 @@
 [ext_resource type="Script" path="res://Hero/state_falling.gd" id="7_qsa0a"]
 [ext_resource type="Script" path="res://Hero/state_gliding.gd" id="8_4k4qv"]
 [ext_resource type="Script" path="res://Hero/state_wall_grabbing.gd" id="9_d343a"]
-[ext_resource type="Script" path="res://Hero/state_blunder_falling.gd" id="10_1ag0f"]
 [ext_resource type="Script" path="res://Hero/state_wall_climbing.gd" id="11_gxos4"]
 [ext_resource type="Script" path="res://Hero/state_wall_jumping.gd" id="12_foyt3"]
 [ext_resource type="Script" path="res://Hero/state_blunder_shooting.gd" id="14_hvmmj"]
@@ -52,9 +51,6 @@ script = ExtResource("8_4k4qv")
 
 [node name="StateWallGrabbing" type="Node" parent="StateMachine"]
 script = ExtResource("9_d343a")
-
-[node name="StateBlunderFalling" type="Node" parent="StateMachine"]
-script = ExtResource("10_1ag0f")
 
 [node name="StateWallClimbing" type="Node" parent="StateMachine"]
 script = ExtResource("11_gxos4")

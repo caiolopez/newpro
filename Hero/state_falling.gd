@@ -50,7 +50,8 @@ func on_physics_process(delta: float):
 		get_node("../TimerCoyoteWallJumpA").start()
 		print('AAA')
 		
-			
+	if Input.is_action_just_pressed("shoot"): hero.shoot_regular()
+	
 	hero.step_grav(delta)
 	hero.step_lateral_mov(delta)
 

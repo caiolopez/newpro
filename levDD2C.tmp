@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://1xi1vmc3x5ck"]
+[gd_scene load_steps=11 format=3 uid="uid://1xi1vmc3x5ck"]
 
 [ext_resource type="PackedScene" uid="uid://ctbx6yfgdfo4b" path="res://block.tscn" id="1_weaqc"]
 [ext_resource type="PackedScene" uid="uid://1md1m8n6iq5x" path="res://Hero/hero.tscn" id="2_acvau"]
@@ -6,18 +6,17 @@
 [ext_resource type="PackedScene" uid="uid://c48ye6g4s5ufc" path="res://Camera/camera.tscn" id="3_o6dt5"]
 [ext_resource type="PackedScene" uid="uid://bgty58ccnncxy" path="res://Camera/camera_locker.tscn" id="4_d4cnc"]
 [ext_resource type="PackedScene" uid="uid://kfcc5raaowpu" path="res://Bullet/bullet.tscn" id="5_286gv"]
-[ext_resource type="PackedScene" uid="uid://bt23waqbakmop" path="res://Bullet/water.tscn" id="7_5uehg"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_q0nxk"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rl70c"]
 size = Vector2(239.597, 150.842)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_eapjd"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x8smn"]
 size = Vector2(239.597, 133.842)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_twdc1"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r6dub"]
 size = Vector2(158, 141.352)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ys4r8"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hvyxj"]
 size = Vector2(158, 100.176)
 
 [node name="Level" type="Node"]
@@ -43,8 +42,8 @@ position = Vector2(-458, 365)
 rotation = 2.84221
 scale = Vector2(-0.952147, 6.73451)
 
-[node name="Hero" parent="." node_paths=PackedStringArray("bullet_manager") instance=ExtResource("2_acvau")]
-bullet_manager = NodePath("../BulletManager")
+[node name="Hero" parent="." instance=ExtResource("2_acvau")]
+bullet = ExtResource("3_j1ahj")
 
 [node name="Camera" parent="." node_paths=PackedStringArray("hero") instance=ExtResource("3_o6dt5")]
 hero = NodePath("../Hero")
@@ -57,7 +56,7 @@ position = Vector2(1201, 430)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLocker"]
 position = Vector2(-499, 63.421)
-shape = SubResource("RectangleShape2D_q0nxk")
+shape = SubResource("RectangleShape2D_rl70c")
 debug_color = Color(0, 0, 1, 0.5)
 
 [node name="Marker2D" type="Marker2D" parent="CameraLocker"]
@@ -70,7 +69,7 @@ center_at_edge = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLocker2"]
 position = Vector2(70, 70.921)
-shape = SubResource("RectangleShape2D_eapjd")
+shape = SubResource("RectangleShape2D_x8smn")
 debug_color = Color(0, 0, 1, 0.5)
 
 [node name="Marker2D" type="Marker2D" parent="CameraLocker2"]
@@ -83,7 +82,7 @@ axes_to_lock = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLocker3"]
 position = Vector2(-240, 65)
-shape = SubResource("RectangleShape2D_twdc1")
+shape = SubResource("RectangleShape2D_r6dub")
 debug_color = Color(1, 0, 0, 0.5)
 
 [node name="Marker2D" type="Marker2D" parent="CameraLocker3"]
@@ -96,7 +95,7 @@ axes_to_lock = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLocker4"]
 position = Vector2(-350, 87.088)
-shape = SubResource("RectangleShape2D_ys4r8")
+shape = SubResource("RectangleShape2D_hvyxj")
 debug_color = Color(1, 0, 0, 0.5)
 
 [node name="Marker2D" type="Marker2D" parent="CameraLocker4"]
@@ -107,10 +106,6 @@ gizmo_extents = 0.0
 position = Vector2(-192, 423)
 
 [node name="BulletManager" parent="." instance=ExtResource("3_j1ahj")]
-
-[node name="Water" parent="." instance=ExtResource("7_5uehg")]
-position = Vector2(1402, 747)
-scale = Vector2(55.2494, 28.3084)
 
 [connection signal="hero_entered" from="CameraLocker" to="Camera" method="lock_camera"]
 [connection signal="hero_exited" from="CameraLocker" to="Camera" method="unlock_camera"]

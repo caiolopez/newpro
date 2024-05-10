@@ -24,6 +24,7 @@ func on_physics_process(delta: float):
 		machine.set_state("StateFalling")
 		return
 
+	if Input.is_action_just_pressed("shoot"): hero.shoot_regular()
 
 	hero.step_grav(delta)
 	if get_node("../TimerWallJumpDuration").is_stopped():
