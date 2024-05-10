@@ -21,6 +21,16 @@ size = Vector2(128, 128)
 
 [node name="Hero" type="CharacterBody2D" node_paths=PackedStringArray("state_machine") groups=["heroes"]]
 script = ExtResource("1_dmqn8")
+SPEED = null
+JUMP_VELOCITY = null
+WALLJUMP_VELOCITY = null
+CLIMB_VELOCITY = null
+GLIDE_VELOCITY = null
+BLUNDER_AIRBORNE_VELOCITY = null
+BLUNDER_GROUNDED_VELOCITY = null
+BLUNDER_AIRBORNE_DURATION = null
+BLUNDER_GROUNDED_DURATION = null
+BLUNDER_JUMP_VELOCITY = null
 state_machine = NodePath("StateMachine")
 metadata/_edit_group_ = true
 

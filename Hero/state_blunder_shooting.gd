@@ -11,6 +11,7 @@ func on_enter():
 		hero.velocity.y = hero.BLUNDER_AIRBORNE_VELOCITY.y
 	get_node("../TimerBlunderShootDuration").start()
 	get_node("../TimerBlunderShootCooldown").start()
+	get_node("../TimerBlunderJumpWindow").start()
 	pass
 
 func on_process(delta: float):
@@ -18,8 +19,17 @@ func on_process(delta: float):
 
 		
 func on_physics_process(delta: float):
-	if get_node("../TimerBlunderShootDuration").is_stopped():
+	if Input.is_action_just_pressed('jump')\
+		and not get_node("../TimerBlunderJumpWindow").is_stopped():
+		machine.set_state("StateBlunderJumping")
+		return
+	if get_node("../TimerBlunderShootDuration").is_stopped()\
+		and hero.is_on_floor():
 		machine.set_state("StateIdle")
+		return
+	if get_node("../TimerBlunderShootDuration").is_stopped()\
+		and not hero.is_on_floor():
+		machine.set_state("StateFalling")
 		return
 	
 	

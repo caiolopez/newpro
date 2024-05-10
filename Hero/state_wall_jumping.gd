@@ -11,6 +11,10 @@ func on_process(delta: float):
 
 		
 func on_physics_process(delta: float):
+	if hero.is_input_blunder_shoot()\
+		and get_node("../TimerBlunderShootCooldown").is_stopped():
+		machine.set_state("StateBlunderShooting")
+		return
 	if not hero.is_on_floor() and hero.velocity.y > 0:
 		get_node("../TimerWallJumpDuration").stop()
 		machine.set_state("StateFalling")

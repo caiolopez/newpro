@@ -7,6 +7,10 @@ func on_process(delta: float):
 	pass
 
 func on_physics_process(delta: float):
+	if Input.is_action_just_pressed('jump')\
+		and not get_node("../TimerBlunderJumpWindow").is_stopped():
+		machine.set_state("StateBlunderJumping")
+		return
 	if hero.is_input_blunder_shoot()\
 		and get_node("../TimerBlunderShootCooldown").is_stopped():
 		machine.set_state("StateBlunderShooting")
