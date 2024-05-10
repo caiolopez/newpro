@@ -23,7 +23,7 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 
 
 func _on_body_entered(body):
-	print(body.name, body.get_groups())
+	#print(body.name, body.get_groups())
 	if body.is_in_group("kills_bullets"):
 		queue_free()
 	if body.name == "Water":

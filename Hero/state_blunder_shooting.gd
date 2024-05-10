@@ -10,7 +10,6 @@ func on_enter():
 		hero.velocity.x = hero.BLUNDER_AIRBORNE_VELOCITY.x*hero.facing_direction
 		hero.velocity.y = hero.BLUNDER_AIRBORNE_VELOCITY.y
 	get_node("../TimerBlunderShootDuration").start()
-	get_node("../TimerBlunderShootCooldown").start()
 	get_node("../TimerBlunderJumpWindow").start()
 	hero.shoot_blunder(4,45)
 
@@ -38,4 +37,4 @@ func on_physics_process(delta: float):
 
 
 func on_exit():
-	pass
+	get_node("../TimerBlunderShootCooldown").start()

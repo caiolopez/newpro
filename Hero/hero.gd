@@ -23,10 +23,7 @@ func _process(delta):
 	pass
 
 func _physics_process(delta):
-	#if Input.is_action_just_pressed("shoot")\
-	#and state_machine.current_state.name not in ["StateBlunderShooting", "StateBlunderJumping"]:
-		#shoot_regular()
-		pass
+	pass
 
 func step_grav(delta):
 	if not is_on_floor(): velocity.y += gravity * delta
