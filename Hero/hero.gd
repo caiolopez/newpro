@@ -67,13 +67,13 @@ func is_move_dir_away_from_last_wall(just: bool) -> bool:
 func is_input_blunder_shoot() -> bool:
 	return Input.is_action_pressed('duck') and Input.is_action_just_pressed("shoot")
 
-func create_bullet(angle := 0.0) -> Area2D:
+func create_bullet(angle := 0.0, offset := Vector2(0.0,0.0), vel := Vector2(200.0,0.0), accel := Vector2(0.0,0.0)) -> Area2D:
 	var bullet = bullet.instantiate()
-	var bullet_angle = deg_to_rad(270+(-facing_direction*(90+angle)))
+	var bullet_angle = deg_to_rad(270+(facing_direction*(90+angle)))
 	get_node("/root").add_child(bullet)
-	bullet.position = position
-	bullet.velocity = bullet.velocity.rotated(bullet_angle)
-	bullet.acceleration = bullet.acceleration.rotated(bullet_angle)
+	bullet.position = position+offset
+	bullet.velocity = vel.rotated(bullet_angle)
+	bullet.acceleration = accel.rotated(bullet_angle)
 	return bullet
 	
 func shoot_regular():

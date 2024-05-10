@@ -1,18 +1,18 @@
 extends Area2D
 
-var velocity := Vector2(-50,0)
-var acceleration := Vector2(-50, 0)
-var is_foe: bool
+var velocity := Vector2.ZERO
+var acceleration := Vector2.ZERO
+var is_fire := false
+var is_foe := false
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
-	
+
+
 func _physics_process(delta):
 	velocity += acceleration * delta
 	global_position += delta*velocity
