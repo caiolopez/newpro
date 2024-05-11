@@ -61,10 +61,10 @@ func is_input_blunder_shoot() -> bool:
 	return Input.is_action_pressed('duck') and Input.is_action_just_pressed("shoot")
 	
 func shoot_regular():
-	var bullet = bullet_manager.create_bullet(facing_direction, position)
+	var bullet = bullet_manager.create_bullet(facing_direction, position, 0, Vector2(800, 0))
 
 func shoot_blunder(amount: int, interval_angle: float):
 	var top_angle =  (amount-1) * interval_angle / 2
 	for i in range(amount):
-		bullet_manager.create_bullet(facing_direction, position, top_angle - interval_angle * i)
+		bullet_manager.create_bullet(facing_direction, position, top_angle - interval_angle * i, Vector2(800, 0))
 	
