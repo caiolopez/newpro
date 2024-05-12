@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://1md1m8n6iq5x"]
+[gd_scene load_steps=18 format=3 uid="uid://1md1m8n6iq5x"]
 
 [ext_resource type="Script" path="res://Hero/hero.gd" id="1_dmqn8"]
 [ext_resource type="Texture2D" uid="uid://0l05qi2ha4p5" path="res://hero.png" id="2_uk1tr"]
@@ -14,6 +14,8 @@
 [ext_resource type="Script" path="res://Hero/state_wall_jumping.gd" id="12_foyt3"]
 [ext_resource type="Script" path="res://Hero/state_blunder_shooting.gd" id="14_hvmmj"]
 [ext_resource type="Script" path="res://Hero/state_blunder_jumping.gd" id="15_5stkj"]
+[ext_resource type="Script" path="res://Hero/state_floating.gd" id="15_wtxiu"]
+[ext_resource type="Script" path="res://Hero/state_wet_blunder_shooting.gd" id="16_uvv2h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_361o4"]
 size = Vector2(128, 128)
@@ -63,6 +65,12 @@ script = ExtResource("14_hvmmj")
 
 [node name="StateBlunderJumping" type="Node" parent="StateMachine"]
 script = ExtResource("15_5stkj")
+
+[node name="StateFloating" type="Node" parent="StateMachine"]
+script = ExtResource("15_wtxiu")
+
+[node name="StateWetBlunderShooting" type="Node" parent="StateMachine"]
+script = ExtResource("16_uvv2h")
 
 [node name="TimerCoyoteJump" type="Timer" parent="StateMachine"]
 wait_time = 0.1
