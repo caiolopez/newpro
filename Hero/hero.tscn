@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://1md1m8n6iq5x"]
+[gd_scene load_steps=19 format=3 uid="uid://1md1m8n6iq5x"]
 
 [ext_resource type="Script" path="res://Hero/hero.gd" id="1_dmqn8"]
 [ext_resource type="Texture2D" uid="uid://0l05qi2ha4p5" path="res://hero.png" id="2_uk1tr"]
@@ -17,20 +17,29 @@
 [ext_resource type="Script" path="res://Hero/state_floating.gd" id="15_wtxiu"]
 [ext_resource type="Script" path="res://Hero/state_wet_blunder_shooting.gd" id="16_uvv2h"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xcsgl"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_361o4"]
 size = Vector2(128, 128)
 
 [node name="Hero" type="CharacterBody2D" node_paths=PackedStringArray("state_machine") groups=["heroes"]]
+floor_snap_length = 12.0
 script = ExtResource("1_dmqn8")
 state_machine = NodePath("StateMachine")
 metadata/_edit_group_ = true
+
+[node name="Head" type="Area2D" parent="."]
+position = Vector2(0, -65)
+
+[node name="HeadCollider" type="CollisionShape2D" parent="Head"]
+shape = SubResource("RectangleShape2D_xcsgl")
 
 [node name="HeroSprite" type="Sprite2D" parent="."]
 scale = Vector2(16, 16)
 texture = ExtResource("2_uk1tr")
 script = ExtResource("3_jd25v")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="HeroCollider" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_361o4")
 
 [node name="StateMachine" type="Node" parent="."]

@@ -10,12 +10,14 @@ extends CharacterBody2D
 @export var BLUNDER_AIRBORNE_DURATION = 1 ## The duration of the recoil when blunderjumping on air.
 @export var BLUNDER_GROUNDED_DURATION = 0.5 ## The duration of the recoil when blunderjumping on ground.
 @export var BLUNDER_JUMP_VELOCITY = -400.0 ## The speed the hero jumps after blundershooting airborne.
-@export var BUOYANCY = -400 ## The upward acceleration when underwater. Only affects state Floating.
+@export var BUOYANCY = -800 ## The upward acceleration when underwater. Only affects state Floating.
 @export var state_machine: StateMachine ## The state machine that governs this player controller. Drag-and-drop the state-machine object to this field.
 @export var bullet_manager: Node
 var facing_direction = 1
 var is_on_water = false
+var is_head_on_water = false
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var water_amount = 0
 
 func _ready():
 	set_safe_margin(0.08)
@@ -25,6 +27,7 @@ func _process(delta):
 	pass
 
 func _physics_process(delta):
+	print(water_amount)
 	if is_on_water and state_machine.current_state.name not in\
 	["StateBlunderJumping",\
 	"StateFloating",\
@@ -80,9 +83,22 @@ func shoot_blunder(amount: int, interval_angle: float):
 
 func _on_water_body_entered(body):
 	if body == self:
+		water_amount += 1
 		is_on_water = true
 
 
 func _on_water_body_exited(body):
 	if body == self:
-		is_on_water = false
+		water_amount -= 1
+		if water_amount == 0:
+			is_on_water = false
+
+
+func _on_water_area_entered(area):
+	if area == get_node("Head"):
+		is_head_on_water = true
+
+
+func _on_water_area_exited(area):
+	if area == get_node("Head"):
+		is_head_on_water = false
