@@ -7,16 +7,16 @@
 [ext_resource type="PackedScene" uid="uid://bgty58ccnncxy" path="res://Camera/camera_locker.tscn" id="4_d4cnc"]
 [ext_resource type="PackedScene" uid="uid://bt23waqbakmop" path="res://Bullet/water.tscn" id="7_5uehg"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3bqtt"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ob1kc"]
 size = Vector2(239.597, 150.842)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hx4x3"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_65q6c"]
 size = Vector2(239.597, 133.842)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nb6kf"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dqb4o"]
 size = Vector2(158, 141.352)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xa5nt"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pgxu0"]
 size = Vector2(158, 100.176)
 
 [node name="Level" type="Node"]
@@ -62,7 +62,7 @@ position = Vector2(1201, 430)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLocker"]
 position = Vector2(-499, 63.421)
-shape = SubResource("RectangleShape2D_3bqtt")
+shape = SubResource("RectangleShape2D_ob1kc")
 debug_color = Color(0, 0, 1, 0.5)
 
 [node name="Marker2D" type="Marker2D" parent="CameraLocker"]
@@ -75,7 +75,7 @@ center_at_edge = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLocker2"]
 position = Vector2(70, 70.921)
-shape = SubResource("RectangleShape2D_hx4x3")
+shape = SubResource("RectangleShape2D_65q6c")
 debug_color = Color(0, 0, 1, 0.5)
 
 [node name="Marker2D" type="Marker2D" parent="CameraLocker2"]
@@ -88,7 +88,7 @@ axes_to_lock = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLocker3"]
 position = Vector2(-240, 65)
-shape = SubResource("RectangleShape2D_nb6kf")
+shape = SubResource("RectangleShape2D_dqb4o")
 debug_color = Color(1, 0, 0, 0.5)
 
 [node name="Marker2D" type="Marker2D" parent="CameraLocker3"]
@@ -101,7 +101,7 @@ axes_to_lock = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLocker4"]
 position = Vector2(-350, 87.088)
-shape = SubResource("RectangleShape2D_xa5nt")
+shape = SubResource("RectangleShape2D_pgxu0")
 debug_color = Color(1, 0, 0, 0.5)
 
 [node name="Marker2D" type="Marker2D" parent="CameraLocker4"]
@@ -111,11 +111,7 @@ gizmo_extents = 0.0
 [node name="BulletManager" parent="." instance=ExtResource("3_j1ahj")]
 
 [node name="Water" parent="." instance=ExtResource("7_5uehg")]
-position = Vector2(-1179, 621)
-scale = Vector2(54.5835, 52.2739)
-
-[node name="Water2" parent="." instance=ExtResource("7_5uehg")]
-position = Vector2(-1455, 621)
+position = Vector2(-1203, 529)
 scale = Vector2(54.5835, 52.2739)
 
 [connection signal="hero_entered" from="CameraLocker" to="Camera" method="lock_camera"]
@@ -126,11 +122,5 @@ scale = Vector2(54.5835, 52.2739)
 [connection signal="hero_exited" from="CameraLocker3" to="Camera" method="unlock_camera"]
 [connection signal="hero_entered" from="CameraLocker4" to="Camera" method="lock_camera"]
 [connection signal="hero_exited" from="CameraLocker4" to="Camera" method="unlock_camera"]
-[connection signal="area_entered" from="Water" to="Hero" method="_on_water_area_entered"]
-[connection signal="area_exited" from="Water" to="Hero" method="_on_water_area_exited"]
-[connection signal="body_entered" from="Water" to="Hero" method="_on_water_body_entered"]
-[connection signal="body_exited" from="Water" to="Hero" method="_on_water_body_exited"]
-[connection signal="area_entered" from="Water2" to="Hero" method="_on_water_area_entered"]
-[connection signal="area_exited" from="Water2" to="Hero" method="_on_water_area_exited"]
-[connection signal="body_entered" from="Water2" to="Hero" method="_on_water_body_entered"]
-[connection signal="body_exited" from="Water2" to="Hero" method="_on_water_body_exited"]
+[connection signal="hero_entered" from="Water" to="Hero" method="_on_water_hero_entered"]
+[connection signal="hero_exited" from="Water" to="Hero" method="_on_water_hero_exited"]

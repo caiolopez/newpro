@@ -15,9 +15,9 @@ extends CharacterBody2D
 @export var bullet_manager: Node
 var facing_direction = 1
 var is_on_water = false
-var is_head_on_water = false
+var current_water: Water
+var last_water_surface: float
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-var water_amount = 0
 
 func _ready():
 	set_safe_margin(0.08)
@@ -27,7 +27,6 @@ func _process(delta):
 	pass
 
 func _physics_process(delta):
-	print(water_amount)
 	if is_on_water and state_machine.current_state.name not in\
 	["StateBlunderJumping",\
 	"StateFloating",\
@@ -78,27 +77,14 @@ func shoot_blunder(amount: int, interval_angle: float):
 	var top_angle =  (amount-1) * interval_angle / 2
 	for i in range(amount):
 		bullet_manager.create_bullet(facing_direction, position, top_angle - interval_angle * i, Vector2(800, 0))
+
+
+func _on_water_hero_entered(water, surface_global_pos):
+	is_on_water = true
+	current_water = water
+	last_water_surface = surface_global_pos
 	
 
-
-func _on_water_body_entered(body):
-	if body == self:
-		water_amount += 1
-		is_on_water = true
-
-
-func _on_water_body_exited(body):
-	if body == self:
-		water_amount -= 1
-		if water_amount == 0:
-			is_on_water = false
-
-
-func _on_water_area_entered(area):
-	if area == get_node("Head"):
-		is_head_on_water = true
-
-
-func _on_water_area_exited(area):
-	if area == get_node("Head"):
-		is_head_on_water = false
+func _on_water_hero_exited(water):
+	is_on_water = false
+	current_water = null

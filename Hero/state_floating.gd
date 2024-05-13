@@ -15,14 +15,15 @@ func on_physics_process(delta: float):
 		machine.set_state("StateWetBlunderShooting")
 		return
 	if Input.is_action_just_pressed('jump')\
-	and hero.is_pushing_wall()\
-	and not hero.is_head_on_water: machine.set_state("StateJumping")
+	and hero.is_pushing_wall():
+		machine.set_state("StateJumping")
 	
 	if Input.is_action_just_pressed("shoot"): hero.shoot_regular()
 	
-	if hero.is_head_on_water:
+	if hero.global_position.y > hero.last_water_surface + 32:
 		hero.velocity.y += hero.BUOYANCY * delta
-	else: hero.step_grav(delta)
+	else:
+		hero.step_grav(delta)
 	hero.step_lateral_mov(delta)
 
 	hero.move_and_slide()
