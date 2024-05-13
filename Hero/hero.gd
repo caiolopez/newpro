@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+@export var can_dive = false ## Whether the hero has the ability to dive into water instead of floating.
 @export var SPEED = 300.0 ## The moving speed of the hero.
 @export var JUMP_VELOCITY = -400.0 ## The speed the hero jumps when grounded.
 @export var WALLJUMP_VELOCITY = Vector2(800, -400) ## The speed the hero walljumps away from a wall.
@@ -11,6 +12,7 @@ extends CharacterBody2D
 @export var BLUNDER_GROUNDED_DURATION = 0.5 ## The duration of the recoil when blunderjumping on ground.
 @export var BLUNDER_JUMP_VELOCITY = -400.0 ## The speed the hero jumps after blundershooting airborne.
 @export var BUOYANCY = -800 ## The upward acceleration when underwater. Only affects state Floating.
+@export var ASCENDING_VELOCITY = -300.0 ## The Y speed at which the hero swims upwards when holding jump while underwater. CAN_DIVE must be set to true.
 @export var state_machine: StateMachine ## The state machine that governs this player controller. Drag-and-drop the state-machine object to this field.
 @export var bullet_manager: Node
 var facing_direction = 1
