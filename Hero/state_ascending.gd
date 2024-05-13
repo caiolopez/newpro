@@ -20,10 +20,10 @@ func on_physics_process(delta: float):
 	
 	if Input.is_action_just_pressed("shoot"): hero.shoot_regular()
 	
-	if hero.global_position.y > hero.last_water_surface + 32:
+	if abs(hero.global_position.y - (hero.last_water_surface + 16)) < 5:
 		hero.velocity.y = hero.ASCENDING_VELOCITY
-	
-	hero.step_grav(delta)
+	else:
+		hero.velocity.y = 0
 	hero.step_lateral_mov(delta)
 
 	hero.move_and_slide()

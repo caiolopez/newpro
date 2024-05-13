@@ -1,11 +1,9 @@
 class_name Water extends Area2D
 
-signal hero_entered(water: Water, surface_global_pos: float)
-signal hero_exited(water: Water)
-
 
 func _ready():
-	pass
+	body_entered.connect(_on_hero_entered)
+	body_exited.connect(_on_hero_exited)
 
 
 func _process(delta):
@@ -19,10 +17,10 @@ func get_surface_global_position() -> float:
 
 func _on_hero_entered(body):
 	if not body.is_in_group("heroes"): return
-	hero_entered.emit(self, get_surface_global_position())
+	Events.hero_entered_water.emit(self, get_surface_global_position())
 
 
 func _on_hero_exited(body):
 	if not body.is_in_group("heroes"): return
-	hero_exited.emit(self)
+	Events.hero_exited_water.emit(self)
 

@@ -11,7 +11,7 @@ extends CharacterBody2D
 @export var BLUNDER_AIRBORNE_DURATION = 1 ## The duration of the recoil when blunderjumping on air.
 @export var BLUNDER_GROUNDED_DURATION = 0.5 ## The duration of the recoil when blunderjumping on ground.
 @export var BLUNDER_JUMP_VELOCITY = -400.0 ## The speed the hero jumps after blundershooting airborne.
-@export var BUOYANCY = -800 ## The upward acceleration when underwater. Only affects state Floating.
+@export var BUOYANCY = 100 ## The upward acceleration when underwater. Only affects state Floating.
 @export var ASCENDING_VELOCITY = -300.0 ## The Y speed at which the hero swims upwards when holding jump while underwater. CAN_DIVE must be set to true.
 @export var state_machine: StateMachine ## The state machine that governs this player controller. Drag-and-drop the state-machine object to this field.
 @export var bullet_manager: Node
@@ -22,6 +22,8 @@ var last_water_surface: float
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready():
+	Events.hero_entered_water.connect(_on_hero_entered_water)
+	Events.hero_exited_water.connect(_on_hero_exited_water)
 	set_safe_margin(0.08)
 	state_machine.start()
 
@@ -30,10 +32,11 @@ func _process(delta):
 
 func _physics_process(delta):
 	if is_on_water and state_machine.current_state.name not in\
-	["StateBlunderJumping",\
-	"StateFloating",\
-	"StateAscending",\
-	"StateDescending",\
+	["StateBlunderJumping",
+	"StateJumping",
+	"StateFloating",
+	"StateAscending",
+	"StateDescending",
 	"StateWetBlunderShooting"]:
 		state_machine.set_state("StateFloating")
 
@@ -81,12 +84,18 @@ func shoot_blunder(amount: int, interval_angle: float):
 		bullet_manager.create_bullet(facing_direction, position, top_angle - interval_angle * i, Vector2(800, 0))
 
 
-func _on_water_hero_entered(water, surface_global_pos):
+func _on_hero_entered_water(water, surface_global_pos):
 	is_on_water = true
 	current_water = water
 	last_water_surface = surface_global_pos
 	
 
-func _on_water_hero_exited(water):
+func _on_hero_exited_water(water):
 	is_on_water = false
 	current_water = null
+
+func is_head_above_water() -> bool:
+	if global_position.y < last_water_surface + 32:
+		return true
+	else:
+		return false

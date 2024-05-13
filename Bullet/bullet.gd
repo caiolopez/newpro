@@ -1,13 +1,18 @@
 extends Area2D
 
 var velocity: Vector2
-var max_fall_speed = 1000
+var current_drag: float
+var current_gravity: float
+var WATER_DRAG = 0.8
+var AIR_DRAG = 0
 var acceleration: Vector2
 var is_fire: bool
+var is_underwater_ammo: bool
 var is_foe: bool
 
 func _ready():
-	pass
+	current_drag = AIR_DRAG
+	current_gravity = 0
 
 
 func _process(delta):
@@ -15,7 +20,10 @@ func _process(delta):
 
 
 func _physics_process(delta):
-	velocity = velocity + acceleration * delta
+	var drag: Vector2
+	drag = -velocity * current_drag
+	acceleration = drag + current_gravity * Vector2.DOWN
+	velocity += acceleration * delta
 	global_position += delta*velocity
 
 
@@ -29,12 +37,12 @@ func _on_body_entered(body):
 
 
 func _on_area_entered(area):
-	print(area.get_class(), area.get_groups())
 	if is_instance_of(area, Water):
-		acceleration = Vector2(300, 800)
-		pass
+		current_drag = WATER_DRAG
+		current_gravity = gravity
 
 
 func _on_area_exited(area):
 	if is_instance_of(area, Water):
-		queue_free()
+		current_drag = AIR_DRAG
+		current_gravity = 0
