@@ -30,10 +30,10 @@ script = ExtResource("1_dmqn8")
 state_machine = NodePath("StateMachine")
 metadata/_edit_group_ = true
 
-[node name="Head" type="Area2D" parent="."]
+[node name="MeatArea" type="Area2D" parent="."]
 position = Vector2(0, -65)
 
-[node name="HeadCollider" type="CollisionShape2D" parent="Head"]
+[node name="MeatCollider" type="CollisionShape2D" parent="MeatArea"]
 shape = SubResource("RectangleShape2D_xcsgl")
 
 [node name="HeroSprite" type="Sprite2D" parent="."]
