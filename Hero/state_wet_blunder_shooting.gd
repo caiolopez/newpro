@@ -8,14 +8,14 @@ func on_enter():
 	hero.shoot_blunder(4,45)
 
 func on_process(delta: float):
-	pass
-
-		
-func on_physics_process(delta: float):
 	if Input.is_action_just_pressed('jump')\
 	or get_node("../TimerBlunderShootDuration").is_stopped():
 		machine.set_state("StateFloating")
 		return
+
+		
+func on_physics_process(delta: float):
+
 	
 
 	hero.move_and_slide()

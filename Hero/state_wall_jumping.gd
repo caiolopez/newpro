@@ -7,10 +7,6 @@ func on_enter():
 	hero.facing_direction = round(hero.get_wall_normal().x)
 
 func on_process(delta: float):
-	pass
-
-		
-func on_physics_process(delta: float):
 	if hero.is_input_blunder_shoot()\
 		and get_node("../TimerBlunderShootCooldown").is_stopped():
 		machine.set_state("StateBlunderShooting")
@@ -25,6 +21,10 @@ func on_physics_process(delta: float):
 		return
 
 	if Input.is_action_just_pressed("shoot"): hero.shoot_regular()
+
+
+		
+func on_physics_process(delta: float):
 
 	hero.step_grav(delta)
 	if get_node("../TimerWallJumpDuration").is_stopped():

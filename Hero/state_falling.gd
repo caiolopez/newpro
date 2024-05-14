@@ -4,9 +4,6 @@ func on_enter():
 	pass
 
 func on_process(delta: float):
-	pass
-
-func on_physics_process(delta: float):
 	if Input.is_action_just_pressed('jump')\
 		and not get_node("../TimerBlunderJumpWindow").is_stopped():
 		machine.set_state("StateBlunderJumping")
@@ -51,6 +48,9 @@ func on_physics_process(delta: float):
 		print('AAA')
 		
 	if Input.is_action_just_pressed("shoot"): hero.shoot_regular()
+
+func on_physics_process(delta: float):
+
 	
 	hero.step_grav(delta)
 	hero.step_lateral_mov(delta)

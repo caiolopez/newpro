@@ -4,10 +4,6 @@ func on_enter():
 	hero.velocity.y = hero.JUMP_VELOCITY
 
 func on_process(delta: float):
-	pass
-
-		
-func on_physics_process(delta: float):
 	if hero.is_on_floor():
 		machine.set_state("StateIdle")
 		return
@@ -18,6 +14,10 @@ func on_physics_process(delta: float):
 	if hero.velocity.y > 0: machine.set_state("StateFalling")
 	
 	if Input.is_action_just_pressed("shoot"): hero.shoot_regular()
+
+		
+func on_physics_process(delta: float):
+
 	
 	hero.step_grav(delta)
 	hero.step_lateral_mov(delta)
