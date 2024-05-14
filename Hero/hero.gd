@@ -15,6 +15,7 @@ extends CharacterBody2D
 @export var ASCENDING_VELOCITY = -300.0 ## The Y speed at which the hero swims upwards when holding jump while underwater. CAN_DIVE must be set to true.
 @export var state_machine: StateMachine ## The state machine that governs this player controller. Drag-and-drop the state-machine object to this field.
 @export var bullet_manager: Node
+var currently_on_wall: bool
 var facing_direction = 1
 var is_on_water = false
 var current_water: Water
@@ -28,9 +29,6 @@ func _ready():
 	state_machine.start()
 
 func _process(delta):
-	pass
-
-func _physics_process(delta):
 	if is_on_water and state_machine.current_state.name not in\
 	["StateBlunderJumping",
 	"StateJumping",
@@ -39,6 +37,9 @@ func _physics_process(delta):
 	"StateDescending",
 	"StateWetBlunderShooting"]:
 		state_machine.set_state("StateFloating")
+
+func _physics_process(delta):
+	pass
 
 func step_grav(delta):
 	if not is_on_floor(): velocity.y += gravity * delta
@@ -83,6 +84,10 @@ func shoot_blunder(amount: int, interval_angle: float):
 	for i in range(amount):
 		bullet_manager.create_bullet(facing_direction, position, top_angle - interval_angle * i, Vector2(800, 0))
 
+func is_on_wall_value_change() -> bool:
+	var changed = is_on_wall() != currently_on_wall
+	currently_on_wall = is_on_wall()
+	return changed
 
 func _on_hero_entered_water(water, surface_global_pos):
 	is_on_water = true
