@@ -1,5 +1,9 @@
 extends HeroState
 
+var water_prone = false
+var death_prone = true
+
+
 func on_enter():
 	get_node("../TimerBlunderShootDuration").set_wait_time(hero.BLUNDER_GROUNDED_DURATION)
 	hero.velocity.x = hero.BLUNDER_GROUNDED_VELOCITY.x*hero.facing_direction

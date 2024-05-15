@@ -1,5 +1,9 @@
 extends HeroState
 
+var water_prone = true
+var death_prone = true
+
+
 func on_enter():
 	if (hero.is_on_wall() or not get_node("../TimerLeavingWall").is_stopped())\
 	and Input.is_action_just_pressed('jump'):

@@ -1,5 +1,9 @@
 extends HeroState
 
+var water_prone = false
+var death_prone = true
+
+
 func on_enter():
 	pass
 
@@ -34,7 +38,7 @@ func on_physics_process(delta: float):
 	hero.step_grav(delta)
 	hero.step_lateral_mov(delta)
 
-	hero.velocity.y = minf(hero.velocity.y, 300)
+	hero.velocity.y = minf(hero.velocity.y, hero.MAX_DESCENT_VEL_Y)
 
 	hero.move_and_slide()
 

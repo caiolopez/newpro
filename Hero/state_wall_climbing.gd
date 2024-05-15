@@ -1,5 +1,9 @@
 extends HeroState
 
+var water_prone = true
+var death_prone = true
+
+
 func on_enter():
 	hero.velocity.y = hero.CLIMB_VELOCITY
 

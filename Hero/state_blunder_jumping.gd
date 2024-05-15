@@ -1,5 +1,9 @@
 extends HeroState
 
+var water_prone = false
+var death_prone = true
+
+
 func on_enter():
 	hero.velocity.y = hero.BLUNDER_JUMP_VELOCITY
 	pass

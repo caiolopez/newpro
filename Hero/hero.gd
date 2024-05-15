@@ -13,6 +13,8 @@ extends CharacterBody2D
 @export var BLUNDER_JUMP_VELOCITY = -400.0 ## The speed the hero jumps after blundershooting airborne.
 @export var BUOYANCY = 100 ## The upward acceleration when underwater. Only affects state Floating.
 @export var ASCENDING_VELOCITY = -300.0 ## The Y speed at which the hero swims upwards when holding jump while underwater. CAN_DIVE must be set to true.
+@export var MAX_FALL_VEL_Y = 1200.0 ## The maximum downward speed when falling.
+@export var MAX_DESCENT_VEL_Y = 300 ## The maximum downward speed when diving (CAN_DIVE must be set to true).
 @export var state_machine: StateMachine ## The state machine that governs this player controller. Drag-and-drop the state-machine object to this field.
 @export var bullet_manager: Node
 var shoulder_rc: RayCast2D
@@ -36,20 +38,16 @@ func _ready():
 
 func _process(delta):
 	if Input.is_action_just_pressed("jump"): print("j")
-	if is_on_water and state_machine.current_state.name not in\
-	["StateBlunderJumping",
-	"StateJumping",
-	"StateFloating",
-	"StateAscending",
-	"StateDescending",
-	"StateWetBlunderShooting"]:
+	if is_on_water and state_machine.current_state.water_prone:
 		state_machine.set_state("StateFloating")
 
 func _physics_process(delta):
 	pass
 
 func step_grav(delta):
-	if not is_on_floor(): velocity.y += gravity * delta
+	if not is_on_floor():
+		velocity.y += gravity * delta
+		velocity.y = minf(velocity.y, MAX_FALL_VEL_Y)
 	
 func step_lateral_mov(delta):
 	if Input.is_action_pressed("move_left"):

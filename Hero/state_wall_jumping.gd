@@ -1,5 +1,9 @@
 extends HeroState
 
+var water_prone = true
+var death_prone = true
+
+
 func on_enter():
 	get_node("../TimerWallJumpDuration").start()
 	hero.velocity.x = hero.WALLJUMP_VELOCITY.x * round(hero.get_wall_normal().x)

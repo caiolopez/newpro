@@ -1,5 +1,9 @@
 extends HeroState
 
+var water_prone = true
+var death_prone = true
+
+
 func on_enter():
 	if hero.is_on_floor():
 		get_node("../TimerBlunderShootDuration").set_wait_time(hero.BLUNDER_GROUNDED_DURATION)

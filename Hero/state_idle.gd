@@ -1,5 +1,9 @@
 extends HeroState
 
+var water_prone = true
+var death_prone = true
+
+
 func on_enter():
 	if Input.is_action_pressed('jump')\
 	and not get_node("../TimerBufferJump").is_stopped():
