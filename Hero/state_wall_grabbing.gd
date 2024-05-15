@@ -1,7 +1,7 @@
 extends HeroState
 
 func on_enter():
-	pass
+	hero.velocity.y = 0
 
 func on_process(delta: float):
 	if hero.is_input_blunder_shoot()\
@@ -19,8 +19,6 @@ func on_process(delta: float):
 		return
 	
 	if Input.is_action_just_pressed("shoot"): hero.shoot_regular()
-	
-	hero.velocity.y = 0
 
 		
 func on_physics_process(delta: float):

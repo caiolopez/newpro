@@ -37,7 +37,7 @@ func on_process(delta: float):
 	and not get_node("../TimerCoyoteWallJump").is_stopped():
 		get_node("../TimerCoyoteWallJump").stop()
 		machine.set_state("StateWallJumping")
-		print('coyote consumed ______________________________')
+		print('COYOTE START ______________________________')
 		return
 
 

@@ -29,6 +29,7 @@ func _ready():
 	state_machine.start()
 
 func _process(delta):
+	if Input.is_action_just_pressed("jump"): print("j")
 	if is_on_water and state_machine.current_state.name not in\
 	["StateBlunderJumping",
 	"StateJumping",
