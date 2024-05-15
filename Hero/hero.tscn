@@ -97,7 +97,7 @@ one_shot = true
 wait_time = 0.1
 one_shot = true
 
-[node name="TimerCoyoteWallJump" type="Timer" parent="StateMachine"]
+[node name="TimerCoyoteWall" type="Timer" parent="StateMachine"]
 wait_time = 0.5
 one_shot = true
 
@@ -122,5 +122,9 @@ wait_time = 0.5
 one_shot = true
 
 [node name="TimerLeavingWall" type="Timer" parent="StateMachine"]
+wait_time = 0.5
+one_shot = true
+
+[node name="TimerBufferClimbing" type="Timer" parent="StateMachine"]
 wait_time = 0.5
 one_shot = true

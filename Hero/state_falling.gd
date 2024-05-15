@@ -7,7 +7,6 @@ func on_process(delta: float):
 	if hero.is_on_wall_value_change()\
 	and not hero.is_on_wall():
 		get_node("../TimerLeavingWall").start()
-		print('LEFT WALL - FALLING')
 		
 	if Input.is_action_just_pressed('jump')\
 		and not get_node("../TimerBlunderJumpWindow").is_stopped():
