@@ -22,9 +22,6 @@ func on_process(delta: float):
 		and get_node("../TimerBlunderShootCooldown").is_stopped():
 		machine.set_state("StateBlunderShooting")
 		return
-	if hero.is_on_floor():
-		machine.set_state("StateIdle")
-		return
 	if Input.is_action_just_pressed('jump')\
 	and hero.is_pushing_wall():
 		machine.set_state("StateWallClimbing")
@@ -38,6 +35,9 @@ func on_process(delta: float):
 		get_node("../TimerBufferJump").start()
 	if Input.is_action_pressed('jump'):
 		machine.set_state("StateGliding")
+		return
+	if hero.is_on_floor():
+		machine.set_state("StateIdle")
 		return
 		
 		

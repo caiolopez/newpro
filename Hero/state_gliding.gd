@@ -25,12 +25,12 @@ func on_process(delta: float):
 		if hero.is_move_dir_away_from_last_wall(false):
 			get_node("../TimerCoyoteWall").stop()
 			machine.set_state("StateWallJumping")
-			print('COYOTE CONSUMED')
+			print('COYOTE WALLJUMP')
 			return
 		elif hero.is_pushing_wall():
 			get_node("../TimerCoyoteWall").stop()
 			machine.set_state("StateWallClimbing")
-			print('COYOTE CONSUMED')
+			print('COYOTE WALLCLIMB')
 			return
 	if not Input.is_action_pressed("jump"):
 		machine.set_state("StateFalling")
@@ -39,6 +39,7 @@ func on_process(delta: float):
 		and not get_node("../TimerBufferWallJump").is_stopped():
 		get_node("../TimerBufferWallJump").stop()
 		machine.set_state("StateWallClimbing")
+		print("BUFFERED WALLJUMP")
 		return
 	if hero.is_pushing_wall():
 		machine.set_state("StateWallGrabbing")
