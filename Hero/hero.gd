@@ -15,6 +15,8 @@ extends CharacterBody2D
 @export var ASCENDING_VELOCITY = -300.0 ## The Y speed at which the hero swims upwards when holding jump while underwater. CAN_DIVE must be set to true.
 @export var state_machine: StateMachine ## The state machine that governs this player controller. Drag-and-drop the state-machine object to this field.
 @export var bullet_manager: Node
+var shoulder_rc: RayCast2D
+var pelvis_rc: RayCast2D
 var currently_on_wall: bool
 var facing_direction = 1
 var is_on_water = false
@@ -25,6 +27,10 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 func _ready():
 	Events.hero_entered_water.connect(_on_hero_entered_water)
 	Events.hero_exited_water.connect(_on_hero_exited_water)
+
+	shoulder_rc = get_node("ShoulderRC")
+	pelvis_rc = get_node("PelvisRC")
+
 	set_safe_margin(0.08)
 	state_machine.start()
 
@@ -55,6 +61,8 @@ func step_lateral_mov(delta):
 		velocity.x = facing_direction * SPEED
 		
 	else: velocity.x = 0
+	shoulder_rc.update_direction()
+	pelvis_rc.update_direction()
 
 func is_pushing_wall() -> bool:
 	var pushing_wall = false

@@ -41,7 +41,9 @@ func on_process(delta: float):
 		machine.set_state("StateWallClimbing")
 		print("BUFFERED WALLJUMP")
 		return
-	if hero.is_pushing_wall():
+	if hero.is_pushing_wall()\
+	and hero.pelvis_rc.is_colliding()\
+	and hero.shoulder_rc.is_colliding():
 		machine.set_state("StateWallGrabbing")
 		return
 	

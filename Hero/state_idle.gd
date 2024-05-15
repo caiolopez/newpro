@@ -1,7 +1,12 @@
 extends HeroState
 
 func on_enter():
-	pass
+	if Input.is_action_pressed('jump')\
+	and not get_node("../TimerBufferJump").is_stopped():
+		get_node("../TimerBufferJump").stop()
+		print("BUFFERED JUMP")
+		machine.set_state("StateJumping")
+		return
 
 func on_process(delta: float):
 	if hero.is_input_blunder_shoot()\
@@ -18,12 +23,7 @@ func on_process(delta: float):
 	if Input.is_action_just_pressed('jump'):
 		machine.set_state("StateJumping")
 		return
-	if Input.is_action_pressed('jump')\
-	and not get_node("../TimerBufferJump").is_stopped():
-		get_node("../TimerBufferJump").stop()
-		print("BUFFERED JUMP")
-		machine.set_state("StateJumping")
-		return
+
 	
 	if Input.is_action_just_pressed("shoot"): hero.shoot_regular()
 
