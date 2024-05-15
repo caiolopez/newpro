@@ -19,6 +19,7 @@ extends CharacterBody2D
 @export var bullet_manager: Node
 var shoulder_rc: RayCast2D
 var pelvis_rc: RayCast2D
+var next_grd_height: RayCast2D
 var currently_on_wall: bool
 var facing_direction = 1
 var is_on_water = false
@@ -32,6 +33,7 @@ func _ready():
 
 	shoulder_rc = get_node("ShoulderRC")
 	pelvis_rc = get_node("PelvisRC")
+	next_grd_height = get_node("NextGrdHeight")
 
 	set_safe_margin(0.08)
 	state_machine.start()
@@ -61,6 +63,7 @@ func step_lateral_mov(delta):
 	else: velocity.x = 0
 	shoulder_rc.update_direction()
 	pelvis_rc.update_direction()
+	next_grd_height.update_position()
 
 func is_pushing_wall() -> bool:
 	var pushing_wall = false

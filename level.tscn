@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://1xi1vmc3x5ck"]
+[gd_scene load_steps=12 format=3 uid="uid://1xi1vmc3x5ck"]
 
 [ext_resource type="PackedScene" uid="uid://ctbx6yfgdfo4b" path="res://block.tscn" id="1_weaqc"]
 [ext_resource type="PackedScene" uid="uid://1md1m8n6iq5x" path="res://Hero/hero.tscn" id="2_acvau"]
@@ -6,17 +6,18 @@
 [ext_resource type="PackedScene" uid="uid://c48ye6g4s5ufc" path="res://Camera/camera.tscn" id="3_o6dt5"]
 [ext_resource type="PackedScene" uid="uid://bgty58ccnncxy" path="res://Camera/camera_locker.tscn" id="4_d4cnc"]
 [ext_resource type="PackedScene" uid="uid://bt23waqbakmop" path="res://Bullet/water.tscn" id="7_5uehg"]
+[ext_resource type="Texture2D" uid="uid://d2gdo5bbgykv2" path="res://icon.svg" id="7_yklcu"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_f85xx"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7cgmh"]
 size = Vector2(239.597, 150.842)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qpi4d"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3dvjo"]
 size = Vector2(239.597, 133.842)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bxya3"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_706hh"]
 size = Vector2(158, 141.352)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_otitu"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qcbk4"]
 size = Vector2(158, 100.176)
 
 [node name="Level" type="Node"]
@@ -78,7 +79,7 @@ position = Vector2(1201, 430)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLocker"]
 position = Vector2(-499, 63.421)
-shape = SubResource("RectangleShape2D_f85xx")
+shape = SubResource("RectangleShape2D_7cgmh")
 debug_color = Color(0, 0, 1, 0.5)
 
 [node name="Marker2D" type="Marker2D" parent="CameraLocker"]
@@ -91,7 +92,7 @@ center_at_edge = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLocker2"]
 position = Vector2(70, 70.921)
-shape = SubResource("RectangleShape2D_qpi4d")
+shape = SubResource("RectangleShape2D_3dvjo")
 debug_color = Color(0, 0, 1, 0.5)
 
 [node name="Marker2D" type="Marker2D" parent="CameraLocker2"]
@@ -104,7 +105,7 @@ axes_to_lock = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLocker3"]
 position = Vector2(-240, 65)
-shape = SubResource("RectangleShape2D_bxya3")
+shape = SubResource("RectangleShape2D_706hh")
 debug_color = Color(1, 0, 0, 0.5)
 
 [node name="Marker2D" type="Marker2D" parent="CameraLocker3"]
@@ -117,7 +118,7 @@ axes_to_lock = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLocker4"]
 position = Vector2(-350, 87.088)
-shape = SubResource("RectangleShape2D_otitu")
+shape = SubResource("RectangleShape2D_qcbk4")
 debug_color = Color(1, 0, 0, 0.5)
 
 [node name="Marker2D" type="Marker2D" parent="CameraLocker4"]
@@ -129,6 +130,20 @@ gizmo_extents = 0.0
 [node name="Water" parent="." instance=ExtResource("7_5uehg")]
 position = Vector2(-1203, 529)
 scale = Vector2(54.5835, 52.2739)
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.5, 0.5)
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
+modulate = Color(1, 0.517647, 0.486275, 0.294118)
+offset_left = -2974.0
+offset_top = -2138.0
+offset_right = 3008.0
+offset_bottom = 1577.0
+texture = ExtResource("7_yklcu")
+stretch_mode = 1
 
 [connection signal="hero_entered" from="CameraLocker" to="Camera" method="lock_camera"]
 [connection signal="hero_exited" from="CameraLocker" to="Camera" method="unlock_camera"]
