@@ -1,9 +1,6 @@
 @tool
 class_name CameraLocker extends Area2D
 
-signal hero_entered(camera_locker: CameraLocker, axes: Constants.Axes, lock_position: Vector2)
-signal hero_exited(camera_locker: CameraLocker, axes: Constants.Axes)
-
 const debug_color_x: Color = Color(0, 0, 1, 0.5)
 const debug_color_y: Color = Color(1, 0, 0, 0.5)
 const debug_color_both: Color = Color(1, 0, 1, 0.5)
@@ -29,23 +26,22 @@ func _ready():
 			break
 	
 	# When a body collides with this trigger, call custom function
-	body_entered.connect(on_hero_entered)
-	body_exited.connect(on_hero_exited)
+	body_entered.connect(on_hero_entered_locker)
+	body_exited.connect(on_hero_exited_locker)
 
-func on_hero_entered(body: Node2D):
+func on_hero_entered_locker(body: Node2D):
 	if not body.is_in_group("heroes"): return
-	
 	var lock_position: Vector2
 	if center_at_edge:
 		lock_position = body.global_position
 	else:
 		lock_position = center_at.global_position
 		
-	hero_entered.emit(self, axes_to_lock, lock_position)
+	Events.hero_entered_camera_locker.emit(self, axes_to_lock, lock_position)
 
-func on_hero_exited(body: Node2D):
+func on_hero_exited_locker(body: Node2D):
 	if not body.is_in_group("heroes"): return
-	hero_exited.emit(self, axes_to_lock)
+	Events.hero_exited_camera_locker.emit(self, axes_to_lock)
 	
 func debug_color_changer():
 	var color: Color
@@ -57,7 +53,7 @@ func debug_color_changer():
 			child.debug_color = color
 
 func make_collision_shape_unique():
-	# Makes duplicate camera locker not share scaling values
+
 	for child in get_children():
 		if child is CollisionShape2D:
 			var original_shape = child.shape
@@ -65,5 +61,5 @@ func make_collision_shape_unique():
 			var cloned_shape = original_shape.duplicate()
 			child.shape = cloned_shape
 
-func _on_tree_entered():
-	make_collision_shape_unique()
+#func _on_tree_entered():
+	#make_collision_shape_unique()

@@ -26,6 +26,8 @@ var hero_last_velocity: Vector2
 
 func _ready():
 	state_machine.start()
+	Events.hero_entered_camera_locker.connect(lock_camera)
+	Events.hero_exited_camera_locker.connect(unlock_camera)
 
 func _process(delta):
 	# debug

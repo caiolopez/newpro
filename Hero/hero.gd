@@ -38,12 +38,12 @@ func _ready():
 	set_safe_margin(0.08)
 	state_machine.start()
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("jump"): print("j")
 	if is_on_water and state_machine.current_state.water_prone:
 		state_machine.set_state("StateFloating")
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	pass
 
 func step_grav(delta):
@@ -51,7 +51,7 @@ func step_grav(delta):
 		velocity.y += gravity * delta
 		velocity.y = minf(velocity.y, MAX_FALL_VEL_Y)
 	
-func step_lateral_mov(delta):
+func step_lateral_mov(_delta):
 	if Input.is_action_pressed("move_left"):
 		facing_direction = -1
 		velocity.x = facing_direction * SPEED
@@ -86,8 +86,8 @@ func is_move_dir_away_from_last_wall(just: bool) -> bool:
 func is_input_blunder_shoot() -> bool:
 	return Input.is_action_pressed('duck') and Input.is_action_just_pressed("shoot")
 	
-func shoot_regular():
-	var bullet = bullet_manager.create_bullet(facing_direction, position, 0, Vector2(800, 0))
+func shoot_regular() -> Area2D:
+	return bullet_manager.create_bullet(facing_direction, position, 0, Vector2(800, 0))
 
 func shoot_blunder(amount: int, interval_angle: float):
 	var top_angle =  (amount-1) * interval_angle / 2

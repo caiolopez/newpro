@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://1xi1vmc3x5ck"]
+[gd_scene load_steps=10 format=3 uid="uid://1xi1vmc3x5ck"]
 
 [ext_resource type="PackedScene" uid="uid://ctbx6yfgdfo4b" path="res://block.tscn" id="1_weaqc"]
 [ext_resource type="PackedScene" uid="uid://1md1m8n6iq5x" path="res://Hero/hero.tscn" id="2_acvau"]
@@ -8,17 +8,11 @@
 [ext_resource type="PackedScene" uid="uid://bt23waqbakmop" path="res://Bullet/water.tscn" id="7_5uehg"]
 [ext_resource type="Texture2D" uid="uid://d2gdo5bbgykv2" path="res://icon.svg" id="7_yklcu"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7cgmh"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b1uae"]
 size = Vector2(239.597, 150.842)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3dvjo"]
-size = Vector2(239.597, 133.842)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_706hh"]
-size = Vector2(158, 141.352)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qcbk4"]
-size = Vector2(158, 100.176)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0gi58"]
+size = Vector2(239.597, 150.842)
 
 [node name="Level" type="Node"]
 
@@ -74,56 +68,17 @@ lerp_ratio = Vector2(0.05, 0.05)
 catch_up_vel = Vector2(200, 200)
 lookahead_activation_vel = Vector2(10, 600)
 
-[node name="CameraLocker" parent="." instance=ExtResource("4_d4cnc")]
-position = Vector2(1201, 430)
+[node name="CameraLocker5" parent="." instance=ExtResource("4_d4cnc")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLocker"]
+[node name="CollisionShape2D" parent="CameraLocker5" index="0"]
+shape = SubResource("RectangleShape2D_b1uae")
+
+[node name="CameraLocker6" parent="." instance=ExtResource("4_d4cnc")]
+position = Vector2(277, 295)
+
+[node name="CollisionShape2D" parent="CameraLocker6" index="0"]
 position = Vector2(-499, 63.421)
-shape = SubResource("RectangleShape2D_7cgmh")
-debug_color = Color(0, 0, 1, 0.5)
-
-[node name="Marker2D" type="Marker2D" parent="CameraLocker"]
-position = Vector2(-515, 90)
-gizmo_extents = 59.6
-
-[node name="CameraLocker2" parent="." instance=ExtResource("4_d4cnc")]
-position = Vector2(379, 430)
-center_at_edge = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLocker2"]
-position = Vector2(70, 70.921)
-shape = SubResource("RectangleShape2D_3dvjo")
-debug_color = Color(0, 0, 1, 0.5)
-
-[node name="Marker2D" type="Marker2D" parent="CameraLocker2"]
-position = Vector2(103, 83)
-gizmo_extents = 59.6
-
-[node name="CameraLocker3" parent="." instance=ExtResource("4_d4cnc")]
-position = Vector2(379, 430)
-axes_to_lock = 1
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLocker3"]
-position = Vector2(-240, 65)
-shape = SubResource("RectangleShape2D_706hh")
-debug_color = Color(1, 0, 0, 0.5)
-
-[node name="Marker2D" type="Marker2D" parent="CameraLocker3"]
-position = Vector2(-241, -106)
-gizmo_extents = 59.6
-
-[node name="CameraLocker4" parent="." instance=ExtResource("4_d4cnc")]
-position = Vector2(379, 430)
-axes_to_lock = 1
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLocker4"]
-position = Vector2(-350, 87.088)
-shape = SubResource("RectangleShape2D_qcbk4")
-debug_color = Color(1, 0, 0, 0.5)
-
-[node name="Marker2D" type="Marker2D" parent="CameraLocker4"]
-position = Vector2(103, 83)
-gizmo_extents = 0.0
+shape = SubResource("RectangleShape2D_0gi58")
 
 [node name="BulletManager" parent="." instance=ExtResource("3_j1ahj")]
 
@@ -145,11 +100,5 @@ offset_bottom = 1577.0
 texture = ExtResource("7_yklcu")
 stretch_mode = 1
 
-[connection signal="hero_entered" from="CameraLocker" to="Camera" method="lock_camera"]
-[connection signal="hero_exited" from="CameraLocker" to="Camera" method="unlock_camera"]
-[connection signal="hero_entered" from="CameraLocker2" to="Camera" method="lock_camera"]
-[connection signal="hero_exited" from="CameraLocker2" to="Camera" method="unlock_camera"]
-[connection signal="hero_entered" from="CameraLocker3" to="Camera" method="lock_camera"]
-[connection signal="hero_exited" from="CameraLocker3" to="Camera" method="unlock_camera"]
-[connection signal="hero_entered" from="CameraLocker4" to="Camera" method="lock_camera"]
-[connection signal="hero_exited" from="CameraLocker4" to="Camera" method="unlock_camera"]
+[editable path="CameraLocker5"]
+[editable path="CameraLocker6"]
