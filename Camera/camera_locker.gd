@@ -61,5 +61,5 @@ func make_collision_shape_unique():
 			var cloned_shape = original_shape.duplicate()
 			child.shape = cloned_shape
 
-#func _on_tree_entered():
-	#make_collision_shape_unique()
+func _on_tree_entered():
+	make_collision_shape_unique()

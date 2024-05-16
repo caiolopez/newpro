@@ -8,11 +8,11 @@
 [ext_resource type="PackedScene" uid="uid://bt23waqbakmop" path="res://Bullet/water.tscn" id="7_5uehg"]
 [ext_resource type="Texture2D" uid="uid://d2gdo5bbgykv2" path="res://icon.svg" id="7_yklcu"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_b1uae"]
-size = Vector2(239.597, 150.842)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kh24t"]
+size = Vector2(239.597, 155.882)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0gi58"]
-size = Vector2(239.597, 150.842)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_25xm2"]
+size = Vector2(239.597, 182.941)
 
 [node name="Level" type="Node"]
 
@@ -71,14 +71,17 @@ lookahead_activation_vel = Vector2(10, 600)
 [node name="CameraLocker5" parent="." instance=ExtResource("4_d4cnc")]
 
 [node name="CollisionShape2D" parent="CameraLocker5" index="0"]
-shape = SubResource("RectangleShape2D_b1uae")
+position = Vector2(-493, 64)
+shape = SubResource("RectangleShape2D_kh24t")
 
 [node name="CameraLocker6" parent="." instance=ExtResource("4_d4cnc")]
-position = Vector2(277, 295)
+position = Vector2(320, 186)
+axes_to_lock = 1
 
 [node name="CollisionShape2D" parent="CameraLocker6" index="0"]
-position = Vector2(-499, 63.421)
-shape = SubResource("RectangleShape2D_0gi58")
+position = Vector2(-493, 50.4704)
+shape = SubResource("RectangleShape2D_25xm2")
+debug_color = Color(1, 0, 0, 0.5)
 
 [node name="BulletManager" parent="." instance=ExtResource("3_j1ahj")]
 
