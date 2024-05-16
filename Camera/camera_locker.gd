@@ -52,14 +52,7 @@ func debug_color_changer():
 		if child is CollisionShape2D:
 			child.debug_color = color
 
-func make_collision_shape_unique():
-
+func _on_tree_entered():
 	for child in get_children():
 		if child is CollisionShape2D:
-			var original_shape = child.shape
-			if original_shape == null: return
-			var cloned_shape = original_shape.duplicate()
-			child.shape = cloned_shape
-
-func _on_tree_entered():
-	make_collision_shape_unique()
+			Utils.make_collision_shape_unique(child)
