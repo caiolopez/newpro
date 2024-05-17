@@ -11,6 +11,7 @@ extends CharacterBody2D
 @export var BLUNDER_AIRBORNE_DURATION = 1 ## The duration of the recoil when blunderjumping on air.
 @export var BLUNDER_GROUNDED_DURATION = 0.5 ## The duration of the recoil when blunderjumping on ground.
 @export var BLUNDER_JUMP_VELOCITY = -400.0 ## The speed the hero jumps after blundershooting airborne.
+const DECELERATION = 10.0
 @export var BUOYANCY = 100 ## The upward acceleration when underwater. Only affects state Floating.
 @export var ASCENDING_VELOCITY = -300.0 ## The Y speed at which the hero swims upwards when holding jump while underwater. CAN_DIVE must be set to true.
 @export var MAX_FALL_VEL_Y = 1200.0 ## The maximum downward speed when falling.
@@ -54,13 +55,20 @@ func step_grav(delta):
 func step_lateral_mov(_delta):
 	if Input.is_action_pressed("move_left"):
 		facing_direction = -1
-		velocity.x = facing_direction * SPEED
+		if abs(velocity.x) > SPEED:
+			velocity.x = lerp(velocity.x, facing_direction * SPEED, 0.1)
+		else:
+			velocity.x = facing_direction * SPEED
 
 	elif Input.is_action_pressed("move_right"):
 		facing_direction = 1
-		velocity.x = facing_direction * SPEED
+		if abs(velocity.x) > SPEED:
+			velocity.x = lerp(velocity.x, facing_direction * SPEED, 0.1)
+		else:
+			velocity.x = facing_direction * SPEED
 		
 	else: velocity.x = 0
+	
 	shoulder_rc.update_direction()
 	pelvis_rc.update_direction()
 	next_grd_height.update_position()
