@@ -51,24 +51,27 @@ func step_grav(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 		velocity.y = minf(velocity.y, MAX_FALL_VEL_Y)
-	
-func step_lateral_mov(_delta):
+
+
+func step_lateral_mov(delta):
+	if not Input.is_action_pressed("move_left")\
+	and not Input.is_action_pressed("move_right"):
+		velocity.x = 0
+		return
+
 	if Input.is_action_pressed("move_left"):
 		facing_direction = -1
-		if abs(velocity.x) > SPEED:
-			velocity.x = lerp(velocity.x, facing_direction * SPEED, 0.1)
-		else:
-			velocity.x = facing_direction * SPEED
 
 	elif Input.is_action_pressed("move_right"):
 		facing_direction = 1
-		if abs(velocity.x) > SPEED:
-			velocity.x = lerp(velocity.x, facing_direction * SPEED, 0.1)
-		else:
-			velocity.x = facing_direction * SPEED
 		
-	else: velocity.x = 0
-	
+	if abs(velocity.x) > SPEED:
+		velocity.x = lerp(velocity.x, facing_direction * SPEED, Utils.dt_lerp(delta, 10))
+
+	else:
+		velocity.x = facing_direction * SPEED
+
+
 	shoulder_rc.update_direction()
 	pelvis_rc.update_direction()
 	next_grd_height.update_position()
@@ -113,7 +116,7 @@ func _on_hero_entered_water(water, surface_global_pos):
 	last_water_surface = surface_global_pos
 	
 
-func _on_hero_exited_water(water):
+func _on_hero_exited_water(_water):
 	is_on_water = false
 	current_water = null
 
