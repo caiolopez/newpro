@@ -1,7 +1,8 @@
 extends Node
 
+
 func test():
-	print("oi")
+	print("test")
 	
 func make_collision_shape_unique(col: CollisionShape2D):
 
@@ -9,3 +10,4 @@ func make_collision_shape_unique(col: CollisionShape2D):
 	if original_shape == null: return
 	var cloned_shape = original_shape.duplicate()
 	col.shape = cloned_shape
+	print("Generated unique shape for ", col)

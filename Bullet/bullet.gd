@@ -15,7 +15,7 @@ func _ready():
 	current_gravity = 0
 
 
-func _process(delta):
+func _process(_delta):
 	pass
 
 

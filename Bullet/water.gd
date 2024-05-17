@@ -23,4 +23,3 @@ func _on_hero_entered(body):
 func _on_hero_exited(body):
 	if not body.is_in_group("heroes"): return
 	Events.hero_exited_water.emit(self)
-

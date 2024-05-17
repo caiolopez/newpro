@@ -15,9 +15,9 @@ const debug_color_both: Color = Color(1, 0, 1, 0.5)
 var center_at: Marker2D
 
 func _ready():
-	# Dinamically changes collider color in editor
 	draw.connect(debug_color_changer)
-	child_entered_tree.connect(func(_child): queue_redraw())
+	if Engine.is_editor_hint():
+		child_entered_tree.connect(func(_child): queue_redraw())
 	
 	# Updates center_at with the Marker2d object position
 	for child in get_children():
@@ -53,6 +53,8 @@ func debug_color_changer():
 			child.debug_color = color
 
 func _on_tree_entered():
-	for child in get_children():
-		if child is CollisionShape2D:
-			Utils.make_collision_shape_unique(child)
+	if Engine.is_editor_hint():
+		for child in get_children():
+			if child is CollisionShape2D:
+				var script = load("res://utils.gd").new()
+				script.make_collision_shape_unique(child)
