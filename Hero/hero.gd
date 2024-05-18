@@ -19,6 +19,8 @@ const DECELERATION = 10.0
 @export var HALT_WHEN_BOTH_DIR: bool = false ## TRUE: pushing left and right at the same time will stop the hero. FALSE: The most recent button pushed will have priority.
 @export var state_machine: StateMachine ## The state machine that governs this player controller. Drag-and-drop the state-machine object to this field.
 @export var bullet_manager: Node
+var original_position: Vector2
+var current_checkpoint: Area2D
 var shoulder_rc: RayCast2D
 var pelvis_rc: RayCast2D
 var next_grd_height: RayCast2D
@@ -36,6 +38,8 @@ func _ready():
 	shoulder_rc = get_node("ShoulderRC")
 	pelvis_rc = get_node("PelvisRC")
 	next_grd_height = get_node("NextGrdHeight")
+	
+	original_position = global_position
 
 	set_safe_margin(0.08)
 	state_machine.start()
@@ -140,3 +144,8 @@ func is_head_above_water() -> bool:
 		return true
 	else:
 		return false
+
+
+func update_current_checkpoint(new_checkpoint: Area2D):		
+	current_checkpoint = new_checkpoint
+

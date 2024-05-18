@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4gr5nbdwxb26"]
+
+[sub_resource type="GDScript" id="GDScript_it6o3"]
+script/source = "extends Node
+
+var current_checkpoint: Area2D
+var 
+
+
+func _ready():
+	Events.update_checkpoint.connect(_on_update_checkpoint)
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+func _on_update_checkpoint(latest_checkpoint: Area2D, respawn_direction: int):
+	current_checkpoint = latest_checkpoint
+	
+"
+
+[node name="CheckpointController" type="Node"]
+script = SubResource("GDScript_it6o3")

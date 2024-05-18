@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://boan2jyc4hlda"]
 
-[ext_resource type="Script" path="res://checkpoint_trigger.gd" id="1_4e7d7"]
+[ext_resource type="Script" path="res://Checkpoint/checkpoint_trigger.gd" id="1_4e7d7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mh3mc"]
 resource_local_to_scene = true
