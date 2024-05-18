@@ -1,12 +1,12 @@
 class_name _State extends Node
 
-var machine:StateMachine
-var active:bool
+var machine: StateMachine
+var active: bool
 
 func enter(new_machine:StateMachine) -> void:
 	machine = new_machine
 	active = true
-	print("enter_state ", name)
+	if machine.prints: print("enter_state ", name)
 	on_enter()
 
 func on_enter() -> void:
@@ -28,7 +28,6 @@ func on_physics_process(_delta:float) -> void:
 
 func exit() -> void:
 	active = false
-	#print("exit_state ", name)
 	on_exit()
 	pass
 

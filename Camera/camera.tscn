@@ -16,6 +16,7 @@ lookahead_amount = Vector2(200, 200)
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("2_51bgi")
+prints = false
 
 [node name="StateFollowHero" type="Node" parent="StateMachine"]
 script = ExtResource("3_u7uha")
