@@ -9,8 +9,7 @@ func on_enter():
 
 
 func on_process(delta: float):
-
-	if Input.is_action_just_pressed("shoot"): hero.shoot_regular()
+	pass
 
 
 func on_physics_process(delta: float):

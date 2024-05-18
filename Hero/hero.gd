@@ -45,6 +45,8 @@ func _ready():
 	state_machine.start()
 
 func _process(_delta):
+	if Input.is_action_just_pressed("Debug Action 1"): die()
+	
 	if Input.is_action_just_pressed("jump"): print("j")
 	if is_on_water and state_machine.current_state.water_prone:
 		state_machine.set_state("StateFloating")
@@ -149,3 +151,8 @@ func is_head_above_water() -> bool:
 func update_current_checkpoint(new_checkpoint: Area2D):		
 	current_checkpoint = new_checkpoint
 
+
+func die():
+	facing_direction = current_checkpoint.direction
+	global_position = current_checkpoint.global_position
+	

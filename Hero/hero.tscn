@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://1md1m8n6iq5x"]
+[gd_scene load_steps=26 format=3 uid="uid://1md1m8n6iq5x"]
 
 [ext_resource type="Script" path="res://Hero/hero.gd" id="1_dmqn8"]
 [ext_resource type="Texture2D" uid="uid://0l05qi2ha4p5" path="res://hero.png" id="2_uk1tr"]
@@ -20,6 +20,9 @@
 [ext_resource type="Script" path="res://Hero/state_descending.gd" id="17_h880v"]
 [ext_resource type="Script" path="res://Hero/state_ascending.gd" id="17_hus0u"]
 [ext_resource type="Script" path="res://Hero/state_teleporting.gd" id="20_3hv7e"]
+[ext_resource type="Script" path="res://Hero/state_spawning.gd" id="21_b6r6d"]
+[ext_resource type="Script" path="res://Hero/state_death_snapshot.gd" id="22_xhyei"]
+[ext_resource type="Script" path="res://Hero/state_tweening_to_respawn.gd" id="23_datsc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xcsgl"]
 size = Vector2(80, 78)
@@ -64,6 +67,9 @@ shape = SubResource("RectangleShape2D_361o4")
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("3_oqep4")
+
+[node name="StateSpawning" type="Node" parent="StateMachine"]
+script = ExtResource("21_b6r6d")
 
 [node name="StateIdle" type="Node" parent="StateMachine"]
 script = ExtResource("4_t32ch")
@@ -110,13 +116,13 @@ script = ExtResource("17_h880v")
 [node name="StateTeleporting" type="Node" parent="StateMachine"]
 script = ExtResource("20_3hv7e")
 
-[node name="StateSpawning" type="Node" parent="StateMachine"]
-
-[node name="StateRespawning" type="Node" parent="StateMachine"]
+[node name="StateDeathSnapshot" type="Node" parent="StateMachine"]
+script = ExtResource("22_xhyei")
 
 [node name="StateTweeningToRespawn" type="Node" parent="StateMachine"]
+script = ExtResource("23_datsc")
 
-[node name="StateDeathSnapshot" type="Node" parent="StateMachine"]
+[node name="StateRespawning" type="Node" parent="StateMachine"]
 
 [node name="TimerCoyoteJump" type="Timer" parent="StateMachine"]
 wait_time = 0.1

@@ -9,11 +9,15 @@ func on_enter():
 
 
 func on_process(delta: float):
-
-	if Input.is_action_just_pressed("shoot"): hero.shoot_regular()
+	if hero.is_on_water:
+		machine.set_state("StateFloating")
+		return
+	machine.set_state("StateIdle")
+	
 
 
 func on_physics_process(delta: float):
+
 	hero.move_and_slide()
 
 
