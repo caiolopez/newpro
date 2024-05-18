@@ -16,6 +16,7 @@ const DECELERATION = 10.0
 @export var ASCENDING_VELOCITY = -300.0 ## The Y speed at which the hero swims upwards when holding jump while underwater. CAN_DIVE must be set to true.
 @export var MAX_FALL_VEL_Y = 1200.0 ## The maximum downward speed when falling.
 @export var MAX_DESCENT_VEL_Y = 300 ## The maximum downward speed when diving (CAN_DIVE must be set to true).
+@export var HALT_WHEN_BOTH_DIR: bool = false ## TRUE: pushing left and right at the same time will stop the hero. FALSE: The most recent button pushed will have priority.
 @export var state_machine: StateMachine ## The state machine that governs this player controller. Drag-and-drop the state-machine object to this field.
 @export var bullet_manager: Node
 var shoulder_rc: RayCast2D
@@ -54,15 +55,22 @@ func step_grav(delta):
 
 
 func step_lateral_mov(delta):
-	if not Input.is_action_pressed("move_left")\
-	and not Input.is_action_pressed("move_right"):
-		velocity.x = 0
-		return
+	if HALT_WHEN_BOTH_DIR:
+		if Input.is_action_pressed("move_left") == Input.is_action_pressed("move_right"):
+			velocity.x = 0
+			return
+	else:
+		if not Input.is_action_pressed("move_left")\
+		and not Input.is_action_pressed("move_right"):
+			velocity.x = 0
+			return
 
-	if Input.is_action_pressed("move_left"):
+	if Input.is_action_just_pressed("move_left")\
+	or Input.is_action_just_released("move_right"):
 		facing_direction = -1
 
-	elif Input.is_action_pressed("move_right"):
+	elif Input.is_action_just_pressed("move_right")\
+	or Input.is_action_just_released("move_left"):
 		facing_direction = 1
 		
 	if abs(velocity.x) > SPEED:
@@ -71,10 +79,10 @@ func step_lateral_mov(delta):
 	else:
 		velocity.x = facing_direction * SPEED
 
-
 	shoulder_rc.update_direction()
 	pelvis_rc.update_direction()
 	next_grd_height.update_position()
+
 
 func is_pushing_wall() -> bool:
 	var pushing_wall = false
@@ -83,6 +91,7 @@ func is_pushing_wall() -> bool:
 	if is_on_wall() and (push_left or push_right):
 			pushing_wall = facing_direction == -round(get_wall_normal().x)
 	return pushing_wall
+
 
 func is_move_dir_away_from_last_wall(just: bool) -> bool:
 	var mov_away
@@ -94,31 +103,37 @@ func is_move_dir_away_from_last_wall(just: bool) -> bool:
 		or (round(get_wall_normal().x) == 1 and Input.is_action_pressed('move_right'))
 	return mov_away
 
+
 func is_input_blunder_shoot() -> bool:
 	return Input.is_action_pressed('duck') and Input.is_action_just_pressed("shoot")
-	
+
+
 func shoot_regular() -> Area2D:
 	return bullet_manager.create_bullet(facing_direction, position, 0, Vector2(800, 0))
+
 
 func shoot_blunder(amount: int, interval_angle: float):
 	var top_angle =  (amount-1) * interval_angle / 2
 	for i in range(amount):
 		bullet_manager.create_bullet(facing_direction, position, top_angle - interval_angle * i, Vector2(800, 0))
 
+
 func is_on_wall_value_change() -> bool:
 	var changed = is_on_wall() != currently_on_wall
 	currently_on_wall = is_on_wall()
 	return changed
 
+
 func _on_hero_entered_water(water, surface_global_pos):
 	is_on_water = true
 	current_water = water
 	last_water_surface = surface_global_pos
-	
+
 
 func _on_hero_exited_water(_water):
 	is_on_water = false
 	current_water = null
+
 
 func is_head_above_water() -> bool:
 	if global_position.y < last_water_surface + 32:

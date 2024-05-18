@@ -16,7 +16,6 @@ func make_collision_shape_unique(col: CollisionShape2D):
 func dt_lerp(delta: float, ratio: float) -> float:
 	if delta < 0 or ratio < 0:
 		push_error("Delta and ratio should be non-negative")
-		return 0.0
+		return -1.0
 	var dt_lerp = 1 - pow(0.5, delta * ratio)
 	return clamp(dt_lerp, 0.0, 1.0)
-
