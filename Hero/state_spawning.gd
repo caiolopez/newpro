@@ -17,8 +17,7 @@ func on_process(delta: float):
 
 
 func on_physics_process(delta: float):
-
-	hero.move_and_slide()
+	pass
 
 
 func on_exit():

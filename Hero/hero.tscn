@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://1md1m8n6iq5x"]
+[gd_scene load_steps=27 format=3 uid="uid://1md1m8n6iq5x"]
 
 [ext_resource type="Script" path="res://Hero/hero.gd" id="1_dmqn8"]
 [ext_resource type="Texture2D" uid="uid://0l05qi2ha4p5" path="res://hero.png" id="2_uk1tr"]
@@ -23,6 +23,7 @@
 [ext_resource type="Script" path="res://Hero/state_spawning.gd" id="21_b6r6d"]
 [ext_resource type="Script" path="res://Hero/state_death_snapshot.gd" id="22_xhyei"]
 [ext_resource type="Script" path="res://Hero/state_tweening_to_respawn.gd" id="23_datsc"]
+[ext_resource type="Script" path="res://Hero/state_respawning.gd" id="24_ppe7q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xcsgl"]
 size = Vector2(80, 78)
@@ -123,6 +124,7 @@ script = ExtResource("22_xhyei")
 script = ExtResource("23_datsc")
 
 [node name="StateRespawning" type="Node" parent="StateMachine"]
+script = ExtResource("24_ppe7q")
 
 [node name="TimerCoyoteJump" type="Timer" parent="StateMachine"]
 wait_time = 0.1
@@ -161,5 +163,9 @@ wait_time = 0.5
 one_shot = true
 
 [node name="TimerBufferClimbing" type="Timer" parent="StateMachine"]
+wait_time = 0.5
+one_shot = true
+
+[node name="TimerDeathSnapshot" type="Timer" parent="StateMachine"]
 wait_time = 0.5
 one_shot = true

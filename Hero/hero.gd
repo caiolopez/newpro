@@ -16,7 +16,6 @@ const DECELERATION = 10.0
 @export var ASCENDING_VELOCITY = -300.0 ## The Y speed at which the hero swims upwards when holding jump while underwater. CAN_DIVE must be set to true.
 @export var MAX_FALL_VEL_Y = 1200.0 ## The maximum downward speed when falling.
 @export var MAX_DESCENT_VEL_Y = 300 ## The maximum downward speed when diving (CAN_DIVE must be set to true).
-@export var HALT_WHEN_BOTH_DIR: bool = false ## TRUE: pushing left and right at the same time will stop the hero. FALSE: The most recent button pushed will have priority.
 @export var state_machine: StateMachine ## The state machine that governs this player controller. Drag-and-drop the state-machine object to this field.
 @export var bullet_manager: Node
 var original_position: Vector2
@@ -61,22 +60,13 @@ func step_grav(delta):
 
 
 func step_lateral_mov(delta):
-	if HALT_WHEN_BOTH_DIR:
-		if Input.is_action_pressed("move_left") == Input.is_action_pressed("move_right"):
-			velocity.x = 0
-			return
-	else:
-		if not Input.is_action_pressed("move_left")\
-		and not Input.is_action_pressed("move_right"):
-			velocity.x = 0
-			return
-
-	if Input.is_action_just_pressed("move_left")\
-	or Input.is_action_just_released("move_right"):
+	if Input.is_action_pressed("move_left") == Input.is_action_pressed("move_right"):
+		velocity.x = 0
+		return
+	
+	if Input.is_action_pressed("move_left"):
 		facing_direction = -1
-
-	elif Input.is_action_just_pressed("move_right")\
-	or Input.is_action_just_released("move_left"):
+	if Input.is_action_pressed("move_right"):
 		facing_direction = 1
 		
 	if abs(velocity.x) > SPEED:
@@ -153,6 +143,5 @@ func update_current_checkpoint(new_checkpoint: Area2D):
 
 
 func die():
-	facing_direction = current_checkpoint.direction
-	global_position = current_checkpoint.global_position
+	state_machine.set_state("StateDeathSnapshot")
 	

@@ -1,0 +1,6 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cx1j4g6cf503k"]
+
+[ext_resource type="Shader" path="res://CaioShaders/white.gdshader" id="1_uru83"]
+
+[resource]
+shader = ExtResource("1_uru83")
