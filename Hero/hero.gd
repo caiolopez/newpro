@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @export var can_dive = false ## Whether the hero has the ability to dive into water instead of floating.
+@export var shoots_fire = false ## Whether the hero has the ability to shoot incendiary bullets, required to damage enemies that are immune to regular bullets.
 @export var SPEED = 300.0 ## The moving speed of the hero.
 @export var JUMP_VELOCITY = -400.0 ## The speed the hero jumps when grounded.
 @export var WALLJUMP_VELOCITY = Vector2(800, -400) ## The speed the hero walljumps away from a wall.
@@ -106,13 +107,13 @@ func is_input_blunder_shoot() -> bool:
 
 
 func shoot_regular() -> Area2D:
-	return bullet_manager.create_bullet(facing_direction, position, 0, Vector2(800, 0))
+	return bullet_manager.create_bullet(facing_direction, position, Vector2(800, 0), false, shoots_fire)
 
 
 func shoot_blunder(amount: int, interval_angle: float):
 	var top_angle =  (amount-1) * interval_angle / 2
 	for i in range(amount):
-		bullet_manager.create_bullet(facing_direction, position, top_angle - interval_angle * i, Vector2(800, 0))
+		bullet_manager.create_bullet(facing_direction, position, Vector2(800, 0), false, shoots_fire, top_angle - interval_angle * i)
 
 
 func is_on_wall_value_change() -> bool:

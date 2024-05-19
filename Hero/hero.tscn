@@ -1,6 +1,7 @@
-[gd_scene load_steps=27 format=3 uid="uid://1md1m8n6iq5x"]
+[gd_scene load_steps=28 format=3 uid="uid://1md1m8n6iq5x"]
 
 [ext_resource type="Script" path="res://Hero/hero.gd" id="1_dmqn8"]
+[ext_resource type="PackedScene" uid="uid://box2ff3vwcc7w" path="res://EntityComponents/DmgTaker.tscn" id="2_ktrux"]
 [ext_resource type="Texture2D" uid="uid://0l05qi2ha4p5" path="res://hero.png" id="2_uk1tr"]
 [ext_resource type="Script" path="res://Hero/front_rc.gd" id="2_wqkn5"]
 [ext_resource type="Script" path="res://Hero/hero_sprite.gd" id="3_jd25v"]
@@ -36,6 +37,9 @@ floor_snap_length = 12.0
 script = ExtResource("1_dmqn8")
 state_machine = NodePath("StateMachine")
 metadata/_edit_group_ = true
+
+[node name="DmgTaker" parent="." instance=ExtResource("2_ktrux")]
+IS_FOE = false
 
 [node name="NextGrdHeight" type="RayCast2D" parent="."]
 position = Vector2(81.68, 0)

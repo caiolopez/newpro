@@ -22,12 +22,17 @@ var current_lerp_ratio: Vector2
 var current_lookahead: Vector2
 var target: Vector2
 var hero_last_velocity: Vector2
+var shake_amount: float = 0
+var shake_duration: float = 0
 
 
 func _ready():
 	state_machine.start()
 	Events.hero_entered_camera_locker.connect(lock_camera)
 	Events.hero_exited_camera_locker.connect(unlock_camera)
+	
+	Events.camera_shake.connect(shake)
+	Events.camera_stop_shake.connect(stop_shake)
 
 func _process(delta):
 	# debug
@@ -60,6 +65,20 @@ func is_hero_just_reduced_velocity(threshold, axes: Constants.Axes) -> bool:
 	print(is_breaking)
 	return is_breaking
 
-		
-		
-	
+
+func step_shake(delta, current_pos: Vector2):
+	if shake_duration > 0:
+		shake_duration -= delta
+		position = current_pos + Vector2(randf_range(-shake_amount, shake_amount), randf_range(-shake_amount, shake_amount))
+		if shake_duration <= 0:
+			shake_duration = 0
+			position = current_pos
+
+
+func shake(duration: float = 0.2, amount: float = 10):
+	shake_amount = amount
+	shake_duration = duration
+
+
+func stop_shake():
+	shake_duration = 0

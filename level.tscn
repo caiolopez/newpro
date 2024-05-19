@@ -9,13 +9,13 @@
 [ext_resource type="PackedScene" uid="uid://boan2jyc4hlda" path="res://Checkpoint/checkpoint_trigger.tscn" id="7_h6eyv"]
 [ext_resource type="Texture2D" uid="uid://d2gdo5bbgykv2" path="res://icon.svg" id="7_yklcu"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5bkdl"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e6ssp"]
 size = Vector2(239.597, 155.882)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3mbep"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d6aco"]
 size = Vector2(239.597, 173.941)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_baply"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yvyle"]
 size = Vector2(239.597, 173.941)
 
 [node name="Level" type="Node"]
@@ -81,7 +81,7 @@ center_at_edge = true
 
 [node name="CollisionShape2D" parent="CameraLocker5" index="0"]
 position = Vector2(-493, 64)
-shape = SubResource("RectangleShape2D_5bkdl")
+shape = SubResource("RectangleShape2D_e6ssp")
 
 [node name="CameraLocker6" parent="." instance=ExtResource("4_d4cnc")]
 position = Vector2(320, 186)
@@ -89,7 +89,7 @@ axes_to_lock = 1
 
 [node name="CollisionShape2D" parent="CameraLocker6" index="0"]
 position = Vector2(-493, 50.4704)
-shape = SubResource("RectangleShape2D_3mbep")
+shape = SubResource("RectangleShape2D_d6aco")
 debug_color = Color(1, 0, 0, 0.5)
 
 [node name="Marker2D" parent="CameraLocker6" index="1"]
@@ -101,7 +101,7 @@ axes_to_lock = 1
 
 [node name="CollisionShape2D" parent="CameraLocker7" index="0"]
 position = Vector2(-493, 50.4704)
-shape = SubResource("RectangleShape2D_baply")
+shape = SubResource("RectangleShape2D_yvyle")
 debug_color = Color(1, 0, 0, 0.5)
 
 [node name="Marker2D" parent="CameraLocker7" index="1"]

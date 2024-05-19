@@ -17,7 +17,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Bullet" type="Area2D"]
+[node name="Bullet" type="Area2D" groups=["bullets", "dmg_dealers"]]
 script = ExtResource("1_hqyxv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
