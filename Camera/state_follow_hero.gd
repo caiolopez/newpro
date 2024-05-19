@@ -43,6 +43,7 @@ func on_process(delta: float):
 	# Move camera smoothly towards target
 	camera.position = camera.lerp_vector2(camera.position, camera.target, camera.current_lerp_ratio)
 	
+	camera.step_shake(delta, camera.position)
 func on_process_physics(delta: float):
 	pass
 

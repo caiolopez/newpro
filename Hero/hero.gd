@@ -45,6 +45,7 @@ func _ready():
 
 func _process(_delta):
 	if Input.is_action_just_pressed("Debug Action 1"): die()
+	if Input.is_action_just_pressed("Debug Action 2"): Events.camera_shake.emit()
 	
 	if Input.is_action_just_pressed("jump"): print("j")
 	if is_on_water and state_machine.current_state.water_prone:

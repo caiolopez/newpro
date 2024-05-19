@@ -5,6 +5,7 @@ var death_prone = false
 
 
 func on_enter():
+	Events.camera_shake.emit()
 	get_node("../TimerDeathSnapshot").start()
 	hero.get_node("HeroSprite").paint_white(true)
 	
