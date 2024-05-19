@@ -20,7 +20,7 @@ func take_dmg(amount: int):
 	
 	current_hp -= amount
 	current_hp = maxi(current_hp, 0)
-	print("Damage taken: ", amount)
+	print("Damage taken: ", amount, ". Current HP: ", current_hp)
 
 
 func reset_hp():
@@ -30,9 +30,16 @@ func reset_hp():
 func _on_area_entered(area):
 	if not area.is_in_group("dmg_dealers"): return
 	if IS_FOE == area.is_foe: return
+	
 	if area.is_in_group("bullets"):
 		if not area.is_fire and immune_to_regular_bullets:
 			return
-	
+
+		take_dmg(area.DMG_AMOUNT)
+		area.kill_bullet()
+		return
+		
 	take_dmg(area.DMG_AMOUNT)
+	
+	
 	

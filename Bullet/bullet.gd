@@ -47,3 +47,7 @@ func _on_area_exited(area):
 	if is_instance_of(area, Water):
 		current_drag = AIR_DRAG
 		current_gravity = 0
+
+
+func kill_bullet():
+	queue_free()

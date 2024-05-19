@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://bp1e8lhbqp3me"]
+
+[ext_resource type="PackedScene" uid="uid://upm0adhb85ik" path="res://EntityComponents/DmgDealer.tscn" id="1_ns2lo"]
+[ext_resource type="PackedScene" uid="uid://box2ff3vwcc7w" path="res://EntityComponents/DmgTaker.tscn" id="1_yjiw5"]
+[ext_resource type="Texture2D" uid="uid://b8rg54dkjrvw4" path="res://Camera/marker_icon_a.png" id="2_gjisp"]
+
+[node name="Spike" type="Node2D"]
+
+[node name="DmgDealer" parent="." instance=ExtResource("1_ns2lo")]
+
+[node name="DmgTaker" parent="." instance=ExtResource("1_yjiw5")]
+scale = Vector2(6.36, 6.4)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_gjisp")

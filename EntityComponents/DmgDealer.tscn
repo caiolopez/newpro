@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://upm0adhb85ik"]
+
+[ext_resource type="Script" path="res://EntityComponents/dmg_dealer.gd" id="1_nig2r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_irb8j"]
+
+[node name="DmgDealer" type="Area2D" groups=["dmg_dealers"]]
+script = ExtResource("1_nig2r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_irb8j")
+debug_color = Color(0.997085, 0, 0.173568, 0.42)
