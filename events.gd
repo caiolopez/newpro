@@ -8,3 +8,6 @@ signal hero_exited_camera_locker(camera_locker: CameraLocker, axes: Constants.Ax
 
 signal camera_shake(duration: float, amount: float)
 signal camera_stop_shake()
+
+signal reached_checkpoint()
+signal respawned_at_checkpoint()

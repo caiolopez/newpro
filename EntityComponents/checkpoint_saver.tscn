@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfn246rujjj8r"]
+
+[sub_resource type="GDScript" id="GDScript_j1gmt"]
+script/source = "extends Node
+
+var parent: Node
+
+
+func _ready():
+	Events.reached_checkpoint.connect(store)
+
+
+func store():
+	for node in get_parent().get_children():
+		if node.name == \"DmgTaker\": commit_status()
+"
+
+[node name="CheckpointSaver" type="Node"]
+script = SubResource("GDScript_j1gmt")

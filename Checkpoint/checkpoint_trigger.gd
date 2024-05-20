@@ -12,3 +12,4 @@ func _on_hero_entered(body):
 	if body.current_checkpoint == self: return
 	if recall_hero_direction: direction = body.facing_direction
 	body.update_current_checkpoint(self)
+	Events.reached_checkpoint.emit()
