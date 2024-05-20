@@ -10,19 +10,22 @@
 [ext_resource type="PackedScene" uid="uid://boan2jyc4hlda" path="res://Checkpoint/checkpoint_trigger.tscn" id="7_h6eyv"]
 [ext_resource type="Texture2D" uid="uid://d2gdo5bbgykv2" path="res://icon.svg" id="7_yklcu"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mr8dl"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v0h3u"]
 size = Vector2(239.597, 155.882)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rt2rw"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bd011"]
 size = Vector2(239.597, 173.941)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_oliif"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_314cg"]
 size = Vector2(239.597, 173.941)
 
 [node name="Level" type="Node"]
 
 [node name="Spike" parent="." instance=ExtResource("1_cietj")]
 position = Vector2(1776, -480)
+
+[node name="Spike2" parent="." instance=ExtResource("1_cietj")]
+position = Vector2(2048, -480)
 
 [node name="Block7" parent="." instance=ExtResource("1_weaqc")]
 position = Vector2(-1778, 423)
@@ -86,7 +89,7 @@ center_at_edge = true
 
 [node name="CollisionShape2D" parent="CameraLocker5" index="0"]
 position = Vector2(-493, 64)
-shape = SubResource("RectangleShape2D_mr8dl")
+shape = SubResource("RectangleShape2D_v0h3u")
 
 [node name="CameraLocker6" parent="." instance=ExtResource("4_d4cnc")]
 position = Vector2(320, 186)
@@ -94,7 +97,7 @@ axes_to_lock = 1
 
 [node name="CollisionShape2D" parent="CameraLocker6" index="0"]
 position = Vector2(-493, 50.4704)
-shape = SubResource("RectangleShape2D_rt2rw")
+shape = SubResource("RectangleShape2D_bd011")
 debug_color = Color(1, 0, 0, 0.5)
 
 [node name="Marker2D" parent="CameraLocker6" index="1"]
@@ -106,7 +109,7 @@ axes_to_lock = 1
 
 [node name="CollisionShape2D" parent="CameraLocker7" index="0"]
 position = Vector2(-493, 50.4704)
-shape = SubResource("RectangleShape2D_oliif")
+shape = SubResource("RectangleShape2D_314cg")
 debug_color = Color(1, 0, 0, 0.5)
 
 [node name="Marker2D" parent="CameraLocker7" index="1"]

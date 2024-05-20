@@ -7,13 +7,13 @@ func _ready():
 
 
 func _process(delta):
-	if get_node("DmgTaker").current_hp == 0 and get_node("Sprite2D").visible: die()
-	if get_node("DmgTaker").current_hp > 0 and not get_node("Sprite2D").visible: resurect()
+	if get_node("DmgTaker").current_hp == 0 and visible: die()
+	if get_node("DmgTaker").current_hp > 0 and not visible: resurect()
 
 
 func die():
-	get_node("Sprite2D").visible = false
+	visible = false
 
 
 func resurect():
-	get_node("Sprite2D").visible = true
+	visible = true
