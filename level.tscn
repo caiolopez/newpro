@@ -10,13 +10,13 @@
 [ext_resource type="PackedScene" uid="uid://boan2jyc4hlda" path="res://Checkpoint/checkpoint_trigger.tscn" id="7_h6eyv"]
 [ext_resource type="Texture2D" uid="uid://d2gdo5bbgykv2" path="res://icon.svg" id="7_yklcu"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_km4k3"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ox8cq"]
 size = Vector2(239.597, 155.882)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nthfu"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rhdyn"]
 size = Vector2(239.597, 173.941)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gwwc1"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_skxex"]
 size = Vector2(239.597, 173.941)
 
 [node name="Level" type="Node"]
@@ -24,7 +24,7 @@ size = Vector2(239.597, 173.941)
 [node name="Spike" parent="." instance=ExtResource("1_cietj")]
 position = Vector2(1776, -480)
 
-[node name="CycleMover" parent="Spike" index="3"]
+[node name="CycleMover" parent="Spike" index="2"]
 rotation_angle = 90.0
 rotation_time = 4.0
 translation_distance = Vector2(100, 100)
@@ -96,7 +96,7 @@ center_at_edge = true
 
 [node name="CollisionShape2D" parent="CameraLocker5" index="0"]
 position = Vector2(-493, 64)
-shape = SubResource("RectangleShape2D_km4k3")
+shape = SubResource("RectangleShape2D_ox8cq")
 
 [node name="CameraLocker6" parent="." instance=ExtResource("4_d4cnc")]
 position = Vector2(320, 186)
@@ -104,7 +104,7 @@ axes_to_lock = 1
 
 [node name="CollisionShape2D" parent="CameraLocker6" index="0"]
 position = Vector2(-493, 50.4704)
-shape = SubResource("RectangleShape2D_nthfu")
+shape = SubResource("RectangleShape2D_rhdyn")
 debug_color = Color(1, 0, 0, 0.5)
 
 [node name="Marker2D" parent="CameraLocker6" index="1"]
@@ -116,7 +116,7 @@ axes_to_lock = 1
 
 [node name="CollisionShape2D" parent="CameraLocker7" index="0"]
 position = Vector2(-493, 50.4704)
-shape = SubResource("RectangleShape2D_gwwc1")
+shape = SubResource("RectangleShape2D_skxex")
 debug_color = Color(1, 0, 0, 0.5)
 
 [node name="Marker2D" parent="CameraLocker7" index="1"]

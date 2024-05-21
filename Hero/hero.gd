@@ -29,6 +29,7 @@ var facing_direction = 1
 var is_on_water = false
 var current_water: Water
 var last_water_surface: float
+var dmg_taker: DmgTaker
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready():
@@ -38,6 +39,7 @@ func _ready():
 	shoulder_rc = get_node("ShoulderRC")
 	pelvis_rc = get_node("PelvisRC")
 	next_grd_height = get_node("NextGrdHeight")
+	dmg_taker = Utils.find_dmg_taker(self)
 	
 	original_position = global_position
 
@@ -48,8 +50,9 @@ func _process(_delta):
 	if Input.is_action_just_pressed("Debug Action 1"): die()
 	if Input.is_action_just_pressed("Debug Action 2"): Events.camera_shake.emit()
 	
-	if get_node("DmgTaker").current_hp == 0:
-		get_node("DmgTaker").reset_status()
+	if dmg_taker.current_hp == 0\
+	and state_machine.current_state.death_prone:
+		dmg_taker.reset_status()
 		die()
 	if is_on_water and state_machine.current_state.water_prone:
 		state_machine.set_state("StateFloating")

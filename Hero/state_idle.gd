@@ -6,8 +6,8 @@ var death_prone = true
 
 func on_enter():
 	if Input.is_action_pressed('jump')\
-	and not get_node("../TimerBufferJump").is_stopped():
-		get_node("../TimerBufferJump").stop()
+	and not timer_buffer_jump.is_stopped():
+		timer_buffer_jump.stop()
 		print("BUFFERED JUMP")
 		machine.set_state("StateJumping")
 		return
@@ -22,7 +22,7 @@ func on_process(delta: float):
 		print("AUTO SNAP ON STAIRS")
 	
 	if hero.is_input_blunder_shoot()\
-	and get_node("../TimerBlunderShootCooldown").is_stopped():
+	and timer_blunder_shoot_cooldown.is_stopped():
 		machine.set_state("StateBlunderShooting")
 		return
 	if hero.velocity.x != 0:

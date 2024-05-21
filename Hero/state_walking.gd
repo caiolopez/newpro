@@ -18,12 +18,12 @@ func on_process(delta: float):
 		
 		
 	if hero.is_input_blunder_shoot()\
-		and get_node("../TimerBlunderShootCooldown").is_stopped():
+		and timer_blunder_shoot_cooldown.is_stopped():
 		machine.set_state("StateBlunderShooting")
 		return
 	if hero.is_on_floor() and hero.velocity.x == 0: machine.set_state("StateIdle")
 	if not hero.is_on_floor() and hero.velocity.y > 0:
-		get_node("../TimerCoyoteJump").start()
+		timer_coyote_jump.start()
 		machine.set_state("StateFalling")
 		return
 	if Input.is_action_just_pressed('jump'): machine.set_state("StateJumping")

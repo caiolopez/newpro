@@ -12,7 +12,7 @@ func on_process(delta: float):
 		machine.set_state("StateIdle")
 		return
 	if hero.is_input_blunder_shoot()\
-	and get_node("../TimerBlunderShootCooldown").is_stopped():
+	and timer_blunder_shoot_cooldown.is_stopped():
 		machine.set_state("StateWetBlunderShooting")
 		return
 	if Input.is_action_just_pressed('jump')\

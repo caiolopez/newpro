@@ -5,34 +5,34 @@ var death_prone = true
 
 
 func on_enter():
-	if (hero.is_on_wall() or not get_node("../TimerLeavingWall").is_stopped())\
+	if (hero.is_on_wall() or not timer_leaving_wall.is_stopped())\
 	and Input.is_action_just_pressed('jump'):
-		get_node("../TimerCoyoteWall").start()
+		timer_coyote_wall.start()
 		print('COYOTE STARTED')
 	if not hero.is_on_wall() and Input.is_action_just_pressed('jump'):
-		get_node("../TimerBufferWallJump").start()
+		timer_buffer_wall_jump.start()
 		
 
 func on_process(delta: float):
 	if hero.is_on_wall_value_change()\
 	and not hero.is_on_wall():
-		get_node("../TimerLeavingWall").start()
+		timer_leaving_wall.start()
 		
 	if hero.is_input_blunder_shoot()\
-		and get_node("../TimerBlunderShootCooldown").is_stopped():
+		and timer_blunder_shoot_cooldown.is_stopped():
 		machine.set_state("StateBlunderShooting")
 		return
 	if hero.is_on_floor():
 		machine.set_state("StateIdle")
 		return
-	if not get_node("../TimerCoyoteWall").is_stopped():
+	if not timer_coyote_wall.is_stopped():
 		if hero.is_move_dir_away_from_last_wall(false):
-			get_node("../TimerCoyoteWall").stop()
+			timer_coyote_wall.stop()
 			machine.set_state("StateWallJumping")
 			print('COYOTE WALLJUMP')
 			return
 		elif hero.is_pushing_wall():
-			get_node("../TimerCoyoteWall").stop()
+			timer_coyote_wall.stop()
 			machine.set_state("StateWallClimbing")
 			print('COYOTE WALLCLIMB')
 			return
@@ -40,8 +40,8 @@ func on_process(delta: float):
 		machine.set_state("StateFalling")
 		return
 	if hero.is_pushing_wall()\
-		and not get_node("../TimerBufferWallJump").is_stopped():
-		get_node("../TimerBufferWallJump").stop()
+		and not timer_buffer_wall_jump.is_stopped():
+		timer_buffer_wall_jump.stop()
 		machine.set_state("StateWallClimbing")
 		print("BUFFERED WALLJUMP")
 		return

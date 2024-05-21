@@ -6,12 +6,12 @@ var death_prone = false
 
 func on_enter():
 	Events.camera_shake.emit()
-	get_node("../TimerDeathSnapshot").start()
+	timer_death_snapshot.start()
 	hero.get_node("HeroSprite").paint_white(true)
 	
 
 func on_process(delta: float):
-	if get_node("../TimerDeathSnapshot").is_stopped():
+	if timer_death_snapshot.is_stopped():
 		hero.get_node("HeroSprite").paint_white(false)
 		machine.set_state("StateTweeningToRespawn")
 	

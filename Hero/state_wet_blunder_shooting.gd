@@ -5,15 +5,15 @@ var death_prone = true
 
 
 func on_enter():
-	get_node("../TimerBlunderShootDuration").set_wait_time(hero.BLUNDER_GROUNDED_DURATION)
+	timer_blunder_shoot_duration.set_wait_time(hero.BLUNDER_GROUNDED_DURATION)
 	hero.velocity.x = hero.BLUNDER_GROUNDED_VELOCITY.x*hero.facing_direction
 	hero.velocity.y = hero.BLUNDER_GROUNDED_VELOCITY.y
-	get_node("../TimerBlunderShootDuration").start()
+	timer_blunder_shoot_duration.start()
 	hero.shoot_blunder(4,45)
 
 func on_process(delta: float):
 	if Input.is_action_just_pressed('jump')\
-	or get_node("../TimerBlunderShootDuration").is_stopped():
+	or timer_blunder_shoot_duration.is_stopped():
 		machine.set_state("StateFloating")
 		return
 
@@ -26,4 +26,4 @@ func on_physics_process(delta: float):
 
 
 func on_exit():
-	get_node("../TimerBlunderShootCooldown").start()
+	timer_blunder_shoot_cooldown.start()

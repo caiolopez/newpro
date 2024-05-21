@@ -9,7 +9,7 @@ func on_enter():
 
 func on_process(delta: float):
 	if hero.is_input_blunder_shoot()\
-		and get_node("../TimerBlunderShootCooldown").is_stopped():
+		and timer_blunder_shoot_cooldown.is_stopped():
 		machine.set_state("StateBlunderShooting")
 		return
 	if hero.is_on_floor():

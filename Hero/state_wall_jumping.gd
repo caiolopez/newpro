@@ -5,22 +5,22 @@ var death_prone = true
 
 
 func on_enter():
-	get_node("../TimerWallJumpDuration").start()
+	timer_wall_jump_duration.start()
 	hero.velocity.x = hero.WALLJUMP_VELOCITY.x * round(hero.get_wall_normal().x)
 	hero.velocity.y = hero.WALLJUMP_VELOCITY.y
 	hero.facing_direction = round(hero.get_wall_normal().x)
 
 func on_process(delta: float):
 	if hero.is_input_blunder_shoot()\
-		and get_node("../TimerBlunderShootCooldown").is_stopped():
+		and timer_blunder_shoot_cooldown.is_stopped():
 		machine.set_state("StateBlunderShooting")
 		return
 	if not hero.is_on_floor() and hero.velocity.y > 0:
-		get_node("../TimerWallJumpDuration").stop()
+		timer_wall_jump_duration.stop()
 		machine.set_state("StateFalling")
 		return
 	if Input.is_action_just_released("jump"):
-		get_node("../TimerWallJumpDuration").stop()
+		timer_wall_jump_duration.stop()
 		machine.set_state("StateFalling")
 		return
 
@@ -31,7 +31,7 @@ func on_process(delta: float):
 func on_physics_process(delta: float):
 
 	hero.step_grav(delta)
-	if get_node("../TimerWallJumpDuration").is_stopped():
+	if timer_wall_jump_duration.is_stopped():
 		hero.step_lateral_mov(delta)
 
 	hero.move_and_slide()
