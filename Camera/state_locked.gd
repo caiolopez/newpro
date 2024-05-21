@@ -4,7 +4,7 @@ func on_enter():
 	pass
 
 func on_process(delta: float):
-	if camera.lockers.size() == 0:
+	if c.lockers.size() == 0:
 		machine.set_state("StateFollowHero")
 		return
 		

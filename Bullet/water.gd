@@ -7,7 +7,6 @@ func _ready():
 
 
 func _process(delta):
-	get_surface_global_position()
 	pass
 
 

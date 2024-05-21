@@ -1,49 +1,56 @@
 extends CameraState
 
+var hero_vel: Vector2
+var hero_dir: int
+var last_hero_dir: int
+var la_amount: Vector2
+
 func on_enter():
 	pass
 
 func on_process(delta: float):
+	hero_vel = c.hero.get_velocity()
+	hero_dir = c.hero.facing_direction
+	la_amount = c.lookahead_amount
 	
-	var hero_vel = camera.hero.get_velocity()
-	var hero_dir = camera.hero.facing_direction
-	var la_amount = camera.lookahead_amount
 	
 	# Lerp Lerp Smoothing
-	if abs(hero_vel.x) < camera.catch_up_vel.x:
-		camera.current_lerp_ratio.x = camera.lerp_ratio.x
-	else: camera.current_lerp_ratio.x = lerp(camera.current_lerp_ratio.x, 1.0, 0.01)
+	if abs(hero_vel.x) < c.catch_up_vel.x or last_hero_dir != hero_dir:
+		c.current_lerp_speed.x = c.lerp_speed.x
+	else: c.current_lerp_speed.x = lerp(c.current_lerp_speed.x, 1.0, c.lerp_lerp_speed.x)
 		
-	if abs(hero_vel.y) < camera.catch_up_vel.y:
-		camera.current_lerp_ratio.y = camera.lerp_ratio.y
-	else: camera.current_lerp_ratio.y = lerp(camera.current_lerp_ratio.y, 1.0, 0.01)
+	if abs(hero_vel.y) < c.catch_up_vel.y:
+		c.current_lerp_speed.y = c.lerp_speed.y
+	else: c.current_lerp_speed.y = lerp(c.current_lerp_speed.y, 1.0, c.lerp_lerp_speed.y)
 	
 	# Look-ahead management
-	if abs(hero_vel.x) > camera.lookahead_activation_vel.x:
-		camera.current_lookahead.x = lerp(camera.current_lookahead.x, la_amount.x*hero_dir, 0.1)
-	else: camera.current_lookahead.x = lerp(camera.current_lookahead.x, 0.0, 0.1)
+	if abs(hero_vel.x) > c.lookahead_activation_vel.x:
+		c.current_lookahead.x = lerp(c.current_lookahead.x, la_amount.x*hero_dir, 0.1)
+	else: c.current_lookahead.x = lerp(c.current_lookahead.x, 0.0, 0.1)
 		
-	if hero_vel.y > camera.lookahead_activation_vel.y:
-		camera.current_lookahead.y = lerp(camera.current_lookahead.y, la_amount.y, 0.1)
-	else: camera.current_lookahead.y = lerp(camera.current_lookahead.y, 0.0, 0.1)
+	if hero_vel.y > c.lookahead_activation_vel.y:
+		c.current_lookahead.y = lerp(c.current_lookahead.y, la_amount.y, 0.1)
+	else: c.current_lookahead.y = lerp(c.current_lookahead.y, 0.0, 0.1)
 	
 	# Target acquisition
-	camera.target = camera.hero.global_position + camera.current_lookahead
-	for top_locker in camera.lockers:
+	c.target = c.hero.global_position + c.current_lookahead
+	for top_locker in c.lockers:
 		if top_locker.axes == Constants.Axes.x:
-			camera.target.x = top_locker.lock_position.x 
-			camera.current_lerp_ratio.x = camera.lerp_ratio.x
+			c.target.x = top_locker.lock_position.x 
+			c.current_lerp_speed.x = c.lerp_speed.x
 		elif top_locker.axes == Constants.Axes.y:
-			camera.target.y = top_locker.lock_position.y
-			camera.current_lerp_ratio.y = camera.lerp_ratio.y
+			c.target.y = top_locker.lock_position.y
+			c.current_lerp_speed.y = c.lerp_speed.y
 		elif top_locker.axes == Constants.Axes.both:
-			camera.target = top_locker.lock_position
-			camera.current_lerp_ratio = camera.lerp_ratio
+			c.target = top_locker.lock_position
+			c.current_lerp_speed = c.lerp_speed
 	
 	# Move camera smoothly towards target
-	camera.position = camera.lerp_vector2(camera.position, camera.target, camera.current_lerp_ratio)
+	c.position = c.lerp_vector2(c.position, c.target, c.current_lerp_speed)
 	
-	camera.step_shake(delta, camera.position)
+	c.step_shake(delta, c.position)
+	
+	last_hero_dir = hero_dir
 func on_process_physics(delta: float):
 	pass
 
