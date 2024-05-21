@@ -27,9 +27,9 @@ position = Vector2(1776, -480)
 [node name="CycleMover" parent="Spike" index="3"]
 rotation_angle = 90.0
 rotation_time = 4.0
-translation_distance = Vector2(100, 100)
+rotation_boomerang = true
+translation_position = Vector2(200, 200)
 translation_time = 2.0
-translation_boomerang = true
 
 [node name="Spike2" parent="." instance=ExtResource("1_cietj")]
 position = Vector2(2048, -480)

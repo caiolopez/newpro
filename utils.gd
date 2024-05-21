@@ -19,3 +19,12 @@ func dt_lerp(delta: float, ratio: float) -> float:
 		return -1.0
 	var dt_lerp = 1 - pow(0.5, delta * ratio)
 	return clamp(dt_lerp, 0.0, 1.0)
+
+func find_dmg_taker(node: Node) -> DmgTaker:
+	var dmg_taker: DmgTaker
+	for child in node.get_children():
+		if child is DmgTaker:
+			dmg_taker = child
+			break
+	return dmg_taker
+		

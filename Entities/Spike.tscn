@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bp1e8lhbqp3me"]
+[gd_scene load_steps=6 format=3 uid="uid://bp1e8lhbqp3me"]
 
 [ext_resource type="PackedScene" uid="uid://upm0adhb85ik" path="res://EntityComponents/DmgDealer.tscn" id="1_ns2lo"]
 [ext_resource type="Script" path="res://Entities/spike.gd" id="1_t2h1p"]
 [ext_resource type="PackedScene" uid="uid://box2ff3vwcc7w" path="res://EntityComponents/DmgTaker.tscn" id="1_yjiw5"]
 [ext_resource type="Texture2D" uid="uid://b8rg54dkjrvw4" path="res://Camera/marker_icon_a.png" id="2_gjisp"]
+[ext_resource type="PackedScene" uid="uid://vc4ntbqc6jti" path="res://EntityComponents/CycleMover.tscn" id="5_bwcq3"]
 
 [node name="Spike" type="Node2D"]
 script = ExtResource("1_t2h1p")
@@ -15,3 +16,5 @@ scale = Vector2(6.36, 6.4)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_gjisp")
+
+[node name="CycleMover" parent="." instance=ExtResource("5_bwcq3")]
