@@ -9,13 +9,14 @@ extends CharacterBody2D
 @export var GLIDE_VELOCITY = 50.0 ## The speed at which the hero slowly descends when airborne and holding Jump.
 @export var BLUNDER_AIRBORNE_VELOCITY = Vector2(-800, 0) ## The strenth of the recoil when blunderjumping on air.
 @export var BLUNDER_GROUNDED_VELOCITY = Vector2(-800, 0) ## The strenth of the recoil when blunderjumping on ground.
-@export var BLUNDER_AIRBORNE_DURATION = 1 ## The duration of the recoil when blunderjumping on air.
-@export var BLUNDER_GROUNDED_DURATION = 0.5 ## The duration of the recoil when blunderjumping on ground.
+@export var BLUNDER_AIRBORNE_DURATION: float = 0.1 ## The duration of the recoil when blunderjumping on air.
+@export var BLUNDER_GROUNDED_DURATION: float = 0.05 ## The duration of the recoil when blunderjumping on ground.
 @export var BLUNDER_JUMP_VELOCITY = -400.0 ## The speed the hero jumps after blundershooting airborne.
+@export var gravity: float = 1500
+@export var MAX_FALL_VEL_Y = 1200.0 ## The maximum downward speed when falling.
 const DECELERATION = 10.0
 @export var BUOYANCY = 100 ## The upward acceleration when underwater. Only affects state Floating.
 @export var ASCENDING_VELOCITY = -300.0 ## The Y speed at which the hero swims upwards when holding jump while underwater. CAN_DIVE must be set to true.
-@export var MAX_FALL_VEL_Y = 1200.0 ## The maximum downward speed when falling.
 @export var MAX_DESCENT_VEL_Y = 300 ## The maximum downward speed when diving (CAN_DIVE must be set to true).
 @export var state_machine: StateMachine ## The state machine that governs this player controller. Drag-and-drop the state-machine object to this field.
 @export var bullet_manager: Node
@@ -31,7 +32,6 @@ var is_on_water = false
 var current_water: Water
 var last_water_surface: float
 var dmg_taker: DmgTaker
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready():
 	Events.hero_entered_water.connect(_on_hero_entered_water)
