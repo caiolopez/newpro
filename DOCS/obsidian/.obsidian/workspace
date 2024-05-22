@@ -1,0 +1,120 @@
+{
+  "main": {
+    "id": "888574f5cc1ee73a",
+    "type": "split",
+    "children": [
+      {
+        "id": "cd9c09d78cfe7853",
+        "type": "leaf",
+        "state": {
+          "type": "kanban",
+          "state": {
+            "file": "_Tasks.md"
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "2c493510a0d2b8c7",
+    "type": "split",
+    "children": [
+      {
+        "id": "9676903fc1139f56",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "087ff1baf07d5153",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "ae126cb83b7a3810",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "tag:#trigger",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "398c714e6e85ca79",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 324
+  },
+  "right": {
+    "id": "9fd503cb90b3aa14",
+    "type": "split",
+    "children": [
+      {
+        "id": "03fa03f29df1fa95",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "19735fbdf39bbd08",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "_Tasks.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": false
+              }
+            }
+          },
+          {
+            "id": "f278ae72597b1885",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "cd9c09d78cfe7853",
+  "lastOpenFiles": [
+    "_GAME IDEAS.md",
+    "_Tasks.md",
+    "Story.md",
+    "Glossary.md",
+    "Gameplay/Escape Sequence Trigger.md",
+    "Enemies/Object Wiper Trigger.md",
+    "Enemies/Enemy Spawner.md",
+    "Debug Tools/Suicide.md",
+    "_BUGS/bug - farts don't stink.md",
+    "Bosses/Boss Fight Trigger.md"
+  ]
+}

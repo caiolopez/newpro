@@ -1,0 +1,5 @@
+A crude, high-performance 2d engine with primitive calculations for acceleration, collision and all; must, so far:
+- Support collision with solid colliders;
+- Support collision moving platforms. Standing over a horizontal moving platform must cause game objects to adhere to it, instead of slipping off; Standing over a vertical moving platform must cause the object to adhere to it only when the vertical speed of the platform, downwards, is smaller than object speed fall speed. I.e, Must feel like it does in real life;
+- Game must not skip frames upon slowdowns; slowdowns, if unavoidable, must slow the game execution as to keep the minimum amount of frames per second locked to 60;
+- Particles and other innocuous stuff are clear to use real physics and shit, if needed, as they do not account for significant gameplay changes. Would be great to run those at huge framerates too.

@@ -1,0 +1,1 @@
+Harmless narrative objects that can be destroyed by shooting AND/OR by getting close to them, and remain visually destroyed forever. This helps players to infer the places they've already been to. Implementation can be the same as enemies, but without hitboxes and hurtboxes.

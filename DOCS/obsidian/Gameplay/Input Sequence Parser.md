@@ -1,0 +1,4 @@
+- The input sequence parser look for button press sequences at every new input. When a valid sequence is found, it generates an event. E.g., Pressing UP on the d-pad four times in a row can cause the game to pause;
+- Along with the buttons pressed, the times between each input is also taken into account when verifying the sequence;
+- Entering all the available sequences must be easy to perform, edit and test, as the game can have a big volume of codes;
+- All ongoing inputs logged on the input sequence parser should be purged when hero dies.
