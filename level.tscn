@@ -10,13 +10,13 @@
 [ext_resource type="PackedScene" uid="uid://boan2jyc4hlda" path="res://Checkpoint/checkpoint_trigger.tscn" id="7_h6eyv"]
 [ext_resource type="Texture2D" uid="uid://d2gdo5bbgykv2" path="res://icon.svg" id="7_yklcu"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mrork"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j64up"]
 size = Vector2(239.597, 155.882)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_varr1"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k5abh"]
 size = Vector2(239.597, 173.941)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xnd1m"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3gdao"]
 size = Vector2(239.597, 173.941)
 
 [node name="Level" type="Node"]
@@ -25,7 +25,15 @@ size = Vector2(239.597, 173.941)
 position = Vector2(1776, -480)
 
 [node name="CycleMover" parent="Spike" index="2"]
+rotation_angle = 360.0
+rotation_time = 3.0
 translation_boomerang = true
+
+[node name="Shooter" parent="Spike" index="3"]
+pellet_amount = 10
+pellet_separation_angle = 5
+pellet_speed = 700.0
+rotates_with_parent = true
 
 [node name="Spike2" parent="." instance=ExtResource("1_cietj")]
 position = Vector2(2048, -480)
@@ -96,7 +104,7 @@ center_at_edge = true
 
 [node name="CollisionShape2D" parent="CameraLocker5" index="0"]
 position = Vector2(-493, 64)
-shape = SubResource("RectangleShape2D_mrork")
+shape = SubResource("RectangleShape2D_j64up")
 
 [node name="CameraLocker6" parent="." instance=ExtResource("4_d4cnc")]
 position = Vector2(320, 186)
@@ -104,7 +112,7 @@ axes_to_lock = 1
 
 [node name="CollisionShape2D" parent="CameraLocker6" index="0"]
 position = Vector2(-493, 50.4704)
-shape = SubResource("RectangleShape2D_varr1")
+shape = SubResource("RectangleShape2D_k5abh")
 debug_color = Color(1, 0, 0, 0.5)
 
 [node name="Marker2D" parent="CameraLocker6" index="1"]
@@ -116,7 +124,7 @@ axes_to_lock = 1
 
 [node name="CollisionShape2D" parent="CameraLocker7" index="0"]
 position = Vector2(-504, 46)
-shape = SubResource("RectangleShape2D_xnd1m")
+shape = SubResource("RectangleShape2D_3gdao")
 debug_color = Color(1, 0, 0, 0.5)
 
 [node name="Marker2D" parent="CameraLocker7" index="1"]

@@ -6,7 +6,7 @@
 script = ExtResource("1_va7cf")
 
 [node name="TimeBetweenShots" type="Timer" parent="."]
-wait_time = 0.25
 
 [node name="TimeBetweenBursts" type="Timer" parent="."]
+wait_time = 30.281
 one_shot = true
