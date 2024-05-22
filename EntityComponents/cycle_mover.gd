@@ -47,6 +47,7 @@ func _ready():
 		if translation_loop: trans_tween.set_loops()
 
 func _process(delta):
+	print(get_parent().rotation_degrees)
 	if dmg_taker != null:
 		if dmg_taker.current_hp == 0: stop_movement()
 

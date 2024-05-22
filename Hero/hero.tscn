@@ -39,7 +39,6 @@ state_machine = NodePath("StateMachine")
 metadata/_edit_group_ = true
 
 [node name="DmgTaker" parent="." instance=ExtResource("2_ktrux")]
-IS_FOE = false
 
 [node name="NextGrdHeight" type="RayCast2D" parent="."]
 position = Vector2(81.68, 0)

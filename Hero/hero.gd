@@ -19,6 +19,7 @@ const DECELERATION = 10.0
 @export var MAX_DESCENT_VEL_Y = 300 ## The maximum downward speed when diving (CAN_DIVE must be set to true).
 @export var state_machine: StateMachine ## The state machine that governs this player controller. Drag-and-drop the state-machine object to this field.
 @export var bullet_manager: Node
+const is_foe: bool = false ## Flag necessary for components that are shared between Hero and enemies.
 var original_position: Vector2
 var current_checkpoint: Area2D
 var shoulder_rc: RayCast2D

@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://cupxj14lcnr75"]
+[gd_scene load_steps=2 format=3 uid="uid://cupxj14lcnr75"]
+
+[ext_resource type="Script" path="res://EntityComponents/shooter.gd" id="1_va7cf"]
 
 [node name="Shooter" type="Node"]
+script = ExtResource("1_va7cf")

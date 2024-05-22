@@ -1,9 +1,6 @@
 extends Node
 
 
-func test():
-	print("test")
-	
 func make_collision_shape_unique(col: CollisionShape2D):
 
 	var original_shape = col.shape

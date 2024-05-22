@@ -1,5 +1,6 @@
 extends Node2D
 
+@export var is_foe: bool = true
 var dmg_taker: DmgTaker
 
 func _ready():
