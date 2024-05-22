@@ -1,7 +1,7 @@
 class_name StateMachine extends Node
 
 @export var auto_start:bool = false
-@export var prints: bool = true
+@export var does_print: bool = true
 
 var states:Array[_State]
 var current_state_index:int = -1

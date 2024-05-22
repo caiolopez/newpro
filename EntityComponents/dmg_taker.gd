@@ -7,14 +7,12 @@ var immune: bool = false
 var immune_to_regular_bullets: bool = false ## Will not take damage from non-incendiary bullets.
 var is_foe: bool = true
 
-# Subtracts HP upon collision with DmgDealers.
-
 
 func _ready():
 	if "is_foe" in get_parent():
 		is_foe = get_parent().is_foe
 	else:
-		push_warning("DmgTaker component requires parent to have an is_foe flag")
+		push_warning("DmgTaker component parent has no is_foe flag. Defaults to true.")
 	current_hp = HP_AMOUNT
 	Events.reached_checkpoint.connect(commit_status)
 	Events.respawned_at_checkpoint.connect(reset_status)

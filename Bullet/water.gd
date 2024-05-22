@@ -6,10 +6,6 @@ func _ready():
 	body_exited.connect(_on_hero_exited)
 
 
-func _process(delta):
-	pass
-
-
 func get_surface_global_position() -> float:
 	return ((get_node("CollisionShape2D").shape.extents * scale)-global_position).y
 

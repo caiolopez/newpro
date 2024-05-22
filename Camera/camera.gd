@@ -63,7 +63,6 @@ func is_hero_just_reduced_velocity(threshold, axes: Constants.Axes) -> bool:
 	if axes == Constants.Axes.y:	
 		is_breaking = abs(hero_last_velocity.y) > abs(hero.velocity.y) + threshold
 	hero_last_velocity = Vector2(hero.velocity.x, hero.velocity.y)
-	print(is_breaking)
 	return is_breaking
 
 

@@ -51,7 +51,7 @@ func on_process(delta: float):
 	c.step_shake(delta, c.position)
 	
 	last_hero_dir = hero_dir
-func on_process_physics(delta: float):
+func on_process_physics(_delta: float):
 	pass
 
 func on_exit():

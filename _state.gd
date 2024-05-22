@@ -6,7 +6,7 @@ var active: bool
 func enter(new_machine:StateMachine) -> void:
 	machine = new_machine
 	active = true
-	if machine.prints: print("enter_state ", name)
+	if machine.does_print: print("enter_state ", name)
 	on_enter()
 
 func on_enter() -> void:

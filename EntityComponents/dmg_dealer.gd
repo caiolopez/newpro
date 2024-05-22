@@ -8,11 +8,11 @@ func _ready():
 	if "is_foe" in get_parent():
 		is_foe = get_parent().is_foe
 	else:
-		push_warning("DmgDealer component requires parent to have an is_foe flag")
+		push_warning("DmgDealer component parent has no is_foe flag. Defaults to true.")
 	dmg_taker = Utils.find_dmg_taker(self.get_parent())
 
 
-func _process(delta):
+func _process(_delta):
 	if dmg_taker != null:
 		if dmg_taker.current_hp == 0:
 			monitorable = false

@@ -48,12 +48,11 @@ func _ready():
 	state_machine.start()
 
 func _process(_delta):
-	if Input.is_action_just_pressed("Debug Action 1"): die()
+	if Input.is_action_just_pressed("Debug Action 1"): pass #die()
 	if Input.is_action_just_pressed("Debug Action 2"): Events.camera_shake.emit()
 	
 	if dmg_taker.current_hp == 0\
 	and state_machine.current_state.death_prone:
-		dmg_taker.reset_status()
 		die()
 	if is_on_water and state_machine.current_state.water_prone:
 		state_machine.set_state("StateFloating")

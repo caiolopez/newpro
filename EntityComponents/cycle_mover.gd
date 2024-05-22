@@ -14,6 +14,7 @@ var dmg_taker: DmgTaker
 var rot_tween: Tween
 var trans_tween: Tween
 
+
 func _ready():
 	Events.respawned_at_checkpoint.connect(reset_movement)
 	dmg_taker = Utils.find_dmg_taker(self.get_parent())
@@ -46,8 +47,7 @@ func _ready():
 			translation_time)
 		if translation_loop: trans_tween.set_loops()
 
-func _process(delta):
-	print(get_parent().rotation_degrees)
+func _process(_delta):
 	if dmg_taker != null:
 		if dmg_taker.current_hp == 0: stop_movement()
 

@@ -14,8 +14,8 @@ func dt_lerp(delta: float, ratio: float) -> float:
 	if delta < 0 or ratio < 0:
 		push_error("Delta and ratio should be non-negative")
 		return -1.0
-	var dt_lerp = 1 - pow(0.5, delta * ratio)
-	return clamp(dt_lerp, 0.0, 1.0)
+	var dtlerp = 1 - pow(0.5, delta * ratio)
+	return clamp(dtlerp, 0.0, 1.0)
 
 func find_dmg_taker(node: Node) -> DmgTaker:
 	var dmg_taker: DmgTaker

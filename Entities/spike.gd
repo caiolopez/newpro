@@ -7,7 +7,7 @@ func _ready():
 	dmg_taker = Utils.find_dmg_taker(self)
 
 
-func _process(delta):
+func _process(_delta):
 	if dmg_taker != null:
 		if dmg_taker.current_hp == 0 and visible: die()
 		if dmg_taker.current_hp > 0 and not visible: resurect()
