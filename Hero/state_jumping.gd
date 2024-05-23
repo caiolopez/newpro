@@ -26,7 +26,7 @@ func on_physics_process(delta: float):
 	hero.step_grav(delta)
 	hero.step_lateral_mov(delta)
 	
-	if Input.is_action_just_released('jump'): hero.velocity.y = 0
+	if Input.is_action_just_released('jump'): hero.velocity.y *= 0.25
 	
 	hero.move_and_slide()
 
