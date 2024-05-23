@@ -27,6 +27,12 @@ func on_process(delta: float):
 	and Input.is_action_pressed('jump'):
 		machine.set_state("StateWallJumping")
 		return
+	if hero.velocity.y < 0\
+	and not hero.is_on_wall():
+		print("VAULT")
+		hero.velocity.y *= 0.5
+		machine.set_state("StateFalling")
+		return
 
 	
 	if Input.is_action_just_pressed("shoot"): hero.shoot_regular()
