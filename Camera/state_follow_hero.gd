@@ -17,11 +17,11 @@ func on_process(delta: float):
 	# Lerp Lerp Smoothing
 	if abs(hero_vel.x) < c.catch_up_vel.x or last_hero_dir != hero_dir:
 		c.current_lerp_speed.x = c.lerp_speed.x
-	else: c.current_lerp_speed.x = lerp(c.current_lerp_speed.x, 1.0, c.lerp_lerp_speed.x)
+	else: c.current_lerp_speed.x = lerp(c.current_lerp_speed.x, 1.0, c.lerp_lerp_speed.x * delta)
 		
 	if abs(hero_vel.y) < c.catch_up_vel.y:
 		c.current_lerp_speed.y = c.lerp_speed.y
-	else: c.current_lerp_speed.y = lerp(c.current_lerp_speed.y, 1.0, c.lerp_lerp_speed.y)
+	else: c.current_lerp_speed.y = lerp(c.current_lerp_speed.y, 1.0, c.lerp_lerp_speed.y * delta)
 	
 	# Look-ahead management
 	if abs(hero_vel.x) > c.lookahead_activation_vel.x:
