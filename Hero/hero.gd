@@ -27,7 +27,8 @@ var current_checkpoint: Area2D
 var shoulder_rc: RayCast2D
 var pelvis_rc: RayCast2D
 var next_grd_height: RayCast2D
-var currently_on_wall: bool
+var was_on_wall: bool ## For variable change caculation
+var was_on_water: bool ## For variable change caculation
 var facing_direction = 1
 var is_on_water = false
 var current_water: Water
@@ -123,16 +124,21 @@ func shoot_blunder(amount: int, interval_angle: float):
 
 
 func is_on_wall_value_change() -> bool:
-	var changed = is_on_wall() != currently_on_wall
-	currently_on_wall = is_on_wall()
+	var changed = is_on_wall() != was_on_wall
+	was_on_wall = is_on_wall()
 	return changed
+
+
+func is_just_on_water() -> bool:
+	var just_entered_water = is_on_water and not was_on_water
+	was_on_water = is_on_water
+	return just_entered_water
 
 
 func _on_hero_entered_water(water, surface_global_pos):
 	is_on_water = true
 	current_water = water
 	last_water_surface = surface_global_pos
-	
 
 
 func _on_hero_exited_water(_water):
