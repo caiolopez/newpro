@@ -28,9 +28,12 @@ var shoulder_rc: RayCast2D
 var pelvis_rc: RayCast2D
 var next_grd_height: RayCast2D
 var was_on_wall: bool ## For variable change caculation
+var was_on_floor: bool ## For variable change caculation
+var is_just_on_floor: bool
 var was_on_water: bool ## For variable change caculation
 var facing_direction = 1
 var is_on_water = false
+var is_just_on_water: bool
 var current_water: Water
 var last_water_surface: float
 var dmg_taker: DmgTaker
@@ -53,6 +56,7 @@ func _process(_delta):
 	if Input.is_action_just_pressed("jump"): print("j")
 	if Input.is_action_just_pressed("Debug Action 1"): pass #die()
 	if Input.is_action_just_pressed("Debug Action 2"): Events.camera_shake.emit()
+	check_value_change()
 	
 	if dmg_taker.current_hp == 0\
 	and state_machine.current_state.death_prone:
@@ -134,10 +138,11 @@ func on_wall_value_just_changed() -> bool:
 	return changed
 
 
-func is_just_on_water() -> bool:
-	var just_entered_water = is_on_water and not was_on_water
+func check_value_change():
+	is_just_on_floor = is_on_floor() and not was_on_floor
+	was_on_floor = is_on_floor()
+	is_just_on_water = is_on_water and not was_on_water
 	was_on_water = is_on_water
-	return just_entered_water
 
 
 func _on_hero_entered_water(water, surface_global_pos):

@@ -8,7 +8,7 @@ func on_enter():
 	hero.velocity.y = hero.JUMP_VELOCITY
 
 func on_process(delta: float):
-	if hero.is_on_floor():
+	if hero.is_just_on_floor:
 		machine.set_state("StateIdle")
 		return
 	if hero.is_input_blunder_shoot()\
