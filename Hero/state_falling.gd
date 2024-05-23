@@ -13,7 +13,7 @@ func on_process(delta: float):
 		timer_leaving_wall.start()
 		
 	if Input.is_action_just_pressed('jump')\
-		and not timer_blunder_jump_window.is_stopped():
+	and not timer_blunder_jump_window.is_stopped():
 		machine.set_state("StateBlunderJumping")
 		return
 	if not timer_leaving_wall.is_stopped()\
@@ -23,7 +23,7 @@ func on_process(delta: float):
 		machine.set_state("StateWallJumping")
 		return		
 	if hero.is_input_blunder_shoot()\
-		and timer_blunder_shoot_cooldown.is_stopped():
+	and timer_blunder_shoot_cooldown.is_stopped():
 		machine.set_state("StateBlunderShooting")
 		return
 	if Input.is_action_just_pressed('jump')\
@@ -31,7 +31,7 @@ func on_process(delta: float):
 		machine.set_state("StateWallClimbing")
 		return
 	if Input.is_action_just_pressed('jump')\
-		and not timer_coyote_jump.is_stopped():
+	and not timer_coyote_jump.is_stopped():
 		timer_coyote_jump.stop()
 		machine.set_state("StateJumping")
 		return
