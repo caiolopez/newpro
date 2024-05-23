@@ -12,7 +12,6 @@ editor_draw_limits = true
 editor_draw_drag_margin = true
 script = ExtResource("1_465f0")
 state_machine = NodePath("StateMachine")
-lookahead_amount = Vector2(200, 200)
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("2_51bgi")

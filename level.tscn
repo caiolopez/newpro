@@ -56,8 +56,8 @@ rotation = -3.14159
 scale = Vector2(0.952147, -6.73451)
 
 [node name="Block3" parent="." instance=ExtResource("1_weaqc")]
-position = Vector2(8969, 839)
-scale = Vector2(209.78, 0.771815)
+position = Vector2(1896, 1256)
+scale = Vector2(69, 7)
 
 [node name="Block" parent="." instance=ExtResource("1_weaqc")]
 position = Vector2(582, 626)
@@ -96,9 +96,6 @@ scale = Vector2(-0.952147, 6.73451)
 [node name="Camera" parent="." node_paths=PackedStringArray("hero") instance=ExtResource("3_o6dt5")]
 unique_name_in_owner = true
 hero = NodePath("../Hero")
-lerp_speed = Vector2(0.01, 0.01)
-lerp_lerp_speed = Vector2(0.05, 0.05)
-lookahead_activation_vel = Vector2(300000, 3e+06)
 
 [node name="CameraLocker5" parent="." instance=ExtResource("4_d4cnc")]
 position = Vector2(2632, 456)

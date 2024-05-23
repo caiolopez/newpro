@@ -25,12 +25,12 @@ func on_process(delta: float):
 	
 	# Look-ahead management
 	if abs(hero_vel.x) > c.lookahead_activation_vel.x:
-		c.current_lookahead.x = lerp(c.current_lookahead.x, la_amount.x*hero_dir, 0.1)
-	else: c.current_lookahead.x = lerp(c.current_lookahead.x, 0.0, 0.1)
+		c.current_lookahead.x = la_amount.x * hero_dir
+	else: c.current_lookahead.x = 0
 		
-	if hero_vel.y > c.lookahead_activation_vel.y:
-		c.current_lookahead.y = lerp(c.current_lookahead.y, la_amount.y, 0.1)
-	else: c.current_lookahead.y = lerp(c.current_lookahead.y, 0.0, 0.1)
+	if hero_vel.y > 0:
+		c.current_lookahead.y = lerp(0.0, la_amount.y, minf(abs(hero_vel.y), c.lookahead_activation_vel.y) / c.lookahead_activation_vel.y)
+	else: c.current_lookahead.y = 0
 	
 	# Target acquisition
 	c.target = c.hero.global_position + c.current_lookahead
