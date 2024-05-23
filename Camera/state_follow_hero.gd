@@ -4,6 +4,7 @@ var hero_vel: Vector2
 var hero_dir: int
 var last_hero_dir: int
 var la_amount: Vector2
+var la_timer: Timer
 
 func on_enter():
 	pass
@@ -12,7 +13,10 @@ func on_process(delta: float):
 	hero_vel = c.hero.get_velocity()
 	hero_dir = c.hero.facing_direction
 	la_amount = c.lookahead_amount
+	la_timer = get_node("../TimerBeforeLookaheadX")
 	
+	if Input.is_action_just_pressed("move_left") or Input.is_action_just_pressed("move_right"):
+		la_timer.start()
 	
 	# Lerp Lerp Smoothing
 	if abs(hero_vel.x) < c.catch_up_vel.x or last_hero_dir != hero_dir:
@@ -25,7 +29,7 @@ func on_process(delta: float):
 	
 	# Look-ahead management
 	if abs(hero_vel.x) > c.lookahead_activation_vel.x:
-		c.current_lookahead.x = la_amount.x * hero_dir
+		c.current_lookahead.x = lerp(0.0, la_amount.x * hero_dir, la_timer.wait_time - la_timer.time_left)
 	else: c.current_lookahead.x = 0
 		
 	if hero_vel.y > 0:

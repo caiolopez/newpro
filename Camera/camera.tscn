@@ -22,6 +22,9 @@ script = ExtResource("3_u7uha")
 [node name="StateLocked" type="Node" parent="StateMachine"]
 script = ExtResource("3_bvwu3")
 
+[node name="TimerBeforeLookaheadX" type="Timer" parent="StateMachine"]
+one_shot = true
+
 [node name="CameraMarker" type="Sprite2D" parent="."]
 texture = ExtResource("6_0iqy3")
 
