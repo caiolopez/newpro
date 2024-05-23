@@ -50,16 +50,18 @@ func on_process(delta: float):
 	and hero.shoulder_rc.is_colliding():
 		machine.set_state("StateWallGrabbing")
 		return
-	
 
-
-	if Input.is_action_pressed("jump"): hero.velocity.y = hero.GLIDE_VELOCITY
-	
+	if Input.is_action_just_pressed("jump"):
+		hero.velocity.y = hero.GLIDE_VELOCITY/2
+		
 	if Input.is_action_just_pressed("shoot"): hero.shoot_regular()
 
 		
 func on_physics_process(delta: float):
-
+	
+	if Input.is_action_pressed("jump"):
+		hero.velocity.y -= 2000 * delta
+		hero.velocity.y = maxf(hero.velocity.y, hero.GLIDE_VELOCITY)
 	
 	hero.step_lateral_mov(delta)
 	
