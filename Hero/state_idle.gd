@@ -21,6 +21,9 @@ func on_process(delta: float):
 		hero.global_position.y = hero.next_grd_height.get_collision_point().y - %HeroCollider.shape.get_rect().size.y/2 - 1
 		print("AUTO SNAP ON STAIRS")
 	
+	if Input.is_action_just_pressed('jump'):
+		machine.set_state("StateJumping")
+		return
 	if hero.is_input_blunder_shoot()\
 	and timer_blunder_shoot_cooldown.is_stopped():
 		machine.set_state("StateBlunderShooting")
@@ -31,9 +34,6 @@ func on_process(delta: float):
 	if not hero.is_on_floor()\
 	and hero.velocity.y > 0:
 		machine.set_state("StateFalling")
-		return
-	if Input.is_action_just_pressed('jump'):
-		machine.set_state("StateJumping")
 		return
 
 	
