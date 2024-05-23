@@ -146,7 +146,7 @@ wait_time = 0.1
 one_shot = true
 
 [node name="TimerWallJumpDuration" type="Timer" parent="StateMachine"]
-wait_time = 0.1
+wait_time = 0.3
 one_shot = true
 
 [node name="TimerBlunderShootDuration" type="Timer" parent="StateMachine"]

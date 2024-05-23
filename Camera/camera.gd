@@ -17,7 +17,7 @@ var lockers: Array[Locker] = []
 @export var lerp_speed: Vector2 = Vector2(0.1, 0.1) ## The main smoothing factor. The lag before the camera starts to follow the Hero.
 @export var lerp_lerp_speed: Vector2 = Vector2(0.01,0.01) ## How fast will the camera catch up with the Hero's speed.
 @export var catch_up_vel: Vector2 = Vector2(200,10) ## The minimum velocity the body has to move for framing compensation to kick in and attempt to center it to screen.
-@export var lookahead_activation_vel: Vector2 = Vector2(10,0) ## The minimum body velocity that activates the lookahead behavior. NOTE: Hard-coded to not work going up.
+@export var lookahead_activation_vel: Vector2 = Vector2(10,2000) ## The minimum body velocity that activates the lookahead behavior. NOTE: Hard-coded to not work going up.
 @export var lookahead_amount: Vector2 = Vector2(50,50) ## The distance the camera frames in advance when performing lookahead.
 var current_lerp_speed: Vector2
 var current_lookahead: Vector2

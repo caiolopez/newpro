@@ -2,18 +2,19 @@ extends CharacterBody2D
 
 @export var can_dive = false ## Whether the hero has the ability to dive into water instead of floating.
 @export var shoots_fire = false ## Whether the hero has the ability to shoot incendiary bullets, required to damage enemies that are immune to regular bullets.
-@export var SPEED = 300.0 ## The moving speed of the hero.
-@export var JUMP_VELOCITY = -400.0 ## The speed the hero jumps when grounded.
-@export var WALLJUMP_VELOCITY = Vector2(800, -400) ## The speed the hero walljumps away from a wall.
-@export var CLIMB_VELOCITY = -400.0 ## The speed the hero jumps upward when jumping to the same side of the wall (Megaman-style walljump).
-@export var GLIDE_VELOCITY = 50.0 ## The speed at which the hero slowly descends when airborne and holding Jump.
-@export var BLUNDER_AIRBORNE_VELOCITY = Vector2(-800, 0) ## The strenth of the recoil when blunderjumping on air.
+@export var SPEED = 600.0 ## The moving speed of the hero.
+@export var JUMP_VELOCITY = -1000.0 ## The speed the hero jumps when grounded.
+@export var WALLJUMP_VELOCITY = Vector2(1600, -400) ## The speed the hero walljumps away from a wall.
+@export var CLIMB_VELOCITY: float = -800 ## The speed the hero jumps upward when jumping to the same side of the wall (Megaman-style walljump).
+@export var GLIDE_VELOCITY: float = 100 ## The speed at which the hero slowly descends when airborne and holding Jump.
+@export var BLUNDER_AIRBORNE_VELOCITY = Vector2(-2000, 0) ## The strenth of the recoil when blunderjumping on air.
 @export var BLUNDER_GROUNDED_VELOCITY = Vector2(-800, 0) ## The strenth of the recoil when blunderjumping on ground.
 @export var BLUNDER_AIRBORNE_DURATION: float = 0.1 ## The duration of the recoil when blunderjumping on air.
 @export var BLUNDER_GROUNDED_DURATION: float = 0.05 ## The duration of the recoil when blunderjumping on ground.
-@export var BLUNDER_JUMP_VELOCITY = -400.0 ## The speed the hero jumps after blundershooting airborne.
-@export var gravity: float = 1500
-@export var MAX_FALL_VEL_Y = 1200.0 ## The maximum downward speed when falling.
+@export var BLUNDER_JUMP_VELOCITY: float = -1200 ## The speed the hero jumps after blundershooting airborne.
+@export var BLUNDER_JUMP_WATER_BOUNCE_VELOCITY: float = -800 ## The speed the hero jumps after falling on water while holding jump from a blunder jump. Like Kiddy Kong.
+@export var gravity: float = 2000
+@export var MAX_FALL_VEL_Y = 2000.0 ## The maximum downward speed when falling.
 const DECELERATION = 10.0
 @export var BUOYANCY = 100 ## The upward acceleration when underwater. Only affects state Floating.
 @export var ASCENDING_VELOCITY = -300.0 ## The Y speed at which the hero swims upwards when holding jump while underwater. CAN_DIVE must be set to true.
@@ -76,11 +77,11 @@ func step_lateral_mov(delta):
 	if Input.is_action_pressed("move_right"):
 		facing_direction = 1
 		
-	if abs(velocity.x) > SPEED:
-		velocity.x = lerp(velocity.x, facing_direction * SPEED, Utils.dt_lerp(delta, 10))
-
-	else:
-		velocity.x = facing_direction * SPEED
+	#if abs(velocity.x) > SPEED:
+		#velocity.x = lerp(velocity.x, facing_direction * SPEED, Utils.dt_lerp(delta, 10))
+#
+	#else:
+	velocity.x = facing_direction * SPEED
 
 	shoulder_rc.update_direction()
 	pelvis_rc.update_direction()
@@ -131,6 +132,7 @@ func _on_hero_entered_water(water, surface_global_pos):
 	is_on_water = true
 	current_water = water
 	last_water_surface = surface_global_pos
+	
 
 
 func _on_hero_exited_water(_water):
