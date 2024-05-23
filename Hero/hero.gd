@@ -4,8 +4,8 @@ extends CharacterBody2D
 @export var shoots_fire = false ## Whether the hero has the ability to shoot incendiary bullets, required to damage enemies that are immune to regular bullets.
 @export var SPEED = 600.0 ## The moving speed of the hero.
 @export var JUMP_VELOCITY = -1000.0 ## The speed the hero jumps when grounded.
-@export var WALLJUMP_VELOCITY = Vector2(1600, -400) ## The speed the hero walljumps away from a wall.
-@export var CLIMB_VELOCITY: float = -800 ## The speed the hero jumps upward when jumping to the same side of the wall (Megaman-style walljump).
+@export var WALLJUMP_VELOCITY = Vector2(1600, -600) ## The speed the hero walljumps away from a wall.
+@export var CLIMB_VELOCITY: float = -1000 ## The speed the hero jumps upward when jumping to the same side of the wall (Megaman-style walljump).
 @export var GLIDE_VELOCITY: float = 100 ## The speed at which the hero slowly descends when airborne and holding Jump.
 @export var BLUNDER_AIRBORNE_VELOCITY = Vector2(-2000, 0) ## The strenth of the recoil when blunderjumping on air.
 @export var BLUNDER_GROUNDED_VELOCITY = Vector2(-800, 0) ## The strenth of the recoil when blunderjumping on ground.
@@ -70,16 +70,20 @@ func step_grav(delta):
 
 
 func step_lateral_mov(delta):
+	var dir_just_changed: bool
 	if Input.is_action_pressed("move_left") == Input.is_action_pressed("move_right"):
 		velocity.x = 0
 		return
 	
 	if Input.is_action_pressed("move_left"):
+		dir_just_changed = facing_direction == 1
 		facing_direction = -1
 	if Input.is_action_pressed("move_right"):
+		dir_just_changed = facing_direction == -1
 		facing_direction = 1
-		
-	#if abs(velocity.x) > SPEED:
+
+	#if abs(velocity.x) > SPEED\
+	#and :
 		#velocity.x = lerp(velocity.x, facing_direction * SPEED, Utils.dt_lerp(delta, 10))
 #
 	#else:
@@ -124,7 +128,7 @@ func shoot_blunder(amount: int, interval_angle: float):
 		bullet_manager.create_bullet(facing_direction, position, Vector2(800, 0), false, shoots_fire, top_angle - interval_angle * i)
 
 
-func is_on_wall_value_change() -> bool:
+func on_wall_value_just_changed() -> bool:
 	var changed = is_on_wall() != was_on_wall
 	was_on_wall = is_on_wall()
 	return changed

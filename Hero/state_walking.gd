@@ -17,6 +17,7 @@ func on_process(delta: float):
 		print("AUTO SNAP ON STAIRS")
 		
 		
+	if Input.is_action_just_pressed('jump'): machine.set_state("StateJumping")
 	if hero.is_input_blunder_shoot()\
 		and timer_blunder_shoot_cooldown.is_stopped():
 		machine.set_state("StateBlunderShooting")
@@ -26,7 +27,6 @@ func on_process(delta: float):
 		timer_coyote_jump.start()
 		machine.set_state("StateFalling")
 		return
-	if Input.is_action_just_pressed('jump'): machine.set_state("StateJumping")
 
 	if Input.is_action_just_pressed("shoot"): hero.shoot_regular()
 

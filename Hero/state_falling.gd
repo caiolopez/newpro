@@ -8,7 +8,7 @@ func on_enter():
 	pass
 
 func on_process(delta: float):
-	if hero.is_on_wall_value_change()\
+	if hero.on_wall_value_just_changed()\
 	and not hero.is_on_wall():
 		timer_leaving_wall.start()
 		

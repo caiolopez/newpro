@@ -34,6 +34,7 @@ func on_process(delta: float):
 		machine.set_state("StateFalling")
 		return
 
+	if Input.is_action_just_released('jump'): hero.velocity.y *= 0.5
 	
 	if Input.is_action_just_pressed("shoot"): hero.shoot_regular()
 
