@@ -19,13 +19,13 @@ func on_process(delta: float):
 		la_timer.start()
 	
 	# Lerp Lerp Smoothing
-	if abs(hero_vel.x) < c.catch_up_vel.x or last_hero_dir != hero_dir:
+	if abs(hero_vel.x) < c.lerp_speed.x or last_hero_dir != hero_dir:
 		c.current_lerp_speed.x = c.lerp_speed.x
-	else: c.current_lerp_speed.x = lerp(c.current_lerp_speed.x, 1.0, c.lerp_lerp_speed.x * delta)
+	else: c.current_lerp_speed.x = lerp(c.current_lerp_speed.x, abs(hero_vel.x) * c.lerp_speed.x, Utils.dt_lerp(c.catch_up_speed.x, delta))
 		
-	if abs(hero_vel.y) < c.catch_up_vel.y:
+	if abs(hero_vel.y) < c.lerp_speed.y:
 		c.current_lerp_speed.y = c.lerp_speed.y
-	else: c.current_lerp_speed.y = lerp(c.current_lerp_speed.y, 1.0, c.lerp_lerp_speed.y * delta)
+	else: c.current_lerp_speed.y = lerp(c.current_lerp_speed.y, abs(hero_vel.y) * c.lerp_speed.y, Utils.dt_lerp(c.catch_up_speed.y, delta))
 	
 	# Look-ahead management
 	if abs(hero_vel.x) > c.lookahead_activation_vel.x:
@@ -50,11 +50,12 @@ func on_process(delta: float):
 			c.current_lerp_speed = c.lerp_speed
 	
 	# Move camera smoothly towards target
-	c.position = c.lerp_vector2(c.position, c.target, c.current_lerp_speed)
+	c.position = c.lerp_vector2(c.position, c.target, c.current_lerp_speed, delta)
 	
 	c.step_shake(delta, c.position)
 	
 	last_hero_dir = hero_dir
+	
 func on_process_physics(_delta: float):
 	pass
 

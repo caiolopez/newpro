@@ -14,9 +14,8 @@ var lockers: Array[Locker] = []
 
 @export var hero: Node2D ## What body will the camera follow, primarely. E.g. The main character.
 @export var state_machine: StateMachine ## The state machine that governs this camera controller. Drag-and-drop the state-machine object to this field.
-@export var lerp_speed: Vector2 = Vector2(0.01, 0.01) ## The main smoothing factor. The lag before the camera starts to follow the Hero.
-@export var lerp_lerp_speed: Vector2 = Vector2(0.05,0.05) ## How fast will the camera catch up with the Hero's speed.
-@export var catch_up_vel: Vector2 = Vector2(200,500) ## The minimum velocity the body has to move for framing compensation to kick in and attempt to center it to screen.
+@export var lerp_speed: Vector2 ## The main smoothing factor. The lag before the camera starts to follow the Hero.
+@export var catch_up_speed: Vector2 ## How fast will the camera catch up with the Hero's speed.
 @export var lookahead_activation_vel: Vector2 = Vector2(10,2000) ## The minimum body velocity that activates the lookahead behavior. NOTE: Hard-coded to not work going up.
 @export var lookahead_amount: Vector2 = Vector2(200,200) ## The distance the camera frames in advance when performing lookahead.
 var current_lerp_speed: Vector2
@@ -50,10 +49,10 @@ func unlock_camera(origin, axes: Constants.Axes) -> void:
 		if locker.origin.get_instance_id() == origin.get_instance_id():
 			lockers.erase(locker)
 	
-func lerp_vector2(v1: Vector2, v2: Vector2, ratio: Vector2) -> Vector2:
+func lerp_vector2(v1: Vector2, v2: Vector2, speed: Vector2, delta: float) -> Vector2:
 	return Vector2(
-		lerp(v1.x, v2.x, ratio.x),
-		lerp(v1.y, v2.y, ratio.y)
+		lerp(v1.x, v2.x, Utils.dt_lerp(speed.x, delta)),
+		lerp(v1.y, v2.y, Utils.dt_lerp(speed.y, delta))
 	)
 
 func is_hero_just_reduced_velocity(threshold, axes: Constants.Axes) -> bool:
