@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://1md1m8n6iq5x"]
+[gd_scene load_steps=29 format=3 uid="uid://1md1m8n6iq5x"]
 
 [ext_resource type="Script" path="res://Hero/hero.gd" id="1_dmqn8"]
 [ext_resource type="PackedScene" uid="uid://box2ff3vwcc7w" path="res://EntityComponents/DmgTaker.tscn" id="2_ktrux"]
@@ -25,6 +25,7 @@
 [ext_resource type="Script" path="res://Hero/state_death_snapshot.gd" id="22_xhyei"]
 [ext_resource type="Script" path="res://Hero/state_tweening_to_respawn.gd" id="23_datsc"]
 [ext_resource type="Script" path="res://Hero/state_respawning.gd" id="24_ppe7q"]
+[ext_resource type="Script" path="res://Hero/TimerLeavingWall.gd" id="26_eej0k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xcsgl"]
 size = Vector2(80, 78)
@@ -162,8 +163,9 @@ wait_time = 0.5
 one_shot = true
 
 [node name="TimerLeavingWall" type="Timer" parent="StateMachine"]
-wait_time = 0.1
+wait_time = 0.2
 one_shot = true
+script = ExtResource("26_eej0k")
 
 [node name="TimerBufferClimbing" type="Timer" parent="StateMachine"]
 wait_time = 0.1
@@ -176,3 +178,5 @@ one_shot = true
 [node name="TimerSuperBounceWindow" type="Timer" parent="StateMachine"]
 wait_time = 0.1
 one_shot = true
+
+[connection signal="timeout" from="StateMachine/TimerLeavingWall" to="StateMachine/TimerLeavingWall" method="_on_timeout"]
