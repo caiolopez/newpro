@@ -96,6 +96,8 @@ scale = Vector2(-0.952147, 6.73451)
 [node name="Camera" parent="." node_paths=PackedStringArray("hero") instance=ExtResource("3_o6dt5")]
 unique_name_in_owner = true
 hero = NodePath("../Hero")
+lerp_speed = Vector2(3, 3)
+catch_up_speed = Vector2(0.01, 0.01)
 
 [node name="CameraLocker5" parent="." instance=ExtResource("4_d4cnc")]
 position = Vector2(2632, 456)
