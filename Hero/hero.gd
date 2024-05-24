@@ -53,7 +53,9 @@ func _ready():
 	state_machine.start()
 
 func _process(_delta):
-	if Input.is_action_just_pressed("jump"): print("j")
+	if Input.is_action_just_pressed("jump"):
+		print("j")
+		print("is_pushing_wall: ", is_pushing_wall())
 	if Input.is_action_just_pressed("Debug Action 1"): pass #die()
 	if Input.is_action_just_pressed("Debug Action 2"): Events.camera_shake.emit()
 	check_value_change()
