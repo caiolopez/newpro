@@ -8,6 +8,13 @@ func on_enter():
 	hero.velocity.y = hero.JUMP_VELOCITY
 
 func on_process(delta: float):
+	if hero.on_wall_value_just_changed()\
+	and not hero.is_on_wall():
+		timer_leaving_wall.start()
+	if hero.is_move_dir_away_from_last_wall(false)\
+	and Input.is_action_just_pressed('jump')\
+	and not timer_leaving_wall.is_stopped():
+		machine.set_state("StateWallJumping")
 	if hero.is_just_on_floor:
 		machine.set_state("StateIdle")
 		return
@@ -15,7 +22,12 @@ func on_process(delta: float):
 		and timer_blunder_shoot_cooldown.is_stopped():
 		machine.set_state("StateBlunderShooting")
 		return
-	if hero.velocity.y > 0: machine.set_state("StateFalling")
+	if Input.is_action_just_pressed('jump')\
+	and hero.is_pushing_wall():
+		machine.set_state("StateWallClimbing")
+	if hero.velocity.y > 0:
+		machine.set_state("StateFalling")
+		return
 	
 	if Input.is_action_just_pressed("shoot"): hero.shoot_regular()
 
