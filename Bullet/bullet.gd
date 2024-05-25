@@ -10,8 +10,10 @@ var current_drag: float
 var current_gravity: float
 var acceleration: Vector2
 var is_underwater_ammo: bool
+var notifier: VisibleOnScreenNotifier2D
 
 func _ready():
+	notifier = $VisibleOnScreenNotifier2D
 	current_drag = AIR_DRAG
 	current_gravity = 0
 
