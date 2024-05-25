@@ -42,3 +42,4 @@ func on_physics_process(delta: float):
 
 func on_exit():
 	timer_blunder_shoot_cooldown.start()
+	hero.velocity.x = hero.SPEED * -hero.facing_direction
