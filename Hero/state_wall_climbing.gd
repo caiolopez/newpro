@@ -30,7 +30,7 @@ func on_process(delta: float):
 	if hero.velocity.y < 0\
 	and not hero.is_on_wall():
 		print("VAULT")
-		hero.velocity.y *= 0.5
+		hero.velocity.y *= 0.0
 		machine.set_state("StateFalling")
 		return
 

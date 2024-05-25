@@ -26,8 +26,6 @@ func on_process(delta: float):
 
 		
 func on_physics_process(delta: float):
-
-	hero.step_lateral_mov(delta)
 	
 	
 	hero.move_and_slide()
