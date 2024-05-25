@@ -16,6 +16,7 @@ func on_process(delta: float):
 	and not timer_leaving_wall.is_stopped():
 		machine.set_state("StateWallJumping")
 	if hero.is_just_on_floor:
+		print("*** IS JUST ON FLOOR ***")
 		machine.set_state("StateIdle")
 		return
 	if hero.is_input_blunder_shoot()\
@@ -33,7 +34,10 @@ func on_process(delta: float):
 
 		
 func on_physics_process(delta: float):
-
+	if  hero.headbutt_assist.is_colliding()\
+	and hero.velocity.y < hero.HEADBUTT_THRESHOLD:
+		hero.global_position.x = hero.headbutt_assist.get_collision_point().x + (%HeroCollider.shape.get_rect().size.x/2 + 1) * hero.facing_direction
+		print(abs(hero.velocity.y))
 	
 	hero.step_grav(delta)
 	hero.step_lateral_mov(delta)

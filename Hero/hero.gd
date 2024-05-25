@@ -4,9 +4,11 @@ extends CharacterBody2D
 @export var shoots_fire = false ## Whether the hero has the ability to shoot incendiary bullets, required to damage enemies that are immune to regular bullets.
 @export var SPEED = 600.0 ## The moving speed of the hero.
 @export var JUMP_VELOCITY = -1000.0 ## The speed the hero jumps when grounded.
+@export var HEADBUTT_THRESHOLD = -300
 @export var WALLJUMP_VELOCITY = Vector2(1600, -600) ## The speed the hero walljumps away from a wall.
 @export var CLIMB_VELOCITY: float = -1000 ## The speed the hero jumps upward when jumping to the same side of the wall (Megaman-style walljump).
 @export var GLIDE_VELOCITY: float = 100 ## The speed at which the hero slowly descends when airborne and holding Jump.
+@export var GLIDE_X_DRAG: float = -2000 ## The rate at which it decelerates to normal SPEED after walljump.
 @export var BLUNDER_AIRBORNE_VELOCITY = Vector2(-2000, 0) ## The strenth of the recoil when blunderjumping on air.
 @export var BLUNDER_GROUNDED_VELOCITY = Vector2(-800, 0) ## The strenth of the recoil when blunderjumping on ground.
 @export var BLUNDER_AIRBORNE_DURATION: float = 0.1 ## The duration of the recoil when blunderjumping on air.
@@ -27,6 +29,7 @@ var current_checkpoint: Area2D
 var shoulder_rc: RayCast2D
 var pelvis_rc: RayCast2D
 var next_grd_height: RayCast2D
+var headbutt_assist: RayCast2D
 var was_on_wall: bool ## For variable change caculation
 var was_on_floor: bool ## For variable change caculation
 var is_just_on_floor: bool
@@ -45,6 +48,7 @@ func _ready():
 	shoulder_rc = get_node("ShoulderRC")
 	pelvis_rc = get_node("PelvisRC")
 	next_grd_height = get_node("NextGrdHeight")
+	headbutt_assist = get_node("HeadbuttAssist")
 	dmg_taker = Utils.find_dmg_taker(self)
 	
 	original_position = global_position
@@ -53,9 +57,9 @@ func _ready():
 	state_machine.start()
 
 func _process(_delta):
-	if Input.is_action_just_pressed("jump"):
+	if Input.is_action_just_pressed("jump"): print("J")
+	if Input.is_action_just_released("jump"):
 		print("j")
-		print("is_pushing_wall: ", is_pushing_wall())
 	if Input.is_action_just_pressed("Debug Action 1"): pass #die()
 	if Input.is_action_just_pressed("Debug Action 2"): Events.camera_shake.emit()
 	check_value_change()
@@ -76,7 +80,7 @@ func step_grav(delta):
 
 
 func step_lateral_mov(delta):
-	var dir_just_changed: bool
+	var dir_just_changed = false
 	if Input.is_action_pressed("move_left") == Input.is_action_pressed("move_right"):
 		velocity.x = 0
 		return
@@ -88,16 +92,16 @@ func step_lateral_mov(delta):
 		dir_just_changed = facing_direction == -1
 		facing_direction = 1
 
-	#if abs(velocity.x) > SPEED\
-	#and :
-		#velocity.x = lerp(velocity.x, facing_direction * SPEED, Utils.dt_lerp(delta, 10))
-#
-	#else:
-	velocity.x = facing_direction * SPEED
+	if dir_just_changed: velocity.x = 0
+
+	velocity.x += GLIDE_X_DRAG * facing_direction * delta
+	velocity.x = maxf(abs(velocity.x), SPEED) * facing_direction
 
 	shoulder_rc.update_direction()
 	pelvis_rc.update_direction()
 	next_grd_height.update_position()
+	headbutt_assist.update_direction()
+	headbutt_assist.update_position()
 
 
 func is_pushing_wall() -> bool:
