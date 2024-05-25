@@ -7,13 +7,12 @@ var la_amount: Vector2
 var la_timer: Timer
 
 func on_enter():
-	pass
+	la_timer = get_node("../TimerBeforeLookaheadX")
 
 func on_process(delta: float):
-	hero_vel = c.hero.get_velocity()
+	hero_vel = c.hero.get_real_velocity()
 	hero_dir = c.hero.facing_direction
 	la_amount = c.lookahead_amount
-	la_timer = get_node("../TimerBeforeLookaheadX")
 	
 	if Input.is_action_just_pressed("move_left") or Input.is_action_just_pressed("move_right"):
 		la_timer.start()
