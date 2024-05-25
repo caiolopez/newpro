@@ -17,12 +17,16 @@ func on_process(delta: float):
 		print("AUTO SNAP ON STAIRS")
 		
 		
-	if Input.is_action_just_pressed('jump'): machine.set_state("StateJumping")
+	if Input.is_action_just_pressed('jump'):
+		machine.set_state("StateJumping")
+		return
 	if hero.is_input_blunder_shoot()\
 		and timer_blunder_shoot_cooldown.is_stopped():
 		machine.set_state("StateBlunderShooting")
 		return
-	if hero.is_on_floor() and hero.velocity.x == 0: machine.set_state("StateIdle")
+	if hero.is_on_floor() and hero.velocity.x == 0:
+		machine.set_state("StateIdle")
+		return
 	if not hero.is_on_floor() and hero.velocity.y > 0:
 		timer_coyote_jump.start()
 		machine.set_state("StateFalling")
