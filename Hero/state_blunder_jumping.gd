@@ -8,6 +8,7 @@ var current_bounce_vel: float
 func on_enter():
 	hero.velocity.y = hero.BLUNDER_JUMP_VELOCITY
 	current_bounce_vel = hero.BLUNDER_JUMP_WATER_BOUNCE_VELOCITY
+	timer_blunder_jump_window.stop()
 
 func on_process(delta: float):
 	if Input.is_action_just_pressed('jump'):
