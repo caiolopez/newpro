@@ -21,3 +21,6 @@ scale = Vector2(6.36, 6.4)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_gjisp")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+rect = Rect2(-64, -64, 128, 128)
