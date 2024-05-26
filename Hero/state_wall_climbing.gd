@@ -28,7 +28,8 @@ func on_process(delta: float):
 		machine.set_state("StateWallJumping")
 		return
 	if hero.velocity.y < 0\
-	and not hero.is_on_wall(): # Vault
+	and not hero.is_move_dir_away_from_last_wall(false)\
+	and not hero.is_on_wall(): # *ASSIST* Vault
 		print("VAULT")
 		hero.velocity.y *= 0.0
 		machine.set_state("StateFalling")
