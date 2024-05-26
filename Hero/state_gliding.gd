@@ -60,7 +60,7 @@ func on_process(delta: float):
 func on_physics_process(delta: float):
 	
 	if Input.is_action_pressed("jump"):
-		hero.velocity.y -= 2000 * delta
+		hero.velocity.y -= 2500 * delta
 		hero.velocity.y = maxf(hero.velocity.y, hero.GLIDE_VELOCITY)
 	
 	hero.step_lateral_mov(delta)
