@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var shoots_fire = false ## Whether the hero has the ability to shoot incendiary bullets, required to damage enemies that are immune to regular bullets.
 @export var SPEED = 600.0 ## The moving speed of the hero.
 @export var JUMP_VELOCITY = -1000.0 ## The speed the hero jumps when grounded.
+@export var VAULT_VELOCITY = -500.0 ## The speed the hero jumps when performing the vault. Vaulting is an assist that aims at standardize velocity.y when the hero climbs a wall all the way up.
 @export var HEADBUTT_THRESHOLD = -300
 @export var WALLJUMP_VELOCITY = Vector2(1600, -600) ## The speed the hero walljumps away from a wall.
 @export var CLIMB_VELOCITY: float = -1000 ## The speed the hero jumps upward when jumping to the same side of the wall (Megaman-style walljump).
