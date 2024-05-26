@@ -18,6 +18,9 @@ func on_enter():
 	hero.shoot_blunder(4,45)
 
 func on_process(delta: float):
+	if hero.is_on_wall():
+		timer_blunder_jump_window.stop()
+		timer_leaving_wall.start() # *ASSIST* Allows for comfy walljumping after hitting wall.
 	if Input.is_action_just_pressed('jump')\
 		and not timer_blunder_jump_window.is_stopped():
 		machine.set_state("StateBlunderJumping")
