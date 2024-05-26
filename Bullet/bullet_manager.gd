@@ -19,8 +19,4 @@ vel := Vector2(200, 0), is_foe: bool = true, is_fire: bool = false, angle := 0.0
 	bullet.velocity = vel.rotated(bullet_angle)
 	bullet.is_foe = is_foe
 	bullet.is_fire = is_fire
-	
-	await get_tree().process_frame # TODO: Come up with a way to prevent those bullets from being instantiated instead.
-	if not bullet.notifier.is_on_screen():
-		bullet.queue_free()
 

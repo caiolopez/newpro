@@ -16,6 +16,9 @@ func _ready():
 	notifier = $VisibleOnScreenNotifier2D
 	current_drag = AIR_DRAG
 	current_gravity = 0
+	await get_tree().process_frame # TODO: Come up with a way to prevent those bullets from being instantiated instead.
+	if not notifier.is_on_screen():
+		queue_free()
 
 
 func _process(_delta):
