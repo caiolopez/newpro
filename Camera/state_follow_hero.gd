@@ -27,10 +27,12 @@ func on_process(delta: float):
 	else: c.current_lerp_speed.y = lerp(c.current_lerp_speed.y, abs(hero_vel.y) * c.lerp_speed.y, Utils.dt_lerp(c.catch_up_speed.y, delta))
 	
 	# Look-ahead management
+	var vel_frac = min(abs(hero_vel.x) / c.hero.SPEED, 1.0)  # Clamps the value between 0 and 1
+	
 	if abs(hero_vel.x) > c.lookahead_activation_vel.x:
-		c.current_lookahead.x = lerp(0.0, la_amount.x * hero_dir, la_timer.wait_time - la_timer.time_left)
+		c.current_lookahead.x = lerp(0.0, la_amount.x * vel_frac * hero_dir, la_timer.wait_time - la_timer.time_left)
 	else: c.current_lookahead.x = 0
-		
+	
 	if hero_vel.y > 0:
 		c.current_lookahead.y = lerp(0.0, la_amount.y, minf(abs(hero_vel.y), c.lookahead_activation_vel.y) / c.lookahead_activation_vel.y)
 	else: c.current_lookahead.y = 0
