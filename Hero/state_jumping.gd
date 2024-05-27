@@ -8,7 +8,7 @@ func on_enter():
 	hero.velocity.y = hero.JUMP_VELOCITY
 
 func on_process(delta: float):
-	if hero.on_wall_value_just_changed()\
+	if hero.on_wall_value_just_changed\
 	and not hero.is_on_wall():
 		timer_leaving_wall.start()
 	if hero.is_move_dir_away_from_last_wall(false)\
