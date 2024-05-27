@@ -33,6 +33,7 @@ var next_grd_height: RayCast2D
 var headbutt_assist: RayCast2D
 var was_on_wall: bool ## For variable change caculation
 var was_on_floor: bool ## For variable change caculation
+var on_wall_value_just_changed: bool
 var is_just_on_floor: bool
 var was_on_water: bool ## For variable change caculation
 var facing_direction = 1
@@ -59,8 +60,12 @@ func _ready():
 
 func _process(_delta):
 	if Input.is_action_just_pressed("jump"): print("J")
-	if Input.is_action_just_released("jump"):
-		print("j")
+	if Input.is_action_just_pressed("move_left"): print("LEFT")
+	if Input.is_action_just_pressed("move_right"): print("RIGHT")
+	if Input.is_action_just_released("jump"): print("j")
+	if Input.is_action_just_released("move_left"): print("left")
+	if Input.is_action_just_released("move_right"): print("right")
+	
 	if Input.is_action_just_pressed("Debug Action 1"): pass #die()
 	if Input.is_action_just_pressed("Debug Action 2"): Events.camera_shake.emit()
 	check_value_change()
@@ -139,17 +144,15 @@ func shoot_blunder(amount: int, interval_angle: float):
 		bullet_manager.create_bullet(facing_direction, position, Vector2(800, 0), false, shoots_fire, top_angle - interval_angle * i)
 
 
-func on_wall_value_just_changed() -> bool:
-	var changed = is_on_wall() != was_on_wall
-	was_on_wall = is_on_wall()
-	return changed
-
-
 func check_value_change():
 	is_just_on_floor = is_on_floor() and not was_on_floor
 	was_on_floor = is_on_floor()
+	
 	is_just_on_water = is_on_water and not was_on_water
 	was_on_water = is_on_water
+	
+	on_wall_value_just_changed = is_on_wall() != was_on_wall
+	was_on_wall = is_on_wall()
 
 
 func _on_hero_entered_water(water, surface_global_pos):
