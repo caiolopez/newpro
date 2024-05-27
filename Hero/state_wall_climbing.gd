@@ -11,12 +11,15 @@ func on_enter():
 
 func on_process(delta: float):	
 	print(can_wj)
-	if Input.is_action_just_pressed('jump')\
-	and hero.is_pushing_wall():
-		hero.velocity.y = hero.CLIMB_VELOCITY
-		can_wj = false
-		return
+	if Input.is_action_just_pressed('jump'):
+		if hero.is_pushing_wall():
+			hero.velocity.y = hero.CLIMB_VELOCITY
+			can_wj = false
+			return
+		else:
+			timer_climb_to_glide_wall_jump.start()
 	
+	#if hero.is_move_dir_away_from_last_wall(true): timer_climb_to_fall_wall_jump.start()
 	if Input.is_action_just_released('jump'): can_wj = true
 	
 	if hero.velocity.y < 0\
@@ -55,6 +58,8 @@ func on_process(delta: float):
 
 	if hero.velocity.y > 0\
 	and not hero.is_on_floor():
+		if hero.is_move_dir_away_from_last_wall(false):
+			timer_climb_to_fall_wall_jump.start()
 		machine.set_state("StateFalling")
 		return
 		

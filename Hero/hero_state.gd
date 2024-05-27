@@ -13,7 +13,8 @@ var timer_leaving_wall: Timer
 var timer_buffer_climbing: Timer
 var timer_death_snapshot: Timer
 var timer_super_bounce_window: Timer
-
+var timer_climb_to_fall_wall_jump: Timer
+var timer_climb_to_glide_wall_jump: Timer
 
 func enter(new_machine:StateMachine) -> void:
 	timer_coyote_jump = get_node("../TimerCoyoteJump")
@@ -28,6 +29,8 @@ func enter(new_machine:StateMachine) -> void:
 	timer_buffer_climbing = get_node("../TimerBufferClimbing")
 	timer_death_snapshot = get_node("../TimerDeathSnapshot")
 	timer_super_bounce_window = get_node("../TimerSuperBounceWindow")
+	timer_climb_to_fall_wall_jump = get_node("../TimerClimbToFallWallJump")
+	timer_climb_to_glide_wall_jump = get_node("../TimerClimbToGlideWallJump")
 	
 	hero = new_machine.owner as CharacterBody2D
 	super(new_machine)

@@ -194,3 +194,15 @@ script = ExtResource("26_l5qii")
 wait_time = 0.1
 one_shot = true
 script = ExtResource("26_l5qii")
+
+[node name="TimerClimbToFallWallJump" type="Timer" parent="StateMachine"]
+editor_description = "This timer is stated in StateWallClimbing and read in StateFalling. It is used to validade a walljump attempt that happens across different states."
+wait_time = 0.1
+one_shot = true
+script = ExtResource("26_l5qii")
+
+[node name="TimerClimbToGlideWallJump" type="Timer" parent="StateMachine"]
+editor_description = "This timer is stated in StateWallClimbing and read in StateGliding. It is used to validade a walljump attempt that happens across different states."
+wait_time = 0.1
+one_shot = true
+script = ExtResource("26_l5qii")

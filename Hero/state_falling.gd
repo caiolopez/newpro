@@ -18,7 +18,7 @@ func on_process(delta: float):
 		timer_leaving_wall.stop()
 		machine.set_state("StateWallJumping")
 		print("MODE 4")
-		return	
+		return
 	
 	if not timer_leaving_wall.is_stopped()\
 	and Input.is_action_just_pressed('jump')\
@@ -26,8 +26,17 @@ func on_process(delta: float):
 		timer_leaving_wall.stop()
 		machine.set_state("StateWallJumping")
 		print("MODE 5")
-		return	
-		
+		return
+	
+	if not timer_climb_to_fall_wall_jump.is_stopped()\
+	and Input.is_action_just_pressed('jump')\
+	and hero.is_move_dir_away_from_last_wall(false):
+		timer_climb_to_fall_wall_jump.stop()
+		machine.set_state("StateWallJumping")
+		print("MODE 6")
+		return
+	
+	
 	if Input.is_action_just_pressed('jump')\
 	and not timer_blunder_jump_window.is_stopped():
 		machine.set_state("StateBlunderJumping")
