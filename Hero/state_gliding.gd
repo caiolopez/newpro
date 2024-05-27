@@ -3,8 +3,10 @@ extends HeroState
 var water_prone = true
 var death_prone = true
 
+var can_wj: bool
 
 func on_enter():
+	can_wj = false
 	if (hero.is_on_wall() or not timer_leaving_wall.is_stopped())\
 	and Input.is_action_just_pressed('jump'):
 		timer_coyote_wall.start()
@@ -14,7 +16,11 @@ func on_enter():
 		
 
 func on_process(delta: float):
-	if hero.on_wall_value_just_changed()\
+	
+	if Input.is_action_just_pressed("jump"):
+		can_wj = true
+	
+	if hero.on_wall_value_just_changed\
 	and not hero.is_on_wall():
 		timer_leaving_wall.start()
 		
@@ -50,6 +56,13 @@ func on_process(delta: float):
 	and hero.shoulder_rc.is_colliding():
 		machine.set_state("StateWallGrabbing")
 		return
+	if hero.is_move_dir_away_from_last_wall(true)\
+	and not timer_leaving_wall.is_stopped()\
+	and can_wj:
+			machine.set_state("StateWallJumping")
+			print('MODE 3')
+			return
+		
 
 	if Input.is_action_just_pressed("jump"):
 		hero.velocity.y = hero.GLIDE_VELOCITY/2
