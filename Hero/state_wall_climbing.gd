@@ -10,7 +10,6 @@ func on_enter():
 	can_wj = false
 
 func on_process(delta: float):	
-	print(can_wj)
 	if Input.is_action_just_pressed('jump'):
 		if hero.is_pushing_wall():
 			hero.velocity.y = hero.CLIMB_VELOCITY
@@ -19,17 +18,15 @@ func on_process(delta: float):
 		else:
 			timer_climb_to_glide_wall_jump.start()
 	
-	#if hero.is_move_dir_away_from_last_wall(true): timer_climb_to_fall_wall_jump.start()
 	if Input.is_action_just_released('jump'): can_wj = true
 	
 	if hero.velocity.y < 0\
 	and not hero.pelvis_rc.is_colliding()\
 	and not hero.shoulder_rc.is_colliding()\
 	and hero.next_grd_height.is_colliding()\
-	and hero.is_pushing_wall(): # *ASSIST* Vault
-		hero.velocity.y = hero.VAULT_VELOCITY
-		hero.global_position.y = hero.next_grd_height.get_collision_point().y - %HeroCollider.shape.get_rect().size.y/2 - 1
-		print("VAULT")
+	and hero.is_pushing_wall():
+		machine.set_state("StateVaulting")
+		return
 	
 	if hero.is_input_blunder_shoot()\
 	and timer_blunder_shoot_cooldown.is_stopped():
