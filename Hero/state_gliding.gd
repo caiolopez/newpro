@@ -1,7 +1,7 @@
 extends HeroState
 
-var water_prone = true
-var death_prone = true
+var water_prone: bool = true
+var death_prone: bool = true
 
 func on_enter():
 	if (hero.is_on_wall() or not timer_leaving_wall.is_stopped())\

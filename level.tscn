@@ -10,21 +10,20 @@
 [ext_resource type="PackedScene" uid="uid://boan2jyc4hlda" path="res://Checkpoint/checkpoint_trigger.tscn" id="7_h6eyv"]
 [ext_resource type="Texture2D" uid="uid://d2gdo5bbgykv2" path="res://icon.svg" id="7_yklcu"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_drw8j"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_34i5t"]
 size = Vector2(239.597, 155.882)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_aa2q6"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s710f"]
 size = Vector2(239.597, 173.941)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kvooq"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rp5hd"]
 size = Vector2(239.597, 173.941)
 
 [node name="Level" type="Node"]
 
-[node name="Hero" parent="." node_paths=PackedStringArray("bullet_manager") instance=ExtResource("2_acvau")]
+[node name="Hero" parent="." instance=ExtResource("2_acvau")]
 unique_name_in_owner = true
 position = Vector2(1208, -552)
-bullet_manager = NodePath("../BulletManager")
 
 [node name="Spike" parent="." instance=ExtResource("1_cietj")]
 position = Vector2(1776, -480)
@@ -105,7 +104,7 @@ center_at_edge = true
 
 [node name="CollisionShape2D" parent="CameraLocker5" index="0"]
 position = Vector2(-493, 64)
-shape = SubResource("RectangleShape2D_drw8j")
+shape = SubResource("RectangleShape2D_34i5t")
 
 [node name="CameraLocker6" parent="." instance=ExtResource("4_d4cnc")]
 position = Vector2(3088, 472)
@@ -113,7 +112,7 @@ axes_to_lock = 1
 
 [node name="CollisionShape2D" parent="CameraLocker6" index="0"]
 position = Vector2(-493, 50.4704)
-shape = SubResource("RectangleShape2D_aa2q6")
+shape = SubResource("RectangleShape2D_s710f")
 debug_color = Color(1, 0, 0, 0.5)
 
 [node name="Marker2D" parent="CameraLocker6" index="1"]
@@ -125,7 +124,7 @@ axes_to_lock = 1
 
 [node name="CollisionShape2D" parent="CameraLocker7" index="0"]
 position = Vector2(-504, 46)
-shape = SubResource("RectangleShape2D_kvooq")
+shape = SubResource("RectangleShape2D_rp5hd")
 debug_color = Color(1, 0, 0, 0.5)
 
 [node name="Marker2D" parent="CameraLocker7" index="1"]

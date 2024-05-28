@@ -1,7 +1,7 @@
 extends HeroState
 
-var water_prone = false
-var death_prone = false
+var water_prone: bool = false
+var death_prone: bool = false
 
 
 func on_enter():

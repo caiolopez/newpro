@@ -1,7 +1,7 @@
 extends HeroState
 
-var water_prone = true
-var death_prone = true
+var water_prone: bool = true
+var death_prone: bool = true
 
 var can_wj: bool
 
