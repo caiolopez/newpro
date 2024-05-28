@@ -30,7 +30,9 @@ func on_process(delta: float):
 	if Input.is_action_just_pressed("move_left") or Input.is_action_just_pressed("move_right") or c.hero.just_stopped_pushing_wall:
 		la_timer.start()
 	
-	if abs(hero_real_vel.x) > c.lookahead_activation_vel.x and not c.hero.is_pushing_wall():
+	if abs(hero_real_vel.x) > c.lookahead_activation_vel.x\
+	and signf(hero_real_vel.x) == hero_dir\
+	and not c.hero.is_pushing_wall():
 		c.current_lookahead.x = lerp(la_amount.x * hero_dir, 0.0, la_timer.time_left)
 	else:
 		c.current_lookahead.x = lerp(c.current_lookahead.x, 0.0, clampf(10 * delta, 0, 1))

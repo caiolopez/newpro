@@ -24,8 +24,6 @@ BulletManager="*res://Bullet/bullet_manager.tscn"
 
 [debug]
 
-gdscript/warnings/untyped_declaration=1
-gdscript/warnings/inferred_declaration=1
 gdscript/warnings/native_method_override=1
 
 [display]

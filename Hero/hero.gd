@@ -12,7 +12,7 @@ extends CharacterBody2D
 @export var GLIDE_X_DRAG: float = -3000 ## The rate at which it decelerates to normal SPEED after walljump.
 @export var BLUNDER_AIRBORNE_VELOCITY = Vector2(-2000, 0) ## The strength of the recoil when blunderjumping on air.
 @export var BLUNDER_GROUNDED_VELOCITY = Vector2(-800, 0) ## The strength of the recoil when blunderjumping on ground.
-@export var BLUNDER_AIRBORNE_DURATION: float = 0.1 ## The duration of the recoil when blunderjumping on air.
+@export var BLUNDER_AIRBORNE_DURATION: float = 0.2 ## The duration of the recoil when blunderjumping on air.
 @export var BLUNDER_GROUNDED_DURATION: float = 0.05 ## The duration of the recoil when blunderjumping on ground.
 @export var BLUNDER_JUMP_VELOCITY: float = -1200 ## The speed the hero jumps after blundershooting airborne.
 @export var BLUNDER_JUMP_WATER_BOUNCE_VELOCITY: float = -800 ## The speed the hero jumps after falling on water while holding jump from a blunder jump. Like Kiddy Kong.
