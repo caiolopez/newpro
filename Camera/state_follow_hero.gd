@@ -35,8 +35,8 @@ func on_process(delta: float):
 	else:
 		c.current_lookahead.x = lerp(c.current_lookahead.x, 0.0, clampf(10 * delta, 0, 1))
 
-	if hero_real_vel.y > 0:
-		c.current_lookahead.y = lerp(0.0, la_amount.y, minf(abs(hero_real_vel.y), c.lookahead_activation_vel.y) / c.lookahead_activation_vel.y)
+	if hero_vel.y > 0:
+		c.current_lookahead.y = lerp(0.0, la_amount.y, minf(abs(hero_vel.y), c.lookahead_activation_vel.y) / c.lookahead_activation_vel.y)
 	else: c.current_lookahead.y = lerp(c.current_lookahead.y, 0.0, clampf(10 * delta, 0, 1))
 	
 	# Target acquisition
