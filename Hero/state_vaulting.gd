@@ -5,7 +5,8 @@ var death_prone = true
 
 func on_enter():
 	hero.velocity.y = hero.VAULT_VELOCITY
-	hero.global_position.y = hero.next_grd_height.get_collision_point().y - %HeroCollider.shape.get_rect().size.y/2 - 1
+	hero.global_position.y = hero.next_grd_height.get_collision_point().y\
+	- %HeroCollider.shape.get_rect().size.y/2 - 1
 
 
 func on_process(delta: float):	
