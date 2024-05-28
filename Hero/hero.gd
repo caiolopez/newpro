@@ -18,42 +18,36 @@ extends CharacterBody2D
 @export var BLUNDER_JUMP_WATER_BOUNCE_VELOCITY: float = -800 ## The speed the hero jumps after falling on water while holding jump from a blunder jump. Like Kiddy Kong.
 @export var gravity: float = 2000
 @export var MAX_FALL_VEL_Y = 2000.0 ## The maximum downward speed when falling.
-const DECELERATION = 10.0
 @export var BUOYANCY = 100 ## The upward acceleration when underwater. Only affects state Floating.
 @export var ASCENDING_VELOCITY = -300.0 ## The Y speed at which the hero swims upwards when holding jump while underwater. CAN_DIVE must be set to true.
 @export var MAX_DESCENT_VEL_Y = 300 ## The maximum downward speed when diving (CAN_DIVE must be set to true).
 @export var state_machine: StateMachine ## The state machine that governs this player controller. Drag-and-drop the state-machine object to this field.
 @export var bullet_manager: Node
+@onready var original_position:= global_position
+@onready var shoulder_rc:= get_node("ShoulderRC")
+@onready var pelvis_rc:= get_node("PelvisRC")
+@onready var next_grd_height:= get_node("NextGrdHeight")
+@onready var headbutt_assist:= get_node("HeadbuttAssist")
+@onready var dmg_taker:= Utils.find_dmg_taker(self)
 const is_foe: bool = false ## Flag necessary for components that are shared between Hero and enemies.
-var original_position: Vector2
 var current_checkpoint: Area2D
-var shoulder_rc: RayCast2D
-var pelvis_rc: RayCast2D
-var next_grd_height: RayCast2D
-var headbutt_assist: RayCast2D
 var was_on_wall: bool ## For variable change caculation
 var was_on_floor: bool ## For variable change caculation
+var was_pushing_wall: bool  ## For variable change caculation
 var on_wall_value_just_changed: bool
 var is_just_on_floor: bool
+var is_just_pushing_wall: bool
+var just_stopped_pushing_wall: bool
 var was_on_water: bool ## For variable change caculation
 var facing_direction = 1
 var is_on_water = false
 var is_just_on_water: bool
 var current_water: Water
 var last_water_surface: float
-var dmg_taker: DmgTaker
 
 func _ready():
 	Events.hero_entered_water.connect(_on_hero_entered_water)
 	Events.hero_exited_water.connect(_on_hero_exited_water)
-
-	shoulder_rc = get_node("ShoulderRC")
-	pelvis_rc = get_node("PelvisRC")
-	next_grd_height = get_node("NextGrdHeight")
-	headbutt_assist = get_node("HeadbuttAssist")
-	dmg_taker = Utils.find_dmg_taker(self)
-	
-	original_position = global_position
 
 	set_safe_margin(0.08)
 	state_machine.start()
@@ -153,6 +147,10 @@ func check_value_change():
 	
 	on_wall_value_just_changed = is_on_wall() != was_on_wall
 	was_on_wall = is_on_wall()
+	
+	is_just_pushing_wall = is_pushing_wall() and not was_pushing_wall
+	just_stopped_pushing_wall = not is_pushing_wall() and was_pushing_wall
+	was_pushing_wall = is_pushing_wall()
 
 
 func _on_hero_entered_water(water, surface_global_pos):
