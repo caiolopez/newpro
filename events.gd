@@ -6,6 +6,8 @@ signal hero_exited_water(water: Water)
 signal hero_entered_camera_locker(camera_locker: CameraLocker, axes: Constants.Axes, lock_position: Vector2)
 signal hero_exited_camera_locker(camera_locker: CameraLocker, axes: Constants.Axes)
 
+signal hero_changed_dir(new_dir: float)
+
 signal camera_shake(duration: float, amount: float)
 signal camera_stop_shake()
 
