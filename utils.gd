@@ -18,7 +18,7 @@ func dt_lerp(speed: float, delta: float) -> float:
 	return clamp(dtlerp, 0.0, 1.0)
 
 func find_dmg_taker(node: Node) -> DmgTaker:
-	var dmg_taker: DmgTaker
+	var dmg_taker: DmgTaker = null
 	for child in node.get_children():
 		if child is DmgTaker:
 			dmg_taker = child

@@ -9,7 +9,6 @@ func on_enter():
 		hero.facing_direction = hero.current_checkpoint.direction
 
 	Events.respawned_at_checkpoint.emit()
-	hero.dmg_taker.reset_status()
 	
 	if hero.is_on_water:
 		machine.set_state("StateFloating")

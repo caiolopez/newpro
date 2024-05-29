@@ -10,8 +10,8 @@ func _ready():
 func _physics_process(delta):
 	pass
 
-func create_bullet(facing_direction := 1, origin := Vector2(0, 0),\
-vel := Vector2(200, 0), is_foe: bool = true, is_fire: bool = false, angle := 0.0):
+func create_bullet(facing_direction := 1, origin: Vector2 = Vector2(0, 0),\
+vel:  Vector2 = Vector2(200, 0), is_foe: bool = true, is_fire: bool = false, angle: float = 0.0):
 	var bullet = bullet_res.instantiate()
 	var bullet_angle = A270DEG+(facing_direction*(A90DEG+deg_to_rad(angle)))
 	add_child(bullet)
