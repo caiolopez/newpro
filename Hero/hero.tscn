@@ -28,8 +28,7 @@
 [ext_resource type="Script" path="res://Hero/state_respawning.gd" id="24_ppe7q"]
 [ext_resource type="Script" path="res://timer_debug.gd" id="26_l5qii"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xcsgl"]
-size = Vector2(80, 78)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wwsjr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_361o4"]
 size = Vector2(128, 128)
@@ -41,6 +40,10 @@ state_machine = NodePath("StateMachine")
 metadata/_edit_group_ = true
 
 [node name="DmgTaker" parent="." instance=ExtResource("2_ktrux")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DmgTaker"]
+shape = SubResource("RectangleShape2D_wwsjr")
+debug_color = Color(0.683323, 0.501593, 0.0283101, 0.42)
 
 [node name="NextGrdHeight" type="RayCast2D" parent="."]
 position = Vector2(80, 0)
@@ -61,11 +64,6 @@ script = ExtResource("2_wqkn5")
 position = Vector2(0, 24)
 target_position = Vector2(120, 0)
 script = ExtResource("2_wqkn5")
-
-[node name="MeatArea" type="Area2D" parent="."]
-
-[node name="MeatCollider" type="CollisionShape2D" parent="MeatArea"]
-shape = SubResource("RectangleShape2D_xcsgl")
 
 [node name="HeroSprite" type="Sprite2D" parent="."]
 scale = Vector2(16, 16)
