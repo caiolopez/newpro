@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @export var can_dive: bool = false ## Whether the hero has the ability to dive into water instead of floating.
 @export var shoots_fire: bool = false ## Whether the hero has the ability to shoot incendiary bullets, required to damage enemies that are immune to regular bullets.
+@export var regular_shot_speed: float = 1000 ## The speed the normal shot moves. For blundershot setup, use Shooter component.
 @export var SPEED: float = 600.0 ## The moving speed of the hero.
 @export var JUMP_VELOCITY: float  = -1000.0 ## The speed the hero jumps when grounded.
 @export var VAULT_VELOCITY: float = -500.0 ## The speed the hero jumps when performing the vault. Vaulting is an assist that aims at standardize velocity.y when the hero climbs a wall all the way up.
@@ -28,7 +29,8 @@ extends CharacterBody2D
 @onready var pelvis_rc: RayCast2D = get_node("PelvisRC")
 @onready var next_grd_height: RayCast2D = get_node("NextGrdHeight")
 @onready var headbutt_assist: RayCast2D = get_node("HeadbuttAssist")
-@onready var dmg_taker:= Utils.find_dmg_taker(self)
+@onready var dmg_taker: DmgTaker = Utils.find_dmg_taker(self)
+@onready var shooter: Shooter = get_node("Shooter")
 const is_foe: bool = false ## Flag necessary for components that are shared between Hero and enemies.
 var current_checkpoint: Area2D
 var was_on_wall: bool ## For variable change caculation
@@ -92,7 +94,9 @@ func step_lateral_mov(delta):
 		dir_just_changed = facing_direction == -1
 		facing_direction = 1
 
-	if dir_just_changed: velocity.x = 0
+	if dir_just_changed:
+		velocity.x = 0
+		Events.hero_changed_dir.emit(facing_direction)
 
 	velocity.x += GLIDE_X_DRAG * facing_direction * delta
 	velocity.x = maxf(abs(velocity.x), SPEED) * facing_direction
@@ -130,12 +134,6 @@ func is_input_blunder_shoot() -> bool:
 
 func shoot_regular() -> Area2D:
 	return BulletManager.create_bullet(facing_direction, position, Vector2(800, 0), false, shoots_fire)
-
-
-func shoot_blunder(amount: int, interval_angle: float):
-	var top_angle =  (amount-1) * interval_angle / 2
-	for i in range(amount):
-		BulletManager.create_bullet(facing_direction, position, Vector2(800, 0), false, shoots_fire, top_angle - interval_angle * i)
 
 
 func check_value_change():

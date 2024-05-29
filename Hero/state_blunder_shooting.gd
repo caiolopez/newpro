@@ -15,7 +15,7 @@ func on_enter():
 		hero.velocity.y = hero.BLUNDER_AIRBORNE_VELOCITY.y
 	timer_blunder_shoot_duration.start()
 	timer_blunder_jump_window.start()
-	hero.shoot_blunder(4,45)
+	hero.shooter.shoot()
 
 func on_process(delta: float):
 	#if hero.on_wall_value_just_changed\

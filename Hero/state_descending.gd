@@ -30,7 +30,8 @@ func on_process(delta: float):
 		return
 	
 	
-	if Input.is_action_just_pressed("shoot"): hero.shoot_regular()
+	if Input.is_action_just_pressed("shoot"):
+		hero.shooter.shoot_ad_hoc(hero.regular_shot_speed)
 
 func on_physics_process(delta: float):
 

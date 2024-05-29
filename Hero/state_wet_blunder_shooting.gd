@@ -9,7 +9,7 @@ func on_enter():
 	hero.velocity.x = hero.BLUNDER_GROUNDED_VELOCITY.x*hero.facing_direction
 	hero.velocity.y = hero.BLUNDER_GROUNDED_VELOCITY.y
 	timer_blunder_shoot_duration.start()
-	hero.shoot_blunder(4,45)
+	hero.shooter.shoot()
 
 func on_process(delta: float):
 	if Input.is_action_just_pressed('jump')\
@@ -17,7 +17,7 @@ func on_process(delta: float):
 		machine.set_state("StateFloating")
 		return
 
-		
+
 func on_physics_process(delta: float):
 
 	
