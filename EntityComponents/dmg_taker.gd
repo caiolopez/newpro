@@ -19,10 +19,10 @@ func _ready():
 
 
 func take_dmg(amount: int):
-	if immune: return
-	if current_hp <= 0:
+	if immune\
+	or current_hp <= 0:
 		return
-	
+
 	current_hp -= amount
 	current_hp = maxi(current_hp, 0)
 	print("Foe: ", is_foe, ". Damage taken: ", amount, ". Current HP: ", current_hp)
@@ -44,9 +44,11 @@ func commit_status():
 	if IGNORE_ON_CHECKPOINT: return
 	if current_hp == 0 and is_foe:
 		get_parent().queue_free()
+		print(get_parent().name, " QUEUE FREED")
 
 
 func reset_status():
 	if IGNORE_ON_CHECKPOINT: return
 	current_hp = HP_AMOUNT
+	print(get_parent().name, " RESET")
 

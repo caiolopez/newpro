@@ -8,16 +8,15 @@ class_name CycleMover extends Node
 @export var translation_time: float = 0
 @export var translation_loop: bool = true
 @export var translation_boomerang: bool = false
+@onready var dmg_taker: DmgTaker = Utils.find_dmg_taker(self.get_parent())
 var original_angle: float
 var original_position: Vector2
-var dmg_taker: DmgTaker
 var rot_tween: Tween
 var trans_tween: Tween
 
 
 func _ready():
 	Events.respawned_at_checkpoint.connect(reset_movement)
-	dmg_taker = Utils.find_dmg_taker(self.get_parent())
 	original_angle = get_parent().rotation_degrees
 	original_position = get_parent().position
 

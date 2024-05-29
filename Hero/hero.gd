@@ -132,10 +132,6 @@ func is_input_blunder_shoot() -> bool:
 	return Input.is_action_pressed('duck') and Input.is_action_just_pressed("shoot")
 
 
-func shoot_regular() -> Area2D:
-	return BulletManager.create_bullet(facing_direction, position, Vector2(800, 0), false, shoots_fire)
-
-
 func check_value_change():
 	is_just_on_floor = is_on_floor() and not was_on_floor
 	was_on_floor = is_on_floor()

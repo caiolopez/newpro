@@ -31,6 +31,8 @@ debug_color = Color(0.684632, 0.499866, 0.0905798, 0.42)
 [node name="CycleMover" parent="." instance=ExtResource("5_bwcq3")]
 
 [node name="Shooter" parent="." instance=ExtResource("5_wvj3t")]
+pellet_amount = 5
+rotates_with_parent = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_gjisp")
