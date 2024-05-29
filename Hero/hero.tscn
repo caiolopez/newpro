@@ -67,9 +67,11 @@ target_position = Vector2(120, 0)
 script = ExtResource("3_6dncg")
 
 [node name="Shooter" parent="." instance=ExtResource("4_1v5xt")]
+position = Vector2(128, -128)
 pellet_amount = 6
 pellet_speed = 1000.0
 auto_shoots = false
+time_between_bursts = 0.001
 
 [node name="HeroSprite" type="Sprite2D" parent="."]
 scale = Vector2(16, 16)

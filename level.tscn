@@ -10,13 +10,13 @@
 [ext_resource type="PackedScene" uid="uid://boan2jyc4hlda" path="res://Checkpoint/checkpoint_trigger.tscn" id="7_h6eyv"]
 [ext_resource type="Texture2D" uid="uid://d2gdo5bbgykv2" path="res://icon.svg" id="7_yklcu"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0nqoj"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xomaw"]
 size = Vector2(239.597, 155.882)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mb8ji"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ujsv"]
 size = Vector2(239.597, 173.941)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uhfwf"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a7kjw"]
 size = Vector2(239.597, 173.941)
 
 [node name="Level" type="Node"]
@@ -36,10 +36,11 @@ translation_boomerang = true
 
 [node name="Shooter" parent="Spike" index="3"]
 pellet_amount = 10
+pellet_separation_angle = 10.0
 pellet_speed = 700.0
 
 [node name="Spike2" parent="." instance=ExtResource("1_cietj")]
-position = Vector2(2048, -480)
+position = Vector2(2624, -488)
 
 [node name="CycleMover" parent="Spike2" index="2"]
 rotation_angle = 180.0
@@ -102,7 +103,7 @@ center_at_edge = true
 
 [node name="CollisionShape2D" parent="CameraLocker5" index="0"]
 position = Vector2(-493, 64)
-shape = SubResource("RectangleShape2D_0nqoj")
+shape = SubResource("RectangleShape2D_xomaw")
 
 [node name="CameraLocker6" parent="." instance=ExtResource("4_d4cnc")]
 position = Vector2(3088, 472)
@@ -110,7 +111,7 @@ axes_to_lock = 1
 
 [node name="CollisionShape2D" parent="CameraLocker6" index="0"]
 position = Vector2(-493, 50.4704)
-shape = SubResource("RectangleShape2D_mb8ji")
+shape = SubResource("RectangleShape2D_6ujsv")
 debug_color = Color(1, 0, 0, 0.5)
 
 [node name="Marker2D" parent="CameraLocker6" index="1"]
@@ -122,7 +123,7 @@ axes_to_lock = 1
 
 [node name="CollisionShape2D" parent="CameraLocker7" index="0"]
 position = Vector2(-504, 46)
-shape = SubResource("RectangleShape2D_uhfwf")
+shape = SubResource("RectangleShape2D_a7kjw")
 debug_color = Color(1, 0, 0, 0.5)
 
 [node name="Marker2D" parent="CameraLocker7" index="1"]
