@@ -13,8 +13,14 @@ func on_enter():
 func on_process(delta: float):
 	if Input.is_action_just_pressed('jump'):
 		timer_super_bounce_window.start()
-	if hero.is_on_floor(): machine.set_state("StateIdle")
-	if hero.is_on_wall(): machine.set_state("StateFalling")
+
+	if hero.is_on_floor():
+		machine.set_state("StateIdle")
+
+	if hero.is_on_wall()\
+	and hero.velocity.y > 0:
+		machine.set_state("StateFalling")
+
 	if hero.is_just_on_water:
 		if Input.is_action_pressed('jump')\
 		and current_bounce_vel < hero.BLUNDER_JUMP_WATER_BOUNCE_VELOCITY/2:
