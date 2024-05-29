@@ -37,7 +37,7 @@ func on_process(delta: float):
 		machine.set_state("StateIdle")
 		return
 		
-	if hero.is_move_dir_away_from_last_wall(false)\
+	if hero.is_move_dir_away_from_last_wall()\
 	and not hero.is_on_wall()\
 	and Input.is_action_just_pressed('jump'):
 		timer_leaving_wall.stop()
@@ -45,7 +45,7 @@ func on_process(delta: float):
 		print("mode 1")
 		return
 	
-	if hero.is_move_dir_away_from_last_wall(false)\
+	if hero.is_move_dir_away_from_last_wall()\
 	and can_wj\
 	and Input.is_action_pressed('jump'):
 		timer_leaving_wall.stop()
@@ -55,7 +55,7 @@ func on_process(delta: float):
 
 	if hero.velocity.y > 0\
 	and not hero.is_on_floor():
-		if hero.is_move_dir_away_from_last_wall(false):
+		if hero.is_move_dir_away_from_last_wall():
 			timer_climb_to_fall_wall_jump.start()
 		machine.set_state("StateFalling")
 		return

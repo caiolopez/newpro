@@ -75,7 +75,7 @@ func _process(_delta):
 func _physics_process(_delta):
 	pass
 
-func step_grav(delta, downward_accel := GRAVITY):
+func step_grav(delta, downward_accel: float = GRAVITY):
 	if not is_on_floor():
 		velocity.y += downward_accel * delta
 		velocity.y = minf(velocity.y, MAX_FALL_VEL_Y)
@@ -117,14 +117,17 @@ func is_pushing_wall() -> bool:
 	return pushing_wall
 
 
-func is_move_dir_away_from_last_wall(just: bool) -> bool:
+func is_move_dir_away_from_last_wall() -> bool:
 	var mov_away
-	if just:
-		mov_away = (round(get_wall_normal().x) == -1 and Input.is_action_just_pressed('move_left'))\
-		or (round(get_wall_normal().x) == 1 and Input.is_action_just_pressed('move_right'))
-	else:
-		mov_away = (round(get_wall_normal().x) == -1 and Input.is_action_pressed('move_left'))\
-		or (round(get_wall_normal().x) == 1 and Input.is_action_pressed('move_right'))
+	mov_away = (round(get_wall_normal().x) == -1 and Input.is_action_pressed('move_left'))\
+	or (round(get_wall_normal().x) == 1 and Input.is_action_pressed('move_right'))
+	return mov_away
+
+
+func is_move_dir_just_away_from_last_wall() -> bool:
+	var mov_away
+	mov_away = (round(get_wall_normal().x) == -1 and Input.is_action_just_pressed('move_left'))\
+	or (round(get_wall_normal().x) == 1 and Input.is_action_just_pressed('move_right'))
 	return mov_away
 
 

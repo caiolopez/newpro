@@ -11,7 +11,7 @@ func on_process(delta: float):
 	if hero.on_wall_value_just_changed\
 	and not hero.is_on_wall():
 		timer_leaving_wall.start()
-	if hero.is_move_dir_away_from_last_wall(false)\
+	if hero.is_move_dir_away_from_last_wall()\
 	and Input.is_action_just_pressed('jump')\
 	and not timer_leaving_wall.is_stopped():
 		machine.set_state("StateWallJumping")
