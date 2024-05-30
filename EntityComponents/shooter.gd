@@ -49,7 +49,7 @@ func automate_shooting():
 	shoot()
 
 
-func shoot():
+func shoot(speed: float = pellet_speed, angle: float = 0, amount: int = pellet_amount) -> Array[Area2D]:
 	var cur_rotation: float = 0
 	
 	if "facing_direction" in get_parent():
@@ -62,36 +62,23 @@ func shoot():
 		cur_rotation = get_parent().rotation_degrees
 	
 	
-	var top_angle: float = (pellet_amount-1) * pellet_separation_angle / 2
-	for i in range(pellet_amount):
-		BulletManager.create_bullet(
+	var top_angle: float = (amount-1) * pellet_separation_angle / 2
+	var bullets: Array[Area2D] = []
+	
+	for i in range(amount):
+		var bullet: Area2D = BulletManager.create_bullet(
 			facing_direction,
-			global_position + shot_offset,
+			get_parent().position + Vector2(position.x * facing_direction, position.y),
 			Vector2(pellet_speed, 0),
 			is_foe,
 			shoots_fire,
-			(top_angle - pellet_separation_angle * i) + cur_rotation)
+			(top_angle - pellet_separation_angle * i) + cur_rotation + angle)
+		bullets.append(bullet)
+	return bullets
+	
 
-
-func shoot_ad_hoc(speed: float = 200, angle: float = 0) -> Area2D:
-	var cur_rotation: float = 0
-	
-	if "facing_direction" in get_parent():
-		facing_direction = get_parent().facing_direction
-	else:
-		if get_parent().scale.x < 0:
-			facing_direction = -1
-	
-	if rotates_with_parent:
-		cur_rotation = get_parent().rotation_degrees
-	
-	return BulletManager.create_bullet(
-		facing_direction,
-		global_position + shot_offset,
-		Vector2(speed, 0),
-		is_foe,
-		shoots_fire,
-		angle + cur_rotation)
+func shoot_ad_hoc(speed: float = 200, angle: float = 0) -> Array[Area2D]:
+	return shoot(speed, angle, 1)
 
 
 func reset_shooting():
