@@ -67,7 +67,7 @@ target_position = Vector2(120, 0)
 script = ExtResource("3_6dncg")
 
 [node name="Shooter" parent="." instance=ExtResource("4_1v5xt")]
-position = Vector2(128, -128)
+position = Vector2(64, -24)
 pellet_amount = 6
 pellet_speed = 1000.0
 auto_shoots = false
