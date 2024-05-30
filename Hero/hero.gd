@@ -37,10 +37,13 @@ var was_on_wall: bool ## For variable change caculation
 var was_on_floor: bool ## For variable change caculation
 var was_pushing_wall: bool  ## For variable change caculation
 var was_on_water: bool ## For variable change caculation
+var was_auto_snapping: bool
 var on_wall_value_just_changed: bool
+var is_auto_snapping: bool
 var is_just_on_floor: bool
 var is_just_pushing_wall: bool
 var just_stopped_pushing_wall: bool
+var just_auto_snapped: bool
 var facing_direction = 1
 var is_on_water: bool = false
 var is_just_on_water: bool
@@ -144,6 +147,11 @@ func check_value_change():
 	
 	on_wall_value_just_changed = is_on_wall() != was_on_wall
 	was_on_wall = is_on_wall()
+	just_auto_snapped = is_auto_snapping and not was_auto_snapping
+	was_auto_snapping = is_auto_snapping
+	(func ():
+		if just_auto_snapped == true:
+			just_auto_snapped = false).call_deferred()
 	
 	is_just_pushing_wall = is_pushing_wall() and not was_pushing_wall
 	just_stopped_pushing_wall = not is_pushing_wall() and was_pushing_wall
@@ -166,6 +174,19 @@ func is_head_above_water() -> bool:
 		return true
 	else:
 		return false
+
+
+func step_auto_snap():
+	if is_on_floor()\
+	and not pelvis_rc.is_colliding()\
+	and not shoulder_rc.is_colliding()\
+	and  next_grd_height.is_colliding()\
+	and is_pushing_wall():
+		global_position.y = next_grd_height.get_collision_point().y - %HeroCollider.shape.get_rect().size.y/2 - 1
+		print("AUTO SNAP ON STAIRS")
+		is_auto_snapping = true
+	else:
+		is_auto_snapping = false
 
 
 func update_current_checkpoint(new_checkpoint: Area2D):		

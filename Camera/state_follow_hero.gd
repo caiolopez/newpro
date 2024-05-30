@@ -27,9 +27,11 @@ func on_process(delta: float):
 	else: c.current_lerp_speed.y = lerp(c.current_lerp_speed.y, abs(hero_real_vel.y) * c.lerp_speed.y, Utils.dt_lerp(c.catch_up_speed.y, delta))
 	
 	# Look-ahead management
-	if Input.is_action_just_pressed("move_left") or Input.is_action_just_pressed("move_right") or c.hero.just_stopped_pushing_wall:
+	if Input.is_action_just_pressed("move_left")\
+	or Input.is_action_just_pressed("move_right")\
+	or (c.hero.just_stopped_pushing_wall and not c.hero.just_auto_snapped):
 		la_timer.start()
-	
+
 	if abs(hero_real_vel.x) > c.lookahead_activation_vel.x\
 	and signf(hero_real_vel.x) == hero_dir\
 	and not c.hero.is_pushing_wall():
