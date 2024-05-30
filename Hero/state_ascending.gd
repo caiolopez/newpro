@@ -7,7 +7,10 @@ var death_prone: bool = true
 func on_enter():
 	pass
 
-func on_process(delta: float):
+func on_process(_delta: float):
+	if Input.is_action_just_pressed("shoot"):
+		hero.shooter.shoot_ad_hoc(hero.regular_shot_speed)
+
 	if not hero.is_on_water:
 		machine.set_state("StateIdle")
 		return
@@ -17,10 +20,7 @@ func on_process(delta: float):
 		return
 	if not Input.is_action_pressed('jump'):
 		machine.set_state("StateDescending")
-		return
-	
-	if Input.is_action_just_pressed("shoot"):
-		hero.shooter.shoot_ad_hoc(hero.regular_shot_speed)
+
 
 func on_physics_process(delta: float):
 

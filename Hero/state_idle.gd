@@ -12,7 +12,10 @@ func on_enter():
 		machine.set_state("StateJumping")
 		return
 
-func on_process(delta: float):
+func on_process(_delta: float):
+	if Input.is_action_just_pressed("shoot"):
+		hero.shooter.shoot_ad_hoc(hero.regular_shot_speed)
+
 	if hero.is_on_floor()\
 	and not hero.pelvis_rc.is_colliding()\
 	and not hero.shoulder_rc.is_colliding()\
@@ -36,9 +39,6 @@ func on_process(delta: float):
 		machine.set_state("StateFalling")
 		return
 
-	
-	if Input.is_action_just_pressed("shoot"):
-		hero.shooter.shoot_ad_hoc(hero.regular_shot_speed)
 
 func on_physics_process(delta: float):
 

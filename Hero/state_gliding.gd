@@ -12,8 +12,10 @@ func on_enter():
 		timer_buffer_wall_jump.start()
 		
 
-func on_process(delta: float):
-	
+func on_process(_delta: float):
+	if Input.is_action_just_pressed("shoot"):
+		hero.shooter.shoot_ad_hoc(hero.regular_shot_speed)
+
 	if hero.on_wall_value_just_changed\
 	and not hero.is_on_wall():
 		timer_leaving_wall.start()
@@ -60,11 +62,8 @@ func on_process(delta: float):
 
 	if Input.is_action_just_pressed("jump"):
 		hero.velocity.y = hero.GLIDE_VELOCITY/2
-		
-	if Input.is_action_just_pressed("shoot"):
-		hero.shooter.shoot_ad_hoc(hero.regular_shot_speed)
 
-		
+
 func on_physics_process(delta: float):
 	
 	if Input.is_action_pressed("jump"):

@@ -7,7 +7,10 @@ var death_prone: bool = true
 func on_enter():
 	pass
 
-func on_process(delta: float):
+func on_process(_delta: float):
+	if Input.is_action_just_pressed("shoot"):
+		hero.shooter.shoot_ad_hoc(hero.regular_shot_speed)
+
 	if hero.on_wall_value_just_changed\
 	and not hero.is_on_wall():
 		timer_leaving_wall.start()
@@ -62,11 +65,7 @@ func on_process(delta: float):
 	if hero.is_on_floor():
 		machine.set_state("StateIdle")
 		return
-		
-		
-		
-	if Input.is_action_just_pressed("shoot"):
-		hero.shooter.shoot_ad_hoc(hero.regular_shot_speed)
+
 
 func on_physics_process(delta: float):
 	hero.step_grav(delta, hero.FAST_FALL_GRAVITY)

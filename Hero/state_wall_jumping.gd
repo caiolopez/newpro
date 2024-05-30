@@ -10,7 +10,10 @@ func on_enter():
 	hero.velocity.y = hero.WALLJUMP_VELOCITY.y
 	hero.facing_direction = round(hero.get_wall_normal().x)
 
-func on_process(delta: float):
+func on_process(_delta: float):
+	if Input.is_action_just_pressed("shoot"):
+		hero.shooter.shoot_ad_hoc(hero.regular_shot_speed)
+
 	if hero.is_input_blunder_shoot()\
 		and timer_blunder_shoot_cooldown.is_stopped():
 		machine.set_state("StateBlunderShooting")
@@ -24,11 +27,7 @@ func on_process(delta: float):
 		machine.set_state("StateFalling")
 		return
 
-	if Input.is_action_just_pressed("shoot"):
-		hero.shooter.shoot_ad_hoc(hero.regular_shot_speed)
 
-
-		
 func on_physics_process(delta: float):
 
 	hero.step_grav(delta)

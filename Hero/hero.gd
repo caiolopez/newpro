@@ -58,6 +58,7 @@ func _ready():
 	state_machine.start()
 
 func _process(_delta):
+	if Input.is_action_just_pressed("shoot"): print("SHOOT!")
 	if Input.is_action_just_pressed("jump"): print("J")
 	if Input.is_action_just_pressed("move_left"): print("LEFT")
 	if Input.is_action_just_pressed("move_right"): print("RIGHT")
