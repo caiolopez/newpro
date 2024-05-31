@@ -1,0 +1,60 @@
+[gd_scene load_steps=13 format=3 uid="uid://ruri8ytnt6k"]
+
+[ext_resource type="Texture2D" uid="uid://d2gdo5bbgykv2" path="res://icon.svg" id="1_1o6yk"]
+[ext_resource type="Script" path="res://SwitchesAndDoors/door.gd" id="1_bavxp"]
+[ext_resource type="Script" path="res://state_machine.gd" id="3_vgayv"]
+[ext_resource type="Script" path="res://SwitchesAndDoors/state_open.gd" id="4_qyouu"]
+[ext_resource type="Script" path="res://SwitchesAndDoors/state_closed.gd" id="4_vsukd"]
+[ext_resource type="Script" path="res://SwitchesAndDoors/state_opening.gd" id="5_dl3qx"]
+[ext_resource type="Script" path="res://SwitchesAndDoors/state_closing.gd" id="6_fh1vt"]
+[ext_resource type="Script" path="res://SwitchesAndDoors/state_rev_from_opening.gd" id="7_5grm6"]
+[ext_resource type="Script" path="res://SwitchesAndDoors/state_rev_from_closing.gd" id="8_blgy7"]
+[ext_resource type="Script" path="res://SwitchesAndDoors/state_temporarily_open.gd" id="9_37487"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mynya"]
+size = Vector2(128, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ibah"]
+size = Vector2(128, 256)
+
+[node name="Door" type="AnimatableBody2D" node_paths=PackedStringArray("state_machine") groups=["kills_bullets"]]
+script = ExtResource("1_bavxp")
+state_machine = NodePath("StateMachine")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_mynya")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_1o6yk")
+
+[node name="AntiCrushArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AntiCrushArea"]
+shape = SubResource("RectangleShape2D_6ibah")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("3_vgayv")
+
+[node name="StateClosed" type="Node" parent="StateMachine"]
+script = ExtResource("4_vsukd")
+
+[node name="StateOpen" type="Node" parent="StateMachine"]
+script = ExtResource("4_qyouu")
+
+[node name="StateClosing" type="Node" parent="StateMachine"]
+script = ExtResource("6_fh1vt")
+
+[node name="StateOpening" type="Node" parent="StateMachine"]
+script = ExtResource("5_dl3qx")
+
+[node name="StateRevFromOpening" type="Node" parent="StateMachine"]
+script = ExtResource("7_5grm6")
+
+[node name="StateRevFromClosing" type="Node" parent="StateMachine"]
+script = ExtResource("8_blgy7")
+
+[node name="StateTemporarilyOpen" type="Node" parent="StateMachine"]
+script = ExtResource("9_37487")
+
+[node name="TimerAutoClose" type="Timer" parent="StateMachine"]
+one_shot = true

@@ -1,22 +1,24 @@
-[gd_scene load_steps=13 format=3 uid="uid://1xi1vmc3x5ck"]
+[gd_scene load_steps=15 format=3 uid="uid://1xi1vmc3x5ck"]
 
 [ext_resource type="PackedScene" uid="uid://bp1e8lhbqp3me" path="res://Entities/Spike.tscn" id="1_cietj"]
 [ext_resource type="PackedScene" uid="uid://ctbx6yfgdfo4b" path="res://block.tscn" id="1_weaqc"]
 [ext_resource type="PackedScene" uid="uid://1md1m8n6iq5x" path="res://Hero/hero.tscn" id="2_acvau"]
+[ext_resource type="PackedScene" uid="uid://ruri8ytnt6k" path="res://SwitchesAndDoors/Door.tscn" id="3_ia51n"]
 [ext_resource type="PackedScene" uid="uid://j6oxe1axyrgk" path="res://Bullet/bullet_manager.tscn" id="3_j1ahj"]
 [ext_resource type="PackedScene" uid="uid://c48ye6g4s5ufc" path="res://Camera/camera.tscn" id="3_o6dt5"]
 [ext_resource type="PackedScene" uid="uid://bgty58ccnncxy" path="res://Camera/camera_locker.tscn" id="4_d4cnc"]
+[ext_resource type="PackedScene" uid="uid://0fx3l1vwyhr4" path="res://SwitchesAndDoors/Switch.tscn" id="5_fh6e8"]
 [ext_resource type="PackedScene" uid="uid://bt23waqbakmop" path="res://Bullet/water.tscn" id="7_5uehg"]
 [ext_resource type="PackedScene" uid="uid://boan2jyc4hlda" path="res://Checkpoint/checkpoint_trigger.tscn" id="7_h6eyv"]
 [ext_resource type="Texture2D" uid="uid://d2gdo5bbgykv2" path="res://icon.svg" id="7_yklcu"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_u11ff"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tenk3"]
 size = Vector2(239.597, 155.882)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ljbj8"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vmxqr"]
 size = Vector2(239.597, 173.941)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3k6r3"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fk3pa"]
 size = Vector2(239.597, 173.941)
 
 [node name="Level" type="Node"]
@@ -47,6 +49,25 @@ rotation_angle = 180.0
 rotation_time = 3.0
 translation_distance = Vector2(200, 200)
 translation_time = 2.0
+
+[node name="Node" type="Node" parent="."]
+
+[node name="Door" parent="Node" instance=ExtResource("3_ia51n")]
+position = Vector2(1024, -480)
+open_offset = Vector2(0, -200)
+
+[node name="Switch3" parent="Node" instance=ExtResource("5_fh6e8")]
+position = Vector2(1296, 440)
+rotation = 1.5708
+req_simultaneous = true
+
+[node name="Switch2" parent="Node" instance=ExtResource("5_fh6e8")]
+position = Vector2(1296, 296)
+rotation = 1.5708
+
+[node name="Switch4" parent="Node" instance=ExtResource("5_fh6e8")]
+position = Vector2(1296, 144)
+rotation = 1.5708
 
 [node name="Block7" parent="." instance=ExtResource("1_weaqc")]
 position = Vector2(-1778, 423)
@@ -103,7 +124,7 @@ center_at_edge = true
 
 [node name="CollisionShape2D" parent="CameraLocker5" index="0"]
 position = Vector2(-493, 64)
-shape = SubResource("RectangleShape2D_u11ff")
+shape = SubResource("RectangleShape2D_tenk3")
 
 [node name="CameraLocker6" parent="." instance=ExtResource("4_d4cnc")]
 position = Vector2(3088, 472)
@@ -111,7 +132,7 @@ axes_to_lock = 1
 
 [node name="CollisionShape2D" parent="CameraLocker6" index="0"]
 position = Vector2(-493, 50.4704)
-shape = SubResource("RectangleShape2D_ljbj8")
+shape = SubResource("RectangleShape2D_vmxqr")
 debug_color = Color(1, 0, 0, 0.5)
 
 [node name="Marker2D" parent="CameraLocker6" index="1"]
@@ -123,7 +144,7 @@ axes_to_lock = 1
 
 [node name="CollisionShape2D" parent="CameraLocker7" index="0"]
 position = Vector2(-504, 46)
-shape = SubResource("RectangleShape2D_3k6r3")
+shape = SubResource("RectangleShape2D_fk3pa")
 debug_color = Color(1, 0, 0, 0.5)
 
 [node name="Marker2D" parent="CameraLocker7" index="1"]
@@ -144,8 +165,10 @@ position = Vector2(1008, 224)
 scale = Vector2(5, 32)
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+visible = false
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+visible = false
 motion_scale = Vector2(0.5, 0.5)
 
 [node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
