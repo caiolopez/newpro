@@ -69,7 +69,7 @@ func shoot(speed: float = pellet_speed, angle: float = 0, amount: int = pellet_a
 		var bullet: Area2D = BulletManager.create_bullet(
 			facing_direction,
 			get_parent().position + Vector2(position.x * facing_direction, position.y),
-			Vector2(pellet_speed, 0),
+			Vector2(speed, 0),
 			is_foe,
 			shoots_fire,
 			(top_angle - pellet_separation_angle * i) + cur_rotation + angle)

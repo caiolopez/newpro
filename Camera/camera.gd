@@ -34,7 +34,7 @@ func _ready():
 	Events.camera_shake.connect(shake)
 	Events.camera_stop_shake.connect(stop_shake)
 
-func _process(delta):
+func _process(_delta):
 	# debug
 	get_node('TargetMarker').global_position = target
 	if get_node('TargetMarker').global_position.distance_squared_to(get_node('CameraMarker').global_position) < 10:
@@ -44,7 +44,7 @@ func _process(delta):
 func lock_camera(origin, axes: Constants.Axes, lock_position: Vector2, ) -> void:
 	lockers.append(Locker.new(origin, axes, lock_position))
 
-func unlock_camera(origin, axes: Constants.Axes) -> void:
+func unlock_camera(origin, _axes: Constants.Axes) -> void:
 	for locker in lockers:
 		if locker.origin.get_instance_id() == origin.get_instance_id():
 			lockers.erase(locker)

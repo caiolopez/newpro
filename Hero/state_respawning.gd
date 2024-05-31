@@ -16,11 +16,11 @@ func on_enter():
 	machine.set_state("StateIdle")
 
 
-func on_process(delta: float):
+func on_process(_delta: float):
 	pass
 
 
-func on_physics_process(delta: float):
+func on_physics_process(_delta: float):
 	hero.move_and_slide()
 
 

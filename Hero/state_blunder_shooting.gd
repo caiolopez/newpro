@@ -17,7 +17,7 @@ func on_enter():
 	timer_blunder_jump_window.start()
 	hero.shooter.shoot()
 
-func on_process(delta: float):
+func on_process(_delta: float):
 	#if hero.on_wall_value_just_changed\
 	#and hero.is_on_wall():
 		#timer_blunder_jump_window.stop()
@@ -37,7 +37,7 @@ func on_process(delta: float):
 	
 
 		
-func on_physics_process(delta: float):
+func on_physics_process(_delta: float):
 
 	
 

@@ -34,7 +34,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_361o4"]
 size = Vector2(128, 128)
 
-[node name="Hero" type="CharacterBody2D" node_paths=PackedStringArray("state_machine") groups=["heroes"]]
+[node name="Hero" type="CharacterBody2D" node_paths=PackedStringArray("state_machine") groups=["heroes", "uncrushables"]]
 floor_snap_length = 12.0
 script = ExtResource("1_dmqn8")
 state_machine = NodePath("StateMachine")
@@ -84,6 +84,7 @@ shape = SubResource("RectangleShape2D_361o4")
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("3_oqep4")
+does_print = false
 
 [node name="StateSpawning" type="Node" parent="StateMachine"]
 script = ExtResource("21_b6r6d")

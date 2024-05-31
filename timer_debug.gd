@@ -7,7 +7,7 @@ func _ready():
 	connect("timeout", on_timeout)
 
 
-func _process(delta):
+func _process(_delta):
 	just_started = was_stopped and not is_stopped()
 	was_stopped = is_stopped()
 	if just_started:

@@ -10,7 +10,7 @@ func on_enter():
 	current_bounce_vel = hero.BLUNDER_JUMP_WATER_BOUNCE_VELOCITY
 	timer_blunder_jump_window.stop()
 
-func on_process(delta: float):
+func on_process(_delta: float):
 	if Input.is_action_just_pressed('jump'):
 		timer_super_bounce_window.start()
 

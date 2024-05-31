@@ -66,8 +66,7 @@ func _process(_delta):
 	if Input.is_action_just_released("move_left"): print("left")
 	if Input.is_action_just_released("move_right"): print("right")
 	
-	if Input.is_action_just_pressed("Debug Action 1"): pass #die()
-	if Input.is_action_just_pressed("Debug Action 2"): Events.camera_shake.emit()
+	if Input.is_action_just_pressed("Debug Action 2"): pass #Events.camera_shake.emit()
 	check_value_change()
 	
 	if dmg_taker.current_hp == 0\

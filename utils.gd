@@ -17,6 +17,7 @@ func dt_lerp(speed: float, delta: float) -> float:
 	var dtlerp = 1 - pow(0.5, delta * speed)
 	return clamp(dtlerp, 0.0, 1.0)
 
+
 func find_dmg_taker(node: Node) -> DmgTaker:
 	var dmg_taker: DmgTaker = null
 	for child in node.get_children():
@@ -24,4 +25,8 @@ func find_dmg_taker(node: Node) -> DmgTaker:
 			dmg_taker = child
 			break
 	return dmg_taker
-		
+
+
+func disconnect_all(sig: Signal):
+	for connection in sig.get_connections():
+		sig.disconnect(connection["callable"])

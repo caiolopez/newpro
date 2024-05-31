@@ -7,7 +7,7 @@ var death_prone: bool = true
 func on_enter():
 	pass
 
-func on_process(delta: float):
+func on_process(_delta: float):
 	if not hero.is_on_water:
 		machine.set_state("StateIdle")
 		return

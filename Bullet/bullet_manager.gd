@@ -7,7 +7,7 @@ const A90DEG = PI / 2
 func _ready():
 	pass
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	pass
 
 func create_bullet(facing_direction: int = 1, origin: Vector2 = Vector2(0, 0),\
