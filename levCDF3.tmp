@@ -13,13 +13,13 @@
 [ext_resource type="PackedScene" uid="uid://boan2jyc4hlda" path="res://Checkpoint/checkpoint_trigger.tscn" id="7_h6eyv"]
 [ext_resource type="Texture2D" uid="uid://d2gdo5bbgykv2" path="res://icon.svg" id="7_yklcu"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1v8q5"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5bu11"]
 size = Vector2(239.597, 155.882)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_64wwp"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0jy2j"]
 size = Vector2(239.597, 173.941)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8as1e"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3aeix"]
 size = Vector2(239.597, 173.941)
 
 [node name="Level" type="Node"]
@@ -52,7 +52,6 @@ translation_distance = Vector2(200, 200)
 translation_time = 2.0
 
 [node name="SwitchGroupController" parent="." instance=ExtResource("3_scov6")]
-req_simultaneous = true
 
 [node name="Door" parent="SwitchGroupController" instance=ExtResource("3_ia51n")]
 position = Vector2(768, 496)
@@ -131,7 +130,7 @@ center_at_edge = true
 
 [node name="CollisionShape2D" parent="CameraLocker5" index="0"]
 position = Vector2(-493, 64)
-shape = SubResource("RectangleShape2D_1v8q5")
+shape = SubResource("RectangleShape2D_5bu11")
 
 [node name="CameraLocker6" parent="." instance=ExtResource("4_d4cnc")]
 position = Vector2(3088, 472)
@@ -139,7 +138,7 @@ axes_to_lock = 1
 
 [node name="CollisionShape2D" parent="CameraLocker6" index="0"]
 position = Vector2(-493, 50.4704)
-shape = SubResource("RectangleShape2D_64wwp")
+shape = SubResource("RectangleShape2D_0jy2j")
 debug_color = Color(1, 0, 0, 0.5)
 
 [node name="Marker2D" parent="CameraLocker6" index="1"]
@@ -151,7 +150,7 @@ axes_to_lock = 1
 
 [node name="CollisionShape2D" parent="CameraLocker7" index="0"]
 position = Vector2(-504, 46)
-shape = SubResource("RectangleShape2D_8as1e")
+shape = SubResource("RectangleShape2D_3aeix")
 debug_color = Color(1, 0, 0, 0.5)
 
 [node name="Marker2D" parent="CameraLocker7" index="1"]
