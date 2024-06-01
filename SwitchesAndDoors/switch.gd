@@ -72,13 +72,17 @@ func on_bullet_entered(area):
 					if sw.current_state != SwitchState.TEMP_ON:
 						all_are_temp_on = false
 				if all_are_temp_on:
-					for sw in related_switches:
-						sw.switch_on()
+					turn_on_rel_switches()
+					open_rel_doors()
 			else:
 				switch_on()
+				open_rel_doors()
+				turn_on_rel_switches()
 		SwitchState.ON:
 			if toggle:
 				switch_off()
+				close_rel_doors()
+				turn_off_rel_switches()
 		SwitchState.TEMP_ON:
 			$TimerSimultWindow.start()
 		
@@ -93,3 +97,23 @@ func check_group():
 				group_is_simult = true
 		if sib is Door:
 			related_doors.append(sib)
+
+
+func open_rel_doors():
+	for door in related_doors:
+		door.open_d.emit()
+
+
+func close_rel_doors():
+	for door in related_doors:
+		door.close_d.emit()
+
+
+func turn_on_rel_switches():
+	for switch in related_switches:
+		switch.switch_on()
+
+
+func turn_off_rel_switches():
+	for switch in related_switches:
+		switch.switch_off()

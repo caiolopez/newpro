@@ -2,18 +2,13 @@ extends DoorState
 
 
 func on_enter():
-	print(machine)
-	pass
+	door.tween_door_to_offset()
+	door.stopped_moving_at_offset.connect(on_stopped_moving)
 
 
 func on_exit():
-	door.door_tween.finished.disconnect(on_tween_finished)
-	pass
+	door.stopped_moving_at_offset.disconnect(on_stopped_moving)
 
 
-func on_tween_finished():
-	pass
-	#if machine.current_state != self:
-	#	return
-	#if door.auto_close_time <= 0:
-		#machine.set_state("StateClosing")
+func on_stopped_moving():
+	machine.set_state("StateClosing")

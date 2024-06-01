@@ -30,3 +30,9 @@ func find_dmg_taker(node: Node) -> DmgTaker:
 func disconnect_all(sig: Signal):
 	for connection in sig.get_connections():
 		sig.disconnect(connection["callable"])
+
+
+func aprox_equal_vector2(a: Vector2, b: Vector2, tolerance: float = 1.0) -> bool:
+	var x = abs(a.x - b.x) < tolerance
+	var y = abs(a.y - b.y) < tolerance
+	return x and y

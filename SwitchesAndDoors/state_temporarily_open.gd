@@ -8,19 +8,13 @@ func on_enter():
 
 
 func on_exit():
-	pass
+	door.close_d.disconnect(on_close_door)
+	$"../TimerAutoClose".stop()
 
 
 func on_close_door():
-	if machine.current_state != self:
-		return
 	machine.set_state("StateClosing")
-	door.tween_door_to_origin()
 
 
 func on_timeout():
-	if machine.current_state != self:
-		return
 	machine.set_state("StateClosing")
-	door.tween_door_to_origin()
-	

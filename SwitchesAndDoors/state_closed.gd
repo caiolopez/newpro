@@ -10,7 +10,4 @@ func on_exit():
 
 
 func on_open_door():
-	if machine.current_state != self:
-		return
 	machine.set_state("StateOpening")
-	door.tween_door_to_offset()
