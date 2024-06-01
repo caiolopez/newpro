@@ -13,10 +13,8 @@ func on_exit():
 
 
 func on_stopped_moving():
-	if door.auto_close_time <= 0:
-		machine.set_state("StateOpen")
-	else:
-		machine.set_state("StateTemporarilyOpen")
+	machine.set_state("StateOpen")
+
 
 
 func on_close_door():

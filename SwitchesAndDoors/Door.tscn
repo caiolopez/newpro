@@ -16,9 +16,8 @@ size = Vector2(128, 128)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6ibah"]
 size = Vector2(128, 128)
 
-[node name="Door" type="AnimatableBody2D" node_paths=PackedStringArray("state_machine") groups=["kills_bullets"]]
+[node name="Door" type="AnimatableBody2D" groups=["kills_bullets"]]
 script = ExtResource("1_bavxp")
-state_machine = NodePath("StateMachine")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_mynya")

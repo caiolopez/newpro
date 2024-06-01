@@ -14,6 +14,8 @@ var related_switches: Array[Switch] = []
 var related_doors: Array[Door] = []
 var group_is_req: bool = false
 var group_is_simult: bool = false
+var group_is_on: bool = false
+var group_is_saved: bool = false
 
 
 func _ready():
@@ -25,6 +27,8 @@ func _ready():
 	area_entered.connect(on_bullet_entered)
 	switch_off()
 
+func _process(_delta):
+	print("group is on: ", group_is_on, " | group in saved: ", group_is_saved)
 
 func switch_on():
 	current_state = SwitchState.ON
@@ -48,11 +52,19 @@ func temporarily_switch_on():
 
 
 func commit_status():
-	pass
+	if group_is_on:
+		group_is_saved = true
 
 
 func reset_status():
-	pass
+	if not group_is_saved:
+		switch_off()
+		for door in related_doors:
+			door.insta_close()
+	else:
+		switch_off()
+		for door in related_doors:
+			door.insta_open()
 
 
 func on_simult_window_timeout():
@@ -75,12 +87,10 @@ func on_bullet_entered(area):
 					turn_on_rel_switches()
 					open_rel_doors()
 			else:
-				switch_on()
-				open_rel_doors()
 				turn_on_rel_switches()
+				open_rel_doors()
 		SwitchState.ON:
 			if toggle:
-				switch_off()
 				close_rel_doors()
 				turn_off_rel_switches()
 		SwitchState.TEMP_ON:
@@ -112,8 +122,10 @@ func close_rel_doors():
 func turn_on_rel_switches():
 	for switch in related_switches:
 		switch.switch_on()
+		group_is_on = true
 
 
 func turn_off_rel_switches():
 	for switch in related_switches:
 		switch.switch_off()
+		group_is_on = false

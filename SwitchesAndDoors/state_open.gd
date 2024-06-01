@@ -2,6 +2,9 @@ extends DoorState
 
 
 func on_enter():
+	if door.auto_close_time > 0:
+		machine.set_state("StateTemporarilyOpen")
+		return
 	door.close_d.connect(on_close_door)
 
 

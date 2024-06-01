@@ -1,7 +1,8 @@
 class_name DmgTaker extends Area2D
 
 @export var HP_AMOUNT: int = 1
-@export var IGNORE_ON_CHECKPOINT: bool = false
+@export var RESET_UPON_RESPAWN: bool = true ## When set to true, entities will have all their attributes reset when the Hero respawns.
+@export var QUEUE_FREE_ON_CHECKPOINT: bool = true ## When set to true, will prevent dead entities from reappearing when the Hero respawns.
 var current_hp: int
 var immune: bool = false
 var immune_to_regular_bullets: bool = false ## Will not take damage from non-incendiary bullets.
@@ -41,14 +42,14 @@ func _on_area_entered(area):
 
 
 func commit_status():
-	if IGNORE_ON_CHECKPOINT: return
+	if not QUEUE_FREE_ON_CHECKPOINT: return
 	if current_hp == 0 and is_foe:
 		get_parent().queue_free()
 		print(get_parent().name, " QUEUE FREED")
 
 
 func reset_status():
-	if IGNORE_ON_CHECKPOINT: return
+	if not RESET_UPON_RESPAWN: return
 	current_hp = HP_AMOUNT
 	print(get_parent().name, " RESET")
 
