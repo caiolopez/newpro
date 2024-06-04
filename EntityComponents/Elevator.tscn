@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dd08gffrk8txn"]
+
+[ext_resource type="Script" path="res://EntityComponents/elevator.gd" id="1_duvcj"]
+
+[node name="Elevator" type="Node"]
+script = ExtResource("1_duvcj")
