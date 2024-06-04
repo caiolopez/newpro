@@ -14,7 +14,11 @@ func on_process(_delta: float):
 	if hero.on_wall_value_just_changed\
 	and not hero.is_on_wall():
 		timer_leaving_wall.start()
-		
+	
+	if not hero.is_on_wall()\
+	and Input.is_action_just_pressed('jump'):
+		timer_buffer_wall_jump.start()
+	
 	if hero.is_move_dir_away_from_last_wall()\
 	and Input.is_action_just_pressed('jump')\
 	and not timer_leaving_wall.is_stopped():
