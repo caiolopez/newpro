@@ -2,10 +2,17 @@ extends HeroState
 
 var water_prone: bool = true
 var death_prone: bool = true
-
+var sticky_offset: Vector2
+var sticky: Node2D = null
 
 func on_enter():
 	hero.velocity.y = 0
+	
+	var c = hero.shoulder_rc.get_collider()
+	if c and c.is_in_group("sticky"):
+		sticky = c
+		sticky_offset = Vector2(hero.position.x - c.position.x, hero.position.y - c.position.y)
+
 
 func on_process(_delta: float):
 	if Input.is_action_just_pressed("shoot"):
@@ -27,10 +34,10 @@ func on_process(_delta: float):
 
 
 func on_physics_process(_delta: float):
-	
-	
+	if sticky: hero.position = sticky.position + sticky_offset
 	hero.move_and_slide()
 
 
 func on_exit():
+	sticky = null
 	pass
