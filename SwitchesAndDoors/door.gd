@@ -18,11 +18,6 @@ func _ready():
 	state_machine.start()
 
 
-func _process(_delta):
-	if Input.is_action_just_pressed("Debug Action 1"): open_d.emit()
-	if Input.is_action_just_pressed("Debug Action 2"): close_d.emit()
-
-
 func insta_open():
 	position = closed_pos + open_offset
 	state_machine.set_state("StateOpen")

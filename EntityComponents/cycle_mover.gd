@@ -12,7 +12,7 @@ class_name CycleMover extends Node
 var original_angle: float
 var original_position: Vector2
 var rot_tween: Tween
-var trans_tween: Tween
+var pos_tween: Tween
 
 
 func _ready():
@@ -34,17 +34,17 @@ func _ready():
 		if rotation_loop: rot_tween.set_loops()
 
 	if translation_time != 0 and translation_distance != Vector2.ZERO:
-		trans_tween = create_tween()
-		trans_tween.tween_property(get_parent(),
+		pos_tween = create_tween()
+		pos_tween.tween_property(get_parent(),
 		"position",
 		original_position + translation_distance,
 		translation_time).from_current()
 		if translation_boomerang:
-			trans_tween.tween_property(get_parent(),
+			pos_tween.tween_property(get_parent(),
 			"position",
 			original_position,
 			translation_time)
-		if translation_loop: trans_tween.set_loops()
+		if translation_loop: pos_tween.set_loops()
 
 func _process(_delta):
 	if dmg_taker != null:
@@ -54,8 +54,8 @@ func _process(_delta):
 func stop_movement():
 	if rot_tween and rot_tween.is_running():
 		rot_tween.stop()
-	if trans_tween and trans_tween.is_running():
-		trans_tween.stop()
+	if pos_tween and pos_tween.is_running():
+		pos_tween.stop()
 
 
 func reset_movement():
@@ -64,4 +64,4 @@ func reset_movement():
 	if rot_tween: rot_tween.play()
 	
 	get_parent().position = original_position
-	if trans_tween: trans_tween.play()
+	if pos_tween: pos_tween.play()

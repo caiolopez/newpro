@@ -33,6 +33,7 @@ shape = SubResource("RectangleShape2D_6ibah")
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("3_vgayv")
+does_print = false
 
 [node name="StateClosed" type="Node" parent="StateMachine"]
 script = ExtResource("4_vsukd")
