@@ -1,10 +1,5 @@
 extends Node2D
 
-enum SwitchState {
-	ON,
-	OFF,
-	TEMP_ON
-}
 
 @export var req_simultaneous: bool = false ## Set this to true if all switches must be activated at the same time.
 @export_range(0.01, 60) var simult_window_duration: float = 0.1 ## The amount of time before a temporarily on switch gives up and shuts back off.
@@ -72,7 +67,7 @@ func on_switch_turned_on():
 	if req_simultaneous:
 		var all_temp: bool = true
 		for sw in related_switches:
-			if sw.current_state != SwitchState.TEMP_ON:
+			if sw.current_state != Constants.SwitchState.TEMP_ON:
 				all_temp = false
 		if all_temp:
 			turn_on_rel_switches()

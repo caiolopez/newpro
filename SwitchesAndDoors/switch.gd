@@ -1,14 +1,8 @@
 class_name Switch extends Area2D
 
-enum SwitchState {
-	ON,
-	OFF,
-	TEMP_ON
-}
-
-@export var toggle: bool = false ## Default switches (toggle == false) can only be switched on. Set this to true if this switch can be set to off as well.
+@export var toggle: bool = false ## Default switches (toggle == false) can only be turned on. Set this to true if this switch can be turned off as well.
 var controller: Node2D
-var current_state: SwitchState
+var current_state: Constants.SwitchState
 
 
 func _ready():
@@ -20,23 +14,20 @@ func _ready():
 
 
 func switch_on():
-	current_state = SwitchState.ON
+	current_state = Constants.SwitchState.ON
 	$TimerSimultWindow.stop()
-	print(name, " STATE SET TO: ", current_state)
 	modulate = Color(0, 1, 0)
 
 
 func switch_off():
-	current_state = SwitchState.OFF
+	current_state = Constants.SwitchState.OFF
 	$TimerSimultWindow.stop()
-	print(name, " STATE SET TO: ", current_state)
 	modulate = Color(1, 0, 0)
 
 
 func temporarily_switch_on():
-	current_state = SwitchState.TEMP_ON
+	current_state = Constants.SwitchState.TEMP_ON
 	$TimerSimultWindow.start()
-	print(name, " STATE SET TO: ", current_state)
 	modulate = Color(1, 1, 0)
 
 
@@ -49,14 +40,14 @@ func on_bullet_entered(area):
 		return
 		
 	match current_state:
-		SwitchState.OFF:
+		Constants.SwitchState.OFF:
 			if controller.req_simultaneous:
 				temporarily_switch_on()
 			controller.on_switch_turned_on()
-		SwitchState.ON:
+		Constants.SwitchState.ON:
 			if toggle:
 				controller.on_switch_turned_off()
-		SwitchState.TEMP_ON:
+		Constants.SwitchState.TEMP_ON:
 			$TimerSimultWindow.start()
 		
 	area.kill_bullet()
