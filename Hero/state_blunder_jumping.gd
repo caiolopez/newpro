@@ -2,7 +2,6 @@ extends HeroState
 
 var water_prone: bool = false
 var death_prone: bool = true
-
 var current_bounce_vel: float
 
 func on_enter():
@@ -16,10 +15,17 @@ func on_process(_delta: float):
 
 	if hero.is_on_floor():
 		machine.set_state("StateIdle")
+		return
 
 	if hero.is_on_wall()\
 	and hero.velocity.y > 0:
 		machine.set_state("StateFalling")
+		return
+	
+	if hero.is_pushing_wall()\
+	and Input.is_action_just_pressed('jump'):
+		machine.set_state("StateWallClimbing")
+		return
 
 	if hero.is_just_on_water:
 		if Input.is_action_pressed('jump')\
@@ -39,11 +45,8 @@ func on_process(_delta: float):
 
 
 func on_physics_process(delta: float):
-
-	
 	hero.step_grav(delta)
 	hero.step_lateral_mov(delta)
-
 	hero.move_and_slide()
 
 
