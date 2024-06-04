@@ -11,14 +11,17 @@ extends CharacterBody2D
 @export var CLIMB_VELOCITY: float = -1000 ## The speed the hero jumps upward when jumping to the same side of the wall (Megaman-style walljump).
 @export var GLIDE_VELOCITY: float = 100 ## The speed at which the hero slowly descends when airborne and holding Jump.
 @export var GLIDE_X_DRAG: float = -3000 ## The rate at which it decelerates to normal SPEED after walljump.
-@export var BLUNDER_AIRBORNE_VELOCITY = Vector2(-2000, 0) ## The strength of the recoil when blunderjumping on air.
-@export var BLUNDER_GROUNDED_VELOCITY = Vector2(-800, 0) ## The strength of the recoil when blunderjumping on ground.
-@export var BLUNDER_AIRBORNE_DURATION: float = 0.2 ## The duration of the recoil when blunderjumping on air.
-@export var BLUNDER_GROUNDED_DURATION: float = 0.05 ## The duration of the recoil when blunderjumping on ground.
+@export var BLUNDER_AIRBORNE_VELOCITY = Vector2(-2000, 0) ## The strength of the recoil when blundershooting on air.
+@export var BLUNDER_GROUNDED_VELOCITY = Vector2(-800, 0) ## The strength of the recoil when blundershooting on ground.
+@export var BLUNDER_UNDERWATER_VELOCITY = Vector2(-800, 0) ## The strength of the recoil when blundershooting on ground.
+@export var BLUNDER_AIRBORNE_DURATION: float = 0.2 ## The duration of the recoil when blundershooting on air.
+@export var BLUNDER_GROUNDED_DURATION: float = 0.05 ## The duration of the recoil when blundershooting on ground.
+@export var BLUNDER_UNDERWATER_DURATION: float = 0.15 ## The duration of the recoil when blundershooting on water.
 @export var BLUNDER_JUMP_VELOCITY: float = -1200 ## The speed the hero jumps after blundershooting airborne.
 @export var BLUNDER_JUMP_WATER_BOUNCE_VELOCITY: float = -800 ## The speed the hero jumps after falling on water while holding jump from a blunder jump. Like Kiddy Kong.
 @export var GRAVITY: float = 2000 ## The standard downward force, in absolute values.
 @export var FAST_FALL_GRAVITY: float = 3000 ## The downward force, in absolute values, used in falling. Should be higher than GRAVITY, in order to make the Hero fall faster.
+@export var UNDERWATER_GRAVITY: float = 500 ## The downward force, in absolute values, for when the Hero is diving.
 @export var MAX_FALL_VEL_Y: float = 2000.0 ## The maximum downward speed when falling.
 @export var BUOYANCY: float = 100 ## The upward acceleration when underwater. Only affects state Floating.
 @export var ASCENDING_VELOCITY: float = -300.0 ## The Y speed at which the hero swims upwards when holding jump while underwater. CAN_DIVE must be set to true.
@@ -66,7 +69,6 @@ func _process(_delta):
 	if Input.is_action_just_released("move_left"): print("left")
 	if Input.is_action_just_released("move_right"): print("right")
 	
-	if Input.is_action_just_pressed("Debug Action 2"): pass #Events.camera_shake.emit()
 	check_value_change()
 	
 	if dmg_taker.current_hp == 0\
@@ -170,7 +172,7 @@ func _on_hero_exited_water(_water):
 
 
 func is_head_above_water() -> bool:
-	if global_position.y < last_water_surface + 32:
+	if global_position.y < last_water_surface + 64:
 		return true
 	else:
 		return false

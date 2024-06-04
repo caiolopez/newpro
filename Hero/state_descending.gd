@@ -34,7 +34,7 @@ func on_process(_delta: float):
 
 
 func on_physics_process(delta: float):
-	hero.step_grav(delta)
+	hero.step_grav(delta, hero.UNDERWATER_GRAVITY)
 	hero.step_lateral_mov(delta)
 
 	hero.velocity.y = minf(hero.velocity.y, hero.MAX_DESCENT_VEL_Y)
