@@ -9,7 +9,8 @@ func on_enter():
 
 
 func on_exit():
-	door.close_d.disconnect(on_close_door)
+	if door.close_d.is_connected(on_close_door):
+		door.close_d.disconnect(on_close_door)
 
 
 func on_close_door():
