@@ -8,6 +8,11 @@ func on_enter():
 	pass
 
 func on_process(_delta: float):
+	if hero.is_input_blunder_shoot()\
+	and timer_blunder_shoot_cooldown.is_stopped():
+		machine.set_state("StateBlunderShooting")
+		return
+
 	if Input.is_action_just_pressed("shoot"):
 		hero.shooter.shoot_ad_hoc(hero.regular_shot_speed)
 
@@ -44,10 +49,6 @@ func on_process(_delta: float):
 		machine.set_state("StateBlunderJumping")
 		return
 	
-	if hero.is_input_blunder_shoot()\
-	and timer_blunder_shoot_cooldown.is_stopped():
-		machine.set_state("StateBlunderShooting")
-		return
 	if Input.is_action_just_pressed('jump')\
 	and hero.is_pushing_wall():
 		machine.set_state("StateWallClimbing")
@@ -57,11 +58,14 @@ func on_process(_delta: float):
 		timer_coyote_jump.stop()
 		machine.set_state("StateJumping")
 		return
+
 	if Input.is_action_just_pressed('jump'):
 		timer_buffer_jump.start()
+
 	if Input.is_action_pressed('jump'):
 		machine.set_state("StateGliding")
 		return
+
 	if hero.is_on_floor():
 		machine.set_state("StateIdle")
 		return
