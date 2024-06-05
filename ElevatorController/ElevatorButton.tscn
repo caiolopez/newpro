@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://boug41cw8taxh"]
 
-[ext_resource type="Script" path="res://Entities/elevator_button.gd" id="1_3igk5"]
+[ext_resource type="Script" path="res://ElevatorController/elevator_button.gd" id="1_3igk5"]
 [ext_resource type="Texture2D" uid="uid://prl8d6n0ya3v" path="res://Camera/marker_icon_b.png" id="2_sgsb8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t0xmj"]
