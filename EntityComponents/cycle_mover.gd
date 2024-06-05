@@ -19,7 +19,7 @@ func _ready():
 	if dmg_taker != null:
 		dmg_taker.died.connect(on_died)
 		dmg_taker.resurrected.connect(on_resurrected)
-	Events.respawned_at_checkpoint.connect(reset_movement)
+	Events.respawned_at_checkpoint.connect(reset_behavior)
 
 	original_angle = get_parent().rotation_degrees
 	original_position = get_parent().position
@@ -58,7 +58,7 @@ func stop_movement():
 		pos_tween.stop()
 
 
-func reset_movement():
+func reset_behavior():
 	stop_movement()
 	get_parent().rotation_degrees = original_angle
 	if rot_tween: rot_tween.play()
@@ -72,4 +72,4 @@ func on_died():
 
 
 func on_resurrected():
-	reset_movement()
+	reset_behavior()

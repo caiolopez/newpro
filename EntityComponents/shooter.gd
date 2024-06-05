@@ -25,7 +25,7 @@ func _ready():
 	timer_burst_cooldown.wait_time = time_between_bursts
 	
 	timer_shot_cooldown.timeout.connect(automate_shooting)
-	Events.respawned_at_checkpoint.connect(reset_shooting)
+	Events.respawned_at_checkpoint.connect(reset_behavior)
 	
 	if auto_shoots:
 		timer_shot_cooldown.start()
@@ -78,7 +78,7 @@ func shoot_ad_hoc(speed: float = 200, angle: float = 0) -> Array[Area2D]:
 	return shoot(speed, angle, 1)
 
 
-func reset_shooting():
+func reset_behavior():
 	if auto_shoots:
 		current_burst_count = 1
 		timer_shot_cooldown.start()

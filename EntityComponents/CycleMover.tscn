@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" path="res://EntityComponents/cycle_mover.gd" id="1_3a2fa"]
 
-[node name="CycleMover" type="Node"]
+[node name="CycleMover" type="Node" groups=["resetables"]]
 script = ExtResource("1_3a2fa")

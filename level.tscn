@@ -20,13 +20,13 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6aaj6"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_el5pk"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rl2h6"]
 size = Vector2(239.597, 155.882)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vvxu2"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ushyi"]
 size = Vector2(239.597, 173.941)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8svuq"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q0f4i"]
 size = Vector2(239.597, 173.941)
 
 [node name="Level" type="Node"]
@@ -36,7 +36,7 @@ unique_name_in_owner = true
 position = Vector2(1208, -552)
 
 [node name="Spike" parent="." instance=ExtResource("1_cietj")]
-position = Vector2(1776, -480)
+position = Vector2(1840, -512)
 
 [node name="CycleMover" parent="Spike" index="2"]
 rotation_angle = 360.0
@@ -158,7 +158,7 @@ center_at_edge = true
 
 [node name="CollisionShape2D" parent="CameraLocker5" index="0"]
 position = Vector2(-493, 64)
-shape = SubResource("RectangleShape2D_el5pk")
+shape = SubResource("RectangleShape2D_rl2h6")
 
 [node name="CameraLocker6" parent="." instance=ExtResource("4_d4cnc")]
 position = Vector2(3088, 472)
@@ -166,7 +166,7 @@ axes_to_lock = 1
 
 [node name="CollisionShape2D" parent="CameraLocker6" index="0"]
 position = Vector2(-493, 50.4704)
-shape = SubResource("RectangleShape2D_vvxu2")
+shape = SubResource("RectangleShape2D_ushyi")
 debug_color = Color(1, 0, 0, 0.5)
 
 [node name="Marker2D" parent="CameraLocker6" index="1"]
@@ -178,7 +178,7 @@ axes_to_lock = 1
 
 [node name="CollisionShape2D" parent="CameraLocker7" index="0"]
 position = Vector2(-504, 46)
-shape = SubResource("RectangleShape2D_8svuq")
+shape = SubResource("RectangleShape2D_q0f4i")
 debug_color = Color(1, 0, 0, 0.5)
 
 [node name="Marker2D" parent="CameraLocker7" index="1"]
@@ -217,6 +217,7 @@ metadata/_edit_lock_ = true
 
 [node name="Effector" parent="." instance=ExtResource("13_gsh8o")]
 position = Vector2(-184, 512)
+effect = 3
 
 [node name="Sprite2D2" type="Sprite2D" parent="Effector"]
 position = Vector2(24, -232)
@@ -227,6 +228,9 @@ texture = ExtResource("7_xi6ck")
 position = Vector2(-274, -147)
 rotation = -0.299383
 scale = Vector2(0.952147, -6.73451)
+
+[node name="Spike3" parent="Effector" instance=ExtResource("1_cietj")]
+position = Vector2(568, -1080)
 
 [editable path="Spike"]
 [editable path="Spike2"]
