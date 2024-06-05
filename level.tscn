@@ -14,19 +14,19 @@
 [ext_resource type="PackedScene" uid="uid://dd08gffrk8txn" path="res://EntityComponents/Elevator.tscn" id="7_qpcte"]
 [ext_resource type="Texture2D" uid="uid://dn7mn5lnxyon3" path="res://DOCS/obsidian/_META/IMG/camera_forbidden_zone_1.png" id="7_xi6ck"]
 [ext_resource type="Texture2D" uid="uid://d2gdo5bbgykv2" path="res://icon.svg" id="7_yklcu"]
-[ext_resource type="PackedScene" uid="uid://boug41cw8taxh" path="res://Entities/ElevatorButton.tscn" id="10_vsodl"]
-[ext_resource type="PackedScene" uid="uid://bwugl7674migl" path="res://EntityComponents/Effector.tscn" id="13_gsh8o"]
-[ext_resource type="PackedScene" uid="uid://ctacpi3nbykd3" path="res://Entities/ElevatorController.tscn" id="15_pg64h"]
+[ext_resource type="PackedScene" uid="uid://boug41cw8taxh" path="res://ElevatorController/ElevatorButton.tscn" id="10_vsodl"]
+[ext_resource type="PackedScene" uid="uid://bwugl7674migl" path="res://Bullet/Effector.tscn" id="13_gsh8o"]
+[ext_resource type="PackedScene" uid="uid://ctacpi3nbykd3" path="res://ElevatorController/ElevatorController.tscn" id="15_pg64h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6aaj6"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_078lu"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_el5pk"]
 size = Vector2(239.597, 155.882)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_84qyh"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vvxu2"]
 size = Vector2(239.597, 173.941)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4c8oe"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8svuq"]
 size = Vector2(239.597, 173.941)
 
 [node name="Level" type="Node"]
@@ -105,11 +105,6 @@ scale = Vector2(14.4838, 0.87853)
 position = Vector2(1424, 328)
 scale = Vector2(1, 12)
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-position = Vector2(-160, 280)
-scale = Vector2(0.12528, -0.227075)
-texture = ExtResource("7_xi6ck")
-
 [node name="Block10" parent="." instance=ExtResource("1_weaqc")]
 position = Vector2(1432, -1344)
 scale = Vector2(-0.952147, 8.85451)
@@ -131,7 +126,7 @@ scale = Vector2(11.33, 11.33)
 [node name="Elevator" parent="AnimatableBody2D" instance=ExtResource("7_qpcte")]
 end_position = Vector2(800, -800)
 end_rotation = 90.0
-curve = 8
+curve = 0
 duration = 7.223
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D"]
@@ -151,11 +146,6 @@ scale = Vector2(9.90478, 0.934509)
 position = Vector2(-589, 367)
 scale = Vector2(-0.952147, 6.73451)
 
-[node name="Block4" parent="." instance=ExtResource("1_weaqc")]
-position = Vector2(-458, 365)
-rotation = 2.84221
-scale = Vector2(-0.952147, 6.73451)
-
 [node name="Camera" parent="." node_paths=PackedStringArray("hero") instance=ExtResource("3_o6dt5")]
 unique_name_in_owner = true
 hero = NodePath("../Hero")
@@ -168,7 +158,7 @@ center_at_edge = true
 
 [node name="CollisionShape2D" parent="CameraLocker5" index="0"]
 position = Vector2(-493, 64)
-shape = SubResource("RectangleShape2D_078lu")
+shape = SubResource("RectangleShape2D_el5pk")
 
 [node name="CameraLocker6" parent="." instance=ExtResource("4_d4cnc")]
 position = Vector2(3088, 472)
@@ -176,7 +166,7 @@ axes_to_lock = 1
 
 [node name="CollisionShape2D" parent="CameraLocker6" index="0"]
 position = Vector2(-493, 50.4704)
-shape = SubResource("RectangleShape2D_84qyh")
+shape = SubResource("RectangleShape2D_vvxu2")
 debug_color = Color(1, 0, 0, 0.5)
 
 [node name="Marker2D" parent="CameraLocker6" index="1"]
@@ -188,7 +178,7 @@ axes_to_lock = 1
 
 [node name="CollisionShape2D" parent="CameraLocker7" index="0"]
 position = Vector2(-504, 46)
-shape = SubResource("RectangleShape2D_4c8oe")
+shape = SubResource("RectangleShape2D_8svuq")
 debug_color = Color(1, 0, 0, 0.5)
 
 [node name="Marker2D" parent="CameraLocker7" index="1"]
@@ -226,8 +216,17 @@ stretch_mode = 1
 metadata/_edit_lock_ = true
 
 [node name="Effector" parent="." instance=ExtResource("13_gsh8o")]
-position = Vector2(184, 472)
-free_entity = true
+position = Vector2(-184, 512)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Effector"]
+position = Vector2(24, -232)
+scale = Vector2(0.12528, -0.227075)
+texture = ExtResource("7_xi6ck")
+
+[node name="Block4" parent="Effector" instance=ExtResource("1_weaqc")]
+position = Vector2(-274, -147)
+rotation = -0.299383
+scale = Vector2(0.952147, -6.73451)
 
 [editable path="Spike"]
 [editable path="Spike2"]
