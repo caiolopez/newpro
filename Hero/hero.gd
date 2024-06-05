@@ -74,6 +74,9 @@ func _process(_delta):
 	if dmg_taker.current_hp == 0\
 	and state_machine.current_state.death_prone:
 		die()
+	if $InnardsRC.is_colliding()\
+	and state_machine.current_state.death_prone:
+		die()
 	if is_on_water and state_machine.current_state.water_prone:
 		state_machine.set_state("StateFloating")
 
