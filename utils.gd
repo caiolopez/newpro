@@ -63,3 +63,7 @@ func paint_white(active: bool, target: Node2D, duration: float = 0.0):
 		target.material = null
 		if "original_material" in target:
 			target.material = target.original_material
+
+
+func is_pushing_sides() -> bool:
+	return Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right")
