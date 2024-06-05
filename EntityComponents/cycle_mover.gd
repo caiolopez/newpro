@@ -16,7 +16,11 @@ var pos_tween: Tween
 
 
 func _ready():
+	if dmg_taker != null:
+		dmg_taker.died.connect(on_died)
+		dmg_taker.resurrected.connect(on_resurrected)
 	Events.respawned_at_checkpoint.connect(reset_movement)
+
 	original_angle = get_parent().rotation_degrees
 	original_position = get_parent().position
 
@@ -46,10 +50,6 @@ func _ready():
 			translation_time)
 		if translation_loop: pos_tween.set_loops()
 
-func _process(_delta):
-	if dmg_taker != null:
-		if dmg_taker.current_hp == 0: stop_movement()
-
 
 func stop_movement():
 	if rot_tween and rot_tween.is_running():
@@ -65,3 +65,11 @@ func reset_movement():
 	
 	get_parent().position = original_position
 	if pos_tween: pos_tween.play()
+
+
+func on_died():
+	stop_movement()
+
+
+func on_resurrected():
+	reset_movement()

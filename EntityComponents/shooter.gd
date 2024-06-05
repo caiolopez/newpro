@@ -14,8 +14,8 @@ class_name Shooter extends Node2D
 @onready var dmg_taker: DmgTaker = Utils.find_dmg_taker(self.get_parent())
 @onready var timer_shot_cooldown: Timer = get_node("TimeBetweenShots")
 @onready var timer_burst_cooldown: Timer = get_node("TimeBetweenBursts")
+@onready var is_foe: bool = Utils.check_if_foe(self.get_parent()) ## If no FriendOrFoe sibling component is found, assumes is_foe = true.
 var shot_offset: Vector2 = Vector2.ZERO
-var is_foe: bool = true
 var facing_direction: int = 1
 var current_burst_count: int = 1
 
@@ -29,9 +29,6 @@ func _ready():
 	
 	if auto_shoots:
 		timer_shot_cooldown.start()
-	
-	if "is_foe" in get_parent():
-		is_foe = get_parent().is_foe
 
 
 func automate_shooting():
@@ -86,3 +83,4 @@ func reset_shooting():
 		current_burst_count = 1
 		timer_shot_cooldown.start()
 		timer_burst_cooldown.stop()
+
