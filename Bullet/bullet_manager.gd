@@ -20,3 +20,8 @@ vel:  Vector2 = Vector2(200, 0), is_foe: bool = true, is_fire: bool = false, ang
 	bullet.is_foe = is_foe
 	bullet.is_fire = is_fire
 
+
+func free_all_bullets():
+	for c in get_children():
+		if c is Bullet:
+			c.queue_free()

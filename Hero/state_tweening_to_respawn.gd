@@ -6,6 +6,7 @@ var tween: Tween
 
 
 func on_enter():
+	BulletManager.free_all_bullets()
 	var destination = hero.original_position
 	if hero.current_checkpoint != null:
 		destination = hero.current_checkpoint.global_position

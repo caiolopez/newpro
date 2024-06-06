@@ -1,4 +1,4 @@
-extends Area2D
+class_name Bullet extends Area2D
 
 var is_foe: bool
 var is_fire: bool
