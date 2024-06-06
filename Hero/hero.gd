@@ -46,7 +46,6 @@ var is_auto_snapping: bool
 var is_just_on_floor: bool
 var is_just_pushing_wall: bool
 var just_stopped_pushing_wall: bool
-var just_auto_snapped: bool
 var facing_direction = 1
 var is_on_water: bool = false
 var is_just_on_water: bool
@@ -152,11 +151,6 @@ func check_value_change():
 	
 	on_wall_value_just_changed = is_on_wall() != was_on_wall
 	was_on_wall = is_on_wall()
-	just_auto_snapped = is_auto_snapping and not was_auto_snapping
-	was_auto_snapping = is_auto_snapping
-	(func ():
-		if just_auto_snapped == true:
-			just_auto_snapped = false).call_deferred()
 	
 	is_just_pushing_wall = is_pushing_wall() and not was_pushing_wall
 	just_stopped_pushing_wall = not is_pushing_wall() and was_pushing_wall

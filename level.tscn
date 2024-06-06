@@ -20,13 +20,13 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6aaj6"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rl2h6"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6fm6j"]
 size = Vector2(239.597, 155.882)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ushyi"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4a8td"]
 size = Vector2(239.597, 173.941)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_q0f4i"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k4xbp"]
 size = Vector2(239.597, 173.941)
 
 [node name="Level" type="Node"]
@@ -158,7 +158,7 @@ center_at_edge = true
 
 [node name="CollisionShape2D" parent="CameraLocker5" index="0"]
 position = Vector2(-493, 64)
-shape = SubResource("RectangleShape2D_rl2h6")
+shape = SubResource("RectangleShape2D_6fm6j")
 
 [node name="CameraLocker6" parent="." instance=ExtResource("4_d4cnc")]
 position = Vector2(3088, 472)
@@ -166,7 +166,7 @@ axes_to_lock = 1
 
 [node name="CollisionShape2D" parent="CameraLocker6" index="0"]
 position = Vector2(-493, 50.4704)
-shape = SubResource("RectangleShape2D_ushyi")
+shape = SubResource("RectangleShape2D_4a8td")
 debug_color = Color(1, 0, 0, 0.5)
 
 [node name="Marker2D" parent="CameraLocker6" index="1"]
@@ -178,7 +178,7 @@ axes_to_lock = 1
 
 [node name="CollisionShape2D" parent="CameraLocker7" index="0"]
 position = Vector2(-504, 46)
-shape = SubResource("RectangleShape2D_q0f4i")
+shape = SubResource("RectangleShape2D_k4xbp")
 debug_color = Color(1, 0, 0, 0.5)
 
 [node name="Marker2D" parent="CameraLocker7" index="1"]
@@ -230,7 +230,7 @@ rotation = -0.299383
 scale = Vector2(0.952147, -6.73451)
 
 [node name="Spike3" parent="Effector" instance=ExtResource("1_cietj")]
-position = Vector2(568, -1080)
+position = Vector2(344, -144)
 
 [editable path="Spike"]
 [editable path="Spike2"]

@@ -4,7 +4,7 @@ var water_prone: bool = false
 var death_prone: bool = false
 
 
-func on_enter():
+func on_enter():	
 	if hero.current_checkpoint != null:
 		hero.facing_direction = hero.current_checkpoint.direction
 

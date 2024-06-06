@@ -27,7 +27,7 @@
 [ext_resource type="Script" path="res://Hero/state_death_snapshot.gd" id="22_xhyei"]
 [ext_resource type="Script" path="res://Hero/state_tweening_to_respawn.gd" id="23_datsc"]
 [ext_resource type="Script" path="res://Hero/state_respawning.gd" id="24_ppe7q"]
-[ext_resource type="Script" path="res://timer_debug.gd" id="26_l5qii"]
+[ext_resource type="Script" path="res://timer_utils.gd" id="28_goaiv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wwsjr"]
 
@@ -90,6 +90,7 @@ shape = SubResource("RectangleShape2D_361o4")
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("3_oqep4")
+does_print = false
 
 [node name="StateSpawning" type="Node" parent="StateMachine"]
 script = ExtResource("21_b6r6d")
@@ -154,71 +155,71 @@ script = ExtResource("24_ppe7q")
 [node name="TimerCoyoteJump" type="Timer" parent="StateMachine"]
 wait_time = 0.1
 one_shot = true
-script = ExtResource("26_l5qii")
+script = ExtResource("28_goaiv")
 
 [node name="TimerBufferJump" type="Timer" parent="StateMachine"]
 wait_time = 0.1
 one_shot = true
-script = ExtResource("26_l5qii")
+script = ExtResource("28_goaiv")
 
 [node name="TimerCoyoteWall" type="Timer" parent="StateMachine"]
 wait_time = 0.1
 one_shot = true
-script = ExtResource("26_l5qii")
+script = ExtResource("28_goaiv")
 
 [node name="TimerBufferWallJump" type="Timer" parent="StateMachine"]
 wait_time = 0.1
 one_shot = true
-script = ExtResource("26_l5qii")
+script = ExtResource("28_goaiv")
 
 [node name="TimerWallJumpDuration" type="Timer" parent="StateMachine"]
 wait_time = 0.3
 one_shot = true
-script = ExtResource("26_l5qii")
+script = ExtResource("28_goaiv")
 
 [node name="TimerBlunderShootDuration" type="Timer" parent="StateMachine"]
 wait_time = 0.1
 one_shot = true
-script = ExtResource("26_l5qii")
+script = ExtResource("28_goaiv")
 
 [node name="TimerBlunderShootCooldown" type="Timer" parent="StateMachine"]
 wait_time = 0.5
 one_shot = true
-script = ExtResource("26_l5qii")
+script = ExtResource("28_goaiv")
 
 [node name="TimerBlunderJumpWindow" type="Timer" parent="StateMachine"]
 wait_time = 0.5
 one_shot = true
-script = ExtResource("26_l5qii")
+script = ExtResource("28_goaiv")
 
 [node name="TimerLeavingWall" type="Timer" parent="StateMachine"]
 wait_time = 0.2
 one_shot = true
-script = ExtResource("26_l5qii")
+script = ExtResource("28_goaiv")
 
 [node name="TimerBufferClimbing" type="Timer" parent="StateMachine"]
 wait_time = 0.1
 one_shot = true
-script = ExtResource("26_l5qii")
+script = ExtResource("28_goaiv")
 
 [node name="TimerDeathSnapshot" type="Timer" parent="StateMachine"]
 wait_time = 0.5
 one_shot = true
-script = ExtResource("26_l5qii")
+script = ExtResource("28_goaiv")
 
 [node name="TimerSuperBounceWindow" type="Timer" parent="StateMachine"]
 wait_time = 0.1
 one_shot = true
-script = ExtResource("26_l5qii")
+script = ExtResource("28_goaiv")
 
 [node name="TimerClimbToFallWallJump" type="Timer" parent="StateMachine"]
 editor_description = "This timer is stated in StateWallClimbing and read in StateFalling. It is used to validade a walljump attempt that happens across different states."
 wait_time = 0.1
 one_shot = true
-script = ExtResource("26_l5qii")
+script = ExtResource("28_goaiv")
 
 [node name="TimerClimbToGlideWallJump" type="Timer" parent="StateMachine"]
 editor_description = "This timer is stated in StateWallClimbing and read in StateGliding. It is used to validade a walljump attempt that happens across different states."
 wait_time = 0.1
 one_shot = true
-script = ExtResource("26_l5qii")
+script = ExtResource("28_goaiv")
