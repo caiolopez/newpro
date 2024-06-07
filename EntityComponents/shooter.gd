@@ -49,13 +49,16 @@ func automate_shooting():
 func shoot(speed: float = pellet_speed, angle: float = 0, amount: int = pellet_amount, ignore_facing_direction: bool = false) -> Array[Area2D]:
 	var cur_rotation: float = 0
 	
-	if "facing_direction" in get_parent()\
-	and not ignore_facing_direction:
-		facing_direction = get_parent().facing_direction
-	else:
-		if get_parent().scale.x < 0:
-			facing_direction = -1
 	
+	if not ignore_facing_direction:
+		if "facing_direction" in get_parent():
+			facing_direction = get_parent().facing_direction
+		else:
+			if get_parent().scale.x < 0:
+				facing_direction = -1
+	else:
+		facing_direction = 1
+
 	if rotates_with_parent:
 		cur_rotation = get_parent().rotation_degrees
 	
