@@ -21,13 +21,13 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6aaj6"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_p1mpf"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0a42i"]
 size = Vector2(239.597, 155.882)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yjalb"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8rq5k"]
 size = Vector2(239.597, 173.941)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_x6xoo"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_elyh4"]
 size = Vector2(239.597, 173.941)
 
 [node name="Level" type="Node"]
@@ -37,11 +37,7 @@ unique_name_in_owner = true
 position = Vector2(1208, -552)
 
 [node name="Zombie" parent="." instance=ExtResource("2_e0l7r")]
-position = Vector2(2880, 200)
-
-[node name="Walker" parent="Zombie" index="4"]
-climbs_walls = true
-jumps_to_grab_target = true
+position = Vector2(1664, -504)
 
 [node name="Spike" parent="." instance=ExtResource("1_cietj")]
 position = Vector2(1840, -512)
@@ -94,16 +90,6 @@ rotation = 1.5708
 
 [node name="Block7" parent="." instance=ExtResource("1_weaqc")]
 position = Vector2(-1778, 423)
-rotation = -3.14159
-scale = Vector2(0.952147, -6.73451)
-
-[node name="Block11" parent="." instance=ExtResource("1_weaqc")]
-position = Vector2(4192, 1128)
-rotation = -3.14159
-scale = Vector2(0.952147, -6.73451)
-
-[node name="Block12" parent="." instance=ExtResource("1_weaqc")]
-position = Vector2(5192, 800)
 rotation = -3.14159
 scale = Vector2(0.952147, -6.73451)
 
@@ -176,7 +162,7 @@ center_at_edge = true
 
 [node name="CollisionShape2D" parent="CameraLocker5" index="0"]
 position = Vector2(-493, 64)
-shape = SubResource("RectangleShape2D_p1mpf")
+shape = SubResource("RectangleShape2D_0a42i")
 
 [node name="CameraLocker6" parent="." instance=ExtResource("4_d4cnc")]
 position = Vector2(3088, 472)
@@ -184,7 +170,7 @@ axes_to_lock = 1
 
 [node name="CollisionShape2D" parent="CameraLocker6" index="0"]
 position = Vector2(-493, 50.4704)
-shape = SubResource("RectangleShape2D_yjalb")
+shape = SubResource("RectangleShape2D_8rq5k")
 debug_color = Color(1, 0, 0, 0.5)
 
 [node name="Marker2D" parent="CameraLocker6" index="1"]
@@ -196,7 +182,7 @@ axes_to_lock = 1
 
 [node name="CollisionShape2D" parent="CameraLocker7" index="0"]
 position = Vector2(-504, 46)
-shape = SubResource("RectangleShape2D_x6xoo")
+shape = SubResource("RectangleShape2D_elyh4")
 debug_color = Color(1, 0, 0, 0.5)
 
 [node name="Marker2D" parent="CameraLocker7" index="1"]
@@ -250,7 +236,6 @@ scale = Vector2(0.952147, -6.73451)
 [node name="Spike3" parent="Effector" instance=ExtResource("1_cietj")]
 position = Vector2(344, -144)
 
-[editable path="Zombie"]
 [editable path="Spike"]
 [editable path="Spike2"]
 [editable path="CameraLocker5"]

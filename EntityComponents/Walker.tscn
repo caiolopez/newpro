@@ -1,0 +1,36 @@
+[gd_scene load_steps=8 format=3 uid="uid://cqyj0bkuiosbs"]
+
+[ext_resource type="Script" path="res://walker.gd" id="1_xlix3"]
+[ext_resource type="Script" path="res://state_machine.gd" id="2_qvd5e"]
+[ext_resource type="Script" path="res://EntityComponents/w_state_idle.gd" id="3_xyrxx"]
+[ext_resource type="Script" path="res://EntityComponents/w_state_walking.gd" id="4_q54iw"]
+[ext_resource type="Script" path="res://EntityComponents/w_state_jumping.gd" id="5_vwn8p"]
+[ext_resource type="Script" path="res://EntityComponents/w_state_falling.gd" id="6_hs0lt"]
+[ext_resource type="Script" path="res://EntityComponents/w_state_climbing.gd" id="7_w734u"]
+
+[node name="Walker" type="Node"]
+script = ExtResource("1_xlix3")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("2_qvd5e")
+
+[node name="WStateIdle" type="Node" parent="StateMachine"]
+script = ExtResource("3_xyrxx")
+
+[node name="WStateWalking" type="Node" parent="StateMachine"]
+script = ExtResource("4_q54iw")
+
+[node name="WStateJumping" type="Node" parent="StateMachine"]
+script = ExtResource("5_vwn8p")
+
+[node name="WStateFalling" type="Node" parent="StateMachine"]
+script = ExtResource("6_hs0lt")
+
+[node name="WStateClimbing" type="Node" parent="StateMachine"]
+script = ExtResource("7_w734u")
+
+[node name="WStateFloating" type="Node" parent="StateMachine"]
+
+[node name="WStateDescending" type="Node" parent="StateMachine"]
+
+[node name="WStateAscending" type="Node" parent="StateMachine"]

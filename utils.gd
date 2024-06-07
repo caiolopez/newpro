@@ -46,6 +46,10 @@ func aprox_equal_vector2(a: Vector2, b: Vector2, tolerance: float = 1.0) -> bool
 	return x and y
 
 
+func subtract_vector2(a: Vector2, b: Vector2, ) -> Vector2:
+	return Vector2(a.x - b.x, a.y - b.y)
+
+
 func paint_white(active: bool, target: Node2D, duration: float = 0.0):
 	var white_material: ShaderMaterial = preload("res://CaioShaders/white.tres")
 	if active:

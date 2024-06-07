@@ -46,10 +46,11 @@ func automate_shooting():
 	shoot()
 
 
-func shoot(speed: float = pellet_speed, angle: float = 0, amount: int = pellet_amount) -> Array[Area2D]:
+func shoot(speed: float = pellet_speed, angle: float = 0, amount: int = pellet_amount, ignore_facing_direction: bool = false) -> Array[Area2D]:
 	var cur_rotation: float = 0
 	
-	if "facing_direction" in get_parent():
+	if "facing_direction" in get_parent()\
+	and not ignore_facing_direction:
 		facing_direction = get_parent().facing_direction
 	else:
 		if get_parent().scale.x < 0:
@@ -74,8 +75,8 @@ func shoot(speed: float = pellet_speed, angle: float = 0, amount: int = pellet_a
 	return bullets
 	
 
-func shoot_ad_hoc(speed: float = 200, angle: float = 0) -> Array[Area2D]:
-	return shoot(speed, angle, 1)
+func shoot_ad_hoc(speed: float = 200, angle: float = 0, ignore_facing_direction: bool = false) -> Array[Area2D]:
+	return shoot(speed, angle, 1, ignore_facing_direction)
 
 
 func reset_behavior():

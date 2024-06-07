@@ -1,3 +1,31 @@
-[gd_scene format=3 uid="uid://4cnf50mcwol8"]
+[gd_scene load_steps=8 format=3 uid="uid://4cnf50mcwol8"]
 
-[node name="Zombie" type="Node2D"]
+[ext_resource type="PackedScene" uid="uid://upm0adhb85ik" path="res://EntityComponents/DmgDealer.tscn" id="1_1av7w"]
+[ext_resource type="PackedScene" uid="uid://box2ff3vwcc7w" path="res://EntityComponents/DmgTaker.tscn" id="2_ggaqd"]
+[ext_resource type="PackedScene" uid="uid://djwwpps3fxvtg" path="res://EntityComponents/GfxController.tscn" id="3_k0c3i"]
+[ext_resource type="PackedScene" uid="uid://cqyj0bkuiosbs" path="res://EntityComponents/Walker.tscn" id="4_rakle"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n1i3v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_64plp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_17ebl"]
+
+[node name="Zombie" type="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_n1i3v")
+
+[node name="DmgDealer" parent="." instance=ExtResource("1_1av7w")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DmgDealer"]
+shape = SubResource("RectangleShape2D_64plp")
+
+[node name="DmgTaker" parent="." instance=ExtResource("2_ggaqd")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DmgTaker"]
+shape = SubResource("RectangleShape2D_17ebl")
+
+[node name="GfxController" parent="." instance=ExtResource("3_k0c3i")]
+
+[node name="Walker" parent="." instance=ExtResource("4_rakle")]
