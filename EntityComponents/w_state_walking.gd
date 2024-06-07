@@ -31,9 +31,14 @@ func on_process(_delta: float):
 	and parent.is_on_wall():
 		machine.set_state("WStateClimbing")
 		return
-	
+
+
 func on_physics_process(delta: float):
-	w.step_lateral_mov(delta)
+	if w.avoids_pits and w.pit_rc and not w.pit_rc.is_colliding():
+		w.step_lateral_mov(delta, false)
+		parent.velocity.x = 0
+	else:
+		w.step_lateral_mov(delta)
 	w.step_grav(delta)
 	parent.move_and_slide()
 

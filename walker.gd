@@ -1,6 +1,6 @@
-class_name Walker extends Node
+class_name Walker extends Node2D
 
-@export var SPEED: float = 200
+@export var SPEED: float = 600
 @export var GRAVITY: float = 2000
 @export var MAX_FALL_VEL_Y: float = 2000.0
 @export var ACCEL: float = 300
@@ -8,7 +8,7 @@ class_name Walker extends Node
 @export var MININUM_DIST_FROM_TARGET: float = 0.0 # TODO
 @export var ACTIVATION_RADIUS: float = 800.0
 @export var DEAD_ZONE: float = 10.0
-@export var avoids_pits: bool = true # TODO
+@export var avoids_pits: bool = true
 @export var climbs_walls: bool = false
 @export var CLIMBING_SPEED: float = 600.0
 @export var jumps_to_grab_target: bool = false
@@ -19,10 +19,14 @@ class_name Walker extends Node
 @onready var dmg_taker: DmgTaker = Utils.find_dmg_taker(self.get_parent())
 @onready var state_machine: StateMachine = get_node("StateMachine")
 @onready var parent: CharacterBody2D = get_parent()
+var pit_rc: RayCast2D
 var facing_direction: int
+var pit_rc_og_pos: Vector2
 
 
 func _ready():
+	find_pit_rc()
+
 	if "walker_target" in parent:
 		target_entity = parent.walker_target
 	if not get_tree().get_nodes_in_group("heroes").is_empty()\
@@ -52,7 +56,7 @@ func step_grav(delta, downward_accel: float = GRAVITY):
 		parent.velocity.y = minf(parent.velocity.y, MAX_FALL_VEL_Y)
 
 
-func step_lateral_mov(delta):
+func step_lateral_mov(delta, force_forward: bool = true):
 	var dir_just_changed = false
 	
 	if target_entity.global_position.x < parent.global_position.x + targeting_offset():
@@ -65,9 +69,11 @@ func step_lateral_mov(delta):
 	if dir_just_changed:
 		parent.velocity.x = 0
 
-	parent.velocity.x += ACCEL * facing_direction * delta
-	parent.velocity.x = maxf(abs(parent.velocity.x), SPEED) * facing_direction
-
+	if force_forward:
+		parent.velocity.x += ACCEL * facing_direction * delta
+	parent.velocity.x = minf(abs(parent.velocity.x), SPEED) * facing_direction
+	
+	update_pit_rc_pos()
 
 func targeting_offset() -> float:
 	var offset: float = 0
@@ -99,3 +105,16 @@ func is_target_within_activation_radius() -> bool:
 	var d = distance_from_target()
 	if d <= ACTIVATION_RADIUS: return true
 	else: return false
+
+
+func find_pit_rc():
+	if parent.has_node("PitRC"):
+		pit_rc = get_parent().get_node("PitRC")
+		pit_rc_og_pos = pit_rc.position
+	elif avoids_pits:
+		push_error("The avoid_pits behavior requires a RayCast2D named PitRC as the entity's child.")
+
+
+func update_pit_rc_pos():
+	if pit_rc:
+		pit_rc.position.x = facing_direction * pit_rc_og_pos.x
