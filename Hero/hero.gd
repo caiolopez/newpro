@@ -36,6 +36,7 @@ extends CharacterBody2D
 @onready var shooter: Shooter = get_node("Shooter")
 const is_foe: bool = false ## Flag necessary for components that are shared between Hero and enemies.
 var current_checkpoint: Area2D
+var current_blunder_jump_angle: float
 var was_on_wall: bool ## For variable change caculation
 var was_on_floor: bool ## For variable change caculation
 var was_pushing_wall: bool  ## For variable change caculation
@@ -60,13 +61,13 @@ func _ready():
 	state_machine.start()
 
 func _process(_delta):
-	if Input.is_action_just_pressed("shoot"): print("SHOOT!")
-	if Input.is_action_just_pressed("jump"): print("J")
-	if Input.is_action_just_pressed("move_left"): print("LEFT")
-	if Input.is_action_just_pressed("move_right"): print("RIGHT")
-	if Input.is_action_just_released("jump"): print("j")
-	if Input.is_action_just_released("move_left"): print("left")
-	if Input.is_action_just_released("move_right"): print("right")
+	#if Input.is_action_just_pressed("shoot"): print("SHOOT!")
+	#if Input.is_action_just_pressed("jump"): print("J")
+	#if Input.is_action_just_pressed("move_left"): print("LEFT")
+	#if Input.is_action_just_pressed("move_right"): print("RIGHT")
+	#if Input.is_action_just_released("jump"): print("j")
+	#if Input.is_action_just_released("move_left"): print("left")
+	#if Input.is_action_just_released("move_right"): print("right")
 	
 	check_value_change()
 	

@@ -5,11 +5,18 @@ var death_prone: bool = true
 var current_bounce_vel: float
 
 func on_enter():
+	hero.current_blunder_jump_angle = 0
 	hero.velocity.y = hero.BLUNDER_JUMP_VELOCITY
 	current_bounce_vel = hero.BLUNDER_JUMP_WATER_BOUNCE_VELOCITY
 	timer_blunder_jump_window.stop()
 
 func on_process(_delta: float):
+	if Input.is_action_pressed("shoot")\
+	and timer_between_blunder_jumping_shots.is_stopped():
+		hero.shooter.shoot_ad_hoc(hero.regular_shot_speed, hero.current_blunder_jump_angle, true)
+		timer_between_blunder_jumping_shots.start()
+		
+		
 	if Input.is_action_just_pressed('jump'):
 		timer_super_bounce_window.start()
 
@@ -45,10 +52,13 @@ func on_process(_delta: float):
 
 
 func on_physics_process(delta: float):
+	hero.current_blunder_jump_angle += delta * 720 * hero.facing_direction
+	if hero.current_blunder_jump_angle == 360:
+		hero.current_blunder_jump_angle = 0
+	
 	hero.step_grav(delta)
 	hero.step_lateral_mov(delta)
 	hero.move_and_slide()
 
-
 func on_exit():
-	pass
+	hero.current_blunder_jump_angle = 0

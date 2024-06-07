@@ -36,6 +36,7 @@ size = Vector2(128, 128)
 
 [node name="Hero" type="CharacterBody2D" node_paths=PackedStringArray("state_machine") groups=["heroes", "uncrushables"]]
 floor_snap_length = 12.0
+platform_on_leave = 2
 script = ExtResource("1_dmqn8")
 can_dive = true
 state_machine = NodePath("StateMachine")
@@ -221,5 +222,11 @@ script = ExtResource("28_goaiv")
 [node name="TimerClimbToGlideWallJump" type="Timer" parent="StateMachine"]
 editor_description = "This timer is stated in StateWallClimbing and read in StateGliding. It is used to validade a walljump attempt that happens across different states."
 wait_time = 0.1
+one_shot = true
+script = ExtResource("28_goaiv")
+
+[node name="TimerBetweenBlunderJumpingShots" type="Timer" parent="StateMachine"]
+editor_description = "This timer is stated in StateWallClimbing and read in StateGliding. It is used to validade a walljump attempt that happens across different states."
+wait_time = 0.01
 one_shot = true
 script = ExtResource("28_goaiv")
