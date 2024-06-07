@@ -1,23 +1,29 @@
-[gd_scene load_steps=8 format=3 uid="uid://4cnf50mcwol8"]
+[gd_scene load_steps=9 format=3 uid="uid://4cnf50mcwol8"]
 
 [ext_resource type="PackedScene" uid="uid://upm0adhb85ik" path="res://EntityComponents/DmgDealer.tscn" id="1_1av7w"]
 [ext_resource type="PackedScene" uid="uid://box2ff3vwcc7w" path="res://EntityComponents/DmgTaker.tscn" id="2_ggaqd"]
 [ext_resource type="PackedScene" uid="uid://djwwpps3fxvtg" path="res://EntityComponents/GfxController.tscn" id="3_k0c3i"]
+[ext_resource type="Texture2D" uid="uid://d2gdo5bbgykv2" path="res://icon.svg" id="4_oraiu"]
 [ext_resource type="PackedScene" uid="uid://cqyj0bkuiosbs" path="res://EntityComponents/Walker.tscn" id="4_rakle"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n1i3v"]
+size = Vector2(80, 112)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_64plp"]
+size = Vector2(96, 96)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_17ebl"]
+size = Vector2(96, 96)
 
 [node name="Zombie" type="CharacterBody2D"]
+collision_layer = 4
 
 [node name="PitRC" type="RayCast2D" parent="."]
-position = Vector2(64, 0)
-target_position = Vector2(0, 64)
+position = Vector2(80, 0)
+target_position = Vector2(0, 80)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_n1i3v")
 
 [node name="DmgDealer" parent="." instance=ExtResource("1_1av7w")]
@@ -26,10 +32,14 @@ shape = SubResource("RectangleShape2D_n1i3v")
 shape = SubResource("RectangleShape2D_64plp")
 
 [node name="DmgTaker" parent="." instance=ExtResource("2_ggaqd")]
+HP_AMOUNT = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DmgTaker"]
 shape = SubResource("RectangleShape2D_17ebl")
 
 [node name="GfxController" parent="." instance=ExtResource("3_k0c3i")]
+
+[node name="Sprite2D" type="Sprite2D" parent="GfxController"]
+texture = ExtResource("4_oraiu")
 
 [node name="Walker" parent="." instance=ExtResource("4_rakle")]

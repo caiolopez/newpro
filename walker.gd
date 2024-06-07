@@ -15,10 +15,17 @@ class_name Walker extends Node2D
 @export var jump_to_grab_window: Vector2 = Vector2(100.0, 400.0)
 @export var jumps_at_walls: bool = false
 @export var sinks_on_water: bool = true # TODO
+@export var BUOYANCY: float = 100.0
+@export var UNDERWATER_GRAVITY: float = 500
+@export var MAX_DESCENT_VEL_Y: float = 300
+@export var ASCENDING_VELOCITY: float = -300.0
 @onready var target_entity: Node2D = null
 @onready var dmg_taker: DmgTaker = Utils.find_dmg_taker(self.get_parent())
 @onready var state_machine: StateMachine = get_node("StateMachine")
 @onready var parent: CharacterBody2D = get_parent()
+@onready var parent_og_global_pos: Vector2 = get_parent().global_position
+var is_in_water: bool = false
+var last_water_surface: float
 var pit_rc: RayCast2D
 var facing_direction: int
 var pit_rc_og_pos: Vector2
@@ -33,21 +40,19 @@ func _ready():
 	and not target_entity:
 		target_entity = get_tree().get_nodes_in_group("heroes")[0]
 	state_machine.start()
+
 	if dmg_taker != null:
 		dmg_taker.died.connect(on_died)
 		dmg_taker.resurrected.connect(on_resurrected)
 
 
 func on_died():
-	for child in get_children():
-		if child is CollisionShape2D:
-			child.set_deferred("disabled", true)
+	state_machine.set_state("WStateDead")
 
 
 func on_resurrected():
-	for child in get_children():
-		if child is CollisionShape2D:
-			child.set_deferred("enabled", true)
+	parent.global_position = parent_og_global_pos
+	state_machine.set_state("WStateIdle")
 
 
 func step_grav(delta, downward_accel: float = GRAVITY):

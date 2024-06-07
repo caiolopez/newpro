@@ -5,7 +5,11 @@ func on_enter():
 	parent.velocity.x = 0
 
 
-func on_process(_delta: float):	
+func on_process(_delta: float):
+	if w.is_in_water:
+		machine.set_state("WStateFloating")
+		return
+	
 	if parent.is_on_floor()\
 	and w.is_target_within_activation_ring():
 		machine.set_state("WStateWalking")

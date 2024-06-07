@@ -5,6 +5,10 @@ func on_enter():
 
 
 func on_process(_delta: float):
+	if w.is_in_water:
+		machine.set_state("WStateFloating")
+		return
+
 	if parent.is_on_floor()\
 	and not w.is_target_within_activation_radius():
 		machine.set_state("WStateIdle")

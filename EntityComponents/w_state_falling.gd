@@ -6,6 +6,10 @@ func on_enter():
 
 
 func on_process(_delta: float):
+	if w.is_in_water:
+		machine.set_state("WStateFloating")
+		return
+
 	if parent.is_on_floor():
 		machine.set_state("WStateIdle")
 		return

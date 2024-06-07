@@ -21,25 +21,26 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6aaj6"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dk15x"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s6utl"]
 size = Vector2(239.597, 155.882)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7f3ue"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hfd3b"]
 size = Vector2(239.597, 173.941)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fquq3"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jmbqq"]
 size = Vector2(239.597, 173.941)
 
 [node name="Level" type="Node"]
 
 [node name="Hero" parent="." instance=ExtResource("2_acvau")]
 unique_name_in_owner = true
-position = Vector2(1208, -552)
+position = Vector2(5176, 200)
 
 [node name="Zombie" parent="." instance=ExtResource("2_e0l7r")]
-position = Vector2(2880, 200)
+position = Vector2(5584, 696)
 
 [node name="Walker" parent="Zombie" index="5"]
+avoids_pits = false
 climbs_walls = true
 jumps_to_grab_target = true
 
@@ -58,7 +59,7 @@ pellet_separation_angle = 10.0
 pellet_speed = 700.0
 
 [node name="Spike2" parent="." instance=ExtResource("1_cietj")]
-position = Vector2(2624, -488)
+position = Vector2(1656, 680)
 
 [node name="CycleMover" parent="Spike2" index="2"]
 rotation_angle = 180.0
@@ -119,8 +120,16 @@ scale = Vector2(14.4838, 0.87853)
 position = Vector2(1840, -357)
 scale = Vector2(14.4838, 0.87853)
 
+[node name="Block13" parent="." instance=ExtResource("1_weaqc")]
+position = Vector2(7072, 1680)
+scale = Vector2(14.4838, 0.87853)
+
 [node name="Block2" parent="." instance=ExtResource("1_weaqc")]
 position = Vector2(1424, 328)
+scale = Vector2(1, 12)
+
+[node name="Block4" parent="." instance=ExtResource("1_weaqc")]
+position = Vector2(7904, 856)
 scale = Vector2(1, 12)
 
 [node name="Block10" parent="." instance=ExtResource("1_weaqc")]
@@ -176,7 +185,7 @@ center_at_edge = true
 
 [node name="CollisionShape2D" parent="CameraLocker5" index="0"]
 position = Vector2(-493, 64)
-shape = SubResource("RectangleShape2D_dk15x")
+shape = SubResource("RectangleShape2D_s6utl")
 
 [node name="CameraLocker6" parent="." instance=ExtResource("4_d4cnc")]
 position = Vector2(3088, 472)
@@ -184,7 +193,7 @@ axes_to_lock = 1
 
 [node name="CollisionShape2D" parent="CameraLocker6" index="0"]
 position = Vector2(-493, 50.4704)
-shape = SubResource("RectangleShape2D_7f3ue")
+shape = SubResource("RectangleShape2D_hfd3b")
 debug_color = Color(1, 0, 0, 0.5)
 
 [node name="Marker2D" parent="CameraLocker6" index="1"]
@@ -196,7 +205,7 @@ axes_to_lock = 1
 
 [node name="CollisionShape2D" parent="CameraLocker7" index="0"]
 position = Vector2(-504, 46)
-shape = SubResource("RectangleShape2D_fquq3")
+shape = SubResource("RectangleShape2D_jmbqq")
 debug_color = Color(1, 0, 0, 0.5)
 
 [node name="Marker2D" parent="CameraLocker7" index="1"]
@@ -207,6 +216,12 @@ position = Vector2(-138, -514)
 [node name="Water" parent="." instance=ExtResource("7_5uehg")]
 position = Vector2(-1203, 529)
 scale = Vector2(54.5835, 52.2739)
+collision_mask = 12
+
+[node name="Water2" parent="." instance=ExtResource("7_5uehg")]
+position = Vector2(7056, 1480)
+scale = Vector2(81.538, 58.676)
+collision_mask = 12
 
 [node name="CheckpointTrigger" parent="." instance=ExtResource("7_h6eyv")]
 position = Vector2(328, 40)

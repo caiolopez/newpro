@@ -2,19 +2,24 @@ class_name Water extends Area2D
 
 
 func _ready():
-	body_entered.connect(_on_hero_entered)
-	body_exited.connect(_on_hero_exited)
+	body_entered.connect(_on_body_entered)
+	body_exited.connect(_on_body_exited)
 
 
 func get_surface_global_position() -> float:
-	return ((get_node("CollisionShape2D").shape.extents * scale)-global_position).y
+	return (global_position - (get_node("CollisionShape2D").shape.extents * scale)).y
 
 
-func _on_hero_entered(body):
-	if not body.is_in_group("heroes"): return
-	Events.hero_entered_water.emit(self, get_surface_global_position())
+func _on_body_entered(body):
+	if body.is_in_group("heroes"):
+		Events.hero_entered_water.emit(self, get_surface_global_position())
+	elif body.has_node("Walker"):
+		body.get_node("Walker").is_in_water = true
+		body.get_node("Walker").last_water_surface = get_surface_global_position()
 
 
-func _on_hero_exited(body):
-	if not body.is_in_group("heroes"): return
-	Events.hero_exited_water.emit(self)
+func _on_body_exited(body):
+	if body.is_in_group("heroes"):
+		Events.hero_exited_water.emit(self)
+	elif body.has_node("Walker"):
+		body.get_node("Walker").is_in_water = false
