@@ -46,7 +46,6 @@ func _process(_delta):
 	hero_real_vel = hero.get_real_velocity()
 	hero_vel = hero.velocity
 	hero_dir = hero.facing_direction
-	
 
 
 func lock_camera(origin, axes: Constants.Axes, lock_position: Vector2) -> void:
@@ -109,7 +108,7 @@ func step_catch_up(delta: float):
 	if abs(hero_real_vel.y) < lerp_speed.y:
 		current_lerp_speed.y = lerp_speed.y
 	else: current_lerp_speed.y = lerp(current_lerp_speed.y, abs(hero_real_vel.y) * lerp_speed.y, Utils.dt_lerp(catch_up_speed.y, delta))
-
+	last_hero_dir = hero_dir
 
 func step_target_acquisition(_delta: float):
 	target = hero.global_position + current_lookahead

@@ -16,6 +16,7 @@ state_machine = NodePath("StateMachine")
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("2_51bgi")
+does_print = false
 
 [node name="StateFollowHero" type="Node" parent="StateMachine"]
 script = ExtResource("3_u7uha")

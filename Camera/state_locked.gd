@@ -22,4 +22,3 @@ func on_process(delta: float):
 	
 	c.position = c.lerp_vector2(c.position, c.target, c.current_lerp_speed, delta)
 	c.step_shake(delta, c.position)
-	c.last_hero_dir = c.hero_dir
