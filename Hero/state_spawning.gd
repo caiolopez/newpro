@@ -5,7 +5,7 @@ var death_prone: bool = false
 
 
 func on_enter():
-	if hero.is_on_water:
+	if hero.is_in_water:
 		machine.set_state("StateFloating")
 		return
 	machine.set_state("StateIdle")

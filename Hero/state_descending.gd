@@ -16,7 +16,7 @@ func on_process(_delta: float):
 	if Input.is_action_just_pressed("shoot"):
 		hero.shooter.shoot_ad_hoc(hero.regular_shot_speed)
 
-	if not hero.is_on_water:
+	if not hero.is_in_water:
 		machine.set_state("StateIdle")
 		return
 

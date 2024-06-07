@@ -10,7 +10,7 @@ func on_enter():
 
 	Events.respawned_at_checkpoint.emit()
 	
-	if hero.is_on_water:
+	if hero.is_in_water:
 		machine.set_state("StateFloating")
 		return
 	machine.set_state("StateIdle")

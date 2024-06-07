@@ -48,7 +48,7 @@ var is_just_on_floor: bool
 var is_just_pushing_wall: bool
 var just_stopped_pushing_wall: bool
 var facing_direction = 1
-var is_on_water: bool = false
+var is_in_water: bool = false
 var is_just_on_water: bool
 var current_water: Water
 var last_water_surface: float
@@ -77,7 +77,7 @@ func _process(_delta):
 	if $InnardsRC.is_colliding()\
 	and state_machine.current_state.death_prone:
 		die()
-	if is_on_water and state_machine.current_state.water_prone:
+	if is_in_water and state_machine.current_state.water_prone:
 		state_machine.set_state("StateFloating")
 
 func _physics_process(_delta):
@@ -147,8 +147,8 @@ func check_value_change():
 	is_just_on_floor = is_on_floor() and not was_on_floor
 	was_on_floor = is_on_floor()
 	
-	is_just_on_water = is_on_water and not was_on_water
-	was_on_water = is_on_water
+	is_just_on_water = is_in_water and not was_on_water
+	was_on_water = is_in_water
 	
 	on_wall_value_just_changed = is_on_wall() != was_on_wall
 	was_on_wall = is_on_wall()
@@ -159,13 +159,13 @@ func check_value_change():
 
 
 func _on_hero_entered_water(water, surface_global_pos):
-	is_on_water = true
+	is_in_water = true
 	current_water = water
 	last_water_surface = surface_global_pos
 
 
 func _on_hero_exited_water(_water):
-	is_on_water = false
+	is_in_water = false
 	current_water = null
 
 
