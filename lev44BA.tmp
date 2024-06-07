@@ -1,0 +1,258 @@
+[gd_scene load_steps=23 format=3 uid="uid://1xi1vmc3x5ck"]
+
+[ext_resource type="PackedScene" uid="uid://bp1e8lhbqp3me" path="res://Entities/Spike.tscn" id="1_cietj"]
+[ext_resource type="PackedScene" uid="uid://ctbx6yfgdfo4b" path="res://block.tscn" id="1_weaqc"]
+[ext_resource type="PackedScene" uid="uid://1md1m8n6iq5x" path="res://Hero/hero.tscn" id="2_acvau"]
+[ext_resource type="PackedScene" uid="uid://4cnf50mcwol8" path="res://Entities/Zombie.tscn" id="2_e0l7r"]
+[ext_resource type="PackedScene" uid="uid://ruri8ytnt6k" path="res://SwitchesAndDoors/Door.tscn" id="3_ia51n"]
+[ext_resource type="PackedScene" uid="uid://j6oxe1axyrgk" path="res://Bullet/bullet_manager.tscn" id="3_j1ahj"]
+[ext_resource type="PackedScene" uid="uid://c48ye6g4s5ufc" path="res://Camera/camera.tscn" id="3_o6dt5"]
+[ext_resource type="PackedScene" uid="uid://bu38boui2wxu" path="res://SwitchesAndDoors/SwitchGroupController.tscn" id="3_scov6"]
+[ext_resource type="PackedScene" uid="uid://bgty58ccnncxy" path="res://Camera/camera_locker.tscn" id="4_d4cnc"]
+[ext_resource type="PackedScene" uid="uid://0fx3l1vwyhr4" path="res://SwitchesAndDoors/Switch.tscn" id="5_fh6e8"]
+[ext_resource type="PackedScene" uid="uid://bt23waqbakmop" path="res://Bullet/water.tscn" id="7_5uehg"]
+[ext_resource type="PackedScene" uid="uid://boan2jyc4hlda" path="res://Checkpoint/checkpoint_trigger.tscn" id="7_h6eyv"]
+[ext_resource type="PackedScene" uid="uid://dd08gffrk8txn" path="res://EntityComponents/Elevator.tscn" id="7_qpcte"]
+[ext_resource type="Texture2D" uid="uid://dn7mn5lnxyon3" path="res://DOCS/obsidian/_META/IMG/camera_forbidden_zone_1.png" id="7_xi6ck"]
+[ext_resource type="Texture2D" uid="uid://d2gdo5bbgykv2" path="res://icon.svg" id="7_yklcu"]
+[ext_resource type="PackedScene" uid="uid://boug41cw8taxh" path="res://ElevatorController/ElevatorButton.tscn" id="10_vsodl"]
+[ext_resource type="PackedScene" uid="uid://bwugl7674migl" path="res://Bullet/Effector.tscn" id="13_gsh8o"]
+[ext_resource type="PackedScene" uid="uid://ctacpi3nbykd3" path="res://ElevatorController/ElevatorController.tscn" id="15_pg64h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6aaj6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g0ds6"]
+size = Vector2(239.597, 155.882)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_crbtk"]
+size = Vector2(239.597, 173.941)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8c0pj"]
+size = Vector2(239.597, 173.941)
+
+[node name="Level" type="Node"]
+
+[node name="Hero" parent="." instance=ExtResource("2_acvau")]
+unique_name_in_owner = true
+position = Vector2(3648, -56)
+
+[node name="Zombie" parent="." instance=ExtResource("2_e0l7r")]
+position = Vector2(2880, 200)
+
+[node name="Walker" parent="Zombie" index="5"]
+climbs_walls = true
+jumps_to_grab_target = true
+
+[node name="Spike" parent="." instance=ExtResource("1_cietj")]
+position = Vector2(1840, -512)
+
+[node name="CycleMover" parent="Spike" index="2"]
+rotation_angle = 360.0
+rotation_time = 3.0
+rotation_boomerang = true
+translation_boomerang = true
+
+[node name="Shooter" parent="Spike" index="3"]
+pellet_amount = 10
+pellet_separation_angle = 10.0
+pellet_speed = 700.0
+
+[node name="Spike2" parent="." instance=ExtResource("1_cietj")]
+position = Vector2(1656, 680)
+
+[node name="CycleMover" parent="Spike2" index="2"]
+rotation_angle = 180.0
+rotation_time = 3.0
+translation_distance = Vector2(200, 200)
+translation_time = 2.0
+
+[node name="SwitchGroupController" parent="." instance=ExtResource("3_scov6")]
+req_simultaneous = true
+simult_window_duration = null
+
+[node name="Door" parent="SwitchGroupController" instance=ExtResource("3_ia51n")]
+position = Vector2(768, 496)
+open_offset = Vector2(0, -200)
+
+[node name="Door2" parent="SwitchGroupController" instance=ExtResource("3_ia51n")]
+position = Vector2(528, 392)
+open_offset = Vector2(0, -200)
+auto_close_time = 1.0
+
+[node name="Switch3" parent="SwitchGroupController" instance=ExtResource("5_fh6e8")]
+position = Vector2(1296, 440)
+rotation = 1.5708
+toggle = true
+
+[node name="Switch2" parent="SwitchGroupController" instance=ExtResource("5_fh6e8")]
+position = Vector2(1296, 296)
+rotation = 1.5708
+
+[node name="Switch4" parent="SwitchGroupController" instance=ExtResource("5_fh6e8")]
+position = Vector2(1296, 144)
+rotation = 1.5708
+
+[node name="Block7" parent="." instance=ExtResource("1_weaqc")]
+position = Vector2(-1778, 423)
+rotation = -3.14159
+scale = Vector2(0.952147, -6.73451)
+
+[node name="Block11" parent="." instance=ExtResource("1_weaqc")]
+position = Vector2(4192, 1128)
+rotation = -3.14159
+scale = Vector2(0.952147, -6.73451)
+
+[node name="Block12" parent="." instance=ExtResource("1_weaqc")]
+position = Vector2(5192, 800)
+rotation = -3.14159
+scale = Vector2(0.952147, -6.73451)
+
+[node name="Block3" parent="." instance=ExtResource("1_weaqc")]
+position = Vector2(1896, 1256)
+scale = Vector2(69, 7)
+
+[node name="Block" parent="." instance=ExtResource("1_weaqc")]
+position = Vector2(582, 626)
+scale = Vector2(14.4838, 0.87853)
+
+[node name="Block8" parent="." instance=ExtResource("1_weaqc")]
+position = Vector2(1840, -357)
+scale = Vector2(14.4838, 0.87853)
+
+[node name="Block2" parent="." instance=ExtResource("1_weaqc")]
+position = Vector2(1424, 328)
+scale = Vector2(1, 12)
+
+[node name="Block10" parent="." instance=ExtResource("1_weaqc")]
+position = Vector2(1432, -1344)
+scale = Vector2(-0.952147, 8.85451)
+
+[node name="ElevatorController" parent="." node_paths=PackedStringArray("elevator") instance=ExtResource("15_pg64h")]
+elevator = NodePath("../AnimatableBody2D/Elevator")
+
+[node name="ElevatorButton" parent="ElevatorController" instance=ExtResource("10_vsodl")]
+position = Vector2(352, 504)
+
+[node name="ElevatorButton2" parent="ElevatorController" instance=ExtResource("10_vsodl")]
+position = Vector2(-32, 504)
+type = 1
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="." groups=["sticky"]]
+position = Vector2(760, 168)
+scale = Vector2(11.33, 11.33)
+
+[node name="Elevator" parent="AnimatableBody2D" instance=ExtResource("7_qpcte")]
+end_position = Vector2(800, -800)
+end_rotation = 90.0
+curve = 0
+duration = 7.223
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D"]
+shape = SubResource("RectangleShape2D_6aaj6")
+debug_color = Color(0.412372, 0.598973, 0.267216, 0.42)
+
+[node name="Block9" parent="." instance=ExtResource("1_weaqc")]
+position = Vector2(-587, -367)
+scale = Vector2(-0.952, 1.975)
+
+[node name="Block6" parent="." instance=ExtResource("1_weaqc")]
+position = Vector2(-1969, -567)
+rotation = 1.26673
+scale = Vector2(9.90478, 0.934509)
+
+[node name="Block5" parent="." instance=ExtResource("1_weaqc")]
+position = Vector2(-589, 367)
+scale = Vector2(-0.952147, 6.73451)
+
+[node name="Camera" parent="." node_paths=PackedStringArray("hero") instance=ExtResource("3_o6dt5")]
+unique_name_in_owner = true
+hero = NodePath("../Hero")
+lerp_speed = Vector2(3, 3)
+catch_up_speed = Vector2(0.01, 0.01)
+
+[node name="CameraLocker5" parent="." instance=ExtResource("4_d4cnc")]
+position = Vector2(2632, 456)
+center_at_edge = true
+
+[node name="CollisionShape2D" parent="CameraLocker5" index="0"]
+position = Vector2(-493, 64)
+shape = SubResource("RectangleShape2D_g0ds6")
+
+[node name="CameraLocker6" parent="." instance=ExtResource("4_d4cnc")]
+position = Vector2(3088, 472)
+axes_to_lock = 1
+
+[node name="CollisionShape2D" parent="CameraLocker6" index="0"]
+position = Vector2(-493, 50.4704)
+shape = SubResource("RectangleShape2D_crbtk")
+debug_color = Color(1, 0, 0, 0.5)
+
+[node name="Marker2D" parent="CameraLocker6" index="1"]
+position = Vector2(-138, -514)
+
+[node name="CameraLocker7" parent="." instance=ExtResource("4_d4cnc")]
+position = Vector2(3600, 600)
+axes_to_lock = 1
+
+[node name="CollisionShape2D" parent="CameraLocker7" index="0"]
+position = Vector2(-504, 46)
+shape = SubResource("RectangleShape2D_8c0pj")
+debug_color = Color(1, 0, 0, 0.5)
+
+[node name="Marker2D" parent="CameraLocker7" index="1"]
+position = Vector2(-138, -514)
+
+[node name="BulletManager" parent="." instance=ExtResource("3_j1ahj")]
+
+[node name="Water" parent="." instance=ExtResource("7_5uehg")]
+position = Vector2(-1203, 529)
+scale = Vector2(54.5835, 52.2739)
+
+[node name="CheckpointTrigger" parent="." instance=ExtResource("7_h6eyv")]
+position = Vector2(328, 40)
+scale = Vector2(-6, 31)
+
+[node name="CheckpointTrigger2" parent="." instance=ExtResource("7_h6eyv")]
+position = Vector2(1008, 224)
+scale = Vector2(5, 32)
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+visible = false
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+visible = false
+motion_scale = Vector2(0.5, 0.5)
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
+modulate = Color(1, 0.517647, 0.486275, 0.294118)
+offset_left = -2974.0
+offset_top = -2138.0
+offset_right = 3008.0
+offset_bottom = 1577.0
+texture = ExtResource("7_yklcu")
+stretch_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="Effector" parent="." instance=ExtResource("13_gsh8o")]
+position = Vector2(-184, 512)
+effect = 3
+
+[node name="Sprite2D2" type="Sprite2D" parent="Effector"]
+position = Vector2(24, -232)
+scale = Vector2(0.12528, -0.227075)
+texture = ExtResource("7_xi6ck")
+
+[node name="Block4" parent="Effector" instance=ExtResource("1_weaqc")]
+position = Vector2(-274, -147)
+rotation = -0.299383
+scale = Vector2(0.952147, -6.73451)
+
+[node name="Spike3" parent="Effector" instance=ExtResource("1_cietj")]
+position = Vector2(344, -144)
+
+[editable path="Zombie"]
+[editable path="Spike"]
+[editable path="Spike2"]
+[editable path="CameraLocker5"]
+[editable path="CameraLocker6"]
+[editable path="CameraLocker7"]

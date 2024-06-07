@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://djwwpps3fxvtg"]
+[gd_scene load_steps=2 format=3 uid="uid://djwwpps3fxvtg"]
+
+[ext_resource type="Script" path="res://EntityComponents/gfx_controller.gd" id="1_o6g1x"]
 
 [node name="GfxController" type="Node2D"]
+script = ExtResource("1_o6g1x")
