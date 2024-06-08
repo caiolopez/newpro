@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cqyj0bkuiosbs"]
+[gd_scene load_steps=13 format=3 uid="uid://cqyj0bkuiosbs"]
 
 [ext_resource type="Script" path="res://walker.gd" id="1_xlix3"]
 [ext_resource type="Script" path="res://state_machine.gd" id="2_qvd5e"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" path="res://EntityComponents/w_state_walking.gd" id="4_q54iw"]
 [ext_resource type="Script" path="res://EntityComponents/w_state_jumping.gd" id="5_vwn8p"]
 [ext_resource type="Script" path="res://EntityComponents/w_state_falling.gd" id="6_hs0lt"]
-[ext_resource type="Script" path="res://EntityComponents/w_state_jumping_bullet.gd" id="6_qs8rs"]
 [ext_resource type="Script" path="res://EntityComponents/w_state_climbing.gd" id="7_w734u"]
 [ext_resource type="Script" path="res://EntityComponents/w_state_floating.gd" id="8_61i86"]
 [ext_resource type="Script" path="res://EntityComponents/w_state_dead.gd" id="8_p267p"]
@@ -18,27 +17,6 @@ size = Vector2(640, 128)
 
 [node name="Walker" type="Area2D"]
 script = ExtResource("1_xlix3")
-SPEED = null
-GRAVITY = null
-FAST_FALL_GRAVITY = null
-MAX_FALL_VEL_Y = null
-ACCEL = null
-JUMP_VELOCITY = null
-MININUM_DIST_FROM_TARGET = null
-ACTIVATION_RADIUS = null
-DEAD_ZONE = null
-avoids_pits = null
-climbs_walls = null
-CLIMBING_SPEED = null
-jumps_to_grab_target = null
-jump_to_grab_window = null
-jumps_at_walls = null
-jumps_bullets = null
-sinks_on_water = null
-BUOYANCY = null
-UNDERWATER_GRAVITY = null
-MAX_DESCENT_VEL_Y = null
-ASCENDING_VELOCITY = null
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("2_qvd5e")
@@ -51,9 +29,6 @@ script = ExtResource("4_q54iw")
 
 [node name="WStateJumping" type="Node" parent="StateMachine"]
 script = ExtResource("5_vwn8p")
-
-[node name="WStateJumpingBullet" type="Node" parent="StateMachine"]
-script = ExtResource("6_qs8rs")
 
 [node name="WStateFalling" type="Node" parent="StateMachine"]
 script = ExtResource("6_hs0lt")
@@ -74,5 +49,4 @@ script = ExtResource("10_uba5r")
 script = ExtResource("8_p267p")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("RectangleShape2D_pvjvv")

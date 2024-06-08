@@ -1,11 +1,12 @@
-class_name Walker extends Node2D
+class_name Walker extends Area2D
 
 @export var SPEED: float = 600
 @export var GRAVITY: float = 2000
+@export var FAST_FALL_GRAVITY: float = 3000
 @export var MAX_FALL_VEL_Y: float = 2000.0
-@export var ACCEL: float = 300
+@export var ACCEL: float = 30000
 @export var JUMP_VELOCITY: float = -1000
-@export var MININUM_DIST_FROM_TARGET: float = 0.0 # TODO
+@export var MININUM_DIST_FROM_TARGET: float = 400.0
 @export var ACTIVATION_RADIUS: float = 800.0
 @export var DEAD_ZONE: float = 10.0
 @export var avoids_pits: bool = true
@@ -14,11 +15,14 @@ class_name Walker extends Node2D
 @export var jumps_to_grab_target: bool = false
 @export var jump_to_grab_window: Vector2 = Vector2(100.0, 400.0)
 @export var jumps_at_walls: bool = false
-@export var sinks_on_water: bool = true # TODO
+@export var jumps_bullets: bool = true
+@export_group("Water")
+@export var sinks_on_water: bool = false
 @export var BUOYANCY: float = 100.0
 @export var UNDERWATER_GRAVITY: float = 500
 @export var MAX_DESCENT_VEL_Y: float = 300
 @export var ASCENDING_VELOCITY: float = -300.0
+@export_group("")
 @onready var target_entity: Node2D = null
 @onready var dmg_taker: DmgTaker = Utils.find_dmg_taker(self.get_parent())
 @onready var state_machine: StateMachine = get_node("StateMachine")
@@ -45,6 +49,8 @@ func _ready():
 		dmg_taker.died.connect(on_died)
 		dmg_taker.resurrected.connect(on_resurrected)
 
+	area_entered.connect(on_area_entered)
+
 
 func on_died():
 	state_machine.set_state("WStateDead")
@@ -63,13 +69,23 @@ func step_grav(delta, downward_accel: float = GRAVITY):
 
 func step_lateral_mov(delta, force_forward: bool = true):
 	var dir_just_changed = false
+	var target_distance = target_entity.global_position.x - parent.global_position.x
 	
-	if target_entity.global_position.x < parent.global_position.x + targeting_offset():
-		dir_just_changed = facing_direction == 1
-		facing_direction = -1
+	if abs(target_distance) < MININUM_DIST_FROM_TARGET:
+		if target_distance < 0:
+			dir_just_changed = facing_direction == -1
+			facing_direction = 1
+		else:
+			dir_just_changed = facing_direction == 1
+			facing_direction = -1
+
 	else:
-		dir_just_changed = facing_direction == -1
-		facing_direction = 1
+		if target_entity.global_position.x < parent.global_position.x + targeting_offset():
+			dir_just_changed = facing_direction == 1
+			facing_direction = -1
+		else:
+			dir_just_changed = facing_direction == -1
+			facing_direction = 1
 
 	if dir_just_changed:
 		parent.velocity.x = 0
@@ -77,7 +93,6 @@ func step_lateral_mov(delta, force_forward: bool = true):
 	if force_forward:
 		parent.velocity.x += ACCEL * facing_direction * delta
 	parent.velocity.x = minf(abs(parent.velocity.x), SPEED) * facing_direction
-	
 	update_pit_rc_pos()
 
 func targeting_offset() -> float:
@@ -123,3 +138,11 @@ func find_pit_rc():
 func update_pit_rc_pos():
 	if pit_rc:
 		pit_rc.position.x = facing_direction * pit_rc_og_pos.x
+
+
+func on_area_entered(area):
+	if jumps_bullets\
+	and area is Bullet\
+	and "jump_prone" in state_machine.current_state\
+	and parent.is_on_floor():
+		state_machine.set_state("WStateJumpingBullet")

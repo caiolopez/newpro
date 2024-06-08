@@ -43,3 +43,24 @@ shape = SubResource("RectangleShape2D_17ebl")
 texture = ExtResource("4_oraiu")
 
 [node name="Walker" parent="." instance=ExtResource("4_rakle")]
+SPEED = 600.0
+GRAVITY = 2000.0
+FAST_FALL_GRAVITY = 3000.0
+MAX_FALL_VEL_Y = 2000.0
+ACCEL = 30000.0
+JUMP_VELOCITY = -1000.0
+MININUM_DIST_FROM_TARGET = 400.0
+ACTIVATION_RADIUS = 800.0
+DEAD_ZONE = 10.0
+avoids_pits = true
+climbs_walls = false
+CLIMBING_SPEED = 600.0
+jumps_to_grab_target = false
+jump_to_grab_window = Vector2(100, 400)
+jumps_at_walls = false
+jumps_bullets = true
+sinks_on_water = false
+BUOYANCY = 100.0
+UNDERWATER_GRAVITY = 500.0
+MAX_DESCENT_VEL_Y = 300.0
+ASCENDING_VELOCITY = -300.0

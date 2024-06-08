@@ -1,5 +1,6 @@
 extends WalkerState
 
+var jump_prone: bool = true
 
 func on_enter():
 	parent.velocity.x = 0
@@ -11,7 +12,7 @@ func on_process(_delta: float):
 		return
 	
 	if parent.is_on_floor()\
-	and w.is_target_within_activation_ring():
+	and w.is_target_within_activation_radius():
 		machine.set_state("WStateWalking")
 		return
 
@@ -26,6 +27,7 @@ func on_process(_delta: float):
 	and parent.velocity.y > 0:
 		machine.set_state("WStateFalling")
 		return
+
 
 func on_physics_process(delta: float):
 	w.step_grav(delta)

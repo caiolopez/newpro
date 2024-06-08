@@ -1,5 +1,7 @@
 extends WalkerState
 
+var jump_prone: bool = true
+
 func on_enter():
 	pass
 
