@@ -11,6 +11,7 @@ class_name Walker extends Area2D
 @export var MININUM_DIST_FROM_TARGET: float = 400.0
 @export var DEAD_ZONE: float = 100.0
 @export var avoids_pits: bool = true
+@export var stunnable: bool = true
 @export var climbs_walls: bool = false
 @export var CLIMBING_SPEED: float = 600.0
 @export_group("Jumping")
@@ -35,6 +36,7 @@ var last_water_surface: float
 var facing_direction: int
 var pit_rc: RayCast2D
 var pit_rc_og_pos: Vector2
+var is_stunned: bool = false
 
 
 func _ready():
@@ -49,13 +51,21 @@ func _ready():
 
 	if dmg_taker != null:
 		dmg_taker.died.connect(on_died)
+		dmg_taker.suffered.connect(on_suffered)
 		dmg_taker.resurrected.connect(on_resurrected)
 
 	area_entered.connect(on_area_entered)
+	$TimerStun.timeout.connect(func(): is_stunned = false)
 
 
 func on_died():
 	state_machine.set_state("WStateDead")
+
+
+func on_suffered():
+	if stunnable:
+		is_stunned = true
+		$TimerStun.start()
 
 
 func on_resurrected():
@@ -70,10 +80,11 @@ func step_grav(delta, downward_accel: float = GRAVITY):
 
 
 func step_lateral_mov(delta: float, force_forward: bool = true):
-	var dir_just_changed = false
+	var dir_just_changed: bool = false
 	var target_distance = target_entity.global_position.x - parent.global_position.x
 
-	if abs(target_distance) < ACTIVATION_RADIUS:
+	if abs(target_distance) < ACTIVATION_RADIUS\
+	and not is_stunned:
 		if abs(target_distance) > MININUM_DIST_FROM_TARGET + DEAD_ZONE:
 			force_forward = true
 			if target_distance < 0:
@@ -92,6 +103,8 @@ func step_lateral_mov(delta: float, force_forward: bool = true):
 				facing_direction = 1
 		else:
 			force_forward = false
+	else:
+		force_forward = false
 
 	if force_forward:
 		parent.velocity.x += ACCEL * facing_direction * delta
