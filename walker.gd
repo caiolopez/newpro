@@ -4,18 +4,20 @@ class_name Walker extends Area2D
 @export var GRAVITY: float = 2000
 @export var FAST_FALL_GRAVITY: float = 3000
 @export var MAX_FALL_VEL_Y: float = 2000.0
-@export var ACCEL: float = 30000
+@export var ACCEL: float = 1000
+@export var DECEL: float = 1000
 @export var JUMP_VELOCITY: float = -1000
-@export var MININUM_DIST_FROM_TARGET: float = 400.0
 @export var ACTIVATION_RADIUS: float = 800.0
-@export var DEAD_ZONE: float = 10.0
+@export var MININUM_DIST_FROM_TARGET: float = 400.0
+@export var DEAD_ZONE: float = 100.0
 @export var avoids_pits: bool = true
 @export var climbs_walls: bool = false
 @export var CLIMBING_SPEED: float = 600.0
-@export var jumps_to_grab_target: bool = false
-@export var jump_to_grab_window: Vector2 = Vector2(100.0, 400.0)
+@export_group("Jumping")
 @export var jumps_at_walls: bool = false
 @export var jumps_bullets: bool = true
+@export var jumps_to_grab_target: bool = false
+@export var jump_to_grab_window: Vector2 = Vector2(100.0, 400.0)
 @export_group("Water")
 @export var sinks_on_water: bool = false
 @export var BUOYANCY: float = 100.0
@@ -30,8 +32,8 @@ class_name Walker extends Area2D
 @onready var parent_og_global_pos: Vector2 = get_parent().global_position
 var is_in_water: bool = false
 var last_water_surface: float
-var pit_rc: RayCast2D
 var facing_direction: int
+var pit_rc: RayCast2D
 var pit_rc_og_pos: Vector2
 
 
@@ -67,31 +69,38 @@ func step_grav(delta, downward_accel: float = GRAVITY):
 		parent.velocity.y = minf(parent.velocity.y, MAX_FALL_VEL_Y)
 
 
-func step_lateral_mov(delta, force_forward: bool = true):
+func step_lateral_mov(delta: float, force_forward: bool = true):
 	var dir_just_changed = false
 	var target_distance = target_entity.global_position.x - parent.global_position.x
-	
-	if abs(target_distance) < MININUM_DIST_FROM_TARGET:
-		if target_distance < 0:
-			dir_just_changed = facing_direction == -1
-			facing_direction = 1
-		else:
-			dir_just_changed = facing_direction == 1
-			facing_direction = -1
 
-	else:
-		if target_entity.global_position.x < parent.global_position.x + targeting_offset():
-			dir_just_changed = facing_direction == 1
-			facing_direction = -1
+	if abs(target_distance) < ACTIVATION_RADIUS:
+		if abs(target_distance) > MININUM_DIST_FROM_TARGET + DEAD_ZONE:
+			force_forward = true
+			if target_distance < 0:
+				dir_just_changed = facing_direction == 1
+				facing_direction = -1
+			else:
+				dir_just_changed = facing_direction == -1
+				facing_direction = 1
+		elif abs(target_distance) < MININUM_DIST_FROM_TARGET:
+			force_forward = true
+			if target_distance > 0:
+				dir_just_changed = facing_direction == 1
+				facing_direction = -1
+			else:
+				dir_just_changed = facing_direction == -1
+				facing_direction = 1
 		else:
-			dir_just_changed = facing_direction == -1
-			facing_direction = 1
-
-	if dir_just_changed:
-		parent.velocity.x = 0
+			force_forward = false
 
 	if force_forward:
 		parent.velocity.x += ACCEL * facing_direction * delta
+	else:
+		if abs(parent.velocity.x) > 0:
+			parent.velocity.x -= DECEL * facing_direction * delta
+			if sign(parent.velocity.x) != facing_direction:
+				parent.velocity.x = 0
+
 	parent.velocity.x = minf(abs(parent.velocity.x), SPEED) * facing_direction
 	update_pit_rc_pos()
 
@@ -112,13 +121,6 @@ func is_target_within_grab_jump_window() -> bool:
 	var x = abs(diff.x) < jump_to_grab_window.x
 	var y = abs(diff.y) < jump_to_grab_window.y
 	return x and y
-
-
-func is_target_within_activation_ring() -> bool:
-	var d = distance_from_target()
-	if d <= ACTIVATION_RADIUS\
-	and d > DEAD_ZONE: return true
-	else: return false
 
 
 func is_target_within_activation_radius() -> bool:
