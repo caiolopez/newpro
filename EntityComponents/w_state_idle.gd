@@ -4,6 +4,9 @@ var jump_prone: bool = true
 
 func on_enter():
 	parent.velocity.x = 0
+	for area in w.get_overlapping_areas():
+		if area is Bullet:
+			machine.set_state("WStateJumpingBullet")
 
 
 func on_process(_delta: float):

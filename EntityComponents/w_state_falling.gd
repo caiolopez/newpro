@@ -16,8 +16,8 @@ func on_process(_delta: float):
 
 
 func on_physics_process(delta: float):
-	w.step_lateral_mov(delta, w.FAST_FALL_GRAVITY)
-	w.step_grav(delta)
+	w.step_lateral_mov(delta, false)
+	w.step_grav(delta, w.FAST_FALL_GRAVITY)
 	parent.move_and_slide()
 
 

@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://4cnf50mcwol8"]
+[gd_scene load_steps=10 format=3 uid="uid://4cnf50mcwol8"]
 
 [ext_resource type="PackedScene" uid="uid://upm0adhb85ik" path="res://EntityComponents/DmgDealer.tscn" id="1_1av7w"]
 [ext_resource type="PackedScene" uid="uid://box2ff3vwcc7w" path="res://EntityComponents/DmgTaker.tscn" id="2_ggaqd"]
 [ext_resource type="PackedScene" uid="uid://djwwpps3fxvtg" path="res://EntityComponents/GfxController.tscn" id="3_k0c3i"]
-[ext_resource type="Texture2D" uid="uid://d2gdo5bbgykv2" path="res://icon.svg" id="4_oraiu"]
+[ext_resource type="Texture2D" uid="uid://0l05qi2ha4p5" path="res://hero.png" id="4_cy23t"]
 [ext_resource type="PackedScene" uid="uid://cqyj0bkuiosbs" path="res://EntityComponents/Walker.tscn" id="4_rakle"]
+[ext_resource type="PackedScene" uid="uid://dqho171mcdsmr" path="res://EntityComponents/FacingDirection.tscn" id="6_q6noj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n1i3v"]
 size = Vector2(80, 112)
@@ -40,27 +41,11 @@ shape = SubResource("RectangleShape2D_17ebl")
 [node name="GfxController" parent="." instance=ExtResource("3_k0c3i")]
 
 [node name="Sprite2D" type="Sprite2D" parent="GfxController"]
-texture = ExtResource("4_oraiu")
+modulate = Color(1, 0.247059, 0.25098, 1)
+position = Vector2(-9.53674e-07, -5.24521e-06)
+scale = Vector2(16, 16)
+texture = ExtResource("4_cy23t")
 
 [node name="Walker" parent="." instance=ExtResource("4_rakle")]
-SPEED = 600.0
-GRAVITY = 2000.0
-FAST_FALL_GRAVITY = 3000.0
-MAX_FALL_VEL_Y = 2000.0
-ACCEL = 1000.0
-JUMP_VELOCITY = -1000.0
-ACTIVATION_RADIUS = 800.0
-MININUM_DIST_FROM_TARGET = 400.0
-DEAD_ZONE = 100.0
-avoids_pits = true
-climbs_walls = false
-CLIMBING_SPEED = 600.0
-jumps_at_walls = false
-jumps_bullets = true
-jumps_to_grab_target = false
-jump_to_grab_window = Vector2(100, 400)
-sinks_on_water = false
-BUOYANCY = 100.0
-UNDERWATER_GRAVITY = 500.0
-MAX_DESCENT_VEL_Y = 300.0
-ASCENDING_VELOCITY = -300.0
+
+[node name="FacingDirection" parent="." instance=ExtResource("6_q6noj")]

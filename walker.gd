@@ -14,6 +14,7 @@ class_name Walker extends Area2D
 @export var stunnable: bool = true
 @export var climbs_walls: bool = false
 @export var CLIMBING_SPEED: float = 600.0
+@export var faces_hero: bool = true
 @export_group("Jumping")
 @export var jumps_at_walls: bool = false
 @export var jumps_bullets: bool = true
@@ -33,7 +34,8 @@ class_name Walker extends Area2D
 @onready var parent_og_global_pos: Vector2 = get_parent().global_position
 var is_in_water: bool = false
 var last_water_surface: float
-var facing_direction: int
+var facing_direction_node: Node2D
+var movement_direction: int
 var pit_rc: RayCast2D
 var pit_rc_og_pos: Vector2
 var is_stunned: bool = false
@@ -41,6 +43,9 @@ var is_stunned: bool = false
 
 func _ready():
 	find_pit_rc()
+
+	if parent.has_node("FacingDirection"):
+		facing_direction_node = parent.get_node("FacingDirection")
 
 	if "walker_target" in parent:
 		target_entity = parent.walker_target
@@ -80,48 +85,43 @@ func step_grav(delta, downward_accel: float = GRAVITY):
 
 
 func step_lateral_mov(delta: float, force_forward: bool = true):
-	var dir_just_changed: bool = false
+	var move: bool = false
+	var dir_changed: bool
 	var target_distance = target_entity.global_position.x - parent.global_position.x
 
 	if abs(target_distance) < ACTIVATION_RADIUS\
 	and not is_stunned:
 		if abs(target_distance) > MININUM_DIST_FROM_TARGET + DEAD_ZONE:
-			force_forward = true
+			move = true
 			if target_distance < 0:
-				dir_just_changed = facing_direction == 1
-				facing_direction = -1
+				dir_changed = movement_direction == 1
+				movement_direction = -1
 			else:
-				dir_just_changed = facing_direction == -1
-				facing_direction = 1
+				dir_changed = movement_direction == -1
+				movement_direction = 1
 		elif abs(target_distance) < MININUM_DIST_FROM_TARGET:
-			force_forward = true
+			move = true
 			if target_distance > 0:
-				dir_just_changed = facing_direction == 1
-				facing_direction = -1
+				dir_changed = movement_direction == 1
+				movement_direction = -1
 			else:
-				dir_just_changed = facing_direction == -1
-				facing_direction = 1
-		else:
-			force_forward = false
-	else:
-		force_forward = false
+				dir_changed = movement_direction == -1
+				movement_direction = 1
 
-	if force_forward:
-		parent.velocity.x += ACCEL * facing_direction * delta
+	if force_forward and move:
+		parent.velocity.x += ACCEL * movement_direction * delta
 	else:
 		if abs(parent.velocity.x) > 0:
-			parent.velocity.x -= DECEL * facing_direction * delta
-			if sign(parent.velocity.x) != facing_direction:
+			parent.velocity.x -= DECEL * movement_direction * delta
+			if sign(parent.velocity.x) != movement_direction:
 				parent.velocity.x = 0
 
-	parent.velocity.x = minf(abs(parent.velocity.x), SPEED) * facing_direction
+	parent.velocity.x = minf(abs(parent.velocity.x), SPEED) * movement_direction
 	update_pit_rc_pos()
 
-func targeting_offset() -> float:
-	var offset: float = 0
-	if "facing_direction" in target_entity:
-		offset = 70 * -target_entity.facing_direction
-	return offset
+	if dir_changed and facing_direction_node:
+		if not facing_direction_node.face_hero:
+			facing_direction_node.update.emit(movement_direction)
 
 
 func distance_from_target() -> float:
@@ -152,7 +152,7 @@ func find_pit_rc():
 
 func update_pit_rc_pos():
 	if pit_rc:
-		pit_rc.position.x = facing_direction * pit_rc_og_pos.x
+		pit_rc.position.x = movement_direction * pit_rc_og_pos.x
 
 
 func on_area_entered(area):
