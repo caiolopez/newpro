@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dqho171mcdsmr"]
-
-[ext_resource type="Script" path="res://EntityComponents/facing_direction.gd" id="1_o3yvk"]
-
-[node name="FacingDirection" type="Node2D"]
-script = ExtResource("1_o3yvk")
