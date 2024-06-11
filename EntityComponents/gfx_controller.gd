@@ -1,13 +1,13 @@
 class_name GfxController extends Node2D
 
 @onready var dmg_taker: DmgTaker = Utils.find_dmg_taker(self.get_parent())
-var facing_direction_node: Node2D
+var face_hero_node: FaceHero
 
 
 func _ready():
-	if get_parent().has_node("FacingDirection"):
-		facing_direction_node = get_parent().get_node("FacingDirection")
-		facing_direction_node.update.connect(on_update_direction)
+	if get_parent().has_node("FaceHero"):
+		face_hero_node = get_parent().get_node("FaceHero")
+		face_hero_node.update.connect(on_update_direction)
 	
 	if dmg_taker != null:
 		dmg_taker.died.connect(on_died)
@@ -16,7 +16,7 @@ func _ready():
 
 
 func on_update_direction(dir: float):
-	scale.x = dir
+	scale.x = abs(scale.x) * dir
 
 
 func on_died():

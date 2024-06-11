@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://cqyj0bkuiosbs"]
 
-[ext_resource type="Script" path="res://walker.gd" id="1_xlix3"]
+[ext_resource type="Script" path="res://EntityComponents/walker.gd" id="1_xlix3"]
 [ext_resource type="Script" path="res://state_machine.gd" id="2_qvd5e"]
 [ext_resource type="Script" path="res://EntityComponents/w_state_idle.gd" id="3_xyrxx"]
 [ext_resource type="Script" path="res://EntityComponents/w_state_walking.gd" id="4_q54iw"]
