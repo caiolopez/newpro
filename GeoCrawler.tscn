@@ -1,13 +1,14 @@
 [gd_scene load_steps=4 format=3 uid="uid://bjhu38r2rxoda"]
 
-[ext_resource type="Script" path="res://GeoCrawler.gd" id="1_ghn2k"]
+[ext_resource type="Script" path="res://geo_crawler.gd" id="1_g8skh"]
 [ext_resource type="Texture2D" uid="uid://d2gdo5bbgykv2" path="res://icon.svg" id="2_dnr5s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dnyie"]
 size = Vector2(128, 128)
 
-[node name="AnimatableBody2D" type="Area2D"]
-script = ExtResource("1_ghn2k")
+[node name="GeoCrawler" type="Area2D"]
+z_index = 1
+script = ExtResource("1_g8skh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_dnr5s")
@@ -16,5 +17,5 @@ texture = ExtResource("2_dnr5s")
 shape = SubResource("RectangleShape2D_dnyie")
 
 [node name="DownRC" type="RayCast2D" parent="."]
-position = Vector2(-72, 64)
-target_position = Vector2(0, 64)
+position = Vector2(-64, 0)
+target_position = Vector2(0, 128)
