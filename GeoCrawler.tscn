@@ -19,3 +19,7 @@ shape = SubResource("RectangleShape2D_dnyie")
 [node name="DownRC" type="RayCast2D" parent="."]
 position = Vector2(-64, 0)
 target_position = Vector2(0, 128)
+
+[node name="FrontRC" type="RayCast2D" parent="."]
+position = Vector2(-64, 74)
+target_position = Vector2(-34, 0)
