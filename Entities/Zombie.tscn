@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://djwwpps3fxvtg" path="res://EntityComponents/GfxController.tscn" id="3_k0c3i"]
 [ext_resource type="Texture2D" uid="uid://0l05qi2ha4p5" path="res://hero.png" id="4_cy23t"]
 [ext_resource type="PackedScene" uid="uid://cqyj0bkuiosbs" path="res://EntityComponents/Walker.tscn" id="4_rakle"]
-[ext_resource type="PackedScene" uid="uid://dqho171mcdsmr" path="res://EntityComponents/FacingDirection.tscn" id="6_q6noj"]
+[ext_resource type="PackedScene" uid="uid://dqho171mcdsmr" path="res://EntityComponents/FaceHero.tscn" id="6_q6noj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n1i3v"]
 size = Vector2(80, 112)
@@ -48,4 +48,4 @@ texture = ExtResource("4_cy23t")
 
 [node name="Walker" parent="." instance=ExtResource("4_rakle")]
 
-[node name="FacingDirection" parent="." instance=ExtResource("6_q6noj")]
+[node name="FaceHero" parent="." instance=ExtResource("6_q6noj")]

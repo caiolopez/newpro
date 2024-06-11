@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://8q0hcl7qc4ve"]
+
+[ext_resource type="PackedScene" uid="uid://b2g8tlm31pxpm" path="res://EntityComponents/Flier.tscn" id="1_txxef"]
+[ext_resource type="Texture2D" uid="uid://0l05qi2ha4p5" path="res://hero.png" id="2_51ias"]
+[ext_resource type="PackedScene" uid="uid://djwwpps3fxvtg" path="res://EntityComponents/GfxController.tscn" id="2_vf478"]
+[ext_resource type="PackedScene" uid="uid://dqho171mcdsmr" path="res://EntityComponents/FaceHero.tscn" id="3_06nli"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u2scj"]
+size = Vector2(256, 256)
+
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["sticky"]]
+
+[node name="Flier" parent="." instance=ExtResource("1_txxef")]
+MIN_DIST_FROM_TARGET = 400.0
+
+[node name="GfxController" parent="." instance=ExtResource("2_vf478")]
+scale = Vector2(2, 2)
+
+[node name="Sprite2D" type="Sprite2D" parent="GfxController"]
+modulate = Color(0.523758, 0.989194, 0.831135, 1)
+scale = Vector2(16, 16)
+texture = ExtResource("2_51ias")
+
+[node name="Ghost" type="Area2D" parent="."]
+z_index = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_u2scj")
+
+[node name="FaceHero" parent="." instance=ExtResource("3_06nli")]
+face_hero = true

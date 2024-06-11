@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://1xi1vmc3x5ck"]
+[gd_scene load_steps=23 format=3 uid="uid://1xi1vmc3x5ck"]
 
 [ext_resource type="PackedScene" uid="uid://bp1e8lhbqp3me" path="res://Entities/Spike.tscn" id="1_cietj"]
 [ext_resource type="PackedScene" uid="uid://ctbx6yfgdfo4b" path="res://block.tscn" id="1_weaqc"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://4cnf50mcwol8" path="res://Entities/Zombie.tscn" id="2_e0l7r"]
 [ext_resource type="PackedScene" uid="uid://8q0hcl7qc4ve" path="res://Entities/Ghost.tscn" id="2_jmdf8"]
 [ext_resource type="PackedScene" uid="uid://ruri8ytnt6k" path="res://SwitchesAndDoors/Door.tscn" id="3_ia51n"]
-[ext_resource type="PackedScene" uid="uid://j6oxe1axyrgk" path="res://Bullet/bullet_manager.tscn" id="3_j1ahj"]
 [ext_resource type="PackedScene" uid="uid://c48ye6g4s5ufc" path="res://Camera/camera.tscn" id="3_o6dt5"]
 [ext_resource type="PackedScene" uid="uid://bu38boui2wxu" path="res://SwitchesAndDoors/SwitchGroupController.tscn" id="3_scov6"]
 [ext_resource type="PackedScene" uid="uid://bgty58ccnncxy" path="res://Camera/camera_locker.tscn" id="4_d4cnc"]
@@ -19,17 +18,16 @@
 [ext_resource type="PackedScene" uid="uid://boug41cw8taxh" path="res://ElevatorController/ElevatorButton.tscn" id="10_vsodl"]
 [ext_resource type="PackedScene" uid="uid://bwugl7674migl" path="res://Bullet/Effector.tscn" id="13_gsh8o"]
 [ext_resource type="PackedScene" uid="uid://ctacpi3nbykd3" path="res://ElevatorController/ElevatorController.tscn" id="15_pg64h"]
-[ext_resource type="PackedScene" uid="uid://bjhu38r2rxoda" path="res://GeoCrawler.tscn" id="20_8i48b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6aaj6"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fdfi1"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s1vnj"]
 size = Vector2(239.597, 155.882)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_83shw"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7kjmb"]
 size = Vector2(239.597, 173.941)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_slt74"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qpwju"]
 size = Vector2(239.597, 173.941)
 
 [node name="Level" type="Node"]
@@ -144,10 +142,6 @@ scale = Vector2(1, 12)
 position = Vector2(1432, -1344)
 scale = Vector2(-0.952147, 8.85451)
 
-[node name="Block14" parent="." instance=ExtResource("1_weaqc")]
-position = Vector2(3104, -504)
-scale = Vector2(-3, 3)
-
 [node name="ElevatorController" parent="." node_paths=PackedStringArray("elevator") instance=ExtResource("15_pg64h")]
 elevator = NodePath("../AnimatableBody2D/Elevator")
 
@@ -197,7 +191,7 @@ center_at_edge = true
 
 [node name="CollisionShape2D" parent="CameraLocker5" index="0"]
 position = Vector2(-493, 64)
-shape = SubResource("RectangleShape2D_fdfi1")
+shape = SubResource("RectangleShape2D_s1vnj")
 
 [node name="CameraLocker6" parent="." instance=ExtResource("4_d4cnc")]
 position = Vector2(3088, 472)
@@ -205,7 +199,7 @@ axes_to_lock = 1
 
 [node name="CollisionShape2D" parent="CameraLocker6" index="0"]
 position = Vector2(-493, 50.4704)
-shape = SubResource("RectangleShape2D_83shw")
+shape = SubResource("RectangleShape2D_7kjmb")
 debug_color = Color(1, 0, 0, 0.5)
 
 [node name="Marker2D" parent="CameraLocker6" index="1"]
@@ -217,13 +211,11 @@ axes_to_lock = 1
 
 [node name="CollisionShape2D" parent="CameraLocker7" index="0"]
 position = Vector2(-504, 46)
-shape = SubResource("RectangleShape2D_slt74")
+shape = SubResource("RectangleShape2D_qpwju")
 debug_color = Color(1, 0, 0, 0.5)
 
 [node name="Marker2D" parent="CameraLocker7" index="1"]
 position = Vector2(-138, -514)
-
-[node name="BulletManager" parent="." instance=ExtResource("3_j1ahj")]
 
 [node name="Water" parent="." instance=ExtResource("7_5uehg")]
 position = Vector2(-1203, 529)
@@ -276,9 +268,6 @@ scale = Vector2(0.952147, -6.73451)
 
 [node name="Spike3" parent="Effector" instance=ExtResource("1_cietj")]
 position = Vector2(344, -144)
-
-[node name="AnimatableBody2D2" parent="." instance=ExtResource("20_8i48b")]
-position = Vector2(3096, -760)
 
 [editable path="Zombie"]
 [editable path="Spike"]
