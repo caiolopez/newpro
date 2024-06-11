@@ -12,13 +12,14 @@ var acceleration: Vector2
 var is_underwater_ammo: bool
 var notifier: VisibleOnScreenNotifier2D
 
+
 func _ready():
 	notifier = $VisibleOnScreenNotifier2D
 	current_drag = AIR_DRAG
 	current_gravity = 0
 	await get_tree().process_frame # TODO: Come up with a way to prevent those bullets from being instantiated instead.
 	if not notifier.is_on_screen():
-		queue_free()
+		BulletManager.free_bullet(self)
 
 
 func _process(_delta):
@@ -34,12 +35,12 @@ func _physics_process(delta):
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
-	queue_free()
+	BulletManager.free_bullet(self)
 
 
 func _on_body_entered(body):
 	if body.is_in_group("kills_bullets"):
-		queue_free()
+		BulletManager.free_bullet(self)
 
 
 func _on_area_entered(area):
@@ -55,4 +56,4 @@ func _on_area_exited(area):
 
 
 func kill_bullet():
-	queue_free()
+	BulletManager.free_bullet(self)

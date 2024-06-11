@@ -4,3 +4,6 @@
 
 [node name="BulletManager" type="Node"]
 script = ExtResource("1_hgf6u")
+
+[node name="FreeBullets" type="Node" parent="."]
+process_mode = 4
