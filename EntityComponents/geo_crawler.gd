@@ -49,7 +49,6 @@ func update_direction():
 			diff = to_local($FrontRC.get_collision_point())\
 				- Vector2($FrontRC.position.y, -$FrontRC.position.x)\
 				* (1 if clockwise else -1)
-			print(to_local($FrontRC.get_collision_point()) )
 			move_local_y(diff.y)
 	
 	if face_hero_node:
