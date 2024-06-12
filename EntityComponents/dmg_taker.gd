@@ -32,15 +32,17 @@ func take_dmg(amount: int):
 
 
 func _on_area_entered(area):
+	if current_hp <= 0: return
 	if not area.is_in_group("dmg_dealers"): return
 	if is_foe == area.is_foe: return
 	
-	if area.is_in_group("bullets"):
+	if area.is_in_group("bullets") and area.visible:
 		if not area.is_fire and immune_to_regular_bullets:
 			return
-		if current_hp > 0: area.kill_bullet()
+		if current_hp > 0:
+			area.kill_bullet()
 
-	take_dmg(area.DMG_AMOUNT)
+		take_dmg(area.DMG_AMOUNT)
 
 
 func commit_status():

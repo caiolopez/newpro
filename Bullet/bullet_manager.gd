@@ -30,8 +30,8 @@ vel:  Vector2 = Vector2(200, 0), is_foe: bool = true, is_fire: bool = false, ang
 
 
 func free_bullet(bullet):
-	bullet.call_deferred("reparent", $FreeBullets)
 	bullet.visible = false
+	bullet.call_deferred("reparent", $FreeBullets)
 
 
 func free_all_bullets():
