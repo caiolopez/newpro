@@ -6,6 +6,7 @@
 resource_local_to_scene = true
 
 [node name="CheckpointTrigger" type="Area2D"]
+collision_mask = 8
 script = ExtResource("1_4e7d7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

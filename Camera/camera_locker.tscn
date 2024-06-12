@@ -2,15 +2,16 @@
 
 [ext_resource type="Script" path="res://Camera/camera_locker.gd" id="1_0mlkh"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_n48be"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ou7ji"]
 size = Vector2(239.597, 150.842)
 
 [node name="CameraLocker" type="Area2D"]
+collision_mask = 8
 script = ExtResource("1_0mlkh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-499, 63.421)
-shape = SubResource("RectangleShape2D_n48be")
+shape = SubResource("RectangleShape2D_ou7ji")
 debug_color = Color(0, 0, 1, 0.5)
 
 [node name="Marker2D" type="Marker2D" parent="."]
