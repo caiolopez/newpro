@@ -12,13 +12,12 @@ func on_process(delta: float):
 	or not signf(c.hero_real_vel.x) == c.hero_dir\
 	or not c.hero.state_machine.current_state.death_prone\
 	or c.last_hero_dir != c.hero_dir:
-		machine.set_state("StateFollowHero")
+		machine.set_state("CStateFollowHero")
+		c.step_camera_position(delta)
 		return
 	
 	c.step_catch_up(delta)
 	c.step_lookahead_y(delta)
 	c.current_lookahead.x = lerp(c.lookahead_amount.x * c.hero_dir, 0.0, la_timer.time_left)
-	c.step_target_acquisition(delta)
-	
-	c.position = c.lerp_vector2(c.position, c.target, c.current_lerp_speed, delta)
+	c.step_camera_position(delta)
 	c.step_shake(delta, c.position)

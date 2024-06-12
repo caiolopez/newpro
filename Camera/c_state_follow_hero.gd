@@ -12,12 +12,10 @@ func on_process(delta: float):
 	and abs(c.hero_real_vel.x) > c.lookahead_activation_vel.x\
 	and not c.hero.is_pushing_wall()\
 	and signf(c.hero_real_vel.x) == c.hero_dir:
-		machine.set_state("StateFollowLookaheadX")
+		machine.set_state("CStateFollowLookaheadX")
 	
 	c.step_catch_up(delta)
 	c.step_lookahead_y(delta)
 	c.current_lookahead.x = lerp(c.current_lookahead.x, 0.0, clampf(10 * delta, 0, 1))
-	c.step_target_acquisition(delta)
-	
-	c.position = c.lerp_vector2(c.position, c.target, c.current_lerp_speed, delta)
+	c.step_camera_position(delta)
 	c.step_shake(delta, c.position)

@@ -57,6 +57,11 @@ func unlock_camera(origin, _axes: Constants.Axes) -> void:
 		if locker.origin.get_instance_id() == origin.get_instance_id():
 			lockers.erase(locker)
 
+	if lockers.is_empty()\
+	and state_machine.current_state.name == "CStateFollowLookaheadX":
+		current_lookahead.x = 0
+		state_machine.set_state("CStateFollowHero")
+
 
 func lerp_vector2(v1: Vector2, v2: Vector2, speed: Vector2, delta: float) -> Vector2:
 	return Vector2(
@@ -110,8 +115,8 @@ func step_catch_up(delta: float):
 	else: current_lerp_speed.y = lerp(current_lerp_speed.y, abs(hero_real_vel.y) * lerp_speed.y, Utils.dt_lerp(catch_up_speed.y, delta))
 	last_hero_dir = hero_dir
 
-func step_target_acquisition(_delta: float):
-	target = hero.global_position + current_lookahead
+
+func step_camera_lockers():
 	for top_locker in lockers:
 		if top_locker.axes == Constants.Axes.x:
 			target.x = top_locker.lock_position.x 
@@ -122,6 +127,12 @@ func step_target_acquisition(_delta: float):
 		elif top_locker.axes == Constants.Axes.both:
 			target = top_locker.lock_position
 			current_lerp_speed = lerp_speed
+
+
+func step_camera_position(delta: float):
+	target = hero.global_position + current_lookahead
+	step_camera_lockers()
+	position = lerp_vector2(position, target, current_lerp_speed, delta)
 
 
 func debug_gizmos():

@@ -21,6 +21,7 @@ script = ExtResource("1_xlix3")
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("2_qvd5e")
+does_print = false
 
 [node name="WStateIdle" type="Node" parent="StateMachine"]
 script = ExtResource("3_xyrxx")
