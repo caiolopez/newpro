@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8jx6vwc801yq"]
+
+[ext_resource type="Script" path="res://ComboParser/combo_parser.gd" id="1_3m4re"]
+[ext_resource type="Script" path="res://ComboParser/combo.gd" id="2_kbqkx"]
+
+[node name="ComboParser" type="Node"]
+script = ExtResource("1_3m4re")
+
+[node name="Sonic" type="Node" parent="."]
+script = ExtResource("2_kbqkx")
+seq = Array[StringName]([&"up", &"duck", &"jump", &"jump"])
+
+[node name="Konami" type="Node" parent="."]
+script = ExtResource("2_kbqkx")
+seq = Array[StringName]([&"jump", &"duck", &"jump", &"jump"])
