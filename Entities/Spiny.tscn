@@ -1,0 +1,39 @@
+[gd_scene load_steps=9 format=3 uid="uid://cih4ag7u6dc0q"]
+
+[ext_resource type="PackedScene" path="res://EntityComponents/GfxController.tscn" id="1_7q5gd"]
+[ext_resource type="PackedScene" uid="uid://bjhu38r2rxoda" path="res://EntityComponents/GeoCrawler.tscn" id="2_if783"]
+[ext_resource type="Texture2D" uid="uid://0l05qi2ha4p5" path="res://hero.png" id="2_kpc61"]
+[ext_resource type="PackedScene" uid="uid://box2ff3vwcc7w" path="res://EntityComponents/DmgTaker.tscn" id="3_gxu04"]
+[ext_resource type="PackedScene" uid="uid://upm0adhb85ik" path="res://EntityComponents/DmgDealer.tscn" id="4_0g4fa"]
+[ext_resource type="PackedScene" uid="uid://dqho171mcdsmr" path="res://EntityComponents/FaceHero.tscn" id="6_wu316"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_48hga"]
+size = Vector2(128, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fwt2y"]
+size = Vector2(80, 80)
+
+[node name="Spiny" type="Node2D"]
+
+[node name="GfxController" parent="." instance=ExtResource("1_7q5gd")]
+
+[node name="Sprite2D" type="Sprite2D" parent="GfxController"]
+modulate = Color(0.740962, 0.706403, 0.218903, 1)
+scale = Vector2(16, 16)
+texture = ExtResource("2_kpc61")
+
+[node name="GeoCrawler" parent="." instance=ExtResource("2_if783")]
+clockwise = true
+
+[node name="DmgTaker" parent="." instance=ExtResource("3_gxu04")]
+HP_AMOUNT = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DmgTaker"]
+shape = SubResource("RectangleShape2D_48hga")
+
+[node name="DmgDealer" parent="." instance=ExtResource("4_0g4fa")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DmgDealer"]
+shape = SubResource("RectangleShape2D_fwt2y")
+
+[node name="FaceHero" parent="." instance=ExtResource("6_wu316")]
