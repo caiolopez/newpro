@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b2g8tlm31pxpm" path="res://EntityComponents/Flier.tscn" id="1_txxef"]
 [ext_resource type="Texture2D" uid="uid://0l05qi2ha4p5" path="res://hero.png" id="2_51ias"]
-[ext_resource type="PackedScene" uid="uid://djwwpps3fxvtg" path="res://EntityComponents/GfxController.tscn" id="2_vf478"]
+[ext_resource type="PackedScene" path="res://EntityComponents/GfxController.tscn" id="2_vf478"]
 [ext_resource type="PackedScene" uid="uid://dqho171mcdsmr" path="res://EntityComponents/FaceHero.tscn" id="3_06nli"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u2scj"]
