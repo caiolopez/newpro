@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjhu38r2rxoda"]
+
+[ext_resource type="Script" path="res://EntityComponents/geo_crawler.gd" id="1_g8skh"]
+
+[node name="GeoCrawler" type="Node2D"]
+z_index = 1
+script = ExtResource("1_g8skh")
+clockwise = false
+
+[node name="DownRC" type="RayCast2D" parent="."]
+position = Vector2(-64, 0)
+target_position = Vector2(0, 128)
+
+[node name="FrontRC" type="RayCast2D" parent="."]
+position = Vector2(-64, 74)
+target_position = Vector2(-34, 0)
+
+[node name="TimerStun" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true

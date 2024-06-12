@@ -15,8 +15,9 @@ func _ready():
 		dmg_taker.suffered.connect(on_suffered)
 
 
-func on_update_direction(dir: float):
+func on_update_direction(dir: float, rot: float = 0):
 	scale.x = abs(scale.x) * dir
+	rotation = rot
 
 
 func on_died():
