@@ -21,6 +21,7 @@ Constants="*res://constants.gd"
 Events="*res://events.tscn"
 Utils="*res://utils.gd"
 BulletManager="*res://Bullet/bullet_manager.tscn"
+ComboParser="*res://ComboParser/ComboParser.tscn"
 
 [debug]
 
@@ -30,9 +31,6 @@ gdscript/warnings/native_method_override=1
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/initial_position_type=0
-window/size/initial_position=Vector2i(1420, 580)
-window/size/always_on_top=true
 window/size/no_focus=true
 window/size/window_width_override=500
 window/size/window_height_override=500
@@ -44,6 +42,12 @@ project/assembly_name="New Pro"
 
 [input]
 
+up={
+"deadzone": 0.5,
+"events": [Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":11,"pressure":0.0,"pressed":true,"script":null)
+, Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":1,"axis_value":-1.0,"script":null)
+]
+}
 jump={
 "deadzone": 0.5,
 "events": [Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":0,"pressure":0.0,"pressed":true,"script":null)
