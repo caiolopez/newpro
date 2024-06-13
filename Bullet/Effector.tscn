@@ -5,6 +5,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n3532"]
 
 [node name="Effector" type="Area2D"]
+collision_mask = 8
 script = ExtResource("1_qeqhe")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

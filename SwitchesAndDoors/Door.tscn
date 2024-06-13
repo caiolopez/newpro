@@ -26,6 +26,7 @@ shape = SubResource("RectangleShape2D_mynya")
 texture = ExtResource("1_1o6yk")
 
 [node name="AntiCrushArea" type="Area2D" parent="."]
+collision_mask = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AntiCrushArea"]
 position = Vector2(0, 64)
