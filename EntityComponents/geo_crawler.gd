@@ -16,6 +16,7 @@ var currently_dead: bool = false
 
 
 func _ready():
+	global_position = parent.global_position
 	if dmg_taker != null:
 		dmg_taker.died.connect(on_died)
 		dmg_taker.suffered.connect(on_suffered)
@@ -70,7 +71,8 @@ func _physics_process(delta):
 	if not $TimerStun.is_stopped() or currently_dead:
 		return
 	update_direction()
-	parent.global_position += velocity * delta
+	global_position += velocity * delta
+	parent.global_position = global_position
 
 
 func on_died():
@@ -89,4 +91,7 @@ func on_resurrected():
 
 func reset_behavior():
 	currently_dead = false
-	parent.global_position = parent_og_global_pos
+	rotation = 0
+	velocity = Vector2(SPEED, 0.0)
+	face_hero_node.update.emit((1 if clockwise else -1), 0)
+	global_position = parent_og_global_pos

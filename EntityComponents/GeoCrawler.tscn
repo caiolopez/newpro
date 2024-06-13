@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://EntityComponents/geo_crawler.gd" id="1_g8skh"]
 
 [node name="GeoCrawler" type="Node2D"]
+top_level = true
 z_index = 1
 script = ExtResource("1_g8skh")
 clockwise = false

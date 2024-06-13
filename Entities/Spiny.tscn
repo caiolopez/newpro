@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://cih4ag7u6dc0q"]
 
-[ext_resource type="PackedScene" path="res://EntityComponents/GfxController.tscn" id="1_7q5gd"]
+[ext_resource type="PackedScene" uid="uid://djwwpps3fxvtg" path="res://EntityComponents/GfxController.tscn" id="1_7q5gd"]
 [ext_resource type="PackedScene" uid="uid://bjhu38r2rxoda" path="res://EntityComponents/GeoCrawler.tscn" id="2_if783"]
 [ext_resource type="Texture2D" uid="uid://0l05qi2ha4p5" path="res://hero.png" id="2_kpc61"]
 [ext_resource type="PackedScene" uid="uid://box2ff3vwcc7w" path="res://EntityComponents/DmgTaker.tscn" id="3_gxu04"]
