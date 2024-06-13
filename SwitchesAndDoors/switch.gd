@@ -36,8 +36,8 @@ func on_simult_window_timeout():
 
 
 func on_bullet_entered(area):
-	if not area.is_in_group("bullets"):
-		return
+	if not area.is_in_group("bullets"): return
+	if not area.visible: return
 
 	match current_state:
 		Constants.SwitchState.OFF:
