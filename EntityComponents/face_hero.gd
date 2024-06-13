@@ -13,7 +13,7 @@ func _ready():
 
 
 func _process(_delta):
-	if hero:
+	if hero and face_hero:
 		var hero_dir = sign(hero.global_position.x - parent.global_position.x)
 		if hero_dir != last_hero_dir:
 			last_hero_dir = hero_dir
