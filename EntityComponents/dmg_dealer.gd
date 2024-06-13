@@ -20,4 +20,4 @@ func on_died():
 func on_resurrected():
 	for child in get_children():
 		if child is CollisionShape2D:
-			child.set_deferred("enabled", true)
+			child.set_deferred("disabled", false)
