@@ -93,7 +93,6 @@ shape = SubResource("RectangleShape2D_361o4")
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("3_oqep4")
-does_print = false
 
 [node name="StateSpawning" type="Node" parent="StateMachine"]
 script = ExtResource("21_b6r6d")

@@ -56,6 +56,7 @@ var last_water_surface: float
 func _ready():
 	Events.hero_entered_water.connect(_on_hero_entered_water)
 	Events.hero_exited_water.connect(_on_hero_exited_water)
+	Events.hero_hit_teleporter.connect(_on_hero_hit_teleporter)
 
 	set_safe_margin(0.08)
 	state_machine.start()
@@ -189,10 +190,16 @@ func step_auto_snap():
 		is_auto_snapping = false
 
 
+func _on_hero_hit_teleporter(destination: Vector2):
+	if not state_machine.current_state.death_prone:
+		return
+	$StateMachine/StateTeleporting.destination = destination
+	state_machine.set_state("StateTeleporting")
+
+
 func update_current_checkpoint(new_checkpoint: Area2D):		
 	current_checkpoint = new_checkpoint
 
 
 func die():
 	state_machine.set_state("StateDeathSnapshot")
-	

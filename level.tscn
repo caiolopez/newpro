@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://1xi1vmc3x5ck"]
+[gd_scene load_steps=26 format=3 uid="uid://1xi1vmc3x5ck"]
 
 [ext_resource type="PackedScene" uid="uid://bp1e8lhbqp3me" path="res://Entities/Spike.tscn" id="1_cietj"]
 [ext_resource type="PackedScene" uid="uid://ctbx6yfgdfo4b" path="res://block.tscn" id="1_weaqc"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://1md1m8n6iq5x" path="res://Hero/hero.tscn" id="2_acvau"]
 [ext_resource type="PackedScene" uid="uid://4cnf50mcwol8" path="res://Entities/Zombie.tscn" id="2_e0l7r"]
 [ext_resource type="PackedScene" uid="uid://8q0hcl7qc4ve" path="res://Entities/Ghost.tscn" id="2_jmdf8"]
+[ext_resource type="PackedScene" uid="uid://csvdenv1i3dc3" path="res://Bullet/Teleporter.tscn" id="2_uiite"]
 [ext_resource type="PackedScene" uid="uid://ruri8ytnt6k" path="res://SwitchesAndDoors/Door.tscn" id="3_ia51n"]
 [ext_resource type="PackedScene" uid="uid://j6oxe1axyrgk" path="res://Bullet/bullet_manager.tscn" id="3_j1ahj"]
 [ext_resource type="PackedScene" uid="uid://c48ye6g4s5ufc" path="res://Camera/camera.tscn" id="3_o6dt5"]
@@ -23,20 +24,24 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6aaj6"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qih5q"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u7ivn"]
 size = Vector2(239.597, 155.882)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_viv56"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_enbe0"]
 size = Vector2(239.597, 173.941)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nfb0d"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v5y2l"]
 size = Vector2(239.597, 173.941)
 
 [node name="Level" type="Node"]
 
 [node name="Hero" parent="." instance=ExtResource("2_acvau")]
 unique_name_in_owner = true
-position = Vector2(-2128, -1360)
+position = Vector2(2392, -728)
+
+[node name="Teleporter" parent="." instance=ExtResource("2_uiite")]
+position = Vector2(2752, -824)
+scale = Vector2(-1, 1)
 
 [node name="Spiny" parent="." instance=ExtResource("2_5hkfu")]
 position = Vector2(3048, -664)
@@ -201,7 +206,7 @@ center_at_edge = true
 
 [node name="CollisionShape2D" parent="CameraLocker5" index="0"]
 position = Vector2(-493, 64)
-shape = SubResource("RectangleShape2D_qih5q")
+shape = SubResource("RectangleShape2D_u7ivn")
 
 [node name="CameraLocker6" parent="." instance=ExtResource("4_d4cnc")]
 position = Vector2(3088, 472)
@@ -209,7 +214,7 @@ axes_to_lock = 1
 
 [node name="CollisionShape2D" parent="CameraLocker6" index="0"]
 position = Vector2(-493, 50.4704)
-shape = SubResource("RectangleShape2D_viv56")
+shape = SubResource("RectangleShape2D_enbe0")
 debug_color = Color(1, 0, 0, 0.5)
 
 [node name="Marker2D" parent="CameraLocker6" index="1"]
@@ -221,7 +226,7 @@ axes_to_lock = 1
 
 [node name="CollisionShape2D" parent="CameraLocker7" index="0"]
 position = Vector2(-504, 46)
-shape = SubResource("RectangleShape2D_nfb0d")
+shape = SubResource("RectangleShape2D_v5y2l")
 debug_color = Color(1, 0, 0, 0.5)
 
 [node name="Marker2D" parent="CameraLocker7" index="1"]
