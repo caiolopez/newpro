@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://18w3trtj7qxx"]
+
+[ext_resource type="Script" path="res://Bullet/unique_collider.gd" id="1_jxxrj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_45ipq"]
+size = Vector2(428.5, 314.5)
+
+[node name="UniqueCollider" type="CollisionShape2D"]
+shape = SubResource("RectangleShape2D_45ipq")
+script = ExtResource("1_jxxrj")
