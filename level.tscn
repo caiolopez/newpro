@@ -24,13 +24,13 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6aaj6"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_u7ivn"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uhxe7"]
 size = Vector2(239.597, 155.882)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_enbe0"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t1ijm"]
 size = Vector2(239.597, 173.941)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_v5y2l"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f2f3o"]
 size = Vector2(239.597, 173.941)
 
 [node name="Level" type="Node"]
@@ -85,7 +85,6 @@ translation_time = 2.0
 pellet_amount = 0
 
 [node name="SwitchGroupController" parent="." instance=ExtResource("3_scov6")]
-req_simultaneous = true
 simult_window_duration = null
 
 [node name="Door" parent="SwitchGroupController" instance=ExtResource("3_ia51n")]
@@ -105,10 +104,12 @@ toggle = true
 [node name="Switch2" parent="SwitchGroupController" instance=ExtResource("5_fh6e8")]
 position = Vector2(1296, 296)
 rotation = 1.5708
+toggle = true
 
 [node name="Switch4" parent="SwitchGroupController" instance=ExtResource("5_fh6e8")]
 position = Vector2(1296, 144)
 rotation = 1.5708
+toggle = true
 
 [node name="Block7" parent="." instance=ExtResource("1_weaqc")]
 position = Vector2(-1778, 423)
@@ -206,7 +207,7 @@ center_at_edge = true
 
 [node name="CollisionShape2D" parent="CameraLocker5" index="0"]
 position = Vector2(-493, 64)
-shape = SubResource("RectangleShape2D_u7ivn")
+shape = SubResource("RectangleShape2D_uhxe7")
 
 [node name="CameraLocker6" parent="." instance=ExtResource("4_d4cnc")]
 position = Vector2(3088, 472)
@@ -214,7 +215,7 @@ axes_to_lock = 1
 
 [node name="CollisionShape2D" parent="CameraLocker6" index="0"]
 position = Vector2(-493, 50.4704)
-shape = SubResource("RectangleShape2D_enbe0")
+shape = SubResource("RectangleShape2D_t1ijm")
 debug_color = Color(1, 0, 0, 0.5)
 
 [node name="Marker2D" parent="CameraLocker6" index="1"]
@@ -226,7 +227,7 @@ axes_to_lock = 1
 
 [node name="CollisionShape2D" parent="CameraLocker7" index="0"]
 position = Vector2(-504, 46)
-shape = SubResource("RectangleShape2D_v5y2l")
+shape = SubResource("RectangleShape2D_f2f3o")
 debug_color = Color(1, 0, 0, 0.5)
 
 [node name="Marker2D" parent="CameraLocker7" index="1"]
@@ -271,7 +272,6 @@ metadata/_edit_lock_ = true
 
 [node name="Effector" parent="." instance=ExtResource("13_gsh8o")]
 position = Vector2(-184, 512)
-effect = 3
 
 [node name="Sprite2D2" type="Sprite2D" parent="Effector"]
 position = Vector2(24, -232)

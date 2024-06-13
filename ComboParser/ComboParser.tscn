@@ -6,7 +6,7 @@
 [node name="ComboParser" type="Node"]
 script = ExtResource("1_3m4re")
 
-[node name="die" type="Node" parent="."]
+[node name="Die" type="Node" parent="."]
 script = ExtResource("2_kbqkx")
 seq = Array[StringName]([&"up", &"duck", &"move_left", &"move_right", &"up", &"duck", &"move_left", &"move_right", &"jump"])
 
