@@ -57,6 +57,7 @@ func _ready():
 	Events.hero_entered_water.connect(_on_hero_entered_water)
 	Events.hero_exited_water.connect(_on_hero_exited_water)
 	Events.hero_hit_teleporter.connect(_on_hero_hit_teleporter)
+	ComboParser.combo_performed.connect(func(die): die())
 
 	set_safe_margin(0.08)
 	state_machine.start()
