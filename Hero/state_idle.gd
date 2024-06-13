@@ -33,7 +33,8 @@ func on_process(_delta: float):
 		machine.set_state("StateJumping")
 		return
 
-	if hero.velocity.x != 0:
+	if hero.velocity.x != 0\
+	and hero.is_on_floor():
 		machine.set_state("StateWalking")
 		return
 
