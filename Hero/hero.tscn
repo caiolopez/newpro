@@ -71,8 +71,9 @@ target_position = Vector2(120, 0)
 script = ExtResource("3_6dncg")
 
 [node name="InnardsRC" type="RayCast2D" parent="."]
-position = Vector2(-8, 8)
-target_position = Vector2(16, -16)
+position = Vector2(16, -16)
+target_position = Vector2(-32, 32)
+hit_from_inside = true
 script = ExtResource("3_6dncg")
 
 [node name="Shooter" parent="." instance=ExtResource("4_1v5xt")]
