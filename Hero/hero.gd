@@ -39,7 +39,7 @@ var current_checkpoint: Area2D
 var current_blunder_jump_angle: float
 var was_on_wall: bool ## For variable change caculation
 var was_on_floor: bool ## For variable change caculation
-var was_pushing_wall: bool  ## For variable change caculation
+var was_pushing_wall: bool ## For variable change caculation
 var was_on_water: bool ## For variable change caculation
 var was_auto_snapping: bool
 var on_wall_value_just_changed: bool
@@ -53,6 +53,7 @@ var is_just_on_water: bool
 var current_water: Water
 var last_water_surface: float
 
+
 func _ready():
 	Events.hero_entered_water.connect(_on_hero_entered_water)
 	Events.hero_exited_water.connect(_on_hero_exited_water)
@@ -61,6 +62,7 @@ func _ready():
 
 	set_safe_margin(0.08)
 	state_machine.start()
+
 
 func _process(_delta):
 	#if Input.is_action_just_pressed("shoot"): print("SHOOT!")

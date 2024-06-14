@@ -1,14 +1,6 @@
 extends Node
 
 
-func make_collision_shape_unique(col: CollisionShape2D):
-	var original_shape = col.shape
-	if original_shape == null: return
-	var cloned_shape = original_shape.duplicate()
-	col.shape = cloned_shape
-	print("Generated unique shape for ", col)
-
-
 func dt_lerp(speed: float, delta: float) -> float:
 	if delta < 0 or speed < 0:
 		push_error("Delta and ratio should be non-negative")
@@ -51,7 +43,7 @@ func aprox_equal_vector2(a: Vector2, b: Vector2, tolerance: float = 1.0) -> bool
 	return x and y
 
 
-func subtract_vector2(a: Vector2, b: Vector2, ) -> Vector2:
+func subtract_vector2(a: Vector2, b: Vector2) -> Vector2:
 	return Vector2(a.x - b.x, a.y - b.y)
 
 

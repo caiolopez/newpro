@@ -24,14 +24,14 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6aaj6"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uhxe7"]
-size = Vector2(239.597, 155.882)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q3vym"]
+size = Vector2(205, 226.579)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_t1ijm"]
-size = Vector2(239.597, 173.941)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u1jjf"]
+size = Vector2(157, 218.579)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_f2f3o"]
-size = Vector2(239.597, 173.941)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ewbnf"]
+size = Vector2(223, 153.421)
 
 [node name="Level" type="Node"]
 
@@ -163,6 +163,7 @@ elevator = NodePath("../AnimatableBody2D/Elevator")
 
 [node name="ElevatorButton" parent="ElevatorController" instance=ExtResource("10_vsodl")]
 position = Vector2(352, 504)
+type = 0
 
 [node name="ElevatorButton2" parent="ElevatorController" instance=ExtResource("10_vsodl")]
 position = Vector2(-32, 504)
@@ -205,33 +206,36 @@ catch_up_speed = Vector2(0.01, 0.01)
 position = Vector2(2632, 456)
 center_at_edge = true
 
-[node name="CollisionShape2D" parent="CameraLocker5" index="0"]
-position = Vector2(-493, 64)
-shape = SubResource("RectangleShape2D_uhxe7")
+[node name="UniqueCollider" parent="CameraLocker5" index="0"]
+position = Vector2(0, 0)
+shape = SubResource("RectangleShape2D_q3vym")
+
+[node name="Marker2D" parent="CameraLocker5" index="1"]
+position = Vector2(-40, 72)
 
 [node name="CameraLocker6" parent="." instance=ExtResource("4_d4cnc")]
 position = Vector2(3088, 472)
 axes_to_lock = 1
 
-[node name="CollisionShape2D" parent="CameraLocker6" index="0"]
-position = Vector2(-493, 50.4704)
-shape = SubResource("RectangleShape2D_t1ijm")
+[node name="UniqueCollider" parent="CameraLocker6" index="0"]
+position = Vector2(8, 0)
+shape = SubResource("RectangleShape2D_u1jjf")
 debug_color = Color(1, 0, 0, 0.5)
 
 [node name="Marker2D" parent="CameraLocker6" index="1"]
-position = Vector2(-138, -514)
+position = Vector2(0, -232)
 
 [node name="CameraLocker7" parent="." instance=ExtResource("4_d4cnc")]
-position = Vector2(3600, 600)
+position = Vector2(3624, 600)
 axes_to_lock = 1
 
-[node name="CollisionShape2D" parent="CameraLocker7" index="0"]
-position = Vector2(-504, 46)
-shape = SubResource("RectangleShape2D_f2f3o")
+[node name="UniqueCollider" parent="CameraLocker7" index="0"]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_ewbnf")
 debug_color = Color(1, 0, 0, 0.5)
 
 [node name="Marker2D" parent="CameraLocker7" index="1"]
-position = Vector2(-138, -514)
+position = Vector2(-8, 328)
 
 [node name="BulletManager" parent="." instance=ExtResource("3_j1ahj")]
 

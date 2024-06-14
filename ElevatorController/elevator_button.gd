@@ -11,7 +11,7 @@ func _ready():
 	get_parent().elevator.tween_ended.connect(set_inactive)
 
 func on_area_entered(area):
-	if not area.is_in_group("bullets"):
+	if not area is Bullet:
 		return
 	if not is_active:
 		if type == button_type.ORIGIN:

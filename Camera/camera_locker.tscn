@@ -1,21 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://bgty58ccnncxy"]
+[gd_scene load_steps=4 format=3 uid="uid://bgty58ccnncxy"]
 
 [ext_resource type="Script" path="res://Camera/camera_locker.gd" id="1_0mlkh"]
+[ext_resource type="Script" path="res://Bullet/unique_collider.gd" id="2_pi0ny"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_waabx"]
-size = Vector2(239.597, 150.842)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_31n4h"]
 
 [node name="CameraLocker" type="Area2D"]
 collision_mask = 8
 script = ExtResource("1_0mlkh")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="UniqueCollider" type="CollisionShape2D" parent="."]
 position = Vector2(-499, 63.421)
-shape = SubResource("RectangleShape2D_waabx")
+shape = SubResource("RectangleShape2D_31n4h")
 debug_color = Color(0, 0, 1, 0.5)
+script = ExtResource("2_pi0ny")
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(-515, 90)
 gizmo_extents = 59.6
-
-[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
