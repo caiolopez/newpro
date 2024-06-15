@@ -1,4 +1,4 @@
-class_name Flier extends Area2D
+class_name Flier extends Node2D
 
 @export var SPEED: float = 800
 @export var ACCEL: float = 1000
@@ -13,6 +13,7 @@ class_name Flier extends Area2D
 var velocity: Vector2 = Vector2.ZERO
 var currently_dead: bool = false
 var parent_has_move_and_slide: bool = false
+var inertia_only: bool = false ## If true, parent entity will stop adding velocity towards target entity, and will only be subjected to deceleration.
 
 
 func _ready():
@@ -63,7 +64,8 @@ func step_lateral_mov(delta: float):
 			move = true
 			move_dir = -target_distance.normalized()
 
-	if move:
+	if move\
+	and not inertia_only:
 		velocity += ACCEL * move_dir * delta
 	else:
 		if velocity.length() > 0:

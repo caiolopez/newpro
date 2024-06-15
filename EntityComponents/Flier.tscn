@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" path="res://EntityComponents/flier.gd" id="1_ptmb1"]
 
-[node name="Flier" type="Area2D"]
+[node name="Flier" type="Node2D"]
 script = ExtResource("1_ptmb1")
