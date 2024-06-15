@@ -15,3 +15,6 @@ signal hero_hit_teleporter(teleporter: Teleporter)
 
 signal reached_checkpoint()
 signal respawned_at_checkpoint()
+
+signal boss_trigger_entered(boss: Node)
+

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://1xi1vmc3x5ck"]
+[gd_scene load_steps=30 format=3 uid="uid://1xi1vmc3x5ck"]
 
 [ext_resource type="PackedScene" uid="uid://bp1e8lhbqp3me" path="res://Entities/Spike.tscn" id="1_cietj"]
 [ext_resource type="PackedScene" uid="uid://ctbx6yfgdfo4b" path="res://block.tscn" id="1_weaqc"]
@@ -21,23 +21,31 @@
 [ext_resource type="PackedScene" uid="uid://boug41cw8taxh" path="res://ElevatorController/ElevatorButton.tscn" id="10_vsodl"]
 [ext_resource type="PackedScene" uid="uid://bwugl7674migl" path="res://Bullet/Effector.tscn" id="13_gsh8o"]
 [ext_resource type="PackedScene" uid="uid://ctacpi3nbykd3" path="res://ElevatorController/ElevatorController.tscn" id="15_pg64h"]
+[ext_resource type="PackedScene" uid="uid://1hdjstkw22a7" path="res://Boss/Boss1.tscn" id="22_nobjt"]
+[ext_resource type="PackedScene" uid="uid://d2vfkstnke1s4" path="res://Boss/boss_trigger.tscn" id="23_xmp4c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6aaj6"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_q3vym"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_grxde"]
 size = Vector2(205, 226.579)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_u1jjf"]
-size = Vector2(157, 218.579)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gamc2"]
+size = Vector2(2608, 1136)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ewbnf"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hde5s"]
 size = Vector2(223, 153.421)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oetd5"]
+size = Vector2(222.25, 181.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f2vdt"]
+size = Vector2(378, 464.5)
 
 [node name="Level" type="Node"]
 
 [node name="Hero" parent="." instance=ExtResource("2_acvau")]
 unique_name_in_owner = true
-position = Vector2(2392, -728)
+position = Vector2(1456, -2192)
 
 [node name="Teleporter" parent="." instance=ExtResource("2_uiite")]
 position = Vector2(2752, -824)
@@ -59,7 +67,7 @@ climbs_walls = true
 jumps_to_grab_target = true
 
 [node name="Spike" parent="." instance=ExtResource("1_cietj")]
-position = Vector2(1840, -512)
+position = Vector2(1832, -520)
 
 [node name="CycleMover" parent="Spike" index="2"]
 rotation_angle = 360.0
@@ -84,8 +92,10 @@ translation_time = 2.0
 [node name="Shooter" parent="Spike2" index="3"]
 pellet_amount = 0
 
+[node name="OpenDoorsIfDead" parent="Spike2" index="7" node_paths=PackedStringArray("doors_to_open")]
+doors_to_open = [NodePath("../../SwitchGroupController/Door")]
+
 [node name="SwitchGroupController" parent="." instance=ExtResource("3_scov6")]
-simult_window_duration = null
 
 [node name="Door" parent="SwitchGroupController" instance=ExtResource("3_ia51n")]
 position = Vector2(768, 496)
@@ -138,6 +148,14 @@ scale = Vector2(14.4838, 0.87853)
 position = Vector2(1840, -357)
 scale = Vector2(14.4838, 0.87853)
 
+[node name="Block15" parent="." instance=ExtResource("1_weaqc")]
+position = Vector2(2896, -1968)
+scale = Vector2(24, 1)
+
+[node name="Block18" parent="." instance=ExtResource("1_weaqc")]
+position = Vector2(2896, -3216)
+scale = Vector2(24, 1)
+
 [node name="Block13" parent="." instance=ExtResource("1_weaqc")]
 position = Vector2(7072, 1680)
 scale = Vector2(14.4838, 0.87853)
@@ -152,6 +170,14 @@ scale = Vector2(1, 12)
 
 [node name="Block10" parent="." instance=ExtResource("1_weaqc")]
 position = Vector2(1432, -1344)
+scale = Vector2(-0.952147, 8.85451)
+
+[node name="Block16" parent="." instance=ExtResource("1_weaqc")]
+position = Vector2(4336, -2592)
+scale = Vector2(-0.952147, 8.85451)
+
+[node name="Block17" parent="." instance=ExtResource("1_weaqc")]
+position = Vector2(1688, -2840)
 scale = Vector2(-0.952147, 8.85451)
 
 [node name="Block14" parent="." instance=ExtResource("1_weaqc")]
@@ -208,22 +234,22 @@ center_at_edge = true
 
 [node name="UniqueCollider" parent="CameraLocker5" index="0"]
 position = Vector2(0, 0)
-shape = SubResource("RectangleShape2D_q3vym")
+shape = SubResource("RectangleShape2D_grxde")
 
 [node name="Marker2D" parent="CameraLocker5" index="1"]
 position = Vector2(-40, 72)
 
 [node name="CameraLocker6" parent="." instance=ExtResource("4_d4cnc")]
-position = Vector2(3088, 472)
-axes_to_lock = 1
+position = Vector2(2960, -2616)
+axes_to_lock = 2
 
 [node name="UniqueCollider" parent="CameraLocker6" index="0"]
-position = Vector2(8, 0)
-shape = SubResource("RectangleShape2D_u1jjf")
-debug_color = Color(1, 0, 0, 0.5)
+position = Vector2(40, 40)
+shape = SubResource("RectangleShape2D_gamc2")
+debug_color = Color(1, 0, 1, 0.5)
 
 [node name="Marker2D" parent="CameraLocker6" index="1"]
-position = Vector2(0, -232)
+position = Vector2(40, 48)
 
 [node name="CameraLocker7" parent="." instance=ExtResource("4_d4cnc")]
 position = Vector2(3624, 600)
@@ -231,7 +257,7 @@ axes_to_lock = 1
 
 [node name="UniqueCollider" parent="CameraLocker7" index="0"]
 position = Vector2(0, -8)
-shape = SubResource("RectangleShape2D_ewbnf")
+shape = SubResource("RectangleShape2D_hde5s")
 debug_color = Color(1, 0, 0, 0.5)
 
 [node name="Marker2D" parent="CameraLocker7" index="1"]
@@ -277,6 +303,10 @@ metadata/_edit_lock_ = true
 [node name="Effector" parent="." instance=ExtResource("13_gsh8o")]
 position = Vector2(-184, 512)
 
+[node name="UniqueCollider" parent="Effector" index="0"]
+position = Vector2(0, -32)
+shape = SubResource("RectangleShape2D_oetd5")
+
 [node name="Sprite2D2" type="Sprite2D" parent="Effector"]
 position = Vector2(24, -232)
 scale = Vector2(0.12528, -0.227075)
@@ -290,9 +320,27 @@ scale = Vector2(0.952147, -6.73451)
 [node name="Spike3" parent="Effector" instance=ExtResource("1_cietj")]
 position = Vector2(344, -144)
 
+[node name="Boss1" parent="." instance=ExtResource("22_nobjt")]
+position = Vector2(2968, -3160)
+
+[node name="Marker2D" parent="Boss1" index="4"]
+position = Vector2(64, 592)
+
+[node name="BossTrigger" parent="." node_paths=PackedStringArray("boss") instance=ExtResource("23_xmp4c")]
+position = Vector2(2920, -2256)
+collision_mask = 8
+boss = NodePath("../Boss1")
+
+[node name="UniqueCollider" parent="BossTrigger" index="0"]
+position = Vector2(8, -16)
+shape = SubResource("RectangleShape2D_f2vdt")
+
 [editable path="Zombie"]
 [editable path="Spike"]
 [editable path="Spike2"]
 [editable path="CameraLocker5"]
 [editable path="CameraLocker6"]
 [editable path="CameraLocker7"]
+[editable path="Effector"]
+[editable path="Boss1"]
+[editable path="BossTrigger"]
