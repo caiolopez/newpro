@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmt5sjek4aha4"]
+
+[ext_resource type="Script" path="res://EntityComponents/open_doors_if_dead.gd" id="1_1yqsn"]
+
+[node name="OpenDoorsIfDead" type="Node2D"]
+script = ExtResource("1_1yqsn")
