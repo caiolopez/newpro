@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bp1e8lhbqp3me"]
+[gd_scene load_steps=11 format=3 uid="uid://bp1e8lhbqp3me"]
 
 [ext_resource type="PackedScene" uid="uid://upm0adhb85ik" path="res://EntityComponents/DmgDealer.tscn" id="1_ns2lo"]
 [ext_resource type="PackedScene" uid="uid://box2ff3vwcc7w" path="res://EntityComponents/DmgTaker.tscn" id="1_yjiw5"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cupxj14lcnr75" path="res://EntityComponents/Shooter.tscn" id="5_wvj3t"]
 [ext_resource type="PackedScene" uid="uid://djwwpps3fxvtg" path="res://EntityComponents/GfxController.tscn" id="6_3qug5"]
 [ext_resource type="PackedScene" uid="uid://v4xmqsgktgpw" path="res://EntityComponents/FriendOrFoe.tscn" id="7_onfop"]
+[ext_resource type="PackedScene" uid="uid://bmt5sjek4aha4" path="res://EntityComponents/OpenDoorsIfDead.tscn" id="8_1vvap"]
 [ext_resource type="Texture2D" uid="uid://d2gdo5bbgykv2" path="res://icon.svg" id="8_mniiy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v2koo"]
@@ -44,3 +45,6 @@ rect = Rect2(-64, -64, 128, 128)
 
 [node name="Sprite2D" type="Sprite2D" parent="GfxController"]
 texture = ExtResource("8_mniiy")
+
+[node name="OpenDoorsIfDead" parent="." instance=ExtResource("8_1vvap")]
+position = Vector2(4330.41, -2569.76)

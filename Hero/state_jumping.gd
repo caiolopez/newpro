@@ -49,7 +49,6 @@ func on_physics_process(delta: float):
 	if  hero.headbutt_assist.is_colliding()\
 	and hero.velocity.y < hero.HEADBUTT_THRESHOLD_VEL:
 		hero.global_position.x = hero.headbutt_assist.get_collision_point().x + (%HeroCollider.shape.get_rect().size.x/2 + 1) * hero.facing_direction
-		print(abs(hero.velocity.y))
 	
 	hero.step_grav(delta)
 	hero.step_lateral_mov(delta)
