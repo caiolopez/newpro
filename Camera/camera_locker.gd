@@ -31,7 +31,7 @@ func _ready():
 
 
 func on_hero_entered_locker(body: Node2D):
-	if not body.is_in_group("heroes"): return
+	if not body is Hero: return
 	var lock_position: Vector2
 	if center_at_edge:
 		lock_position = body.global_position
@@ -42,7 +42,7 @@ func on_hero_entered_locker(body: Node2D):
 
 
 func on_hero_exited_locker(body: Node2D):
-	if not body.is_in_group("heroes"): return
+	if not body is Hero: return
 	Events.hero_exited_camera_locker.emit(self, axes_to_lock)
 
 

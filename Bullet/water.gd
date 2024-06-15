@@ -11,7 +11,7 @@ func get_surface_global_position() -> float:
 
 
 func _on_body_entered(body):
-	if body.is_in_group("heroes"):
+	if body is Hero:
 		Events.hero_entered_water.emit(self, get_surface_global_position())
 	elif body.has_node("Walker"):
 		body.get_node("Walker").is_in_water = true
@@ -19,7 +19,7 @@ func _on_body_entered(body):
 
 
 func _on_body_exited(body):
-	if body.is_in_group("heroes"):
+	if body is Hero:
 		Events.hero_exited_water.emit(self)
 	elif body.has_node("Walker"):
 		body.get_node("Walker").is_in_water = false

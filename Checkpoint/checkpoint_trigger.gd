@@ -10,7 +10,7 @@ func _ready():
 
 
 func _on_hero_entered(body):
-	if not body.is_in_group("heroes"): return
+	if not body is Hero: return
 	if body.current_checkpoint == self: return
 	if recall_hero_direction: direction = body.facing_direction
 	body.update_current_checkpoint(self)

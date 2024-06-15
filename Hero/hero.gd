@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name Hero extends CharacterBody2D
 
 @export var can_dive: bool = false ## Whether the hero has the ability to dive into water instead of floating.
 @export var shoots_fire: bool = false ## Whether the hero has the ability to shoot incendiary bullets, required to damage enemies that are immune to regular bullets.
