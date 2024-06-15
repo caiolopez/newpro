@@ -6,8 +6,8 @@ class_name Door extends AnimatableBody2D
 @onready var closed_pos: Vector2 = position
 var state_machine: StateMachine
 var door_tween: Tween
-signal open_d()
-signal close_d()
+signal should_open()
+signal should_close()
 signal stopped_moving_at_origin()
 signal stopped_moving_at_offset()
 
@@ -16,6 +16,14 @@ func _ready():
 	if auto_close_time > 0:
 		$StateMachine/TimerAutoClose.set_wait_time(auto_close_time)
 	state_machine.start()
+
+
+func open():
+	should_open.emit()
+
+
+func close():
+	should_close.emit()
 
 
 func insta_open():

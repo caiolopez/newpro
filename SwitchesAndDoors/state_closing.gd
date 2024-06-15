@@ -8,13 +8,13 @@ func on_enter():
 	else:
 		door.tween_door_to_origin()
 	door.stopped_moving_at_origin.connect(on_stopped_moving)
-	door.open_d.connect(on_open_door)
+	door.should_open.connect(on_open_door)
 	$"../../AntiCrushArea".body_entered.connect(on_body_entered_doorway)
 
 
 func on_exit():
 	door.stopped_moving_at_origin.disconnect(on_stopped_moving)
-	door.open_d.disconnect(on_open_door)
+	door.should_open.disconnect(on_open_door)
 	$"../../AntiCrushArea".body_entered.disconnect(on_body_entered_doorway)
 
 

@@ -43,12 +43,12 @@ func reset_status():
 
 func open_rel_doors():
 	for door in related_doors:
-		door.open_d.emit()
+		door.open()
 
 
 func close_rel_doors():
 	for door in related_doors:
-		door.close_d.emit()
+		door.close()
 
 
 func turn_on_rel_switches():
