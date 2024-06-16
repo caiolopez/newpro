@@ -68,3 +68,11 @@ func paint_white(active: bool, target: Node2D, duration: float = 0.0):
 
 func is_pushing_sides() -> bool:
 	return Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right")
+
+
+func get_hero_glpos() -> Vector2:
+	if not get_tree().get_nodes_in_group("heroes").is_empty():
+		return get_tree().get_nodes_in_group("heroes")[0].global_position
+	else:
+		push_error("Hero not found in Utils.get_hero_glpos(). global_position defaulted to Vector2.ZERO")
+		return Vector2.ZERO

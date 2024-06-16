@@ -8,5 +8,4 @@ func _ready():
 			return
 		if boss and boss != null:
 			Events.boss_trigger_entered.emit(boss)
-			print("BOSS TRIGGER")
 		)

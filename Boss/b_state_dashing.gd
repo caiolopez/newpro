@@ -7,10 +7,10 @@ func on_enter():
 	tween.tween_property(
 		boss,
 		"global_position",
-		center,
+		Utils.get_hero_glpos(),
 		duration).set_trans(Tween.TransitionType.TRANS_QUAD)
 	tween.tween_callback(func():
-		machine.set_state("BStateChasing")
+		machine.set_state("BStatePostDash")
 		tween.kill()
 		)
 
@@ -24,4 +24,4 @@ func on_physics_process(_delta: float):
 
 
 func on_exit():
-	pass
+	Events.camera_shake.emit()

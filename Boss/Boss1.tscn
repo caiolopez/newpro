@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://1hdjstkw22a7"]
+[gd_scene load_steps=14 format=3 uid="uid://1hdjstkw22a7"]
 
 [ext_resource type="PackedScene" uid="uid://b2g8tlm31pxpm" path="res://EntityComponents/Flier.tscn" id="1_3eidg"]
 [ext_resource type="Script" path="res://state_machine.gd" id="1_hm4cg"]
@@ -8,6 +8,10 @@
 [ext_resource type="Script" path="res://Boss/b_state_chasing.gd" id="5_kiowl"]
 [ext_resource type="PackedScene" uid="uid://box2ff3vwcc7w" path="res://EntityComponents/DmgTaker.tscn" id="7_fd85g"]
 [ext_resource type="Script" path="res://Boss/b_state_pre_dash.gd" id="8_rdyyk"]
+[ext_resource type="Script" path="res://Boss/b_state_dashing.gd" id="9_4tlv1"]
+[ext_resource type="Script" path="res://Boss/b_state_post_dash.gd" id="10_iatjr"]
+[ext_resource type="Script" path="res://Boss/b_state_centering.gd" id="11_xn0th"]
+[ext_resource type="Script" path="res://Boss/b_state_spin_shooting.gd" id="12_lnayk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x2pkn"]
 
@@ -48,15 +52,19 @@ script = ExtResource("5_kiowl")
 [node name="BStatePreDash" type="Node" parent="StateMachine"]
 script = ExtResource("8_rdyyk")
 
-[node name="BStateSpinShooting" type="Node" parent="StateMachine"]
-
-[node name="BStateIdle" type="Node" parent="StateMachine"]
-
 [node name="BStateDashing" type="Node" parent="StateMachine"]
+script = ExtResource("9_4tlv1")
 
 [node name="BStatePostDash" type="Node" parent="StateMachine"]
+script = ExtResource("10_iatjr")
 
 [node name="BStateCentering" type="Node" parent="StateMachine"]
+script = ExtResource("11_xn0th")
+
+[node name="BStateSpinShooting" type="Node" parent="StateMachine"]
+script = ExtResource("12_lnayk")
+
+[node name="BStateIdle" type="Node" parent="StateMachine"]
 
 [node name="BStateDying" type="Node" parent="StateMachine"]
 

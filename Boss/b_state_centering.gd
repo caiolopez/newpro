@@ -10,7 +10,7 @@ func on_enter():
 		center,
 		duration).set_trans(Tween.TransitionType.TRANS_QUAD)
 	tween.tween_callback(func():
-		machine.set_state("BStateChasing")
+		machine.set_state("BStateSpinShooting")
 		tween.kill()
 		)
 

@@ -26,19 +26,19 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6aaj6"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_grxde"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ujb0"]
 size = Vector2(205, 226.579)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gamc2"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ycunt"]
 size = Vector2(2608, 1136)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hde5s"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ikmas"]
 size = Vector2(223, 153.421)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_oetd5"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cdnvf"]
 size = Vector2(222.25, 181.25)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_f2vdt"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5pqu7"]
 size = Vector2(378, 464.5)
 
 [node name="Level" type="Node"]
@@ -234,7 +234,7 @@ center_at_edge = true
 
 [node name="UniqueCollider" parent="CameraLocker5" index="0"]
 position = Vector2(0, 0)
-shape = SubResource("RectangleShape2D_grxde")
+shape = SubResource("RectangleShape2D_6ujb0")
 
 [node name="Marker2D" parent="CameraLocker5" index="1"]
 position = Vector2(-40, 72)
@@ -245,7 +245,7 @@ axes_to_lock = 2
 
 [node name="UniqueCollider" parent="CameraLocker6" index="0"]
 position = Vector2(40, 40)
-shape = SubResource("RectangleShape2D_gamc2")
+shape = SubResource("RectangleShape2D_ycunt")
 debug_color = Color(1, 0, 1, 0.5)
 
 [node name="Marker2D" parent="CameraLocker6" index="1"]
@@ -257,7 +257,7 @@ axes_to_lock = 1
 
 [node name="UniqueCollider" parent="CameraLocker7" index="0"]
 position = Vector2(0, -8)
-shape = SubResource("RectangleShape2D_hde5s")
+shape = SubResource("RectangleShape2D_ikmas")
 debug_color = Color(1, 0, 0, 0.5)
 
 [node name="Marker2D" parent="CameraLocker7" index="1"]
@@ -305,7 +305,7 @@ position = Vector2(-184, 512)
 
 [node name="UniqueCollider" parent="Effector" index="0"]
 position = Vector2(0, -32)
-shape = SubResource("RectangleShape2D_oetd5")
+shape = SubResource("RectangleShape2D_cdnvf")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Effector"]
 position = Vector2(24, -232)
@@ -333,7 +333,7 @@ boss = NodePath("../Boss1")
 
 [node name="UniqueCollider" parent="BossTrigger" index="0"]
 position = Vector2(8, -16)
-shape = SubResource("RectangleShape2D_f2vdt")
+shape = SubResource("RectangleShape2D_5pqu7")
 
 [editable path="Zombie"]
 [editable path="Spike"]

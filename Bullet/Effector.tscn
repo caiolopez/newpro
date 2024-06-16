@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Bullet/effector.gd" id="1_qeqhe"]
 [ext_resource type="PackedScene" uid="uid://di37dd8piukfd" path="res://Bullet/UniqueCollider.tscn" id="2_rdq4o"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_iqij1"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r8g8x"]
 size = Vector2(428.5, 314.5)
 
 [node name="Effector" type="Area2D"]
@@ -11,4 +11,4 @@ collision_mask = 8
 script = ExtResource("1_qeqhe")
 
 [node name="UniqueCollider" parent="." instance=ExtResource("2_rdq4o")]
-shape = SubResource("RectangleShape2D_iqij1")
+shape = SubResource("RectangleShape2D_r8g8x")
