@@ -3,11 +3,11 @@
 [ext_resource type="Script" path="res://Boss/boss_trigger.gd" id="1_nr8i5"]
 [ext_resource type="Script" path="res://Bullet/unique_collider.gd" id="1_rlo7a"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_n81jq"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jsxqw"]
 
 [node name="BossTrigger" type="Area2D"]
 script = ExtResource("1_nr8i5")
 
 [node name="UniqueCollider" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_n81jq")
+shape = SubResource("RectangleShape2D_jsxqw")
 script = ExtResource("1_rlo7a")

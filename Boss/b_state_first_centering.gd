@@ -10,18 +10,7 @@ func on_enter():
 		center,
 		duration).set_trans(Tween.TransitionType.TRANS_QUAD)
 	tween.tween_callback(func():
-		machine.set_state("BStateChasing")
-		tween.kill()
-		)
-
-
-func on_process(_delta: float):
-	pass
-
-
-func on_physics_process(_delta: float):
-	pass
-
-
-func on_exit():
-	pass
+		if machine.current_state.name == "BStateFirstCentering":
+			machine.set_state("BStateChasing")
+			tween.kill()
+			)

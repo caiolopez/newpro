@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cgexjtuxybh5l"]
+
+[ext_resource type="Script" path="res://EntityComponents/move_straight.gd" id="1_tsuto"]
+
+[node name="MoveStraight" type="Node2D"]
+script = ExtResource("1_tsuto")

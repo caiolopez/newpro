@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfki0vvnd40cw"]
+
+[ext_resource type="PackedScene" uid="uid://cgexjtuxybh5l" path="res://EntityComponents/MoveStraight.tscn" id="1_cvq4o"]
+[ext_resource type="Texture2D" uid="uid://0l05qi2ha4p5" path="res://hero.png" id="2_wuufu"]
+
+[node name="Arrow" type="Node2D"]
+
+[node name="MoveStraight" parent="." instance=ExtResource("1_cvq4o")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(16, 16)
+texture = ExtResource("2_wuufu")

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dw2f74vrka2qn"]
+
+[ext_resource type="Script" path="res://Boss/boss_fence.gd" id="1_q2t5t"]
+
+[node name="BossFence" type="Area2D"]
+script = ExtResource("1_q2t5t")

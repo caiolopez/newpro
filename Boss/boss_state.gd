@@ -1,12 +1,12 @@
 class_name BossState extends _State
 
+var current_cycle: int = 0
 var boss: Node
-var center: Vector2
-var t: Timer
+@onready var center: Vector2 = $"../../Marker2D".global_position
+@onready var t: Timer = get_node("../Timer")
+
 
 func enter(new_machine:StateMachine) -> void:
-	t = get_node("../Timer")
-	center =  $"../../Marker2D".global_position
 	boss = new_machine.owner as Node
 	super(new_machine)
 

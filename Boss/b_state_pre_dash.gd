@@ -2,18 +2,7 @@ extends BossState
 
 
 func on_enter():
-	t.wait_time = 2
+	t.wait_time = 1
 	t.start()
-
-
-func on_process(_delta: float):
-	if t.is_stopped():
-		machine.set_state("BStateDashing")
-
-
-func on_physics_process(_delta: float):
-	pass
-
-
-func on_exit():
-	$"../../Flier".process_mode = Node.PROCESS_MODE_DISABLED
+	t.timeout.connect(func():
+		machine.set_state("BStateDashing"), CONNECT_ONE_SHOT)

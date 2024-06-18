@@ -2,18 +2,10 @@ extends BossState
 
 
 func on_enter():
+	$"../../Flier".inertia_only = false
 	$"../../Flier".process_mode = Node.PROCESS_MODE_INHERIT
 	t.wait_time = 4
 	t.start()
-
-func on_process(_delta: float):
-	if t.is_stopped():
+	t.timeout.connect(func():
 		machine.set_state("BStatePreDash")
-
-
-func on_physics_process(_delta: float):
-	pass
-
-
-func on_exit():
-	$"../../Flier".inertia_only = true
+		$"../../Flier".inertia_only = true, CONNECT_ONE_SHOT)

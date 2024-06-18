@@ -1,11 +1,27 @@
-extends Node
+extends BossState
 
+var duration: float = 5.0
+var tn: Tween
+var clockwise: int = 1
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+func on_enter():
+	boss.rotation_degrees = 0
+	var tween = create_tween()
+	tn = tween
+	tween.tween_property(
+		boss,
+		"rotation_degrees",
+		1800 * clockwise,
+		duration).set_trans(Tween.TransitionType.TRANS_QUAD).set_ease(Tween.EaseType.EASE_IN_OUT)
+	tween.tween_callback(func():
+		if machine.current_state.name == "BStateSpinShooting":
+			tween.kill()
+			clockwise *= -1
+			machine.set_state("BStateChasing")
+			$"../../Shooter".process_mode = Node.PROCESS_MODE_DISABLED
+			)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
+func on_process(_delta):
+	if tn.get_total_elapsed_time() > 1\
+	and tn.get_total_elapsed_time() < duration - 1:
+		$"../../Shooter".process_mode = Node.PROCESS_MODE_INHERIT

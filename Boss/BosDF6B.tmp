@@ -26,28 +26,13 @@ script = ExtResource("1_u6ci4")
 [node name="Flier" parent="." instance=ExtResource("1_3eidg")]
 process_mode = 4
 SPEED = 1000.0
-ACCEL = 4000.0
-DECEL = 4000.0
+ACCEL = 3000.0
+DECEL = 3000.0
 ACTIVATION_RADIUS = 2000.0
 MIN_DIST_FROM_TARGET = 100.0
 DEAD_ZONE = 0.0
 
-[node name="MoveStraight" parent="." instance=ExtResource("15_w8a43")]
-process_mode = 4
-SPEED = 2000.0
-ACCEL = 9000.0
-DECEL = 3000.0
-update_every_frame = false
-
-[node name="Shooter" parent="." instance=ExtResource("13_pyl3o")]
-process_mode = 4
-position = Vector2(256, 0)
-rotates_with_parent = true
-time_between_shots = 0.2
-shot_burst_amount = 30
-
 [node name="DmgTaker" parent="." instance=ExtResource("7_fd85g")]
-HP_AMOUNT = 30
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DmgTaker"]
 shape = SubResource("RectangleShape2D_x2pkn")
@@ -96,9 +81,19 @@ one_shot = true
 
 [node name="Marker2D" type="Marker2D" parent="."]
 
+[node name="Shooter" parent="." instance=ExtResource("13_pyl3o")]
+process_mode = 4
+position = Vector2(256, 0)
+rotates_with_parent = true
+time_between_shots = 0.2
+shot_burst_amount = 30
+
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_4o8a3")
+
+[node name="MoveStraight" parent="." instance=ExtResource("15_w8a43")]
+process_mode = 4
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
