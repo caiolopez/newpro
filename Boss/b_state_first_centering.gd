@@ -1,10 +1,9 @@
 extends BossState
 
 var tn
-var blinking_timer: Timer
+
 
 func on_enter():
-	blinking_timer = Utils.create_blinking_timer(boss, 0.08)
 	var duration: float = 3.0
 	var tween = create_tween()
 	tn = tween
@@ -24,4 +23,3 @@ func on_exit():
 	$"../../DmgDealer".process_mode = Node.PROCESS_MODE_INHERIT
 	$"../../DmgTaker".immune = false
 	tn.kill()
-	blinking_timer.queue_free()

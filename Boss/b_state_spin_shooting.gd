@@ -23,6 +23,11 @@ func on_enter():
 
 
 func on_process(_delta):
+	match boss.current_stage:
+		0: $"../../Shooter".pellet_amount = 1
+		1: $"../../Shooter".pellet_amount = 2
+		3: $"../../Shooter".pellet_amount = 3
+	
 	if tn.get_total_elapsed_time() > 0.5\
 	and tn.get_total_elapsed_time() < duration - 1:
 		$"../../Shooter".process_mode = Node.PROCESS_MODE_INHERIT

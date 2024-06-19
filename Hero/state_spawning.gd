@@ -20,4 +20,4 @@ func on_physics_process(_delta: float):
 
 
 func on_exit():
-	pass
+	Utils.create_blinking_timer(hero, 0.08, 0.5)

@@ -4,7 +4,7 @@ var water_prone: bool = false
 var death_prone: bool = false
 
 
-func on_enter():	
+func on_enter():
 	if hero.current_checkpoint != null:
 		hero.facing_direction = hero.current_checkpoint.direction
 
@@ -25,4 +25,4 @@ func on_physics_process(_delta: float):
 
 
 func on_exit():
-	pass
+	Utils.create_blinking_timer(hero, 0.08, 0.5)

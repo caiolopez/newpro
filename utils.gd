@@ -66,8 +66,9 @@ func paint_white(active: bool, target: Node2D, duration: float = 0.0):
 			target.material = target.original_material
 
 
-func create_blinking_timer(target: Node2D, duration: float = 0.1) -> Timer:
+func create_blinking_timer(target: Node2D, duration: float = 0.8, auto_stop_time: float = 0.5) -> Timer:
 	var og_mod: Color = target.modulate
+	
 	var timer = Timer.new()
 	target.add_child(timer)
 	timer.wait_time = duration
@@ -79,6 +80,17 @@ func create_blinking_timer(target: Node2D, duration: float = 0.1) -> Timer:
 	timer.start()
 	timer.tree_exiting.connect(func():
 		target.modulate = og_mod)
+
+	if auto_stop_time > 0:
+		var auto_stop_timer = Timer.new()
+		target.add_child(auto_stop_timer)
+		auto_stop_timer.wait_time = auto_stop_time
+		auto_stop_timer.one_shot = true
+		auto_stop_timer.timeout.connect(func():
+			timer.queue_free()
+			auto_stop_timer.queue_free())
+		auto_stop_timer.start()
+
 	return timer
 
 
