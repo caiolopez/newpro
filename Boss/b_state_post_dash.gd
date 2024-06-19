@@ -6,4 +6,4 @@ func on_enter():
 	t.start()
 	t.timeout.connect(func():
 		if machine.current_state.name == "BStatePostDash":
-			machine.set_state("BStateCentering"), CONNECT_ONE_SHOT)
+			machine.set_state("BStateChasing"), CONNECT_ONE_SHOT)

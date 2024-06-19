@@ -72,7 +72,7 @@ time_between_shots = 0.2
 shot_burst_amount = 60
 
 [node name="DmgTaker" parent="." instance=ExtResource("7_fd85g")]
-HP_AMOUNT = 30
+HP_AMOUNT = 40
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DmgTaker"]
 shape = SubResource("RectangleShape2D_x2pkn")

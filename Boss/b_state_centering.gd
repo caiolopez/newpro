@@ -1,9 +1,13 @@
 extends BossState
 
+var tn
 
 func on_enter():
+	$"../../Flier".process_mode = Node.PROCESS_MODE_DISABLED
+	$"../../MoveStraight".process_mode = Node.PROCESS_MODE_DISABLED
 	var duration: float = 2.0
 	var tween = create_tween()
+	tn = tween
 	tween.tween_property(
 		boss,
 		"global_position",
@@ -14,3 +18,7 @@ func on_enter():
 			machine.set_state("BStateSpinShooting")
 			tween.kill()
 			)
+
+
+func on_exit():
+	tn.kill()

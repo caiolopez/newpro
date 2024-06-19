@@ -2,7 +2,6 @@ extends BossState
 
 var tn
 
-
 func on_enter():
 	var duration: float = 3.0
 	var tween = create_tween()

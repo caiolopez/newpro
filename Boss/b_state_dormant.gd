@@ -2,6 +2,8 @@ extends BossState
 
 
 func on_enter():
+	boss.current_stage = 0
+	boss.reparametrize_boss()
 	boss.rotation = 0
 	t.stop()
 	$"../../DmgDealer".process_mode = Node.PROCESS_MODE_DISABLED

@@ -4,6 +4,8 @@ extends BossState
 func on_enter():
 	$"../../Flier".inertia_only = false
 	$"../../Flier".process_mode = Node.PROCESS_MODE_INHERIT
+	$"../../Shooter".process_mode = Node.PROCESS_MODE_DISABLED
+	
 	t.wait_time = 4
 	t.start()
 	t.timeout.connect(func():
