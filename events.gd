@@ -13,8 +13,9 @@ signal camera_stop_shake()
 
 signal hero_hit_teleporter(teleporter: Teleporter)
 
-signal reached_checkpoint()
-signal respawned_at_checkpoint()
+signal hero_reached_checkpoint()
+signal hero_respawned_at_checkpoint()
+signal hero_died()
 
 signal boss_trigger_entered(boss: Node)
 

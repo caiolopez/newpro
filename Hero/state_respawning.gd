@@ -8,7 +8,7 @@ func on_enter():
 	if hero.current_checkpoint != null:
 		hero.facing_direction = hero.current_checkpoint.direction
 
-	Events.respawned_at_checkpoint.emit()
+	Events.hero_respawned_at_checkpoint.emit()
 	
 	if hero.is_in_water:
 		machine.set_state("StateFloating")

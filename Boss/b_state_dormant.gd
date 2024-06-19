@@ -2,8 +2,11 @@ extends BossState
 
 
 func on_enter():
-	current_cycle = 0
+	boss.rotation = 0
 	t.stop()
+	$"../../DmgDealer".process_mode = Node.PROCESS_MODE_DISABLED
+	$"../../DmgTaker".immune = true
+	$"../BStateSpinShooting".clockwise = 1
 	$"../../Flier".process_mode = Node.PROCESS_MODE_DISABLED
 	$"../../MoveStraight".process_mode = Node.PROCESS_MODE_DISABLED
 	$"../../Shooter".process_mode = Node.PROCESS_MODE_DISABLED

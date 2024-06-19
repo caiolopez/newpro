@@ -15,7 +15,7 @@ signal tween_ended
 
 
 func _ready():
-	Events.respawned_at_checkpoint.connect(reset)
+	Events.hero_respawned_at_checkpoint.connect(reset)
 
 
 func tween_to_start():

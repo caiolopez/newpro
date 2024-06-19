@@ -21,7 +21,15 @@ func on_enter():
 			$"../../Shooter".process_mode = Node.PROCESS_MODE_DISABLED
 			)
 
+
 func on_process(_delta):
-	if tn.get_total_elapsed_time() > 1\
+	if tn.get_total_elapsed_time() > 0.5\
 	and tn.get_total_elapsed_time() < duration - 1:
 		$"../../Shooter".process_mode = Node.PROCESS_MODE_INHERIT
+	else:
+		$"../../Shooter".reset_behavior()
+		$"../../Shooter".process_mode = Node.PROCESS_MODE_DISABLED
+
+
+func on_exit():
+	tn.kill()

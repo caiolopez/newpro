@@ -7,5 +7,6 @@ func on_enter():
 	t.wait_time = 4
 	t.start()
 	t.timeout.connect(func():
-		machine.set_state("BStatePreDash")
-		$"../../Flier".inertia_only = true, CONNECT_ONE_SHOT)
+		if machine.current_state.name == "BStateChasing":
+			machine.set_state("BStatePreDash")
+			$"../../Flier".inertia_only = true, CONNECT_ONE_SHOT)

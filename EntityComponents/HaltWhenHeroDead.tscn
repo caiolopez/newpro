@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://br5m3o56osblx"]
+
+[ext_resource type="Script" path="res://EntityComponents/halt_when_hero_dead.gd" id="1_vckta"]
+
+[node name="HaltWhenHeroDead" type="Node"]
+script = ExtResource("1_vckta")

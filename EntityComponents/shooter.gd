@@ -18,20 +18,25 @@ class_name Shooter extends Node2D
 var shot_offset: Vector2 = Vector2.ZERO
 var facing_direction: int = 1
 var current_burst_count: int = 1
-
+var halt: bool = false
 
 func _ready():
 	timer_shot_cooldown.wait_time = time_between_shots
 	timer_burst_cooldown.wait_time = time_between_bursts
 	
 	timer_shot_cooldown.timeout.connect(automate_shooting)
-	Events.respawned_at_checkpoint.connect(reset_behavior)
+	Events.hero_respawned_at_checkpoint.connect(reset_behavior)
+	
+	Events.hero_died.connect(func(): halt = true)
+	Events.hero_respawned_at_checkpoint.connect(func(): halt = false)
+
 	
 	if auto_shoots:
 		timer_shot_cooldown.start()
 
 
 func automate_shooting():
+	if halt: return
 	if dmg_taker != null:
 		if dmg_taker.current_hp == 0:
 			timer_shot_cooldown.stop()

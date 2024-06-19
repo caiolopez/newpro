@@ -33,7 +33,7 @@ func _ready():
 	$DownRC.force_raycast_update()
 	$FrontRC.force_raycast_update()
 	
-	Events.respawned_at_checkpoint.connect(reset_behavior)
+	Events.hero_respawned_at_checkpoint.connect(reset_behavior)
 
 func update_direction():
 	var changed: bool
@@ -79,7 +79,7 @@ func on_died():
 	currently_dead = true
 
 
-func on_suffered():
+func on_suffered(_hp):
 	if stunnable:
 		is_stunned = true
 		$TimerStun.start()

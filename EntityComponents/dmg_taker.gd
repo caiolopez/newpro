@@ -10,11 +10,11 @@ var immune_to_regular_bullets: bool = false ## Will not take damage from non-inc
 
 signal died
 signal resurrected
-signal suffered
+signal suffered(hp: int)
 
 func _ready():
-	Events.reached_checkpoint.connect(commit_status)
-	Events.respawned_at_checkpoint.connect(reset_status)
+	Events.hero_reached_checkpoint.connect(commit_status)
+	Events.hero_respawned_at_checkpoint.connect(reset_status)
 
 
 func take_dmg(amount: int):
@@ -27,7 +27,7 @@ func take_dmg(amount: int):
 	if current_hp == 0:
 		died.emit()
 	else:
-		suffered.emit()
+		suffered.emit(current_hp)
 	print("Foe: ", is_foe, ". Damage taken: ", amount, ". Current HP: ", current_hp)
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://1hdjstkw22a7"]
+[gd_scene load_steps=24 format=3 uid="uid://1hdjstkw22a7"]
 
 [ext_resource type="PackedScene" uid="uid://b2g8tlm31pxpm" path="res://EntityComponents/Flier.tscn" id="1_3eidg"]
 [ext_resource type="Script" path="res://state_machine.gd" id="1_hm4cg"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://Boss/b_state_first_centering.gd" id="4_sjh8q"]
 [ext_resource type="Script" path="res://Boss/b_state_chasing.gd" id="5_kiowl"]
 [ext_resource type="PackedScene" uid="uid://box2ff3vwcc7w" path="res://EntityComponents/DmgTaker.tscn" id="7_fd85g"]
+[ext_resource type="PackedScene" uid="uid://br5m3o56osblx" path="res://EntityComponents/HaltWhenHeroDead.tscn" id="8_dt2q7"]
 [ext_resource type="Script" path="res://Boss/b_state_pre_dash.gd" id="8_rdyyk"]
 [ext_resource type="Script" path="res://Boss/b_state_dashing.gd" id="9_4tlv1"]
 [ext_resource type="Script" path="res://Boss/b_state_post_dash.gd" id="10_iatjr"]
@@ -31,6 +32,11 @@ size = Vector2(384, 384)
 [node name="Boss1" type="Node2D"]
 script = ExtResource("1_u6ci4")
 
+[node name="DmgDealer" parent="." instance=ExtResource("2_ahp3q")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DmgDealer"]
+shape = SubResource("RectangleShape2D_uixgk")
+
 [node name="GfxController" parent="." instance=ExtResource("2_3hehl")]
 hide_when_dead = false
 
@@ -38,12 +44,6 @@ hide_when_dead = false
 position = Vector2(6.10948e-06, -7.689e-06)
 scale = Vector2(48, 48)
 texture = ExtResource("1_p8p6s")
-
-[node name="DmgDealer" parent="." instance=ExtResource("2_ahp3q")]
-process_mode = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DmgDealer"]
-shape = SubResource("RectangleShape2D_uixgk")
 
 [node name="Flier" parent="." instance=ExtResource("1_3eidg")]
 process_mode = 4
@@ -70,6 +70,8 @@ pellet_speed = 800.0
 rotates_with_parent = true
 time_between_shots = 0.2
 shot_burst_amount = 30
+
+[node name="HaltWhenHeroDead" parent="Shooter" instance=ExtResource("8_dt2q7")]
 
 [node name="DmgTaker" parent="." instance=ExtResource("7_fd85g")]
 HP_AMOUNT = 30

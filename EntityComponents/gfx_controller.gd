@@ -1,5 +1,6 @@
 class_name GfxController extends Node2D
 
+@export var hide_when_dead: bool = true
 @onready var dmg_taker: DmgTaker = Utils.find_dmg_taker(self.get_parent())
 var face_hero_node: FaceHero
 
@@ -21,12 +22,13 @@ func on_update_direction(dir: float, rot: float = 0):
 
 
 func on_died():
-	visible = false
+	if hide_when_dead:
+		visible = false
 
 
 func on_resurrected():
 	visible = true
 
 
-func on_suffered():
+func on_suffered(_hp):
 	Utils.paint_white(true, get_node("Sprite2D"), 0.1)

@@ -66,6 +66,22 @@ func paint_white(active: bool, target: Node2D, duration: float = 0.0):
 			target.material = target.original_material
 
 
+func create_blinking_timer(target: Node2D, duration: float = 0.1) -> Timer:
+	var og_mod: Color = target.modulate
+	var timer = Timer.new()
+	target.add_child(timer)
+	timer.wait_time = duration
+	timer.timeout.connect(func() -> void:
+		if target.modulate == Color.TRANSPARENT:
+			target.modulate = og_mod
+		else:
+			target.modulate = Color.TRANSPARENT)
+	timer.start()
+	timer.tree_exiting.connect(func():
+		target.modulate = og_mod)
+	return timer
+
+
 func is_pushing_sides() -> bool:
 	return Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right")
 

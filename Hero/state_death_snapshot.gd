@@ -7,6 +7,7 @@ var death_prone: bool = false
 func on_enter():
 	hero.velocity = Vector2.ZERO
 	Events.camera_shake.emit()
+	Events.hero_died.emit()
 	timer_death_snapshot.start()
 	Utils.paint_white(true, hero.get_node("HeroSprite"))
 	

@@ -11,8 +11,8 @@ var group_is_saved: bool = false
 
 func _ready():
 	check_group()
-	Events.reached_checkpoint.connect(commit_status)
-	Events.respawned_at_checkpoint.connect(reset_status)
+	Events.hero_reached_checkpoint.connect(commit_status)
+	Events.hero_respawned_at_checkpoint.connect(reset_status)
 
 
 func check_group():

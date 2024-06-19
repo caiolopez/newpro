@@ -1,6 +1,5 @@
 class_name BossState extends _State
 
-var current_cycle: int = 0
 var boss: Node
 @onready var center: Vector2 = $"../../Marker2D".global_position
 @onready var t: Timer = get_node("../Timer")
@@ -9,4 +8,3 @@ var boss: Node
 func enter(new_machine:StateMachine) -> void:
 	boss = new_machine.owner as Node
 	super(new_machine)
-

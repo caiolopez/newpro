@@ -72,7 +72,7 @@ func on_died():
 	state_machine.set_state("WStateDead")
 
 
-func on_suffered():
+func on_suffered(_hp):
 	if stunnable:
 		is_stunned = true
 		$TimerStun.start()

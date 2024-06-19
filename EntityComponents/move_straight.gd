@@ -31,7 +31,7 @@ func _ready():
 		dmg_taker.died.connect(on_died)
 		dmg_taker.resurrected.connect(on_resurrected)
 	
-	Events.respawned_at_checkpoint.connect(reset_behavior)
+	Events.hero_respawned_at_checkpoint.connect(reset_behavior)
 
 
 func _physics_process(delta):
