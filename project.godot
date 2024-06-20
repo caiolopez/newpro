@@ -40,6 +40,10 @@ window/stretch/mode="viewport"
 
 project/assembly_name="New Pro"
 
+[filesystem]
+
+import/blender/enabled=false
+
 [input]
 
 up={
