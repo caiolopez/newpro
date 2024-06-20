@@ -3,28 +3,28 @@
 [ext_resource type="PackedScene" uid="uid://b2g8tlm31pxpm" path="res://EntityComponents/Flier.tscn" id="1_3eidg"]
 [ext_resource type="Script" path="res://state_machine.gd" id="1_hm4cg"]
 [ext_resource type="Texture2D" uid="uid://0l05qi2ha4p5" path="res://hero.png" id="1_p8p6s"]
-[ext_resource type="Script" path="res://Boss/boss1.gd" id="1_u6ci4"]
+[ext_resource type="Script" path="res://Boss/Boss1/boss1.gd" id="1_u6ci4"]
 [ext_resource type="PackedScene" uid="uid://djwwpps3fxvtg" path="res://EntityComponents/GfxController.tscn" id="2_3hehl"]
 [ext_resource type="PackedScene" uid="uid://upm0adhb85ik" path="res://EntityComponents/DmgDealer.tscn" id="2_ahp3q"]
-[ext_resource type="Script" path="res://Boss/b_state_dormant.gd" id="4_ig5lj"]
-[ext_resource type="Script" path="res://Boss/b_state_first_centering.gd" id="4_sjh8q"]
-[ext_resource type="Script" path="res://Boss/b_state_chasing.gd" id="5_kiowl"]
+[ext_resource type="Script" path="res://Boss/Boss1/b_state_dormant.gd" id="4_ig5lj"]
+[ext_resource type="Script" path="res://Boss/Boss1/b_state_first_centering.gd" id="4_sjh8q"]
+[ext_resource type="Script" path="res://Boss/Boss1/b_state_chasing.gd" id="5_kiowl"]
 [ext_resource type="PackedScene" uid="uid://box2ff3vwcc7w" path="res://EntityComponents/DmgTaker.tscn" id="7_fd85g"]
-[ext_resource type="Script" path="res://Boss/b_state_pre_dash.gd" id="8_rdyyk"]
-[ext_resource type="Script" path="res://Boss/b_state_dashing.gd" id="9_4tlv1"]
-[ext_resource type="Script" path="res://Boss/b_state_post_dash.gd" id="10_iatjr"]
-[ext_resource type="Script" path="res://Boss/b_state_centering.gd" id="11_xn0th"]
-[ext_resource type="Script" path="res://Boss/b_state_spin_shooting.gd" id="12_lnayk"]
+[ext_resource type="Script" path="res://Boss/Boss1/b_state_pre_dash.gd" id="8_rdyyk"]
+[ext_resource type="Script" path="res://Boss/Boss1/b_state_dashing.gd" id="9_4tlv1"]
+[ext_resource type="Script" path="res://Boss/Boss1/b_state_post_dash.gd" id="10_iatjr"]
+[ext_resource type="Script" path="res://Boss/Boss1/b_state_centering.gd" id="11_xn0th"]
+[ext_resource type="Script" path="res://Boss/Boss1/b_state_spin_shooting.gd" id="12_lnayk"]
 [ext_resource type="PackedScene" uid="uid://cupxj14lcnr75" path="res://EntityComponents/Shooter.tscn" id="13_pyl3o"]
 [ext_resource type="PackedScene" uid="uid://cgexjtuxybh5l" path="res://EntityComponents/MoveStraight.tscn" id="15_w8a43"]
-[ext_resource type="Script" path="res://Boss/b_state_dying.gd" id="16_axfqk"]
-[ext_resource type="Script" path="res://Boss/b_state_dead.gd" id="17_4lka5"]
+[ext_resource type="Script" path="res://Boss/Boss1/b_state_dying.gd" id="16_axfqk"]
+[ext_resource type="Script" path="res://Boss/Boss1/b_state_dead.gd" id="17_4lka5"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uixgk"]
-size = Vector2(288, 288)
+[sub_resource type="CircleShape2D" id="CircleShape2D_5xncf"]
+radius = 96.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x2pkn"]
-size = Vector2(384, 384)
+size = Vector2(256, 256)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4o8a3"]
 
@@ -35,15 +35,15 @@ script = ExtResource("1_u6ci4")
 hide_when_dead = false
 
 [node name="Sprite2D" type="Sprite2D" parent="GfxController"]
-position = Vector2(6.10948e-06, -7.689e-06)
-scale = Vector2(48, 48)
+position = Vector2(-3.8147e-06, 5.24521e-06)
+scale = Vector2(32, 32)
 texture = ExtResource("1_p8p6s")
 
 [node name="DmgDealer" parent="." instance=ExtResource("2_ahp3q")]
 process_mode = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DmgDealer"]
-shape = SubResource("RectangleShape2D_uixgk")
+shape = SubResource("CircleShape2D_5xncf")
 
 [node name="Flier" parent="." instance=ExtResource("1_3eidg")]
 process_mode = 4

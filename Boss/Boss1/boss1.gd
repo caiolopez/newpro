@@ -1,5 +1,7 @@
 extends Node2D
 
+
+@onready var center: Vector2 = $Marker2D.global_position
 @onready var state_machine: StateMachine = $StateMachine
 var current_stage: int = 0
 
@@ -34,7 +36,7 @@ func reparametrize_boss():
 		1:
 			$Shooter.pellet_amount = 1
 			$Shooter.pellet_separation_angle = 20
-			$Shooter.time_between_shots = 0.1
+			$Shooter.time_between_shots = 0.5
 			$Flier.SPEED = 800
 			$MoveStraight.SPEED = 2500
 		2:
@@ -58,7 +60,3 @@ func on_suffered(hp: int):
 	and state_machine.current_state.name != "BStateSpinShooting":
 		state_machine.set_state("BStateCentering")
 	reparametrize_boss()
-
-
-func _process(_delta):
-	pass #print(current_stage)

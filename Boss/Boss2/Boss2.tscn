@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://p6no8gdu6s5o"]
+
+[ext_resource type="PackedScene" uid="uid://cqyj0bkuiosbs" path="res://EntityComponents/Walker.tscn" id="1_7mevn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7q40q"]
+
+[node name="Boss2" type="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_7q40q")
+
+[node name="Walker" parent="." instance=ExtResource("1_7mevn")]
+ACTIVATION_RADIUS = 1000.0
+DEAD_ZONE = 400.0
+avoids_pits = false
+climbs_walls = true
+jumps_to_grab_target = true

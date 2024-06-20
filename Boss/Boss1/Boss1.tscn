@@ -1,0 +1,124 @@
+[gd_scene load_steps=23 format=3 uid="uid://1hdjstkw22a7"]
+
+[ext_resource type="PackedScene" uid="uid://b2g8tlm31pxpm" path="res://EntityComponents/Flier.tscn" id="1_3eidg"]
+[ext_resource type="Script" path="res://state_machine.gd" id="1_hm4cg"]
+[ext_resource type="Texture2D" uid="uid://0l05qi2ha4p5" path="res://hero.png" id="1_p8p6s"]
+[ext_resource type="Script" path="res://Boss/Boss1/boss1.gd" id="1_u6ci4"]
+[ext_resource type="PackedScene" uid="uid://djwwpps3fxvtg" path="res://EntityComponents/GfxController.tscn" id="2_3hehl"]
+[ext_resource type="PackedScene" uid="uid://upm0adhb85ik" path="res://EntityComponents/DmgDealer.tscn" id="2_ahp3q"]
+[ext_resource type="Script" path="res://Boss/Boss1/b_state_dormant.gd" id="4_ig5lj"]
+[ext_resource type="Script" path="res://Boss/Boss1/b_state_first_centering.gd" id="4_sjh8q"]
+[ext_resource type="Script" path="res://Boss/Boss1/b_state_chasing.gd" id="5_kiowl"]
+[ext_resource type="PackedScene" uid="uid://box2ff3vwcc7w" path="res://EntityComponents/DmgTaker.tscn" id="7_fd85g"]
+[ext_resource type="Script" path="res://Boss/Boss1/b_state_pre_dash.gd" id="8_rdyyk"]
+[ext_resource type="Script" path="res://Boss/Boss1/b_state_dashing.gd" id="9_4tlv1"]
+[ext_resource type="Script" path="res://Boss/Boss1/b_state_post_dash.gd" id="10_iatjr"]
+[ext_resource type="Script" path="res://Boss/Boss1/b_state_centering.gd" id="11_xn0th"]
+[ext_resource type="Script" path="res://Boss/Boss1/b_state_spin_shooting.gd" id="12_lnayk"]
+[ext_resource type="PackedScene" uid="uid://cupxj14lcnr75" path="res://EntityComponents/Shooter.tscn" id="13_pyl3o"]
+[ext_resource type="PackedScene" uid="uid://cgexjtuxybh5l" path="res://EntityComponents/MoveStraight.tscn" id="15_w8a43"]
+[ext_resource type="Script" path="res://Boss/Boss1/b_state_dying.gd" id="16_axfqk"]
+[ext_resource type="Script" path="res://Boss/Boss1/b_state_dead.gd" id="17_4lka5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5xncf"]
+radius = 96.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x2pkn"]
+size = Vector2(256, 256)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4o8a3"]
+
+[node name="Boss1" type="Node2D"]
+script = ExtResource("1_u6ci4")
+
+[node name="GfxController" parent="." instance=ExtResource("2_3hehl")]
+hide_when_dead = false
+
+[node name="Sprite2D" type="Sprite2D" parent="GfxController"]
+position = Vector2(-3.8147e-06, 5.24521e-06)
+scale = Vector2(32, 32)
+texture = ExtResource("1_p8p6s")
+
+[node name="DmgDealer" parent="." instance=ExtResource("2_ahp3q")]
+process_mode = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DmgDealer"]
+shape = SubResource("CircleShape2D_5xncf")
+
+[node name="Flier" parent="." instance=ExtResource("1_3eidg")]
+process_mode = 4
+SPEED = 1000.0
+ACCEL = 4000.0
+DECEL = 4000.0
+ACTIVATION_RADIUS = 2000.0
+MIN_DIST_FROM_TARGET = 100.0
+DEAD_ZONE = 0.0
+
+[node name="MoveStraight" parent="." instance=ExtResource("15_w8a43")]
+process_mode = 4
+SPEED = 2000.0
+ACCEL = 9000.0
+DECEL = 3000.0
+update_every_frame = false
+
+[node name="Shooter" parent="." instance=ExtResource("13_pyl3o")]
+process_mode = 4
+position = Vector2(256, 0)
+pellet_amount = 3
+pellet_separation_angle = 10.0
+pellet_speed = 800.0
+rotates_with_parent = true
+time_between_shots = 0.2
+shot_burst_amount = 60
+
+[node name="DmgTaker" parent="." instance=ExtResource("7_fd85g")]
+HP_AMOUNT = 40
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DmgTaker"]
+shape = SubResource("RectangleShape2D_x2pkn")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("1_hm4cg")
+auto_start = true
+
+[node name="BStateDormant" type="Node" parent="StateMachine"]
+script = ExtResource("4_ig5lj")
+
+[node name="BStateFirstCentering" type="Node" parent="StateMachine"]
+script = ExtResource("4_sjh8q")
+
+[node name="BStateChasing" type="Node" parent="StateMachine"]
+script = ExtResource("5_kiowl")
+
+[node name="BStatePreDash" type="Node" parent="StateMachine"]
+script = ExtResource("8_rdyyk")
+
+[node name="BStateDashing" type="Node" parent="StateMachine"]
+script = ExtResource("9_4tlv1")
+
+[node name="BStatePostDash" type="Node" parent="StateMachine"]
+script = ExtResource("10_iatjr")
+
+[node name="BStateCentering" type="Node" parent="StateMachine"]
+script = ExtResource("11_xn0th")
+
+[node name="BStateSpinShooting" type="Node" parent="StateMachine"]
+script = ExtResource("12_lnayk")
+
+[node name="BStateDying" type="Node" parent="StateMachine"]
+script = ExtResource("16_axfqk")
+
+[node name="BStateDead" type="Node" parent="StateMachine"]
+script = ExtResource("17_4lka5")
+
+[node name="Timer" type="Timer" parent="StateMachine"]
+one_shot = true
+
+[node name="Marker2D" type="Marker2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_4o8a3")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
