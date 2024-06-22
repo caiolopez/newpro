@@ -1,7 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://ruri8ytnt6k"]
+[gd_scene load_steps=11 format=3 uid="uid://ruri8ytnt6k"]
 
-[ext_resource type="Texture2D" uid="uid://d2gdo5bbgykv2" path="res://icon.svg" id="1_1o6yk"]
 [ext_resource type="Script" path="res://SwitchesAndDoors/door.gd" id="1_bavxp"]
+[ext_resource type="Texture2D" uid="uid://dh3cmurbvddhl" path="res://frame.png" id="2_edu7e"]
 [ext_resource type="Script" path="res://state_machine.gd" id="3_vgayv"]
 [ext_resource type="Script" path="res://SwitchesAndDoors/state_open.gd" id="4_qyouu"]
 [ext_resource type="Script" path="res://SwitchesAndDoors/state_closed.gd" id="4_vsukd"]
@@ -10,20 +10,31 @@
 [ext_resource type="Script" path="res://SwitchesAndDoors/state_rev_from_closing.gd" id="8_blgy7"]
 [ext_resource type="Script" path="res://SwitchesAndDoors/state_temporarily_open.gd" id="9_37487"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mynya"]
-size = Vector2(128, 128)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6ibah"]
 size = Vector2(128, 128)
 
 [node name="Door" type="AnimatableBody2D" groups=["kills_bullets"]]
 script = ExtResource("1_bavxp")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_mynya")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_1o6yk")
+[node name="NinePDoorArt" type="NinePatchRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_edu7e")
+patch_margin_left = 24
+patch_margin_top = 24
+patch_margin_right = 24
+patch_margin_bottom = 24
 
 [node name="AntiCrushArea" type="Area2D" parent="."]
 collision_mask = 12

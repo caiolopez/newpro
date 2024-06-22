@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://8q0hcl7qc4ve"]
+[gd_scene load_steps=7 format=3 uid="uid://8q0hcl7qc4ve"]
 
 [ext_resource type="PackedScene" uid="uid://b2g8tlm31pxpm" path="res://EntityComponents/Flier.tscn" id="1_txxef"]
 [ext_resource type="Texture2D" uid="uid://0l05qi2ha4p5" path="res://hero.png" id="2_51ias"]
 [ext_resource type="PackedScene" uid="uid://djwwpps3fxvtg" path="res://EntityComponents/GfxController.tscn" id="2_vf478"]
 [ext_resource type="PackedScene" uid="uid://dqho171mcdsmr" path="res://EntityComponents/FaceHero.tscn" id="3_06nli"]
+[ext_resource type="PackedScene" uid="uid://box2ff3vwcc7w" path="res://EntityComponents/DmgTaker.tscn" id="5_cc4mm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u2scj"]
 size = Vector2(256, 256)
@@ -29,3 +30,7 @@ shape = SubResource("RectangleShape2D_u2scj")
 
 [node name="FaceHero" parent="." instance=ExtResource("3_06nli")]
 face_hero = true
+
+[node name="DmgTaker" parent="." instance=ExtResource("5_cc4mm")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DmgTaker"]
