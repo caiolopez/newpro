@@ -1,7 +1,12 @@
 class_name Effector extends Area2D
 
-enum Effects {QUEUE_FREE, DISPLACE, ENABLE, RESET_BEHAVIOR}
-@export var effect: Effects = Effects.QUEUE_FREE ## The effect that will happen to all children of this node.
+enum Effects {
+	QUEUE_FREE, ## Deletes affected nodes forever.
+	DISPLACE, ## Changes the global position of affected nodes, provided that they are Node2D.
+	ENABLE, ## Disables all affected nodes upon start so that, when activated, the affected nodes are all enabled.
+	RESET_BEHAVIOR ## Calls reset_behavior() on all affected nodes, provided that they are within "resetables" group and have such method.
+	}
+@export var effect: Effects = Effects.QUEUE_FREE ## The effect that will happen to all children of this node, as well as to any node appended to the Entities Array.
 @export var destination: Vector2 ## If set to displace entities, this is the global position they will be instantly moved to.
 @export var entities: Array[Node] ## The entities that will be affected. Note: All children of Effector will automatically be included in this Array.
 
