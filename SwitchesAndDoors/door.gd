@@ -6,17 +6,34 @@ class_name Door extends AnimatableBody2D
 @onready var closed_pos: Vector2 = position
 var state_machine: StateMachine
 var door_tween: Tween
+var has_unique_collider: bool = false
 signal should_open()
 signal should_close()
 signal stopped_moving_at_origin()
 signal stopped_moving_at_offset()
 
+
+#func _get_configuration_warnings():
+	#var warnings = []
+	#if not has_unique_collider:
+		#warnings.append("Door requires UniqueCollider.")
+	#return warnings
+
+
 func _ready():
+	#if Engine.is_editor_hint():
+		#update_configuration_warnings()
+		#child_entered_tree.connect(func(node: Node):
+			#if node is UniqueCollider:
+				#has_unique_collider = true
+			#update_configuration_warnings())
+
 	state_machine = $StateMachine
 	if auto_close_time > 0:
 		$StateMachine/TimerAutoClose.set_wait_time(auto_close_time)
 	state_machine.start()
 
+	resize_9p()
 
 func open():
 	should_open.emit()
@@ -68,3 +85,11 @@ func area_has_uncrushables() -> bool:
 			has = true
 			break
 	return has
+
+
+func resize_9p():
+	for child in get_children():
+		if child is UniqueCollider:
+			$NinePDoorArt.size = child.shape.get_rect().size
+			$NinePDoorArt.position = child.position - $NinePDoorArt.size/2
+			return
