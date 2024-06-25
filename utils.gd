@@ -104,3 +104,12 @@ func get_hero_glpos() -> Vector2:
 	else:
 		push_error("Hero not found in Utils.get_hero_glpos(). global_position defaulted to Vector2.ZERO")
 		return Vector2.ZERO
+
+
+func find_hero() -> Hero:
+	var hero: Hero = null
+	if get_tree().get_nodes_in_group("heroes").is_empty():
+		push_warning("Could not locate Hero within tree.")
+	else:
+		hero = get_tree().get_nodes_in_group("heroes")[0]
+	return hero

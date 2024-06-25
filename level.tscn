@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://1xi1vmc3x5ck"]
+[gd_scene load_steps=48 format=3 uid="uid://1xi1vmc3x5ck"]
 
 [ext_resource type="PackedScene" uid="uid://bp1e8lhbqp3me" path="res://Entities/Spike.tscn" id="1_cietj"]
 [ext_resource type="PackedScene" uid="uid://b424bvcxa2fbn" path="res://GUI/BossOverlay.tscn" id="1_tkq5o"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cih4ag7u6dc0q" path="res://Entities/Spiny.tscn" id="2_5hkfu"]
 [ext_resource type="PackedScene" uid="uid://1md1m8n6iq5x" path="res://Hero/hero.tscn" id="2_acvau"]
 [ext_resource type="PackedScene" uid="uid://4cnf50mcwol8" path="res://Entities/Zombie.tscn" id="2_e0l7r"]
+[ext_resource type="PackedScene" uid="uid://d1h8vf2t5pgey" path="res://GUI/mini_map.tscn" id="2_is0lr"]
 [ext_resource type="PackedScene" uid="uid://8q0hcl7qc4ve" path="res://Entities/Ghost.tscn" id="2_jmdf8"]
 [ext_resource type="PackedScene" uid="uid://csvdenv1i3dc3" path="res://Bullet/Teleporter.tscn" id="2_uiite"]
 [ext_resource type="PackedScene" uid="uid://ruri8ytnt6k" path="res://SwitchesAndDoors/Door.tscn" id="3_ia51n"]
@@ -29,6 +30,7 @@
 [ext_resource type="Script" path="res://Bullet/unique_collider.gd" id="24_1i71r"]
 [ext_resource type="PackedScene" uid="uid://bmt5sjek4aha4" path="res://EntityComponents/OpenDoorsIfDead.tscn" id="24_nrwds"]
 [ext_resource type="PackedScene" uid="uid://di37dd8piukfd" path="res://Bullet/UniqueCollider.tscn" id="29_dsgei"]
+[ext_resource type="PackedScene" uid="uid://7jpetdd82f2l" path="res://GUI/map_sector.tscn" id="30_gywv3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6aaj6"]
 
@@ -82,6 +84,8 @@ size = Vector2(128, 216)
 [node name="HUD" type="CanvasLayer" parent="." groups=["hud"]]
 
 [node name="BossOverlay" parent="HUD" instance=ExtResource("1_tkq5o")]
+
+[node name="MiniMap" parent="HUD" instance=ExtResource("2_is0lr")]
 
 [node name="Hero" parent="." instance=ExtResource("2_acvau")]
 unique_name_in_owner = true
@@ -497,6 +501,22 @@ is_unique = true
 position = Vector2(1640, -2376)
 rotation = 1.5708
 
+[node name="Node" type="Node" parent="."]
+
+[node name="MapSector" parent="Node" instance=ExtResource("30_gywv3")]
+position = Vector2(4120, -2624)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Node/MapSector"]
+position = Vector2(-3120, 1312)
+polygon = PackedVector2Array(848, 2032, -2544, 2048, -3264, -56, -1424, -216, -184, -1808, 464, -1856)
+
+[node name="MapSector2" parent="Node" instance=ExtResource("30_gywv3")]
+position = Vector2(4120, -2624)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Node/MapSector2"]
+position = Vector2(-2640, 2000)
+polygon = PackedVector2Array(4792, 1368, 32, 1392, 40, -1256, 4808, -1288)
+
 [editable path="Zombie"]
 [editable path="Spike"]
 [editable path="Spike2"]
@@ -507,3 +527,5 @@ rotation = 1.5708
 [editable path="Boss1"]
 [editable path="BossTrigger"]
 [editable path="BossTrigger2"]
+[editable path="Node/MapSector"]
+[editable path="Node/MapSector2"]

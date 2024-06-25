@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://7jpetdd82f2l"]
+
+[ext_resource type="Script" path="res://GUI/map_sector.gd" id="1_6eq4t"]
+
+[node name="MapSector" type="Area2D"]
+collision_mask = 8
+script = ExtResource("1_6eq4t")

@@ -17,5 +17,8 @@ signal hero_reached_checkpoint()
 signal hero_respawned_at_checkpoint()
 signal hero_died()
 
+signal chart_map_sector(sector: MapSector)
+signal unchart_map_sector(sector: MapSector)
+
 signal boss_trigger_entered(boss: Node)
 
