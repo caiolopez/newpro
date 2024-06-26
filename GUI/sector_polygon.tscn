@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctunkqfssiqn"]
+
+[ext_resource type="Script" path="res://GUI/sector_polygon.gd" id="1_0usou"]
+
+[node name="SectorPolygon" type="Polygon2D"]
+script = ExtResource("1_0usou")

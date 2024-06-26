@@ -16,16 +16,23 @@ var state: States = States.OFF
 
 func _ready():
 	Events.chart_map_sector.connect(append_sector_to_map)
+	Events.unchart_map_sector.connect(delete_sector_from_map)
 	adjust_icon_scale()
 	center_map()
 
 func append_sector_to_map(sector: MapSector):
 	var sect_coll = sector.extract_coll_polygon_2d()
 	
-	var new_mini_sector = Polygon2D.new()
+	var new_mini_sector = SectorPolygon.new()
+	new_mini_sector.ref = sector
 	new_mini_sector.polygon = sect_coll.polygon
 	new_mini_sector.global_position = sect_coll.global_position
 	$SectorPolygons.add_child(new_mini_sector)
+
+func delete_sector_from_map(sector: MapSector):
+	for poly in $SectorPolygons.get_children():
+		if poly.ref == sector:
+			poly.queue_free()
 
 func update_mini_hero_pos():
 	mini_hero.position = Utils.find_hero().global_position
@@ -43,7 +50,7 @@ func adjust_scale(delta, direction):
 
 func flag_minimap():
 	var new_flag
-	if map_flags.size() <= 10:
+	if map_flags.size() <= 1:
 		new_flag = $Waypoint.duplicate()
 		add_child(new_flag)
 		map_flags.append(new_flag)
@@ -55,7 +62,6 @@ func flag_minimap():
 		map_flags[i].modulate = Color(1, 0, 1, i / float(map_flags.size()))
 
 func adjust_icon_scale():
-	return
 	for child in get_children():
 		if child.is_in_group("map_icons"):
 			child.scale = Vector2.ONE / scale
@@ -67,6 +73,7 @@ func _process(delta):
 		return
 	
 	if state == States.ANIMATING:
+		center_map()
 		adjust_icon_scale()
 		update_mini_hero_pos()
 		return
