@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://1xi1vmc3x5ck"]
+[gd_scene load_steps=49 format=3 uid="uid://1xi1vmc3x5ck"]
 
 [ext_resource type="PackedScene" uid="uid://bp1e8lhbqp3me" path="res://Entities/Spike.tscn" id="1_cietj"]
 [ext_resource type="PackedScene" uid="uid://b424bvcxa2fbn" path="res://GUI/BossOverlay.tscn" id="1_tkq5o"]
@@ -78,6 +78,9 @@ size = Vector2(378, 464.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nj7ht"]
 size = Vector2(128, 216)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eyadn"]
+size = Vector2(38800, 23144)
 
 [node name="Level" type="Node"]
 
@@ -501,21 +504,28 @@ is_unique = true
 position = Vector2(1640, -2376)
 rotation = 1.5708
 
-[node name="Node" type="Node" parent="."]
+[node name="Node2D" type="Node2D" parent="."]
+visible = false
+position = Vector2(1464, -332.75)
 
-[node name="MapSector" parent="Node" instance=ExtResource("30_gywv3")]
-position = Vector2(4120, -2624)
+[node name="MapSector" parent="Node2D" instance=ExtResource("30_gywv3")]
+position = Vector2(2640, -2000)
 
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Node/MapSector"]
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Node2D/MapSector"]
 position = Vector2(-3120, 1312)
 polygon = PackedVector2Array(848, 2032, -2544, 2048, -3264, -56, -1424, -216, -184, -1808, 464, -1856)
 
-[node name="MapSector2" parent="Node" instance=ExtResource("30_gywv3")]
-position = Vector2(4120, -2624)
+[node name="MapSector2" parent="Node2D" instance=ExtResource("30_gywv3")]
+position = Vector2(2640, -2000)
 
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Node/MapSector2"]
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Node2D/MapSector2"]
 position = Vector2(-2640, 2000)
 polygon = PackedVector2Array(4792, 1368, 32, 1392, 40, -1256, 4808, -1288)
+
+[node name="Bounderies" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(2872, -1168)
+shape = SubResource("RectangleShape2D_eyadn")
 
 [editable path="Zombie"]
 [editable path="Spike"]
@@ -527,5 +537,5 @@ polygon = PackedVector2Array(4792, 1368, 32, 1392, 40, -1256, 4808, -1288)
 [editable path="Boss1"]
 [editable path="BossTrigger"]
 [editable path="BossTrigger2"]
-[editable path="Node/MapSector"]
-[editable path="Node/MapSector2"]
+[editable path="Node2D/MapSector"]
+[editable path="Node2D/MapSector2"]
