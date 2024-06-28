@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://d1h8vf2t5pgey"]
+[gd_scene load_steps=3 format=3 uid="uid://d1h8vf2t5pgey"]
 
 [ext_resource type="Script" path="res://GUI/mini_map.gd" id="1_h5psa"]
 [ext_resource type="Texture2D" uid="uid://b8rg54dkjrvw4" path="res://Camera/marker_icon_a.png" id="2_1jqvw"]
-[ext_resource type="Texture2D" uid="uid://prl8d6n0ya3v" path="res://Camera/marker_icon_b.png" id="3_mnilu"]
 
 [node name="MiniMap" type="Control"]
 layout_mode = 3
@@ -18,18 +17,13 @@ script = ExtResource("1_h5psa")
 [node name="SectorPolygons" type="CanvasGroup" parent="."]
 self_modulate = Color(1, 1, 1, 0.247059)
 
+[node name="Outlines" type="CanvasGroup" parent="."]
+self_modulate = Color(1, 1, 1, 0.247059)
+
 [node name="Icons" type="CanvasGroup" parent="."]
 
 [node name="MiniHero" type="Sprite2D" parent="Icons" groups=["map_icons"]]
 modulate = Color(1, 0.345098, 1, 1)
 texture = ExtResource("2_1jqvw")
 
-[node name="TextureRect" type="TextureRect" parent="."]
-visible = false
-layout_mode = 0
-offset_left = -5448.0
-offset_top = -4664.0
-offset_right = 10152.0
-offset_bottom = 4208.0
-texture = ExtResource("3_mnilu")
-stretch_mode = 1
+[node name="Line2D" type="Line2D" parent="."]

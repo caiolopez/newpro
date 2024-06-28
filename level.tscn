@@ -505,7 +505,6 @@ position = Vector2(1640, -2376)
 rotation = 1.5708
 
 [node name="Node2D" type="Node2D" parent="."]
-visible = false
 position = Vector2(1464, -332.75)
 
 [node name="MapSector" parent="Node2D" instance=ExtResource("30_gywv3")]
@@ -513,14 +512,28 @@ position = Vector2(2640, -2000)
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Node2D/MapSector"]
 position = Vector2(-3120, 1312)
-polygon = PackedVector2Array(848, 2032, -2544, 2048, -3264, -56, -1424, -216, -184, -1808, 464, -1856)
+polygon = PackedVector2Array(848, 2032, -2544, 2048, -3264, -56, -1424, -216, -296, -1771.25, 320, -1859.25)
+
+[node name="MapSector4" parent="Node2D" instance=ExtResource("30_gywv3")]
+position = Vector2(2640, -2000)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Node2D/MapSector4"]
+position = Vector2(-3120, 1312)
+polygon = PackedVector2Array(1792, -1163.25, 2144, -259.25, 1768, -59.25, 696, -2451.25, 2216, -2563.25, 3832, -347.25, 3152, -107.25)
+
+[node name="MapSector3" parent="Node2D" instance=ExtResource("30_gywv3")]
+position = Vector2(2640, -2000)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Node2D/MapSector3"]
+position = Vector2(-5728, -2363.25)
+polygon = PackedVector2Array(520, 1392, -56, 3920, 760, 3776, 792, 2592, 3560, 3020.75, 3480, 2088)
 
 [node name="MapSector2" parent="Node2D" instance=ExtResource("30_gywv3")]
 position = Vector2(2640, -2000)
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Node2D/MapSector2"]
-position = Vector2(-2640, 2000)
-polygon = PackedVector2Array(4792, 1368, 32, 1392, 40, -1256, 4808, -1288)
+position = Vector2(-2552, 1972.75)
+polygon = PackedVector2Array(4792, 1368, 440, 1376, -432, -1216, 4808, -1288)
 
 [node name="Bounderies" type="CollisionShape2D" parent="."]
 visible = false
@@ -538,4 +551,6 @@ shape = SubResource("RectangleShape2D_eyadn")
 [editable path="BossTrigger"]
 [editable path="BossTrigger2"]
 [editable path="Node2D/MapSector"]
+[editable path="Node2D/MapSector4"]
+[editable path="Node2D/MapSector3"]
 [editable path="Node2D/MapSector2"]

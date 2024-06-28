@@ -37,6 +37,7 @@ func append_sector_to_map(sector: MapSector):
 	new_mini_sector.polygon = sect_coll.polygon
 	new_mini_sector.global_position = sect_coll.global_position
 	$SectorPolygons.add_child(new_mini_sector)
+	update_outline_node()
 
 func delete_sector_from_map(sector: MapSector):
 	for poly in $SectorPolygons.get_children():
@@ -45,6 +46,51 @@ func delete_sector_from_map(sector: MapSector):
 
 func update_mini_hero_pos():
 	mini_hero.position = Utils.find_hero().global_position
+
+func update_outline_node():
+	for child in $Outlines.get_children():
+		child.queue_free()
+	
+	for polygon in merge_mini_sectors():
+		var outline: Line2D = Line2D.new()
+		outline.points = polygon
+		$Outlines.add_child(outline)
+		outline.closed = true
+		outline.default_color = Color.MAGENTA
+		outline.width = 100
+
+func merge_mini_sectors() ->  Array[PackedVector2Array]:
+	var parent_node = $SectorPolygons
+	var polygons: Array[PackedVector2Array] = []
+	
+	for child in parent_node.get_children():
+		if child is Polygon2D:
+			polygons.append(get_translated_polygon(child))
+
+	if polygons.is_empty(): push_error("No polygons found to merge.")
+
+	var merged_polygons: Array[PackedVector2Array] = [polygons[0]]
+	for i in range(1, polygons.size()):
+		var other_polygons: Array[PackedVector2Array] = []
+		if merged_polygons.size() > 1:
+			other_polygons = merged_polygons.duplicate()
+			other_polygons.remove_at(0)
+		merged_polygons = Geometry2D.merge_polygons(merged_polygons[0], polygons[i])
+		merged_polygons.append_array(other_polygons)
+		print(merged_polygons)
+
+	#var merged_polygons: Array[PackedVector2Array] = polygons.reduce(
+		#func(acc: Array[PackedVector2Array], i: PackedVector2Array):
+			#return Geometry2D.merge_polygons(acc[0], i),
+		#[polygons[0]])
+	print(merged_polygons)
+	return merged_polygons
+
+func get_translated_polygon(poly2d: Polygon2D) -> PackedVector2Array:
+	var result_polygon: PackedVector2Array = []
+	for point in poly2d.polygon:
+		result_polygon.append(point + poly2d.position)
+	return result_polygon
 
 func center_map():
 	update_mini_hero_pos()
