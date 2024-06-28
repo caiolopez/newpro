@@ -89,10 +89,12 @@ size = Vector2(38800, 23144)
 [node name="BossOverlay" parent="HUD" instance=ExtResource("1_tkq5o")]
 
 [node name="MiniMap" parent="HUD" instance=ExtResource("2_is0lr")]
+minimum_scale = 0.1
+maximum_scale = 0.3
 
 [node name="Hero" parent="." instance=ExtResource("2_acvau")]
 unique_name_in_owner = true
-position = Vector2(1512, -2320)
+position = Vector2(1424, -3600)
 
 [node name="Teleporter" parent="." instance=ExtResource("2_uiite")]
 position = Vector2(2752, -824)

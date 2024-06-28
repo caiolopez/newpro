@@ -41,8 +41,9 @@ func append_sector_to_map(sector: MapSector):
 
 func delete_sector_from_map(sector: MapSector):
 	for poly in $SectorPolygons.get_children():
-		if poly == SectorPolygon and poly.ref == sector:
+		if poly is SectorPolygon and poly.ref == sector:
 			poly.queue_free()
+	update_outline_node() # TODO : outlines are ignoring this
 
 func update_mini_hero_pos():
 	mini_hero.position = Utils.find_hero().global_position
@@ -50,6 +51,7 @@ func update_mini_hero_pos():
 func update_outline_node():
 	for child in $Outlines.get_children():
 		child.queue_free()
+		print("outline deleted")
 	
 	for polygon in merge_mini_sectors():
 		var outline: Line2D = Line2D.new()
@@ -58,6 +60,7 @@ func update_outline_node():
 		outline.closed = true
 		outline.default_color = Color.MAGENTA
 		outline.width = 100
+		outline.joint_mode = Line2D.LINE_JOINT_ROUND
 
 func merge_mini_sectors() ->  Array[PackedVector2Array]:
 	var parent_node = $SectorPolygons
@@ -77,13 +80,12 @@ func merge_mini_sectors() ->  Array[PackedVector2Array]:
 			other_polygons.remove_at(0)
 		merged_polygons = Geometry2D.merge_polygons(merged_polygons[0], polygons[i])
 		merged_polygons.append_array(other_polygons)
-		print(merged_polygons)
 
 	#var merged_polygons: Array[PackedVector2Array] = polygons.reduce(
 		#func(acc: Array[PackedVector2Array], i: PackedVector2Array):
 			#return Geometry2D.merge_polygons(acc[0], i),
 		#[polygons[0]])
-	print(merged_polygons)
+
 	return merged_polygons
 
 func get_translated_polygon(poly2d: Polygon2D) -> PackedVector2Array:

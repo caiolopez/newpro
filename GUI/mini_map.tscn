@@ -13,6 +13,8 @@ offset_bottom = -1080.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_h5psa")
+minimum_scale = null
+maximum_scale = null
 
 [node name="SectorPolygons" type="CanvasGroup" parent="."]
 self_modulate = Color(1, 1, 1, 0.247059)
