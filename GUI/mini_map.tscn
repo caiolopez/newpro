@@ -13,8 +13,6 @@ offset_bottom = -1080.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_h5psa")
-minimum_scale = null
-maximum_scale = null
 
 [node name="SectorPolygons" type="CanvasGroup" parent="."]
 self_modulate = Color(1, 1, 1, 0.247059)
@@ -27,5 +25,3 @@ self_modulate = Color(1, 1, 1, 0.247059)
 [node name="MiniHero" type="Sprite2D" parent="Icons" groups=["map_icons"]]
 modulate = Color(1, 0.345098, 1, 1)
 texture = ExtResource("2_1jqvw")
-
-[node name="Line2D" type="Line2D" parent="."]

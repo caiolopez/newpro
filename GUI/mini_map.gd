@@ -14,20 +14,14 @@ var move_speed: Vector2 = Vector2(400, 400)
 var map_flags: Array[Node2D] = []
 enum States {ON, ANIMATING_IN, ANIMATING_OUT, OFF}
 var state: States = States.OFF
-var boundaries: CollisionShape2D
 
 func _ready():
-	boundaries = find_boundaries().duplicate()
-	$SectorPolygons.add_child(boundaries)
 	Events.chart_map_sector.connect(append_sector_to_map)
-	Events.unchart_map_sector.connect(delete_sector_from_map)
 	$SectorPolygons.self_modulate = Color.TRANSPARENT
 	$Icons.self_modulate = Color.TRANSPARENT
+	$Outlines.self_modulate = Color.TRANSPARENT
 	adjust_icon_scale()
 	center_map()
-
-func find_boundaries() -> Node:
-	return get_node("/root/Level/Bounderies")
 
 func append_sector_to_map(sector: MapSector):
 	var sect_coll = sector.extract_coll_polygon_2d()
@@ -54,12 +48,13 @@ func update_outline_node():
 		print("outline deleted")
 	
 	for polygon in merge_mini_sectors():
+		print($SectorPolygons.get_child_count())
 		var outline: Line2D = Line2D.new()
 		outline.points = polygon
 		$Outlines.add_child(outline)
 		outline.closed = true
-		outline.default_color = Color.MAGENTA
-		outline.width = 100
+		outline.default_color = Color.MIDNIGHT_BLUE
+		outline.width = 50
 		outline.joint_mode = Line2D.LINE_JOINT_ROUND
 
 func merge_mini_sectors() ->  Array[PackedVector2Array]:
@@ -70,7 +65,8 @@ func merge_mini_sectors() ->  Array[PackedVector2Array]:
 		if child is Polygon2D:
 			polygons.append(get_translated_polygon(child))
 
-	if polygons.is_empty(): push_error("No polygons found to merge.")
+	if polygons.is_empty():
+		push_error("No polygons found to merge.")
 
 	var merged_polygons: Array[PackedVector2Array] = [polygons[0]]
 	for i in range(1, polygons.size()):
@@ -80,11 +76,6 @@ func merge_mini_sectors() ->  Array[PackedVector2Array]:
 			other_polygons.remove_at(0)
 		merged_polygons = Geometry2D.merge_polygons(merged_polygons[0], polygons[i])
 		merged_polygons.append_array(other_polygons)
-
-	#var merged_polygons: Array[PackedVector2Array] = polygons.reduce(
-		#func(acc: Array[PackedVector2Array], i: PackedVector2Array):
-			#return Geometry2D.merge_polygons(acc[0], i),
-		#[polygons[0]])
 
 	return merged_polygons
 
@@ -151,9 +142,7 @@ func _process(delta):
 		return
 
 	update_mini_hero_pos()
-	if Input.is_action_pressed("up"):
-		position = flur(position, Vector2(0, -move_speed.y * delta))
-		#position.y = position.y - move_speed.y * delta
+	if Input.is_action_pressed("up"):    position.y -= move_speed.y * delta
 	if Input.is_action_pressed("down"):  position.y += move_speed.y * delta
 	if Input.is_action_pressed("left"):  position.x -= move_speed.x * delta
 	if Input.is_action_pressed("right"): position.x += move_speed.x * delta
@@ -168,21 +157,16 @@ func _process(delta):
 		fade_out_minimap()
 		state = States.ANIMATING_OUT
 
-func flur(coordinate: Vector2, displacement: Vector2) -> Vector2:
-	var sum = coordinate + displacement
-	if boundaries.shape.get_rect().has_point(sum):
-		return sum
-	else:
-		return coordinate
-
 func fade_in_minimap():
 	var t = create_tween()
-	t.tween_property($SectorPolygons, "self_modulate", Color.WHITE, 0.5)
+	t.tween_property($SectorPolygons, "self_modulate", Color.CORNFLOWER_BLUE, 0.5)
 	t.parallel().tween_property($Icons, "self_modulate", Color.WHITE, 0.5)
+	t.parallel().tween_property($Outlines, "self_modulate", Color.MIDNIGHT_BLUE, 0.5)
 
 func fade_out_minimap():
 	var t = create_tween()
 	t.tween_property($SectorPolygons, "self_modulate", Color.TRANSPARENT, 0.25)
 	t.parallel().tween_property($Icons, "self_modulate", Color.TRANSPARENT, 0.25)
+	t.parallel().tween_property($Outlines, "self_modulate", Color.TRANSPARENT, 0.25)
 
 
