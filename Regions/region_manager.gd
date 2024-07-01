@@ -27,5 +27,5 @@ func change_region(to_region: Constants.RegName) -> void:
 
 func _process(_delta):
 	pass
-	if Input.is_action_just_pressed("up"):
-		change_region(Constants.RegName.HUB)
+	#if Input.is_action_just_pressed("up"):
+		#change_region(Constants.RegName.HUB)

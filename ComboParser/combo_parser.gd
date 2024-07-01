@@ -3,7 +3,6 @@ extends Node
 @onready var timer: Timer = Timer.new()
 signal combo_performed(combo: StringName)
 
-
 func _ready():
 	add_child(timer)
 	timer.one_shot = true
@@ -12,7 +11,6 @@ func _ready():
 			if child is ComboSequence:
 				child.i = 0
 		)
-
 
 func _input(event):
 	if not event.is_pressed(): return

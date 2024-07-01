@@ -55,8 +55,10 @@ var last_water_surface: float
 
 
 func _ready():
-	Events.hero_entered_water.connect(_on_hero_entered_water)
-	Events.hero_exited_water.connect(_on_hero_exited_water)
+	Events.hero_entered_water.connect(func(_water, surface_glpos):
+		is_in_water = true
+		last_water_surface = surface_glpos)
+	Events.hero_exited_water.connect(func(_water): is_in_water = false)
 	Events.hero_hit_teleporter.connect(_on_hero_hit_teleporter)
 	ComboParser.combo_performed.connect(func(combo): if combo == "Die": die())
 
@@ -160,17 +162,6 @@ func check_value_change():
 	is_just_pushing_wall = is_pushing_wall() and not was_pushing_wall
 	just_stopped_pushing_wall = not is_pushing_wall() and was_pushing_wall
 	was_pushing_wall = is_pushing_wall()
-
-
-func _on_hero_entered_water(water, surface_global_pos):
-	is_in_water = true
-	current_water = water
-	last_water_surface = surface_global_pos
-
-
-func _on_hero_exited_water(_water):
-	is_in_water = false
-	current_water = null
 
 
 func is_head_above_water() -> bool:

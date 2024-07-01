@@ -19,9 +19,8 @@ var inertia_only: bool = false ## If true, parent entity will stop adding veloci
 func _ready():
 	if "target" in parent:
 		target_entity = parent.target
-	if not get_tree().get_nodes_in_group("heroes").is_empty()\
-	and not target_entity:
-		target_entity = get_tree().get_nodes_in_group("heroes")[0]
+	else:
+		target_entity = Utils.find_hero()
 
 	if parent.has_method("move_and_slide"):
 		PARENT_HAS_MOVE_AND_SLIDE = true

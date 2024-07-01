@@ -3,11 +3,9 @@ extends Area2D
 @export var recall_hero_direction: bool = false
 var direction: int = 1
 
-
 func _ready():
 	body_entered.connect(_on_hero_entered)
 	if scale.x < 0: direction = -1
-
 
 func _on_hero_entered(body):
 	if not body is Hero: return

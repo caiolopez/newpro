@@ -31,7 +31,7 @@ func on_body_entered(body):
 
 func add_children_to_entities():
 	for c in get_children():
-		if not c == $UniqueCollider:
+		if not c == UniqueCollider:
 			entities.append(c)
 
 

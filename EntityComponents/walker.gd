@@ -49,9 +49,10 @@ func _ready():
 
 	if "target" in parent:
 		target_entity = parent.target
-	if not get_tree().get_nodes_in_group("heroes").is_empty()\
-	and not target_entity:
-		target_entity = get_tree().get_nodes_in_group("heroes")[0]
+	else:
+		target_entity = Utils.find_hero()
+		
+	
 	state_machine.start()
 
 	if dmg_taker != null:

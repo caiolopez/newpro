@@ -1,16 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://boan2jyc4hlda"]
+[gd_scene load_steps=2 format=3 uid="uid://boan2jyc4hlda"]
 
 [ext_resource type="Script" path="res://Checkpoint/checkpoint_trigger.gd" id="1_4e7d7"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mh3mc"]
-resource_local_to_scene = true
 
 [node name="CheckpointTrigger" type="Area2D"]
 collision_mask = 8
 script = ExtResource("1_4e7d7")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_mh3mc")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(50, 0)

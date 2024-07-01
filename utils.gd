@@ -93,25 +93,15 @@ func create_blinking_timer(target: Node2D, duration: float = 0.8, auto_stop_time
 
 	return timer
 
-
 func is_pushing_sides() -> bool:
 	return Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right")
-
-
-func get_hero_glpos() -> Vector2:
-	if not get_tree().get_nodes_in_group("heroes").is_empty():
-		return get_tree().get_nodes_in_group("heroes")[0].global_position
-	else:
-		push_error("Hero not found in Utils.get_hero_glpos(). global_position defaulted to Vector2.ZERO")
-		return Vector2.ZERO
-
 
 func find_hero() -> Hero:
 	var hero: Hero = null
 	if get_tree().get_nodes_in_group("heroes").is_empty():
 		push_warning("Could not locate Hero within tree.")
 	else:
-		hero = get_tree().get_nodes_in_group("heroes")[0]
+		hero = get_tree().get_first_node_in_group("heroes")
 	return hero
 
 func save_node(node: Node, path: String) -> void:

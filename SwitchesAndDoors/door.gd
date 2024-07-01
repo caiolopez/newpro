@@ -13,21 +13,7 @@ signal stopped_moving_at_origin()
 signal stopped_moving_at_offset()
 
 
-#func _get_configuration_warnings():
-	#var warnings = []
-	#if not has_unique_collider:
-		#warnings.append("Door requires UniqueCollider.")
-	#return warnings
-
-
 func _ready():
-	#if Engine.is_editor_hint():
-		#update_configuration_warnings()
-		#child_entered_tree.connect(func(node: Node):
-			#if node is UniqueCollider:
-				#has_unique_collider = true
-			#update_configuration_warnings())
-
 	state_machine = $StateMachine
 	if auto_close_time > 0:
 		$StateMachine/TimerAutoClose.set_wait_time(auto_close_time)
