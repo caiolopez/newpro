@@ -15,14 +15,19 @@ func _ready():
 	body_entered.connect(func(body):
 		if not body is Hero:
 			return
+		if not body.state_machine.current_state.death_prone:
+			return
+
 		if status == S.UNCHARTED:
 			status = S.CHARTING
 			Events.chart_map_sector.emit(self)
 		)
+		
 	Events.hero_reached_checkpoint.connect(func():
 		if status == S.CHARTING:
 			status = S.CHARTED
 		)
+
 	Events.hero_respawned_at_checkpoint.connect(func():
 		if status == S.CHARTING:
 			status = S.UNCHARTED
