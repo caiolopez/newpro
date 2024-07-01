@@ -18,10 +18,11 @@ config/icon="res://icon.svg"
 [autoload]
 
 Constants="*res://constants.gd"
-Events="*res://events.tscn"
 Utils="*res://utils.gd"
+Events="*res://events.tscn"
 BulletManager="*res://Bullet/bullet_manager.tscn"
 ComboParser="*res://ComboParser/ComboParser.tscn"
+RegionManager="*res://Regions/RegionManager.tscn"
 
 [debug]
 
