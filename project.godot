@@ -26,6 +26,7 @@ RegionManager="*res://Regions/RegionManager.tscn"
 
 [debug]
 
+gdscript/warnings/unused_signal=0
 gdscript/warnings/native_method_override=1
 
 [display]
