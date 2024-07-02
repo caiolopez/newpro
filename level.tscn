@@ -34,7 +34,7 @@
 [ext_resource type="PackedScene" uid="uid://7jpetdd82f2l" path="res://GUI/map_sector.tscn" id="30_gywv3"]
 [ext_resource type="PackedScene" uid="uid://6yx2isfbpjml" path="res://Regions/HUB.tscn" id="33_cwb1v"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fpx30"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1suec"]
 size = Vector2(128, 128)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6aaj6"]
@@ -48,13 +48,13 @@ size = Vector2(1920, 1080)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v4vog"]
 size = Vector2(223, 153.421)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kldic"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_djh68"]
 size = Vector2(98, 592)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6erpd"]
 size = Vector2(120, 335.998)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8xqyf"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aw58c"]
 size = Vector2(136, 144)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b85na"]
@@ -170,8 +170,9 @@ position = Vector2(768, 496)
 open_offset = Vector2(0, -200)
 
 [node name="UniqueCollider" type="CollisionShape2D" parent="Region/SwitchGroupController/Door"]
-shape = SubResource("RectangleShape2D_fpx30")
+shape = SubResource("RectangleShape2D_1suec")
 script = ExtResource("24_1i71r")
+is_unique = true
 
 [node name="Door2" parent="Region/SwitchGroupController" instance=ExtResource("3_ia51n")]
 position = Vector2(528, 392)
@@ -384,8 +385,9 @@ rotation = 3.14159
 
 [node name="UniqueCollider" type="CollisionShape2D" parent="Region/CheckpointTrigger"]
 position = Vector2(-38.9998, -56)
-shape = SubResource("RectangleShape2D_kldic")
+shape = SubResource("RectangleShape2D_djh68")
 script = ExtResource("24_1i71r")
+is_unique = true
 
 [node name="CheckpointTrigger2" parent="Region" instance=ExtResource("7_h6eyv")]
 position = Vector2(-1792, 1592)
@@ -421,8 +423,9 @@ position = Vector2(-2984, 1880)
 
 [node name="UniqueCollider2" type="CollisionShape2D" parent="Region/Effector"]
 position = Vector2(4, -40)
-shape = SubResource("RectangleShape2D_8xqyf")
+shape = SubResource("RectangleShape2D_aw58c")
 script = ExtResource("24_1i71r")
+is_unique = true
 
 [node name="Sprite2D2" type="Sprite2D" parent="Region/Effector"]
 position = Vector2(24, -232)
@@ -542,7 +545,6 @@ open_offset = Vector2(0, -256)
 [node name="UniqueCollider" parent="Region/SwitchGroupController2/Door2" instance=ExtResource("29_dsgei")]
 position = Vector2(0, -44)
 shape = SubResource("RectangleShape2D_nj7ht")
-is_unique = true
 
 [node name="Door" parent="Region/SwitchGroupController2" instance=ExtResource("3_ia51n")]
 position = Vector2(1760, -2152)
@@ -551,7 +553,6 @@ open_offset = Vector2(0, -256)
 [node name="UniqueCollider" parent="Region/SwitchGroupController2/Door" instance=ExtResource("29_dsgei")]
 position = Vector2(0, -44)
 shape = SubResource("RectangleShape2D_nj7ht")
-is_unique = true
 
 [node name="Switch" parent="Region/SwitchGroupController2" instance=ExtResource("5_fh6e8")]
 position = Vector2(1640, -2376)
