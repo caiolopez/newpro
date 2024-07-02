@@ -15,6 +15,7 @@ signal suffered(hp: int)
 func _ready():
 	Events.hero_reached_checkpoint.connect(commit_status)
 	Events.hero_respawned_at_checkpoint.connect(reset_status)
+	area_entered.connect(_on_area_entered)
 
 
 func take_dmg(amount: int):
@@ -56,4 +57,3 @@ func reset_status():
 	if not RESET_UPON_RESPAWN: return
 	current_hp = HP_AMOUNT
 	resurrected.emit()
-

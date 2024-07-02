@@ -4,5 +4,3 @@
 
 [node name="DmgTaker" type="Area2D"]
 script = ExtResource("1_ynf2i")
-
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]

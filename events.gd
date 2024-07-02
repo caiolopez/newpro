@@ -21,4 +21,3 @@ signal chart_map_sector(sector: MapSector)
 signal unchart_map_sector(sector: MapSector)
 
 signal boss_trigger_entered(boss: Node)
-

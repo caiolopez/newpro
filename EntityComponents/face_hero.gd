@@ -13,4 +13,3 @@ func _process(_delta):
 		if hero_dir != last_hero_dir:
 			last_hero_dir = hero_dir
 			update.emit(hero_dir)
-

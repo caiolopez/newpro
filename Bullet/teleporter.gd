@@ -13,4 +13,3 @@ func _ready():
 			Utils.paint_white(true, get_node("Sprite2D"), 0.1)
 			area.kill_bullet()
 	)
-

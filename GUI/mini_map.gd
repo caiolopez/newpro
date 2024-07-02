@@ -168,5 +168,3 @@ func fade_out_minimap():
 	t.tween_property($SectorPolygons, "self_modulate", Color.TRANSPARENT, 0.25)
 	t.parallel().tween_property($Icons, "self_modulate", Color.TRANSPARENT, 0.25)
 	t.parallel().tween_property($Outlines, "self_modulate", Color.TRANSPARENT, 0.25)
-
-
