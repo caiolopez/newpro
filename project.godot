@@ -23,6 +23,7 @@ Events="*res://events.tscn"
 BulletManager="*res://Bullet/bullet_manager.tscn"
 ComboParser="*res://ComboParser/ComboParser.tscn"
 RegionManager="*res://Regions/RegionManager.tscn"
+SaveManager="*res://SaveManager/save_manager.gd"
 
 [debug]
 
