@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=4 uid="uid://1xi1vmc3x5ck"]
+[gd_scene load_steps=55 format=4 uid="uid://1xi1vmc3x5ck"]
 
 [ext_resource type="PackedScene" uid="uid://bp1e8lhbqp3me" path="res://Entities/Spike.tscn" id="1_cietj"]
 [ext_resource type="PackedScene" uid="uid://b424bvcxa2fbn" path="res://GUI/BossOverlay.tscn" id="1_tkq5o"]
@@ -32,7 +32,6 @@
 [ext_resource type="PackedScene" uid="uid://bmt5sjek4aha4" path="res://EntityComponents/OpenDoorsIfDead.tscn" id="24_nrwds"]
 [ext_resource type="PackedScene" uid="uid://xc3uchpjcg0y" path="res://Bullet/UniqueCollider.tscn" id="29_dsgei"]
 [ext_resource type="PackedScene" uid="uid://7jpetdd82f2l" path="res://GUI/map_sector.tscn" id="30_gywv3"]
-[ext_resource type="PackedScene" uid="uid://6yx2isfbpjml" path="res://Regions/HUB.tscn" id="33_cwb1v"]
 [ext_resource type="Texture2D" uid="uid://dv4ub8glusqw7" path="res://EntityComponents/monochrome_tilemap_transparent_packed.png" id="34_5jfa3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1suec"]
@@ -1001,9 +1000,6 @@ position = Vector2(2640, -2000)
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Region/Node2D/MapSector2"]
 position = Vector2(-2552, 1972.75)
 polygon = PackedVector2Array(4792, 1368, 440, 1376, -432, -1216, 4808, -1288)
-
-[node name="Region2" parent="." instance=ExtResource("33_cwb1v")]
-position = Vector2(2776, -1352)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 scale = Vector2(8, 8)

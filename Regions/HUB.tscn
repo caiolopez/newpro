@@ -5,7 +5,6 @@
 
 [node name="Region2" type="Node2D"]
 script = ExtResource("1_v8lrc")
-region_name = 1
 
 [node name="Block23" parent="." instance=ExtResource("2_a8cbc")]
 position = Vector2(-4968, 2736)
