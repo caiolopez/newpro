@@ -1,31 +1,19 @@
 extends Node
 
-var current_region: Region
+var current_region: Region = null
 
 func change_region(to_region: Constants.RegName) -> void:
 	if current_region:
-		var save_path = "user://Regions/" + Constants.RegName.keys()[current_region.region_name] + ".tscn"
-		Utils.save_node(current_region, save_path)
 		current_region.queue_free()
-	
-	var load_path = "user://Regions/" + Constants.RegName.keys()[to_region] + ".tscn"
-	var loaded_node = Utils.load_node(load_path)
-	
-	if loaded_node:
-		add_child(loaded_node)
-		current_region = loaded_node
-		print(loaded_node, " loaded.")
-	else:
-		print("Requested serialized region not found. Instantiating brand new one.")
-		var new_region = load("res://Regions/" + Constants.RegName.keys()[to_region] + ".tscn").instantiate()
-		if new_region:
-			add_child(new_region)
-			current_region = new_region
-			print("New ", Constants.RegName.keys()[to_region], " region instantiated. Current region is now " + Constants.RegName.keys()[current_region.region_name], ".")
-		else:
-			print("Could not isntantiate new ", Constants.RegName.keys()[to_region], ".") 
+	var new_region = load("res://Regions/" + Constants.RegName.keys()[to_region] + ".tscn").instantiate()
+	get_tree().root.add_child(new_region)
+	new_region.name = Constants.RegName.keys()[to_region]
+
+func set_current_region(region: Region):
+	current_region = region
+	if not SaveManager.region_dictionaries.has(region.name):
+		SaveManager.region_dictionaries[region.name] = SaveManager.region_persistence.duplicate()
+	print(current_region, " | ", SaveManager.region_dictionaries)
 
 func _process(_delta):
-	pass
-	#if Input.is_action_just_pressed("up"):
-		#change_region(Constants.RegName.HUB)
+	if Input.is_action_just_pressed("up"): change_region(Constants.RegName.HUB)

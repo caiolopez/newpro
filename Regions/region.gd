@@ -1,3 +1,5 @@
 class_name Region extends Node2D
 
-@export var region_name: Constants.RegName
+
+func _ready():
+	RegionManager.set_current_region(self)
