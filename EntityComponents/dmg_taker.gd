@@ -15,7 +15,7 @@ signal suffered(hp: int)
 func _ready():
 	Events.hero_reached_checkpoint.connect(commit_status)
 	Events.hero_respawned_at_checkpoint.connect(reset_status)
-	area_entered.connect(_on_area_entered)
+	area_entered.connect(on_area_entered)
 
 
 func take_dmg(amount: int):
@@ -32,7 +32,7 @@ func take_dmg(amount: int):
 	print("Foe: ", is_foe, ". Damage taken: ", amount, ". Current HP: ", current_hp)
 
 
-func _on_area_entered(area):
+func on_area_entered(area):
 	if current_hp <= 0: return
 	if not area.is_in_group("dmg_dealers"): return
 	if is_foe == area.is_foe: return
@@ -50,6 +50,7 @@ func _on_area_entered(area):
 func commit_status():
 	if not QUEUE_FREE_ON_CHECKPOINT: return
 	if current_hp == 0 and is_foe:
+		SaveManager.region_dictionaries[RegionManager.current_region.name][get_parent().get_path] = "dead"
 		get_parent().queue_free()
 
 
