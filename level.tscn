@@ -655,10 +655,21 @@ rotation = -3.14159
 scale = Vector2(25.2062, -0.148489)
 skew = 1.75238e-05
 
+[node name="Block23" parent="Region/Blocks" instance=ExtResource("1_weaqc")]
+position = Vector2(132104, 211.644)
+scale = Vector2(231.396, 0.0170178)
+skew = -0.00233531
+
 [node name="Block13" parent="Region/Blocks" instance=ExtResource("1_weaqc")]
 position = Vector2(-9294.79, 186.647)
 rotation = -3.14159
 scale = Vector2(15.2117, -0.130452)
+skew = 1.75238e-05
+
+[node name="Block24" parent="Region/Blocks" instance=ExtResource("1_weaqc")]
+position = Vector2(-5917.15, 92.8035)
+rotation = -3.14159
+scale = Vector2(40.212, -0.13)
 skew = 1.75238e-05
 
 [node name="Block2" parent="Region/Blocks" instance=ExtResource("1_weaqc")]
