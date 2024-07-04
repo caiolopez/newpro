@@ -39,8 +39,8 @@ func add_children_to_entities():
 func displace_entities(e: Node):
 	if e is Node2D:
 		e.global_position = destination
-		if send_to_save_manager: SaveManager.log_entity_change(e.get_path(), destination)
-
+		if send_to_save_manager: SaveManager.log_entity_change(e.get_path(), {"move_to": destination})
+		print("yay")
 
 func disable_entities():
 	for e in entities:

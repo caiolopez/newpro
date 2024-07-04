@@ -843,6 +843,7 @@ metadata/_edit_lock_ = true
 
 [node name="Effector" parent="Region" instance=ExtResource("13_gsh8o")]
 position = Vector2(-2984, 1880)
+effect = 1
 
 [node name="UniqueCollider2" type="CollisionShape2D" parent="Region/Effector"]
 position = Vector2(4, -40)

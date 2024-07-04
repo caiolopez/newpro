@@ -13,6 +13,10 @@ func input_bin():
 	#if Input.is_action_just_pressed("up"): SaveManager.print_all_dics()
 	if Input.is_action_just_pressed("up"): SaveManager.save_file()
 	if Input.is_action_just_pressed("center_map"): SaveManager.load_file()
+	if Input.is_action_just_pressed("pause"):
+		SaveManager.inject_changes_into_current_region()
+		SaveManager.inject_changes_into_hero()
+	
 
 func print_bin():
 	if not print_stuff: return

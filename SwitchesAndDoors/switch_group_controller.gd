@@ -83,3 +83,12 @@ func on_switch_turned_off():
 	close_rel_doors()
 	turn_off_rel_switches()
 	group_is_on = false
+
+
+func force_group_on_and_saved():
+	for sw in related_switches:
+		sw.switch_on()
+	for door in related_doors:
+		door.insta_open()
+	group_is_on = true
+	group_is_saved = true
