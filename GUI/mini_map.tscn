@@ -17,9 +17,6 @@ script = ExtResource("1_h5psa")
 [node name="SectorPolygons" type="CanvasGroup" parent="."]
 self_modulate = Color(1, 1, 1, 0.247059)
 
-[node name="Outlines" type="CanvasGroup" parent="."]
-self_modulate = Color(1, 1, 1, 0.247059)
-
 [node name="Icons" type="CanvasGroup" parent="."]
 
 [node name="MiniHero" type="Sprite2D" parent="Icons" groups=["map_icons"]]
