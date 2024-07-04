@@ -24,7 +24,6 @@ func update_current_stage(hp):
 	for i: int in range(st.size()):
 		if hp > st[i]:
 			current_stage = i
-			print(i)
 			return
 
 

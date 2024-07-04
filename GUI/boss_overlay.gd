@@ -54,4 +54,3 @@ func update_bar_animated():
 		"position",
 		Vector2($HpBar.position.x, 100),
 		0.2).from(Vector2($HpBar.position.x, 90)).set_trans(Tween.TransitionType.TRANS_BACK)
-

@@ -51,7 +51,3 @@ func on_bullet_entered(area):
 			$TimerSimultWindow.start()
 		
 	area.kill_bullet()
-
-
-
-

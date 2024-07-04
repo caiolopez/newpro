@@ -9,7 +9,7 @@ func on_enter():
 
 func on_exit():
 	door.stopped_moving_at_offset.disconnect(on_stopped_moving)
-	if door.should_close.is_connected(on_close_door): # TODO: prevent code from attempting to disconnect this twice
+	if door.should_close.is_connected(on_close_door):
 		door.should_close.disconnect(on_close_door)
 
 

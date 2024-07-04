@@ -103,21 +103,3 @@ func find_hero() -> Hero:
 	else:
 		hero = get_tree().get_first_node_in_group("heroes")
 	return hero
-
-func save_node(node: Node, path: String) -> void:
-	var packed_scene = PackedScene.new()
-	var result = packed_scene.pack(node)
-	if result == OK:
-		var error = ResourceSaver.save(packed_scene, path)
-		if error != OK:
-			print("An error occurred while saving the scene to disk.")
-	else:
-		print("An error occurred while packing the scene.")
-
-func load_node(path: String) -> Node:
-	var packed_scene = load(path)
-	if packed_scene is PackedScene:
-		return packed_scene.instantiate()
-	else:
-		print("Failed to load the scene.")
-		return null

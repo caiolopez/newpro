@@ -45,10 +45,8 @@ func update_mini_hero_pos():
 func update_outline_node():
 	for child in $Outlines.get_children():
 		child.queue_free()
-		print("outline deleted")
 	
 	for polygon in merge_mini_sectors():
-		print($SectorPolygons.get_child_count())
 		var outline: Line2D = Line2D.new()
 		outline.points = polygon
 		$Outlines.add_child(outline)

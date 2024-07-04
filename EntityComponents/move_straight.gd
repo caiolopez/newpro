@@ -78,4 +78,3 @@ func set_static_target_pos_to_curr_target_pos():
 	velocity = Vector2.ZERO
 	static_self_pos = global_position
 	static_target_pos = target_entity.global_position
-	print(static_target_pos, global_position)
