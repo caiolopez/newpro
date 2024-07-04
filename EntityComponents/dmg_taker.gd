@@ -50,7 +50,7 @@ func on_area_entered(area):
 func commit_status():
 	if not QUEUE_FREE_ON_CHECKPOINT: return
 	if current_hp == 0 and is_foe:
-		SaveManager.region_dictionaries[RegionManager.current_region.name][get_parent().get_path] = "dead"
+		SaveManager.update_entities(get_parent().get_path(), "dead")
 		get_parent().queue_free()
 
 

@@ -193,13 +193,8 @@ func _on_hero_hit_teleporter(destination: Vector2):
 
 func update_current_checkpoint(new_checkpoint: Area2D):
 	current_checkpoint = new_checkpoint
-	SaveManager.hero_persistence["current_checkpoint_path"] = current_checkpoint.get_path()
+	SaveManager.update_hero("current_checkpoint_path", current_checkpoint.get_path())
 
 
 func die():
 	state_machine.set_state("StateDeathSnapshot")
-
-
-func update_to_persistence():
-	SaveManager.hero_persistence["can_dive"] = can_dive
-	SaveManager.hero_persistence["shoots_fire"] = shoots_fire
