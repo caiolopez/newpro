@@ -1,17 +1,16 @@
 extends Node
 
 var hero_persistence: Dictionary = {}
-var entity_persistence: Dictionary = {}
 var regions: Dictionary = {}
 
 func add_region_entry(region: Region):
 	if not regions.has(region.name):
-		regions[region.name] = entity_persistence.duplicate()
+		regions[region.name] = {}
 
-func update_entities(key: String, value):
+func log_entity_change(key: String, value):
 	regions[RegionManager.current_region.name][key] = value
 
-func update_hero(key: String, value):
+func log_hero_change(key: String, value):
 	hero_persistence[key] = value
 
 func save_file():
@@ -23,25 +22,23 @@ func save_file():
 		print("Saved.")
 	else:
 		print("Error saving game: ", FileAccess.get_open_error())
-	# TODO: close
 
 func load_file():
 	var file = FileAccess.open("user://save_game.dat", FileAccess.READ)
-	print(file.get_as_text())
-	return file.get_as_text()
-
-func save_parser(data: String):
+	var data = file.get_as_text()
 	var json = JSON.new()
 	var error = json.parse(data)
 	if error == OK:
-		var data_received = json.data
-		if typeof(data_received) == TYPE_DICTIONARY:
-			print(data_received)
-		else:
-			print("Unexpected data")
+		if typeof(json.data) == TYPE_DICTIONARY: print(json.data)
 	else:
 		print("JSON Parse Error: ", json.get_error_message(), " in ", data, " at line ", json.get_error_line())
 
+	hero_persistence = json.data["hero_changes"]
+	regions = json.data["entity_changes"]
+
+func inject_changes_into_current_region():
+	var changes = regions[RegionManager.current_region]
+	# TODO
 
 func print_all_dics():
 	print("")

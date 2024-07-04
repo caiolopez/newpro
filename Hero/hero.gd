@@ -193,7 +193,7 @@ func _on_hero_hit_teleporter(destination: Vector2):
 
 func update_current_checkpoint(new_checkpoint: Area2D):
 	current_checkpoint = new_checkpoint
-	SaveManager.update_hero("current_checkpoint_path", current_checkpoint.get_path())
+	SaveManager.log_hero_change("current_checkpoint_path", current_checkpoint.get_path())
 
 
 func die():
