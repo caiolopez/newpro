@@ -84,10 +84,6 @@ func _process(delta):
 		return
 	
 	if state == States.ANIMATING_OUT:
-		if scale < Vector2.ONE:
-			adjust_scale(delta, 1)
-		else:
-			state = States.OFF
 		update_mini_hero_pos()
 		return
 	
@@ -119,3 +115,6 @@ func fade_out_minimap():
 	var t = create_tween()
 	t.tween_property($SectorPolygons, "self_modulate", Color.TRANSPARENT, 0.25)
 	t.parallel().tween_property($Icons, "self_modulate", Color.TRANSPARENT, 0.25)
+	t.tween_callback(func():
+		state = States.OFF
+		scale = Vector2.ONE)
