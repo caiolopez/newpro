@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=4 uid="uid://1xi1vmc3x5ck"]
+[gd_scene load_steps=57 format=4 uid="uid://1xi1vmc3x5ck"]
 
 [ext_resource type="PackedScene" uid="uid://bp1e8lhbqp3me" path="res://Entities/Spike.tscn" id="1_cietj"]
 [ext_resource type="PackedScene" uid="uid://b424bvcxa2fbn" path="res://GUI/BossOverlay.tscn" id="1_tkq5o"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://bgty58ccnncxy" path="res://Camera/camera_locker.tscn" id="4_d4cnc"]
 [ext_resource type="PackedScene" uid="uid://0fx3l1vwyhr4" path="res://SwitchesAndDoors/Switch.tscn" id="5_fh6e8"]
 [ext_resource type="Script" path="res://Regions/region.gd" id="6_ah80d"]
+[ext_resource type="PackedScene" uid="uid://ch0ldys5y2avd" path="res://Regions/RegionTrigger.tscn" id="6_mg0bt"]
 [ext_resource type="PackedScene" uid="uid://bt23waqbakmop" path="res://Bullet/water.tscn" id="7_5uehg"]
 [ext_resource type="PackedScene" uid="uid://boan2jyc4hlda" path="res://Checkpoint/checkpoint_trigger.tscn" id="7_h6eyv"]
 [ext_resource type="PackedScene" uid="uid://dd08gffrk8txn" path="res://EntityComponents/Elevator.tscn" id="7_qpcte"]
@@ -89,6 +90,9 @@ size = Vector2(378, 464.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nj7ht"]
 size = Vector2(128, 216)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lcmdo"]
+size = Vector2(504, 296)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ellh6"]
 texture = ExtResource("34_5jfa3")
@@ -1012,6 +1016,16 @@ position = Vector2(2640, -2000)
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Region/Node2D/MapSector2"]
 position = Vector2(-2552, 1972.75)
 polygon = PackedVector2Array(4792, 1368, 440, 1376, -432, -1216, 4808, -1288)
+
+[node name="RegionTrigger" parent="Region" instance=ExtResource("6_mg0bt")]
+position = Vector2(-1712, -2112)
+to_region = 1
+
+[node name="UniqueCollider" type="CollisionShape2D" parent="Region/RegionTrigger"]
+position = Vector2(4, -4)
+shape = SubResource("RectangleShape2D_lcmdo")
+script = ExtResource("24_1i71r")
+is_unique = true
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 scale = Vector2(8, 8)
