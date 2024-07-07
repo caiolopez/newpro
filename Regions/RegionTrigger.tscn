@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://ch0ldys5y2avd"]
+
+[ext_resource type="Script" path="res://Regions/region_trigger.gd" id="1_cpwqx"]
+
+[node name="RegionTrigger" type="Area2D"]
+collision_mask = 8
+script = ExtResource("1_cpwqx")

@@ -103,3 +103,11 @@ func find_hero() -> Hero:
 	else:
 		hero = get_tree().get_first_node_in_group("heroes")
 	return hero
+
+func get_ancestors(node: Node) -> Array:
+	var ancestors = []
+	var current_node = node
+	while current_node.get_parent() != null:
+		current_node = current_node.get_parent()
+		ancestors.append(current_node)
+	return ancestors

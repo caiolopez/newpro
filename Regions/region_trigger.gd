@@ -1,0 +1,15 @@
+extends Area2D
+
+@export var to_region: Constants.RegName
+
+func _ready() -> void:
+	body_entered.connect(func(body):
+		if body is Hero:
+			for ancestor in Utils.get_ancestors(self):
+				if ancestor is Region:
+					RegionManager.current_region = ancestor
+					print("Current Region was set to ", ancestor.name, ".")
+					break
+			
+			RegionManager.change_region(to_region)
+		)
