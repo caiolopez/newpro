@@ -18,6 +18,7 @@ var lockers: Array[Locker] = []
 @export var catch_up_speed: Vector2 ## How fast will the camera catch up with the Hero's speed.
 @export var lookahead_activation_vel: Vector2 = Vector2(10,2000) ## The minimum body velocity that activates the lookahead behavior. NOTE: Hard-coded to not work going up.
 @export var lookahead_amount: Vector2 = Vector2(200,200) ## The distance the camera frames in advance when performing lookahead.
+@export var show_gizmo: bool = false ## When set to true, camera position and camera target position are drawn.
 var current_lerp_speed: Vector2
 var current_lookahead: Vector2
 var target: Vector2
@@ -37,12 +38,13 @@ func _ready():
 	Events.hero_entered_camera_locker.connect(lock_camera)
 	Events.hero_exited_camera_locker.connect(unlock_camera)
 	
+	Events.camera_set_glpos.connect(func(glpos): global_position = glpos)
 	Events.camera_shake.connect(shake)
 	Events.camera_stop_shake.connect(stop_shake)
 
 
 func _process(_delta):
-	debug_gizmos()
+	if show_gizmo: debug_gizmos()
 	hero_real_vel = hero.get_real_velocity()
 	hero_vel = hero.velocity
 	hero_dir = hero.facing_direction

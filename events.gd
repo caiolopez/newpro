@@ -10,6 +10,7 @@ signal hero_changed_dir(new_dir: float)
 
 signal camera_shake(duration: float, amount: float)
 signal camera_stop_shake()
+signal camera_set_glpos(glpos: Vector2)
 
 signal hero_hit_teleporter(teleporter: Teleporter)
 
