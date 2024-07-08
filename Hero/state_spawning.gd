@@ -5,6 +5,7 @@ var death_prone: bool = false
 
 
 func on_enter():
+	AppManager.is_time_running = true
 	if hero.is_in_water:
 		machine.set_state("StateFloating")
 		return

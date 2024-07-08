@@ -14,6 +14,8 @@ func input_bin():
 		SaveManager.load_from_slot(SaveManager.current_slot)
 	if Input.is_action_just_pressed("Debug Action 1"):
 		SaveManager.print_all_dics()
+	if Input.is_action_just_pressed("Debug Action 2"):
+		print(Utils.parse_time_as_string(AppManager.game_time))
 	if Input.is_action_just_pressed("up"): SaveManager.save_file()
 	if Input.is_action_just_pressed("center_map"): SaveManager.load_file()
 	if Input.is_action_just_pressed("pause"):

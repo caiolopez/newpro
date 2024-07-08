@@ -111,3 +111,9 @@ func get_ancestors(node: Node) -> Array:
 		current_node = current_node.get_parent()
 		ancestors.append(current_node)
 	return ancestors
+
+func parse_time_as_string(time: float) -> String:
+	var m = int(time / 60)
+	var s = int(time) % 60
+	var ms = int((time - floor(time)) * 1000)
+	return "%02d:%02d:%03d" % [m, s, ms]
