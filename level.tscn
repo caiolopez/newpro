@@ -1022,7 +1022,7 @@ position = Vector2(-1712, -2112)
 to_region = 1
 
 [node name="UniqueCollider" type="CollisionShape2D" parent="Region/RegionTrigger"]
-position = Vector2(4, -4)
+position = Vector2(-256, 48)
 shape = SubResource("RectangleShape2D_lcmdo")
 script = ExtResource("24_1i71r")
 is_unique = true

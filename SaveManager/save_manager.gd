@@ -2,10 +2,12 @@ extends Node
 
 var hero_persistence: Dictionary = {}
 var regions: Dictionary = {}
+var current_slot: int
 
 func add_region_entry(region: Region):
 	if not regions.has(region.name):
 		regions[region.name] = {}
+		print("region entry added for ", region.name)
 
 func log_entity_change(key: String, value):
 	regions[RegionManager.current_region.name][key] = value
@@ -14,9 +16,11 @@ func log_hero_change(key: String, value):
 	hero_persistence[key] = value
 
 func save_file():
+	if RegionManager.current_region:
+		hero_persistence["current_region"] = RegionManager.current_region.name
 	var save = {"hero_changes": hero_persistence, "entity_changes": regions}
 	var json_string = JSON.stringify(save)
-	var file = FileAccess.open("user://save_game.dat", FileAccess.WRITE)
+	var file = FileAccess.open("user://save_" + str(current_slot) + ".dat", FileAccess.WRITE)
 	if file:
 		file.store_string(json_string)
 		print("Saved.")
@@ -24,7 +28,10 @@ func save_file():
 		print("Error saving game: ", FileAccess.get_open_error())
 
 func load_file():
-	var file = FileAccess.open("user://save_game.dat", FileAccess.READ)
+	var file = FileAccess.open("user://save_" + str(current_slot) + ".dat", FileAccess.READ)
+	if file == null:
+		print("File: user://save_" + str(current_slot) + ".dat does not exist.")
+		return
 	var data = file.get_as_text()
 	var json = JSON.new()
 	var error = json.parse(data)
@@ -37,7 +44,9 @@ func load_file():
 	regions = json.data["entity_changes"]
 
 func inject_changes_into_current_region():
-	var changes = regions[RegionManager.current_region.name]
+	if not RegionManager.current_region:
+		return
+	var changes: Dictionary = regions[RegionManager.current_region.name]
 	for key in changes:
 		var value = changes[key]
 		if typeof(value) == TYPE_DICTIONARY:
@@ -59,6 +68,18 @@ func inject_changes_into_hero():
 		match key:
 			"current_checkpoint_path": h.current_checkpoint = get_node(value)
 			"can_dive": h.can_dive = value
+			"current_region":
+				RegionManager.change_region(Constants.RegName.get(value))
+
+func load_from_slot(slot: int):
+	current_slot = slot
+	load_file()
+	inject_changes_into_hero()
+	inject_changes_into_current_region()
+
+func clear_slot(slot: int):
+	var path = "user://save_" + str(slot) + ".dat"
+	return DirAccess.remove_absolute(path) == OK
 
 func print_all_dics():
 	print("")
