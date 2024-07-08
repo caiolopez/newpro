@@ -198,3 +198,11 @@ func update_current_checkpoint(new_checkpoint: Area2D):
 
 func die():
 	state_machine.set_state("StateDeathSnapshot")
+
+func insta_spawn():
+	var destination = original_position
+	if current_checkpoint != null:
+		destination =current_checkpoint.global_position
+	global_position = destination
+	state_machine.set_state("StateSpawning")
+	

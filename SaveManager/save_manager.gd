@@ -76,6 +76,8 @@ func load_from_slot(slot: int):
 	load_file()
 	inject_changes_into_hero()
 	inject_changes_into_current_region()
+	Utils.find_hero().insta_spawn()
+	print("Game loaded from slot ", slot, ".")
 
 func clear_slot(slot: int):
 	var path = "user://save_" + str(slot) + ".dat"
