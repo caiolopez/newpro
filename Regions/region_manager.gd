@@ -6,9 +6,9 @@ func change_region(to_region: Constants.RegName) -> void:
 	if current_region:
 		if current_region.name == Constants.RegName.keys()[to_region]:
 			print("Current region is already set.")
-			return
-		current_region.queue_free()
-		print("Region ", current_region.name, " freed.")
+		else:
+			current_region.queue_free()
+			print("Region ", current_region.name, " freed.")
 
 	var new_region = get_node_or_null("/root/Level/" + Constants.RegName.keys()[to_region])
 
