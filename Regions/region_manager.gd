@@ -10,12 +10,12 @@ func change_region(to_region: Constants.RegName) -> void:
 			current_region.queue_free()
 			print("Region ", current_region.name, " freed.")
 
-	var new_region = get_node_or_null("/root/Level/" + Constants.RegName.keys()[to_region])
+	var new_region = get_node_or_null("/root/GameTree/" + Constants.RegName.keys()[to_region])
 
 	if not new_region:
 		new_region = load("res://Regions/" + Constants.RegName.keys()[to_region] + ".tscn").instantiate()
 		new_region.name = Constants.RegName.keys()[to_region]
-		get_node("/root/Level").call_deferred("add_child", new_region)
+		get_node("/root/GameTree").call_deferred("add_child", new_region)
 		print("Region ", new_region.name, " loaded from resource.")
 
 	set_current_region(new_region)
