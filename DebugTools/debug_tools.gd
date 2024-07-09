@@ -9,8 +9,6 @@ func _process(_delta):
 
 func input_bin():
 	if not input_stuff: return
-	if Input.is_action_just_pressed("shoulder_left"):
-		RegionManager.change_region(Constants.RegName.HUB)
 	if Input.is_action_just_pressed("Debug Action 1"):
 		SaveManager.print_all_dics()
 	if Input.is_action_just_pressed("Debug Action 2"):
