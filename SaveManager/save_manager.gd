@@ -4,6 +4,10 @@ var hero_persistence: Dictionary = {}
 var regions: Dictionary = {}
 var current_slot: int
 
+func _ready():
+	ComboParser.combo_performed.connect(func(combo): if combo == "SaveCurrentGame": save_file())
+	ComboParser.combo_performed.connect(func(combo): if combo == "LoadCurrentGame": load_from_slot())
+
 func add_region_entry(region: Region):
 	if not regions.has(region.name):
 		regions[region.name] = {}
@@ -18,6 +22,8 @@ func log_hero_change(key: String, value):
 func save_file():
 	if RegionManager.current_region:
 		hero_persistence["current_region"] = RegionManager.current_region.name
+	hero_persistence["elapsed_time"] = AppManager.game_time
+	
 	var save = {"hero_changes": hero_persistence, "entity_changes": regions}
 	var json_string = JSON.stringify(save)
 	var file = FileAccess.open("user://save_" + str(current_slot) + ".dat", FileAccess.WRITE)
@@ -68,10 +74,11 @@ func inject_changes_into_hero():
 		match key:
 			"current_checkpoint_path": h.current_checkpoint = get_node(value)
 			"can_dive": h.can_dive = value
+			"elapsed_time": AppManager.game_time = value
 			"current_region":
 				RegionManager.change_region(Constants.RegName.get(value))
 
-func load_from_slot(slot: int):
+func load_from_slot(slot: int = current_slot):
 	current_slot = slot
 	load_file()
 	inject_changes_into_hero()
