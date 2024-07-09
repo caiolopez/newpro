@@ -14,7 +14,8 @@ func add_region_entry(region: Region):
 		print("region entry added for ", region.name)
 
 func log_entity_change(key: String, value):
-	regions[RegionManager.current_region.name][key] = value
+	if RegionManager.current_region:
+		regions[RegionManager.current_region.name][key] = value
 
 func log_hero_change(key: String, value):
 	hero_persistence[key] = value
@@ -64,8 +65,12 @@ func inject_changes_into_current_region():
 					"saga": pass
 		else:
 			match value:
-				"dead": get_node(key).queue_free()
-				"on_and_saved": get_node(key).force_group_on_and_saved()
+				"dead":
+					if has_node(key):
+						get_node(key).queue_free()
+				"on_and_saved":
+					if has_node(key):
+						get_node(key).force_group_on_and_saved()
 
 func inject_changes_into_hero():
 	var h = Utils.find_hero()
