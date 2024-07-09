@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbovun2tcq5eg"]
+
+[ext_resource type="Script" path="res://Regions/region.gd" id="1_fjngo"]
+[ext_resource type="PackedScene" uid="uid://ctbx6yfgdfo4b" path="res://block.tscn" id="2_p7ua5"]
+
+[node name="Region2" type="Node2D"]
+script = ExtResource("1_fjngo")
+
+[node name="Block23" parent="." instance=ExtResource("2_p7ua5")]
+position = Vector2(-4968, 2736)
+scale = Vector2(135, 8)
+
+[node name="Block3" parent="." instance=ExtResource("2_p7ua5")]
+position = Vector2(832, -1192)
+rotation = -3.14159
+scale = Vector2(15.2117, -0.130452)
+skew = 1.75238e-05
