@@ -92,4 +92,3 @@ func reset_behavior():
 		current_burst_count = 1
 		timer_shot_cooldown.start()
 		timer_burst_cooldown.stop()
-

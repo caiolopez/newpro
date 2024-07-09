@@ -5,19 +5,14 @@ var death_prone: bool = false
 
 
 func on_enter():
+	var destination = hero.original_position
+	if hero.current_checkpoint != null:
+		destination = hero.current_checkpoint.global_position
+	hero.global_position = destination
+	
+	Events.camera_set_glpos.emit(hero.global_position)
 	AppManager.is_time_running = true
-	if hero.is_in_water:
-		machine.set_state("StateFloating")
-		return
 	machine.set_state("StateIdle")
-
-
-func on_process(_delta: float):
-	pass
-
-
-func on_physics_process(_delta: float):
-	pass
 
 
 func on_exit():

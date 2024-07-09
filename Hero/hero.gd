@@ -200,10 +200,5 @@ func die():
 	state_machine.set_state("StateDeathSnapshot")
 
 func insta_spawn():
-	var destination = original_position
-	if current_checkpoint != null:
-		destination =current_checkpoint.global_position
-	global_position = destination
-	Events.camera_set_glpos.emit(global_position)
 	state_machine.set_state("StateSpawning")
 	

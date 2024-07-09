@@ -16,6 +16,7 @@ signal hero_hit_teleporter(teleporter: Teleporter)
 
 signal hero_reached_checkpoint()
 signal hero_respawned_at_checkpoint()
+signal hero_spawned()
 signal hero_died()
 
 signal chart_map_sector(sector: MapSector)
