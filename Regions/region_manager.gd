@@ -19,6 +19,7 @@ func change_region(to_region: Constants.RegName) -> void:
 		print("Region ", new_region.name, " loaded from resource.")
 
 	set_current_region(new_region)
+	SaveManager.call_deferred("inject_changes_into_current_region")
 
 func set_current_region(region: Region):
 	current_region = region

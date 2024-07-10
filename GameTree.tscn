@@ -1,98 +1,15 @@
-[gd_scene load_steps=57 format=4 uid="uid://1xi1vmc3x5ck"]
+[gd_scene load_steps=14 format=4 uid="uid://1xi1vmc3x5ck"]
 
-[ext_resource type="PackedScene" uid="uid://bp1e8lhbqp3me" path="res://Entities/Spike.tscn" id="1_cietj"]
 [ext_resource type="PackedScene" uid="uid://b424bvcxa2fbn" path="res://GUI/BossOverlay.tscn" id="1_tkq5o"]
 [ext_resource type="PackedScene" uid="uid://ctbx6yfgdfo4b" path="res://block.tscn" id="1_weaqc"]
-[ext_resource type="PackedScene" uid="uid://cih4ag7u6dc0q" path="res://Entities/Spiny.tscn" id="2_5hkfu"]
 [ext_resource type="PackedScene" uid="uid://1md1m8n6iq5x" path="res://Hero/hero.tscn" id="2_acvau"]
-[ext_resource type="PackedScene" uid="uid://4cnf50mcwol8" path="res://Entities/Zombie.tscn" id="2_e0l7r"]
 [ext_resource type="PackedScene" uid="uid://d1h8vf2t5pgey" path="res://GUI/mini_map.tscn" id="2_is0lr"]
-[ext_resource type="PackedScene" uid="uid://8q0hcl7qc4ve" path="res://Entities/Ghost.tscn" id="2_jmdf8"]
-[ext_resource type="PackedScene" uid="uid://csvdenv1i3dc3" path="res://Bullet/Teleporter.tscn" id="2_uiite"]
-[ext_resource type="PackedScene" uid="uid://ruri8ytnt6k" path="res://SwitchesAndDoors/Door.tscn" id="3_ia51n"]
 [ext_resource type="PackedScene" uid="uid://j6oxe1axyrgk" path="res://Bullet/bullet_manager.tscn" id="3_j1ahj"]
 [ext_resource type="PackedScene" uid="uid://c48ye6g4s5ufc" path="res://Camera/camera.tscn" id="3_o6dt5"]
-[ext_resource type="PackedScene" uid="uid://bu38boui2wxu" path="res://SwitchesAndDoors/SwitchGroupController.tscn" id="3_scov6"]
-[ext_resource type="PackedScene" uid="uid://bgty58ccnncxy" path="res://Camera/camera_locker.tscn" id="4_d4cnc"]
-[ext_resource type="PackedScene" uid="uid://0fx3l1vwyhr4" path="res://SwitchesAndDoors/Switch.tscn" id="5_fh6e8"]
-[ext_resource type="Script" path="res://Regions/region.gd" id="6_ah80d"]
 [ext_resource type="PackedScene" uid="uid://ch0ldys5y2avd" path="res://Regions/RegionTrigger.tscn" id="6_mg0bt"]
-[ext_resource type="PackedScene" uid="uid://bt23waqbakmop" path="res://Bullet/water.tscn" id="7_5uehg"]
-[ext_resource type="PackedScene" uid="uid://boan2jyc4hlda" path="res://Checkpoint/checkpoint_trigger.tscn" id="7_h6eyv"]
-[ext_resource type="PackedScene" uid="uid://dd08gffrk8txn" path="res://EntityComponents/Elevator.tscn" id="7_qpcte"]
-[ext_resource type="Texture2D" uid="uid://dn7mn5lnxyon3" path="res://DOCS/obsidian/_META/IMG/camera_forbidden_zone_1.png" id="7_xi6ck"]
-[ext_resource type="Texture2D" uid="uid://d2gdo5bbgykv2" path="res://icon.svg" id="7_yklcu"]
-[ext_resource type="PackedScene" uid="uid://boug41cw8taxh" path="res://ElevatorController/ElevatorButton.tscn" id="10_vsodl"]
-[ext_resource type="PackedScene" uid="uid://bwugl7674migl" path="res://Bullet/Effector.tscn" id="13_gsh8o"]
-[ext_resource type="PackedScene" uid="uid://ctacpi3nbykd3" path="res://ElevatorController/ElevatorController.tscn" id="15_pg64h"]
-[ext_resource type="PackedScene" uid="uid://1hdjstkw22a7" path="res://Boss/Boss1/Boss1.tscn" id="22_nobjt"]
-[ext_resource type="PackedScene" uid="uid://p6no8gdu6s5o" path="res://Boss/Boss2/Boss2.tscn" id="23_qnklg"]
-[ext_resource type="PackedScene" uid="uid://dw2f74vrka2qn" path="res://Boss/boss_fence.tscn" id="23_rsa50"]
-[ext_resource type="PackedScene" uid="uid://d2vfkstnke1s4" path="res://Boss/boss_trigger.tscn" id="23_xmp4c"]
+[ext_resource type="PackedScene" uid="uid://cv2bdmdm7ivmp" path="res://Regions/TEST.tscn" id="6_mtnve"]
 [ext_resource type="Script" path="res://Bullet/unique_collider.gd" id="24_1i71r"]
-[ext_resource type="PackedScene" uid="uid://bmt5sjek4aha4" path="res://EntityComponents/OpenDoorsIfDead.tscn" id="24_nrwds"]
-[ext_resource type="PackedScene" uid="uid://xc3uchpjcg0y" path="res://Bullet/UniqueCollider.tscn" id="29_dsgei"]
-[ext_resource type="PackedScene" uid="uid://7jpetdd82f2l" path="res://GUI/map_sector.tscn" id="30_gywv3"]
 [ext_resource type="Texture2D" uid="uid://dv4ub8glusqw7" path="res://EntityComponents/monochrome_tilemap_transparent_packed.png" id="34_5jfa3"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1suec"]
-size = Vector2(128, 128)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6aaj6"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_n648b"]
-size = Vector2(205, 226.579)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_iaki2"]
-size = Vector2(1920, 1080)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_v4vog"]
-size = Vector2(223, 153.421)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_djh68"]
-size = Vector2(98, 592)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6erpd"]
-size = Vector2(120, 335.998)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_aw58c"]
-size = Vector2(136, 144)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_b85na"]
-size = Vector2(80, 1230.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_h6dxx"]
-size = Vector2(80, 1230.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lrqo2"]
-size = Vector2(2762.5, 142.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5payo"]
-size = Vector2(2762.5, 142.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3kow1"]
-size = Vector2(80, 1230.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_odu8b"]
-size = Vector2(80, 1230.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_aryew"]
-size = Vector2(2762.5, 142.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7n73v"]
-size = Vector2(2762.5, 142.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ysl3y"]
-size = Vector2(378, 464.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jpqot"]
-size = Vector2(378, 464.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nj7ht"]
-size = Vector2(128, 216)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lcmdo"]
-size = Vector2(504, 296)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ellh6"]
 texture = ExtResource("34_5jfa3")
@@ -506,6 +423,9 @@ texture = ExtResource("34_5jfa3")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_ellh6")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uqtgy"]
+size = Vector2(504, 296)
+
 [node name="GameTree" type="Node"]
 
 [node name="HUD" type="CanvasLayer" parent="." groups=["hud"]]
@@ -516,7 +436,7 @@ process_mode = 3
 [node name="MiniMap" parent="HUD" instance=ExtResource("2_is0lr")]
 
 [node name="Hero" parent="." instance=ExtResource("2_acvau")]
-position = Vector2(1424, -3600)
+position = Vector2(-2184, -1640)
 
 [node name="Camera" parent="." node_paths=PackedStringArray("hero") instance=ExtResource("3_o6dt5")]
 unique_name_in_owner = true
@@ -526,507 +446,7 @@ catch_up_speed = Vector2(0.01, 0.01)
 
 [node name="BulletManager" parent="." instance=ExtResource("3_j1ahj")]
 
-[node name="TEST" type="Node2D" parent="."]
-position = Vector2(2800, -1368)
-script = ExtResource("6_ah80d")
-
-[node name="Teleporter" parent="TEST" instance=ExtResource("2_uiite")]
-position = Vector2(-48, 544)
-rotation = 3.14159
-scale = Vector2(1, -1)
-
-[node name="Spiny" parent="TEST" instance=ExtResource("2_5hkfu")]
-position = Vector2(248, 704)
-
-[node name="Ghost" parent="TEST" instance=ExtResource("2_jmdf8")]
-position = Vector2(1472, 1664)
-motion_mode = 1
-
-[node name="Zombie" parent="TEST" instance=ExtResource("2_e0l7r")]
-position = Vector2(2784, 2064)
-
-[node name="Walker" parent="TEST/Zombie" index="5"]
-avoids_pits = false
-climbs_walls = true
-jumps_to_grab_target = true
-
-[node name="Spike" parent="TEST" instance=ExtResource("1_cietj")]
-position = Vector2(-968, 848)
-
-[node name="CycleMover" parent="TEST/Spike" index="2"]
-rotation_angle = 360.0
-rotation_time = 3.0
-rotation_boomerang = true
-translation_boomerang = true
-
-[node name="Shooter" parent="TEST/Spike" index="3"]
-pellet_amount = 0
-pellet_separation_angle = 10.0
-pellet_speed = 700.0
-
-[node name="Spike2" parent="TEST" instance=ExtResource("1_cietj")]
-position = Vector2(-1144, 2048)
-
-[node name="CycleMover" parent="TEST/Spike2" index="2"]
-rotation_angle = 180.0
-rotation_time = 3.0
-translation_distance = Vector2(200, 200)
-translation_time = 2.0
-
-[node name="Shooter" parent="TEST/Spike2" index="3"]
-pellet_amount = 0
-
-[node name="OpenDoorsIfDead" parent="TEST/Spike2" index="7" node_paths=PackedStringArray("doors_to_open")]
-doors_to_open = [NodePath("../../SwitchGroupController/Door")]
-
-[node name="SwitchGroupController" parent="TEST" instance=ExtResource("3_scov6")]
-position = Vector2(-2800, 1368)
-
-[node name="Door" parent="TEST/SwitchGroupController" instance=ExtResource("3_ia51n")]
-position = Vector2(768, 496)
-open_offset = Vector2(0, -200)
-
-[node name="UniqueCollider" type="CollisionShape2D" parent="TEST/SwitchGroupController/Door"]
-shape = SubResource("RectangleShape2D_1suec")
-script = ExtResource("24_1i71r")
-is_unique = true
-
-[node name="Door2" parent="TEST/SwitchGroupController" instance=ExtResource("3_ia51n")]
-position = Vector2(528, 392)
-open_offset = Vector2(0, -200)
-auto_close_time = 1.0
-
-[node name="Switch3" parent="TEST/SwitchGroupController" instance=ExtResource("5_fh6e8")]
-position = Vector2(1296, 440)
-rotation = 1.5708
-toggle = true
-
-[node name="Switch2" parent="TEST/SwitchGroupController" instance=ExtResource("5_fh6e8")]
-position = Vector2(1296, 296)
-rotation = 1.5708
-toggle = true
-
-[node name="Switch4" parent="TEST/SwitchGroupController" instance=ExtResource("5_fh6e8")]
-position = Vector2(1296, 144)
-rotation = 1.5708
-toggle = true
-
-[node name="Blocks" type="Node2D" parent="TEST"]
-position = Vector2(-4578, 1791)
-rotation = -3.14159
-scale = Vector2(0.952147, -6.73451)
-
-[node name="Block7" parent="TEST/Blocks" instance=ExtResource("1_weaqc")]
-
-[node name="Block11" parent="TEST/Blocks" instance=ExtResource("1_weaqc")]
-position = Vector2(-6270.04, 104.682)
-
-[node name="Block12" parent="TEST/Blocks" instance=ExtResource("1_weaqc")]
-position = Vector2(-7320.3, 55.9777)
-
-[node name="Block" parent="TEST/Blocks" instance=ExtResource("1_weaqc")]
-position = Vector2(-2478.61, 30.1424)
-rotation = -3.14159
-scale = Vector2(15.2117, -0.130452)
-skew = 1.75238e-05
-
-[node name="Block8" parent="TEST/Blocks" instance=ExtResource("1_weaqc")]
-position = Vector2(-3799.83, -115.823)
-rotation = -3.14159
-scale = Vector2(15.2117, -0.130452)
-skew = 1.75238e-05
-
-[node name="Block15" parent="TEST/Blocks" instance=ExtResource("1_weaqc")]
-position = Vector2(-4925.7, -363.354)
-rotation = -3.14159
-scale = Vector2(25.2062, -0.148489)
-skew = 1.75238e-05
-
-[node name="Block18" parent="TEST/Blocks" instance=ExtResource("1_weaqc")]
-position = Vector2(-4908.9, -533.225)
-rotation = -3.14159
-scale = Vector2(25.2062, -0.148489)
-skew = 1.75238e-05
-
-[node name="Block19" parent="TEST/Blocks" instance=ExtResource("1_weaqc")]
-position = Vector2(-8261.32, -362.167)
-rotation = -3.14159
-scale = Vector2(25.2062, -0.148489)
-skew = 1.75238e-05
-
-[node name="Block20" parent="TEST/Blocks" instance=ExtResource("1_weaqc")]
-position = Vector2(-7933.64, -530.851)
-rotation = -3.14159
-scale = Vector2(25.2062, -0.148489)
-skew = 1.75238e-05
-
-[node name="Block23" parent="TEST/Blocks" instance=ExtResource("1_weaqc")]
-position = Vector2(132104, 211.644)
-scale = Vector2(231.396, 0.0170178)
-skew = -0.00233531
-
-[node name="Block13" parent="TEST/Blocks" instance=ExtResource("1_weaqc")]
-position = Vector2(-9294.79, 186.647)
-rotation = -3.14159
-scale = Vector2(15.2117, -0.130452)
-skew = 1.75238e-05
-
-[node name="Block24" parent="TEST/Blocks" instance=ExtResource("1_weaqc")]
-position = Vector2(-5917.15, 92.8035)
-rotation = -3.14159
-scale = Vector2(40.212, -0.13)
-skew = 1.75238e-05
-
-[node name="Block2" parent="TEST/Blocks" instance=ExtResource("1_weaqc")]
-position = Vector2(-3362.93, -14.1077)
-rotation = -3.14159
-scale = Vector2(1.05026, -1.78187)
-skew = 1.75238e-05
-
-[node name="Block4" parent="TEST/Blocks" instance=ExtResource("1_weaqc")]
-position = Vector2(-10168.6, 64.2921)
-rotation = -3.14159
-scale = Vector2(1.05026, -1.78187)
-skew = 1.75238e-05
-
-[node name="Block10" parent="TEST/Blocks" instance=ExtResource("1_weaqc")]
-position = Vector2(-3371.32, -262.381)
-scale = Vector2(1, 1.3148)
-skew = 1.75238e-05
-
-[node name="Block16" parent="TEST/Blocks" instance=ExtResource("1_weaqc")]
-position = Vector2(-5799.52, -491.649)
-scale = Vector2(1.05026, 1.3364)
-skew = 1.75238e-05
-
-[node name="Block17" parent="TEST/Blocks" instance=ExtResource("1_weaqc")]
-position = Vector2(-3715.8, -489.272)
-scale = Vector2(1, 1.3148)
-skew = 1.75238e-05
-
-[node name="Block21" parent="TEST/Blocks" instance=ExtResource("1_weaqc")]
-position = Vector2(-8908.28, -442.946)
-scale = Vector2(1, 1.3148)
-skew = 1.75238e-05
-
-[node name="Block22" parent="TEST/Blocks" instance=ExtResource("1_weaqc")]
-position = Vector2(-6832.97, -482.146)
-scale = Vector2(1, 1.3148)
-skew = 1.75238e-05
-
-[node name="Block14" parent="TEST/Blocks" instance=ExtResource("1_weaqc")]
-position = Vector2(-5135.76, -118.644)
-scale = Vector2(3.15077, 0.445467)
-skew = 1.75238e-05
-
-[node name="Block9" parent="TEST/Blocks" instance=ExtResource("1_weaqc")]
-position = Vector2(-1250.86, -117.307)
-scale = Vector2(0.999846, 0.293266)
-skew = 1.75238e-05
-
-[node name="Block6" parent="TEST/Blocks" instance=ExtResource("1_weaqc")]
-position = Vector2(200.602, -147.004)
-rotation = 2.71828
-scale = Vector2(3.41611, -0.937373)
-skew = -1.10315
-
-[node name="Block5" parent="TEST/Blocks" instance=ExtResource("1_weaqc")]
-position = Vector2(-1248.76, -8.31583)
-skew = 1.75238e-05
-
-[node name="ElevatorController" parent="TEST" node_paths=PackedStringArray("elevator") instance=ExtResource("15_pg64h")]
-elevator = NodePath("../AnimatableBody2D/Elevator")
-
-[node name="ElevatorButton" parent="TEST/ElevatorController" instance=ExtResource("10_vsodl")]
-position = Vector2(352, 504)
-type = 0
-
-[node name="ElevatorButton2" parent="TEST/ElevatorController" instance=ExtResource("10_vsodl")]
-position = Vector2(-32, 504)
-type = 1
-
-[node name="AnimatableBody2D" type="AnimatableBody2D" parent="TEST" groups=["sticky"]]
-position = Vector2(-2040, 1536)
-scale = Vector2(11.33, 11.33)
-
-[node name="Elevator" parent="TEST/AnimatableBody2D" instance=ExtResource("7_qpcte")]
-end_position = Vector2(800, -800)
-end_rotation = 90.0
-curve = 0
-duration = 7.223
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TEST/AnimatableBody2D"]
-shape = SubResource("RectangleShape2D_6aaj6")
-debug_color = Color(0.412372, 0.598973, 0.267216, 0.42)
-
-[node name="CameraLocker5" parent="TEST" instance=ExtResource("4_d4cnc")]
-position = Vector2(-168, 1824)
-center_at_edge = true
-
-[node name="UniqueCollider" parent="TEST/CameraLocker5" index="0"]
-position = Vector2(0, 0)
-shape = SubResource("RectangleShape2D_n648b")
-is_unique = true
-
-[node name="Marker2D" parent="TEST/CameraLocker5" index="1"]
-position = Vector2(-40, 72)
-
-[node name="CameraLocker6" parent="TEST" instance=ExtResource("4_d4cnc")]
-position = Vector2(160, -1248)
-axes_to_lock = 2
-
-[node name="UniqueCollider" parent="TEST/CameraLocker6" index="0"]
-position = Vector2(-208, 20)
-shape = SubResource("RectangleShape2D_iaki2")
-debug_color = Color(1, 0, 1, 0.5)
-is_unique = true
-
-[node name="Marker2D" parent="TEST/CameraLocker6" index="1"]
-position = Vector2(-216, 16)
-
-[node name="CameraLocker7" parent="TEST" instance=ExtResource("4_d4cnc")]
-position = Vector2(824, 1968)
-axes_to_lock = 1
-
-[node name="UniqueCollider" parent="TEST/CameraLocker7" index="0"]
-position = Vector2(0, -8)
-shape = SubResource("RectangleShape2D_v4vog")
-debug_color = Color(1, 0, 0, 0.5)
-is_unique = true
-
-[node name="Marker2D" parent="TEST/CameraLocker7" index="1"]
-position = Vector2(-8, 328)
-
-[node name="Water" parent="TEST" instance=ExtResource("7_5uehg")]
-position = Vector2(-4003, 1897)
-scale = Vector2(54.5835, 52.2739)
-collision_mask = 12
-
-[node name="Water2" parent="TEST" instance=ExtResource("7_5uehg")]
-position = Vector2(4256, 2848)
-scale = Vector2(81.538, 58.676)
-collision_mask = 12
-
-[node name="CheckpointTrigger" parent="TEST" instance=ExtResource("7_h6eyv")]
-position = Vector2(-2472, 1408)
-rotation = 3.14159
-
-[node name="UniqueCollider" type="CollisionShape2D" parent="TEST/CheckpointTrigger"]
-position = Vector2(-38.9998, -56)
-shape = SubResource("RectangleShape2D_djh68")
-script = ExtResource("24_1i71r")
-is_unique = true
-
-[node name="CheckpointTrigger2" parent="TEST" instance=ExtResource("7_h6eyv")]
-position = Vector2(-1792, 1592)
-scale = Vector2(5, 32)
-
-[node name="UniqueCollider2" type="CollisionShape2D" parent="TEST/CheckpointTrigger2"]
-position = Vector2(2.40002, -2.6226e-05)
-rotation = 3.14159
-scale = Vector2(0.2, 0.03125)
-skew = -1.5974e-05
-shape = SubResource("RectangleShape2D_6erpd")
-script = ExtResource("24_1i71r")
-is_unique = true
-
-[node name="ParallaxBackground" type="ParallaxBackground" parent="TEST"]
-visible = false
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="TEST/ParallaxBackground"]
-motion_scale = Vector2(0.5, 0.5)
-
-[node name="TextureRect" type="TextureRect" parent="TEST/ParallaxBackground/ParallaxLayer"]
-modulate = Color(1, 0.517647, 0.486275, 0.294118)
-offset_left = -2974.0
-offset_top = -2138.0
-offset_right = 3008.0
-offset_bottom = 1577.0
-texture = ExtResource("7_yklcu")
-stretch_mode = 1
-metadata/_edit_lock_ = true
-
-[node name="Effector" parent="TEST" instance=ExtResource("13_gsh8o")]
-position = Vector2(-2984, 1880)
-effect = 1
-
-[node name="UniqueCollider2" type="CollisionShape2D" parent="TEST/Effector"]
-position = Vector2(4, -40)
-shape = SubResource("RectangleShape2D_aw58c")
-script = ExtResource("24_1i71r")
-is_unique = true
-
-[node name="Sprite2D2" type="Sprite2D" parent="TEST/Effector"]
-position = Vector2(24, -232)
-scale = Vector2(0.12528, -0.227075)
-texture = ExtResource("7_xi6ck")
-
-[node name="Block4" parent="TEST/Effector" instance=ExtResource("1_weaqc")]
-position = Vector2(-274, -147)
-rotation = -0.299383
-scale = Vector2(0.952147, -6.73451)
-
-[node name="Spike3" parent="TEST/Effector" instance=ExtResource("1_cietj")]
-position = Vector2(344, -144)
-
-[node name="Boss1" parent="TEST" instance=ExtResource("22_nobjt")]
-position = Vector2(-56, -1824)
-
-[node name="Marker2D" parent="TEST/Boss1" index="7"]
-position = Vector2(16, 592)
-
-[node name="OpenDoorsIfDead" parent="TEST/Boss1" node_paths=PackedStringArray("doors_to_open") instance=ExtResource("24_nrwds")]
-doors_to_open = [NodePath("../../SwitchGroupController2/Door2"), NodePath("../../SwitchGroupController2/Door")]
-
-[node name="BossFence" parent="TEST" instance=ExtResource("23_rsa50")]
-position = Vector2(-792, -3208)
-
-[node name="UniqueCollider" type="CollisionShape2D" parent="TEST/BossFence"]
-position = Vector2(-224, 1912)
-shape = SubResource("RectangleShape2D_b85na")
-debug_color = Color(0.420282, 0.577532, 0.499651, 0.42)
-script = ExtResource("24_1i71r")
-is_unique = true
-
-[node name="UniqueCollider2" type="CollisionShape2D" parent="TEST/BossFence"]
-position = Vector2(1712, 1968)
-shape = SubResource("RectangleShape2D_h6dxx")
-debug_color = Color(0.420282, 0.577532, 0.499651, 0.42)
-script = ExtResource("24_1i71r")
-is_unique = true
-
-[node name="UniqueCollider3" type="CollisionShape2D" parent="TEST/BossFence"]
-position = Vector2(888, 1400)
-shape = SubResource("RectangleShape2D_lrqo2")
-debug_color = Color(0.420282, 0.577532, 0.499651, 0.42)
-script = ExtResource("24_1i71r")
-is_unique = true
-
-[node name="UniqueCollider4" type="CollisionShape2D" parent="TEST/BossFence"]
-position = Vector2(1000, 2560)
-shape = SubResource("RectangleShape2D_5payo")
-debug_color = Color(0.420282, 0.577532, 0.499651, 0.42)
-script = ExtResource("24_1i71r")
-is_unique = true
-
-[node name="Boss2" parent="TEST" instance=ExtResource("23_qnklg")]
-position = Vector2(3464, -824)
-
-[node name="BossFence2" parent="TEST" instance=ExtResource("23_rsa50")]
-position = Vector2(2168, -3192)
-
-[node name="UniqueCollider" type="CollisionShape2D" parent="TEST/BossFence2"]
-position = Vector2(-224, 1912)
-shape = SubResource("RectangleShape2D_3kow1")
-debug_color = Color(0.420282, 0.577532, 0.499651, 0.42)
-script = ExtResource("24_1i71r")
-is_unique = true
-
-[node name="UniqueCollider2" type="CollisionShape2D" parent="TEST/BossFence2"]
-position = Vector2(1712, 1968)
-shape = SubResource("RectangleShape2D_odu8b")
-debug_color = Color(0.420282, 0.577532, 0.499651, 0.42)
-script = ExtResource("24_1i71r")
-is_unique = true
-
-[node name="UniqueCollider3" type="CollisionShape2D" parent="TEST/BossFence2"]
-position = Vector2(888, 1400)
-shape = SubResource("RectangleShape2D_aryew")
-debug_color = Color(0.420282, 0.577532, 0.499651, 0.42)
-script = ExtResource("24_1i71r")
-is_unique = true
-
-[node name="UniqueCollider4" type="CollisionShape2D" parent="TEST/BossFence2"]
-position = Vector2(1000, 2560)
-shape = SubResource("RectangleShape2D_7n73v")
-debug_color = Color(0.420282, 0.577532, 0.499651, 0.42)
-script = ExtResource("24_1i71r")
-is_unique = true
-
-[node name="BossTrigger" parent="TEST" node_paths=PackedStringArray("boss", "doors_to_close") instance=ExtResource("23_xmp4c")]
-position = Vector2(120, -888)
-collision_mask = 8
-boss = NodePath("../Boss1")
-doors_to_close = [NodePath("../SwitchGroupController2/Door2"), NodePath("../SwitchGroupController2/Door")]
-
-[node name="UniqueCollider" parent="TEST/BossTrigger" index="0"]
-position = Vector2(-168, -24)
-shape = SubResource("RectangleShape2D_ysl3y")
-is_unique = true
-
-[node name="BossTrigger2" parent="TEST" node_paths=PackedStringArray("boss") instance=ExtResource("23_xmp4c")]
-position = Vector2(120, -888)
-collision_mask = 8
-boss = NodePath("../Boss2")
-
-[node name="UniqueCollider" parent="TEST/BossTrigger2" index="0"]
-position = Vector2(2792, -48)
-shape = SubResource("RectangleShape2D_jpqot")
-is_unique = true
-
-[node name="SwitchGroupController2" parent="TEST" instance=ExtResource("3_scov6")]
-position = Vector2(-2800, 1368)
-
-[node name="Door2" parent="TEST/SwitchGroupController2" instance=ExtResource("3_ia51n")]
-position = Vector2(3744, -2160)
-open_offset = Vector2(0, -256)
-
-[node name="UniqueCollider" parent="TEST/SwitchGroupController2/Door2" instance=ExtResource("29_dsgei")]
-position = Vector2(0, -44)
-shape = SubResource("RectangleShape2D_nj7ht")
-
-[node name="Door" parent="TEST/SwitchGroupController2" instance=ExtResource("3_ia51n")]
-position = Vector2(1760, -2152)
-open_offset = Vector2(0, -256)
-
-[node name="UniqueCollider" parent="TEST/SwitchGroupController2/Door" instance=ExtResource("29_dsgei")]
-position = Vector2(0, -44)
-shape = SubResource("RectangleShape2D_nj7ht")
-
-[node name="Switch" parent="TEST/SwitchGroupController2" instance=ExtResource("5_fh6e8")]
-position = Vector2(1640, -2376)
-rotation = 1.5708
-
-[node name="Node2D" type="Node2D" parent="TEST"]
-position = Vector2(-1336, 1035.25)
-
-[node name="MapSector" parent="TEST/Node2D" instance=ExtResource("30_gywv3")]
-position = Vector2(2640, -2000)
-
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="TEST/Node2D/MapSector"]
-position = Vector2(-3120, 1312)
-polygon = PackedVector2Array(848, 2032, -2544, 2048, -3264, -56, -1424, -216, -296, -1771.25, 320, -1859.25)
-
-[node name="MapSector4" parent="TEST/Node2D" instance=ExtResource("30_gywv3")]
-position = Vector2(2640, -2000)
-
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="TEST/Node2D/MapSector4"]
-position = Vector2(-3120, 1312)
-polygon = PackedVector2Array(2560, -1243.25, 1792, -851.25, 944, -2043.25, 1600, -2299.25, 3024, -2427.25, 3832, -347.25, 3152, -107.25)
-
-[node name="MapSector3" parent="TEST/Node2D" instance=ExtResource("30_gywv3")]
-position = Vector2(2640, -2000)
-
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="TEST/Node2D/MapSector3"]
-position = Vector2(-5728, -2363.25)
-polygon = PackedVector2Array(520, 1392, -56, 3920, 760, 3776, 792, 2592, 3560, 3020.75, 3480, 2088)
-
-[node name="MapSector2" parent="TEST/Node2D" instance=ExtResource("30_gywv3")]
-position = Vector2(2640, -2000)
-
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="TEST/Node2D/MapSector2"]
-position = Vector2(-2552, 1972.75)
-polygon = PackedVector2Array(4792, 1368, 440, 1376, -432, -1216, 4808, -1288)
-
-[node name="RegionTrigger" parent="TEST" instance=ExtResource("6_mg0bt")]
-position = Vector2(-1712, -2112)
-to_region = 2
-
-[node name="UniqueCollider" type="CollisionShape2D" parent="TEST/RegionTrigger"]
-position = Vector2(-256, 48)
-shape = SubResource("RectangleShape2D_lcmdo")
-script = ExtResource("24_1i71r")
-is_unique = true
+[node name="TEST" parent="." instance=ExtResource("6_mtnve")]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 scale = Vector2(8, 8)
@@ -1034,16 +454,27 @@ tile_map_data = PackedByteArray("AAAHAPD/AAAHAAQAAAAHAPH/AAAHAAUAAAAHAPL/AAAHAAY
 tile_set = SubResource("TileSet_pk7jg")
 metadata/_edit_lock_ = true
 
-[editable path="TEST/Zombie"]
-[editable path="TEST/Spike"]
-[editable path="TEST/Spike2"]
-[editable path="TEST/CameraLocker5"]
-[editable path="TEST/CameraLocker6"]
-[editable path="TEST/CameraLocker7"]
-[editable path="TEST/Boss1"]
-[editable path="TEST/BossTrigger"]
-[editable path="TEST/BossTrigger2"]
-[editable path="TEST/Node2D/MapSector"]
-[editable path="TEST/Node2D/MapSector4"]
-[editable path="TEST/Node2D/MapSector3"]
-[editable path="TEST/Node2D/MapSector2"]
+[node name="Common" type="Node2D" parent="."]
+
+[node name="Block24" parent="Common" instance=ExtResource("1_weaqc")]
+position = Vector2(-3680, -400)
+scale = Vector2(20, 8)
+
+[node name="RegionTrigger" parent="Common" instance=ExtResource("6_mg0bt")]
+position = Vector2(-1048, -1408)
+
+[node name="UniqueCollider" type="CollisionShape2D" parent="Common/RegionTrigger"]
+position = Vector2(-1896, 208)
+shape = SubResource("RectangleShape2D_uqtgy")
+script = ExtResource("24_1i71r")
+is_unique = true
+
+[node name="RegionTrigger2" parent="Common" instance=ExtResource("6_mg0bt")]
+position = Vector2(-2560, -1376)
+to_region = 2
+
+[node name="UniqueCollider" type="CollisionShape2D" parent="Common/RegionTrigger2"]
+position = Vector2(-1896, 208)
+shape = SubResource("RectangleShape2D_uqtgy")
+script = ExtResource("24_1i71r")
+is_unique = true
