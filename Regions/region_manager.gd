@@ -15,11 +15,11 @@ func change_region(to_region: Constants.RegName) -> void:
 	if not new_region:
 		new_region = load("res://Regions/" + Constants.RegName.keys()[to_region] + ".tscn").instantiate()
 		new_region.name = Constants.RegName.keys()[to_region]
-		get_node("/root/GameTree").call_deferred("add_child", new_region)
+		get_node("/root/GameTree").add_child(new_region)
 		print("Region ", new_region.name, " loaded from resource.")
 
 	set_current_region(new_region)
-	SaveManager.call_deferred("inject_changes_into_current_region")
+	SaveManager.inject_changes_into_current_region()
 
 func set_current_region(region: Region):
 	current_region = region

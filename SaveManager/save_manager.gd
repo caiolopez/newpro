@@ -77,7 +77,7 @@ func inject_changes_into_hero():
 	for key in hero_persistence:
 		var value = hero_persistence[key]
 		match key:
-			"current_checkpoint_path": h.current_checkpoint = get_node(value)
+			"current_checkpoint_path": (func(): h.current_checkpoint = get_node(value)).call_deferred()
 			"can_dive": h.can_dive = value
 			"elapsed_time": AppManager.game_time = value
 			"current_region":

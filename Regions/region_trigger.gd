@@ -11,5 +11,5 @@ func _ready() -> void:
 					print("Current Region was set to ", ancestor.name, ".")
 					break
 			
-			RegionManager.change_region(to_region)
+			RegionManager.call_deferred("change_region", to_region)
 		)
