@@ -35,7 +35,7 @@ class_name Hero extends CharacterBody2D
 @onready var dmg_taker: DmgTaker = Utils.find_dmg_taker(self)
 @onready var shooter: Shooter = get_node("Shooter")
 const is_foe: bool = false ## Flag necessary for components that are shared between Hero and enemies.
-var current_checkpoint: Area2D
+var current_checkpoint_path: NodePath
 var current_blunder_jump_angle: float
 var was_on_wall: bool ## For variable change caculation
 var was_on_floor: bool ## For variable change caculation
@@ -191,9 +191,9 @@ func _on_hero_hit_teleporter(destination: Vector2):
 	state_machine.set_state("StateTeleporting")
 
 
-func update_current_checkpoint(new_checkpoint: Area2D):
-	current_checkpoint = new_checkpoint
-	SaveManager.log_hero_change("current_checkpoint_path", current_checkpoint.get_path())
+func update_current_checkpoint_path(new_checkpoint_path: NodePath):
+	current_checkpoint_path = new_checkpoint_path
+	SaveManager.log_hero_change("current_checkpoint_path", current_checkpoint_path)
 
 
 func die():

@@ -6,8 +6,9 @@ var death_prone: bool = false
 
 func on_enter():
 	var destination = hero.original_position
-	if hero.current_checkpoint != null:
-		destination = hero.current_checkpoint.global_position
+	if hero.current_checkpoint_path:
+		destination = get_node(hero.current_checkpoint_path).global_position
+		hero.facing_direction = get_node(hero.current_checkpoint_path).direction
 	hero.global_position = destination
 	
 	Events.camera_set_glpos.emit(hero.global_position)

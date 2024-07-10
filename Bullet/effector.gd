@@ -22,9 +22,9 @@ func _ready():
 func on_body_entered(body):
 	if not body is Hero: return
 	for e in entities:
-		if e != null:      
+		if e != null and is_instance_valid(e):      
 			match effect:
-				Effects.QUEUE_FREE: if is_instance_valid(e): q_free(e)
+				Effects.QUEUE_FREE: q_free(e)
 				Effects.DISPLACE: displace_entities(e)
 				Effects.ENABLE: if not self.is_ancestor_of(e): add_child(e)
 				Effects.RESET_BEHAVIOR: reset_resetibles(e)

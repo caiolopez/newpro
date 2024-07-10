@@ -6,6 +6,7 @@ func change_region(to_region: Constants.RegName) -> void:
 	if current_region:
 		if current_region.name == Constants.RegName.keys()[to_region]:
 			print("Current region is already set.")
+			return
 		else:
 			current_region.queue_free()
 			print("Region ", current_region.name, " freed.")

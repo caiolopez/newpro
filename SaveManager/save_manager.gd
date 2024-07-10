@@ -61,7 +61,8 @@ func inject_changes_into_current_region():
 			for sub_key in sub_dict:
 				match sub_key:
 					"move_to":
-						get_node(key).global_position = str_to_var("Vector2" + str(sub_dict[sub_key]))
+						if has_node(key):
+							get_node(key).global_position = str_to_var("Vector2" + str(sub_dict[sub_key]))
 					"saga": pass
 		else:
 			match value:
@@ -77,7 +78,9 @@ func inject_changes_into_hero():
 	for key in hero_persistence:
 		var value = hero_persistence[key]
 		match key:
-			"current_checkpoint_path": h.current_checkpoint = get_node(value)
+			"current_checkpoint_path":
+				h.current_checkpoint_path = value
+				print("*** HERE IS THE NODE!")
 			"can_dive": h.can_dive = value
 			"elapsed_time": AppManager.game_time = value
 			"current_region":
