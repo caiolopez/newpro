@@ -77,7 +77,7 @@ func inject_changes_into_hero():
 	for key in hero_persistence:
 		var value = hero_persistence[key]
 		match key:
-			"current_checkpoint_path": (func(): h.current_checkpoint = get_node(value)).call_deferred()
+			"current_checkpoint_path": h.current_checkpoint = get_node(value)
 			"can_dive": h.can_dive = value
 			"elapsed_time": AppManager.game_time = value
 			"current_region":
@@ -87,7 +87,7 @@ func load_from_slot(slot: int = current_slot):
 	current_slot = slot
 	load_file()
 	inject_changes_into_hero()
-	call_deferred("inject_changes_into_current_region")
+	inject_changes_into_current_region()
 	Utils.find_hero().insta_spawn()
 	print("Game loaded from slot ", slot, ".")
 

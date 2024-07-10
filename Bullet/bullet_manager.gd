@@ -33,6 +33,7 @@ vel:  Vector2 = Vector2(200, 0), is_foe: bool = true, is_fire: bool = false, ang
 
 func free_bullet(bullet):
 	bullet.visible = false
+	# Changing visibility takes a frame to happen.
 	bullet.call_deferred("reparent", $FreeBullets)
 
 

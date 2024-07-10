@@ -10,6 +10,7 @@ func _ready() -> void:
 					RegionManager.current_region = ancestor
 					print("Current Region was set to ", ancestor.name, ".")
 					break
-			
-			RegionManager.call_deferred("change_region", to_region)
+
+			# We can't free a collider being tested.
+			RegionManager.call_deferred("change_region", to_region) 
 		)
