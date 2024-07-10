@@ -39,14 +39,14 @@ func add_children_to_entities():
 func displace_entities(e: Node):
 	if e is Node2D:
 		e.global_position = destination
-		if send_to_save_manager: SaveManager.log_entity_change(e.get_path(), {"move_to": destination})
+		if send_to_save_manager: SaveManager.log_entity_change(e, {"move_to": destination})
 
 func disable_entities():
 	for e in entities:
 		if e!= null: remove_child(e)
 
 func q_free(e: Node):
-	if send_to_save_manager: SaveManager.log_entity_change(e.get_path(), "dead")
+	if send_to_save_manager: SaveManager.log_entity_change(e, "dead")
 	e.queue_free()
 
 func reset_resetibles(e: Node):

@@ -36,5 +36,3 @@ func enter(new_machine:StateMachine) -> void:
 	
 	hero = new_machine.owner as CharacterBody2D
 	super(new_machine)
-
-

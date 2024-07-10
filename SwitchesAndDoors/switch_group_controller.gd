@@ -26,7 +26,7 @@ func check_group():
 func commit_status():
 	if group_is_on:
 		group_is_saved = true
-		SaveManager.log_entity_change(get_path(), "on_and_saved")
+		SaveManager.log_entity_change(self, "on_and_saved")
 
 func reset_status():
 	if not group_is_saved:

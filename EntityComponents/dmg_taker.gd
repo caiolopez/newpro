@@ -50,7 +50,7 @@ func on_area_entered(area):
 func commit_status():
 	if not QUEUE_FREE_ON_CHECKPOINT: return
 	if current_hp == 0 and is_foe:
-		SaveManager.log_entity_change(get_parent().get_path(), "dead")
+		SaveManager.log_entity_change(get_parent(), "dead")
 		get_parent().queue_free()
 
 

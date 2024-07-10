@@ -22,7 +22,16 @@ func change_region(to_region: Constants.RegName) -> void:
 	set_current_region(new_region)
 	SaveManager.inject_changes_into_current_region()
 
+func get_region_from_node(node: Node) -> Region:
+	var region: Region = null
+	for ancestor in Utils.get_ancestors(node):
+		if ancestor is Region:
+			print("Node ", node.name, " is from region: ", ancestor.name, ".")
+			region = ancestor
+			break
+	return region
+
 func set_current_region(region: Region):
 	current_region = region
-	SaveManager.log_hero_change("current_region", RegionManager.current_region.name)
 	SaveManager.add_region_entry(region)
+	SaveManager.log_hero_change("current_region", RegionManager.current_region.name)

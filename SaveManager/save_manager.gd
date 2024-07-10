@@ -13,9 +13,14 @@ func add_region_entry(region: Region):
 		regions[region.name] = {}
 		print("region entry added for ", region.name)
 
-func log_entity_change(key: String, value):
-	if RegionManager.current_region:
-		regions[RegionManager.current_region.name][key] = value
+func log_entity_change(entity: Node, value):
+	var from_region: Region = RegionManager.get_region_from_node(entity)
+	add_region_entry(from_region)
+	var key: NodePath = entity.get_path()
+	if from_region and key and value:
+		regions[from_region.name][key] = value
+	else:
+		print("logging ", entity.name, "'s ", key, " as ", value, " failed.")
 
 func log_hero_change(key: String, value):
 	hero_persistence[key] = value
@@ -80,7 +85,6 @@ func inject_changes_into_hero():
 		match key:
 			"current_checkpoint_path":
 				h.current_checkpoint_path = value
-				print("*** HERE IS THE NODE!")
 			"can_dive": h.can_dive = value
 			"elapsed_time": AppManager.game_time = value
 			"current_region":
