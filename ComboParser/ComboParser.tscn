@@ -17,3 +17,7 @@ seq = Array[StringName]([&"up", &"down", &"left", &"right", &"shoulder_left"])
 [node name="LoadCurrentGame" type="Node" parent="."]
 script = ExtResource("2_kbqkx")
 seq = Array[StringName]([&"up", &"down", &"left", &"right", &"shoulder_right"])
+
+[node name="FullScreen" type="Node" parent="."]
+script = ExtResource("2_kbqkx")
+seq = Array[StringName]([&"up", &"down", &"left", &"right", &"shoot"])

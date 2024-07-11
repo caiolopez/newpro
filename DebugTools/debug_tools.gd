@@ -3,6 +3,10 @@ extends Node2D
 @export var print_stuff: bool = true
 @export var input_stuff: bool = true
 
+func _ready():
+	ComboParser.combo_performed.connect(func(combo):
+		if combo == "FullScreen": toggle_fullscreen())
+
 func _process(_delta):
 	input_bin()
 	print_bin()
@@ -17,3 +21,9 @@ func input_bin():
 
 func print_bin():
 	if not print_stuff: return
+
+func toggle_fullscreen():
+		if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		else:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
