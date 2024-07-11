@@ -31,7 +31,7 @@ func save_file():
 	hero_persistence["elapsed_time"] = AppManager.game_time
 	
 	var save = {"hero_changes": hero_persistence, "entity_changes": regions}
-	var json_string = JSON.stringify(save)
+	var json_string = JSON.stringify(save, "\t")
 	var file = FileAccess.open("user://save_" + str(current_slot) + ".dat", FileAccess.WRITE)
 	if file:
 		file.store_string(json_string)
@@ -55,28 +55,30 @@ func load_file():
 	hero_persistence = json.data["hero_changes"]
 	regions = json.data["entity_changes"]
 
-func inject_changes_into_current_region():
+func inject_changes_into_regions():
 	if not RegionManager.current_region:
 		return
-	var changes: Dictionary = regions[RegionManager.current_region.name]
-	for key in changes:
-		var value = changes[key]
-		if typeof(value) == TYPE_DICTIONARY:
-			var sub_dict = value
-			for sub_key in sub_dict:
-				match sub_key:
-					"move_to":
-						if has_node(key):
-							get_node(key).global_position = str_to_var("Vector2" + str(sub_dict[sub_key]))
-					"saga": pass
-		else:
-			match value:
-				"dead":
-					if has_node(key):
-						get_node(key).queue_free()
-				"on_and_saved":
-					if has_node(key):
-						get_node(key).force_group_on_and_saved()
+	for region_name in regions.keys():
+		if has_node("/root/GameTree/" + region_name):
+			var region_changes = regions[region_name]
+			for key in region_changes.keys():
+				var value = region_changes[key]
+				if typeof(value) == TYPE_DICTIONARY:
+					var sub_dict = value
+					for sub_key in sub_dict:
+						match sub_key:
+							"move_to":
+								if has_node(key):
+									get_node(key).global_position = str_to_var("Vector2" + str(sub_dict[sub_key]))
+							"saga": pass
+				else:
+					match value:
+						"dead":
+							if has_node(key):
+								get_node(key).queue_free()
+						"on_and_saved":
+							if has_node(key):
+								get_node(key).force_group_on_and_saved()
 
 func inject_changes_into_hero():
 	var h = Utils.find_hero()
@@ -94,7 +96,7 @@ func load_from_slot(slot: int = current_slot):
 	current_slot = slot
 	load_file()
 	inject_changes_into_hero()
-	inject_changes_into_current_region()
+	inject_changes_into_regions()
 	Utils.find_hero().insta_spawn()
 	print("Game loaded from slot ", slot, ".")
 
