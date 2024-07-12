@@ -5,6 +5,7 @@ var death_prone: bool = true
 
 
 func on_enter():
+	$"../../HeroSprite/AnimationPlayer".play("walk")
 	pass
 
 func on_process(_delta: float):

@@ -1,14 +1,14 @@
-[gd_scene load_steps=31 format=3 uid="uid://1md1m8n6iq5x"]
+[gd_scene load_steps=34 format=3 uid="uid://1md1m8n6iq5x"]
 
 [ext_resource type="Script" path="res://Hero/hero.gd" id="1_dmqn8"]
 [ext_resource type="PackedScene" uid="uid://box2ff3vwcc7w" path="res://EntityComponents/DmgTaker.tscn" id="2_ktrux"]
-[ext_resource type="Texture2D" uid="uid://0l05qi2ha4p5" path="res://hero.png" id="2_uk1tr"]
 [ext_resource type="Script" path="res://Hero/hero_rc.gd" id="3_6dncg"]
 [ext_resource type="Script" path="res://Hero/hero_sprite.gd" id="3_jd25v"]
 [ext_resource type="Script" path="res://state_machine.gd" id="3_oqep4"]
 [ext_resource type="PackedScene" uid="uid://cupxj14lcnr75" path="res://EntityComponents/Shooter.tscn" id="4_1v5xt"]
 [ext_resource type="Script" path="res://Hero/state_idle.gd" id="4_t32ch"]
 [ext_resource type="Script" path="res://Hero/state_walking.gd" id="4_wtfn7"]
+[ext_resource type="Texture2D" uid="uid://dv4ub8glusqw7" path="res://EntityComponents/monochrome_tilemap_transparent_packed.png" id="5_lk28f"]
 [ext_resource type="Script" path="res://Hero/state_jumping.gd" id="6_igfrg"]
 [ext_resource type="Script" path="res://Hero/state_falling.gd" id="7_qsa0a"]
 [ext_resource type="Script" path="res://Hero/state_gliding.gd" id="8_4k4qv"]
@@ -31,6 +31,44 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wwsjr"]
 size = Vector2(96, 96)
+
+[sub_resource type="Animation" id="Animation_absrk"]
+resource_name = "walk"
+length = 0.400003
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.266667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 3]
+}
+
+[sub_resource type="Animation" id="Animation_6xja8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bikrr"]
+_data = {
+"RESET": SubResource("Animation_6xja8"),
+"walk": SubResource("Animation_absrk")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_361o4"]
 size = Vector2(128, 128)
@@ -84,9 +122,19 @@ auto_shoots = false
 time_between_bursts = 0.001
 
 [node name="HeroSprite" type="Sprite2D" parent="."]
+position = Vector2(0, -64)
 scale = Vector2(16, 16)
-texture = ExtResource("2_uk1tr")
+texture = ExtResource("5_lk28f")
+hframes = 4
+region_enabled = true
+region_rect = Rect2(16, 192, 64, 16)
+region_filter_clip_enabled = true
 script = ExtResource("3_jd25v")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HeroSprite"]
+libraries = {
+"": SubResource("AnimationLibrary_bikrr")
+}
 
 [node name="HeroCollider" type="CollisionShape2D" parent="."]
 unique_name_in_owner = true
