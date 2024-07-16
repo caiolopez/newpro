@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://deh1x6imysemh"
-path="res://.godot/imported/walk.png-ae53e0e170897e9c5ead7ce0636a1d26.ctex"
+uid="uid://bpxtdgy77ltr0"
+path="res://.godot/imported/parachute.png-d71aa8ef8729bd44671d5254e1b1aed2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Hero/Gfx/walk.png"
-dest_files=["res://.godot/imported/walk.png-ae53e0e170897e9c5ead7ce0636a1d26.ctex"]
+source_file="res://Hero/Gfx/parachute.png"
+dest_files=["res://.godot/imported/parachute.png-d71aa8ef8729bd44671d5254e1b1aed2.ctex"]
 
 [params]
 

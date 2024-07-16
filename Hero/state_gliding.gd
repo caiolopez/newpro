@@ -4,6 +4,8 @@ var water_prone: bool = true
 var death_prone: bool = true
 
 func on_enter():
+	$"../../Gfx/ParachuteAnim".visible = true
+	$"../../Gfx/ParachuteAnim".play("deploy_parachute")
 	if (hero.is_on_wall() or not timer_leaving_wall.is_stopped())\
 	and Input.is_action_just_pressed('jump'):
 		timer_coyote_wall.start()
@@ -83,4 +85,5 @@ func on_physics_process(delta: float):
 
 
 func on_exit():
+	$"../../Gfx/ParachuteAnim".visible = false
 	pass

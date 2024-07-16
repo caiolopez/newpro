@@ -5,6 +5,7 @@ var death_prone: bool = true
 
 
 func on_enter():
+	$"../../Gfx/AnimatedSprite2D".play("idle")
 	if Input.is_action_pressed('jump')\
 	and not timer_buffer_jump.is_stopped():
 		timer_buffer_jump.stop()
