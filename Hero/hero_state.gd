@@ -16,6 +16,7 @@ var timer_super_bounce_window: Timer
 var timer_climb_to_fall_wall_jump: Timer
 var timer_climb_to_glide_wall_jump: Timer
 var timer_between_blunder_jumping_shots: Timer
+var timer_before_glide: Timer
 
 func enter(new_machine:StateMachine) -> void:
 	timer_coyote_jump = get_node("../TimerCoyoteJump")
@@ -33,6 +34,7 @@ func enter(new_machine:StateMachine) -> void:
 	timer_climb_to_fall_wall_jump = get_node("../TimerClimbToFallWallJump")
 	timer_climb_to_glide_wall_jump = get_node("../TimerClimbToGlideWallJump")
 	timer_between_blunder_jumping_shots = get_node("../TimerBetweenBlunderJumpingShots")
+	timer_before_glide = get_node("../TimerBeforeGlide")
 	
 	hero = new_machine.owner as CharacterBody2D
 	super(new_machine)

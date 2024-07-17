@@ -4,8 +4,8 @@ var water_prone: bool = true
 var death_prone: bool = true
 
 func on_enter():
-	$"../../Gfx/ParachuteAnim".visible = true
 	$"../../Gfx/ParachuteAnim".play("deploy_parachute")
+	timer_before_glide.start()
 	if (hero.is_on_wall() or not timer_leaving_wall.is_stopped())\
 	and Input.is_action_just_pressed('jump'):
 		timer_coyote_wall.start()
@@ -68,15 +68,18 @@ func on_process(_delta: float):
 			print('MODE 3')
 			return
 
-	if Input.is_action_just_pressed("jump"):
-		hero.velocity.y = hero.GLIDE_VELOCITY/2
+	#if Input.is_action_just_pressed("jump"):
+		#hero.velocity.y = hero.GLIDE_VELOCITY/2 TODO: what does this even do?
 
 
 func on_physics_process(delta: float):
 	
-	if Input.is_action_pressed("jump"):
-		hero.velocity.y -= 2500 * delta
+	if Input.is_action_pressed("jump")\
+	and timer_before_glide.is_stopped():
+		hero.velocity.y -= 25000 * delta
 		hero.velocity.y = maxf(hero.velocity.y, hero.GLIDE_VELOCITY)
+	else:
+		hero.step_grav(delta)
 	
 	hero.step_lateral_mov(delta)
 	
@@ -85,5 +88,6 @@ func on_physics_process(delta: float):
 
 
 func on_exit():
-	$"../../Gfx/ParachuteAnim".visible = false
+	timer_before_glide.stop()
+	$"../../Gfx/ParachuteAnim".play("hide_parachute")
 	pass
