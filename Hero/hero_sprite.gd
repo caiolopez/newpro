@@ -10,3 +10,4 @@ func _ready():
 func _process(_delta):
 	set_flip_h(hero.facing_direction == -1)
 	rotation_degrees = hero.current_blunder_jump_angle
+	position.x = abs(position.x) * -hero.facing_direction
