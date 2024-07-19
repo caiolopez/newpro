@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bax5von43u0el"
-path="res://.godot/imported/fall.png-69909b5b8faa846672cccdf9c9377cbf.ctex"
+uid="uid://ckwsjp3s4js1y"
+path="res://.godot/imported/glide_soft.png-6761aae66ff4fa9e9d632d883f67b5c4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Hero/Gfx/fall.png"
-dest_files=["res://.godot/imported/fall.png-69909b5b8faa846672cccdf9c9377cbf.ctex"]
+source_file="res://Hero/Gfx/glide_soft.png"
+dest_files=["res://.godot/imported/glide_soft.png-6761aae66ff4fa9e9d632d883f67b5c4.ctex"]
 
 [params]
 

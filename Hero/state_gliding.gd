@@ -6,6 +6,13 @@ var death_prone: bool = true
 func on_enter():
 	$"../../Gfx/ParachuteAnim".play("deploy_parachute")
 	timer_before_glide.start()
+	
+	timer_before_glide.timeout.connect(func():
+		if hero.velocity.y > 1000:
+			$"../../Gfx/AnimatedSprite2D".play("glide_hard")
+		else:
+			$"../../Gfx/AnimatedSprite2D".play("glide_soft"))
+	
 	if (hero.is_on_wall() or not timer_leaving_wall.is_stopped())\
 	and Input.is_action_just_pressed('jump'):
 		timer_coyote_wall.start()
@@ -67,9 +74,6 @@ func on_process(_delta: float):
 			machine.set_state("StateWallJumping")
 			print('MODE 3')
 			return
-
-	#if Input.is_action_just_pressed("jump"):
-		#hero.velocity.y = hero.GLIDE_VELOCITY/2 TODO: what does this even do?
 
 
 func on_physics_process(delta: float):
