@@ -1,20 +1,100 @@
-[gd_scene load_steps=5 format=3 uid="uid://kfcc5raaowpu"]
+[gd_scene load_steps=18 format=3 uid="uid://kfcc5raaowpu"]
 
 [ext_resource type="Script" path="res://Bullet/bullet.gd" id="1_hqyxv"]
-[ext_resource type="Texture2D" uid="uid://d2gdo5bbgykv2" path="res://icon.svg" id="1_pjdyt"]
+[ext_resource type="Texture2D" uid="uid://cjdelfjqofumo" path="res://Bullet/Gfx/bullet.png" id="2_mr7qb"]
+[ext_resource type="Shader" path="res://CaioShaders/bw_replacer.gdshader" id="2_tqu0m"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_450i0"]
 radius = 15.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fvyyw"]
+shader = ExtResource("2_tqu0m")
+shader_parameter/replace_black = Color(0.442504, 0, 0, 1)
+shader_parameter/replace_white = Color(0.808224, 0.297399, 0.294318, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2i8wb"]
+atlas = ExtResource("2_mr7qb")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0a2x0"]
+atlas = ExtResource("2_mr7qb")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_feore"]
+atlas = ExtResource("2_mr7qb")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ex0wd"]
+atlas = ExtResource("2_mr7qb")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3dkk5"]
+atlas = ExtResource("2_mr7qb")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_awadn"]
+atlas = ExtResource("2_mr7qb")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0pa02"]
+atlas = ExtResource("2_mr7qb")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rk6u0"]
+atlas = ExtResource("2_mr7qb")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jm4ya"]
+atlas = ExtResource("2_mr7qb")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1tab8"]
+atlas = ExtResource("2_mr7qb")
+region = Rect2(144, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jok56"]
+atlas = ExtResource("2_mr7qb")
+region = Rect2(160, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_eo4fx"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_pjdyt")
+"texture": SubResource("AtlasTexture_2i8wb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0a2x0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_feore")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ex0wd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3dkk5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_awadn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0pa02")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rk6u0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jm4ya")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1tab8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jok56")
 }],
 "loop": true,
-"name": &"default",
-"speed": 5.0
+"name": &"moving",
+"speed": 20.0
 }]
 
 [node name="Bullet" type="Area2D" groups=["bullets", "dmg_dealers"]]
@@ -24,8 +104,10 @@ script = ExtResource("1_hqyxv")
 shape = SubResource("CircleShape2D_450i0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.197189, 0.197189)
+material = SubResource("ShaderMaterial_fvyyw")
+scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_eo4fx")
+animation = &"moving"
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 

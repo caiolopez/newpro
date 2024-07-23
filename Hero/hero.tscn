@@ -1,4 +1,4 @@
-[gd_scene load_steps=95 format=3 uid="uid://1md1m8n6iq5x"]
+[gd_scene load_steps=97 format=3 uid="uid://1md1m8n6iq5x"]
 
 [ext_resource type="Script" path="res://Hero/hero.gd" id="1_dmqn8"]
 [ext_resource type="PackedScene" uid="uid://box2ff3vwcc7w" path="res://EntityComponents/DmgTaker.tscn" id="2_ktrux"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cupxj14lcnr75" path="res://EntityComponents/Shooter.tscn" id="4_1v5xt"]
 [ext_resource type="Script" path="res://Hero/state_idle.gd" id="4_t32ch"]
 [ext_resource type="Script" path="res://Hero/state_walking.gd" id="4_wtfn7"]
+[ext_resource type="Shader" path="res://CaioShaders/bw_replacer.gdshader" id="5_3381l"]
 [ext_resource type="Texture2D" uid="uid://deh1x6imysemh" path="res://Hero/Gfx/walk.png" id="5_nryls"]
 [ext_resource type="Texture2D" uid="uid://7swtuin2erwm" path="res://Hero/Gfx/idle.png" id="6_cge6x"]
 [ext_resource type="Script" path="res://Hero/state_jumping.gd" id="6_igfrg"]
@@ -37,6 +38,11 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wwsjr"]
 size = Vector2(48, 112)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xs826"]
+shader = ExtResource("5_3381l")
+shader_parameter/replace_black = Color(0.690196, 0, 0, 1)
+shader_parameter/replace_white = Color(0.366595, 0.366595, 0.366595, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4b8wm"]
 atlas = ExtResource("10_js46x")
@@ -534,13 +540,14 @@ hit_from_inside = true
 script = ExtResource("3_6dncg")
 
 [node name="Shooter" parent="." instance=ExtResource("4_1v5xt")]
-position = Vector2(64, -24)
+position = Vector2(72, -48)
 pellet_amount = 6
 pellet_speed = 1000.0
 auto_shoots = false
 time_between_bursts = 0.001
 
 [node name="Gfx" type="Node2D" parent="."]
+material = SubResource("ShaderMaterial_xs826")
 
 [node name="ParachuteAnim" type="AnimatedSprite2D" parent="Gfx"]
 use_parent_material = true

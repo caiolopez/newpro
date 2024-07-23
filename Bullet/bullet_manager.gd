@@ -29,10 +29,15 @@ vel:  Vector2 = Vector2(200, 0), is_foe: bool = true, is_fire: bool = false, ang
 	bullet.velocity = vel.rotated(bullet_angle)
 	bullet.is_foe = is_foe
 	bullet.is_fire = is_fire
+	bullet.rotation = bullet_angle
+	var anim: AnimatedSprite2D = bullet.get_node("AnimatedSprite2D")
+	anim.play("moving")
+	Utils.randomize_animation_frame(anim, "moving")
 
 
 func free_bullet(bullet):
 	bullet.visible = false
+	bullet.get_node("AnimatedSprite2D").stop()
 	# Changing visibility takes a frame to happen.
 	bullet.call_deferred("reparent", $FreeBullets)
 

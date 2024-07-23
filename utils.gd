@@ -47,6 +47,15 @@ func subtract_vector2(a: Vector2, b: Vector2) -> Vector2:
 	return Vector2(a.x - b.x, a.y - b.y)
 
 
+func get_animation_frame_count(animated_sprite: AnimatedSprite2D, anim_name: StringName) -> int:
+	var frames = animated_sprite.sprite_frames
+	return frames.get_frame_count(anim_name) if frames and frames.has_animation(anim_name) else 0
+
+
+func randomize_animation_frame(animated_sprite: AnimatedSprite2D, anim_name: StringName):
+	animated_sprite.frame = randi_range(0, get_animation_frame_count(animated_sprite, anim_name))
+
+
 func paint_white(active: bool, target: CanvasItem, duration: float = 0.0):
 	var white_material: ShaderMaterial = preload("res://CaioShaders/white.tres")
 	if active:
