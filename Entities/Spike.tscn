@@ -44,6 +44,7 @@ rect = Rect2(-64, -64, 128, 128)
 [node name="GfxController" parent="." instance=ExtResource("6_3qug5")]
 
 [node name="Sprite2D" type="Sprite2D" parent="GfxController"]
+use_parent_material = true
 texture = ExtResource("8_mniiy")
 
 [node name="OpenDoorsIfDead" parent="." instance=ExtResource("8_1vvap")]

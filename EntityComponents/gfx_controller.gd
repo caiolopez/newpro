@@ -3,13 +3,15 @@ class_name GfxController extends Node2D
 @export var hide_when_dead: bool = true
 @onready var dmg_taker: DmgTaker = Utils.find_dmg_taker(self.get_parent())
 var face_hero_node: FaceHero
-
+var original_material: Material = null
 
 func _ready():
+	original_material = material
+
 	if get_parent().has_node("FaceHero"):
 		face_hero_node = get_parent().get_node("FaceHero")
 		face_hero_node.update.connect(on_update_direction)
-	
+
 	if dmg_taker != null:
 		dmg_taker.died.connect(on_died)
 		dmg_taker.resurrected.connect(on_resurrected)
@@ -31,4 +33,5 @@ func on_resurrected():
 
 
 func on_suffered(_hp):
-	Utils.paint_white(true, get_node("Sprite2D"), 0.1)
+	Utils.paint_white(true, self, 0.1)
+	

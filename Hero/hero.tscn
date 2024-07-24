@@ -41,8 +41,8 @@ size = Vector2(48, 112)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xs826"]
 shader = ExtResource("5_3381l")
-shader_parameter/replace_black = Color(0.690196, 0, 0, 1)
-shader_parameter/replace_white = Color(0.366595, 0.366595, 0.366595, 1)
+shader_parameter/replace_black = Color(0.16328, 0.126726, 0.797686, 1)
+shader_parameter/replace_white = Color(0.0232185, 0.391171, 0.584461, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4b8wm"]
 atlas = ExtResource("10_js46x")
@@ -548,6 +548,7 @@ time_between_bursts = 0.001
 
 [node name="Gfx" type="Node2D" parent="."]
 material = SubResource("ShaderMaterial_xs826")
+script = ExtResource("3_jd25v")
 
 [node name="ParachuteAnim" type="AnimatedSprite2D" parent="Gfx"]
 use_parent_material = true
@@ -555,7 +556,6 @@ position = Vector2(-16, -168)
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_uo7bl")
 animation = &"deploy_parachute"
-script = ExtResource("3_jd25v")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Gfx"]
 use_parent_material = true
@@ -563,7 +563,6 @@ position = Vector2(0, -32)
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_tm5on")
 animation = &"walk"
-script = ExtResource("3_jd25v")
 
 [node name="HeroCollider" type="CollisionShape2D" parent="."]
 unique_name_in_owner = true
