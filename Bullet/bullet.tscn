@@ -108,6 +108,7 @@ material = SubResource("ShaderMaterial_fvyyw")
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_eo4fx")
 animation = &"moving"
+autoplay = "moving"
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 

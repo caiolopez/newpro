@@ -1,0 +1,95 @@
+[gd_scene load_steps=16 format=3 uid="uid://cj3otm63bgg5l"]
+
+[ext_resource type="Shader" path="res://CaioShaders/bw_replacer.gdshader" id="1_3o4y7"]
+[ext_resource type="Texture2D" uid="uid://bit4nev2pmi03" path="res://Bullet/Gfx/bullet_dies.png" id="1_i2nkp"]
+[ext_resource type="Script" path="res://Bullet/free_on_anim_end.gd" id="2_50163"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tbljs"]
+shader = ExtResource("1_3o4y7")
+shader_parameter/replace_black = Color(0.44, 0, 0, 1)
+shader_parameter/replace_white = Color(0.8, 0.29, 0.29, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s7kl4"]
+atlas = ExtResource("1_i2nkp")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tg106"]
+atlas = ExtResource("1_i2nkp")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6lkok"]
+atlas = ExtResource("1_i2nkp")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vu556"]
+atlas = ExtResource("1_i2nkp")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wgcrs"]
+atlas = ExtResource("1_i2nkp")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0vmrl"]
+atlas = ExtResource("1_i2nkp")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40w88"]
+atlas = ExtResource("1_i2nkp")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wpxh8"]
+atlas = ExtResource("1_i2nkp")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_14kan"]
+atlas = ExtResource("1_i2nkp")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dbphd"]
+atlas = ExtResource("1_i2nkp")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bseya"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s7kl4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tg106")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6lkok")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vu556")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wgcrs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0vmrl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_40w88")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wpxh8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_14kan")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dbphd")
+}],
+"loop": false,
+"name": &"default",
+"speed": 60.0
+}]
+
+[node name="BulletDiesProp" type="AnimatedSprite2D"]
+material = SubResource("ShaderMaterial_tbljs")
+scale = Vector2(6, 6)
+sprite_frames = SubResource("SpriteFrames_bseya")
+autoplay = "default"
+script = ExtResource("2_50163")
