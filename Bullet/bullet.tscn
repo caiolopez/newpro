@@ -4,13 +4,13 @@
 [ext_resource type="Texture2D" uid="uid://cjdelfjqofumo" path="res://Bullet/Gfx/bullet.png" id="2_mr7qb"]
 [ext_resource type="Shader" path="res://CaioShaders/bw_replacer.gdshader" id="2_tqu0m"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qij2k"]
+shader = ExtResource("2_tqu0m")
+shader_parameter/replace_black = Color(0.325441, 0.325441, 0.325441, 1)
+shader_parameter/replace_white = Color(0.488503, 0.32442, 0.200421, 1)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_450i0"]
 radius = 15.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_fvyyw"]
-shader = ExtResource("2_tqu0m")
-shader_parameter/replace_black = Color(0.442504, 0, 0, 1)
-shader_parameter/replace_white = Color(0.808224, 0.297399, 0.294318, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2i8wb"]
 atlas = ExtResource("2_mr7qb")
@@ -98,13 +98,14 @@ animations = [{
 }]
 
 [node name="Bullet" type="Area2D" groups=["bullets", "dmg_dealers"]]
+material = SubResource("ShaderMaterial_qij2k")
 script = ExtResource("1_hqyxv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_450i0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-material = SubResource("ShaderMaterial_fvyyw")
+use_parent_material = true
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_eo4fx")
 animation = &"moving"

@@ -15,7 +15,7 @@ class_name Hero extends CharacterBody2D
 @export var BLUNDER_GROUNDED_VELOCITY = Vector2(-800, 0) ## The strength of the recoil when blundershooting on ground.
 @export var BLUNDER_UNDERWATER_VELOCITY = Vector2(-800, 0) ## The strength of the recoil when blundershooting on ground.
 @export var BLUNDER_AIRBORNE_DURATION: float = 0.2 ## The duration of the recoil when blundershooting on air.
-@export var BLUNDER_GROUNDED_DURATION: float = 0.05 ## The duration of the recoil when blundershooting on ground.
+@export var BLUNDER_GROUNDED_DURATION: float = 0.1 ## The duration of the recoil when blundershooting on ground.
 @export var BLUNDER_UNDERWATER_DURATION: float = 0.15 ## The duration of the recoil when blundershooting on water.
 @export var BLUNDER_JUMP_VELOCITY: float = -1200 ## The speed the hero jumps after blundershooting airborne.
 @export var BLUNDER_JUMP_WATER_BOUNCE_VELOCITY: float = -800 ## The speed the hero jumps after falling on water while holding jump from a blunder jump. Like Kiddy Kong.
@@ -202,6 +202,22 @@ func update_current_checkpoint_path(new_checkpoint_path: NodePath):
 func die():
 	state_machine.set_state("StateDeathSnapshot")
 
+
 func insta_spawn():
 	state_machine.set_state("StateSpawning")
-	
+
+
+func shoot():
+	$Gfx/Muzzle.visible = true
+	$Gfx/Muzzle.play("default")
+	shooter.shoot_ad_hoc(regular_shot_speed)
+
+func shoot_inverted():
+	$Gfx/Muzzle.visible = true
+	$Gfx/Muzzle.play("default")
+	shooter.shoot_ad_hoc(regular_shot_speed, 0, false, true)
+
+func blundershoot():
+	$Gfx/Muzzle.visible = true
+	$Gfx/Muzzle.play("blunder")
+	shooter.shoot()

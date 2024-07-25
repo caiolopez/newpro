@@ -9,7 +9,7 @@ func on_enter():
 	hero.velocity.x = hero.BLUNDER_UNDERWATER_VELOCITY.x*hero.facing_direction
 	hero.velocity.y = hero.BLUNDER_UNDERWATER_VELOCITY.y
 	timer_blunder_shoot_duration.start()
-	hero.shooter.shoot()
+	hero.blundershoot()
 
 func on_process(_delta: float):
 	if timer_blunder_shoot_duration.is_stopped():

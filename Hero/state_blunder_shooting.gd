@@ -15,7 +15,8 @@ func on_enter():
 		hero.velocity.y = hero.BLUNDER_AIRBORNE_VELOCITY.y
 	timer_blunder_shoot_duration.start()
 	timer_blunder_jump_window.start()
-	hero.shooter.shoot()
+	$"../../Gfx/AnimatedSprite2D".play("recoil")
+	hero.blundershoot()
 
 func on_process(_delta: float):
 	if Input.is_action_just_pressed('jump')\

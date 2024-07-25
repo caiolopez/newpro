@@ -16,7 +16,7 @@ func on_process(_delta: float):
 		return
 
 	if Input.is_action_just_pressed("shoot"):
-		hero.shooter.shoot_ad_hoc(hero.regular_shot_speed)
+		hero.shoot()
 
 	if Input.is_action_just_pressed('jump'):
 		if hero.is_pushing_wall():

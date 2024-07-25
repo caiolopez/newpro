@@ -16,7 +16,7 @@ func on_process(_delta: float):
 		return
 
 	if Input.is_action_just_pressed("shoot"):
-		hero.shooter.shoot_ad_hoc(hero.regular_shot_speed)
+		hero.shoot()
 
 	if hero.velocity.y > 0:
 		machine.set_state("StateFalling")

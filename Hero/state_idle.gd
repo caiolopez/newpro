@@ -20,7 +20,7 @@ func on_process(_delta: float):
 		return
 
 	if Input.is_action_just_pressed("shoot"):
-		hero.shooter.shoot_ad_hoc(hero.regular_shot_speed)
+		hero.shoot()
 
 	if hero.is_on_floor()\
 	and not hero.pelvis_rc.is_colliding()\

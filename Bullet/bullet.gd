@@ -12,9 +12,11 @@ var acceleration: Vector2
 var is_underwater_ammo: bool
 var notifier: VisibleOnScreenNotifier2D
 var bullet_dies_prop_scene = load("res://Bullet/bullet_dies_prop.tscn")
-
+var dark_color: Color
+var light_color: Color
 
 func _ready():
+	set_color()
 	notifier = $VisibleOnScreenNotifier2D
 	current_drag = AIR_DRAG
 	current_gravity = 0
@@ -23,8 +25,11 @@ func _ready():
 		BulletManager.free_bullet(self)
 
 
-func _process(_delta):
-	pass
+func set_color():
+	dark_color = Constants.BULLET_REGULAR_DARK
+	light_color = Constants.BULLET_REGULAR_LIGHT
+	material.set_shader_parameter("replace_black", dark_color)
+	material.set_shader_parameter("replace_white", light_color)
 
 
 func _physics_process(delta):
@@ -44,7 +49,8 @@ func _on_body_entered(body):
 		var new_dies_prop = bullet_dies_prop_scene.instantiate()
 		new_dies_prop.global_position = global_position
 		get_node("/root/GameTree").add_child(new_dies_prop)
-		print(new_dies_prop)
+		new_dies_prop.material.set_shader_parameter("replace_black", dark_color)
+		new_dies_prop.material.set_shader_parameter("replace_white", light_color)
 		BulletManager.free_bullet(self)
 
 

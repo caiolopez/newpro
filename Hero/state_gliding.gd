@@ -28,7 +28,7 @@ func on_process(_delta: float):
 		return
 
 	if Input.is_action_just_pressed("shoot"):
-		hero.shooter.shoot_ad_hoc(hero.regular_shot_speed)
+		hero.shoot()
 
 	if hero.on_wall_value_just_changed\
 	and not hero.is_on_wall():
@@ -93,5 +93,8 @@ func on_physics_process(delta: float):
 
 func on_exit():
 	timer_before_glide.stop()
-	$"../../Gfx/ParachuteAnim".play("hide_parachute")
+	if $"../../Gfx/ParachuteAnim".get_frame() > 9:
+		$"../../Gfx/ParachuteAnim".play("hide_parachute")
+	else:
+		$"../../Gfx/ParachuteAnim".stop()
 	pass
