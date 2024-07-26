@@ -5,6 +5,9 @@ var death_prone: bool = true
 var current_bounce_vel: float
 
 func on_enter():
+	$"../../Gfx/AnimatedSprite2D".play("blunderjump")
+	$"../../Shooter".position = Vector2(0, 0)
+	
 	hero.current_blunder_jump_angle = 0
 	hero.velocity.y = hero.BLUNDER_JUMP_VELOCITY
 	current_bounce_vel = hero.BLUNDER_JUMP_WATER_BOUNCE_VELOCITY
@@ -60,4 +63,6 @@ func on_physics_process(delta: float):
 
 
 func on_exit():
+	$"../../Shooter".return_to_og_pos()
+	$"../../Gfx".rotation_degrees = 0
 	hero.current_blunder_jump_angle = 0

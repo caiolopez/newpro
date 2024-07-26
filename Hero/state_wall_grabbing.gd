@@ -5,10 +5,16 @@ var death_prone: bool = true
 var sticky_offset: Vector2
 var sticky: Node2D = null
 
+
 func on_enter():
 	hero.velocity.y = 0
+	
 	$"../../Gfx/AnimatedSprite2D".play("wallgrab")
-	$"../../Shooter".position = Vector2(-80 * hero.facing_direction, -32)
+	if $"../../Gfx/Muzzle".is_playing(): $"../../Gfx/Muzzle".hide()
+	$"../../Shooter".position = Vector2(80, -40)
+	$"../../Gfx/Muzzle".position = Vector2(-$"../../Shooter".position.x - 154, $"../../Shooter".position.y)
+	$"../../Gfx/Muzzle".flip_h = true
+	
 	var c = hero.shoulder_rc.get_collider()
 	if c and c.is_in_group("sticky"):
 		sticky = c
@@ -43,5 +49,9 @@ func on_physics_process(_delta: float):
 
 
 func on_exit():
+	$"../../Shooter".return_to_og_pos()
+	$"../../Gfx/Muzzle".position = $"../../Shooter".position
+	$"../../Gfx/Muzzle".flip_h = false
+	
 	sticky = null
 	pass

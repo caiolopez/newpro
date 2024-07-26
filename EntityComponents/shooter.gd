@@ -15,6 +15,7 @@ class_name Shooter extends Node2D
 @onready var timer_shot_cooldown: Timer = get_node("TimeBetweenShots")
 @onready var timer_burst_cooldown: Timer = get_node("TimeBetweenBursts")
 @onready var is_foe: bool = Utils.check_if_foe(self.get_parent()) ## If no FriendOrFoe sibling component is found, assumes is_foe = true.
+@onready var og_pos: Vector2 = position
 var shot_offset: Vector2 = Vector2.ZERO
 var facing_direction: int = 1
 var current_burst_count: int = 1
@@ -95,3 +96,7 @@ func reset_behavior():
 		current_burst_count = 1
 		timer_shot_cooldown.start()
 		timer_burst_cooldown.stop()
+
+
+func return_to_og_pos():
+	position = og_pos
