@@ -98,6 +98,7 @@ animations = [{
 }]
 
 [node name="Bullet" type="Area2D" groups=["bullets", "dmg_dealers"]]
+z_index = 2
 material = SubResource("ShaderMaterial_qij2k")
 script = ExtResource("1_hqyxv")
 
