@@ -85,12 +85,11 @@ func _process(_delta):
 		die()
 	if is_in_water and state_machine.current_state.water_prone:
 		state_machine.set_state("StateFloating")
-	
-	if is_on_floor():
-		RegionManager.infer_current_region_from_last_floor()
+
 
 func _physics_process(_delta):
-	pass
+	if is_on_floor():
+		RegionManager.call_deferred("infer_current_region_from_last_floor")
 
 func step_grav(delta, downward_accel: float = GRAVITY):
 	if not is_on_floor():

@@ -39,9 +39,11 @@ func set_current_region(region: Region):
 func infer_current_region_from_last_floor():
 	if current_region: return
 	var hero: Hero = Utils.find_hero()
-	var latest_floor: Object = hero.get_slide_collision(0).get_collider()
-	if latest_floor and is_instance_valid(latest_floor):
-		var region_from_floor = get_region_from_node(latest_floor)
-		if region_from_floor:
-			set_current_region(region_from_floor)
-			print("RegionManager.current_region set to ", region_from_floor.name, " via touching floor." )
+	if hero.get_slide_collision_count() > 0:
+		var latest_floor: Object = hero.get_slide_collision(0).get_collider()
+		if latest_floor and is_instance_valid(latest_floor):
+			var region_from_floor = get_region_from_node(latest_floor)
+			if region_from_floor:
+				set_current_region(region_from_floor)
+				print("RegionManager.current_region set to ", region_from_floor.name, " via touching floor." )
+	else: print("Couldn't infer region.")
