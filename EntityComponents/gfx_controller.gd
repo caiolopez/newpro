@@ -1,6 +1,7 @@
 class_name GfxController extends Node2D
 
 @export var hide_when_dead: bool = true
+@export var force_children_to_use_parent_material: bool = true
 @onready var dmg_taker: DmgTaker = Utils.find_dmg_taker(self.get_parent())
 var face_hero_node: FaceHero
 var original_material: Material = null
@@ -17,6 +18,9 @@ func _ready():
 		dmg_taker.resurrected.connect(on_resurrected)
 		dmg_taker.suffered.connect(on_suffered)
 
+	if force_children_to_use_parent_material:
+		for child in get_children():
+			child.use_parent_material = true
 
 func on_update_direction(dir: float, rot: float = 0):
 	scale.x = abs(scale.x) * dir
