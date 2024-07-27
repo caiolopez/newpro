@@ -23,6 +23,7 @@ func on_process(_delta: float):
 	if Input.is_action_just_pressed('jump'):
 		if hero.is_pushing_wall():
 			$"../../Gfx/AnimatedSprite2D".frame = 0
+			$"../../Gfx/AnimatedSprite2D".play("wallclimb")
 			hero.velocity.y = hero.CLIMB_VELOCITY
 			can_wj = false
 			return
