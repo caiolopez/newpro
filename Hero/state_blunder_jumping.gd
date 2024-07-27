@@ -55,7 +55,7 @@ func on_process(_delta: float):
 
 
 func on_physics_process(delta: float):
-	hero.current_blunder_jump_angle += delta * 720 * hero.facing_direction
+	hero.current_blunder_jump_angle += delta * 1080 * hero.facing_direction
 	
 	hero.step_grav(delta)
 	hero.step_lateral_mov(delta)

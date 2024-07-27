@@ -5,7 +5,7 @@ const A90DEG = PI / 2
 @export var bullet_res = preload("res://Bullet/bullet.tscn")
 
 func _ready():
-	Events.hero_reached_checkpoint.connect(free_all_bullets)
+	Events.hero_respawned_at_checkpoint.connect(free_all_bullets)
 
 	for i in range(Constants.BULLET_POOL_SIZE):
 		var bullet: Bullet = bullet_res.instantiate()

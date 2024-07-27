@@ -5,6 +5,8 @@ var death_prone: bool = true
 
 
 func on_enter():
+	$"../../Gfx/AnimatedSprite2D".play("walljump")
+
 	timer_wall_jump_duration.start()
 	hero.velocity.x = hero.WALLJUMP_VELOCITY.x * round(hero.get_wall_normal().x)
 	hero.velocity.y = hero.WALLJUMP_VELOCITY.y

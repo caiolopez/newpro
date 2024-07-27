@@ -5,7 +5,7 @@ class_name Hero extends CharacterBody2D
 @export var regular_shot_speed: float = 1000 ## The speed the normal shot moves. For blundershot setup, use Shooter component.
 @export var SPEED: float = 600.0 ## The moving speed of the hero.
 @export var JUMP_VELOCITY: float  = -1000.0 ## The speed the hero jumps when grounded.
-@export var VAULT_VELOCITY: float = -500.0 ## The speed the hero jumps when performing the vault. Vaulting is an assist that aims at standardize velocity.y when the hero climbs a wall all the way up.
+@export var VAULT_VELOCITY: float = -200.0 ## The speed the hero jumps when performing the vault. Vaulting is an assist that aims at standardize velocity.y when the hero climbs a wall all the way up.
 @export var HEADBUTT_THRESHOLD_VEL: float = -300.0 ## The minimum upward velocity required for the headbutt assist to take place and snap the Hero.
 @export var WALLJUMP_VELOCITY = Vector2(1600, -600) ## The speed the hero walljumps away from a wall.
 @export var CLIMB_VELOCITY: float = -1000 ## The speed the hero jumps upward when jumping to the same side of the wall (Megaman-style walljump).
