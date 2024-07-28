@@ -17,8 +17,8 @@ func on_process(_delta: float):
 		machine.set_state("StateBlunderShooting")
 		return
 
-	if Input.is_action_just_pressed("shoot"):
-		hero.shoot()
+	#if Input.is_action_just_pressed("shoot"):
+		#hero.shoot()
 
 	if Input.is_action_just_pressed('jump'):
 		if hero.is_pushing_wall():
