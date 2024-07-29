@@ -1,0 +1,86 @@
+[gd_scene load_steps=15 format=3 uid="uid://cd1cbcx2ilw2g"]
+
+[ext_resource type="Shader" path="res://CaioShaders/bw_replacer.gdshader" id="1_2fey0"]
+[ext_resource type="Texture2D" uid="uid://do7upscm6q0w7" path="res://Props/dust_floor.png" id="2_il8bc"]
+[ext_resource type="PackedScene" uid="uid://manmyevja5y2" path="res://EntityComponents/OnParentAnimEnd.tscn" id="3_k88dn"]
+[ext_resource type="PackedScene" uid="uid://1votnx34efdj" path="res://EntityComponents/BWShaderSetter.tscn" id="4_cligm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tbljs"]
+shader = ExtResource("1_2fey0")
+shader_parameter/replace_black = Color(0.44, 0, 0, 1)
+shader_parameter/replace_white = Color(0.8, 0.29, 0.29, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e8jlm"]
+atlas = ExtResource("2_il8bc")
+region = Rect2(0, 0, 27, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_asfk5"]
+atlas = ExtResource("2_il8bc")
+region = Rect2(27, 0, 27, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sevma"]
+atlas = ExtResource("2_il8bc")
+region = Rect2(54, 0, 27, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rrmgo"]
+atlas = ExtResource("2_il8bc")
+region = Rect2(81, 0, 27, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0nmdg"]
+atlas = ExtResource("2_il8bc")
+region = Rect2(162, 0, 27, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tftg5"]
+atlas = ExtResource("2_il8bc")
+region = Rect2(189, 0, 27, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_27tgh"]
+atlas = ExtResource("2_il8bc")
+region = Rect2(216, 0, 27, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0iixg"]
+atlas = ExtResource("2_il8bc")
+region = Rect2(243, 0, 27, 15)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n72fd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e8jlm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_asfk5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sevma")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rrmgo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0nmdg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tftg5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_27tgh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0iixg")
+}],
+"loop": false,
+"name": &"default",
+"speed": 20.0
+}]
+
+[node name="DustAnimProp" type="AnimatedSprite2D"]
+material = SubResource("ShaderMaterial_tbljs")
+scale = Vector2(6, 6)
+sprite_frames = SubResource("SpriteFrames_n72fd")
+autoplay = "default"
+offset = Vector2(0, 3)
+
+[node name="OnParentAnimEnd" parent="." instance=ExtResource("3_k88dn")]
+
+[node name="BwShaderSetter" parent="." instance=ExtResource("4_cligm")]

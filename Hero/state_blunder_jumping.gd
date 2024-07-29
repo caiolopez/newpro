@@ -24,6 +24,11 @@ func on_process(_delta: float):
 		timer_super_bounce_window.start()
 
 	if hero.is_on_floor():
+		
+		var dust = load("res://Props/DustAnimProp.tscn").instantiate()
+		dust.global_position = hero.global_position
+		get_node("/root/GameTree").add_child(dust)
+		
 		machine.set_state("StateIdle")
 		return
 
