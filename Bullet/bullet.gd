@@ -11,7 +11,7 @@ var current_gravity: float
 var acceleration: Vector2
 var is_underwater_ammo: bool
 var notifier: VisibleOnScreenNotifier2D
-var bullet_dies_prop_scene = load("res://Bullet/bullet_dies_prop.tscn")
+var bullet_dies_prop_scene = load("res://Props/BulletDiesProp.tscn")
 var dark_color: Color
 var light_color: Color
 

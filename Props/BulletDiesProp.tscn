@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://cj3otm63bgg5l"]
 
 [ext_resource type="Shader" path="res://CaioShaders/bw_replacer.gdshader" id="1_3o4y7"]
-[ext_resource type="Texture2D" uid="uid://bit4nev2pmi03" path="res://Bullet/Gfx/bullet_dies.png" id="1_i2nkp"]
+[ext_resource type="Texture2D" uid="uid://bit4nev2pmi03" path="res://Props/bullet_dies.png" id="1_i2nkp"]
 [ext_resource type="PackedScene" uid="uid://manmyevja5y2" path="res://EntityComponents/OnParentAnimEnd.tscn" id="3_8qejn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tbljs"]
