@@ -10,5 +10,5 @@ func _ready():
 	original_material = material
 
 func _process(_delta):
-		rotation_degrees = hero.current_blunder_jump_angle
+		#rotation_degrees = hero.current_blunder_jump_angle
 		scale.x = original_scale.x * hero.facing_direction

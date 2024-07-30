@@ -1,8 +1,8 @@
 class_name Elevator extends Node
 
-enum Prop {position, rotation}
+enum Property {position, rotation}
 
-@export var property_to_tween: Prop = Prop.position
+@export var property_to_tween: Property = Property.position
 @export var end_position: Vector2
 @export var end_rotation: float
 @export var curve: Tween.TransitionType = Tween.TransitionType.TRANS_QUAD
@@ -31,9 +31,9 @@ func tween_to(pos: Vector2, rot: float):
 	if tween and tween.is_running():
 		tween.kill()
 	tween = create_tween()
-	if property_to_tween == Prop.position:
+	if property_to_tween == Property.position:
 		tween.parallel().tween_property(get_parent(), "position", pos, d).set_trans(curve).set_ease(easing)
-	elif property_to_tween == Prop.rotation:
+	elif property_to_tween == Property.rotation:
 		tween.tween_property(get_parent(), "rotation_degrees", rot, d).set_trans(curve).set_ease(easing)
 	tween.tween_callback(func():tween_ended.emit())
 

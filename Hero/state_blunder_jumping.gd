@@ -25,10 +25,7 @@ func on_process(_delta: float):
 
 	if hero.is_on_floor():
 		
-		var dust = load("res://Props/DustAnimProp.tscn").instantiate()
-		dust.global_position = hero.global_position
-		get_node("/root/GameTree").add_child(dust)
-		
+		PropManager.place_prop(hero.global_position, &"dust_floor")
 		machine.set_state("StateIdle")
 		return
 

@@ -26,6 +26,7 @@ RegionManager="*res://Regions/RegionManager.tscn"
 SaveManager="*res://SaveManager/save_manager.gd"
 DebugTools="*res://DebugTools/debug_tools.tscn"
 AppManager="*res://AppManager/AppManager.tscn"
+PropManager="*res://PropManager.tscn"
 
 [debug]
 
