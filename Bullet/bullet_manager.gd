@@ -13,7 +13,7 @@ func _ready():
 		bullet.visible = false
 
 
-func create_bullet(facing_direction: int = 1, origin: Vector2 = Vector2(0, 0),\
+func place_bullet(facing_direction: int = 1, origin: Vector2 = Vector2(0, 0),\
 vel:  Vector2 = Vector2(200, 0), is_foe: bool = true, is_fire: bool = false, angle: float = 0.0):
 	var bullet: Bullet
 	if $FreeBullets.get_child_count() <= 0:
