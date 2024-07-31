@@ -1,8 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://kfcc5raaowpu"]
+[gd_scene load_steps=20 format=3 uid="uid://kfcc5raaowpu"]
 
 [ext_resource type="Script" path="res://Bullet/bullet.gd" id="1_hqyxv"]
 [ext_resource type="Texture2D" uid="uid://cjdelfjqofumo" path="res://Bullet/Gfx/bullet.png" id="2_mr7qb"]
 [ext_resource type="Shader" path="res://CaioShaders/bw_replacer.gdshader" id="2_tqu0m"]
+[ext_resource type="Texture2D" uid="uid://cjnc25li7sonx" path="res://Bullet/Gfx/bullet_regular_wet.png" id="4_7rmor"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qij2k"]
 shader = ExtResource("2_tqu0m")
@@ -56,6 +57,10 @@ region = Rect2(144, 0, 16, 16)
 atlas = ExtResource("2_mr7qb")
 region = Rect2(160, 0, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_d4076"]
+atlas = ExtResource("4_7rmor")
+region = Rect2(0, 0, 16, 16)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_eo4fx"]
 animations = [{
 "frames": [{
@@ -93,8 +98,16 @@ animations = [{
 "texture": SubResource("AtlasTexture_jok56")
 }],
 "loop": true,
-"name": &"moving",
+"name": &"regular_dry",
 "speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d4076")
+}],
+"loop": true,
+"name": &"regular_wet",
+"speed": 5.0
 }]
 
 [node name="Bullet" type="Area2D" groups=["bullets", "dmg_dealers"]]
@@ -109,8 +122,8 @@ shape = SubResource("CircleShape2D_450i0")
 use_parent_material = true
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_eo4fx")
-animation = &"moving"
-autoplay = "moving"
+animation = &"regular_wet"
+autoplay = "regular_dry"
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
