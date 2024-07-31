@@ -1,4 +1,4 @@
-[gd_scene load_steps=160 format=3 uid="uid://1md1m8n6iq5x"]
+[gd_scene load_steps=164 format=3 uid="uid://1md1m8n6iq5x"]
 
 [ext_resource type="Script" path="res://Hero/hero.gd" id="1_dmqn8"]
 [ext_resource type="PackedScene" uid="uid://box2ff3vwcc7w" path="res://EntityComponents/DmgTaker.tscn" id="2_ktrux"]
@@ -18,6 +18,7 @@
 [ext_resource type="Script" path="res://Hero/state_gliding.gd" id="8_4k4qv"]
 [ext_resource type="Texture2D" uid="uid://c87rr4yuqtwag" path="res://Hero/Gfx/ascend.png" id="8_bv08n"]
 [ext_resource type="Texture2D" uid="uid://jnu2i2a6unn4" path="res://Hero/Gfx/glide_hard.png" id="8_djkmc"]
+[ext_resource type="Texture2D" uid="uid://cqgrp1arxqyp6" path="res://Hero/Gfx/ascend_h.png" id="8_i1q84"]
 [ext_resource type="Texture2D" uid="uid://pq2fuhkblrjg" path="res://Hero/Gfx/blunderjump.png" id="8_qxmo7"]
 [ext_resource type="Script" path="res://Hero/state_wall_grabbing.gd" id="9_d343a"]
 [ext_resource type="Texture2D" uid="uid://ckwsjp3s4js1y" path="res://Hero/Gfx/glide_soft.png" id="9_ka1hb"]
@@ -237,6 +238,18 @@ animations = [{
 "name": &"hide_parachute",
 "speed": 30.0
 }]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dmbrj"]
+atlas = ExtResource("8_i1q84")
+region = Rect2(0, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rwxjf"]
+atlas = ExtResource("8_i1q84")
+region = Rect2(40, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kdn8u"]
+atlas = ExtResource("8_i1q84")
+region = Rect2(80, 0, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_njjb8"]
 atlas = ExtResource("8_bv08n")
@@ -562,6 +575,23 @@ region = Rect2(280, 0, 40, 40)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_dmbrj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rwxjf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdn8u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rwxjf")
+}],
+"loop": true,
+"name": &"ascend_h",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_njjb8")
 }, {
 "duration": 1.0,
@@ -586,7 +616,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_bifjk")
 }],
 "loop": true,
-"name": &"ascend",
+"name": &"ascend_v",
 "speed": 10.0
 }, {
 "frames": [{
@@ -1012,7 +1042,7 @@ use_parent_material = true
 position = Vector2(0, -32)
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_tm5on")
-animation = &"wallclimb"
+animation = &"ascend_v"
 
 [node name="Muzzle" type="AnimatedSprite2D" parent="Gfx"]
 visible = false
