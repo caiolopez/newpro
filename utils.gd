@@ -52,7 +52,9 @@ func get_animation_frame_count(animated_sprite: AnimatedSprite2D, anim_name: Str
 	return frames.get_frame_count(anim_name) if frames and frames.has_animation(anim_name) else 0
 
 
-func randomize_animation_frame(animated_sprite: AnimatedSprite2D, anim_name: StringName):
+func randomize_animation_frame(animated_sprite: AnimatedSprite2D, anim_name: StringName = &""):
+	if anim_name == &"":
+		anim_name = animated_sprite.animation
 	animated_sprite.frame = randi_range(0, get_animation_frame_count(animated_sprite, anim_name))
 
 
