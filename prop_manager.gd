@@ -4,7 +4,8 @@ extends Node2D
 
 const PROP_TYPE: Dictionary = {
 	&"bullet_dies": preload("res://Props/BulletDiesProp.tscn"),
-	&"dust_floor": preload("res://Props/DustAnimProp.tscn")
+	&"dust_floor": preload("res://Props/DustFloorProp.tscn"),
+	&"dust2": preload("res://Props/Dust2Prop.tscn"),
 }
 
 func place_prop(global_pos: Vector2, prop_name: StringName) -> Node2D:

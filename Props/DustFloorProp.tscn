@@ -1,45 +1,46 @@
-[gd_scene load_steps=15 format=3 uid="uid://cd1cbcx2ilw2g"]
+[gd_scene load_steps=16 format=3 uid="uid://cd1cbcx2ilw2g"]
 
-[ext_resource type="Shader" path="res://CaioShaders/bw_replacer.gdshader" id="1_2fey0"]
-[ext_resource type="Texture2D" uid="uid://do7upscm6q0w7" path="res://Props/dust_floor.png" id="2_il8bc"]
-[ext_resource type="PackedScene" uid="uid://manmyevja5y2" path="res://EntityComponents/OnParentAnimEnd.tscn" id="3_k88dn"]
-[ext_resource type="PackedScene" uid="uid://1votnx34efdj" path="res://EntityComponents/BWShaderSetter.tscn" id="4_cligm"]
+[ext_resource type="Shader" path="res://CaioShaders/bw_replacer.gdshader" id="1_dd63d"]
+[ext_resource type="Texture2D" uid="uid://do7upscm6q0w7" path="res://Props/dust_floor.png" id="2_nwwrq"]
+[ext_resource type="PackedScene" uid="uid://manmyevja5y2" path="res://EntityComponents/OnParentAnimEnd.tscn" id="3_j5axc"]
+[ext_resource type="PackedScene" uid="uid://1votnx34efdj" path="res://EntityComponents/BWShaderSetter.tscn" id="4_qls3w"]
+[ext_resource type="PackedScene" uid="uid://dtiweonbpewyr" path="res://EntityComponents/AutoSpriteFlipper.tscn" id="5_m7tfi"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tbljs"]
-shader = ExtResource("1_2fey0")
+shader = ExtResource("1_dd63d")
 shader_parameter/replace_black = Color(0.44, 0, 0, 1)
 shader_parameter/replace_white = Color(0.8, 0.29, 0.29, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e8jlm"]
-atlas = ExtResource("2_il8bc")
+atlas = ExtResource("2_nwwrq")
 region = Rect2(0, 0, 27, 15)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_asfk5"]
-atlas = ExtResource("2_il8bc")
+atlas = ExtResource("2_nwwrq")
 region = Rect2(27, 0, 27, 15)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sevma"]
-atlas = ExtResource("2_il8bc")
+atlas = ExtResource("2_nwwrq")
 region = Rect2(54, 0, 27, 15)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rrmgo"]
-atlas = ExtResource("2_il8bc")
+atlas = ExtResource("2_nwwrq")
 region = Rect2(81, 0, 27, 15)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0nmdg"]
-atlas = ExtResource("2_il8bc")
+atlas = ExtResource("2_nwwrq")
 region = Rect2(162, 0, 27, 15)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tftg5"]
-atlas = ExtResource("2_il8bc")
+atlas = ExtResource("2_nwwrq")
 region = Rect2(189, 0, 27, 15)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_27tgh"]
-atlas = ExtResource("2_il8bc")
+atlas = ExtResource("2_nwwrq")
 region = Rect2(216, 0, 27, 15)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0iixg"]
-atlas = ExtResource("2_il8bc")
+atlas = ExtResource("2_nwwrq")
 region = Rect2(243, 0, 27, 15)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_n72fd"]
@@ -81,6 +82,10 @@ sprite_frames = SubResource("SpriteFrames_n72fd")
 autoplay = "default"
 offset = Vector2(0, 3)
 
-[node name="OnParentAnimEnd" parent="." instance=ExtResource("3_k88dn")]
+[node name="OnParentAnimEnd" parent="." instance=ExtResource("3_j5axc")]
 
-[node name="BwShaderSetter" parent="." instance=ExtResource("4_cligm")]
+[node name="BwShaderSetter" parent="." instance=ExtResource("4_qls3w")]
+dark_color_name = &"HERO_LIGHT"
+light_color_name = &"HERO_DARK"
+
+[node name="AutoSpriteFlipper" parent="." instance=ExtResource("5_m7tfi")]

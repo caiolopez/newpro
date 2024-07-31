@@ -6,6 +6,7 @@ var death_prone: bool = true
 
 func on_enter():
 	$"../../Gfx/AnimatedSprite2D".play("jump")
+	PropManager.place_prop(hero.global_position, &"dust2")
 	hero.velocity.y = hero.JUMP_VELOCITY
 
 func on_process(_delta: float):
