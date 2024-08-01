@@ -10,6 +10,7 @@ func on_enter():
 	Events.hero_died.emit()
 	timer_death_snapshot.start()
 	Utils.paint_white(true, $"../../Gfx")
+	$"../../Gfx/AnimatedSprite2D".stop()
 	
 
 func on_process(_delta: float):

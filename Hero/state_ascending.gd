@@ -8,12 +8,8 @@ func on_enter():
 	pass
 
 func on_process(_delta: float):
-	if Input.is_action_pressed("move_left")\
-		or Input.is_action_pressed("move_right"):
-		$"../../Gfx/AnimatedSprite2D".play("ascend_h")
-	else:
-		$"../../Gfx/AnimatedSprite2D".play("ascend_v")
-	
+	$"../../Gfx/AnimatedSprite2D".play("ascend_h")
+
 	if hero.is_input_blunder_shoot()\
 		and timer_blunder_shoot_cooldown.is_stopped():
 		machine.set_state("StateWetBlunderShooting")

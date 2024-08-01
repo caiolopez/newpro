@@ -1,0 +1,138 @@
+[gd_scene load_steps=23 format=3 uid="uid://d08jdi8c2bopo"]
+
+[ext_resource type="Shader" path="res://CaioShaders/bw_replacer.gdshader" id="1_iomju"]
+[ext_resource type="Texture2D" uid="uid://bnt8slo76k16n" path="res://Props/splash1.png" id="2_c1cgt"]
+[ext_resource type="PackedScene" uid="uid://manmyevja5y2" path="res://EntityComponents/OnParentAnimEnd.tscn" id="3_gj5qw"]
+[ext_resource type="PackedScene" uid="uid://1votnx34efdj" path="res://EntityComponents/BWShaderSetter.tscn" id="4_c6dut"]
+[ext_resource type="PackedScene" uid="uid://dtiweonbpewyr" path="res://EntityComponents/AutoSpriteFlipper.tscn" id="5_qcdw0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tbljs"]
+shader = ExtResource("1_iomju")
+shader_parameter/replace_black = Color(0.44, 0, 0, 1)
+shader_parameter/replace_white = Color(0.8, 0.29, 0.29, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nbfja"]
+atlas = ExtResource("2_c1cgt")
+region = Rect2(0, 0, 28, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dl5y3"]
+atlas = ExtResource("2_c1cgt")
+region = Rect2(28, 0, 28, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t1wdu"]
+atlas = ExtResource("2_c1cgt")
+region = Rect2(56, 0, 28, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_18uxf"]
+atlas = ExtResource("2_c1cgt")
+region = Rect2(84, 0, 28, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yln1n"]
+atlas = ExtResource("2_c1cgt")
+region = Rect2(112, 0, 28, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ehr35"]
+atlas = ExtResource("2_c1cgt")
+region = Rect2(140, 0, 28, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c2ghx"]
+atlas = ExtResource("2_c1cgt")
+region = Rect2(168, 0, 28, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_msqqy"]
+atlas = ExtResource("2_c1cgt")
+region = Rect2(196, 0, 28, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ewdek"]
+atlas = ExtResource("2_c1cgt")
+region = Rect2(224, 0, 28, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_77k62"]
+atlas = ExtResource("2_c1cgt")
+region = Rect2(252, 0, 28, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_30g15"]
+atlas = ExtResource("2_c1cgt")
+region = Rect2(280, 0, 28, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kmgt6"]
+atlas = ExtResource("2_c1cgt")
+region = Rect2(308, 0, 28, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3phd7"]
+atlas = ExtResource("2_c1cgt")
+region = Rect2(336, 0, 28, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cuyyg"]
+atlas = ExtResource("2_c1cgt")
+region = Rect2(364, 0, 28, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pcdo1"]
+atlas = ExtResource("2_c1cgt")
+region = Rect2(392, 0, 28, 15)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x5ep3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nbfja")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dl5y3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t1wdu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_18uxf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yln1n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ehr35")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c2ghx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_msqqy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ewdek")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_77k62")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_30g15")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kmgt6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3phd7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cuyyg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pcdo1")
+}],
+"loop": false,
+"name": &"default",
+"speed": 30.0
+}]
+
+[node name="SplashProp" type="AnimatedSprite2D"]
+material = SubResource("ShaderMaterial_tbljs")
+scale = Vector2(6, 6)
+sprite_frames = SubResource("SpriteFrames_x5ep3")
+autoplay = "default"
+offset = Vector2(0, -5)
+
+[node name="OnParentAnimEnd" parent="." instance=ExtResource("3_gj5qw")]
+
+[node name="BwShaderSetter" parent="." instance=ExtResource("4_c6dut")]
+
+[node name="AutoSpriteFlipper" parent="." instance=ExtResource("5_qcdw0")]

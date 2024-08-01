@@ -5,7 +5,7 @@ var death_prone: bool = true
 
 
 func on_enter():
-	$"../../Gfx/AnimatedSprite2D".play("idle")
+	$"../../Gfx/AnimatedSprite2D".play("descend")
 	pass
 
 func on_process(_delta: float):

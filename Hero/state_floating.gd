@@ -5,6 +5,7 @@ var death_prone: bool = true
 
 
 func on_enter():
+	PropManager.place_prop(Vector2(hero.global_position.x, hero.last_water_surface), &"splash")
 	pass
 
 func on_process(_delta: float):
