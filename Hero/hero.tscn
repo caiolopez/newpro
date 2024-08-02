@@ -1,4 +1,4 @@
-[gd_scene load_steps=190 format=3 uid="uid://1md1m8n6iq5x"]
+[gd_scene load_steps=204 format=3 uid="uid://1md1m8n6iq5x"]
 
 [ext_resource type="Script" path="res://Hero/hero.gd" id="1_dmqn8"]
 [ext_resource type="PackedScene" uid="uid://box2ff3vwcc7w" path="res://EntityComponents/DmgTaker.tscn" id="2_ktrux"]
@@ -38,6 +38,7 @@
 [ext_resource type="PackedScene" uid="uid://manmyevja5y2" path="res://EntityComponents/OnParentAnimEnd.tscn" id="17_62ejc"]
 [ext_resource type="Script" path="res://Hero/state_descending.gd" id="17_h880v"]
 [ext_resource type="Script" path="res://Hero/state_ascending.gd" id="17_hus0u"]
+[ext_resource type="Texture2D" uid="uid://de5llpltua3ca" path="res://Hero/Gfx/wallclimb_w_guns.png" id="19_qov33"]
 [ext_resource type="Script" path="res://Hero/state_teleporting.gd" id="20_3hv7e"]
 [ext_resource type="Script" path="res://Hero/state_spawning.gd" id="21_b6r6d"]
 [ext_resource type="Script" path="res://Hero/state_death_snapshot.gd" id="22_xhyei"]
@@ -615,6 +616,58 @@ region = Rect2(440, 0, 40, 40)
 atlas = ExtResource("16_s43rd")
 region = Rect2(480, 0, 40, 40)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_a803i"]
+atlas = ExtResource("19_qov33")
+region = Rect2(0, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j0yev"]
+atlas = ExtResource("19_qov33")
+region = Rect2(40, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3i5bw"]
+atlas = ExtResource("19_qov33")
+region = Rect2(80, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0mp7d"]
+atlas = ExtResource("19_qov33")
+region = Rect2(120, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1xc2s"]
+atlas = ExtResource("19_qov33")
+region = Rect2(160, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r7u7m"]
+atlas = ExtResource("19_qov33")
+region = Rect2(200, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gt4gf"]
+atlas = ExtResource("19_qov33")
+region = Rect2(240, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n7ljd"]
+atlas = ExtResource("19_qov33")
+region = Rect2(280, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_olqeu"]
+atlas = ExtResource("19_qov33")
+region = Rect2(320, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k2eol"]
+atlas = ExtResource("19_qov33")
+region = Rect2(360, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kamf2"]
+atlas = ExtResource("19_qov33")
+region = Rect2(400, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvdye"]
+atlas = ExtResource("19_qov33")
+region = Rect2(440, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_btqft"]
+atlas = ExtResource("19_qov33")
+region = Rect2(480, 0, 40, 40)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_2pi4m"]
 atlas = ExtResource("15_j7opr")
 region = Rect2(0, 0, 40, 40)
@@ -1043,6 +1096,50 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_a803i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j0yev")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3i5bw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0mp7d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1xc2s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r7u7m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gt4gf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n7ljd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_olqeu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k2eol")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kamf2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nvdye")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_btqft")
+}],
+"loop": false,
+"name": &"wallclimb_w_guns",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_2pi4m")
 }, {
 "duration": 1.0,
@@ -1236,7 +1333,7 @@ use_parent_material = true
 position = Vector2(0, -32)
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_tm5on")
-animation = &"wallclimb"
+animation = &"wallclimb_w_guns"
 
 [node name="Muzzle" type="AnimatedSprite2D" parent="Gfx"]
 visible = false

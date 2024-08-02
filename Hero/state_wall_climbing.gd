@@ -6,7 +6,7 @@ var death_prone: bool = true
 var can_wj: bool
 
 func on_enter():
-	$"../../Gfx/AnimatedSprite2D".play("wallclimb")
+	$"../../Gfx/AnimatedSprite2D".play("wallclimb_w_guns")
 
 	hero.velocity.y = hero.CLIMB_VELOCITY
 	can_wj = false
@@ -17,13 +17,13 @@ func on_process(_delta: float):
 		machine.set_state("StateBlunderShooting")
 		return
 
-	#if Input.is_action_just_pressed("shoot"):
-		#hero.shoot()
+	if Input.is_action_just_pressed("shoot"):
+		hero.shoot()
 
 	if Input.is_action_just_pressed('jump'):
 		if hero.is_pushing_wall():
 			$"../../Gfx/AnimatedSprite2D".frame = 0
-			$"../../Gfx/AnimatedSprite2D".play("wallclimb")
+			$"../../Gfx/AnimatedSprite2D".play("wallclimb_w_guns")
 			hero.velocity.y = hero.CLIMB_VELOCITY
 			can_wj = false
 			return
