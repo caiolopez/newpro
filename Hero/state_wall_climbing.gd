@@ -70,6 +70,8 @@ func on_process(_delta: float):
 	if Input.is_action_just_released('jump'):
 		hero.velocity.y *= 0.5
 
+	if not hero.is_on_wall():
+		$"../../Gfx/AnimatedSprite2D".play("vault")
 
 func on_physics_process(delta: float):
 	hero.step_grav(delta)

@@ -8,7 +8,7 @@ func on_enter():
 	pass
 
 func on_process(_delta: float):
-	$"../../Gfx/AnimatedSprite2D".play("ascend_h")
+	$"../../Gfx/AnimatedSprite2D".play("ascend")
 
 	if hero.is_input_blunder_shoot()\
 		and timer_blunder_shoot_cooldown.is_stopped():
