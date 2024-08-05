@@ -206,7 +206,7 @@ func insta_spawn():
 	state_machine.set_state("StateSpawning")
 
 
-func shoot():
+func shoot():	
 	$Gfx/Muzzle.visible = true
 	$Gfx/Muzzle.play("default")
 	shooter.shoot_ad_hoc(regular_shot_speed)

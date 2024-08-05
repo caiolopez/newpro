@@ -4,14 +4,9 @@ var water_prone: bool = true
 var death_prone: bool = true
 
 func on_enter():
+	$"../../Gfx/ParachuteAnim".show()
 	$"../../Gfx/ParachuteAnim".play("deploy_parachute")
-	timer_before_glide.start()
-	
-	timer_before_glide.timeout.connect(func():
-		if hero.velocity.y > 1000:
-			$"../../Gfx/AnimatedSprite2D".play("glide_hard")
-		else:
-			$"../../Gfx/AnimatedSprite2D".play("glide_soft"))
+	$"../../Gfx/AnimatedSprite2D".play("glide")
 	
 	if (hero.is_on_wall() or not timer_leaving_wall.is_stopped())\
 	and Input.is_action_just_pressed('jump'):
@@ -92,9 +87,7 @@ func on_physics_process(delta: float):
 
 
 func on_exit():
-	timer_before_glide.stop()
 	if $"../../Gfx/ParachuteAnim".get_frame() > 9:
 		$"../../Gfx/ParachuteAnim".play("hide_parachute")
 	else:
-		$"../../Gfx/ParachuteAnim".stop()
-	pass
+		$"../../Gfx/ParachuteAnim".hide()

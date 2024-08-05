@@ -436,7 +436,7 @@ process_mode = 3
 [node name="MiniMap" parent="HUD" instance=ExtResource("2_is0lr")]
 
 [node name="Hero" parent="." instance=ExtResource("2_acvau")]
-z_index = 1
+z_index = 2
 position = Vector2(-2184, -1640)
 
 [node name="Camera" parent="." node_paths=PackedStringArray("hero") instance=ExtResource("3_o6dt5")]

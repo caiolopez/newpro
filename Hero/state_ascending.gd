@@ -32,7 +32,7 @@ func on_physics_process(delta: float):
 	if hero.global_position.y > hero.last_water_surface + 16:
 		hero.velocity.y = hero.ASCENDING_VELOCITY
 	else:
-		hero.velocity.y = hero.ASCENDING_VELOCITY * (hero.global_position.y - hero.last_water_surface)*delta
+		hero.velocity.y = hero.ASCENDING_VELOCITY * (hero.global_position.y - hero.last_water_surface - 50)*delta
 	hero.step_lateral_mov(delta)
 
 	hero.move_and_slide()

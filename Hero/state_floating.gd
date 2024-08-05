@@ -28,11 +28,13 @@ func on_process(_delta: float):
 
 	if Input.is_action_just_pressed('jump')\
 	and hero.is_on_floor():
+		PropManager.place_prop(Vector2(hero.global_position.x, hero.last_water_surface), &"splash")
 		machine.set_state("StateJumping")
 
 	if Input.is_action_just_pressed('jump')\
 	and hero.is_pushing_wall()\
 	and hero.is_head_above_water():
+		PropManager.place_prop(Vector2(hero.global_position.x, hero.last_water_surface), &"splash")
 		machine.set_state("StateJumping")
 
 
@@ -40,7 +42,7 @@ func on_physics_process(delta: float):
 	
 
 	if not hero.can_dive:
-		hero.velocity.y = (hero.velocity.y - (hero.BUOYANCY * (hero.global_position.y - (hero.last_water_surface))*delta))*pow(0.94, 1-delta)
+		hero.velocity.y = (hero.velocity.y - (hero.BUOYANCY * (hero.global_position.y - (hero.last_water_surface))*delta - 50))*pow(0.80, 1-delta)
 
 	hero.step_grav(delta)
 	hero.step_lateral_mov(delta)
