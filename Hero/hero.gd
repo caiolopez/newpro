@@ -75,6 +75,8 @@ func _process(_delta):
 	#if Input.is_action_just_released("move_left"): print("left")
 	#if Input.is_action_just_released("move_right"): print("right")
 	
+	print(get_real_velocity().y, velocity.y)
+	
 	check_value_change()
 	
 	if dmg_taker.current_hp == 0\
@@ -206,7 +208,7 @@ func insta_spawn():
 	state_machine.set_state("StateSpawning")
 
 
-func shoot():
+func shoot():	
 	$Gfx/Muzzle.visible = true
 	$Gfx/Muzzle.play("default")
 	shooter.shoot_ad_hoc(regular_shot_speed)
