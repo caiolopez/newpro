@@ -75,8 +75,6 @@ func _process(_delta):
 	#if Input.is_action_just_released("move_left"): print("left")
 	#if Input.is_action_just_released("move_right"): print("right")
 	
-	print(get_real_velocity().y, velocity.y)
-	
 	check_value_change()
 	
 	if dmg_taker.current_hp == 0\
