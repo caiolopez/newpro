@@ -5,8 +5,8 @@ var original_material: Material = null
 @onready var hero: = get_parent()
 
 func _ready():
-	#material.set_shader_parameter("replace_black", Constants.HERO_DARK)
-	#material.set_shader_parameter("replace_white", Constants.HERO_LIGHT)
+	material.set_shader_parameter("replace_black", Constants.HERO_DARK)
+	material.set_shader_parameter("replace_white", Constants.HERO_LIGHT)
 	original_material = material
 
 func _process(_delta):
