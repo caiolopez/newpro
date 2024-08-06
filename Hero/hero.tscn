@@ -1303,7 +1303,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_361o4"]
-size = Vector2(96, 152)
+size = Vector2(80, 152)
 
 [node name="Hero" type="CharacterBody2D" node_paths=PackedStringArray("state_machine") groups=["heroes", "uncrushables"]]
 collision_layer = 8
@@ -1327,7 +1327,7 @@ script = ExtResource("3_6dncg")
 
 [node name="HeadbuttAssist" type="RayCast2D" parent="."]
 position = Vector2(-16, -96)
-target_position = Vector2(-32, 0)
+target_position = Vector2(-24, 0)
 script = ExtResource("3_6dncg")
 
 [node name="ShoulderRC" type="RayCast2D" parent="."]
@@ -1369,7 +1369,7 @@ use_parent_material = true
 position = Vector2(0, -32)
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_tm5on")
-animation = &"recoil"
+animation = &"idle"
 
 [node name="Muzzle" type="AnimatedSprite2D" parent="Gfx"]
 visible = false
@@ -1381,7 +1381,7 @@ sprite_frames = SubResource("SpriteFrames_o20fn")
 offset = Vector2(12, 0.67)
 
 [node name="OnParentAnimEnd" parent="Gfx/Muzzle" instance=ExtResource("17_62ejc")]
-effect = 1
+effect = 2
 hide_if_hero_dir_changed = true
 
 [node name="HeroCollider" type="CollisionShape2D" parent="."]
@@ -1391,7 +1391,6 @@ shape = SubResource("RectangleShape2D_361o4")
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("3_oqep4")
-does_print = false
 
 [node name="StateSpawning" type="Node" parent="StateMachine"]
 script = ExtResource("21_b6r6d")

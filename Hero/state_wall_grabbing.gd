@@ -11,7 +11,7 @@ func on_enter():
 	
 	$"../../Gfx/AnimatedSprite2D".play("wallgrab")
 	if $"../../Gfx/Muzzle".is_playing(): $"../../Gfx/Muzzle".hide()
-	$"../../Shooter".position = Vector2(80, -40)
+	$"../../Shooter".position = Vector2(88, -40)
 	$"../../Gfx/Muzzle".position = Vector2(-$"../../Shooter".position.x - 154, $"../../Shooter".position.y)
 	$"../../Gfx/Muzzle".flip_h = true
 	

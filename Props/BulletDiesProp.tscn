@@ -113,9 +113,9 @@ animations = [{
 material = SubResource("ShaderMaterial_tbljs")
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_bseya")
-autoplay = "default"
 
 [node name="OnParentAnimEnd" parent="." instance=ExtResource("3_8qejn")]
+effect = 1
 
 [node name="AutoSpriteFlipper" parent="." instance=ExtResource("4_3inv6")]
 randomize_v = true

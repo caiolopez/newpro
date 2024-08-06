@@ -179,7 +179,7 @@ func step_auto_snap():
 	and not shoulder_rc.is_colliding()\
 	and  next_grd_height.is_colliding()\
 	and is_pushing_wall():
-		global_position.y = next_grd_height.get_collision_point().y - %HeroCollider.shape.get_rect().size.y/2 - 1
+		global_position.y = next_grd_height.get_collision_point().y - %HeroCollider.shape.get_rect().size.y/2
 		print("AUTO SNAP ON STAIRS")
 		is_auto_snapping = true
 	else:

@@ -72,10 +72,10 @@ animations = [{
 material = SubResource("ShaderMaterial_tbljs")
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_5cvca")
-autoplay = "default"
 offset = Vector2(0, 3)
 
 [node name="OnParentAnimEnd" parent="." instance=ExtResource("3_88ckq")]
+effect = 1
 
 [node name="BwShaderSetter" parent="." instance=ExtResource("4_kn6kp")]
 

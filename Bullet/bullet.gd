@@ -46,10 +46,7 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 
 func _on_body_entered(body):
 	if body.is_in_group("kills_bullets"):
-		var new_dies_prop = PropManager.place_prop(global_position, &"bullet_dies")
-		new_dies_prop.material.set_shader_parameter("replace_black", dark_color)
-		new_dies_prop.material.set_shader_parameter("replace_white", light_color)
-		BulletManager.release_bullet(self)
+		kill_bullet()
 
 
 func _on_area_entered(area):
@@ -57,6 +54,7 @@ func _on_area_entered(area):
 		is_in_water = true
 		current_drag = WATER_DRAG
 		current_gravity = gravity
+		PropManager.place_prop(Vector2(global_position.x, area.get_surface_global_position()), &"splash")
 		animate()
 
 
@@ -81,4 +79,7 @@ func animate():
 
 
 func kill_bullet():
+	var new_dies_prop = PropManager.place_prop(global_position, &"bullet_dies")
+	new_dies_prop.material.set_shader_parameter("replace_black", dark_color)
+	new_dies_prop.material.set_shader_parameter("replace_white", light_color)
 	BulletManager.release_bullet(self)

@@ -15,4 +15,4 @@ func randomize_flip():
 	if randomize_v:
 		parent.flip_v = bool(randi() % 2)
 	if randomize_90deg_turn:
-		parent.rotation_degrees = 90
+		parent.rotation_degrees = (randi() % 2) * 90

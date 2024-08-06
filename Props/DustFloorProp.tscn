@@ -79,10 +79,10 @@ animations = [{
 material = SubResource("ShaderMaterial_tbljs")
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_n72fd")
-autoplay = "default"
 offset = Vector2(0, 3)
 
 [node name="OnParentAnimEnd" parent="." instance=ExtResource("3_j5axc")]
+effect = 1
 
 [node name="BwShaderSetter" parent="." instance=ExtResource("4_qls3w")]
 dark_color_name = &"HERO_DARK"
