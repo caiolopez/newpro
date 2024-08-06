@@ -85,7 +85,7 @@ offset = Vector2(0, 3)
 [node name="OnParentAnimEnd" parent="." instance=ExtResource("3_j5axc")]
 
 [node name="BwShaderSetter" parent="." instance=ExtResource("4_qls3w")]
-dark_color_name = &"HERO_LIGHT"
-light_color_name = &"HERO_DARK"
+dark_color_name = &"HERO_DARK"
+light_color_name = &"HERO_LIGHT"
 
 [node name="AutoSpriteFlipper" parent="." instance=ExtResource("5_m7tfi")]

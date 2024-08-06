@@ -1,90 +1,112 @@
-[gd_scene load_steps=16 format=3 uid="uid://cj3otm63bgg5l"]
+[gd_scene load_steps=20 format=3 uid="uid://cj3otm63bgg5l"]
 
 [ext_resource type="Shader" path="res://CaioShaders/bw_replacer.gdshader" id="1_3o4y7"]
 [ext_resource type="Texture2D" uid="uid://bit4nev2pmi03" path="res://Props/bullet_dies.png" id="1_i2nkp"]
 [ext_resource type="PackedScene" uid="uid://manmyevja5y2" path="res://EntityComponents/OnParentAnimEnd.tscn" id="3_8qejn"]
+[ext_resource type="PackedScene" uid="uid://dtiweonbpewyr" path="res://EntityComponents/AutoSpriteFlipper.tscn" id="4_3inv6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tbljs"]
 shader = ExtResource("1_3o4y7")
 shader_parameter/replace_black = Color(0.44, 0, 0, 1)
 shader_parameter/replace_white = Color(0.8, 0.29, 0.29, 1)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_s7kl4"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_gk7wt"]
 atlas = ExtResource("1_i2nkp")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tg106"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ujhup"]
 atlas = ExtResource("1_i2nkp")
 region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6lkok"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_41o6h"]
 atlas = ExtResource("1_i2nkp")
 region = Rect2(64, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vu556"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_w5nla"]
 atlas = ExtResource("1_i2nkp")
 region = Rect2(96, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wgcrs"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ccqld"]
 atlas = ExtResource("1_i2nkp")
 region = Rect2(128, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0vmrl"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ebdc2"]
 atlas = ExtResource("1_i2nkp")
 region = Rect2(160, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_40w88"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_vsqx4"]
 atlas = ExtResource("1_i2nkp")
 region = Rect2(192, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wpxh8"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_klfp7"]
 atlas = ExtResource("1_i2nkp")
 region = Rect2(224, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_14kan"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_6iw6u"]
 atlas = ExtResource("1_i2nkp")
 region = Rect2(256, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dbphd"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_evt70"]
 atlas = ExtResource("1_i2nkp")
 region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_feujx"]
+atlas = ExtResource("1_i2nkp")
+region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lx5ac"]
+atlas = ExtResource("1_i2nkp")
+region = Rect2(352, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m8ofh"]
+atlas = ExtResource("1_i2nkp")
+region = Rect2(384, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bseya"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_s7kl4")
+"texture": SubResource("AtlasTexture_gk7wt")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_tg106")
+"texture": SubResource("AtlasTexture_ujhup")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6lkok")
+"texture": SubResource("AtlasTexture_41o6h")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vu556")
+"texture": SubResource("AtlasTexture_w5nla")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wgcrs")
+"texture": SubResource("AtlasTexture_ccqld")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0vmrl")
+"texture": SubResource("AtlasTexture_ebdc2")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_40w88")
+"texture": SubResource("AtlasTexture_vsqx4")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wpxh8")
+"texture": SubResource("AtlasTexture_klfp7")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_14kan")
+"texture": SubResource("AtlasTexture_6iw6u")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_dbphd")
+"texture": SubResource("AtlasTexture_evt70")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_feujx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lx5ac")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m8ofh")
 }],
 "loop": false,
 "name": &"default",
-"speed": 60.0
+"speed": 30.0
 }]
 
 [node name="BulletDiesProp" type="AnimatedSprite2D"]
@@ -94,3 +116,7 @@ sprite_frames = SubResource("SpriteFrames_bseya")
 autoplay = "default"
 
 [node name="OnParentAnimEnd" parent="." instance=ExtResource("3_8qejn")]
+
+[node name="AutoSpriteFlipper" parent="." instance=ExtResource("4_3inv6")]
+randomize_v = true
+randomize_90deg_turn = true
