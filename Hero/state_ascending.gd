@@ -5,11 +5,9 @@ var death_prone: bool = true
 
 
 func on_enter():
-	pass
+	$"../../Gfx/AnimatedSprite2D".play("water_swim")
 
 func on_process(_delta: float):
-	$"../../Gfx/AnimatedSprite2D".play("ascend")
-
 	if hero.is_input_blunder_shoot()\
 		and timer_blunder_shoot_cooldown.is_stopped():
 		machine.set_state("StateWetBlunderShooting")

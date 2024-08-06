@@ -6,10 +6,13 @@ var death_prone: bool = true
 
 func on_enter():
 	PropManager.place_prop(Vector2(hero.global_position.x, hero.last_water_surface), &"splash")
-	$"../../Gfx/AnimatedSprite2D".play("float")
-	pass
 
 func on_process(_delta: float):
+	if Utils.is_pushing_sides():
+		$"../../Gfx/AnimatedSprite2D".play("water_swim")
+	else:
+		$"../../Gfx/AnimatedSprite2D".play("water_idle")
+	
 	if hero.is_input_blunder_shoot()\
 	and timer_blunder_shoot_cooldown.is_stopped():
 		machine.set_state("StateWetBlunderShooting")
