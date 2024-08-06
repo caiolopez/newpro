@@ -129,12 +129,12 @@ func set_bounds():
 	for sector in $SectorPolygons.get_children():
 		var extents = Utils.get_polygon_extents(sector.polygon);
 		var pos = extents.position + sector.position
-		var size = extents.size
+		var map_size = extents.size
 		
 		var polygon_top = pos.y
-		var polygon_bot = pos.y + size.y
+		var polygon_bot = pos.y + map_size.y
 		var polygon_left = pos.x
-		var polygon_right = pos.x + size.x
+		var polygon_right = pos.x + map_size.x
 		
 		if polygon_top < top:
 			top = polygon_top
