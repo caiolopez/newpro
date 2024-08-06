@@ -10,7 +10,14 @@ var max_scale: Vector2:
 var waypoint_scene = load("res://GUI/Waypoint.tscn")
 var default_scale: float = 0.1
 var scale_speed: Vector2 = Vector2(2.5, 2.5)
-var move_speed: Vector2 = Vector2(400, 400)
+var move_speed: Vector2 = Vector2(1000, 1000)
+
+var top_bound: float = INF;
+var bottom_bound: float = -INF;
+var left_bound: float = INF;
+var right_bound: float = -INF;
+var bound_padding: Vector2 = Vector2(100, 100)
+
 var map_flags: Array[Node2D] = []
 enum States {ON, ANIMATING_IN, ANIMATING_OUT, OFF}
 var state: States = States.OFF
@@ -43,6 +50,7 @@ func update_mini_hero_pos():
 func center_map():
 	update_mini_hero_pos()
 	position = Vector2.ZERO - mini_hero.position * scale + get_viewport_rect().size / 2
+	set_bounds()
 
 func adjust_scale(delta, direction):
 	var old_scale = scale
@@ -91,10 +99,16 @@ func _process(delta):
 		return
 
 	update_mini_hero_pos()
-	if Input.is_action_pressed("up"):    position.y -= move_speed.y * delta
-	if Input.is_action_pressed("down"):  position.y += move_speed.y * delta
-	if Input.is_action_pressed("left"):  position.x -= move_speed.x * delta
-	if Input.is_action_pressed("right"): position.x += move_speed.x * delta
+	set_bounds()
+	
+	if Input.is_action_pressed("up") and position.y + bottom_bound * scale.y > bound_padding.y:
+		position.y -= move_speed.y * delta
+	if Input.is_action_pressed("down") and position.y + top_bound * scale.y< get_viewport_rect().size.y - bound_padding.y:  
+		position.y += move_speed.y * delta
+	if Input.is_action_pressed("left") and position.x + right_bound * scale.x > bound_padding.x:  
+		position.x -= move_speed.x * delta
+	if Input.is_action_pressed("right") and position.x + left_bound * scale.x < get_viewport_rect().size.x - bound_padding.x: 
+		position.x += move_speed.x * delta
 
 	if Input.is_action_pressed("shoulder_left"): if scale > min_scale: adjust_scale(delta, -1)
 	if Input.is_action_pressed("shoulder_right"): if scale < max_scale: adjust_scale(delta, 1)
@@ -105,6 +119,36 @@ func _process(delta):
 	if Input.is_action_just_pressed("unpause"):
 		fade_out_minimap()
 		state = States.ANIMATING_OUT
+
+func set_bounds():
+	var top = INF
+	var bottom = -INF
+	var left = INF
+	var right = -INF
+	
+	for sector in $SectorPolygons.get_children():
+		var extents = Utils.get_polygon_extents(sector.polygon);
+		var pos = extents.position + sector.position
+		var size = extents.size
+		
+		var polygon_top = pos.y
+		var polygon_bot = pos.y + size.y
+		var polygon_left = pos.x
+		var polygon_right = pos.x + size.x
+		
+		if polygon_top < top:
+			top = polygon_top
+		if polygon_bot > bottom:
+			bottom = polygon_bot
+		if polygon_left < left:
+			left = polygon_left
+		if polygon_right > right:
+			right = polygon_right
+	
+	top_bound = top
+	bottom_bound = bottom
+	left_bound = left
+	right_bound = right
 
 func fade_in_minimap():
 	var t = create_tween()

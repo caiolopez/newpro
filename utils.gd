@@ -132,3 +132,17 @@ func parse_time_as_string(time: float, colon_separated: bool = true) -> String:
 		return "%02d:%02d:%02d:%03d" % [h, m, s, ms]
 	else:
 		return "%02dh%02d'%02d.%03d\"" % [h, m, s, ms]
+
+func get_polygon_extents(points: PackedVector2Array) -> Rect2:
+	var min_x = INF
+	var max_x = -INF
+	var min_y = INF
+	var max_y = -INF
+
+	for point in points:
+		min_x = min(min_x, point.x)
+		max_x = max(max_x, point.x)
+		min_y = min(min_y, point.y)
+		max_y = max(max_y, point.y)
+
+	return Rect2(Vector2(min_x, min_y), Vector2(max_x - min_x, max_y - min_y))
