@@ -4,7 +4,7 @@ extends DoorState
 func on_enter():
 	door.should_close.connect(on_close_door)
 	$"../TimerAutoClose".start()
-	if $"../TimerAutoClose".timeout.is_connected(on_timeout):
+	if not $"../TimerAutoClose".timeout.is_connected(on_timeout):
 		$"../TimerAutoClose".timeout.connect(on_timeout)
 
 
