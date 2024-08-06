@@ -2,7 +2,7 @@ extends HeroState
 
 var water_prone: bool = false
 var death_prone: bool = true
-var current_bounce_vel: float
+var bounce_count: int = 0
 
 func on_enter():
 	$"../../Gfx/AnimatedSprite2D".play("blunderjump")
@@ -10,7 +10,7 @@ func on_enter():
 	
 	hero.current_blunder_jump_angle = 0
 	hero.velocity.y = hero.BLUNDER_JUMP_VELOCITY
-	current_bounce_vel = hero.BLUNDER_JUMP_WATER_BOUNCE_VELOCITY
+	bounce_count = 0
 	timer_blunder_jump_window.stop()
 
 func on_process(_delta: float):
@@ -41,13 +41,11 @@ func on_process(_delta: float):
 
 	if hero.is_just_on_water:
 		if Input.is_action_pressed('jump')\
-		and current_bounce_vel < hero.BLUNDER_JUMP_WATER_BOUNCE_VELOCITY/2:
-			if not timer_super_bounce_window.is_stopped():
-				hero.velocity.y = hero.BLUNDER_JUMP_WATER_BOUNCE_VELOCITY*1.5
-				current_bounce_vel = hero.BLUNDER_JUMP_WATER_BOUNCE_VELOCITY
-			else:
-				hero.velocity.y = current_bounce_vel
-				current_bounce_vel *= 0.8
+		and not timer_super_bounce_window.is_stopped():
+			var boost =  -50 * (mini(bounce_count, 5) + 1)
+			hero.velocity.y = hero.BLUNDER_JUMP_WATER_BOUNCE_VELOCITY + boost
+			bounce_count += 1
+			print(bounce_count, " | ", hero.velocity.y)
 		else:
 			machine.set_state("StateFloating")
 

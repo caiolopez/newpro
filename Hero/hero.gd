@@ -18,7 +18,7 @@ class_name Hero extends CharacterBody2D
 @export var BLUNDER_GROUNDED_DURATION: float = 0.1 ## The duration of the recoil when blundershooting on ground.
 @export var BLUNDER_UNDERWATER_DURATION: float = 0.15 ## The duration of the recoil when blundershooting on water.
 @export var BLUNDER_JUMP_VELOCITY: float = -1200 ## The speed the hero jumps after blundershooting airborne.
-@export var BLUNDER_JUMP_WATER_BOUNCE_VELOCITY: float = -800 ## The speed the hero jumps after falling on water while holding jump from a blunder jump. Like Kiddy Kong.
+@export var BLUNDER_JUMP_WATER_BOUNCE_VELOCITY: float = -1000 ## The speed the hero jumps after tapping jump while blunderjumping on water surface. Like Kiddy Kong.
 @export var GRAVITY: float = 2000 ## The standard downward force, in absolute values.
 @export var FAST_FALL_GRAVITY: float = 3000 ## The downward force, in absolute values, used in falling. Should be higher than GRAVITY, in order to make the Hero fall faster.
 @export var UNDERWATER_GRAVITY: float = 500 ## The downward force, in absolute values, for when the Hero is diving.
