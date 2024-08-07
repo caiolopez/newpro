@@ -23,7 +23,6 @@ vel:  Vector2 = Vector2(200, 0), is_foe: bool = true, is_fire: bool = false, ang
 	else:
 		bullet = $FreeBullets.get_children()[0]
 		bullet.reparent(self)
-	bullet.visible = true
 	var bullet_angle = A270DEG+(facing_direction*(A90DEG+deg_to_rad(angle)))
 	bullet.position = origin
 	bullet.velocity = vel.rotated(bullet_angle)
@@ -31,6 +30,7 @@ vel:  Vector2 = Vector2(200, 0), is_foe: bool = true, is_fire: bool = false, ang
 	bullet.is_fire = is_fire
 	bullet.rotation = bullet_angle
 	bullet.animate()
+	bullet.restart()
 
 
 func release_bullet(bullet):

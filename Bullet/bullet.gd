@@ -14,15 +14,25 @@ var is_in_water: bool = false
 var notifier: VisibleOnScreenNotifier2D
 var dark_color: Color
 var light_color: Color
+var timer_before_visible: Timer
 
 func _ready():
-	set_color()
+	timer_before_visible = Timer.new()
+	add_child(timer_before_visible)
+	timer_before_visible.timeout.connect(func(): visible = true)
+
 	notifier = $VisibleOnScreenNotifier2D
 	current_drag = AIR_DRAG
 	current_gravity = 0
+	visible = false
+	set_color()
 	await get_tree().process_frame # TODO: Come up with a way to prevent those bullets from being instantiated instead.
 	if not notifier.is_on_screen():
 		BulletManager.release_bullet(self)
+
+
+func restart():
+	timer_before_visible.start(0.05)
 
 
 func set_color():

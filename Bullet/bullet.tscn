@@ -1,9 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://kfcc5raaowpu"]
+[gd_scene load_steps=21 format=3 uid="uid://kfcc5raaowpu"]
 
 [ext_resource type="Script" path="res://Bullet/bullet.gd" id="1_hqyxv"]
 [ext_resource type="Texture2D" uid="uid://cjdelfjqofumo" path="res://Bullet/Gfx/bullet.png" id="2_mr7qb"]
 [ext_resource type="Shader" path="res://CaioShaders/bw_replacer.gdshader" id="2_tqu0m"]
 [ext_resource type="Texture2D" uid="uid://cjnc25li7sonx" path="res://Bullet/Gfx/bullet_regular_wet.png" id="4_7rmor"]
+[ext_resource type="PackedScene" uid="uid://dtiweonbpewyr" path="res://EntityComponents/AutoSpriteFlipper.tscn" id="5_ta7p5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qij2k"]
 shader = ExtResource("2_tqu0m")
@@ -122,8 +123,13 @@ shape = SubResource("CircleShape2D_450i0")
 use_parent_material = true
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_eo4fx")
-animation = &"regular_wet"
-autoplay = "regular_dry"
+animation = &"regular_dry"
+
+[node name="AutoSpriteFlipper" parent="AnimatedSprite2D" instance=ExtResource("5_ta7p5")]
+position = Vector2(-7.68811, -7.46451)
+scale = Vector2(0.166667, 0.166667)
+randomize_h = false
+randomize_v = true
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
