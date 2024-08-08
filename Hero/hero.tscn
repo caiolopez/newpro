@@ -1,4 +1,4 @@
-[gd_scene load_steps=211 format=3 uid="uid://1md1m8n6iq5x"]
+[gd_scene load_steps=217 format=3 uid="uid://1md1m8n6iq5x"]
 
 [ext_resource type="Script" path="res://Hero/hero.gd" id="1_dmqn8"]
 [ext_resource type="PackedScene" uid="uid://box2ff3vwcc7w" path="res://EntityComponents/DmgTaker.tscn" id="2_ktrux"]
@@ -16,11 +16,12 @@
 [ext_resource type="Texture2D" uid="uid://ceh74a36ajg0o" path="res://Hero/Gfx/jump.png" id="7_dntm4"]
 [ext_resource type="Script" path="res://Hero/state_falling.gd" id="7_qsa0a"]
 [ext_resource type="Script" path="res://Hero/state_gliding.gd" id="8_4k4qv"]
-[ext_resource type="Texture2D" uid="uid://jnu2i2a6unn4" path="res://Hero/Gfx/glide_hard.png" id="8_djkmc"]
+[ext_resource type="Texture2D" uid="uid://jnu2i2a6unn4" path="res://Hero/Gfx/glide_in.png" id="8_djkmc"]
 [ext_resource type="Texture2D" uid="uid://cqgrp1arxqyp6" path="res://Hero/Gfx/ascend_h.png" id="8_i1q84"]
 [ext_resource type="Texture2D" uid="uid://pq2fuhkblrjg" path="res://Hero/Gfx/blunderjump.png" id="8_qxmo7"]
 [ext_resource type="Script" path="res://Hero/state_wall_grabbing.gd" id="9_d343a"]
 [ext_resource type="Texture2D" uid="uid://ckwsjp3s4js1y" path="res://Hero/Gfx/glide_soft.png" id="9_ka1hb"]
+[ext_resource type="Texture2D" uid="uid://d3hactw2s46fk" path="res://Hero/Gfx/fall_loop.png" id="10_6wq62"]
 [ext_resource type="Texture2D" uid="uid://bpxtdgy77ltr0" path="res://Hero/Gfx/parachute.png" id="10_js46x"]
 [ext_resource type="Script" path="res://Hero/state_wall_climbing.gd" id="11_gxos4"]
 [ext_resource type="Script" path="res://Hero/state_wall_jumping.gd" id="12_foyt3"]
@@ -305,6 +306,18 @@ region = Rect2(80, 0, 40, 40)
 atlas = ExtResource("7_abyu7")
 region = Rect2(120, 0, 40, 40)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_mixrk"]
+atlas = ExtResource("10_6wq62")
+region = Rect2(0, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rjm3y"]
+atlas = ExtResource("10_6wq62")
+region = Rect2(40, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xmprb"]
+atlas = ExtResource("10_6wq62")
+region = Rect2(80, 0, 40, 40)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_cs8j8"]
 atlas = ExtResource("8_i1q84")
 region = Rect2(0, 0, 40, 40)
@@ -352,6 +365,14 @@ region = Rect2(80, 0, 40, 40)
 [sub_resource type="AtlasTexture" id="AtlasTexture_l2wy8"]
 atlas = ExtResource("8_djkmc")
 region = Rect2(120, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2g4tx"]
+atlas = ExtResource("8_djkmc")
+region = Rect2(40, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cmumi"]
+atlas = ExtResource("8_djkmc")
+region = Rect2(80, 0, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u74yb"]
 atlas = ExtResource("9_ka1hb")
@@ -797,7 +818,7 @@ animations = [{
 "speed": 60.0
 }, {
 "frames": [{
-"duration": 3.0,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_y3fmr")
 }, {
 "duration": 1.0,
@@ -811,7 +832,24 @@ animations = [{
 }],
 "loop": false,
 "name": &"fall_in",
-"speed": 30.0
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mixrk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rjm3y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xmprb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rjm3y")
+}],
+"loop": true,
+"name": &"fall_loop",
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -859,8 +897,19 @@ animations = [{
 "texture": SubResource("AtlasTexture_l326r")
 }],
 "loop": false,
-"name": &"glide",
+"name": &"glide_in",
 "speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2g4tx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cmumi")
+}],
+"loop": true,
+"name": &"glide_loop",
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -1369,7 +1418,7 @@ use_parent_material = true
 position = Vector2(0, -32)
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_tm5on")
-animation = &"idle"
+animation = &"wallclimb"
 
 [node name="Muzzle" type="AnimatedSprite2D" parent="Gfx"]
 visible = false

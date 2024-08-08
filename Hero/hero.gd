@@ -9,7 +9,7 @@ class_name Hero extends CharacterBody2D
 @export var HEADBUTT_THRESHOLD_VEL: float = -300.0 ## The minimum upward velocity required for the headbutt assist to take place and snap the Hero.
 @export var WALLJUMP_VELOCITY = Vector2(1600, -600) ## The speed the hero walljumps away from a wall.
 @export var CLIMB_VELOCITY: float = -1000 ## The speed the hero jumps upward when jumping to the same side of the wall (Megaman-style walljump).
-@export var GLIDE_VELOCITY: float = 100 ## The speed at which the hero slowly descends when airborne and holding Jump.
+@export var GLIDE_VELOCITY: float = 300 ## The speed at which the hero slowly descends when airborne and holding Jump.
 @export var GLIDE_X_DRAG: float = -3000 ## The rate at which it decelerates to normal SPEED after walljump.
 @export var BLUNDER_AIRBORNE_VELOCITY = Vector2(-2000, 0) ## The strength of the recoil when blundershooting on air.
 @export var BLUNDER_GROUNDED_VELOCITY = Vector2(-800, 0) ## The strength of the recoil when blundershooting on ground.
@@ -61,6 +61,7 @@ func _ready():
 	Events.hero_exited_water.connect(func(_water): is_in_water = false)
 	Events.hero_hit_teleporter.connect(_on_hero_hit_teleporter)
 	ComboParser.combo_performed.connect(func(combo): if combo == "Die": die())
+
 
 	set_safe_margin(0.08)
 	state_machine.start()

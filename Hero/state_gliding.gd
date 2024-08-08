@@ -6,7 +6,7 @@ var death_prone: bool = true
 func on_enter():
 	$"../../Gfx/ParachuteAnim".show()
 	$"../../Gfx/ParachuteAnim".play("deploy_parachute")
-	$"../../Gfx/AnimatedSprite2D".play("glide")
+	$"../../Gfx/AnimatedSprite2D".play("glide_in")
 	
 	if (hero.is_on_wall() or not timer_leaving_wall.is_stopped())\
 	and Input.is_action_just_pressed('jump'):

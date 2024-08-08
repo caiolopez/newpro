@@ -2,13 +2,18 @@ extends HeroState
 
 var water_prone: bool = true
 var death_prone: bool = true
+var top_fall_vel: float
 
 
 func on_enter():
+	top_fall_vel = 0
 	$"../../Gfx/AnimatedSprite2D".play("fall_in")
 	pass
 
 func on_process(_delta: float):
+	if hero.velocity.y > top_fall_vel:
+		top_fall_vel = hero.velocity.y
+	
 	if hero.is_input_blunder_shoot()\
 	and timer_blunder_shoot_cooldown.is_stopped():
 		machine.set_state("StateBlunderShooting")
@@ -77,6 +82,9 @@ func on_process(_delta: float):
 		return
 
 	if hero.is_on_floor():
+		print(top_fall_vel)
+		if top_fall_vel > 1200:
+			PropManager.place_prop(hero.global_position, &"dust_floor")
 		machine.set_state("StateIdle")
 		return
 
