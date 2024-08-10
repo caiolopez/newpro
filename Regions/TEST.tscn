@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://cv2bdmdm7ivmp"]
+[gd_scene load_steps=48 format=3 uid="uid://cv2bdmdm7ivmp"]
 
 [ext_resource type="Script" path="res://Regions/region.gd" id="1_fjngo"]
 [ext_resource type="PackedScene" uid="uid://csvdenv1i3dc3" path="res://Bullet/Teleporter.tscn" id="2_6ojyo"]
@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://d2vfkstnke1s4" path="res://Boss/boss_trigger.tscn" id="25_qcpih"]
 [ext_resource type="PackedScene" uid="uid://xc3uchpjcg0y" path="res://Bullet/UniqueCollider.tscn" id="26_gjqow"]
 [ext_resource type="PackedScene" uid="uid://7jpetdd82f2l" path="res://GUI/map_sector.tscn" id="27_eveqp"]
+[ext_resource type="PackedScene" uid="uid://3evhvetyekwd" path="res://Entities/Slinky.tscn" id="28_48pge"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1suec"]
 size = Vector2(128, 128)
@@ -575,6 +576,9 @@ position = Vector2(2640, -2000)
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Node2D/MapSector2"]
 position = Vector2(-2552, 1972.75)
 polygon = PackedVector2Array(4792, 1368, 440, 1376, -432, -1216, 4808, -1288)
+
+[node name="Spike3" parent="." instance=ExtResource("28_48pge")]
+position = Vector2(-1640, 872)
 
 [editable path="Zombie"]
 [editable path="Spike"]

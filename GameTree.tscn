@@ -437,7 +437,7 @@ process_mode = 3
 
 [node name="Hero" parent="." instance=ExtResource("2_acvau")]
 z_index = 2
-position = Vector2(-2184, -1640)
+position = Vector2(1008, -1096)
 
 [node name="Camera" parent="." node_paths=PackedStringArray("hero") instance=ExtResource("3_o6dt5")]
 unique_name_in_owner = true

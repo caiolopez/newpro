@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cd1cbcx2ilw2g"]
+[gd_scene load_steps=17 format=3 uid="uid://cd1cbcx2ilw2g"]
 
 [ext_resource type="Shader" path="res://CaioShaders/bw_replacer.gdshader" id="1_dd63d"]
 [ext_resource type="Texture2D" uid="uid://do7upscm6q0w7" path="res://Props/dust_floor.png" id="2_nwwrq"]
@@ -10,10 +10,6 @@
 shader = ExtResource("1_dd63d")
 shader_parameter/replace_black = Color(0.44, 0, 0, 1)
 shader_parameter/replace_white = Color(0.8, 0.29, 0.29, 1)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5oarp"]
-atlas = ExtResource("2_nwwrq")
-region = Rect2(0, 0, 40, 15)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c2m3r"]
 atlas = ExtResource("2_nwwrq")
@@ -54,9 +50,6 @@ region = Rect2(360, 0, 40, 15)
 [sub_resource type="SpriteFrames" id="SpriteFrames_n72fd"]
 animations = [{
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5oarp")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_c2m3r")
 }, {
