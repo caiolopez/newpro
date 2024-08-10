@@ -43,7 +43,7 @@ func on_area_entered(area):
 	if area is Bullet:
 		if area.name == last_processed_bullet: return
 		last_processed_bullet = area.name
-		if not area.is_fire and immune_to_regular_bullets: return
+		if not area.bullet_type == Constants.BulletType.FIRE and immune_to_regular_bullets: return
 		if current_hp > 0:
 			area.kill_bullet()
 

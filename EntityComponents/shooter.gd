@@ -3,8 +3,9 @@ class_name Shooter extends Node2D
 @export var pellet_amount: int = 1 ## The amount of projectiles released in a shot.
 @export var pellet_separation_angle: float = 30 ## The amount of projectiles released in a shot.
 @export var pellet_speed: float = 500
-@export var shoots_fire: bool = false
+@export var bullet_type: Constants.BulletType
 @export var rotates_with_parent: bool = false
+@export var time_before_visible: float = 0.01 ## The time it takes for the bullet to become visible after being shot. Useful to hide bullets before they left the barrel, for instance.
 @export_group("autoshoot")
 @export var auto_shoots: bool = true
 @export var time_between_shots: float = 1
@@ -81,8 +82,10 @@ func shoot(speed: float = pellet_speed, angle: float = 0, amount: int = pellet_a
 			get_parent().global_position + Vector2(position.x * facing_direction, position.y).rotated(deg_to_rad(cur_rotation)),
 			Vector2(speed, 0),
 			is_foe,
-			shoots_fire,
-			(top_angle - pellet_separation_angle * i) + cur_rotation + angle)
+			bullet_type,
+			(top_angle - pellet_separation_angle * i) + cur_rotation + angle,
+			time_before_visible
+		)
 		bullets.append(bullet)
 	return bullets
 	

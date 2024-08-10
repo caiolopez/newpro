@@ -1,7 +1,7 @@
 class_name Bullet extends Area2D
 
 var is_foe: bool
-var is_fire: bool
+var bullet_type: Constants.BulletType
 var DMG_AMOUNT: int = 1
 var WATER_DRAG = 0.8
 var AIR_DRAG = 0
@@ -14,6 +14,7 @@ var is_in_water: bool = false
 var notifier: VisibleOnScreenNotifier2D
 var dark_color: Color
 var light_color: Color
+var time_before_visible: float = 0.05
 var timer_before_visible: Timer
 
 func _ready():
@@ -32,7 +33,7 @@ func _ready():
 
 
 func restart():
-	timer_before_visible.start(0.05)
+	timer_before_visible.start(time_before_visible)
 
 
 func set_color():
@@ -77,13 +78,15 @@ func _on_area_exited(area):
 
 
 func animate():
-	var a: StringName
+	var a: String
+	match bullet_type:
+		Constants.BulletType.REGULAR: a = "regular_"
+		Constants.BulletType.FIRE: a = "fire_"
 	if is_in_water:
-		if is_fire: a = "fire_wet"
-		else: a = "regular_wet"
+		a += "wet"
 	else:
-		if is_fire: a = "fire_dry"
-		else: a = "regular_dry"
+		a += "dry"
+
 	get_node("AnimatedSprite2D").play(a)
 	Utils.randomize_animation_frame(get_node("AnimatedSprite2D"))
 

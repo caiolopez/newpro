@@ -1,7 +1,6 @@
 class_name Hero extends CharacterBody2D
 
 @export var can_dive: bool = false ## Whether the hero has the ability to dive into water instead of floating.
-@export var shoots_fire: bool = false ## Whether the hero has the ability to shoot incendiary bullets, required to damage enemies that are immune to regular bullets.
 @export var regular_shot_speed: float = 1000 ## The speed the normal shot moves. For blundershot setup, use Shooter component.
 @export var SPEED: float = 600.0 ## The moving speed of the hero.
 @export var JUMP_VELOCITY: float  = -1000.0 ## The speed the hero jumps when grounded.

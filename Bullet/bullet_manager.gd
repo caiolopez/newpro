@@ -14,7 +14,7 @@ func _ready():
 
 
 func place_bullet(facing_direction: int = 1, origin: Vector2 = Vector2(0, 0),\
-vel:  Vector2 = Vector2(200, 0), is_foe: bool = true, is_fire: bool = false, angle: float = 0.0):
+vel:  Vector2 = Vector2(200, 0), is_foe: bool = true, bullet_type = Constants.BulletType.REGULAR, angle: float = 0.0, time_before_visible: float = 0):
 	var bullet: Bullet
 	if $FreeBullets.get_child_count() <= 0:
 		bullet = bullet_res.instantiate()
@@ -27,8 +27,9 @@ vel:  Vector2 = Vector2(200, 0), is_foe: bool = true, is_fire: bool = false, ang
 	bullet.position = origin
 	bullet.velocity = vel.rotated(bullet_angle)
 	bullet.is_foe = is_foe
-	bullet.is_fire = is_fire
+	bullet.bullet_type = bullet_type
 	bullet.rotation = bullet_angle
+	bullet.time_before_visible = time_before_visible
 	bullet.animate()
 	bullet.restart()
 

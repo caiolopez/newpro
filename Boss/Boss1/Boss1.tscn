@@ -63,7 +63,7 @@ update_every_frame = false
 
 [node name="Shooter" parent="." instance=ExtResource("13_pyl3o")]
 process_mode = 4
-position = Vector2(256, 0)
+position = Vector2(128, 0)
 pellet_amount = 3
 pellet_separation_angle = 10.0
 pellet_speed = 800.0
