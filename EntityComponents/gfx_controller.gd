@@ -11,7 +11,7 @@ func _ready():
 
 	if get_parent().has_node("FaceHero"):
 		face_hero_node = get_parent().get_node("FaceHero")
-		face_hero_node.update.connect(on_update_direction)
+		face_hero_node.update.connect(update_direction)
 
 	if dmg_taker != null:
 		dmg_taker.died.connect(on_died)
@@ -22,20 +22,24 @@ func _ready():
 		for child in get_children():
 			child.use_parent_material = true
 
-func on_update_direction(dir: float, rot: float = 0):
+func update_direction(dir: float, rot: float = 0):
 	scale.x = abs(scale.x) * dir
 	rotation = rot
 
+func set_movement_halted(halted: bool = false):
+	for c in get_children():
+		if c is AnimatedSprite2D:
+			if halted == true:
+				c.animation = &"idle"
+			else:
+				c.animation = &"moving"
 
 func on_died():
 	if hide_when_dead:
 		visible = false
 
-
 func on_resurrected():
 	visible = true
 
-
 func on_suffered(_hp):
 	Utils.paint_white(true, self, 0.1)
-	

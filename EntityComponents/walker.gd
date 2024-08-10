@@ -31,6 +31,7 @@ class_name Walker extends Area2D
 @onready var state_machine: StateMachine = get_node("StateMachine")
 @onready var parent: CharacterBody2D = get_parent()
 @onready var parent_og_global_pos: Vector2 = get_parent().global_position
+var gfx_controller_node: GfxController = null
 var is_in_water: bool = false
 var last_water_surface: float
 var face_hero_node: FaceHero
@@ -46,6 +47,10 @@ func _ready():
 	if get_parent().has_node("FaceHero"):
 		face_hero_node = get_parent().get_node("FaceHero")
 
+	for child in get_parent().get_children():
+		if child is GfxController:
+			gfx_controller_node = child
+			break
 
 	if "target" in parent:
 		target_entity = parent.target
@@ -124,6 +129,13 @@ func step_lateral_mov(delta: float, force_forward: bool = true):
 	parent.velocity.x = minf(abs(parent.velocity.x), SPEED) * movement_direction
 	update_pit_rc_pos()
 
+	if gfx_controller_node:
+		gfx_controller_node.update_direction(movement_direction)
+		if parent.get_real_velocity().x == 0:
+			gfx_controller_node.set_movement_halted(true)
+		else:
+			gfx_controller_node.set_movement_halted(false)
+			
 	if dir_changed and face_hero_node:
 		if not face_hero_node.face_hero:
 			face_hero_node.update.emit(movement_direction)
