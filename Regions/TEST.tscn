@@ -577,7 +577,7 @@ position = Vector2(2640, -2000)
 position = Vector2(-2552, 1972.75)
 polygon = PackedVector2Array(4792, 1368, 440, 1376, -432, -1216, 4808, -1288)
 
-[node name="Spike3" parent="." instance=ExtResource("28_48pge")]
+[node name="Slinky" parent="." instance=ExtResource("28_48pge")]
 position = Vector2(-1640, 872)
 
 [editable path="Zombie"]

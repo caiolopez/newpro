@@ -1,10 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://3evhvetyekwd"]
+[gd_scene load_steps=19 format=3 uid="uid://3evhvetyekwd"]
 
 [ext_resource type="PackedScene" uid="uid://upm0adhb85ik" path="res://EntityComponents/DmgDealer.tscn" id="1_dm515"]
 [ext_resource type="PackedScene" uid="uid://box2ff3vwcc7w" path="res://EntityComponents/DmgTaker.tscn" id="2_vujba"]
 [ext_resource type="PackedScene" uid="uid://v4xmqsgktgpw" path="res://EntityComponents/FriendOrFoe.tscn" id="5_gtmef"]
 [ext_resource type="Texture2D" uid="uid://cabcp8wcma78q" path="res://Entities/slinky.png" id="5_sj54a"]
 [ext_resource type="PackedScene" uid="uid://djwwpps3fxvtg" path="res://EntityComponents/GfxController.tscn" id="6_bhptt"]
+[ext_resource type="PackedScene" uid="uid://1votnx34efdj" path="res://EntityComponents/BWShaderSetter.tscn" id="6_dy3rr"]
 [ext_resource type="PackedScene" uid="uid://cqyj0bkuiosbs" path="res://EntityComponents/Walker.tscn" id="6_p4wgk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v2koo"]
@@ -79,6 +80,7 @@ animations = [{
 size = Vector2(40, 96)
 
 [node name="Slinky" type="CharacterBody2D"]
+collision_layer = 4
 
 [node name="PitRC" type="RayCast2D" parent="."]
 position = Vector2(128, 0)
@@ -98,7 +100,6 @@ HP_AMOUNT = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DmgTaker"]
 position = Vector2(0.62893, 2.5)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_pauev")
 debug_color = Color(0.684632, 0.499866, 0.0905798, 0.42)
 
@@ -114,6 +115,10 @@ scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_ldbux")
 animation = &"moving"
 autoplay = "moving"
+
+[node name="BwShaderSetter" parent="GfxController" instance=ExtResource("6_dy3rr")]
+dark_color = Color(0.382755, 0.284855, 0.111891, 1)
+light_color = Color(0.949229, 0.699182, 0.621139, 1)
 
 [node name="Walker" parent="." instance=ExtResource("6_p4wgk")]
 SPEED = 300.0
