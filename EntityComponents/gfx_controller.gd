@@ -23,7 +23,10 @@ func _ready():
 			child.use_parent_material = true
 
 func update_direction(dir: float, rot: float = 0):
-	scale.x = abs(scale.x) * dir
+	if dir != 0:
+		scale.x = abs(scale.x) * dir
+	else:
+		push_error("Direction should never be zero.")
 	rotation = rot
 
 func set_movement_halted(halted: bool = false):

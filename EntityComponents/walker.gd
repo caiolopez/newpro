@@ -35,7 +35,7 @@ var gfx_controller_node: GfxController = null
 var is_in_water: bool = false
 var last_water_surface: float
 var face_hero_node: FaceHero
-var movement_direction: int
+var movement_direction: int = 1
 var pit_rc: RayCast2D
 var pit_rc_og_pos: Vector2
 var is_stunned: bool = false
