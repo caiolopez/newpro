@@ -22,9 +22,9 @@ func on_process(_delta: float):
 		
 	if Input.is_action_just_pressed('jump'):
 		timer_super_bounce_window.start()
+		timer_buffer_jump.start()
 
 	if hero.is_on_floor():
-		
 		PropManager.place_prop(hero.global_position, &"dust_floor")
 		machine.set_state("StateIdle")
 		return
