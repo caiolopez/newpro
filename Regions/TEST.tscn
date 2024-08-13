@@ -297,7 +297,7 @@ skew = 1.75238e-05
 elevator = NodePath("../AnimatableBody2D/Elevator")
 
 [node name="ElevatorButton" parent="ElevatorController" instance=ExtResource("13_nrmce")]
-position = Vector2(352, 504)
+position = Vector2(928, 368)
 type = 0
 
 [node name="ElevatorButton2" parent="ElevatorController" instance=ExtResource("13_nrmce")]

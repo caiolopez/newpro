@@ -1,7 +1,8 @@
-[gd_scene load_steps=23 format=3 uid="uid://d08jdi8c2bopo"]
+[gd_scene load_steps=37 format=3 uid="uid://d08jdi8c2bopo"]
 
 [ext_resource type="Shader" path="res://CaioShaders/bw_replacer.gdshader" id="1_iomju"]
 [ext_resource type="Texture2D" uid="uid://bnt8slo76k16n" path="res://Props/splash1.png" id="2_c1cgt"]
+[ext_resource type="Texture2D" uid="uid://cpfwbyti3qcjy" path="res://Props/splash2.png" id="3_80d3r"]
 [ext_resource type="PackedScene" uid="uid://manmyevja5y2" path="res://EntityComponents/OnParentAnimEnd.tscn" id="3_gj5qw"]
 [ext_resource type="PackedScene" uid="uid://1votnx34efdj" path="res://EntityComponents/BWShaderSetter.tscn" id="4_c6dut"]
 [ext_resource type="PackedScene" uid="uid://dtiweonbpewyr" path="res://EntityComponents/AutoSpriteFlipper.tscn" id="5_qcdw0"]
@@ -71,6 +72,58 @@ region = Rect2(364, 0, 28, 15)
 atlas = ExtResource("2_c1cgt")
 region = Rect2(392, 0, 28, 15)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_xccox"]
+atlas = ExtResource("3_80d3r")
+region = Rect2(0, 0, 28, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7p4jm"]
+atlas = ExtResource("3_80d3r")
+region = Rect2(28, 0, 28, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b04i2"]
+atlas = ExtResource("3_80d3r")
+region = Rect2(56, 0, 28, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h6j3h"]
+atlas = ExtResource("3_80d3r")
+region = Rect2(84, 0, 28, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g65fm"]
+atlas = ExtResource("3_80d3r")
+region = Rect2(112, 0, 28, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g84gv"]
+atlas = ExtResource("3_80d3r")
+region = Rect2(140, 0, 28, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dwxx2"]
+atlas = ExtResource("3_80d3r")
+region = Rect2(168, 0, 28, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6hys5"]
+atlas = ExtResource("3_80d3r")
+region = Rect2(196, 0, 28, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_icmep"]
+atlas = ExtResource("3_80d3r")
+region = Rect2(224, 0, 28, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k1uri"]
+atlas = ExtResource("3_80d3r")
+region = Rect2(252, 0, 28, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2srmw"]
+atlas = ExtResource("3_80d3r")
+region = Rect2(280, 0, 28, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_obmh8"]
+atlas = ExtResource("3_80d3r")
+region = Rect2(308, 0, 28, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_taguv"]
+atlas = ExtResource("3_80d3r")
+region = Rect2(336, 0, 28, 15)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_x5ep3"]
 animations = [{
 "frames": [{
@@ -120,7 +173,51 @@ animations = [{
 "texture": SubResource("AtlasTexture_pcdo1")
 }],
 "loop": false,
-"name": &"default",
+"name": &"splash1",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xccox")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7p4jm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b04i2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h6j3h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g65fm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g84gv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dwxx2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6hys5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_icmep")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k1uri")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2srmw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_obmh8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_taguv")
+}],
+"loop": false,
+"name": &"splash2",
 "speed": 30.0
 }]
 
@@ -128,6 +225,7 @@ animations = [{
 material = SubResource("ShaderMaterial_tbljs")
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_x5ep3")
+animation = &"splash2"
 offset = Vector2(0, -5)
 
 [node name="OnParentAnimEnd" parent="." instance=ExtResource("3_gj5qw")]
@@ -136,3 +234,4 @@ effect = 1
 [node name="BwShaderSetter" parent="." instance=ExtResource("4_c6dut")]
 
 [node name="AutoSpriteFlipper" parent="." instance=ExtResource("5_qcdw0")]
+randomize_animation = true
