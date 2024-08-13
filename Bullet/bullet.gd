@@ -93,6 +93,7 @@ func animate():
 
 func kill_bullet():
 	var new_dies_prop = PropManager.place_prop(global_position, &"bullet_dies")
-	new_dies_prop.material.set_shader_parameter("replace_black", dark_color)
-	new_dies_prop.material.set_shader_parameter("replace_white", light_color)
+	if new_dies_prop:
+		new_dies_prop.material.set_shader_parameter("replace_black", dark_color)
+		new_dies_prop.material.set_shader_parameter("replace_white", light_color)
 	BulletManager.release_bullet(self)
