@@ -83,7 +83,9 @@ func _process(_delta):
 	if $InnardsRC.is_colliding()\
 	and state_machine.current_state.death_prone:
 		die()
-	if is_in_water and state_machine.current_state.water_prone:
+	if is_in_water\
+	and state_machine.current_state.water_prone\
+	and global_position.y > last_water_surface:
 		state_machine.set_state("StateFloating")
 
 
@@ -167,7 +169,7 @@ func check_value_change():
 
 
 func is_head_above_water() -> bool:
-	if global_position.y < last_water_surface + 64:
+	if global_position.y < last_water_surface + 92:
 		return true
 	else:
 		return false

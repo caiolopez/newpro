@@ -15,31 +15,35 @@ func on_enter():
 		hero.velocity.y = hero.BLUNDER_AIRBORNE_VELOCITY.y
 	timer_blunder_shoot_duration.start()
 	timer_blunder_jump_window.start()
+
 	$"../../Gfx/AnimatedSprite2D".play("recoil")
+	if hero.is_on_wall()\
+	and hero.facing_direction == round(hero.get_wall_normal().x):
+		$"../../Gfx/AnimatedSprite2D".frame = 1
+
 	hero.blundershoot()
 
 func on_process(_delta: float):
 	if Input.is_action_just_pressed('jump')\
-		and not timer_blunder_jump_window.is_stopped():
+	and not timer_blunder_jump_window.is_stopped():
 		machine.set_state("StateBlunderJumping")
 		return
 	if timer_blunder_shoot_duration.is_stopped()\
-		and hero.is_on_floor():
+	and hero.is_on_floor():
 		machine.set_state("StateIdle")
 		return
 	if timer_blunder_shoot_duration.is_stopped()\
-		and not hero.is_on_floor():
+	and not hero.is_on_floor():
 		machine.set_state("StateFalling")
 		return
-	
 
-		
+	if hero.on_wall_value_just_changed\
+	and hero.is_on_wall()\
+	and hero.facing_direction == round(hero.get_wall_normal().x):
+		$"../../Gfx/AnimatedSprite2D".frame = 1
+
 func on_physics_process(_delta: float):
-
-	
-
 	hero.move_and_slide()
-
 
 func on_exit():
 	timer_blunder_shoot_cooldown.start()

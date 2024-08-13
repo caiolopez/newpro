@@ -1,4 +1,4 @@
-[gd_scene load_steps=217 format=3 uid="uid://1md1m8n6iq5x"]
+[gd_scene load_steps=222 format=3 uid="uid://1md1m8n6iq5x"]
 
 [ext_resource type="Script" path="res://Hero/hero.gd" id="1_dmqn8"]
 [ext_resource type="PackedScene" uid="uid://box2ff3vwcc7w" path="res://EntityComponents/DmgTaker.tscn" id="2_ktrux"]
@@ -45,6 +45,7 @@
 [ext_resource type="Texture2D" uid="uid://cvsgrg2v4ffd8" path="res://Hero/Gfx/water_swim.png" id="21_w4ew4"]
 [ext_resource type="Script" path="res://Hero/state_death_snapshot.gd" id="22_xhyei"]
 [ext_resource type="Script" path="res://Hero/state_tweening_to_respawn.gd" id="23_datsc"]
+[ext_resource type="Texture2D" uid="uid://c87rr4yuqtwag" path="res://Hero/Gfx/water_swim_v.png" id="24_0fgqj"]
 [ext_resource type="Script" path="res://Hero/state_respawning.gd" id="24_ppe7q"]
 [ext_resource type="Script" path="res://timer_utils.gd" id="28_goaiv"]
 
@@ -434,17 +435,21 @@ region = Rect2(240, 0, 40, 40)
 atlas = ExtResource("7_dntm4")
 region = Rect2(280, 0, 40, 40)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_y68bd"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_l67u6"]
 atlas = ExtResource("13_nxtll")
 region = Rect2(0, 0, 40, 40)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nl4d4"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_a7epy"]
 atlas = ExtResource("13_nxtll")
 region = Rect2(40, 0, 40, 40)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_y1xk8"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_110iq"]
 atlas = ExtResource("13_nxtll")
 region = Rect2(80, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xjitg"]
+atlas = ExtResource("13_nxtll")
+region = Rect2(120, 0, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7vo5t"]
 atlas = ExtResource("8_qxmo7")
@@ -774,6 +779,18 @@ region = Rect2(240, 0, 40, 40)
 atlas = ExtResource("21_w4ew4")
 region = Rect2(280, 0, 40, 40)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_2e1p0"]
+atlas = ExtResource("24_0fgqj")
+region = Rect2(120, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_70cfv"]
+atlas = ExtResource("24_0fgqj")
+region = Rect2(160, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rvw4x"]
+atlas = ExtResource("24_0fgqj")
+region = Rect2(200, 0, 40, 40)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_tm5on"]
 animations = [{
 "frames": [{
@@ -907,9 +924,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_cmumi")
 }],
-"loop": true,
+"loop": false,
 "name": &"glide_loop",
-"speed": 7.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -975,18 +992,21 @@ animations = [{
 "speed": 20.0
 }, {
 "frames": [{
-"duration": 3.0,
-"texture": SubResource("AtlasTexture_y68bd")
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l67u6")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_nl4d4")
+"texture": SubResource("AtlasTexture_a7epy")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_y1xk8")
+"texture": SubResource("AtlasTexture_110iq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xjitg")
 }],
 "loop": false,
 "name": &"recoil",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -1278,6 +1298,20 @@ animations = [{
 "loop": true,
 "name": &"water_swim",
 "speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2e1p0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_70cfv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rvw4x")
+}],
+"loop": true,
+"name": &"water_swim_v",
+"speed": 5.0
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g10n6"]
@@ -1419,7 +1453,7 @@ use_parent_material = true
 position = Vector2(0, -32)
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_tm5on")
-animation = &"wallclimb"
+animation = &"glide_loop"
 
 [node name="Muzzle" type="AnimatedSprite2D" parent="Gfx"]
 visible = false

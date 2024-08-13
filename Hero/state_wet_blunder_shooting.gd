@@ -12,6 +12,11 @@ func on_enter():
 	hero.blundershoot()
 
 func on_process(_delta: float):
+	if hero.is_on_wall()\
+	and hero.facing_direction == round(hero.get_wall_normal().x):
+		machine.set_state("StateFloating")
+		return
+
 	if timer_blunder_shoot_duration.is_stopped():
 		machine.set_state("StateFloating")
 		return

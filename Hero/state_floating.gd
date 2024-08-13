@@ -8,10 +8,17 @@ func on_enter():
 	PropManager.place_prop(Vector2(hero.global_position.x, hero.last_water_surface), &"splash")
 
 func on_process(_delta: float):
-	if Utils.is_pushing_sides():
-		$"../../Gfx/AnimatedSprite2D".play("water_swim")
+	if hero.is_on_wall()\
+	and hero.facing_direction == round(hero.get_wall_normal().x):
+		if Utils.is_pushing_sides():
+			$"../../Gfx/AnimatedSprite2D".play("water_swim_v")
+		else:		
+			$"../../Gfx/AnimatedSprite2D".play("water_swim_v")
 	else:
-		$"../../Gfx/AnimatedSprite2D".play("water_idle")
+		if Utils.is_pushing_sides():
+			$"../../Gfx/AnimatedSprite2D".play("water_swim")
+		else:		
+			$"../../Gfx/AnimatedSprite2D".play("water_idle")
 	
 	if hero.is_input_blunder_shoot()\
 	and timer_blunder_shoot_cooldown.is_stopped():

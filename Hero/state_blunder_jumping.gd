@@ -7,7 +7,7 @@ var bounce_count: int = 0
 func on_enter():
 	$"../../Gfx/AnimatedSprite2D".play("blunderjump")
 	$"../../Shooter".position = Vector2(0, 0)
-	
+
 	hero.current_blunder_jump_angle = 0
 	hero.velocity.y = hero.BLUNDER_JUMP_VELOCITY
 	bounce_count = 0
