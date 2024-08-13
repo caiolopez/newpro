@@ -1,6 +1,9 @@
 extends Node2D
 
 @onready var game_tree = get_node("/root/GameTree")
+var last_placement: Dictionary = {}
+const MIN_DISTANCE_BETWEEN_PROPS = 20.0  # pixels
+const MIN_TIME_INTERVAL_BETWEEN_PROPS = 0.1  # seconds (100ms)
 
 const PROP_TYPE: Dictionary = {
 	&"bullet_dies": {
@@ -43,6 +46,16 @@ func populate_pools():
 			prop_pools[prop_name].append(prop)
 
 func place_prop(global_pos: Vector2, prop_name: StringName, auto_play: bool = true) -> Node2D:
+	# Check if we should skip this placement
+	var current_time = Time.get_ticks_msec() / 1000.0
+	if prop_name in last_placement:
+		var last_pos = last_placement[prop_name]["position"]
+		var last_time = last_placement[prop_name]["time"]
+		if global_pos.distance_to(last_pos) < MIN_DISTANCE_BETWEEN_PROPS\
+		and (current_time - last_time) < MIN_TIME_INTERVAL_BETWEEN_PROPS:
+			print("skipped | ", prop_name)
+			return null
+	
 	var prop: Node2D
 	
 	if prop_pools[prop_name].is_empty():
@@ -60,6 +73,9 @@ func place_prop(global_pos: Vector2, prop_name: StringName, auto_play: bool = tr
 	prop.visible = true
 	prop.global_position = global_pos
 	if auto_play: prop.play()
+	
+	last_placement[prop_name] = {"position": global_pos, "time": current_time}
+	
 	return prop
 
 func return_prop(prop: Node2D):
