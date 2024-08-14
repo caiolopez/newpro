@@ -38,13 +38,11 @@ func on_process(_delta: float):
 
 	if Input.is_action_just_pressed('jump')\
 	and hero.is_on_floor():
-		PropManager.place_prop(Vector2(hero.global_position.x, hero.last_water_surface), &"splash")
 		machine.set_state("StateJumping")
 
 	if Input.is_action_just_pressed('jump')\
 	and hero.is_pushing_wall()\
 	and hero.is_head_above_water():
-		PropManager.place_prop(Vector2(hero.global_position.x, hero.last_water_surface), &"splash")
 		machine.set_state("StateJumping")
 
 
