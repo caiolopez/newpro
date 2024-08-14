@@ -21,6 +21,11 @@ const PROP_TYPE: Dictionary = {
 		"amount": 10,
 		"create_on_demand": false
 	},
+	&"new": {
+		"scene": preload("res://Props/NewProp.tscn"),
+		"amount": 10,
+		"create_on_demand": false
+	},
 	&"splash": {
 		"scene": preload("res://Props/SplashProp.tscn"),
 		"amount": 10,

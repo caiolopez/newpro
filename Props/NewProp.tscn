@@ -1,0 +1,82 @@
+[gd_scene load_steps=15 format=3 uid="uid://damj1o6kp22pp"]
+
+[ext_resource type="Shader" path="res://CaioShaders/bw_replacer.gdshader" id="1_2d86v"]
+[ext_resource type="Texture2D" uid="uid://dhjlskll4imug" path="res://Props/dust2.png" id="2_44kg3"]
+[ext_resource type="PackedScene" uid="uid://manmyevja5y2" path="res://EntityComponents/OnParentAnimEnd.tscn" id="3_ejk44"]
+[ext_resource type="PackedScene" uid="uid://1votnx34efdj" path="res://EntityComponents/BWShaderSetter.tscn" id="4_fp56u"]
+[ext_resource type="PackedScene" uid="uid://dtiweonbpewyr" path="res://EntityComponents/AutoSpriteFlipper.tscn" id="5_uaopv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tbljs"]
+shader = ExtResource("1_2d86v")
+shader_parameter/replace_black = Color(0.44, 0, 0, 1)
+shader_parameter/replace_white = Color(0.8, 0.29, 0.29, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f8h15"]
+atlas = ExtResource("2_44kg3")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n15vr"]
+atlas = ExtResource("2_44kg3")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_84iks"]
+atlas = ExtResource("2_44kg3")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pt3ad"]
+atlas = ExtResource("2_44kg3")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3cdad"]
+atlas = ExtResource("2_44kg3")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lv3xt"]
+atlas = ExtResource("2_44kg3")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v4kco"]
+atlas = ExtResource("2_44kg3")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5cvca"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f8h15")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n15vr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_84iks")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pt3ad")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3cdad")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lv3xt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v4kco")
+}],
+"loop": false,
+"name": &"default",
+"speed": 30.0
+}]
+
+[node name="DustWallProp" type="AnimatedSprite2D"]
+material = SubResource("ShaderMaterial_tbljs")
+scale = Vector2(6, 6)
+sprite_frames = SubResource("SpriteFrames_5cvca")
+offset = Vector2(0, 3)
+
+[node name="OnParentAnimEnd" parent="." instance=ExtResource("3_ejk44")]
+effect = 1
+
+[node name="BwShaderSetter" parent="." instance=ExtResource("4_fp56u")]
+
+[node name="AutoSpriteFlipper" parent="." instance=ExtResource("5_uaopv")]
