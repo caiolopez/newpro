@@ -3,15 +3,15 @@ class_name Switch extends Area2D
 @export var toggle: bool = false ## Default switches (toggle == false) can only be turned on. Set this to true if this switch can be turned off as well.
 var controller: Node2D
 var current_state: Constants.SwitchState
-var last_processed_bullet: StringName = &""
+var last_processed_bullet: Bullet = null
 
 func _ready():
 	controller = get_parent()
 	$TimerSimultWindow.set_wait_time(controller.simult_window_duration)
 	$TimerSimultWindow.timeout.connect(on_simult_window_timeout)
 	area_entered.connect(on_bullet_entered)
-	area_exited.connect(func(area): if area.name == last_processed_bullet:
-		last_processed_bullet = &"", CONNECT_DEFERRED)
+	area_exited.connect(func(area): if area == last_processed_bullet:
+		last_processed_bullet = null, CONNECT_DEFERRED)
 	switch_off()
 
 
@@ -39,9 +39,9 @@ func on_simult_window_timeout():
 
 func on_bullet_entered(area):
 	if not area is Bullet: return
-	if area.name == last_processed_bullet: return
+	if area == last_processed_bullet: return
 
-	last_processed_bullet = area.name
+	last_processed_bullet = area
 
 	match current_state:
 		Constants.SwitchState.OFF:
@@ -57,5 +57,5 @@ func on_bullet_entered(area):
 	area.kill_bullet()
 
 func on_bullet_exited(area):
-	if area.name == last_processed_bullet:
-		last_processed_bullet = &""
+	if area == last_processed_bullet:
+		last_processed_bullet = null

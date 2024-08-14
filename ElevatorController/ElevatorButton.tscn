@@ -8,7 +8,6 @@ size = Vector2(50, 50)
 
 [node name="ElevatorButton" type="Area2D"]
 script = ExtResource("1_3igk5")
-type = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_t0xmj")

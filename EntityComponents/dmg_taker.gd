@@ -7,7 +7,7 @@ class_name DmgTaker extends Area2D
 @onready var current_hp: int = HP_AMOUNT
 var immune: bool = false
 var immune_to_regular_bullets: bool = false ## Will not take damage from non-incendiary bullets.
-var last_processed_bullet: StringName = &""
+var last_processed_bullet: Bullet = null
 
 signal died
 signal resurrected
@@ -17,8 +17,8 @@ func _ready():
 	Events.hero_reached_checkpoint.connect(commit_status)
 	Events.hero_respawned_at_checkpoint.connect(reset_status)
 	area_entered.connect(on_area_entered)
-	area_exited.connect(func(area): if area.name == last_processed_bullet:
-		last_processed_bullet = &"", CONNECT_DEFERRED)
+	area_exited.connect(func(area): if area == last_processed_bullet:
+		last_processed_bullet = null, CONNECT_DEFERRED)
 
 
 func take_dmg(amount: int):
@@ -41,8 +41,8 @@ func on_area_entered(area):
 	if is_foe == area.is_foe: return
 	
 	if area is Bullet:
-		if area.name == last_processed_bullet: return
-		last_processed_bullet = area.name
+		if area == last_processed_bullet: return
+		last_processed_bullet = area
 		if not area.bullet_type == Constants.BulletType.FIRE and immune_to_regular_bullets: return
 		if current_hp > 0:
 			area.kill_bullet()
