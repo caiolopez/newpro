@@ -39,7 +39,7 @@ func on_process(_delta: float):
 		machine.set_state("StateWallClimbing")
 		return
 
-	if hero.is_just_on_water:
+	if hero.is_just_in_water:
 		if Input.is_action_pressed('jump')\
 		and not timer_super_bounce_window.is_stopped():
 			var boost =  -50 * (mini(bounce_count, 5) + 1)

@@ -39,7 +39,8 @@ var current_blunder_jump_angle: float
 var was_on_wall: bool ## For variable change caculation
 var was_on_floor: bool ## For variable change caculation
 var was_pushing_wall: bool ## For variable change caculation
-var was_on_water: bool ## For variable change caculation
+var was_in_water: bool ## For variable change caculation
+var current_water_areas = [] ## All the water areas the hero is currently in
 var was_auto_snapping: bool
 var on_wall_value_just_changed: bool
 var is_auto_snapping: bool
@@ -48,16 +49,24 @@ var is_just_pushing_wall: bool
 var just_stopped_pushing_wall: bool
 var facing_direction = 1
 var is_in_water: bool = false
-var is_just_on_water: bool
+var is_just_in_water: bool
+var just_left_water: bool
 var current_water: Water
 var last_water_surface: float
 
 
 func _ready():
-	Events.hero_entered_water.connect(func(_water, surface_glpos):
+	Events.hero_entered_water.connect(func(water, surface_glpos):
+		if water not in current_water_areas:
+			current_water_areas.append(water)
 		is_in_water = true
 		last_water_surface = surface_glpos)
-	Events.hero_exited_water.connect(func(_water): is_in_water = false)
+
+	Events.hero_exited_water.connect(func(water):
+		if water in current_water_areas:
+			current_water_areas.erase(water)
+		is_in_water = len(current_water_areas) > 0)
+
 	Events.hero_hit_teleporter.connect(_on_hero_hit_teleporter)
 	ComboParser.combo_performed.connect(func(combo): if combo == "Die": die())
 
@@ -67,6 +76,7 @@ func _ready():
 
 
 func _process(_delta):
+	if Input.is_action_just_pressed("shoot"): print(current_water_areas, " | ", is_in_water, " | ", len(current_water_areas))
 	#if Input.is_action_just_pressed("shoot"): print("SHOOT!")
 	#if Input.is_action_just_pressed("jump"): print("J")
 	#if Input.is_action_just_pressed("move_left"): print("LEFT")
@@ -157,8 +167,9 @@ func check_value_change():
 	is_just_on_floor = is_on_floor() and not was_on_floor
 	was_on_floor = is_on_floor()
 	
-	is_just_on_water = is_in_water and not was_on_water
-	was_on_water = is_in_water
+	is_just_in_water = is_in_water and not was_in_water
+	just_left_water = not is_in_water and was_in_water
+	was_in_water = is_in_water
 	
 	on_wall_value_just_changed = is_on_wall() != was_on_wall
 	was_on_wall = is_on_wall()
