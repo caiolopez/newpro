@@ -1393,6 +1393,7 @@ collision_layer = 8
 floor_snap_length = 12.0
 platform_on_leave = 2
 script = ExtResource("1_dmqn8")
+can_dive = true
 state_machine = NodePath("StateMachine")
 metadata/_edit_group_ = true
 
