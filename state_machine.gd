@@ -19,6 +19,7 @@ var current_state:_State:
 		
 		if index < 0: push_error("Trying to set state that doesn't belong to state machine")
 		else: current_state_index = index
+var last_state: _State = null
 
 func _ready() -> void:
 	get_states()
@@ -32,6 +33,7 @@ func _physics_process(delta):
 	if current_state: current_state.physics_process(delta)
 
 func start() -> void:
+	last_state = null
 	set_state(states[0])
 
 func get_states() -> void:
@@ -47,11 +49,15 @@ func get_state_by_name(_name:String) -> _State:
 
 func set_state(state) -> void:
 	if state == null:
-		if current_state: current_state.exit()
+		if current_state:
+			last_state = current_state
+			current_state.exit()
 		return
 
 	if state is _State:
-		if current_state: current_state.exit()
+		if current_state:
+			last_state = current_state
+			current_state.exit()
 		current_state = state
 		current_state.enter(self)
 		return
