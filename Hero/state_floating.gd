@@ -5,7 +5,8 @@ var death_prone: bool = true
 
 
 func on_enter():
-	PropManager.place_prop(Vector2(hero.global_position.x, hero.last_water_surface), &"splash")
+	if not machine.last_state.name == "StateWetBlunderShooting":
+		PropManager.place_prop(Vector2(hero.global_position.x, hero.last_water_surface), &"splash")
 
 func on_process(_delta: float):
 	if hero.is_on_wall()\
