@@ -17,6 +17,7 @@ var light_color: Color
 var time_before_visible: float = 0.05
 var timer_before_visible: Timer
 
+
 func _ready():
 	timer_before_visible = Timer.new()
 	add_child(timer_before_visible)
@@ -65,7 +66,8 @@ func _on_area_entered(area):
 		is_in_water = true
 		current_drag = WATER_DRAG
 		current_gravity = gravity
-		PropManager.place_prop(Vector2(global_position.x, area.get_surface_global_position()), &"splash")
+		if abs(global_position.y - area.get_surface_global_position()) <= 16:
+			PropManager.place_prop(Vector2(global_position.x, area.get_surface_global_position()), &"splash")
 		animate()
 
 
@@ -74,6 +76,8 @@ func _on_area_exited(area):
 		is_in_water = false
 		current_drag = AIR_DRAG
 		current_gravity = 0
+		if abs(global_position.y - area.get_surface_global_position()) <= 32:
+			PropManager.place_prop(Vector2(global_position.x, area.get_surface_global_position()), &"splash")
 		animate()
 
 
