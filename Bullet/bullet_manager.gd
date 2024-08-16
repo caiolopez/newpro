@@ -30,7 +30,6 @@ vel:  Vector2 = Vector2(200, 0), is_foe: bool = true, bullet_type = Constants.Bu
 	bullet.bullet_type = bullet_type
 	bullet.rotation = bullet_angle
 	bullet.time_before_visible = time_before_visible
-	bullet.animate()
 	bullet.restart()
 
 

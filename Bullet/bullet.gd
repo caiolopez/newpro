@@ -11,6 +11,7 @@ var current_gravity: float
 var acceleration: Vector2
 var is_underwater_ammo: bool
 var is_in_water: bool = false
+var current_water_areas = [] ## All the water areas the bullet is currently in
 var notifier: VisibleOnScreenNotifier2D
 var dark_color: Color
 var light_color: Color
@@ -35,6 +36,9 @@ func _ready():
 
 func restart():
 	timer_before_visible.start(time_before_visible)
+	current_drag = AIR_DRAG
+	current_gravity = 0
+	animate()
 
 
 func set_color():
@@ -45,6 +49,7 @@ func set_color():
 
 
 func _physics_process(delta):
+	if Input.is_action_just_pressed("shoot"): print(current_water_areas, " | ", is_in_water, " | ", len(current_water_areas))
 	var drag: Vector2
 	drag = -velocity * current_drag
 	acceleration = drag + current_gravity * Vector2.DOWN
@@ -62,7 +67,9 @@ func _on_body_entered(body):
 
 
 func _on_area_entered(area):
-	if is_instance_of(area, Water):
+	if area is Water:
+		if area not in current_water_areas:
+			current_water_areas.append(area)
 		is_in_water = true
 		current_drag = WATER_DRAG
 		current_gravity = gravity
@@ -70,15 +77,15 @@ func _on_area_entered(area):
 			PropManager.place_prop(Vector2(global_position.x, area.get_surface_global_position()), &"splash")
 		animate()
 
-
 func _on_area_exited(area):
-	if is_instance_of(area, Water):
-		is_in_water = false
-		current_drag = AIR_DRAG
-		current_gravity = 0
-		if abs(global_position.y - area.get_surface_global_position()) <= 32:
-			PropManager.place_prop(Vector2(global_position.x, area.get_surface_global_position()), &"splash")
-		animate()
+	if area is Water:
+		if area in current_water_areas:
+			current_water_areas.erase(area)
+		is_in_water = len(current_water_areas) > 0
+		
+		if not is_in_water:
+			if abs(global_position.y - area.get_surface_global_position()) <= 32:
+				PropManager.place_prop(Vector2(global_position.x, area.get_surface_global_position()), &"splash")
 
 
 func animate():

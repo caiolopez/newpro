@@ -76,7 +76,6 @@ func _ready():
 
 
 func _process(_delta):
-	if Input.is_action_just_pressed("shoot"): print(current_water_areas, " | ", is_in_water, " | ", len(current_water_areas))
 	#if Input.is_action_just_pressed("shoot"): print("SHOOT!")
 	#if Input.is_action_just_pressed("jump"): print("J")
 	#if Input.is_action_just_pressed("move_left"): print("LEFT")
