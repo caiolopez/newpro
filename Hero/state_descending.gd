@@ -8,8 +8,11 @@ func on_enter():
 	pass
 
 func on_process(_delta: float):
-	if hero.velocity.y > 0:
+	if hero.velocity.y > -10\
+	and not Utils.is_pushing_sides():
 		$"../../Gfx/AnimatedSprite2D".play("water_idle")
+	else:
+		$"../../Gfx/AnimatedSprite2D".play("water_swim")
 	
 	if hero.is_input_blunder_shoot()\
 	and timer_blunder_shoot_cooldown.is_stopped():
