@@ -40,7 +40,6 @@ var pit_rc: RayCast2D
 var pit_rc_og_pos: Vector2
 var is_stunned: bool = false
 
-
 func _ready():
 	find_pit_rc()
 
@@ -68,31 +67,25 @@ func _ready():
 	area_entered.connect(on_area_entered)
 	$TimerStun.timeout.connect(func(): is_stunned = false)
 
-
 func reset_behavior():
 	parent.global_position = parent_og_global_pos
 	state_machine.set_state("WStateIdle")
 
-
 func on_died():
 	state_machine.set_state("WStateDead")
-
 
 func on_suffered(_hp):
 	if stunnable:
 		is_stunned = true
 		$TimerStun.start()
 
-
 func on_resurrected():
 	reset_behavior()
-
 
 func step_grav(delta, downward_accel: float = GRAVITY):
 	if not parent.is_on_floor():
 		parent.velocity.y += downward_accel * delta
 		parent.velocity.y = minf(parent.velocity.y, MAX_FALL_VEL_Y)
-
 
 func step_lateral_mov(delta: float, force_forward: bool = true):
 	var move: bool = false
@@ -140,11 +133,9 @@ func step_lateral_mov(delta: float, force_forward: bool = true):
 		if not face_hero_node.face_hero:
 			face_hero_node.update.emit(movement_direction)
 
-
 func distance_from_target() -> float:
 	var d = target_entity.global_position
 	return d.distance_to(parent.global_position)
-
 
 func is_target_within_grab_jump_window() -> bool:
 	var diff = Utils.subtract_vector2(target_entity.global_position, parent.global_position)
@@ -152,12 +143,10 @@ func is_target_within_grab_jump_window() -> bool:
 	var y = abs(diff.y) < jump_to_grab_window.y
 	return x and y
 
-
 func is_target_within_activation_radius() -> bool:
 	var d = distance_from_target()
 	if d <= ACTIVATION_RADIUS: return true
 	else: return false
-
 
 func find_pit_rc():
 	if parent.has_node("PitRC"):
@@ -166,11 +155,9 @@ func find_pit_rc():
 	elif avoids_pits:
 		push_error("The avoid_pits behavior requires a RayCast2D named PitRC as the entity's child.")
 
-
 func update_pit_rc_pos():
 	if pit_rc:
 		pit_rc.position.x = movement_direction * pit_rc_og_pos.x
-
 
 func on_area_entered(area):
 	if jumps_bullets\
@@ -179,3 +166,7 @@ func on_area_entered(area):
 	and "jump_prone" in state_machine.current_state\
 	and parent.is_on_floor():
 		state_machine.set_state("WStateJumpingBullet")
+
+func on_water_status_changed(_is_in_water: bool, water: Water):
+	self.is_in_water = _is_in_water
+	last_water_surface = water.get_surface_global_position()

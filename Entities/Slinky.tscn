@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://3evhvetyekwd"]
+[gd_scene load_steps=20 format=3 uid="uid://3evhvetyekwd"]
 
 [ext_resource type="PackedScene" uid="uid://upm0adhb85ik" path="res://EntityComponents/DmgDealer.tscn" id="1_dm515"]
 [ext_resource type="PackedScene" uid="uid://box2ff3vwcc7w" path="res://EntityComponents/DmgTaker.tscn" id="2_vujba"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://djwwpps3fxvtg" path="res://EntityComponents/GfxController.tscn" id="6_bhptt"]
 [ext_resource type="PackedScene" uid="uid://1votnx34efdj" path="res://EntityComponents/BWShaderSetter.tscn" id="6_dy3rr"]
 [ext_resource type="PackedScene" uid="uid://cqyj0bkuiosbs" path="res://EntityComponents/Walker.tscn" id="6_p4wgk"]
+[ext_resource type="PackedScene" uid="uid://p2v7a1ixtrxw" path="res://EntityComponents/IsInWaterNotifier.tscn" id="8_m2mif"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v2koo"]
 size = Vector2(40, 102)
@@ -126,6 +127,9 @@ ACCEL = 10000.0
 DECEL = 10000.0
 stunnable = false
 jumps_bullets = false
+
+[node name="IsInWaterNotifier" parent="Walker" instance=ExtResource("8_m2mif")]
+use_parent_area = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(4, 16)

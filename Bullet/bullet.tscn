@@ -136,3 +136,4 @@ randomize_v = true
 
 [node name="IsInWaterNotifier" parent="." instance=ExtResource("6_nxvfj")]
 use_parent_area = true
+auto_connect_to_parent = false
