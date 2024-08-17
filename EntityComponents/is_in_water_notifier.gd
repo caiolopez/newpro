@@ -1,14 +1,15 @@
 extends Node
 
+@export var use_parent_area: bool = false
 var current_water_areas = []
 var is_in_water: bool = false
 
 signal water_state_changed(is_in_water: bool, water_area: Water)
 
 func _ready() -> void:
-	var parent = get_parent()
+	var area_node = get_parent() if use_parent_area else self
 	
-	parent.area_entered.connect(func(area):
+	area_node.area_entered.connect(func(area):
 		if area is Water:
 			if area not in current_water_areas:
 				current_water_areas.append(area)
@@ -17,7 +18,7 @@ func _ready() -> void:
 					water_state_changed.emit(true, area)
 	)
 	
-	parent.area_exited.connect(func(area):
+	area_node.area_exited.connect(func(area):
 		if area is Water:
 			if area in current_water_areas:
 				current_water_areas.erase(area)

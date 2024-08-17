@@ -135,3 +135,4 @@ randomize_v = true
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
 [node name="IsInWaterNotifier" parent="." instance=ExtResource("6_nxvfj")]
+use_parent_area = true
