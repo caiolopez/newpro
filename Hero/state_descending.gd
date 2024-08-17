@@ -49,6 +49,10 @@ func on_physics_process(delta: float):
 	hero.step_lateral_mov(delta)
 
 	hero.velocity.y = minf(hero.velocity.y, hero.MAX_DESCENT_VEL_Y)
+	
+	if hero.velocity.y < 0\
+	and hero.global_position.y < hero.last_water_surface + 64:
+		hero.velocity.y = 0
 
 	hero.move_and_slide()
 
