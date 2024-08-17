@@ -65,7 +65,6 @@ func on_water_status_changed(is_in_water: bool, water: Water):
 		else:
 			print(water)
 			if water and abs(global_position.y - water.get_surface_global_position()) <= 32:
-				print("WOOOOOOOOOOOOOOOOOOOOOW")
 				PropManager.place_prop(Vector2(global_position.x, water.get_surface_global_position()), &"splash")
 
 func animate():

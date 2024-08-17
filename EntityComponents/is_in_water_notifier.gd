@@ -19,7 +19,6 @@ func _ready() -> void:
 				if not is_in_water:
 					is_in_water = true
 					water_state_changed.emit(true, area)
-					print("BOOBA")
 	)
 
 	area_node.area_exited.connect(func(area):
@@ -29,5 +28,4 @@ func _ready() -> void:
 				if current_water_areas.is_empty():
 					is_in_water = false
 					water_state_changed.emit(false, area)
-					print("DOODA")
 	)

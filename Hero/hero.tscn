@@ -1,4 +1,4 @@
-[gd_scene load_steps=222 format=3 uid="uid://1md1m8n6iq5x"]
+[gd_scene load_steps=224 format=3 uid="uid://1md1m8n6iq5x"]
 
 [ext_resource type="Script" path="res://Hero/hero.gd" id="1_dmqn8"]
 [ext_resource type="PackedScene" uid="uid://box2ff3vwcc7w" path="res://EntityComponents/DmgTaker.tscn" id="2_ktrux"]
@@ -48,6 +48,7 @@
 [ext_resource type="Texture2D" uid="uid://c87rr4yuqtwag" path="res://Hero/Gfx/water_swim_v.png" id="24_0fgqj"]
 [ext_resource type="Script" path="res://Hero/state_respawning.gd" id="24_ppe7q"]
 [ext_resource type="Script" path="res://timer_utils.gd" id="28_goaiv"]
+[ext_resource type="PackedScene" uid="uid://p2v7a1ixtrxw" path="res://EntityComponents/IsInWaterNotifier.tscn" id="49_p6sxx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wwsjr"]
 size = Vector2(48, 112)
@@ -1388,6 +1389,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_361o4"]
 size = Vector2(80, 152)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8r0xo"]
+size = Vector2(80, 152)
+
 [node name="Hero" type="CharacterBody2D" node_paths=PackedStringArray("state_machine") groups=["heroes", "uncrushables"]]
 collision_layer = 8
 floor_snap_length = 12.0
@@ -1620,3 +1624,10 @@ editor_description = "This timer is stated in StateWallClimbing and read in Stat
 wait_time = 0.25
 one_shot = true
 script = ExtResource("28_goaiv")
+
+[node name="IsInWaterNotifier" parent="." instance=ExtResource("49_p6sxx")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="IsInWaterNotifier"]
+visible = false
+position = Vector2(0, -12)
+shape = SubResource("RectangleShape2D_8r0xo")

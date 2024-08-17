@@ -40,7 +40,6 @@ var was_on_wall: bool ## For variable change caculation
 var was_on_floor: bool ## For variable change caculation
 var was_pushing_wall: bool ## For variable change caculation
 var was_in_water: bool ## For variable change caculation
-var current_water_areas = [] ## All the water areas the hero is currently in
 var was_auto_snapping: bool
 var on_wall_value_just_changed: bool
 var is_auto_snapping: bool
@@ -51,29 +50,14 @@ var facing_direction = 1
 var is_in_water: bool = false
 var is_just_in_water: bool
 var just_left_water: bool
-var current_water: Water
 var last_water_surface: float
 
-
 func _ready():
-	Events.hero_entered_water.connect(func(water, surface_glpos):
-		if water not in current_water_areas:
-			current_water_areas.append(water)
-		is_in_water = true
-		last_water_surface = surface_glpos)
-
-	Events.hero_exited_water.connect(func(water):
-		if water in current_water_areas:
-			current_water_areas.erase(water)
-		is_in_water = len(current_water_areas) > 0)
-
 	Events.hero_hit_teleporter.connect(_on_hero_hit_teleporter)
 	ComboParser.combo_performed.connect(func(combo): if combo == "Die": die())
 
-
 	set_safe_margin(0.08)
 	state_machine.start()
-
 
 func _process(_delta):
 	check_value_change()
@@ -89,7 +73,6 @@ func _process(_delta):
 	and global_position.y > last_water_surface:
 		state_machine.set_state("StateFloating")
 
-
 func _physics_process(_delta):
 	if is_on_floor():
 		RegionManager.call_deferred("infer_current_region_from_last_floor")
@@ -98,7 +81,6 @@ func step_grav(delta, downward_accel: float = GRAVITY):
 	if not is_on_floor():
 		velocity.y += downward_accel * delta
 		velocity.y = minf(velocity.y, MAX_FALL_VEL_Y)
-
 
 func step_lateral_mov(delta):
 	var dir_just_changed = false
@@ -126,7 +108,6 @@ func step_lateral_mov(delta):
 	headbutt_assist.update_direction()
 	headbutt_assist.update_position()
 
-
 func is_pushing_wall() -> bool:
 	var pushing_wall = false
 	var push_left = facing_direction == -1 and Input.is_action_pressed("move_left")
@@ -135,13 +116,11 @@ func is_pushing_wall() -> bool:
 			pushing_wall = facing_direction == -round(get_wall_normal().x)
 	return pushing_wall
 
-
 func is_move_dir_away_from_last_wall() -> bool:
 	var mov_away
 	mov_away = (round(get_wall_normal().x) == -1 and Input.is_action_pressed('move_left'))\
 	or (round(get_wall_normal().x) == 1 and Input.is_action_pressed('move_right'))
 	return mov_away
-
 
 func is_move_dir_just_away_from_last_wall() -> bool:
 	var mov_away
@@ -149,10 +128,8 @@ func is_move_dir_just_away_from_last_wall() -> bool:
 	or (round(get_wall_normal().x) == 1 and Input.is_action_just_pressed('move_right'))
 	return mov_away
 
-
 func is_input_blunder_shoot() -> bool:
 	return Input.is_action_pressed('duck') and Input.is_action_just_pressed("shoot")
-
 
 func check_value_change():
 	is_just_on_floor = is_on_floor() and not was_on_floor
@@ -169,13 +146,11 @@ func check_value_change():
 	just_stopped_pushing_wall = not is_pushing_wall() and was_pushing_wall
 	was_pushing_wall = is_pushing_wall()
 
-
 func is_head_above_water() -> bool:
 	if global_position.y < last_water_surface + 92:
 		return true
 	else:
 		return false
-
 
 func step_auto_snap():
 	if is_on_floor()\
@@ -189,26 +164,21 @@ func step_auto_snap():
 	else:
 		is_auto_snapping = false
 
-
 func _on_hero_hit_teleporter(destination: Vector2):
 	if not state_machine.current_state.death_prone:
 		return
 	$StateMachine/StateTeleporting.destination = destination
 	state_machine.set_state("StateTeleporting")
 
-
 func update_current_checkpoint_path(new_checkpoint_path: NodePath):
 	current_checkpoint_path = new_checkpoint_path
 	SaveManager.log_hero_change("current_checkpoint_path", current_checkpoint_path)
 
-
 func die():
 	state_machine.set_state("StateDeathSnapshot")
 
-
 func insta_spawn():
 	state_machine.set_state("StateSpawning")
-
 
 func shoot():	
 	$Gfx/Muzzle.visible = true
@@ -224,3 +194,7 @@ func blundershoot():
 	$Gfx/Muzzle.visible = true
 	$Gfx/Muzzle.play("blunder")
 	shooter.shoot()
+
+func on_water_status_changed(_is_in_water: bool, water: Water):
+	self.is_in_water = _is_in_water
+	last_water_surface = water.get_surface_global_position()
