@@ -10,8 +10,6 @@ var current_drag: float
 var current_gravity: float
 var acceleration: Vector2
 var is_underwater_ammo: bool
-var is_in_water: bool = false
-var current_water_areas = [] ## All the water areas the bullet is currently in
 var notifier: VisibleOnScreenNotifier2D
 var dark_color: Color
 var light_color: Color
@@ -20,6 +18,8 @@ var timer_before_visible: Timer
 
 
 func _ready():
+	$IsInWaterNotifier.water_state_changed.connect(on_water_status_changed)
+	
 	timer_before_visible = Timer.new()
 	add_child(timer_before_visible)
 	timer_before_visible.timeout.connect(func(): visible = true)
@@ -49,7 +49,6 @@ func set_color():
 
 
 func _physics_process(delta):
-	if Input.is_action_just_pressed("shoot"): print(current_water_areas, " | ", is_in_water, " | ", len(current_water_areas))
 	var drag: Vector2
 	drag = -velocity * current_drag
 	acceleration = drag + current_gravity * Vector2.DOWN
@@ -66,26 +65,18 @@ func _on_body_entered(body):
 		kill_bullet()
 
 
-func _on_area_entered(area):
-	if area is Water:
-		if area not in current_water_areas:
-			current_water_areas.append(area)
-		is_in_water = true
-		current_drag = WATER_DRAG
-		current_gravity = gravity
-		if abs(global_position.y - area.get_surface_global_position()) <= 16:
-			PropManager.place_prop(Vector2(global_position.x, area.get_surface_global_position()), &"splash")
-		animate()
-
-func _on_area_exited(area):
-	if area is Water:
-		if area in current_water_areas:
-			current_water_areas.erase(area)
-		is_in_water = len(current_water_areas) > 0
-		
-		if not is_in_water:
-			if abs(global_position.y - area.get_surface_global_position()) <= 32:
-				PropManager.place_prop(Vector2(global_position.x, area.get_surface_global_position()), &"splash")
+func on_water_status_changed(is_in_water: bool, water: Water):
+		if is_in_water:
+			current_drag = WATER_DRAG
+			current_gravity = gravity
+			if water and abs(global_position.y - water.get_surface_global_position()) <= 16:
+				PropManager.place_prop(Vector2(global_position.x, water.get_surface_global_position()), &"splash")
+			animate()
+		else:
+			print(water)
+			if water and abs(global_position.y - water.get_surface_global_position()) <= 32:
+				print("WOOOOOOOOOOOOOOOOOOOOOW")
+				PropManager.place_prop(Vector2(global_position.x, water.get_surface_global_position()), &"splash")
 
 
 func animate():
@@ -93,7 +84,7 @@ func animate():
 	match bullet_type:
 		Constants.BulletType.REGULAR: a = "regular_"
 		Constants.BulletType.FIRE: a = "fire_"
-	if is_in_water:
+	if $IsInWaterNotifier.is_in_water:
 		a += "wet"
 	else:
 		a += "dry"
