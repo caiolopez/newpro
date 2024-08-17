@@ -10,29 +10,31 @@ var current_drag: float
 var current_gravity: float
 var acceleration: Vector2
 var is_underwater_ammo: bool
-var notifier: VisibleOnScreenNotifier2D
 var dark_color: Color
 var light_color: Color
 var time_before_visible: float = 0.05
 var timer_before_visible: Timer
 
-
 func _ready():
 	$IsInWaterNotifier.water_state_changed.connect(on_water_status_changed)
-	
+	$VisibleOnScreenNotifier2D.screen_exited.connect(func(): BulletManager.release_bullet(self))
+
+	body_entered.connect(func(body):
+		if body.is_in_group("kills_bullets"):
+			kill_bullet()
+	)
+
 	timer_before_visible = Timer.new()
 	add_child(timer_before_visible)
 	timer_before_visible.timeout.connect(func(): visible = true)
 
-	notifier = $VisibleOnScreenNotifier2D
 	current_drag = AIR_DRAG
 	current_gravity = 0
 	visible = false
 	set_color()
 	await get_tree().process_frame # TODO: Come up with a way to prevent those bullets from being instantiated instead.
-	if not notifier.is_on_screen():
+	if not $VisibleOnScreenNotifier2D.is_on_screen():
 		BulletManager.release_bullet(self)
-
 
 func restart():
 	timer_before_visible.start(time_before_visible)
@@ -40,13 +42,11 @@ func restart():
 	current_gravity = 0
 	animate()
 
-
 func set_color():
 	dark_color = Constants.BULLET_REGULAR_DARK
 	light_color = Constants.BULLET_REGULAR_LIGHT
 	material.set_shader_parameter("replace_black", dark_color)
 	material.set_shader_parameter("replace_white", light_color)
-
 
 func _physics_process(delta):
 	var drag: Vector2
@@ -54,16 +54,6 @@ func _physics_process(delta):
 	acceleration = drag + current_gravity * Vector2.DOWN
 	velocity += acceleration * delta
 	global_position += delta*velocity
-
-
-func _on_visible_on_screen_notifier_2d_screen_exited():
-	BulletManager.release_bullet(self)
-
-
-func _on_body_entered(body):
-	if body.is_in_group("kills_bullets"):
-		kill_bullet()
-
 
 func on_water_status_changed(is_in_water: bool, water: Water):
 		if is_in_water:
@@ -78,7 +68,6 @@ func on_water_status_changed(is_in_water: bool, water: Water):
 				print("WOOOOOOOOOOOOOOOOOOOOOW")
 				PropManager.place_prop(Vector2(global_position.x, water.get_surface_global_position()), &"splash")
 
-
 func animate():
 	var a: String
 	match bullet_type:
@@ -88,10 +77,8 @@ func animate():
 		a += "wet"
 	else:
 		a += "dry"
-
 	get_node("AnimatedSprite2D").play(a)
 	Utils.randomize_animation_frame(get_node("AnimatedSprite2D"))
-
 
 func kill_bullet():
 	var new_dies_prop = PropManager.place_prop(global_position, &"bullet_dies")
