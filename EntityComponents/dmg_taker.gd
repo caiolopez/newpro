@@ -32,7 +32,7 @@ func take_dmg(amount: int):
 		died.emit()
 	else:
 		suffered.emit(current_hp)
-	print("Foe: ", is_foe, ". Damage taken: ", amount, ". Current HP: ", current_hp)
+	if DebugTools.print_stuff: print(get_parent().name, ": Damage taken: ", amount, ". Current HP: ", current_hp)
 
 
 func on_area_entered(area):

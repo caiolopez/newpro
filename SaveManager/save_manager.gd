@@ -11,7 +11,7 @@ func _ready():
 func add_region_entry(region: Region):
 	if not regions.has(region.name):
 		regions[region.name] = {}
-		print("region entry added for ", region.name)
+		if DebugTools.print_stuff: print("region entry added for ", region.name)
 
 func log_entity_change(entity: Node, value):
 	var from_region: Region = RegionManager.get_region_from_node(entity)
@@ -20,7 +20,7 @@ func log_entity_change(entity: Node, value):
 	if from_region and key and value:
 		regions[from_region.name][key] = value
 	else:
-		print("logging ", entity.name, "'s ", key, " as ", value, " failed.")
+		if DebugTools.print_stuff: print("logging ", entity.name, "'s ", key, " as ", value, " failed.")
 
 func log_hero_change(key: String, value):
 	hero_persistence[key] = value
@@ -35,22 +35,22 @@ func save_file():
 	var file = FileAccess.open("user://save_" + str(current_slot) + ".dat", FileAccess.WRITE)
 	if file:
 		file.store_string(json_string)
-		print("Saved.")
+		if DebugTools.print_stuff: print("Saved.")
 	else:
-		print("Error saving game: ", FileAccess.get_open_error())
+		if DebugTools.print_stuff: print("Error saving game: ", FileAccess.get_open_error())
 
 func load_file():
 	var file = FileAccess.open("user://save_" + str(current_slot) + ".dat", FileAccess.READ)
 	if file == null:
-		print("File: user://save_" + str(current_slot) + ".dat does not exist.")
+		if DebugTools.print_stuff: print("File: user://save_" + str(current_slot) + ".dat does not exist.")
 		return
 	var data = file.get_as_text()
 	var json = JSON.new()
 	var error = json.parse(data)
 	if error == OK:
-		if typeof(json.data) == TYPE_DICTIONARY: print(json.data)
+		if typeof(json.data) == TYPE_DICTIONARY: if DebugTools.print_stuff: print(json.data)
 	else:
-		print("JSON Parse Error: ", json.get_error_message(), " in ", data, " at line ", json.get_error_line())
+		if DebugTools.print_stuff: print("JSON Parse Error: ", json.get_error_message(), " in ", data, " at line ", json.get_error_line())
 
 	hero_persistence = json.data["hero_changes"]
 	regions = json.data["entity_changes"]
@@ -98,7 +98,7 @@ func load_from_slot(slot: int = current_slot):
 	inject_changes_into_hero()
 	inject_changes_into_regions()
 	Utils.find_hero().insta_spawn()
-	print("Game loaded from slot ", slot, ".")
+	if DebugTools.print_stuff: print("Game loaded from slot ", slot, ".")
 
 func clear_slot(slot: int):
 	var path = "user://save_" + str(slot) + ".dat"

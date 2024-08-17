@@ -58,7 +58,7 @@ func place_prop(global_pos: Vector2, prop_name: StringName, auto_play: bool = tr
 		var last_time = last_placement[prop_name]["time"]
 		if global_pos.distance_to(last_pos) < MIN_DISTANCE_BETWEEN_PROPS\
 		and (current_time - last_time) < MIN_TIME_INTERVAL_BETWEEN_PROPS:
-			print("skipped | ", prop_name)
+			if DebugTools.print_stuff: print("skipped | ", prop_name)
 			return null
 	
 	var prop: Node2D

@@ -8,7 +8,7 @@ func _ready() -> void:
 			for ancestor in Utils.get_ancestors(self):
 				if ancestor is Region:
 					RegionManager.current_region = ancestor
-					print("Current Region was set to ", ancestor.name, ".")
+					if DebugTools.print_stuff: print("Current Region was set to ", ancestor.name, ".")
 					break
 
 			# We can't free a collider being tested.

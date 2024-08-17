@@ -36,7 +36,6 @@ func on_process(_delta: float):
 		return
 
 	if hero.is_just_on_floor:
-		print("*** IS JUST ON FLOOR ***")
 		machine.set_state("StateIdle")
 		return
 

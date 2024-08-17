@@ -15,7 +15,6 @@ func _ready():
 	Events.hero_died.connect(hide_hp_bar)
 
 func setup_bar(boss):
-	print("SETUP BARRRRRRRRR")
 	current_boss = boss
 	$HpBar.max_value = dt.HP_AMOUNT
 	update_bar()

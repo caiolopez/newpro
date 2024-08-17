@@ -17,6 +17,14 @@ func input_bin():
 		SaveManager.print_all_dics()
 	if Input.is_action_just_pressed("Debug Action 2"):
 		print(Utils.parse_time_as_string(AppManager.game_time, false))
+	
+	#if Input.is_action_just_pressed("shoot"): print("SHOOT!")
+	#if Input.is_action_just_pressed("jump"): print("J")
+	#if Input.is_action_just_pressed("move_left"): print("LEFT")
+	#if Input.is_action_just_pressed("move_right"): print("RIGHT")
+	#if Input.is_action_just_released("jump"): print("j")
+	#if Input.is_action_just_released("move_left"): print("left")
+	#if Input.is_action_just_released("move_right"): print("right")
 
 
 func print_bin():

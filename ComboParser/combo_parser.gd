@@ -23,7 +23,7 @@ func _input(event):
 			if event.is_action_pressed(child.seq[child.i]):
 				child.i += 1
 				if child.i >= child.seq.size():
-					print("Combo completed! ", child.name)
+					if DebugTools.print_stuff: print("Combo performed: ", child.name)
 					combo_performed.emit(child.name)
 					child.i = 0
 			else:

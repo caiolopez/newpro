@@ -31,7 +31,7 @@ func on_process(_delta: float):
 	and hero.is_move_dir_just_away_from_last_wall():
 		timer_leaving_wall.stop()
 		machine.set_state("StateWallJumping")
-		print("MODE 4")
+		if DebugTools.print_stuff: print("MODE 4")
 		return
 	
 	if not timer_leaving_wall.is_stopped()\
@@ -39,7 +39,7 @@ func on_process(_delta: float):
 	and hero.is_move_dir_away_from_last_wall():
 		timer_leaving_wall.stop()
 		machine.set_state("StateWallJumping")
-		print("MODE 5")
+		if DebugTools.print_stuff: print("MODE 5")
 		return
 	
 	if not timer_climb_to_fall_wall_jump.is_stopped()\
@@ -47,7 +47,7 @@ func on_process(_delta: float):
 	and hero.is_move_dir_away_from_last_wall():
 		timer_climb_to_fall_wall_jump.stop()
 		machine.set_state("StateWallJumping")
-		print("MODE 6")
+		if DebugTools.print_stuff: print("MODE 6")
 		return
 	
 	if Input.is_action_just_pressed('jump')\
@@ -82,7 +82,6 @@ func on_process(_delta: float):
 		return
 
 	if hero.is_on_floor():
-		print(top_fall_vel)
 		if top_fall_vel > 1200:
 			PropManager.place_prop(hero.global_position, &"dust_floor")
 		machine.set_state("StateIdle")

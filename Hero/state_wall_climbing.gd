@@ -49,7 +49,7 @@ func on_process(_delta: float):
 	and Input.is_action_just_pressed('jump'):
 		timer_leaving_wall.stop()
 		machine.set_state("StateWallJumping")
-		print("mode 1")
+		if DebugTools.print_stuff: print("mode 1")
 		return
 
 	if hero.is_move_dir_away_from_last_wall()\
@@ -57,7 +57,7 @@ func on_process(_delta: float):
 	and Input.is_action_pressed('jump'):
 		timer_leaving_wall.stop()
 		machine.set_state("StateWallJumping")
-		print("mode 2")
+		if DebugTools.print_stuff: print("mode 2")
 		return
 
 	if hero.velocity.y > 0\

@@ -11,7 +11,7 @@ func on_enter():
 	if (hero.is_on_wall() or not timer_leaving_wall.is_stopped())\
 	and Input.is_action_just_pressed('jump'):
 		timer_coyote_wall.start()
-		print('COYOTE STARTED')
+		if DebugTools.print_stuff: print('COYOTE STARTED')
 	if not hero.is_on_wall() and Input.is_action_just_pressed('jump'):
 		timer_buffer_wall_jump.start()
 		
@@ -37,13 +37,13 @@ func on_process(_delta: float):
 		if hero.is_move_dir_away_from_last_wall():
 			timer_coyote_wall.stop()
 			machine.set_state("StateWallJumping")
-			print('COYOTE WALLJUMP')
+			if DebugTools.print_stuff: print('COYOTE WALLJUMP')
 			return
 
 		elif hero.is_pushing_wall():
 			timer_coyote_wall.stop()
 			machine.set_state("StateWallClimbing")
-			print('COYOTE WALLCLIMB')
+			if DebugTools.print_stuff: print('COYOTE WALLCLIMB')
 			return
 
 	if not Input.is_action_pressed("jump"):
@@ -54,7 +54,7 @@ func on_process(_delta: float):
 		and not timer_buffer_wall_jump.is_stopped():
 		timer_buffer_wall_jump.stop()
 		machine.set_state("StateWallClimbing")
-		print("BUFFERED WALLJUMP")
+		if DebugTools.print_stuff: print("BUFFERED WALLJUMP")
 		return
 
 	if hero.is_pushing_wall()\
@@ -67,7 +67,7 @@ func on_process(_delta: float):
 	and not timer_climb_to_glide_wall_jump.is_stopped()\
 	and Input.is_action_pressed("jump"):
 			machine.set_state("StateWallJumping")
-			print('MODE 3')
+			if DebugTools.print_stuff: print('MODE 3')
 			return
 
 

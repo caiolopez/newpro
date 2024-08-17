@@ -76,14 +76,6 @@ func _ready():
 
 
 func _process(_delta):
-	#if Input.is_action_just_pressed("shoot"): print("SHOOT!")
-	#if Input.is_action_just_pressed("jump"): print("J")
-	#if Input.is_action_just_pressed("move_left"): print("LEFT")
-	#if Input.is_action_just_pressed("move_right"): print("RIGHT")
-	#if Input.is_action_just_released("jump"): print("j")
-	#if Input.is_action_just_released("move_left"): print("left")
-	#if Input.is_action_just_released("move_right"): print("right")
-	
 	check_value_change()
 	
 	if dmg_taker.current_hp == 0\
@@ -192,7 +184,7 @@ func step_auto_snap():
 	and  next_grd_height.is_colliding()\
 	and is_pushing_wall():
 		global_position.y = next_grd_height.get_collision_point().y - %HeroCollider.shape.get_rect().size.y/2
-		print("AUTO SNAP ON STAIRS")
+		if DebugTools.print_stuff: print("AUTO SNAP ON STAIRS")
 		is_auto_snapping = true
 	else:
 		is_auto_snapping = false

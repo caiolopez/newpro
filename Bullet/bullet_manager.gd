@@ -19,7 +19,7 @@ vel:  Vector2 = Vector2(200, 0), is_foe: bool = true, bullet_type = Constants.Bu
 	if $FreeBullets.get_child_count() <= 0:
 		bullet = bullet_res.instantiate()
 		add_child(bullet)
-		print("Bullet pool size NEW RECORD! ", get_child_count())
+		if DebugTools.print_stuff: print("Bullet pool size NEW RECORD! ", get_child_count())
 	else:
 		bullet = $FreeBullets.get_children()[0]
 		bullet.reparent(self)

@@ -9,7 +9,7 @@ func on_enter():
 	if Input.is_action_pressed('jump')\
 	and not timer_buffer_jump.is_stopped():
 		timer_buffer_jump.stop()
-		print("BUFFERED JUMP")
+		if DebugTools.print_stuff: print("BUFFERED JUMP")
 		machine.set_state("StateJumping")
 		return
 
@@ -28,7 +28,7 @@ func on_process(_delta: float):
 	and  hero.next_grd_height.is_colliding()\
 	and hero.is_pushing_wall():
 		hero.global_position.y = hero.next_grd_height.get_collision_point().y - %HeroCollider.shape.get_rect().size.y/2 - 1
-		print("AUTO SNAP ON STAIRS")
+		if DebugTools.print_stuff: print("AUTO SNAP ON STAIRS")
 
 	if Input.is_action_just_pressed('jump')\
 	and hero.is_on_floor():
