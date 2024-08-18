@@ -1636,5 +1636,5 @@ shape = SubResource("RectangleShape2D_8r0xo")
 [node name="BlurFX" type="Node2D" parent="."]
 script = ExtResource("50_bok2r")
 trail_length = 10
-fade_time = 0.1
 target_path = NodePath("../Gfx/AnimatedSprite2D")
+opaque_copies = true
