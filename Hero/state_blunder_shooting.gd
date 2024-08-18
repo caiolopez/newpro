@@ -5,6 +5,7 @@ var death_prone: bool = true
 
 
 func on_enter():
+	$"../../BlurFX".generating_copies = true
 	if hero.is_on_floor():
 		timer_blunder_shoot_duration.set_wait_time(hero.BLUNDER_GROUNDED_DURATION)
 		hero.velocity.x = hero.BLUNDER_GROUNDED_VELOCITY.x*hero.facing_direction
@@ -46,5 +47,6 @@ func on_physics_process(_delta: float):
 	hero.move_and_slide()
 
 func on_exit():
+	$"../../BlurFX".generating_copies = false
 	timer_blunder_shoot_cooldown.start()
 	hero.velocity.x = hero.SPEED * -hero.facing_direction

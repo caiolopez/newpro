@@ -1,4 +1,4 @@
-[gd_scene load_steps=224 format=3 uid="uid://1md1m8n6iq5x"]
+[gd_scene load_steps=225 format=3 uid="uid://1md1m8n6iq5x"]
 
 [ext_resource type="Script" path="res://Hero/hero.gd" id="1_dmqn8"]
 [ext_resource type="PackedScene" uid="uid://box2ff3vwcc7w" path="res://EntityComponents/DmgTaker.tscn" id="2_ktrux"]
@@ -49,6 +49,7 @@
 [ext_resource type="Script" path="res://Hero/state_respawning.gd" id="24_ppe7q"]
 [ext_resource type="Script" path="res://timer_utils.gd" id="28_goaiv"]
 [ext_resource type="PackedScene" uid="uid://p2v7a1ixtrxw" path="res://EntityComponents/IsInWaterNotifier.tscn" id="49_p6sxx"]
+[ext_resource type="Script" path="res://Hero/blur_fx.gd" id="50_bok2r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wwsjr"]
 size = Vector2(48, 112)
@@ -1631,3 +1632,9 @@ script = ExtResource("28_goaiv")
 visible = false
 position = Vector2(0, -12)
 shape = SubResource("RectangleShape2D_8r0xo")
+
+[node name="BlurFX" type="Node2D" parent="."]
+script = ExtResource("50_bok2r")
+trail_length = 10
+fade_time = 0.1
+target_path = NodePath("../Gfx/AnimatedSprite2D")
