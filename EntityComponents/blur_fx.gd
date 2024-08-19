@@ -100,7 +100,3 @@ func clear_trail() -> void:
 		frames[i] = 0
 		scales[i] = Vector2.ONE
 		times[i] = 0.0
-
-func _exit_tree() -> void:
-	for sprite in trail_sprites:
-		pass #sprite.queue_free()
