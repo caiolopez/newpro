@@ -82,7 +82,7 @@ func step_grav(delta, downward_accel: float = GRAVITY):
 		velocity.y += downward_accel * delta
 		velocity.y = minf(velocity.y, MAX_FALL_VEL_Y)
 
-func step_lateral_mov(delta):
+func step_lateral_mov(delta, speed: float = SPEED):
 	var dir_just_changed = false
 	if Input.is_action_pressed("move_left") == Input.is_action_pressed("move_right"):
 		velocity.x = 0
@@ -100,7 +100,7 @@ func step_lateral_mov(delta):
 		Events.hero_changed_dir.emit(facing_direction)
 
 	velocity.x += GLIDE_X_DRAG * facing_direction * delta
-	velocity.x = maxf(abs(velocity.x), SPEED) * facing_direction
+	velocity.x = maxf(abs(velocity.x), speed) * facing_direction
 
 	shoulder_rc.update_direction()
 	pelvis_rc.update_direction()
