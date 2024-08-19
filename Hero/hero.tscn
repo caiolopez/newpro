@@ -1,4 +1,4 @@
-[gd_scene load_steps=225 format=3 uid="uid://1md1m8n6iq5x"]
+[gd_scene load_steps=226 format=3 uid="uid://1md1m8n6iq5x"]
 
 [ext_resource type="Script" path="res://Hero/hero.gd" id="1_dmqn8"]
 [ext_resource type="PackedScene" uid="uid://box2ff3vwcc7w" path="res://EntityComponents/DmgTaker.tscn" id="2_ktrux"]
@@ -48,6 +48,7 @@
 [ext_resource type="Texture2D" uid="uid://c87rr4yuqtwag" path="res://Hero/Gfx/water_swim_v.png" id="24_0fgqj"]
 [ext_resource type="Script" path="res://Hero/state_respawning.gd" id="24_ppe7q"]
 [ext_resource type="Script" path="res://timer_utils.gd" id="28_goaiv"]
+[ext_resource type="Script" path="res://Hero/state_on_sea_floor.gd" id="44_igpgv"]
 [ext_resource type="PackedScene" uid="uid://p2v7a1ixtrxw" path="res://EntityComponents/IsInWaterNotifier.tscn" id="49_p6sxx"]
 [ext_resource type="PackedScene" uid="uid://bricuoof7bhn1" path="res://EntityComponents/BlurFX.tscn" id="50_6e2hc"]
 
@@ -1102,6 +1103,47 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_m2yn6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nv4ci")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1qb55")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5rv0i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jre4q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ers4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ekn8k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xij80")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x2jt5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_by7tc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6uogd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y0tn1")
+}],
+"loop": true,
+"name": &"walk_underwater",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_plq6v")
 }, {
 "duration": 1.0,
@@ -1459,7 +1501,7 @@ use_parent_material = true
 position = Vector2(0, -32)
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_tm5on")
-animation = &"glide_loop"
+animation = &"walk_underwater"
 
 [node name="Muzzle" type="AnimatedSprite2D" parent="Gfx"]
 visible = false
@@ -1529,6 +1571,9 @@ script = ExtResource("17_hus0u")
 
 [node name="StateDescending" type="Node" parent="StateMachine"]
 script = ExtResource("17_h880v")
+
+[node name="StateOnSeaFloor" type="Node" parent="StateMachine"]
+script = ExtResource("44_igpgv")
 
 [node name="StateTeleporting" type="Node" parent="StateMachine"]
 script = ExtResource("20_3hv7e")

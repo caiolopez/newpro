@@ -8,11 +8,10 @@ func on_enter():
 	pass
 
 func on_process(_delta: float):
-	if hero.velocity.y > -10\
-	and not Utils.is_pushing_sides():
-		$"../../Gfx/AnimatedSprite2D".play("water_idle")
+	if abs(hero.velocity.x) < 10:
+		$"../../Gfx/AnimatedSprite2D".play("idle")
 	else:
-		$"../../Gfx/AnimatedSprite2D".play("water_swim")
+		$"../../Gfx/AnimatedSprite2D".play("walk_underwater")
 	
 	if hero.is_input_blunder_shoot()\
 	and timer_blunder_shoot_cooldown.is_stopped():
@@ -32,10 +31,6 @@ func on_process(_delta: float):
 		machine.set_state("StateJumping")
 		return
 
-	if hero.is_on_floor():
-		machine.set_state("StateOnSeaFloor")
-		return
-
 	if Input.is_action_just_pressed('jump')\
 	and hero.is_head_above_water()\
 	and hero.is_on_floor():
@@ -47,10 +42,12 @@ func on_process(_delta: float):
 		machine.set_state("StateAscending")
 		return
 
+	if not hero.is_on_floor():
+		machine.set_state("StateDescending")
 
 func on_physics_process(delta: float):
 	hero.step_grav(delta, hero.UNDERWATER_GRAVITY)
-	hero.step_lateral_mov(delta)
+	hero.step_lateral_mov(delta, hero.SPEED/2)
 
 	hero.velocity.y = minf(hero.velocity.y, hero.MAX_DESCENT_VEL_Y)
 	
