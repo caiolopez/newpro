@@ -44,6 +44,10 @@ func on_process(_delta: float):
 		$"../../Gfx/AnimatedSprite2D".frame = 1
 
 func on_physics_process(_delta: float):
+	if hero.is_in_water\
+	and not hero.is_on_wall():
+		PropManager.place_prop(Vector2(hero.global_position.x, hero.last_water_surface), &"splash")
+
 	hero.move_and_slide()
 
 func on_exit():
