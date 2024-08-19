@@ -4,7 +4,6 @@ extends Node2D
 @export var fade_time = 0.2 ## Time (in seconds) for each copy to fade out (if not opaque)
 @export var target_path: NodePath ## NodePath to the target AnimatedSprite2D
 @export var opaque_copies = false ## If true, trail copies will be opaque. If false, they will fade out over time
-
 var target: AnimatedSprite2D
 var trail_sprites: Array[Sprite2D] = []
 var positions: Array = []
@@ -12,8 +11,7 @@ var animations: Array = []
 var frames: Array = []
 var scales: Array = []
 var times: Array = []
-
-var generating_copies = false  # Boolean to control copy generation
+var generating_copies = false  ## A on/off switch for the effect
 
 func _ready():
 	if target_path:
@@ -22,9 +20,7 @@ func _ready():
 	if not target or not (target is AnimatedSprite2D):
 		push_error("Error: Target is not set or is not an AnimatedSprite2D")
 		return
-	
-	print("Target found: ", target.name)
-	
+
 	# Ensure this node is behind the target
 	z_index = target.z_index - 1
 	
@@ -46,8 +42,6 @@ func _ready():
 		frames.append(0)
 		scales.append(Vector2.ONE)
 		times.append(0.0)
-	
-	print("Created ", trail_sprites.size(), " trail sprites")
 
 func _process(delta: float) -> void:
 	if not is_instance_valid(target) or not (target is AnimatedSprite2D):
@@ -84,9 +78,6 @@ func _process(delta: float) -> void:
 		else:
 			var alpha = 1.0 - (times[i] / fade_time)
 			trail_sprites[i].modulate.a = max(0, alpha)
-
-func set_generating_copies(value: bool) -> void:
-	generating_copies = value
 
 func clear_trail() -> void:
 	for i in range(trail_length):
