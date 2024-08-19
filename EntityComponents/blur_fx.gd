@@ -72,7 +72,8 @@ func _process(delta: float) -> void:
 			active_sprites.append(sprite)
 	
 	# Update active trail sprites
-	for i in range(active_sprites.size()):
+	var i = 0
+	while i < active_sprites.size():
 		var sprite = active_sprites[i]
 		sprite.global_position = positions[i]
 		sprite.texture = target.sprite_frames.get_frame_texture(animations[i], frames[i])
@@ -89,7 +90,8 @@ func _process(delta: float) -> void:
 		# Deactivate sprite if it's faded out
 		if sprite.modulate.a <= 0:
 			active_sprites.remove_at(i)
-			i -= 1  # Adjust index as we've removed an item
+		else:
+			i += 1
 
 func clear_trail() -> void:
 	active_sprites.clear()
