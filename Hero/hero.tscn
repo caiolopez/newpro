@@ -49,7 +49,7 @@
 [ext_resource type="Script" path="res://Hero/state_respawning.gd" id="24_ppe7q"]
 [ext_resource type="Script" path="res://timer_utils.gd" id="28_goaiv"]
 [ext_resource type="PackedScene" uid="uid://p2v7a1ixtrxw" path="res://EntityComponents/IsInWaterNotifier.tscn" id="49_p6sxx"]
-[ext_resource type="Script" path="res://Hero/blur_fx.gd" id="50_bok2r"]
+[ext_resource type="PackedScene" uid="uid://bricuoof7bhn1" path="res://EntityComponents/BlurFX.tscn" id="50_6e2hc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wwsjr"]
 size = Vector2(48, 112)
@@ -1633,8 +1633,4 @@ visible = false
 position = Vector2(0, -12)
 shape = SubResource("RectangleShape2D_8r0xo")
 
-[node name="BlurFX" type="Node2D" parent="."]
-script = ExtResource("50_bok2r")
-trail_length = 10
-target_path = NodePath("../Gfx/AnimatedSprite2D")
-opaque_copies = true
+[node name="BlurFX" parent="." instance=ExtResource("50_6e2hc")]

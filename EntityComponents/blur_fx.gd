@@ -1,17 +1,19 @@
 extends Node2D
 
-@export var trail_length = 5 ## The number of copies in the trail
-@export var fade_time = 0.2 ## Time (in seconds) for each copy to fade out (if not opaque)
-@export var target_path: NodePath ## NodePath to the target AnimatedSprite2D
-@export var opaque_copies = false ## If true, trail copies will be opaque. If false, they will fade out over time
+@export var trail_length = 5
+@export var fade_time = 0.2
+@export var starting_alpha = 0.5
+@export var target_path: NodePath
+@export var opaque_copies = false
 var target: AnimatedSprite2D
 var trail_sprites: Array[Sprite2D] = []
+var active_sprites: Array[Sprite2D] = []
 var positions: Array = []
 var animations: Array = []
 var frames: Array = []
 var scales: Array = []
 var times: Array = []
-var generating_copies = false  ## A on/off switch for the effect
+var generating_copies = false
 
 func _ready():
 	if target_path:
@@ -21,17 +23,16 @@ func _ready():
 		push_error("Error: Target is not set or is not an AnimatedSprite2D")
 		return
 
-	# Ensure this node is behind the target
 	z_index = target.z_index - 1
 	
-	# Create trail sprites
+	# Create pool of trail sprites
 	for i in range(trail_length):
 		var trail_sprite = Sprite2D.new()
 		trail_sprite.texture = target.sprite_frames.get_frame_texture(target.animation, 0)
-		trail_sprite.modulate.a = 1 if opaque_copies else 0  # Start opaque if opaque_copies is true
+		trail_sprite.modulate.a = 0  # Start invisible
 		trail_sprite.centered = target.centered
 		trail_sprite.offset = target.offset
-		trail_sprite.z_index = -i - 1  # Ensure trail sprites are drawn in order behind the target
+		trail_sprite.z_index = -i - 1
 		add_child(trail_sprite)
 		trail_sprites.append(trail_sprite)
 	
@@ -50,7 +51,7 @@ func _process(delta: float) -> void:
 	var parent_scale = target.get_parent().scale if target.get_parent() is Node2D else Vector2.ONE
 	
 	if generating_copies:
-		# Shift positions, animations, frames, scales, and times
+		# Shift data in arrays
 		for i in range(trail_length - 1, 0, -1):
 			positions[i] = positions[i-1]
 			animations[i] = animations[i-1]
@@ -58,28 +59,40 @@ func _process(delta: float) -> void:
 			scales[i] = scales[i-1]
 			times[i] = times[i-1]
 		
-		# Add current position, animation, frame, scale, and reset time
+		# Add current data
 		positions[0] = target.global_position
 		animations[0] = target.animation
 		frames[0] = target.frame
 		scales[0] = Vector2(abs(parent_scale.x) * target.scale.x, parent_scale.y * target.scale.y)
 		times[0] = 0.0
+		
+		# Activate a sprite from the pool if needed
+		if active_sprites.size() < trail_length:
+			var sprite = trail_sprites[active_sprites.size()]
+			active_sprites.append(sprite)
 	
-	# Update trail sprites
-	for i in range(trail_length):
-		trail_sprites[i].global_position = positions[i]
-		trail_sprites[i].texture = target.sprite_frames.get_frame_texture(animations[i], frames[i])
-		trail_sprites[i].flip_h = parent_scale.x < 0
-		trail_sprites[i].scale = scales[i]
+	# Update active trail sprites
+	for i in range(active_sprites.size()):
+		var sprite = active_sprites[i]
+		sprite.global_position = positions[i]
+		sprite.texture = target.sprite_frames.get_frame_texture(animations[i], frames[i])
+		sprite.flip_h = parent_scale.x < 0
+		sprite.scale = scales[i]
 		
 		times[i] += delta
 		if opaque_copies:
-			trail_sprites[i].modulate.a = 1.0 if times[i] < fade_time else 0.0
+			sprite.modulate.a = 1.0 if times[i] < fade_time else 0.0
 		else:
-			var alpha = 1.0 - (times[i] / fade_time)
-			trail_sprites[i].modulate.a = max(0, alpha)
+			var alpha = starting_alpha - (times[i] / fade_time)
+			sprite.modulate.a = max(0, alpha)
+		
+		# Deactivate sprite if it's faded out
+		if sprite.modulate.a <= 0:
+			active_sprites.remove_at(i)
+			i -= 1  # Adjust index as we've removed an item
 
 func clear_trail() -> void:
+	active_sprites.clear()
 	for i in range(trail_length):
 		trail_sprites[i].modulate.a = 0
 		positions[i] = Vector2.ZERO
@@ -90,4 +103,4 @@ func clear_trail() -> void:
 
 func _exit_tree() -> void:
 	for sprite in trail_sprites:
-		sprite.queue_free()
+		pass #sprite.queue_free()
