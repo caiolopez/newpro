@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://kfcc5raaowpu"]
+[gd_scene load_steps=23 format=3 uid="uid://kfcc5raaowpu"]
 
 [ext_resource type="Script" path="res://Bullet/bullet.gd" id="1_hqyxv"]
 [ext_resource type="Texture2D" uid="uid://cjdelfjqofumo" path="res://Bullet/Gfx/bullet.png" id="2_mr7qb"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cjnc25li7sonx" path="res://Bullet/Gfx/bullet_regular_wet.png" id="4_7rmor"]
 [ext_resource type="PackedScene" uid="uid://dtiweonbpewyr" path="res://EntityComponents/AutoSpriteFlipper.tscn" id="5_ta7p5"]
 [ext_resource type="PackedScene" uid="uid://p2v7a1ixtrxw" path="res://EntityComponents/IsInWaterNotifier.tscn" id="6_nxvfj"]
+[ext_resource type="PackedScene" uid="uid://bricuoof7bhn1" path="res://EntityComponents/BlurFX.tscn" id="7_r280o"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qij2k"]
 shader = ExtResource("2_tqu0m")
@@ -137,3 +138,6 @@ randomize_v = true
 [node name="IsInWaterNotifier" parent="." instance=ExtResource("6_nxvfj")]
 use_parent_area = true
 auto_connect_to_parent = false
+
+[node name="BlurFX" parent="." instance=ExtResource("7_r280o")]
+target_path = NodePath("../AnimatedSprite2D")

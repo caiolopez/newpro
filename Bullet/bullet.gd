@@ -41,6 +41,7 @@ func restart():
 	current_drag = AIR_DRAG
 	current_gravity = 0
 	animate()
+	$BlurFX.generating_copies = true
 
 func set_color():
 	dark_color = Constants.BULLET_REGULAR_DARK
@@ -84,4 +85,5 @@ func kill_bullet():
 	if new_dies_prop:
 		new_dies_prop.material.set_shader_parameter("replace_black", dark_color)
 		new_dies_prop.material.set_shader_parameter("replace_white", light_color)
+	$BlurFX.generating_copies = false
 	BulletManager.release_bullet(self)
