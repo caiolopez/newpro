@@ -14,6 +14,8 @@ func on_enter():
 func on_process(_delta: float):
 	if hero.is_on_floor():
 		$"../../Gfx/AnimatedSprite2D".play("recoil")
+	else:
+		$"../../Gfx/AnimatedSprite2D".play("water_recoil")
 		
 	if hero.is_on_wall()\
 	and hero.facing_direction == round(hero.get_wall_normal().x):
