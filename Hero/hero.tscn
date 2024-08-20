@@ -1440,7 +1440,6 @@ collision_layer = 8
 floor_snap_length = 12.0
 platform_on_leave = 2
 script = ExtResource("1_dmqn8")
-can_dive = true
 state_machine = NodePath("StateMachine")
 metadata/_edit_group_ = true
 
@@ -1474,6 +1473,11 @@ script = ExtResource("3_6dncg")
 [node name="InnardsRC" type="RayCast2D" parent="."]
 position = Vector2(16, -16)
 target_position = Vector2(-32, 32)
+hit_from_inside = true
+script = ExtResource("3_6dncg")
+
+[node name="AssRC" type="RayCast2D" parent="."]
+target_position = Vector2(-104, 0)
 hit_from_inside = true
 script = ExtResource("3_6dncg")
 

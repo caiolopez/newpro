@@ -25,14 +25,15 @@ func on_process(_delta: float):
 
 
 func on_physics_process(delta: float):
-
-	
 	if hero.global_position.y > hero.last_water_surface + 64:
 		hero.velocity.y = hero.ASCENDING_VELOCITY
 	else:
 		hero.velocity.y = 0
 
 	hero.step_lateral_mov(delta)
+	
+	if hero.ass_rc.is_colliding():
+		hero.repel_ass(delta)
 
 	hero.move_and_slide()
 

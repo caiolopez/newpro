@@ -12,6 +12,9 @@ func on_enter():
 	hero.blundershoot()
 
 func on_process(_delta: float):
+	if hero.is_on_floor():
+		$"../../Gfx/AnimatedSprite2D".play("recoil")
+		
 	if hero.is_on_wall()\
 	and hero.facing_direction == round(hero.get_wall_normal().x):
 		if hero.is_on_floor():
@@ -30,7 +33,11 @@ func on_process(_delta: float):
 			return
 
 
-func on_physics_process(_delta: float):
+func on_physics_process(delta: float):
+	if hero.ass_rc.is_colliding()\
+	and not hero.is_on_floor():
+		hero.repel_ass(delta, 10000)
+	
 	hero.move_and_slide()
 
 

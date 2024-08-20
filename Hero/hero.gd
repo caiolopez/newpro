@@ -27,12 +27,13 @@ class_name Hero extends CharacterBody2D
 @export var MAX_DESCENT_VEL_Y: float = 300 ## The maximum downward speed when diving (CAN_DIVE must be set to true).
 @export var state_machine: StateMachine ## The state machine that governs this player controller. Drag-and-drop the state-machine object to this field.
 @onready var original_position: Vector2 = global_position
-@onready var shoulder_rc: RayCast2D = get_node("ShoulderRC")
-@onready var pelvis_rc: RayCast2D = get_node("PelvisRC")
-@onready var next_grd_height: RayCast2D = get_node("NextGrdHeight")
-@onready var headbutt_assist: RayCast2D = get_node("HeadbuttAssist")
-@onready var dmg_taker: DmgTaker = Utils.find_dmg_taker(self)
-@onready var shooter: Shooter = get_node("Shooter")
+@onready var shoulder_rc: RayCast2D = $ShoulderRC
+@onready var pelvis_rc: RayCast2D = $PelvisRC
+@onready var next_grd_height: RayCast2D = $NextGrdHeight
+@onready var headbutt_assist: RayCast2D = $HeadbuttAssist
+@onready var ass_rc: RayCast2D = $AssRC
+@onready var dmg_taker: DmgTaker = $DmgTaker
+@onready var shooter: Shooter = $Shooter
 const is_foe: bool = false ## Flag necessary for components that are shared between Hero and enemies.
 var current_checkpoint_path: NodePath
 var current_blunder_jump_angle: float
@@ -102,6 +103,7 @@ func step_lateral_mov(delta, speed: float = SPEED):
 	velocity.x += GLIDE_X_DRAG * facing_direction * delta
 	velocity.x = maxf(abs(velocity.x), speed) * facing_direction
 
+	ass_rc.update_direction()
 	shoulder_rc.update_direction()
 	pelvis_rc.update_direction()
 	next_grd_height.update_position()
@@ -198,3 +200,6 @@ func blundershoot():
 func on_water_status_changed(_is_in_water: bool, water: Water):
 	self.is_in_water = _is_in_water
 	last_water_surface = water.get_surface_global_position()
+
+func repel_ass(delta, repulsion_velocity: float = 50000):
+	velocity.x = repulsion_velocity * facing_direction * delta
