@@ -12,7 +12,6 @@ script = ExtResource("1_3s7ri")
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("1_uyv8v")
-auto_start = true
 
 [node name="AppStateSplash" type="Node" parent="StateMachine"]
 script = ExtResource("2_dk1i5")

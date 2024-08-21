@@ -65,3 +65,6 @@ func set_state(state) -> void:
 	if state is String:
 		set_state(get_state_by_name(state))
 		return
+
+func is_current_state(_name:StringName) -> bool:
+	return current_state.name == _name
