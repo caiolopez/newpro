@@ -3,6 +3,7 @@ class_name MapSector extends Area2D
 enum S {UNCHARTED, CHARTING, CHARTED}
 var status: S = S.UNCHARTED
 
+
 func _ready():
 	var has_coll_poly: bool = false
 	for child in get_children():
@@ -31,7 +32,7 @@ func _ready():
 	Events.hero_respawned_at_checkpoint.connect(func():
 		if status == S.CHARTING:
 			status = S.UNCHARTED
-			Events.unchart_map_sector.emit(self)
+			Events.unchart_map_sector.emit(self.get_path())
 		)
 
 func extract_coll_polygon_2d() -> CollisionPolygon2D:

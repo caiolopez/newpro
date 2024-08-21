@@ -17,6 +17,6 @@ signal hero_spawned()
 signal hero_died()
 
 signal chart_map_sector(sector: MapSector)
-signal unchart_map_sector(sector: MapSector)
+signal unchart_map_sector(sector_path: NodePath)
 
 signal boss_trigger_entered(boss: Node)

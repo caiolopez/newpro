@@ -36,14 +36,14 @@ func append_sector_to_map(sector: MapSector):
 	var sect_coll = sector.extract_coll_polygon_2d()
 	
 	var new_mini_sector = SectorPolygon.new()
-	new_mini_sector.ref = sector
+	new_mini_sector.ref = sector.get_path()
 	new_mini_sector.polygon = sect_coll.polygon
 	new_mini_sector.global_position = sect_coll.global_position
 	$SectorPolygons.add_child(new_mini_sector)
 
-func delete_sector_from_map(sector: MapSector):
+func delete_sector_from_map(sector_path: NodePath):
 	for poly in $SectorPolygons.get_children():
-		if poly is SectorPolygon and poly.ref == sector:
+		if poly is SectorPolygon and poly.ref == sector_path:
 			poly.queue_free()
 
 func update_mini_hero_pos():
@@ -180,7 +180,8 @@ func serialize_sectors() -> Array:
 		if sector is SectorPolygon:
 			serialized_sectors.append({
 				"polygon": var_to_str(sector.polygon),
-				"position": sector.position,
+				"position": var_to_str(sector.position),
+				"reference":  var_to_str(sector.ref)
 			})
 	return serialized_sectors
 
@@ -188,7 +189,7 @@ func serialize_flags() -> Array:
 	var serialized_flags = []
 	for flag in map_flags:
 		serialized_flags.append({
-			"position": flag.position
+			"position": var_to_str(flag.position)
 		})
 	return serialized_flags
 
@@ -206,14 +207,14 @@ func update_from_dictionary():
 		for sector_data in data["sectors"]:
 			var new_mini_sector = SectorPolygon.new()
 			new_mini_sector.polygon = str_to_var(sector_data["polygon"])
-			print(typeof(str_to_var(sector_data["polygon"])))
-			new_mini_sector.global_position = str_to_var("Vector2" + str(sector_data["position"]))
+			new_mini_sector.global_position = str_to_var(sector_data["position"])
+			new_mini_sector.ref = str_to_var(sector_data["reference"])
 			$SectorPolygons.add_child(new_mini_sector)
 	
 	if "flags" in data:
 		for flag_data in data["flags"]:
 			var new_flag = waypoint_scene.instantiate()
-			new_flag.position = str_to_var("Vector2" + str(flag_data["position"]))
+			new_flag.position = str_to_var(flag_data["position"])
 			$Icons.add_child(new_flag)
 			map_flags.append(new_flag)
 	
