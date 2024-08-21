@@ -2,7 +2,11 @@ extends Node
 
 var hero_persistence: Dictionary = {}
 var regions: Dictionary = {}
+var minimap: Dictionary = {}
 var current_slot: int
+
+signal game_loaded_from_disk
+signal game_saved_to_disk
 
 func _ready():
 	ComboParser.combo_performed.connect(func(combo): if combo == "SaveCurrentGame": save_file())
@@ -30,12 +34,17 @@ func save_file():
 		hero_persistence["current_region"] = RegionManager.current_region.name
 	hero_persistence["elapsed_time"] = AppManager.game_time
 	
-	var save = {"hero_changes": hero_persistence, "entity_changes": regions}
+	var save = {
+		"hero_changes": hero_persistence,
+		"entity_changes": regions,
+		"minimap": minimap
+	}
 	var json_string = JSON.stringify(save, "\t")
 	var file = FileAccess.open("user://save_" + str(current_slot) + ".dat", FileAccess.WRITE)
 	if file:
 		file.store_string(json_string)
 		if DebugTools.print_stuff: print("Saved.")
+		game_saved_to_disk.emit()
 	else:
 		if DebugTools.print_stuff: print("Error saving game: ", FileAccess.get_open_error())
 
@@ -54,6 +63,7 @@ func load_file():
 
 	hero_persistence = json.data["hero_changes"]
 	regions = json.data["entity_changes"]
+	minimap = json.data["minimap"]
 
 func inject_changes_into_regions():
 	if not RegionManager.current_region:
@@ -98,6 +108,7 @@ func load_from_slot(slot: int = current_slot):
 	inject_changes_into_hero()
 	inject_changes_into_regions()
 	Utils.find_hero().insta_spawn()
+	game_loaded_from_disk.emit()
 	if DebugTools.print_stuff: print("Game loaded from slot ", slot, ".")
 
 func clear_slot(slot: int):

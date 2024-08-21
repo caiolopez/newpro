@@ -14,9 +14,9 @@ func _process(_delta):
 func input_bin():
 	if not input_stuff: return
 	if Input.is_action_just_pressed("Debug Action 1"):
-		SaveManager.print_all_dics()
+		pass #SaveManager.print_all_dics()
 	if Input.is_action_just_pressed("Debug Action 2"):
-		print(Utils.parse_time_as_string(AppManager.game_time, false))
+		pass #print(Utils.parse_time_as_string(AppManager.game_time, false))
 	
 	#if Input.is_action_just_pressed("shoot"): print("SHOOT!")
 	#if Input.is_action_just_pressed("jump"): print("J")

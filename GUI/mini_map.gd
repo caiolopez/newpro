@@ -25,6 +25,8 @@ var state: States = States.OFF
 func _ready():
 	Events.chart_map_sector.connect(append_sector_to_map)
 	Events.unchart_map_sector.connect(delete_sector_from_map)
+	Events.hero_reached_checkpoint.connect(update_to_dictionary)
+	SaveManager.game_loaded_from_disk.connect(update_from_dictionary)
 	$SectorPolygons.self_modulate = Color.TRANSPARENT
 	$Icons.self_modulate = Color.TRANSPARENT
 	adjust_icon_scale()
@@ -76,6 +78,9 @@ func adjust_icon_scale():
 		child.scale = Vector2.ONE / scale
 
 func _process(delta):
+	if Input.is_action_just_pressed("up"):
+		print(SaveManager.minimap)
+	
 	if state == States.OFF\
 	and Input.is_action_just_pressed("pause"):
 		center_map()
@@ -162,3 +167,53 @@ func fade_out_minimap():
 	t.tween_callback(func():
 		state = States.OFF
 		scale = Vector2.ONE)
+
+func update_to_dictionary():
+	SaveManager.minimap = {
+		"sectors": serialize_sectors(),
+		"flags": serialize_flags(),
+	}
+
+func serialize_sectors() -> Array:
+	var serialized_sectors = []
+	for sector in $SectorPolygons.get_children():
+		if sector is SectorPolygon:
+			serialized_sectors.append({
+				"polygon": var_to_str(sector.polygon),
+				"position": sector.position,
+			})
+	return serialized_sectors
+
+func serialize_flags() -> Array:
+	var serialized_flags = []
+	for flag in map_flags:
+		serialized_flags.append({
+			"position": flag.position
+		})
+	return serialized_flags
+
+func update_from_dictionary():
+	var data: Dictionary = SaveManager.minimap
+	print("IIIIHAAA")
+	
+	for child in $SectorPolygons.get_children():
+		child.queue_free()
+	for flag in map_flags:
+		flag.queue_free()
+	map_flags.clear()
+	
+	if "sectors" in data:
+		for sector_data in data["sectors"]:
+			var new_mini_sector = SectorPolygon.new()
+			new_mini_sector.polygon = str_to_var(sector_data["polygon"])
+			print(typeof(str_to_var(sector_data["polygon"])))
+			new_mini_sector.global_position = str_to_var("Vector2" + str(sector_data["position"]))
+			$SectorPolygons.add_child(new_mini_sector)
+	
+	if "flags" in data:
+		for flag_data in data["flags"]:
+			var new_flag = waypoint_scene.instantiate()
+			new_flag.position = str_to_var("Vector2" + str(flag_data["position"]))
+			$Icons.add_child(new_flag)
+			map_flags.append(new_flag)
+	
