@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctie7rq86pefq"]
+
+[ext_resource type="Script" path="res://Dialog/dialog_trigger.gd" id="1_itutv"]
+
+[node name="DialogTrigger" type="Area2D"]
+collision_mask = 8
+script = ExtResource("1_itutv")
+dialog_id = &"npc_greeting"

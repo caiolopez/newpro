@@ -16,6 +16,9 @@ signal hero_respawned_at_checkpoint()
 signal hero_spawned()
 signal hero_died()
 
+signal show_dialog(dialog: StringName)
+signal hide_dialog()
+
 signal chart_map_sector(sector: MapSector)
 signal unchart_map_sector(sector_path: NodePath)
 

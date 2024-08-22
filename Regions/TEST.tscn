@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://cv2bdmdm7ivmp"]
+[gd_scene load_steps=50 format=3 uid="uid://cv2bdmdm7ivmp"]
 
 [ext_resource type="Script" path="res://Regions/region.gd" id="1_fjngo"]
 [ext_resource type="PackedScene" uid="uid://csvdenv1i3dc3" path="res://Bullet/Teleporter.tscn" id="2_6ojyo"]
@@ -28,6 +28,7 @@
 [ext_resource type="PackedScene" uid="uid://xc3uchpjcg0y" path="res://Bullet/UniqueCollider.tscn" id="26_gjqow"]
 [ext_resource type="PackedScene" uid="uid://7jpetdd82f2l" path="res://GUI/map_sector.tscn" id="27_eveqp"]
 [ext_resource type="PackedScene" uid="uid://3evhvetyekwd" path="res://Entities/Slinky.tscn" id="28_48pge"]
+[ext_resource type="PackedScene" uid="uid://ctie7rq86pefq" path="res://Dialog/DialogTrigger.tscn" id="29_tvc4e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1suec"]
 size = Vector2(128, 128)
@@ -84,6 +85,9 @@ size = Vector2(378, 464.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nj7ht"]
 size = Vector2(128, 216)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jexxc"]
+size = Vector2(138, 202)
 
 [node name="TEST" type="Node2D"]
 position = Vector2(2800, -1368)
@@ -583,6 +587,13 @@ polygon = PackedVector2Array(4792, 1368, 440, 1376, -432, -1216, 4808, -1288)
 
 [node name="Slinky" parent="." instance=ExtResource("28_48pge")]
 position = Vector2(-1640, 872)
+
+[node name="DialogTrigger" parent="." instance=ExtResource("29_tvc4e")]
+position = Vector2(-4792, 80)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DialogTrigger"]
+position = Vector2(-16, 72)
+shape = SubResource("RectangleShape2D_jexxc")
 
 [editable path="Zombie"]
 [editable path="Spike"]

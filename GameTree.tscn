@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://1xi1vmc3x5ck"]
+[gd_scene load_steps=15 format=4 uid="uid://1xi1vmc3x5ck"]
 
 [ext_resource type="PackedScene" uid="uid://b424bvcxa2fbn" path="res://GUI/BossOverlay.tscn" id="1_tkq5o"]
 [ext_resource type="PackedScene" uid="uid://ctbx6yfgdfo4b" path="res://block.tscn" id="1_weaqc"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://d1h8vf2t5pgey" path="res://GUI/mini_map.tscn" id="2_is0lr"]
 [ext_resource type="PackedScene" uid="uid://j6oxe1axyrgk" path="res://Bullet/bullet_manager.tscn" id="3_j1ahj"]
 [ext_resource type="PackedScene" uid="uid://c48ye6g4s5ufc" path="res://Camera/camera.tscn" id="3_o6dt5"]
+[ext_resource type="PackedScene" uid="uid://dvk1kn7j0htsi" path="res://GUI/Dialog.tscn" id="3_v2q5r"]
 [ext_resource type="PackedScene" uid="uid://ch0ldys5y2avd" path="res://Regions/RegionTrigger.tscn" id="6_mg0bt"]
 [ext_resource type="PackedScene" uid="uid://cv2bdmdm7ivmp" path="res://Regions/TEST.tscn" id="6_mtnve"]
 [ext_resource type="Script" path="res://Bullet/unique_collider.gd" id="24_1i71r"]
@@ -434,6 +435,10 @@ process_mode = 3
 [node name="BossOverlay" parent="HUD" instance=ExtResource("1_tkq5o")]
 
 [node name="MiniMap" parent="HUD" instance=ExtResource("2_is0lr")]
+
+[node name="Dialog" parent="HUD" instance=ExtResource("3_v2q5r")]
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Hero" parent="." instance=ExtResource("2_acvau")]
 z_index = 2

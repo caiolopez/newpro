@@ -1,0 +1,64 @@
+[gd_scene load_steps=4 format=3 uid="uid://dvk1kn7j0htsi"]
+
+[ext_resource type="Script" path="res://GUI/dialog_manager.gd" id="1_mwgls"]
+[ext_resource type="Texture2D" uid="uid://dh3cmurbvddhl" path="res://frame.png" id="1_xmoqf"]
+[ext_resource type="Texture2D" uid="uid://d2gdo5bbgykv2" path="res://icon.svg" id="2_u4vqf"]
+
+[node name="DialogManager" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_mwgls")
+
+[node name="DialogBox" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.371
+anchor_top = 0.8
+anchor_right = 0.629
+anchor_bottom = 1.0
+offset_left = -0.320068
+offset_right = 0.319946
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("1_xmoqf")
+region_rect = Rect2(0, 0, 128, 128)
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[node name="Avatar" type="TextureRect" parent="DialogBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 48.0
+offset_top = 40.0
+offset_right = -320.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_u4vqf")
+
+[node name="MainText" type="RichTextLabel" parent="DialogBox"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.371
+anchor_top = 0.037
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.0160065
+offset_top = 48.008
+offset_right = -32.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Hello! My name is lorem ipsum. I'm the king of lorem Ipsum."
+shortcut_keys_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+visible_characters_behavior = 1
