@@ -26,7 +26,9 @@ func _ready():
 	Events.chart_map_sector.connect(append_sector_to_map)
 	Events.unchart_map_sector.connect(delete_sector_from_map)
 	Events.hero_reached_checkpoint.connect(update_to_dictionary)
+	
 	SaveManager.game_loaded_from_disk.connect(update_from_dictionary)
+	
 	$SectorPolygons.self_modulate = Color.TRANSPARENT
 	$Icons.self_modulate = Color.TRANSPARENT
 	adjust_icon_scale()
@@ -78,16 +80,15 @@ func adjust_icon_scale():
 		child.scale = Vector2.ONE / scale
 
 func _process(delta):
-	if Input.is_action_just_pressed("up"):
-		print(SaveManager.minimap)
-	
-	if state == States.OFF\
-	and Input.is_action_just_pressed("pause"):
-		center_map()
-		fade_in_minimap()
-		state = States.ANIMATING_IN
-		return
-	
+	if state == States.OFF:
+		if not AppManager.state_machine.is_current_state("AppStatePaused")\
+		and Input.is_action_just_pressed("pause"):
+			center_map()
+			fade_in_minimap()
+			state = States.ANIMATING_IN
+			AppManager.pause()
+			return
+
 	if state == States.ANIMATING_IN:
 		if scale > min_scale:
 			adjust_scale(delta, -1)
@@ -95,35 +96,43 @@ func _process(delta):
 			state = States.ON
 		update_mini_hero_pos()
 		return
-	
+
 	if state == States.ANIMATING_OUT:
 		update_mini_hero_pos()
 		return
-	
+
 	if state != States.ON:
 		return
 
 	update_mini_hero_pos()
 	set_bounds()
 	
+	handle_actions(delta)
+	
+	if Input.is_action_just_pressed("unpause") and AppManager.state_machine.is_current_state("AppStatePaused"):
+		fade_out_minimap()
+		AppManager.unpause()
+		state = States.ANIMATING_OUT
+
+func handle_actions(delta):
 	if Input.is_action_pressed("up") and position.y + bottom_bound * scale.y > bound_padding.y:
 		position.y -= move_speed.y * delta
-	if Input.is_action_pressed("down") and position.y + top_bound * scale.y< get_viewport_rect().size.y - bound_padding.y:  
+	if Input.is_action_pressed("down") and position.y + top_bound * scale.y < get_viewport_rect().size.y - bound_padding.y:  
 		position.y += move_speed.y * delta
 	if Input.is_action_pressed("left") and position.x + right_bound * scale.x > bound_padding.x:  
 		position.x -= move_speed.x * delta
 	if Input.is_action_pressed("right") and position.x + left_bound * scale.x < get_viewport_rect().size.x - bound_padding.x: 
 		position.x += move_speed.x * delta
 
-	if Input.is_action_pressed("shoulder_left"): if scale > min_scale: adjust_scale(delta, -1)
-	if Input.is_action_pressed("shoulder_right"): if scale < max_scale: adjust_scale(delta, 1)
+	if Input.is_action_pressed("shoulder_left") and scale > min_scale:
+		adjust_scale(delta, -1)
+	if Input.is_action_pressed("shoulder_right") and scale < max_scale:
+		adjust_scale(delta, 1)
 
-	if Input.is_action_just_pressed("center_map"): center_map()
-	if Input.is_action_just_pressed("flag_minimap"): flag_minimap()
-	
-	if Input.is_action_just_pressed("unpause"):
-		fade_out_minimap()
-		state = States.ANIMATING_OUT
+	if Input.is_action_just_pressed("center_map"):
+		center_map()
+	if Input.is_action_just_pressed("flag_minimap"):
+		flag_minimap()
 
 func set_bounds():
 	var top = INF

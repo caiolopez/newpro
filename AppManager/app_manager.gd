@@ -4,9 +4,14 @@ extends Node
 var game_time: float = 0.0
 var is_time_running: bool = false
 
+signal game_paused
+signal game_unpaused
+
 func _ready() -> void:
 	state_machine.start()
 
-func _process(delta):
-	if is_time_running and not state_machine.is_current_state("AppStatePaused"):
-		game_time += delta
+func pause():
+	state_machine.set_state("AppStatePaused")
+
+func unpause():
+	state_machine.set_state("AppStateInGame")

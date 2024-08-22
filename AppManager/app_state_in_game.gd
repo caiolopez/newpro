@@ -1,11 +1,12 @@
 extends AppState
 
 func on_enter():
-	pass
+	get_tree().paused = false
+	app_manager.game_unpaused.emit()
+	if DebugTools.print_stuff: print("Game Unpaused.")
 
-func on_process(_delta):
-	if Input.is_action_just_pressed("pause"):
-		machine.set_state("AppStatePaused")
+func on_process(delta):
+	app_manager.game_time += delta
 
 func on_exit():
 	pass
