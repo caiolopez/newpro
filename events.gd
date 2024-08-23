@@ -16,6 +16,8 @@ signal hero_respawned_at_checkpoint()
 signal hero_spawned()
 signal hero_died()
 
+signal hero_got_collectible(type: StringName)
+
 signal show_dialog(dialog: StringName)
 signal hide_dialog()
 

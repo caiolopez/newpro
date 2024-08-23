@@ -1,0 +1,150 @@
+[gd_scene load_steps=24 format=3 uid="uid://bfhx6g0duy3tv"]
+
+[ext_resource type="PackedScene" uid="uid://bpvdllp0rrnq7" path="res://EntityComponents/CollectOnTouch.tscn" id="1_ojpps"]
+[ext_resource type="Script" path="res://EntityComponents/collect_on_touch.gd" id="2_s03ty"]
+[ext_resource type="PackedScene" uid="uid://djwwpps3fxvtg" path="res://EntityComponents/GfxController.tscn" id="3_h4oeq"]
+[ext_resource type="PackedScene" uid="uid://1votnx34efdj" path="res://EntityComponents/BWShaderSetter.tscn" id="4_g3b68"]
+[ext_resource type="Texture2D" uid="uid://0l05qi2ha4p5" path="res://hero.png" id="5_6rkle"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xvu6l"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iabct"]
+atlas = ExtResource("5_6rkle")
+region = Rect2(0, 0, 2, 2)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w1j1y"]
+atlas = ExtResource("5_6rkle")
+region = Rect2(2, 0, 2, 2)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8o37v"]
+atlas = ExtResource("5_6rkle")
+region = Rect2(4, 0, 2, 2)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_20m1r"]
+atlas = ExtResource("5_6rkle")
+region = Rect2(6, 0, 2, 2)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kyg6i"]
+atlas = ExtResource("5_6rkle")
+region = Rect2(0, 2, 2, 2)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x2cq7"]
+atlas = ExtResource("5_6rkle")
+region = Rect2(2, 2, 2, 2)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hfo1k"]
+atlas = ExtResource("5_6rkle")
+region = Rect2(4, 2, 2, 2)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rb774"]
+atlas = ExtResource("5_6rkle")
+region = Rect2(6, 2, 2, 2)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qmnb8"]
+atlas = ExtResource("5_6rkle")
+region = Rect2(0, 4, 2, 2)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hi2hh"]
+atlas = ExtResource("5_6rkle")
+region = Rect2(2, 4, 2, 2)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hat11"]
+atlas = ExtResource("5_6rkle")
+region = Rect2(4, 4, 2, 2)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n0mx8"]
+atlas = ExtResource("5_6rkle")
+region = Rect2(6, 4, 2, 2)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ey6t"]
+atlas = ExtResource("5_6rkle")
+region = Rect2(0, 6, 2, 2)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_llufl"]
+atlas = ExtResource("5_6rkle")
+region = Rect2(2, 6, 2, 2)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3tw0f"]
+atlas = ExtResource("5_6rkle")
+region = Rect2(4, 6, 2, 2)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_45pfo"]
+atlas = ExtResource("5_6rkle")
+region = Rect2(6, 6, 2, 2)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a4df3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iabct")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w1j1y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8o37v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_20m1r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kyg6i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x2cq7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hfo1k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rb774")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qmnb8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hi2hh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hat11")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n0mx8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ey6t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_llufl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3tw0f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_45pfo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 20.0
+}]
+
+[node name="IncendiaryAmmo" type="Node2D"]
+
+[node name="CollectOnTouch" parent="." instance=ExtResource("1_ojpps")]
+collision_mask = 8
+script = ExtResource("2_s03ty")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollectOnTouch"]
+shape = SubResource("RectangleShape2D_xvu6l")
+
+[node name="GfxController" parent="." instance=ExtResource("3_h4oeq")]
+scale = Vector2(6, 6)
+
+[node name="BwShaderSetter" parent="GfxController" instance=ExtResource("4_g3b68")]
+dark_color = Color(0.4584, 0.116928, 0.157117, 1)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="GfxController"]
+sprite_frames = SubResource("SpriteFrames_a4df3")
+autoplay = "default"
+frame = 15
+frame_progress = 1.0

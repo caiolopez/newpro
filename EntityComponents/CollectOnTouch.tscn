@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://bpvdllp0rrnq7"]
+
+[node name="CollectOnTouch" type="Area2D"]
