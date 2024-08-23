@@ -437,8 +437,6 @@ process_mode = 3
 [node name="MiniMap" parent="HUD" instance=ExtResource("2_is0lr")]
 
 [node name="Dialog" parent="HUD" instance=ExtResource("3_v2q5r")]
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="Hero" parent="." instance=ExtResource("2_acvau")]
 z_index = 2

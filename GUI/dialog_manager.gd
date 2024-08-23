@@ -20,7 +20,8 @@ var avatar_textures = {
 
 var current_dialog = []
 var dialog_index: int = 0
-var tween: Tween
+var tween_chars: Tween
+var tween_pos: Tween
 
 @onready var dialog_box: NinePatchRect = $DialogBox
 @onready var avatar: TextureRect = $DialogBox/Avatar
@@ -36,7 +37,7 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("up"):
 		if text_label.visible_ratio < 1.0:
 			text_label.visible_ratio = 1.0
-			tween.kill()
+			tween_chars.kill()
 		else:
 			show_next_line()
 
@@ -44,7 +45,7 @@ func start_dialog(key: StringName) -> void:
 	current_dialog = dialogs.get(key, [])
 	dialog_index = 0
 	show_next_line()
-	dialog_box.show()
+	tween_dialog_box(true)
 
 func show_next_line() -> void:
 	if dialog_index < current_dialog.size():
@@ -55,11 +56,28 @@ func show_next_line() -> void:
 		
 		text_label.visible_ratio = 0
 		
-		tween = create_tween()
-		tween.tween_property(text_label, "visible_ratio", 1.0, 0.01 * line.text.length())
+		tween_chars = create_tween()
+		tween_chars.tween_property(text_label, "visible_ratio", 1.0, 0.02 * line.text.length())
 	else:
-		hide_dialog()
+		tween_dialog_box(false)
 
 func hide_dialog() -> void:
-	dialog_box.hide()
-	tween.kill()
+	tween_chars.kill()
+	text_label.visible_ratio = 1.0
+	tween_dialog_box(false)
+
+func tween_dialog_box(show: bool) -> void:
+	if tween_pos and tween_pos.is_running():
+		tween_pos.kill()
+	
+	var start_position = Vector2(dialog_box.position.x, 1080)
+	var end_position = Vector2(dialog_box.position.x, 1080 - dialog_box.size.y)
+	
+	tween_pos = create_tween()
+	if show:
+		dialog_box.show()
+		dialog_box.position = start_position
+		tween_pos.tween_property(dialog_box, "position", end_position, 0.25).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
+	else:
+		tween_pos.tween_property(dialog_box, "position", start_position, 0.25).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_BACK)
+		tween_pos.tween_callback(dialog_box.hide)

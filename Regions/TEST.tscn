@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://cv2bdmdm7ivmp"]
+[gd_scene load_steps=51 format=3 uid="uid://cv2bdmdm7ivmp"]
 
 [ext_resource type="Script" path="res://Regions/region.gd" id="1_fjngo"]
 [ext_resource type="PackedScene" uid="uid://csvdenv1i3dc3" path="res://Bullet/Teleporter.tscn" id="2_6ojyo"]
@@ -29,6 +29,7 @@
 [ext_resource type="PackedScene" uid="uid://7jpetdd82f2l" path="res://GUI/map_sector.tscn" id="27_eveqp"]
 [ext_resource type="PackedScene" uid="uid://3evhvetyekwd" path="res://Entities/Slinky.tscn" id="28_48pge"]
 [ext_resource type="PackedScene" uid="uid://ctie7rq86pefq" path="res://Dialog/DialogTrigger.tscn" id="29_tvc4e"]
+[ext_resource type="PackedScene" uid="uid://bfhx6g0duy3tv" path="res://Collectibles/IncendiaryAmmo.tscn" id="30_1hxe5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1suec"]
 size = Vector2(128, 128)
@@ -594,6 +595,9 @@ position = Vector2(-4792, 80)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DialogTrigger"]
 position = Vector2(-16, 72)
 shape = SubResource("RectangleShape2D_jexxc")
+
+[node name="IncendiaryAmmo" parent="." instance=ExtResource("30_1hxe5")]
+position = Vector2(-5160, 64)
 
 [editable path="Zombie"]
 [editable path="Spike"]
