@@ -324,6 +324,7 @@ debug_color = Color(0.412372, 0.598973, 0.267216, 0.42)
 
 [node name="CameraLocker5" parent="." instance=ExtResource("15_rjmeg")]
 position = Vector2(-168, 1824)
+axes_to_lock = 0
 center_at_edge = true
 
 [node name="UniqueCollider" parent="CameraLocker5" index="0"]
@@ -337,6 +338,7 @@ position = Vector2(-40, 72)
 [node name="CameraLocker6" parent="." instance=ExtResource("15_rjmeg")]
 position = Vector2(160, -1248)
 axes_to_lock = 2
+center_at_edge = false
 
 [node name="UniqueCollider" parent="CameraLocker6" index="0"]
 position = Vector2(-208, 20)
@@ -350,6 +352,7 @@ position = Vector2(-216, 16)
 [node name="CameraLocker7" parent="." instance=ExtResource("15_rjmeg")]
 position = Vector2(824, 1968)
 axes_to_lock = 1
+center_at_edge = false
 
 [node name="UniqueCollider" parent="CameraLocker7" index="0"]
 position = Vector2(0, -8)
@@ -599,6 +602,12 @@ shape = SubResource("RectangleShape2D_jexxc")
 [node name="IncendiaryAmmo" parent="." instance=ExtResource("30_1hxe5")]
 position = Vector2(-5160, 64)
 
+[node name="Teleporter_powerup" parent="." instance=ExtResource("30_1hxe5")]
+position = Vector2(-208, 792)
+
+[node name="CollectOnTouch" parent="Teleporter_powerup" index="0"]
+type = 4
+
 [editable path="Zombie"]
 [editable path="Spike"]
 [editable path="Spike2"]
@@ -612,3 +621,4 @@ position = Vector2(-5160, 64)
 [editable path="Node2D/MapSector4"]
 [editable path="Node2D/MapSector3"]
 [editable path="Node2D/MapSector2"]
+[editable path="Teleporter_powerup"]

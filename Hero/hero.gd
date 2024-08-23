@@ -1,6 +1,5 @@
 class_name Hero extends CharacterBody2D
 
-@export var can_dive: bool = false ## Whether the hero has the ability to dive into water instead of floating.
 @export var regular_shot_speed: float = 1000 ## The speed the normal shot moves. For blundershot setup, use Shooter component.
 @export var SPEED: float = 600.0 ## The moving speed of the hero.
 @export var JUMP_VELOCITY: float  = -1000.0 ## The speed the hero jumps when grounded.
@@ -35,6 +34,7 @@ class_name Hero extends CharacterBody2D
 @onready var dmg_taker: DmgTaker = $DmgTaker
 @onready var shooter: Shooter = $Shooter
 const is_foe: bool = false ## Flag necessary for components that are shared between Hero and enemies.
+var can_dive: bool = false ## Whether the hero has the ability to dive into water instead of floating.
 var current_checkpoint_path: NodePath
 var current_blunder_jump_angle: float
 var was_on_wall: bool ## For variable change caculation
@@ -54,6 +54,7 @@ var just_left_water: bool
 var last_water_surface: float
 
 func _ready():
+	Events.hero_got_collectible.connect(handle_powerups)
 	Events.hero_hit_teleporter.connect(_on_hero_hit_teleporter)
 	ComboParser.combo_performed.connect(func(combo): if combo == "Die": die())
 
@@ -203,3 +204,22 @@ func on_water_status_changed(_is_in_water: bool, water: Water):
 
 func repel_ass(delta, repulsion_velocity: float = 50000):
 	velocity.x = repulsion_velocity * facing_direction * delta
+
+func handle_powerups(type: StringName):
+	match type:
+		"NONE":
+			return
+		"INCENDIARY_AMMO":
+			shooter.bullet_type = Constants.BulletType.FIRE
+			SaveManager.log_hero_change("got_incendiary_ammo", true)
+		"UNDERWATER_AMMO":
+			shooter.shoots_underwater_ammo = true
+			SaveManager.log_hero_change("got_underwater_ammo", true)
+		"AQUALUNG":
+			can_dive = true
+			SaveManager.log_hero_change("got_aqualung", true)
+		"TELEPORTER":
+			AppManager.teleporters_are_active = true
+			SaveManager.log_hero_change("got_teleporter", true)
+		
+	

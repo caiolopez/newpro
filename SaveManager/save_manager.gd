@@ -95,12 +95,13 @@ func inject_changes_into_hero():
 	for key in hero_persistence:
 		var value = hero_persistence[key]
 		match key:
-			"current_checkpoint_path":
-				h.current_checkpoint_path = value
-			"can_dive": h.can_dive = value
+			"current_checkpoint_path": h.current_checkpoint_path = value
+			"got_incendiary_ammo": h.shooter.bullet_type = Constants.BulletType.FIRE
+			"got_underwater_ammo": h.shooter.shoots_underwater_ammo = value
+			"got_aqualung": h.can_dive = value
+			"got_teleporter": AppManager.teleporters_are_active = value
 			"elapsed_time": AppManager.game_time = value
-			"current_region":
-				RegionManager.change_region(Constants.RegName.get(value))
+			"current_region": RegionManager.change_region(Constants.RegName.get(value))
 
 func load_from_slot(slot: int = current_slot):
 	current_slot = slot

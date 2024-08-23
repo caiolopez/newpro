@@ -9,7 +9,8 @@ signal camera_shake(duration: float, amount: float)
 signal camera_stop_shake()
 signal camera_set_glpos(glpos: Vector2)
 
-signal hero_hit_teleporter(teleporter: Teleporter)
+signal hero_hit_teleporter(teleporter: Teleporter) # When a hero shot hits active teleporter
+signal teleporters_activated(enabled: bool) # When hero collects powerup that activates teleporters
 
 signal hero_reached_checkpoint()
 signal hero_respawned_at_checkpoint()

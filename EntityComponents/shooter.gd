@@ -4,6 +4,7 @@ class_name Shooter extends Node2D
 @export var pellet_separation_angle: float = 30 ## The amount of projectiles released in a shot.
 @export var pellet_speed: float = 500
 @export var bullet_type: Constants.BulletType
+@export var shoots_underwater_ammo: bool = false
 @export var rotates_with_parent: bool = false
 @export var time_before_visible: float = 0.01 ## The time it takes for the bullet to become visible after being shot. Useful to hide bullets before they left the barrel, for instance.
 @export_group("autoshoot")
@@ -32,10 +33,8 @@ func _ready():
 	Events.hero_died.connect(func(): halt = true)
 	Events.hero_respawned_at_checkpoint.connect(func(): halt = false)
 
-	
 	if auto_shoots:
 		timer_shot_cooldown.start()
-
 
 func automate_shooting():
 	if halt: return
@@ -52,11 +51,9 @@ func automate_shooting():
 	current_burst_count += 1
 	shoot()
 
-
 func shoot(speed: float = pellet_speed, angle: float = 0, amount: int = pellet_amount, ignore_facing_direction: bool = false, inverted: bool = false) -> Array[Area2D]:
 	var cur_rotation: float = 0
-	
-	
+
 	if not ignore_facing_direction:
 		if "facing_direction" in get_parent():
 			facing_direction = get_parent().facing_direction
@@ -71,8 +68,7 @@ func shoot(speed: float = pellet_speed, angle: float = 0, amount: int = pellet_a
 
 	if rotates_with_parent:
 		cur_rotation = get_parent().rotation_degrees
-	
-	
+
 	var top_angle: float = (amount-1) * pellet_separation_angle / 2
 	var bullets: Array[Area2D] = []
 	
@@ -84,22 +80,20 @@ func shoot(speed: float = pellet_speed, angle: float = 0, amount: int = pellet_a
 			is_foe,
 			bullet_type,
 			(top_angle - pellet_separation_angle * i) + cur_rotation + angle,
-			time_before_visible
+			time_before_visible,
+			shoots_underwater_ammo
 		)
 		bullets.append(bullet)
 	return bullets
-	
 
 func shoot_ad_hoc(speed: float = 200, angle: float = 0, ignore_facing_direction: bool = false, inverted: bool = false) -> Array[Area2D]:
 	return shoot(speed, angle, 1, ignore_facing_direction, inverted)
-
 
 func reset_behavior():
 	if auto_shoots:
 		current_burst_count = 1
 		timer_shot_cooldown.start()
 		timer_burst_cooldown.stop()
-
 
 func return_to_og_pos():
 	position = og_pos

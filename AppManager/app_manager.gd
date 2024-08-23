@@ -2,6 +2,10 @@ extends Node
 
 @onready var state_machine: StateMachine = $StateMachine
 var game_time: float = 0.0
+var teleporters_are_active: bool:
+	set(value):
+		teleporters_are_active = value
+		Events.teleporters_activated.emit(value)
 var is_time_running: bool = false
 
 signal game_paused
