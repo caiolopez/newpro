@@ -33,6 +33,7 @@ func _ready():
 		trail_sprite.centered = target.centered
 		trail_sprite.offset = target.offset
 		trail_sprite.z_index = -i - 1
+		trail_sprite.use_parent_material = true
 		add_child(trail_sprite)
 		trail_sprites.append(trail_sprite)
 	
