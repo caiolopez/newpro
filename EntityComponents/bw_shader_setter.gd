@@ -22,11 +22,6 @@ func _update_color() -> void:
 	mat.set_shader_parameter("replace_black", dark_color)
 	mat.set_shader_parameter("replace_white", light_color)
 
-func set_color_name(dark: StringName, light: StringName):
-	dark_color_name = dark
-	light_color_name = light
-	_update_color()
-
 func set_color(dark: Color, light: Color):
 	dark_color_name = &""
 	light_color_name = &""

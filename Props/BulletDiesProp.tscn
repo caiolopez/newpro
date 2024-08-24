@@ -1,14 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://cj3otm63bgg5l"]
+[gd_scene load_steps=19 format=3 uid="uid://cj3otm63bgg5l"]
 
-[ext_resource type="Shader" path="res://CaioShaders/bw_replacer.gdshader" id="1_3o4y7"]
 [ext_resource type="Texture2D" uid="uid://bit4nev2pmi03" path="res://Props/bullet_dies.png" id="1_i2nkp"]
 [ext_resource type="PackedScene" uid="uid://manmyevja5y2" path="res://EntityComponents/OnParentAnimEnd.tscn" id="3_8qejn"]
 [ext_resource type="PackedScene" uid="uid://dtiweonbpewyr" path="res://EntityComponents/AutoSpriteFlipper.tscn" id="4_3inv6"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_tbljs"]
-shader = ExtResource("1_3o4y7")
-shader_parameter/replace_black = Color(0.44, 0, 0, 1)
-shader_parameter/replace_white = Color(0.8, 0.29, 0.29, 1)
+[ext_resource type="PackedScene" uid="uid://1votnx34efdj" path="res://EntityComponents/BWShaderSetter.tscn" id="4_8u4nu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gk7wt"]
 atlas = ExtResource("1_i2nkp")
@@ -110,7 +105,6 @@ animations = [{
 }]
 
 [node name="BulletDiesProp" type="AnimatedSprite2D"]
-material = SubResource("ShaderMaterial_tbljs")
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_bseya")
 
@@ -120,3 +114,5 @@ effect = 1
 [node name="AutoSpriteFlipper" parent="." instance=ExtResource("4_3inv6")]
 randomize_v = true
 randomize_90deg_turn = true
+
+[node name="BwShaderSetter" parent="." instance=ExtResource("4_8u4nu")]

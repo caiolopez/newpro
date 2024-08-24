@@ -18,8 +18,6 @@ var timer_before_visible: Timer
 func _ready():
 	$IsInWaterNotifier.water_state_changed.connect(on_water_status_changed)
 	$VisibleOnScreenNotifier2D.screen_exited.connect(func(): BulletManager.release_bullet(self))
-	
-	material = material.duplicate()
 
 	body_entered.connect(func(body):
 		if body.is_in_group("kills_bullets"):
@@ -63,10 +61,6 @@ func on_water_status_changed(is_in_water: bool, water: Water):
 			if water and abs(global_position.y - water.get_surface_global_position()) <= 32:
 				PropManager.place_prop(Vector2(global_position.x, water.get_surface_global_position()), &"splash")
 
-func apply_color() -> void:
-		material.set_shader_parameter("replace_black", current_dark_color)
-		material.set_shader_parameter("replace_white", current_light_color)
-
 func animate():
 	var a: String
 	match bullet_type:
@@ -78,20 +72,19 @@ func animate():
 			a = "fire_"
 			current_dark_color = Constants.BULLET_FIRE_DARK
 			current_light_color = Constants.BULLET_FIRE_LIGHT
-			
+
+	$BwShaderSetter.set_color(current_dark_color, current_light_color)
+
 	if $IsInWaterNotifier.is_in_water:
 		a += "wet"
 	else:
 		a += "dry"
 	get_node("AnimatedSprite2D").play(a)
 	Utils.randomize_animation_frame(get_node("AnimatedSprite2D"))
-	apply_color()
 
 func kill_bullet():
 	var new_dies_prop = PropManager.place_prop(global_position, &"bullet_dies")
 	if new_dies_prop:
-		new_dies_prop.material = material.duplicate()
-		new_dies_prop.material.set_shader_parameter("replace_black", current_dark_color)
-		new_dies_prop.material.set_shader_parameter("replace_white", current_light_color)
+		new_dies_prop.get_node("BwShaderSetter").set_color(current_dark_color, current_light_color)
 	$BlurFX.generating_copies = false
 	BulletManager.release_bullet(self)
