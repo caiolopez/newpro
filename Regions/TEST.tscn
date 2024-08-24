@@ -602,6 +602,9 @@ shape = SubResource("RectangleShape2D_jexxc")
 [node name="IncendiaryAmmo" parent="." instance=ExtResource("30_1hxe5")]
 position = Vector2(-5160, 64)
 
+[node name="CollectOnTouch" parent="IncendiaryAmmo" index="0"]
+type = 1
+
 [node name="Teleporter_powerup" parent="." instance=ExtResource("30_1hxe5")]
 position = Vector2(-208, 792)
 
@@ -621,4 +624,5 @@ type = 4
 [editable path="Node2D/MapSector4"]
 [editable path="Node2D/MapSector3"]
 [editable path="Node2D/MapSector2"]
+[editable path="IncendiaryAmmo"]
 [editable path="Teleporter_powerup"]

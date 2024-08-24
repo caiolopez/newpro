@@ -5,19 +5,21 @@ var bullet_type: Constants.BulletType
 var DMG_AMOUNT: int = 1
 var WATER_DRAG = 0.8
 var AIR_DRAG = 0
+var current_dark_color: Color
+var current_light_color: Color
 var velocity: Vector2
 var current_drag: float
 var current_gravity: float
 var acceleration: Vector2
 var is_underwater_ammo: bool
-var dark_color: Color
-var light_color: Color
 var time_before_visible: float = 0.05
 var timer_before_visible: Timer
 
 func _ready():
 	$IsInWaterNotifier.water_state_changed.connect(on_water_status_changed)
 	$VisibleOnScreenNotifier2D.screen_exited.connect(func(): BulletManager.release_bullet(self))
+	
+	material = material.duplicate()
 
 	body_entered.connect(func(body):
 		if body.is_in_group("kills_bullets"):
@@ -31,7 +33,6 @@ func _ready():
 	current_drag = AIR_DRAG
 	current_gravity = 0
 	visible = false
-	set_color()
 	await get_tree().process_frame # TODO: Come up with a way to prevent those bullets from being instantiated instead.
 	if not $VisibleOnScreenNotifier2D.is_on_screen():
 		BulletManager.release_bullet(self)
@@ -42,12 +43,6 @@ func restart():
 	current_gravity = 0
 	animate()
 	$BlurFX.generating_copies = true
-
-func set_color():
-	dark_color = Constants.BULLET_REGULAR_DARK
-	light_color = Constants.BULLET_REGULAR_LIGHT
-	material.set_shader_parameter("replace_black", dark_color)
-	material.set_shader_parameter("replace_white", light_color)
 
 func _physics_process(delta):
 	var drag: Vector2
@@ -68,22 +63,35 @@ func on_water_status_changed(is_in_water: bool, water: Water):
 			if water and abs(global_position.y - water.get_surface_global_position()) <= 32:
 				PropManager.place_prop(Vector2(global_position.x, water.get_surface_global_position()), &"splash")
 
+func apply_color() -> void:
+		material.set_shader_parameter("replace_black", current_dark_color)
+		material.set_shader_parameter("replace_white", current_light_color)
+
 func animate():
 	var a: String
 	match bullet_type:
-		Constants.BulletType.REGULAR: a = "regular_"
-		Constants.BulletType.FIRE: a = "fire_"
+		Constants.BulletType.REGULAR:
+			a = "regular_"
+			current_dark_color = Constants.BULLET_REGULAR_DARK
+			current_light_color = Constants.BULLET_REGULAR_LIGHT
+		Constants.BulletType.FIRE:
+			a = "fire_"
+			current_dark_color = Constants.BULLET_FIRE_DARK
+			current_light_color = Constants.BULLET_FIRE_LIGHT
+			
 	if $IsInWaterNotifier.is_in_water:
 		a += "wet"
 	else:
 		a += "dry"
 	get_node("AnimatedSprite2D").play(a)
 	Utils.randomize_animation_frame(get_node("AnimatedSprite2D"))
+	apply_color()
 
 func kill_bullet():
 	var new_dies_prop = PropManager.place_prop(global_position, &"bullet_dies")
 	if new_dies_prop:
-		new_dies_prop.material.set_shader_parameter("replace_black", dark_color)
-		new_dies_prop.material.set_shader_parameter("replace_white", light_color)
+		new_dies_prop.material = material.duplicate()
+		new_dies_prop.material.set_shader_parameter("replace_black", current_dark_color)
+		new_dies_prop.material.set_shader_parameter("replace_white", current_light_color)
 	$BlurFX.generating_copies = false
 	BulletManager.release_bullet(self)
