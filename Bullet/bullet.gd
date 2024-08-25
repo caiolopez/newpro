@@ -40,7 +40,6 @@ func restart():
 	current_drag = AIR_DRAG
 	current_gravity = 0
 	animate()
-	$BlurFX.generating_copies = true
 
 func _physics_process(delta):
 	var drag: Vector2
@@ -86,5 +85,4 @@ func kill_bullet():
 	var new_dies_prop = PropManager.place_prop(global_position, &"bullet_dies")
 	if new_dies_prop:
 		new_dies_prop.get_node("BwShaderSetter").set_color(current_dark_color, current_light_color)
-	$BlurFX.generating_copies = false
 	BulletManager.release_bullet(self)
