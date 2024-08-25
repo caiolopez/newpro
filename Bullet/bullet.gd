@@ -49,14 +49,20 @@ func _physics_process(delta):
 	global_position += delta*velocity
 
 func on_water_status_changed(is_in_water: bool, water: Water):
-		if is_in_water\
-		and not is_underwater_ammo:
-			current_drag = WATER_DRAG
-			current_gravity = gravity
+		if is_in_water:
+			if not is_underwater_ammo:
+				current_drag = WATER_DRAG
+				current_gravity = gravity
+			else:
+				bullet_type = Constants.BulletType.UNDERWATER
 			if water and abs(global_position.y - water.get_surface_global_position()) <= 16:
 				PropManager.place_prop(Vector2(global_position.x, water.get_surface_global_position()), &"splash")
+				
 			animate()
 		else:
+			if bullet_type == Constants.BulletType.UNDERWATER:
+				current_drag = WATER_DRAG
+				current_gravity = gravity
 			if water and abs(global_position.y - water.get_surface_global_position()) <= 32:
 				PropManager.place_prop(Vector2(global_position.x, water.get_surface_global_position()), &"splash")
 
@@ -65,21 +71,24 @@ func animate():
 	match bullet_type:
 		Constants.BulletType.REGULAR:
 			a = "regular_"
-			current_dark_color = Constants.BULLET_REGULAR_DARK
-			current_light_color = Constants.BULLET_REGULAR_LIGHT
 		Constants.BulletType.FIRE:
 			a = "fire_"
-			current_dark_color = Constants.BULLET_FIRE_DARK
-			current_light_color = Constants.BULLET_FIRE_LIGHT
-
-	$BwShaderSetter.set_color(current_dark_color, current_light_color)
-
+		Constants.BulletType.UNDERWATER:
+			a = "underwater_"
+ 
 	if $IsInWaterNotifier.is_in_water:
 		a += "wet"
 	else:
 		a += "dry"
 	get_node("AnimatedSprite2D").play(a)
 	Utils.randomize_animation_frame(get_node("AnimatedSprite2D"))
+	
+	var color_constant: StringName = ("BULLET_" + a.to_upper() + "_COLORS")
+	if Constants.get(color_constant):
+		current_dark_color = Constants.get(color_constant)[0]
+		current_light_color = Constants.get(color_constant)[1]
+	
+	$BwShaderSetter.set_color(current_dark_color, current_light_color)
 
 func kill_bullet():
 	var new_dies_prop = PropManager.place_prop(global_position, &"bullet_dies")

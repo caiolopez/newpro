@@ -6,8 +6,8 @@ var original_material: Material = null
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 func _ready():
-	material.set_shader_parameter("replace_black", Constants.HERO_DARK)
-	material.set_shader_parameter("replace_white", Constants.HERO_LIGHT)
+	material.set_shader_parameter("replace_black", Constants.HERO_COLORS[0])
+	material.set_shader_parameter("replace_white", Constants.HERO_COLORS[1])
 	original_material = material
 
 	animated_sprite.animation_finished.connect(_on_animation_finished)

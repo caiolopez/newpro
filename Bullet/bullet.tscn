@@ -96,7 +96,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"fire_dry",
-"speed": 5.0
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -151,6 +151,52 @@ animations = [{
 "loop": true,
 "name": &"regular_wet",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2i8wb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0a2x0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_feore")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ex0wd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3dkk5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_awadn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0pa02")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rk6u0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jm4ya")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1tab8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jok56")
+}],
+"loop": true,
+"name": &"underwater_dry",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d4076")
+}],
+"loop": true,
+"name": &"underwater_wet",
+"speed": 5.0
 }]
 
 [node name="Bullet" type="Area2D" groups=["bullets", "dmg_dealers"]]
@@ -164,7 +210,7 @@ shape = SubResource("CircleShape2D_450i0")
 use_parent_material = true
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_eo4fx")
-animation = &"fire_wet"
+animation = &"underwater_wet"
 
 [node name="AutoSpriteFlipper" parent="AnimatedSprite2D" instance=ExtResource("5_ta7p5")]
 position = Vector2(-7.68811, -7.46451)

@@ -608,6 +608,18 @@ position = Vector2(-208, 792)
 [node name="CollectOnTouch" parent="Teleporter_powerup" index="0"]
 type = 4
 
+[node name="underwater_ammo" parent="." instance=ExtResource("30_1hxe5")]
+position = Vector2(-3392, 600)
+
+[node name="CollectOnTouch" parent="underwater_ammo" index="0"]
+type = 2
+
+[node name="aqualung" parent="." instance=ExtResource("30_1hxe5")]
+position = Vector2(-3104, 1232)
+
+[node name="CollectOnTouch" parent="aqualung" index="0"]
+type = 3
+
 [editable path="Zombie"]
 [editable path="Spike"]
 [editable path="Spike2"]
@@ -623,3 +635,5 @@ type = 4
 [editable path="Node2D/MapSector2"]
 [editable path="IncendiaryAmmo"]
 [editable path="Teleporter_powerup"]
+[editable path="underwater_ammo"]
+[editable path="aqualung"]
