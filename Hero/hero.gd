@@ -200,6 +200,7 @@ func blundershoot():
 
 func on_water_status_changed(_is_in_water: bool, water: Water):
 	self.is_in_water = _is_in_water
+	shooter.is_in_water = _is_in_water
 	last_water_surface = water.get_surface_global_position()
 
 func repel_ass(delta, repulsion_velocity: float = 50000):
