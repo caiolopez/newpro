@@ -1,4 +1,4 @@
-[gd_scene load_steps=228 format=3 uid="uid://1md1m8n6iq5x"]
+[gd_scene load_steps=229 format=3 uid="uid://1md1m8n6iq5x"]
 
 [ext_resource type="Script" path="res://Hero/hero.gd" id="1_dmqn8"]
 [ext_resource type="PackedScene" uid="uid://box2ff3vwcc7w" path="res://EntityComponents/DmgTaker.tscn" id="2_ktrux"]
@@ -1448,6 +1448,9 @@ size = Vector2(80, 152)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8r0xo"]
 size = Vector2(80, 152)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3saph"]
+size = Vector2(144, 24)
+
 [node name="Hero" type="CharacterBody2D" node_paths=PackedStringArray("state_machine") groups=["heroes", "uncrushables"]]
 collision_layer = 8
 floor_snap_length = 12.0
@@ -1696,3 +1699,10 @@ position = Vector2(0, -12)
 shape = SubResource("RectangleShape2D_8r0xo")
 
 [node name="BlurFX" parent="." instance=ExtResource("50_6e2hc")]
+
+[node name="IsInWaterNotifier_GUN" parent="." instance=ExtResource("49_p6sxx")]
+auto_connect_to_parent = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="IsInWaterNotifier_GUN"]
+position = Vector2(0, -44)
+shape = SubResource("RectangleShape2D_3saph")

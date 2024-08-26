@@ -57,6 +57,7 @@ func _ready():
 	Events.hero_got_collectible.connect(handle_powerups)
 	Events.hero_hit_teleporter.connect(_on_hero_hit_teleporter)
 	ComboParser.combo_performed.connect(func(combo): if combo == "Die": die())
+	$IsInWaterNotifier_GUN.water_state_changed.connect(on_water_status_changed_on_gun)
 
 	set_safe_margin(0.08)
 	state_machine.start()
@@ -200,8 +201,10 @@ func blundershoot():
 
 func on_water_status_changed(_is_in_water: bool, water: Water):
 	self.is_in_water = _is_in_water
-	shooter.is_in_water = _is_in_water
 	last_water_surface = water.get_surface_global_position()
+
+func on_water_status_changed_on_gun(_is_in_water: bool, water: Water):
+	shooter.is_in_water = _is_in_water
 
 func repel_ass(delta, repulsion_velocity: float = 50000):
 	velocity.x = repulsion_velocity * facing_direction * delta
