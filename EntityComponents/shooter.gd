@@ -18,6 +18,7 @@ class_name Shooter extends Node2D
 @onready var timer_burst_cooldown: Timer = get_node("TimeBetweenBursts")
 @onready var is_foe: bool = Utils.check_if_foe(self.get_parent()) ## If no FriendOrFoe sibling component is found, assumes is_foe = true.
 @onready var og_pos: Vector2 = position
+var is_in_water: bool = false
 var shot_offset: Vector2 = Vector2.ZERO
 var facing_direction: int = 1
 var current_burst_count: int = 1
@@ -71,14 +72,18 @@ func shoot(speed: float = pellet_speed, angle: float = 0, amount: int = pellet_a
 
 	var top_angle: float = (amount-1) * pellet_separation_angle / 2
 	var bullets: Array[Area2D] = []
-	
+
+	var b_type = bullet_type
+	if shoots_underwater_ammo and is_in_water:
+		b_type = Constants.BulletType.UNDERWATER
+
 	for i in range(amount):
 		var bullet: Area2D = BulletManager.place_bullet(
 			facing_direction,
 			get_parent().global_position + Vector2(position.x * facing_direction, position.y).rotated(deg_to_rad(cur_rotation)),
 			Vector2(speed, 0),
 			is_foe,
-			bullet_type,
+			b_type,
 			(top_angle - pellet_separation_angle * i) + cur_rotation + angle,
 			time_before_visible,
 			shoots_underwater_ammo
