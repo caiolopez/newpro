@@ -49,22 +49,16 @@ func _physics_process(delta):
 	global_position += delta*velocity
 
 func on_water_status_changed(is_in_water: bool, water: Water):
-		if is_in_water:
-			if not is_underwater_ammo:
-				current_drag = WATER_DRAG
-				current_gravity = gravity
-			else:
-				bullet_type = Constants.BulletType.UNDERWATER
-			if water and abs(global_position.y - water.get_surface_global_position()) <= 16:
-				PropManager.place_prop(Vector2(global_position.x, water.get_surface_global_position()), &"splash")
-				
-			animate()
-		else:
-			if bullet_type == Constants.BulletType.UNDERWATER:
-				current_drag = WATER_DRAG
-				current_gravity = gravity
-			if water and abs(global_position.y - water.get_surface_global_position()) <= 32:
-				PropManager.place_prop(Vector2(global_position.x, water.get_surface_global_position()), &"splash")
+	if is_in_water != (bullet_type == Constants.BulletType.UNDERWATER):
+		current_drag = WATER_DRAG
+		current_gravity = gravity
+
+	if water:
+		if abs(global_position.y - water.get_surface_global_position()) <= 16:
+			PropManager.place_prop(Vector2(global_position.x, water.get_surface_global_position()), &"splash")
+
+	if is_in_water:
+		animate()
 
 func animate():
 	var a: String
