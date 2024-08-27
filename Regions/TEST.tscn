@@ -633,6 +633,7 @@ type = 3
 [editable path="Node2D/MapSector4"]
 [editable path="Node2D/MapSector3"]
 [editable path="Node2D/MapSector2"]
+[editable path="Slinky"]
 [editable path="IncendiaryAmmo"]
 [editable path="Teleporter_powerup"]
 [editable path="underwater_ammo"]

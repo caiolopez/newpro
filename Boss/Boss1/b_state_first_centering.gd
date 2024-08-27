@@ -20,5 +20,5 @@ func on_enter():
 
 func on_exit():
 	$"../../DmgDealer".process_mode = Node.PROCESS_MODE_INHERIT
-	$"../../DmgTaker".immune = false
+	$"../../DmgTaker".currently_immune = false
 	tn.kill()
