@@ -95,7 +95,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_jok56")
 }],
 "loop": true,
-"name": &"fire_dry",
+"name": &"fire",
 "speed": 20.0
 }, {
 "frames": [{
@@ -103,7 +103,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_d4076")
 }],
 "loop": true,
-"name": &"fire_wet",
+"name": &"fire_dull",
 "speed": 5.0
 }, {
 "frames": [{
@@ -141,7 +141,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_jok56")
 }],
 "loop": true,
-"name": &"regular_dry",
+"name": &"regular",
 "speed": 20.0
 }, {
 "frames": [{
@@ -149,7 +149,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_d4076")
 }],
 "loop": true,
-"name": &"regular_wet",
+"name": &"regular_dull",
 "speed": 5.0
 }, {
 "frames": [{
@@ -187,7 +187,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_jok56")
 }],
 "loop": true,
-"name": &"underwater_dry",
+"name": &"underwater",
 "speed": 20.0
 }, {
 "frames": [{
@@ -195,8 +195,8 @@ animations = [{
 "texture": SubResource("AtlasTexture_d4076")
 }],
 "loop": true,
-"name": &"underwater_wet",
-"speed": 5.0
+"name": &"underwater_dull",
+"speed": 20.0
 }]
 
 [node name="Bullet" type="Area2D" groups=["bullets", "dmg_dealers"]]
@@ -210,7 +210,7 @@ shape = SubResource("CircleShape2D_450i0")
 use_parent_material = true
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_eo4fx")
-animation = &"underwater_wet"
+animation = &"fire"
 
 [node name="AutoSpriteFlipper" parent="AnimatedSprite2D" instance=ExtResource("5_ta7p5")]
 position = Vector2(-7.68811, -7.46451)

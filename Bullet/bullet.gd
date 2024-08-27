@@ -14,6 +14,7 @@ var acceleration: Vector2
 var is_underwater_ammo: bool
 var time_before_visible: float = 0.05
 var timer_before_visible: Timer
+var dull: bool = false
 
 func _ready():
 	$IsInWaterNotifier.water_state_changed.connect(on_water_status_changed)
@@ -39,6 +40,7 @@ func restart():
 	timer_before_visible.start(time_before_visible)
 	current_drag = AIR_DRAG
 	current_gravity = 0
+	dull = false
 	animate()
 
 func _physics_process(delta):
@@ -52,28 +54,26 @@ func on_water_status_changed(is_in_water: bool, water: Water):
 	if is_in_water != (bullet_type == Constants.BulletType.UNDERWATER):
 		current_drag = WATER_DRAG
 		current_gravity = gravity
+		dull = true
+
+	animate()
 
 	if water:
 		if abs(global_position.y - water.get_surface_global_position()) <= 16:
 			PropManager.place_prop(Vector2(global_position.x, water.get_surface_global_position()), &"splash")
 
-	if is_in_water:
-		animate()
-
 func animate():
 	var a: String
 	match bullet_type:
 		Constants.BulletType.REGULAR:
-			a = "regular_"
+			a = "regular"
 		Constants.BulletType.FIRE:
-			a = "fire_"
+			a = "fire"
 		Constants.BulletType.UNDERWATER:
-			a = "underwater_"
- 
-	if $IsInWaterNotifier.is_in_water:
-		a += "wet"
-	else:
-		a += "dry"
+			a = "underwater"
+	if dull:
+		a += "_dull"
+
 	get_node("AnimatedSprite2D").play(a)
 	Utils.randomize_animation_frame(get_node("AnimatedSprite2D"))
 	

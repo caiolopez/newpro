@@ -1449,7 +1449,7 @@ size = Vector2(80, 152)
 size = Vector2(80, 152)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3saph"]
-size = Vector2(144, 24)
+size = Vector2(32, 24)
 
 [node name="Hero" type="CharacterBody2D" node_paths=PackedStringArray("state_machine") groups=["heroes", "uncrushables"]]
 collision_layer = 8

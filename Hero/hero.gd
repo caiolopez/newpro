@@ -203,7 +203,7 @@ func on_water_status_changed(_is_in_water: bool, water: Water):
 	self.is_in_water = _is_in_water
 	last_water_surface = water.get_surface_global_position()
 
-func on_water_status_changed_on_gun(_is_in_water: bool, water: Water):
+func on_water_status_changed_on_gun(_is_in_water: bool, _water: Water):
 	shooter.is_in_water = _is_in_water
 
 func repel_ass(delta, repulsion_velocity: float = 50000):
