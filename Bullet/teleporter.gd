@@ -15,14 +15,14 @@ func _ready():
 		and is_active:
 			var destination = global_position + Vector2(signf(scale.x)*64, 0)
 			Events.hero_hit_teleporter.emit(destination)
-			Utils.paint_white(true, get_node("Sprite2D"), 0.1)
+			Utils.paint_white(true, get_node("AnimatedSprite2D"), 0.1)
 			area.kill_bullet()
 	)
 
 func _animate_activation(active):
 	is_active = active
 	if is_active:
-		pass # animate teleporter in
+		$AnimatedSprite2D.play("activating")
 	else:
-		pass # animate teleporter out
+		$AnimatedSprite2D.play("offline")
 	
