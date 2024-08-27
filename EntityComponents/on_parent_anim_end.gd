@@ -1,20 +1,23 @@
 extends Node2D
 
-enum Effects {FREE, RETURN_PROP, HIDE}
-@export var effect: Effects = Effects.FREE
-@export var hide_if_hero_dir_changed: bool = false
+enum Effects {FREE, RETURN_PROP, HIDE, REPLACE_ANIMATION}
+@export var animation_name: StringName = &"" # Optional animation filter.
+@export var effect: Effects = Effects.FREE # What happens when the animation ends.
+@export var next_animation_name: StringName = &"" # If set to replace animation.
+@onready var parent = get_parent()
 
 func _ready():
-	Events.hero_changed_dir.connect(func(_dir):
-		if hide_if_hero_dir_changed:
-			get_parent().visible = false
-		)
 	get_parent().animation_finished.connect(func():
+		if animation_name and parent.animation != animation_name: return
+
 		match effect:
 			Effects.FREE:
-				get_parent().queue_free()
+				parent.queue_free()
 			Effects.RETURN_PROP:
-				PropManager.return_prop(get_parent())
+				PropManager.return_prop(parent)
 			Effects.HIDE:
-				get_parent().visible = false
+				parent.visible = false
+			Effects.REPLACE_ANIMATION:
+				if next_animation_name:
+					parent.play(next_animation_name)
 		)

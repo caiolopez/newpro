@@ -100,7 +100,7 @@ func step_lateral_mov(delta, speed: float = SPEED):
 
 	if dir_just_changed:
 		velocity.x = 0
-		Events.hero_changed_dir.emit(facing_direction)
+		$Gfx/Muzzle.hide()
 
 	velocity.x += GLIDE_X_DRAG * facing_direction * delta
 	velocity.x = maxf(abs(velocity.x), speed) * facing_direction
