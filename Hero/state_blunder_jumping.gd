@@ -3,6 +3,11 @@ extends HeroState
 var water_prone: bool = false
 var death_prone: bool = true
 var bounce_count: int = 0
+var shoot_hold_time: float = 0.0
+
+const INITIAL_SHOT_INTERVAL: float = 0.1
+const SHOT_INTERVAL_DECREASE_RATE: float = 0.08
+const MIN_SHOT_INTERVAL: float = 0.01
 
 func on_enter():
 	$"../../Gfx/AnimatedSprite2D".play("blunderjump")
@@ -11,15 +16,23 @@ func on_enter():
 	hero.current_blunder_jump_angle = 0
 	hero.velocity.y = hero.BLUNDER_JUMP_VELOCITY
 	bounce_count = 0
+	shoot_hold_time = 0.0
 	timer_blunder_jump_window.stop()
 
-func on_process(_delta: float):
-	if Input.is_action_pressed("shoot")\
-	and timer_between_blunder_jumping_shots.is_stopped():
-		hero.shooter.shoot_ad_hoc(hero.regular_shot_speed, hero.current_blunder_jump_angle, true)
-		timer_between_blunder_jumping_shots.start()
-		
-		
+func on_process(delta: float):
+	if Input.is_action_pressed("shoot"):
+		shoot_hold_time += delta
+		if timer_between_blunder_jumping_shots.is_stopped():
+			hero.shooter.shoot_ad_hoc(hero.regular_shot_speed, hero.current_blunder_jump_angle, true)
+			
+			# Calculate new wait time
+			var new_wait_time = max(MIN_SHOT_INTERVAL, INITIAL_SHOT_INTERVAL
+			- (shoot_hold_time * SHOT_INTERVAL_DECREASE_RATE))
+			timer_between_blunder_jumping_shots.set_wait_time(new_wait_time)
+			timer_between_blunder_jumping_shots.start()
+	else:
+		shoot_hold_time = 0.0
+
 	if Input.is_action_just_pressed('jump'):
 		timer_super_bounce_window.start()
 		timer_buffer_jump.start()
