@@ -25,10 +25,10 @@ func on_process(_delta: float):
 	if hero.is_on_floor()\
 	and not hero.pelvis_rc.is_colliding()\
 	and not hero.shoulder_rc.is_colliding()\
-	and  hero.next_grd_height.is_colliding()\
+	and  hero.next_grd_height_rc.is_colliding()\
 	and hero.is_pushing_wall():
-		hero.global_position.y = hero.next_grd_height.get_collision_point().y - %HeroCollider.shape.get_rect().size.y/2 - 1
-		if DebugTools.print_stuff: print("AUTO SNAP ON STAIRS")
+		machine.set_state("StateVaulting")
+		return
 
 	if Input.is_action_just_pressed('jump')\
 	and hero.is_on_floor():

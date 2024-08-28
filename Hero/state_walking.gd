@@ -10,14 +10,20 @@ func on_enter():
 
 func on_process(_delta: float):
 	if hero.is_input_blunder_shoot()\
-		and timer_blunder_shoot_cooldown.is_stopped():
+	and timer_blunder_shoot_cooldown.is_stopped():
 		machine.set_state("StateBlunderShooting")
 		return
 
 	if Input.is_action_just_pressed("shoot"):
 		hero.shoot()
 
-	hero.step_auto_snap()
+	if hero.is_on_floor()\
+	and not hero.pelvis_rc.is_colliding()\
+	and not hero.shoulder_rc.is_colliding()\
+	and  hero.next_grd_height_rc.is_colliding()\
+	and hero.is_pushing_wall():
+		machine.set_state("StateVaulting")
+		return
 
 	if Input.is_action_just_pressed('jump'):
 		machine.set_state("StateJumping")
@@ -32,12 +38,10 @@ func on_process(_delta: float):
 		machine.set_state("StateFalling")
 		return
 
-
 func on_physics_process(delta: float):
 	hero.step_grav(delta)
 	hero.step_lateral_mov(delta)
 	hero.move_and_slide()
-
 
 func on_exit():
 	pass
