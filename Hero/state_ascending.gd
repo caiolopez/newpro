@@ -16,6 +16,12 @@ func on_process(_delta: float):
 	if Input.is_action_just_pressed("shoot"):
 		hero.shoot()
 
+	if not timer_buffer_jump.is_stopped()\
+	and hero.is_pushing_wall()\
+	and hero.is_head_above_water():
+		machine.set_state("StateJumping")
+		return
+
 	if not hero.is_in_water:
 		machine.set_state("StateIdle")
 		return

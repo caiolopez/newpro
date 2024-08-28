@@ -42,6 +42,9 @@ func on_process(_delta: float):
 		machine.set_state("StateJumping")
 		return
 
+	if Input.is_action_just_pressed('jump'):
+		timer_buffer_jump.start()
+
 	if Input.is_action_pressed("jump")\
 	and hero.global_position.y > hero.last_water_surface + 64:
 		machine.set_state("StateAscending")
