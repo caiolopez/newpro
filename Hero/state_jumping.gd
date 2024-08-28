@@ -5,7 +5,7 @@ var death_prone: bool = true
 
 func on_enter():
 	$"../../Gfx/AnimatedSprite2D".play("jump")
-	PropManager.place_prop(hero.global_position, &"dust2")
+	PropManager.place_prop(hero.global_position, &"dust_jump")
 	hero.velocity.y = hero.JUMP_VELOCITY
 
 func on_process(_delta: float):
@@ -53,9 +53,9 @@ func on_process(_delta: float):
 		machine.set_state("StateVaulting")
 
 func on_physics_process(delta: float):
-	if  hero.headbutt_assist.is_colliding()\
+	if  hero.headbutt_assist_rc.is_colliding()\
 	and hero.velocity.y < hero.HEADBUTT_THRESHOLD_VEL:
-		hero.global_position.x = hero.headbutt_assist.get_collision_point().x + (%HeroCollider.shape.get_rect().size.x/2 + 1) * hero.facing_direction
+		hero.global_position.x = hero.headbutt_assist_rc.get_collision_point().x + (%HeroCollider.shape.get_rect().size.x/2 + 1) * hero.facing_direction
 	
 	hero.step_grav(delta)
 	hero.step_lateral_mov(delta)

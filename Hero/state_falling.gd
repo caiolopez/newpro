@@ -83,7 +83,7 @@ func on_process(_delta: float):
 
 	if hero.is_on_floor():
 		if top_fall_vel > 1200:
-			PropManager.place_prop(hero.global_position, &"dust_floor")
+			PropManager.place_prop(hero.global_position, &"dust_pound")
 		machine.set_state("StateIdle")
 		return
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://do7upscm6q0w7"
-path="res://.godot/imported/dust_floor.png-3aeb9d6e3afc10f7f95b44b3b696296d.ctex"
+path="res://.godot/imported/dust_pound.png-7d9864fc4383138072bfffc3b61320e6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Props/dust_floor.png"
-dest_files=["res://.godot/imported/dust_floor.png-3aeb9d6e3afc10f7f95b44b3b696296d.ctex"]
+source_file="res://Props/dust_pound.png"
+dest_files=["res://.godot/imported/dust_pound.png-7d9864fc4383138072bfffc3b61320e6.ctex"]
 
 [params]
 

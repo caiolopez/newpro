@@ -38,7 +38,7 @@ func on_process(delta: float):
 		timer_buffer_jump.start()
 
 	if hero.is_on_floor():
-		PropManager.place_prop(hero.global_position, &"dust_floor")
+		PropManager.place_prop(hero.global_position, &"dust_pound")
 		machine.set_state("StateIdle")
 		return
 

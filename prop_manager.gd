@@ -11,13 +11,13 @@ const PROP_TYPE: Dictionary = {
 		"amount": 10,
 		"create_on_demand": false
 	},
-	&"dust_floor": {
-		"scene": preload("res://Props/DustFloorProp.tscn"),
+	&"dust_pound": {
+		"scene": preload("res://Props/DustPoundProp.tscn"),
 		"amount": 10,
 		"create_on_demand": false
 	},
-	&"dust2": {
-		"scene": preload("res://Props/Dust2Prop.tscn"),
+	&"dust_jump": {
+		"scene": preload("res://Props/DustJumpProp.tscn"),
 		"amount": 10,
 		"create_on_demand": false
 	},

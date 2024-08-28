@@ -1,16 +1,10 @@
-[gd_scene load_steps=37 format=3 uid="uid://d08jdi8c2bopo"]
+[gd_scene load_steps=35 format=3 uid="uid://d08jdi8c2bopo"]
 
-[ext_resource type="Shader" path="res://CaioShaders/bw_replacer.gdshader" id="1_iomju"]
 [ext_resource type="Texture2D" uid="uid://bnt8slo76k16n" path="res://Props/splash1.png" id="2_c1cgt"]
 [ext_resource type="Texture2D" uid="uid://cpfwbyti3qcjy" path="res://Props/splash2.png" id="3_80d3r"]
 [ext_resource type="PackedScene" uid="uid://manmyevja5y2" path="res://EntityComponents/OnParentAnimEnd.tscn" id="3_gj5qw"]
 [ext_resource type="PackedScene" uid="uid://1votnx34efdj" path="res://EntityComponents/BWShaderSetter.tscn" id="4_c6dut"]
 [ext_resource type="PackedScene" uid="uid://dtiweonbpewyr" path="res://EntityComponents/AutoSpriteFlipper.tscn" id="5_qcdw0"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_tbljs"]
-shader = ExtResource("1_iomju")
-shader_parameter/replace_black = Color(0.44, 0, 0, 1)
-shader_parameter/replace_white = Color(0.8, 0.29, 0.29, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nbfja"]
 atlas = ExtResource("2_c1cgt")
@@ -222,7 +216,6 @@ animations = [{
 }]
 
 [node name="SplashProp" type="AnimatedSprite2D"]
-material = SubResource("ShaderMaterial_tbljs")
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_x5ep3")
 animation = &"splash2"

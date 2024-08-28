@@ -9,7 +9,7 @@ func on_enter():
 	
 	PropManager.place_prop(Vector2(
 		hero.global_position.x - 64 * hero.facing_direction,
-		hero.global_position.y), &"dust2")
+		hero.global_position.y), &"dust_jump")
 
 	timer_wall_jump_duration.start()
 	hero.velocity.x = hero.WALLJUMP_VELOCITY.x * round(hero.get_wall_normal().x)
