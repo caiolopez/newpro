@@ -3,7 +3,6 @@ extends HeroState
 var water_prone: bool = false
 var death_prone: bool = true
 
-
 func on_enter():
 	$"../../Gfx/AnimatedSprite2D".play("jump")
 	PropManager.place_prop(hero.global_position, &"dust2")
@@ -48,6 +47,14 @@ func on_process(_delta: float):
 		machine.set_state("StateFalling")
 		return
 
+	if hero.velocity.y > -50\
+	and hero.is_pushing_wall()\
+	and not hero.pelvis_rc.is_colliding():
+		var collision_point = hero.pelvis_rc.get_collision_point()
+		var collider_height = collision_point.y
+		var hero_height = %HeroCollider.shape.get_rect().size.y
+		hero.global_position.y = collider_height - hero_height / 2 - 1
+		hero.velocity.y = 0
 
 func on_physics_process(delta: float):
 	if  hero.headbutt_assist.is_colliding()\
