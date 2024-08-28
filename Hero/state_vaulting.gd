@@ -2,12 +2,11 @@ extends HeroState
 
 var water_prone: bool = true
 var death_prone: bool = true
+var target_y_position: float
 
 func on_enter():
 	hero.velocity.y = hero.VAULT_VELOCITY
-	hero.global_position.y = hero.next_grd_height.get_collision_point().y\
-	- %HeroCollider.shape.get_rect().size.y/2 - 1
-
+	target_y_position = hero.next_grd_height.get_collision_point().y - %HeroCollider.shape.get_rect().size.y/2 - 1
 
 func on_process(_delta: float):
 	if hero.is_input_blunder_shoot()\
@@ -24,6 +23,8 @@ func on_process(_delta: float):
 
 
 func on_physics_process(delta: float):
+	hero.global_position.y = lerp(hero.global_position.y, target_y_position, 15 * delta)
+	
 	hero.step_grav(delta)
 	hero.step_lateral_mov(delta)
 	
