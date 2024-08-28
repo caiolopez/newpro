@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://1xi1vmc3x5ck"]
+[gd_scene load_steps=19 format=4 uid="uid://1xi1vmc3x5ck"]
 
 [ext_resource type="PackedScene" uid="uid://b424bvcxa2fbn" path="res://GUI/BossOverlay.tscn" id="1_tkq5o"]
 [ext_resource type="PackedScene" uid="uid://ctbx6yfgdfo4b" path="res://block.tscn" id="1_weaqc"]
@@ -10,7 +10,14 @@
 [ext_resource type="PackedScene" uid="uid://ch0ldys5y2avd" path="res://Regions/RegionTrigger.tscn" id="6_mg0bt"]
 [ext_resource type="PackedScene" uid="uid://cv2bdmdm7ivmp" path="res://Regions/TEST.tscn" id="6_mtnve"]
 [ext_resource type="Texture2D" uid="uid://bp7vnugiq46o" path="res://Tilesets/alienscape_tileset_transparent.png" id="8_01mxc"]
+[ext_resource type="PackedScene" uid="uid://bu38boui2wxu" path="res://SwitchesAndDoors/SwitchGroupController.tscn" id="12_u6t76"]
+[ext_resource type="PackedScene" uid="uid://ruri8ytnt6k" path="res://SwitchesAndDoors/Door.tscn" id="13_c20o3"]
+[ext_resource type="PackedScene" uid="uid://xc3uchpjcg0y" path="res://Bullet/UniqueCollider.tscn" id="14_umo0q"]
+[ext_resource type="PackedScene" uid="uid://0fx3l1vwyhr4" path="res://SwitchesAndDoors/Switch.tscn" id="15_tdva6"]
 [ext_resource type="Script" path="res://Bullet/unique_collider.gd" id="24_1i71r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uqtgy"]
+size = Vector2(504, 296)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tmq20"]
 texture = ExtResource("8_01mxc")
@@ -73,9 +80,6 @@ physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 15
 sources/0 = SubResource("TileSetAtlasSource_tmq20")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uqtgy"]
-size = Vector2(504, 296)
-
 [node name="GameTree" type="Node"]
 
 [node name="HUD" type="CanvasLayer" parent="." groups=["hud"]]
@@ -101,12 +105,6 @@ catch_up_speed = Vector2(0.01, 0.01)
 
 [node name="TEST" parent="." instance=ExtResource("6_mtnve")]
 
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
-scale = Vector2(6, 6)
-tile_map_data = PackedByteArray("AADl//X/AAAAAAAAAADm//X/AAAAAAAAAADm//T/AAAAAAAAAADl//T/AAAAAAAAAADk//b/AAAAAAAAAADj//b/AAAAAAAAAADi//b/AAAAAAAAAADh//b/AAAAAAAAAADg//b/AAAAAAAAAADf//b/AAAAAAAAAADe//b/AAAAAAAAAADl//b/AAAAAAAAAADm//b/AAAAAAAAAADd//b/AAAAAAAAAADc//b/AAAAAAAAAADb//b/AAAAAAAAAADa//b/AAAAAAAAAADZ//b/AAAAAAAAAADY//b/AAAAAAAAAADX//b/AAAAAAAAAADW//b/AAAAAAAAAADV//b/AAAAAAAAAADU//b/AAAAAAAAAADT//b/AAAAAAAAAADS//b/AAAAAAAAAADc//X/AAAAAAAAAADX//X/AAAAAAAAAADX//T/AAAAAAAAAADX//P/AAAAAAAAAADR//b/AAAAAAAAAADQ//b/AAAAAAAAAADP//b/AAAAAAAAAADO//b/AAAAAAAAAADN//b/AAAAAAAAAADO//X/AAAAAAAAAADO//T/AAAAAAAAAADO//P/AAAAAAAAAADO//L/AAAAAAAAAADZ/+//AAAAAAAAAADa/+//AAAAAAAAAADb/+//AAAAAAAAAADc/+//AAAAAAAAAADd/+//AAAAAAAAAADb/+7/AAAAAAAAAADb/+3/AAAAAAAAAADb/+z/AAAAAAAAAADb/+v/AAAAAAAAAADb/+r/AAAAAAAAAAA=")
-tile_set = SubResource("TileSet_cxrg1")
-metadata/_edit_lock_ = true
-
 [node name="Common" type="Node2D" parent="."]
 
 [node name="Block24" parent="Common" instance=ExtResource("1_weaqc")]
@@ -131,3 +129,20 @@ position = Vector2(-1896, 208)
 shape = SubResource("RectangleShape2D_uqtgy")
 script = ExtResource("24_1i71r")
 is_unique = true
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Common"]
+scale = Vector2(6, 6)
+tile_map_data = PackedByteArray("AADl//X/AAAAAAAAAADm//X/AAAAAAAAAADm//T/AAAAAAAAAADl//T/AAAAAAAAAADk//b/AAAAAAAAAADj//b/AAAAAAAAAADi//b/AAAAAAAAAADh//b/AAAAAAAAAADg//b/AAAAAAAAAADf//b/AAAAAAAAAADe//b/AAAAAAAAAADl//b/AAAAAAAAAADm//b/AAAAAAAAAADd//b/AAAAAAAAAADc//b/AAAAAAAAAADb//b/AAAAAAAAAADa//b/AAAAAAAAAADZ//b/AAAAAAAAAADY//b/AAAAAAAAAADX//b/AAAAAAAAAADW//b/AAAAAAAAAADV//b/AAAAAAAAAADU//b/AAAAAAAAAADT//b/AAAAAAAAAADS//b/AAAAAAAAAADc//X/AAAAAAAAAADX//X/AAAAAAAAAADX//T/AAAAAAAAAADX//P/AAAAAAAAAADR//b/AAAAAAAAAADQ//b/AAAAAAAAAADP//b/AAAAAAAAAADO//b/AAAAAAAAAADN//b/AAAAAAAAAADO//X/AAAAAAAAAADO//T/AAAAAAAAAADO//P/AAAAAAAAAADO//L/AAAAAAAAAADZ/+//AAAAAAAAAADa/+//AAAAAAAAAADb/+//AAAAAAAAAADc/+//AAAAAAAAAADd/+//AAAAAAAAAADb/+7/AAAAAAAAAADb/+3/AAAAAAAAAADb/+z/AAAAAAAAAADb/+v/AAAAAAAAAADb/+r/AAAAAAAAAAA=")
+tile_set = SubResource("TileSet_cxrg1")
+metadata/_edit_lock_ = true
+
+[node name="SwitchGroupController" parent="Common" instance=ExtResource("12_u6t76")]
+position = Vector2(-3438, -1380)
+
+[node name="Door" parent="Common/SwitchGroupController" instance=ExtResource("13_c20o3")]
+position = Vector2(942, 96)
+
+[node name="UniqueCollider" parent="Common/SwitchGroupController/Door" instance=ExtResource("14_umo0q")]
+position = Vector2(0, -12.625)
+
+[node name="Switch" parent="Common/SwitchGroupController" instance=ExtResource("15_tdva6")]

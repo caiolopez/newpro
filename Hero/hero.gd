@@ -28,8 +28,8 @@ class_name Hero extends CharacterBody2D
 @onready var original_position: Vector2 = global_position
 @onready var shoulder_rc: RayCast2D = $ShoulderRC
 @onready var pelvis_rc: RayCast2D = $PelvisRC
-@onready var next_grd_height: RayCast2D = $NextGrdHeight
-@onready var headbutt_assist: RayCast2D = $HeadbuttAssist
+@onready var next_grd_height_rc: RayCast2D = $NextGrdHeightRC
+@onready var headbutt_assist_rc : RayCast2D = $HeadbuttAssistRC
 @onready var ass_rc: RayCast2D = $AssRC
 @onready var dmg_taker: DmgTaker = $DmgTaker
 @onready var shooter: Shooter = $Shooter
@@ -43,7 +43,6 @@ var was_pushing_wall: bool ## For variable change caculation
 var was_in_water: bool ## For variable change caculation
 var was_auto_snapping: bool
 var on_wall_value_just_changed: bool
-var is_auto_snapping: bool
 var is_just_on_floor: bool
 var is_just_pushing_wall: bool
 var just_stopped_pushing_wall: bool
@@ -108,9 +107,9 @@ func step_lateral_mov(delta, speed: float = SPEED):
 	ass_rc.update_direction()
 	shoulder_rc.update_direction()
 	pelvis_rc.update_direction()
-	next_grd_height.update_position()
-	headbutt_assist.update_direction()
-	headbutt_assist.update_position()
+	next_grd_height_rc.update_position()
+	headbutt_assist_rc.update_direction()
+	headbutt_assist_rc.update_position()
 
 func is_pushing_wall() -> bool:
 	var pushing_wall = false
@@ -155,18 +154,6 @@ func is_head_above_water() -> bool:
 		return true
 	else:
 		return false
-
-func step_auto_snap():
-	if is_on_floor()\
-	and not pelvis_rc.is_colliding()\
-	and not shoulder_rc.is_colliding()\
-	and  next_grd_height.is_colliding()\
-	and is_pushing_wall():
-		global_position.y = next_grd_height.get_collision_point().y - %HeroCollider.shape.get_rect().size.y/2
-		if DebugTools.print_stuff: print("AUTO SNAP ON STAIRS")
-		is_auto_snapping = true
-	else:
-		is_auto_snapping = false
 
 func _on_hero_hit_teleporter(destination: Vector2):
 	if not state_machine.current_state.death_prone:

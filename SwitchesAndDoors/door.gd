@@ -1,8 +1,8 @@
 class_name Door extends AnimatableBody2D
 
 @export var duration: float = 1.0
-@export var open_offset: Vector2 = Vector2(0.0, -100.0)
-@export var auto_close_time: float = 0.0 ## If different than zero, will cause the door to automatically close after the specified time.
+@export var open_offset: Vector2 = Vector2(0.0, -288.0)
+@export var auto_close_time: float = 0.0 ## If not zero, causes the door to automatically close after the specified time.
 @onready var closed_pos: Vector2 = position
 var state_machine: StateMachine
 var door_tween: Tween
