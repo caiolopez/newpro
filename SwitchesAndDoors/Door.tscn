@@ -13,7 +13,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6ibah"]
 size = Vector2(128, 128)
 
-[node name="Door" type="AnimatableBody2D" groups=["kills_bullets"]]
+[node name="Door" type="AnimatableBody2D" groups=["kills_bullets", "sticky"]]
 script = ExtResource("1_bavxp")
 
 [node name="NinePDoorArt" type="NinePatchRect" parent="."]

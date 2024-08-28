@@ -50,6 +50,13 @@ project/assembly_name="New Pro"
 
 import/blender/enabled=false
 
+[global_group]
+
+kills_bullets=""
+sticky=""
+resetables=""
+dmg_dealers=""
+
 [input]
 
 up={
