@@ -30,14 +30,25 @@ func on_process(_delta: float):
 		machine.set_state("StateDescending")
 		return
 
+	if Input.is_action_just_pressed('jump'):
+		timer_buffer_jump.start()
+
+	if not timer_buffer_jump.is_stopped()\
+	and hero.is_pushing_wall()\
+	and hero.is_head_above_water():
+		machine.set_state("StateJumping")
+		return
+	
 	if Input.is_action_just_pressed('jump')\
 	and hero.is_on_floor():
 		machine.set_state("StateJumping")
+		return
 
 	if Input.is_action_just_pressed('jump')\
 	and hero.is_pushing_wall()\
 	and hero.is_head_above_water():
 		machine.set_state("StateJumping")
+		return
 
 
 func on_physics_process(delta: float):
