@@ -19,6 +19,9 @@ func add_region_entry(region: Region):
 
 func log_entity_change(entity: Node, value):
 	var from_region: Region = RegionManager.get_region_from_node(entity)
+	if not from_region:
+		push_warning(entity.name, " has no region. Log to dictionary aborted.")
+		return
 	add_region_entry(from_region)
 	var key: NodePath = entity.get_path()
 	if from_region and key and value:
