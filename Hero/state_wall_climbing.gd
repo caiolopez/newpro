@@ -37,6 +37,9 @@ func on_process(_delta: float):
 	and hero.is_pushing_wall():
 		machine.set_state("StateVaulting")
 		return
+	
+	if hero.velocity.y > 0:
+		machine.set_state("StateFalling")
 
 	if hero.is_on_floor():
 		machine.set_state("StateIdle")

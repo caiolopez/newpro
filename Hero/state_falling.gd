@@ -8,12 +8,16 @@ var top_fall_vel: float
 func on_enter():
 	top_fall_vel = 0
 	$"../../Gfx/AnimatedSprite2D".play("fall_in")
-	pass
+	if Input.is_action_just_pressed('jump'):
+		timer_buffer_walljump.start()
 
 func on_process(_delta: float):
 	if hero.velocity.y > top_fall_vel:
 		top_fall_vel = hero.velocity.y
-	
+
+	if Input.is_action_just_pressed('jump'):
+		timer_buffer_walljump.start()
+
 	if hero.is_input_blunder_shoot()\
 	and timer_blunder_shoot_cooldown.is_stopped():
 		machine.set_state("StateBlunderShooting")
@@ -75,7 +79,7 @@ func on_process(_delta: float):
 func on_physics_process(delta: float):
 	hero.step_grav(delta, hero.FAST_FALL_GRAVITY)
 	hero.step_lateral_mov(delta)
-
+	hero.step_walljump()
 	hero.move_and_slide()
 
 

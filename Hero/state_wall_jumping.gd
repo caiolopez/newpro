@@ -11,7 +11,7 @@ func on_enter():
 		hero.global_position.x - 64 * hero.facing_direction,
 		hero.global_position.y), &"dust_jump")
 
-	timer_wall_jump_duration.start()
+	timer_walljump_duration.start()
 	hero.velocity.x = hero.WALLJUMP_VELOCITY.x * round(hero.get_wall_normal().x)
 	hero.velocity.y = hero.WALLJUMP_VELOCITY.y
 	hero.facing_direction = round(hero.get_wall_normal().x)
@@ -26,19 +26,19 @@ func on_process(_delta: float):
 		hero.shoot()
 
 	if not hero.is_on_floor() and hero.velocity.y > 0:
-		timer_wall_jump_duration.stop()
+		timer_walljump_duration.stop()
 		machine.set_state("StateFalling")
 		return
 
 	if Input.is_action_just_released("jump"):
-		timer_wall_jump_duration.stop()
+		timer_walljump_duration.stop()
 		machine.set_state("StateFalling")
 		return
 
 
 func on_physics_process(delta: float):
 	hero.step_grav(delta)
-	if timer_wall_jump_duration.is_stopped():
+	if timer_walljump_duration.is_stopped():
 		hero.step_lateral_mov(delta)
 	hero.move_and_slide()
 
