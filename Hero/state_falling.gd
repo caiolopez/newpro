@@ -26,10 +26,6 @@ func on_process(_delta: float):
 	if Input.is_action_just_pressed("shoot"):
 		hero.shoot()
 
-	if hero.on_wall_value_just_changed\
-	and not hero.is_on_wall():
-		timer_leaving_wall.start()
-
 	if Input.is_action_just_pressed('jump')\
 	and not timer_blunder_jump_window.is_stopped():
 		machine.set_state("StateBlunderJumping")

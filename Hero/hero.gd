@@ -218,4 +218,3 @@ func handle_powerups(type: StringName):
 			AppManager.teleporters_are_active = true
 			SaveManager.log_hero_change("got_teleporter", true)
 		
-	
