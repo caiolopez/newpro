@@ -28,20 +28,15 @@ func on_process(_delta: float):
 
 	if hero.on_wall_value_just_changed\
 	and not hero.is_on_wall():
-		timer_leaving_wall.start() 
+		timer_leaving_wall.start()
+		print("LEAVINGN WALL FROM GLIDE")
 
 	if hero.is_on_floor():
 		machine.set_state("StateIdle")
 		return
 
-	if not timer_coyote_wall.is_stopped():
-		if hero.is_move_dir_away_from_last_wall():
-			timer_coyote_wall.stop()
-			machine.set_state("StateWallJumping")
-			if DebugTools.print_stuff: print('COYOTE WALLJUMP')
-			return
-
-		elif hero.is_pushing_wall():
+	if not timer_coyote_wall.is_stopped()\
+	and hero.is_pushing_wall():
 			timer_coyote_wall.stop()
 			machine.set_state("StateWallClimbing")
 			if DebugTools.print_stuff: print('COYOTE WALLCLIMB')
@@ -63,14 +58,6 @@ func on_process(_delta: float):
 	and hero.shoulder_rc.is_colliding():
 		machine.set_state("StateWallGrabbing")
 		return
-
-	if hero.is_move_dir_just_away_from_last_wall()\
-	and not timer_climb_to_glide_wall_jump.is_stopped()\
-	and Input.is_action_pressed("jump"):
-			machine.set_state("StateWallJumping")
-			if DebugTools.print_stuff: print('MODE 3')
-			return
-
 
 func on_physics_process(delta: float):
 	

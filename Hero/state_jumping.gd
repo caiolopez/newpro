@@ -27,12 +27,6 @@ func on_process(_delta: float):
 	if not hero.is_on_wall()\
 	and Input.is_action_just_pressed('jump'):
 		timer_buffer_climbing.start()
-	
-	if hero.is_move_dir_away_from_last_wall()\
-	and Input.is_action_just_pressed('jump')\
-	and not timer_leaving_wall.is_stopped():
-		machine.set_state("StateWallJumping")
-		return
 
 	if hero.is_just_on_floor:
 		machine.set_state("StateIdle")

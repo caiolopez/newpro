@@ -27,9 +27,7 @@ func on_process(_delta: float):
 			hero.velocity.y = hero.CLIMB_VELOCITY
 			can_wj = false
 			return
-		else:
-			timer_climb_to_glide_wall_jump.start()
-	
+
 	if Input.is_action_just_released('jump'): can_wj = true
 	
 	if hero.velocity.y < 0\
@@ -42,29 +40,6 @@ func on_process(_delta: float):
 
 	if hero.is_on_floor():
 		machine.set_state("StateIdle")
-		return
-
-	if hero.is_move_dir_away_from_last_wall()\
-	and not hero.is_on_wall()\
-	and Input.is_action_just_pressed('jump'):
-		timer_leaving_wall.stop()
-		machine.set_state("StateWallJumping")
-		if DebugTools.print_stuff: print("mode 1")
-		return
-
-	if hero.is_move_dir_away_from_last_wall()\
-	and can_wj\
-	and Input.is_action_pressed('jump'):
-		timer_leaving_wall.stop()
-		machine.set_state("StateWallJumping")
-		if DebugTools.print_stuff: print("mode 2")
-		return
-
-	if hero.velocity.y > 0\
-	and not hero.is_on_floor():
-		if hero.is_move_dir_away_from_last_wall():
-			timer_climb_to_fall_wall_jump.start()
-		machine.set_state("StateFalling")
 		return
 		
 	if Input.is_action_just_released('jump'):
