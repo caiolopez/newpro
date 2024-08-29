@@ -60,6 +60,13 @@ func on_process(_delta: float):
 		machine.set_state("StateWallClimbing")
 		return
 
+	if hero.is_pushing_wall()\
+	and not timer_buffer_climbing.is_stopped():
+		timer_buffer_climbing.stop()
+		machine.set_state("StateWallClimbing")
+		if DebugTools.print_stuff: print("ASSISTED")
+		return
+
 	if Input.is_action_just_pressed('jump')\
 	and not timer_coyote_jump.is_stopped():
 		timer_coyote_jump.stop()
@@ -68,6 +75,7 @@ func on_process(_delta: float):
 
 	if Input.is_action_just_pressed('jump'):
 		timer_buffer_jump.start()
+		timer_buffer_climbing.start()
 
 	if Input.is_action_pressed('jump')\
 	and hero.velocity.y > 1000:

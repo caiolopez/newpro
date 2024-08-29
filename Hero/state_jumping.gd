@@ -26,7 +26,7 @@ func on_process(_delta: float):
 	
 	if not hero.is_on_wall()\
 	and Input.is_action_just_pressed('jump'):
-		timer_buffer_wall_jump.start()
+		timer_buffer_climbing.start()
 	
 	if hero.is_move_dir_away_from_last_wall()\
 	and Input.is_action_just_pressed('jump')\
@@ -49,8 +49,16 @@ func on_process(_delta: float):
 
 	if hero.velocity.y > -50\
 	and hero.is_pushing_wall()\
-	and not hero.pelvis_rc.is_colliding():
+	and not hero.pelvis_rc.is_colliding()\
+	and not hero.shoulder_rc.is_colliding():
 		machine.set_state("StateVaulting")
+	
+	if hero.is_pushing_wall()\
+	and not timer_buffer_climbing.is_stopped():
+		timer_buffer_climbing.stop()
+		machine.set_state("StateWallClimbing")
+		if DebugTools.print_stuff: print("ASSISTED")
+		return
 
 func on_physics_process(delta: float):
 	if  hero.headbutt_assist_rc.is_colliding()\

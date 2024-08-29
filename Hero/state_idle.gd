@@ -3,7 +3,6 @@ extends HeroState
 var water_prone: bool = true
 var death_prone: bool = true
 
-
 func on_enter():
 	$"../../Gfx/AnimatedSprite2D".play("idle")
 	if Input.is_action_pressed('jump')\
@@ -45,15 +44,12 @@ func on_process(_delta: float):
 		machine.set_state("StateFalling")
 		return
 
-
 func on_physics_process(delta: float):
 
-	
 	hero.step_grav(delta)
 	hero.step_lateral_mov(delta)
 
 	hero.move_and_slide()
-
 
 func on_exit():
 	pass
