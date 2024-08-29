@@ -1443,7 +1443,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_361o4"]
-size = Vector2(80, 152)
+size = Vector2(60, 152)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8r0xo"]
 size = Vector2(80, 152)
@@ -1521,7 +1521,7 @@ use_parent_material = true
 position = Vector2(0, -32)
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_tm5on")
-animation = &"water_recoil"
+animation = &"idle"
 
 [node name="Muzzle" type="AnimatedSprite2D" parent="Gfx"]
 visible = false
