@@ -1,4 +1,4 @@
-[gd_scene load_steps=229 format=3 uid="uid://1md1m8n6iq5x"]
+[gd_scene load_steps=220 format=3 uid="uid://1md1m8n6iq5x"]
 
 [ext_resource type="Script" path="res://Hero/hero.gd" id="1_dmqn8"]
 [ext_resource type="PackedScene" uid="uid://box2ff3vwcc7w" path="res://EntityComponents/DmgTaker.tscn" id="2_ktrux"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://cupxj14lcnr75" path="res://EntityComponents/Shooter.tscn" id="4_1v5xt"]
 [ext_resource type="Script" path="res://Hero/state_idle.gd" id="4_t32ch"]
 [ext_resource type="Script" path="res://Hero/state_walking.gd" id="4_wtfn7"]
-[ext_resource type="Shader" path="res://CaioShaders/bw_replacer_old.gdshader" id="5_3381l"]
 [ext_resource type="Texture2D" uid="uid://deh1x6imysemh" path="res://Hero/Gfx/walk.png" id="5_nryls"]
 [ext_resource type="Texture2D" uid="uid://7swtuin2erwm" path="res://Hero/Gfx/idle.png" id="6_cge6x"]
 [ext_resource type="Script" path="res://Hero/state_jumping.gd" id="6_igfrg"]
@@ -20,7 +19,6 @@
 [ext_resource type="Texture2D" uid="uid://cqgrp1arxqyp6" path="res://Hero/Gfx/ascend_h.png" id="8_i1q84"]
 [ext_resource type="Texture2D" uid="uid://pq2fuhkblrjg" path="res://Hero/Gfx/blunderjump.png" id="8_qxmo7"]
 [ext_resource type="Script" path="res://Hero/state_wall_grabbing.gd" id="9_d343a"]
-[ext_resource type="Texture2D" uid="uid://ckwsjp3s4js1y" path="res://Hero/Gfx/glide_soft.png" id="9_ka1hb"]
 [ext_resource type="Texture2D" uid="uid://d3hactw2s46fk" path="res://Hero/Gfx/fall_loop.png" id="10_6wq62"]
 [ext_resource type="Texture2D" uid="uid://bpxtdgy77ltr0" path="res://Hero/Gfx/parachute.png" id="10_js46x"]
 [ext_resource type="Script" path="res://Hero/state_wall_climbing.gd" id="11_gxos4"]
@@ -48,6 +46,7 @@
 [ext_resource type="Texture2D" uid="uid://1fi8syfri4hd" path="res://Hero/Gfx/water_recoil.png" id="23_kv8rw"]
 [ext_resource type="Texture2D" uid="uid://c87rr4yuqtwag" path="res://Hero/Gfx/water_swim_v.png" id="24_0fgqj"]
 [ext_resource type="Script" path="res://Hero/state_respawning.gd" id="24_ppe7q"]
+[ext_resource type="PackedScene" uid="uid://1votnx34efdj" path="res://EntityComponents/BWShaderSetter.tscn" id="27_8ng6k"]
 [ext_resource type="Script" path="res://timer_utils.gd" id="28_goaiv"]
 [ext_resource type="Script" path="res://Hero/state_on_sea_floor.gd" id="44_igpgv"]
 [ext_resource type="PackedScene" uid="uid://p2v7a1ixtrxw" path="res://EntityComponents/IsInWaterNotifier.tscn" id="49_p6sxx"]
@@ -55,11 +54,6 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wwsjr"]
 size = Vector2(48, 112)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xs826"]
-shader = ExtResource("5_3381l")
-shader_parameter/replace_black = Color(0, 0, 0, 1)
-shader_parameter/replace_white = Color(1, 1, 1, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l5a25"]
 atlas = ExtResource("10_js46x")
@@ -378,34 +372,6 @@ region = Rect2(40, 0, 40, 40)
 [sub_resource type="AtlasTexture" id="AtlasTexture_cmumi"]
 atlas = ExtResource("8_djkmc")
 region = Rect2(80, 0, 40, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_u74yb"]
-atlas = ExtResource("9_ka1hb")
-region = Rect2(0, 0, 40, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_w6tt2"]
-atlas = ExtResource("9_ka1hb")
-region = Rect2(40, 0, 40, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hfn7i"]
-atlas = ExtResource("9_ka1hb")
-region = Rect2(80, 0, 40, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fsfa5"]
-atlas = ExtResource("9_ka1hb")
-region = Rect2(120, 0, 40, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_s7leb"]
-atlas = ExtResource("9_ka1hb")
-region = Rect2(160, 0, 40, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4eet3"]
-atlas = ExtResource("9_ka1hb")
-region = Rect2(200, 0, 40, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2k0qf"]
-atlas = ExtResource("9_ka1hb")
-region = Rect2(240, 0, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fyumc"]
 atlas = ExtResource("7_dntm4")
@@ -934,32 +900,6 @@ animations = [{
 }],
 "loop": false,
 "name": &"glide_loop",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_u74yb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_w6tt2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hfn7i")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fsfa5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_s7leb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4eet3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2k0qf")
-}],
-"loop": false,
-"name": &"glide_soft",
 "speed": 10.0
 }, {
 "frames": [{
@@ -1497,16 +1437,16 @@ target_position = Vector2(-104, 0)
 hit_from_inside = true
 script = ExtResource("3_6dncg")
 
-[node name="Shooter" parent="." instance=ExtResource("4_1v5xt")]
+[node name="Shooter" parent="." node_paths=PackedStringArray("muzzle") instance=ExtResource("4_1v5xt")]
 position = Vector2(72, -48)
 pellet_amount = 6
 pellet_speed = 1000.0
 time_before_visible = 0.05
+muzzle = NodePath("../Gfx/Muzzle")
 auto_shoots = false
 time_between_bursts = 0.001
 
 [node name="Gfx" type="Node2D" parent="."]
-material = SubResource("ShaderMaterial_xs826")
 script = ExtResource("3_jd25v")
 
 [node name="ParachuteAnim" type="AnimatedSprite2D" parent="Gfx"]
@@ -1521,12 +1461,11 @@ use_parent_material = true
 position = Vector2(0, -32)
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_tm5on")
-animation = &"idle"
+animation = &"glide_in"
 
 [node name="Muzzle" type="AnimatedSprite2D" parent="Gfx"]
 visible = false
 z_index = 1
-use_parent_material = true
 position = Vector2(72, -48)
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_o20fn")
@@ -1534,6 +1473,14 @@ offset = Vector2(12, 0.67)
 
 [node name="OnParentAnimEnd" parent="Gfx/Muzzle" instance=ExtResource("17_62ejc")]
 effect = 2
+
+[node name="BwShaderSetter" parent="Gfx/Muzzle" instance=ExtResource("27_8ng6k")]
+dark_color = Color(0, 0.319513, 0.21921, 1)
+light_color = Color(0.362225, 0.746721, 0.515539, 1)
+
+[node name="BwShaderSetter" parent="Gfx" instance=ExtResource("27_8ng6k")]
+dark_color = Color(0.715191, 0.00292471, 0.416343, 1)
+light_color = Color(0.870695, 0.627091, 0.723424, 1)
 
 [node name="HeroCollider" type="CollisionShape2D" parent="."]
 unique_name_in_owner = true
