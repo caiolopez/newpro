@@ -12,14 +12,8 @@ func on_process(_delta: float):
 		$"../../Gfx/AnimatedSprite2D".play("idle")
 	else:
 		$"../../Gfx/AnimatedSprite2D".play("walk_underwater")
-	
-	if hero.is_input_blunder_shoot()\
-	and timer_blunder_shoot_cooldown.is_stopped():
-		machine.set_state("StateWetBlunderShooting")
-		return
 
-	if Input.is_action_just_pressed("shoot"):
-		hero.shoot()
+	hero.step_shooting(false, true) # inverted: false, wet: true
 
 	if not hero.is_in_water:
 		machine.set_state("StateIdle")

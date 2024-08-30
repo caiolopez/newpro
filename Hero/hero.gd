@@ -136,10 +136,21 @@ func is_input_blunder_shoot() -> bool:
 		return Input.is_action_pressed("duck") and Input.is_action_just_pressed("shoot")
 	else: return Input.is_action_pressed("triangle")
 
-func step_walljump() ->void:
+func step_walljump() -> void:
 	if $StateMachine/TimerBufferWallJump.is_stopped() or not Utils.is_pushing_sides(): return
 	if ass_rc.is_colliding():
 		state_machine.set_state("StateWallJumping")
+
+func step_shooting(inverted: bool = false, wet: bool = false) -> void:
+	if is_input_blunder_shoot()\
+	and $StateMachine/TimerBlunderShootCooldown.is_stopped():
+		if wet: state_machine.set_state("StateWetBlunderShooting")
+		else: state_machine.set_state("StateBlunderShooting")
+		return
+
+	if Input.is_action_just_pressed("shoot"):
+		if inverted: shoot_inverted()
+		else: shoot()
 
 func check_value_change():
 	is_just_on_floor = is_on_floor() and not was_on_floor

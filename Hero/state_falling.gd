@@ -4,7 +4,6 @@ var water_prone: bool = true
 var death_prone: bool = true
 var top_fall_vel: float
 
-
 func on_enter():
 	top_fall_vel = 0
 	$"../../Gfx/AnimatedSprite2D".play("fall_in")
@@ -18,13 +17,7 @@ func on_process(_delta: float):
 	if Input.is_action_just_pressed("jump"):
 		timer_buffer_walljump.start()
 
-	if hero.is_input_blunder_shoot()\
-	and timer_blunder_shoot_cooldown.is_stopped():
-		machine.set_state("StateBlunderShooting")
-		return
-
-	if Input.is_action_just_pressed("shoot"):
-		hero.shoot()
+	hero.step_shooting()
 
 	if Input.is_action_just_pressed("jump")\
 	and not timer_blunder_jump_window.is_stopped():

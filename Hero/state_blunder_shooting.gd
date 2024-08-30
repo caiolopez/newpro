@@ -3,17 +3,23 @@ extends HeroState
 var water_prone: bool = true
 var death_prone: bool = true
 
+var blunder_vel: Vector2
+var blunder_dur: float
 
 func on_enter():
 	$"../../BlurFX".generating_copies = true
+
 	if hero.is_on_floor():
-		timer_blunder_shoot_duration.set_wait_time(hero.BLUNDER_GROUNDED_DURATION)
-		hero.velocity.x = hero.BLUNDER_GROUNDED_VELOCITY.x*hero.facing_direction
-		hero.velocity.y = hero.BLUNDER_GROUNDED_VELOCITY.y
+		blunder_vel = hero.BLUNDER_GROUNDED_VELOCITY
+		blunder_dur = hero.BLUNDER_GROUNDED_DURATION
 	else:
-		timer_blunder_shoot_duration.set_wait_time(hero.BLUNDER_AIRBORNE_DURATION)
-		hero.velocity.x = hero.BLUNDER_AIRBORNE_VELOCITY.x*hero.facing_direction
-		hero.velocity.y = hero.BLUNDER_AIRBORNE_VELOCITY.y
+		blunder_vel = hero.BLUNDER_AIRBORNE_VELOCITY
+		blunder_dur = hero.BLUNDER_AIRBORNE_DURATION
+
+	timer_blunder_shoot_duration.set_wait_time(blunder_dur)
+	hero.velocity.x = blunder_vel.x * hero.facing_direction
+	hero.velocity.y = blunder_vel.y
+
 	timer_blunder_shoot_duration.start()
 	timer_blunder_jump_window.start()
 
@@ -29,10 +35,12 @@ func on_process(_delta: float):
 	and not timer_blunder_jump_window.is_stopped():
 		machine.set_state("StateBlunderJumping")
 		return
+
 	if timer_blunder_shoot_duration.is_stopped()\
 	and hero.is_on_floor():
 		machine.set_state("StateIdle")
 		return
+
 	if timer_blunder_shoot_duration.is_stopped()\
 	and not hero.is_on_floor():
 		machine.set_state("StateFalling")

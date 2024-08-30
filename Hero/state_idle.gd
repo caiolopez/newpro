@@ -13,13 +13,7 @@ func on_enter():
 		return
 
 func on_process(_delta: float):
-	if hero.is_input_blunder_shoot()\
-	and timer_blunder_shoot_cooldown.is_stopped():
-		machine.set_state("StateBlunderShooting")
-		return
-
-	if Input.is_action_just_pressed("shoot"):
-		hero.shoot()
+	hero.step_shooting()
 
 	if hero.is_on_floor()\
 	and not hero.pelvis_rc.is_colliding()\
@@ -34,7 +28,7 @@ func on_process(_delta: float):
 		machine.set_state("StateJumping")
 		return
 
-	if hero.velocity.x != 0\
+	if Utils.is_pushing_sides()\
 	and hero.is_on_floor():
 		machine.set_state("StateWalking")
 		return

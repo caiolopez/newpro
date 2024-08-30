@@ -12,13 +12,7 @@ func on_process(_delta: float):
 	if hero.just_left_water:
 		PropManager.place_prop(Vector2(hero.global_position.x, hero.last_water_surface), &"splash")
 	
-	if hero.is_input_blunder_shoot()\
-	and timer_blunder_shoot_cooldown.is_stopped():
-		machine.set_state("StateBlunderShooting")
-		return
-
-	if Input.is_action_just_pressed("shoot"):
-		hero.shoot()
+	hero.step_shooting()
 	
 	if not hero.is_on_wall()\
 	and Input.is_action_just_pressed("jump"):
