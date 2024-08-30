@@ -25,7 +25,7 @@ func on_enter():
 	hero.blundershoot()
 
 func on_process(_delta: float):
-	if Input.is_action_just_pressed('jump')\
+	if Input.is_action_just_pressed("jump")\
 	and not timer_blunder_jump_window.is_stopped():
 		machine.set_state("StateBlunderJumping")
 		return

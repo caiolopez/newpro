@@ -5,7 +5,7 @@ var death_prone: bool = true
 
 func on_enter():
 	$"../../Gfx/AnimatedSprite2D".play("idle")
-	if Input.is_action_pressed('jump')\
+	if Input.is_action_pressed("jump")\
 	and not timer_buffer_jump.is_stopped():
 		timer_buffer_jump.stop()
 		if DebugTools.print_stuff: print("BUFFERED JUMP")
@@ -29,7 +29,7 @@ func on_process(_delta: float):
 		machine.set_state("StateVaulting")
 		return
 
-	if Input.is_action_just_pressed('jump')\
+	if Input.is_action_just_pressed("jump")\
 	and hero.is_on_floor():
 		machine.set_state("StateJumping")
 		return

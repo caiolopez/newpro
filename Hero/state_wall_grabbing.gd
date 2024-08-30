@@ -38,7 +38,7 @@ func on_process(_delta: float):
 		machine.set_state("StateGliding")
 		return
 
-	if Input.is_action_just_released('jump'):
+	if Input.is_action_just_released("jump"):
 		machine.set_state("StateFalling")
 		return
 

@@ -26,7 +26,7 @@ func on_process(_delta: float):
 		machine.set_state("StateIdle")
 		return
 
-	if not Input.is_action_pressed('jump'):
+	if not Input.is_action_pressed("jump"):
 		machine.set_state("StateDescending")
 
 

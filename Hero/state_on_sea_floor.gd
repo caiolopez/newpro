@@ -25,13 +25,13 @@ func on_process(_delta: float):
 		machine.set_state("StateIdle")
 		return
 
-	if Input.is_action_just_pressed('jump')\
+	if Input.is_action_just_pressed("jump")\
 	and hero.is_head_above_water()\
 	and hero.is_pushing_wall():
 		machine.set_state("StateJumping")
 		return
 
-	if Input.is_action_just_pressed('jump')\
+	if Input.is_action_just_pressed("jump")\
 	and hero.is_head_above_water()\
 	and hero.is_on_floor():
 		machine.set_state("StateJumping")

@@ -33,7 +33,7 @@ func on_process(delta: float):
 	else:
 		shoot_hold_time = 0.0
 
-	if Input.is_action_just_pressed('jump'):
+	if Input.is_action_just_pressed("jump"):
 		timer_super_bounce_window.start()
 		timer_buffer_jump.start()
 
@@ -48,12 +48,12 @@ func on_process(delta: float):
 		return
 	
 	if hero.is_pushing_wall()\
-	and Input.is_action_just_pressed('jump'):
+	and Input.is_action_just_pressed("jump"):
 		machine.set_state("StateWallClimbing")
 		return
 
 	if hero.is_just_in_water:
-		if Input.is_action_pressed('jump')\
+		if Input.is_action_pressed("jump")\
 		and not timer_super_bounce_window.is_stopped():
 			var boost =  -50 * (mini(bounce_count, 5) + 1)
 			hero.velocity.y = hero.BLUNDER_JUMP_WATER_BOUNCE_VELOCITY + boost
@@ -63,7 +63,7 @@ func on_process(delta: float):
 			machine.set_state("StateFloating")
 
 	if hero.velocity.y < 0\
-	and Input.is_action_just_released('jump'):
+	and Input.is_action_just_released("jump"):
 		hero.velocity.y *= 0.5
 
 

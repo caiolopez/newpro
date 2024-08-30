@@ -13,7 +13,7 @@ func on_process(_delta: float):
 		PropManager.place_prop(Vector2(hero.global_position.x, hero.last_water_surface), &"splash")
 	
 	if hero.is_input_blunder_shoot()\
-		and timer_blunder_shoot_cooldown.is_stopped():
+	and timer_blunder_shoot_cooldown.is_stopped():
 		machine.set_state("StateBlunderShooting")
 		return
 
@@ -21,14 +21,14 @@ func on_process(_delta: float):
 		hero.shoot()
 	
 	if not hero.is_on_wall()\
-	and Input.is_action_just_pressed('jump'):
+	and Input.is_action_just_pressed("jump"):
 		timer_buffer_climbing.start()
 
 	if hero.is_just_on_floor:
 		machine.set_state("StateIdle")
 		return
 
-	if Input.is_action_just_pressed('jump')\
+	if Input.is_action_just_pressed("jump")\
 	and hero.is_pushing_wall():
 		machine.set_state("StateWallClimbing")
 		return
@@ -58,7 +58,7 @@ func on_physics_process(delta: float):
 	hero.step_grav(delta)
 	hero.step_lateral_mov(delta)
 	
-	if Input.is_action_just_released('jump'): hero.velocity.y *= 0.25
+	if Input.is_action_just_released("jump"): hero.velocity.y *= 0.25
 	
 	hero.move_and_slide()
 

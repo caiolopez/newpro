@@ -8,12 +8,12 @@ func on_enter():
 	$"../../Gfx/ParachuteAnim".play("deploy_parachute")
 	$"../../Gfx/AnimatedSprite2D".play("glide_in")
 
-	if not hero.is_on_wall() and Input.is_action_just_pressed('jump'):
+	if not hero.is_on_wall() and Input.is_action_just_pressed("jump"):
 		timer_buffer_climbing.start()
 
 func on_process(_delta: float):
 	if hero.is_input_blunder_shoot()\
-		and timer_blunder_shoot_cooldown.is_stopped():
+	and timer_blunder_shoot_cooldown.is_stopped():
 		machine.set_state("StateBlunderShooting")
 		return
 

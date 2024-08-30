@@ -45,12 +45,12 @@ func _ready():
 
 func _process(_delta):
 	if show_gizmo:
-		get_node('TargetMarker').visible = true
-		get_node('TargetMarker').visible = true
+		get_node("TargetMarker").visible = true
+		get_node("TargetMarker").visible = true
 		debug_gizmos()
 	else:
-		get_node('TargetMarker').visible = false
-		get_node('CameraMarker').visible = false
+		get_node("TargetMarker").visible = false
+		get_node("CameraMarker").visible = false
 
 	hero_real_vel = hero.get_real_velocity()
 	hero_vel = hero.velocity
@@ -145,8 +145,8 @@ func step_camera_position(delta: float):
 
 
 func debug_gizmos():
-	get_node('TargetMarker').global_position = target
-	if get_node('TargetMarker').global_position.distance_squared_to(get_node('CameraMarker').global_position) < 10:
-		get_node('TargetMarker').modulate = Color(1,0,0,1)
-	else: get_node('TargetMarker').modulate = Color(1,1,1,1)
+	get_node("TargetMarker").global_position = target
+	if get_node("TargetMarker").global_position.distance_squared_to(get_node("CameraMarker").global_position) < 10:
+		get_node("TargetMarker").modulate = Color(1,0,0,1)
+	else: get_node("TargetMarker").modulate = Color(1,1,1,1)
 		

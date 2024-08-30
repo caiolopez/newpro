@@ -20,7 +20,7 @@ func on_process(_delta: float):
 	if Input.is_action_just_pressed("shoot"):
 		hero.shoot()
 
-	if Input.is_action_just_pressed('jump'):
+	if Input.is_action_just_pressed("jump"):
 		if hero.is_pushing_wall():
 			$"../../Gfx/AnimatedSprite2D".frame = 0
 			$"../../Gfx/AnimatedSprite2D".play("wallclimb")
@@ -28,7 +28,7 @@ func on_process(_delta: float):
 			can_wj = false
 			return
 
-	if Input.is_action_just_released('jump'): can_wj = true
+	if Input.is_action_just_released("jump"): can_wj = true
 	
 	if hero.velocity.y < 0\
 	and not hero.pelvis_rc.is_colliding()\
@@ -45,7 +45,7 @@ func on_process(_delta: float):
 		machine.set_state("StateIdle")
 		return
 		
-	if Input.is_action_just_released('jump'):
+	if Input.is_action_just_released("jump"):
 		hero.velocity.y *= 0.5
 
 	if not hero.is_on_wall():

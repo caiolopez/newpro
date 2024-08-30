@@ -25,7 +25,7 @@ func on_process(_delta: float):
 		machine.set_state("StateVaulting")
 		return
 
-	if Input.is_action_just_pressed('jump'):
+	if Input.is_action_just_pressed("jump"):
 		machine.set_state("StateJumping")
 		return
 
