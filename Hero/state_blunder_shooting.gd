@@ -28,8 +28,6 @@ func on_enter():
 	and hero.facing_direction == round(hero.get_wall_normal().x):
 		$"../../Gfx/AnimatedSprite2D".frame = 1
 
-	hero.blundershoot()
-
 func on_process(_delta: float):
 	if Input.is_action_just_pressed("jump")\
 	and not timer_blunder_jump_window.is_stopped():

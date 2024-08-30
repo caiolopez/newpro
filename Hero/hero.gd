@@ -10,10 +10,10 @@ class_name Hero extends CharacterBody2D
 @export var GLIDE_VELOCITY: float = 300 ## The speed at which the hero slowly descends when airborne and holding Jump.
 @export var GLIDE_X_DRAG: float = -3000 ## The rate at which it decelerates to normal SPEED after walljump.
 @export var BLUNDER_AIRBORNE_VELOCITY = Vector2(-2000, 0) ## The strength of the recoil when blundershooting on air.
-@export var BLUNDER_GROUNDED_VELOCITY = Vector2(-800, 0) ## The strength of the recoil when blundershooting on ground.
+@export var BLUNDER_GROUNDED_VELOCITY = Vector2(-2000, 0) ## The strength of the recoil when blundershooting on ground.
 @export var BLUNDER_UNDERWATER_VELOCITY = Vector2(-800, 0) ## The strength of the recoil when blundershooting on ground.
 @export var BLUNDER_AIRBORNE_DURATION: float = 0.2 ## The duration of the recoil when blundershooting on air.
-@export var BLUNDER_GROUNDED_DURATION: float = 0.1 ## The duration of the recoil when blundershooting on ground.
+@export var BLUNDER_GROUNDED_DURATION: float = 0.05 ## The duration of the recoil when blundershooting on ground.
 @export var BLUNDER_UNDERWATER_DURATION: float = 0.15 ## The duration of the recoil when blundershooting on water.
 @export var BLUNDER_JUMP_VELOCITY: float = -1200 ## The speed the hero jumps after blundershooting airborne.
 @export var BLUNDER_JUMP_WATER_BOUNCE_VELOCITY: float = -1000 ## The speed the hero jumps after tapping jump while blunderjumping on water surface. Like Kiddy Kong.
@@ -64,12 +64,8 @@ func _ready():
 func _process(_delta):
 	check_value_change()
 	
-	if dmg_taker.current_hp == 0\
-	and state_machine.current_state.death_prone:
-		die()
-	if $InnardsRC.is_colliding()\
-	and state_machine.current_state.death_prone:
-		die()
+	if dmg_taker.current_hp == 0: die()
+	if $InnardsRC.is_colliding(): die()
 	if is_in_water\
 	and state_machine.current_state.water_prone\
 	and global_position.y > last_water_surface:
@@ -141,17 +137,6 @@ func step_walljump() -> void:
 	if ass_rc.is_colliding():
 		state_machine.set_state("StateWallJumping")
 
-func step_shooting(inverted: bool = false, wet: bool = false) -> void:
-	if is_input_blunder_shoot()\
-	and $StateMachine/TimerBlunderShootCooldown.is_stopped():
-		if wet: state_machine.set_state("StateWetBlunderShooting")
-		else: state_machine.set_state("StateBlunderShooting")
-		return
-
-	if Input.is_action_just_pressed("shoot"):
-		if inverted: shoot_inverted()
-		else: shoot()
-
 func check_value_change():
 	is_just_on_floor = is_on_floor() and not was_on_floor
 	was_on_floor = is_on_floor()
@@ -183,26 +168,30 @@ func update_current_checkpoint_path(new_checkpoint_path: NodePath):
 	current_checkpoint_path = new_checkpoint_path
 	SaveManager.log_hero_change("current_checkpoint_path", current_checkpoint_path)
 
+func step_shooting(inverted: bool = false, wet: bool = false) -> void:
+	if is_input_blunder_shoot()\
+	and $StateMachine/TimerBlunderShootCooldown.is_stopped():
+		$Gfx/Muzzle.visible = true
+		$Gfx/Muzzle.play("blunder")
+		if wet: state_machine.set_state("StateWetBlunderShooting")
+		else: state_machine.set_state("StateBlunderShooting")
+		shooter.shoot()
+		return
+
+	if Input.is_action_just_pressed("shoot"):
+		$Gfx/Muzzle.visible = true
+		$Gfx/Muzzle.play("default")
+		shooter.shoot_ad_hoc(regular_shot_speed, 0, false, inverted)
+
+func color_muzzle(dark: Color, light: Color) -> void:
+	$Gfx/Muzzle/BwShaderSetter.set_color(dark, light)
+
 func die():
-	state_machine.set_state("StateDeathSnapshot")
+	if state_machine.current_state.death_prone:
+		state_machine.set_state("StateDeathSnapshot")
 
 func insta_spawn():
 	state_machine.set_state("StateSpawning")
-
-func shoot():	
-	$Gfx/Muzzle.visible = true
-	$Gfx/Muzzle.play("default")
-	shooter.shoot_ad_hoc(regular_shot_speed)
-
-func shoot_inverted():
-	$Gfx/Muzzle.visible = true
-	$Gfx/Muzzle.play("default")
-	shooter.shoot_ad_hoc(regular_shot_speed, 0, false, true)
-
-func blundershoot():
-	$Gfx/Muzzle.visible = true
-	$Gfx/Muzzle.play("blunder")
-	shooter.shoot()
 
 func on_water_status_changed(_is_in_water: bool, water: Water):
 	self.is_in_water = _is_in_water

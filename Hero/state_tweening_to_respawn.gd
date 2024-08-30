@@ -23,10 +23,8 @@ func on_process(_delta: float):
 		machine.set_state("StateRespawning")
 		return
 
-
 func on_physics_process(_delta: float):
 	pass
-
 
 func on_exit():
 	pass
