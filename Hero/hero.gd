@@ -121,18 +121,20 @@ func is_pushing_wall() -> bool:
 
 func is_move_dir_away_from_last_wall() -> bool:
 	var mov_away
-	mov_away = (round(get_wall_normal().x) == -1 and Input.is_action_pressed('move_left'))\
-	or (round(get_wall_normal().x) == 1 and Input.is_action_pressed('move_right'))
+	mov_away = (round(get_wall_normal().x) == -1 and Input.is_action_pressed("move_left"))\
+	or (round(get_wall_normal().x) == 1 and Input.is_action_pressed("move_right"))
 	return mov_away
 
 func is_move_dir_just_away_from_last_wall() -> bool:
 	var mov_away
-	mov_away = (round(get_wall_normal().x) == -1 and Input.is_action_just_pressed('move_left'))\
-	or (round(get_wall_normal().x) == 1 and Input.is_action_just_pressed('move_right'))
+	mov_away = (round(get_wall_normal().x) == -1 and Input.is_action_just_pressed("move_left"))\
+	or (round(get_wall_normal().x) == 1 and Input.is_action_just_pressed("move_right"))
 	return mov_away
 
 func is_input_blunder_shoot() -> bool:
-	return Input.is_action_pressed('duck') and Input.is_action_just_pressed("shoot")
+	if not DebugTools.blunder_on_single_button:
+		return Input.is_action_pressed("duck") and Input.is_action_just_pressed("shoot")
+	else: return Input.is_action_pressed("triangle")
 
 func step_walljump() ->void:
 	if $StateMachine/TimerBufferWallJump.is_stopped() or not Utils.is_pushing_sides(): return

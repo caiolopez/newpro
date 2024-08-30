@@ -2,10 +2,13 @@ extends Node2D
 
 @export var print_stuff: bool = true
 @export var input_stuff: bool = true
+@export var blunder_on_single_button: bool = false
 
 func _ready():
 	ComboParser.combo_performed.connect(func(combo):
 		if combo == "FullScreen": toggle_fullscreen())
+	ComboParser.combo_performed.connect(func(combo):
+		blunder_on_single_button = combo == "BlunderOnSingleButton")
 
 func _process(_delta):
 	input_bin()
