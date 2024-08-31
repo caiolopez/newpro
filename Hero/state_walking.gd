@@ -21,11 +21,13 @@ func on_process(_delta: float):
 		machine.set_state("StateJumping")
 		return
 
-	if hero.is_on_floor() and hero.velocity.x == 0:
+	if hero.is_on_floor()\
+	and hero.velocity.x == 0:
 		machine.set_state("StateIdle")
 		return
 
-	if not hero.is_on_floor() and hero.velocity.y > 0:
+	if not hero.is_on_floor()\
+	and hero.velocity.y > 0:
 		timer_coyote_jump.start()
 		machine.set_state("StateFalling")
 		return

@@ -29,6 +29,7 @@ func on_process(_delta: float):
 		return
 
 	if Utils.is_pushing_sides()\
+	and not hero.is_pushing_wall()\
 	and hero.is_on_floor():
 		machine.set_state("StateWalking")
 		return

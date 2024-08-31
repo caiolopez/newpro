@@ -146,3 +146,4 @@ position = Vector2(942, 96)
 position = Vector2(0, -12.625)
 
 [node name="Switch" parent="Common/SwitchGroupController" instance=ExtResource("15_tdva6")]
+toggle = true
