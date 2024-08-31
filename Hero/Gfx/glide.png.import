@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://jnu2i2a6unn4"
-path="res://.godot/imported/glide_in.png-9ca08c8e1436d4d5bdc9f9d787e66f9e.ctex"
+path="res://.godot/imported/glide.png-7120063da90c5acccd249ef5567c9e2a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Hero/Gfx/glide_in.png"
-dest_files=["res://.godot/imported/glide_in.png-9ca08c8e1436d4d5bdc9f9d787e66f9e.ctex"]
+source_file="res://Hero/Gfx/glide.png"
+dest_files=["res://.godot/imported/glide.png-7120063da90c5acccd249ef5567c9e2a.ctex"]
 
 [params]
 
