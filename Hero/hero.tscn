@@ -150,7 +150,7 @@ region = Rect2(0, 0, 29, 29)
 [sub_resource type="SpriteFrames" id="SpriteFrames_uo7bl"]
 animations = [{
 "frames": [{
-"duration": 3.0,
+"duration": 5.0,
 "texture": null
 }, {
 "duration": 1.0,
