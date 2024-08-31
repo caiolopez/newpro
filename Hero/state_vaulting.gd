@@ -14,6 +14,10 @@ func on_process(_delta: float):
 	if hero.velocity.y > 0:
 		machine.set_state("StateFalling")
 		return
+	
+	if hero.is_on_floor():
+		machine.set_state("StateIdle")
+		return
 
 
 func on_physics_process(delta: float):
