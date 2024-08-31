@@ -11,9 +11,8 @@ func on_enter():
 		hero.global_position.y), &"dust_jump")
 
 	timer_walljump_duration.start()
-	hero.velocity.x = hero.WALLJUMP_VELOCITY.x * round(hero.get_wall_normal().x)
+	hero.velocity.x = hero.WALLJUMP_VELOCITY.x * hero.facing_direction
 	hero.velocity.y = hero.WALLJUMP_VELOCITY.y
-	hero.facing_direction = round(hero.get_wall_normal().x)
 
 func on_process(_delta: float):
 	hero.step_shooting()
