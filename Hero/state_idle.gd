@@ -24,12 +24,14 @@ func on_process(_delta: float):
 		return
 
 	if Input.is_action_just_pressed("jump")\
+	and not hero.is_on_ceiling()\
 	and hero.is_on_floor():
 		machine.set_state("StateJumping")
 		return
 
 	if Utils.is_pushing_sides()\
 	and not hero.is_pushing_wall()\
+	and not hero.is_on_ceiling()\
 	and hero.is_on_floor():
 		machine.set_state("StateWalking")
 		return
