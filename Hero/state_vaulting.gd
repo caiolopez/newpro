@@ -11,7 +11,11 @@ func on_enter():
 
 func on_process(_delta: float):
 	hero.step_shooting()
-
+	
+	if Input.is_action_just_pressed("jump"):
+		machine.set_state("StateJumping")
+		return
+	
 	if hero.velocity.y > 0:
 		machine.set_state("StateFalling")
 		return
@@ -22,8 +26,6 @@ func on_process(_delta: float):
 
 func on_physics_process(delta: float):
 	hero.global_position.y = lerp(hero.global_position.y, target_y_position, 15 * delta)
-	
 	hero.step_grav(delta)
 	hero.step_lateral_mov(delta)
-	
 	hero.move_and_slide()
