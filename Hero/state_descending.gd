@@ -3,9 +3,6 @@ extends HeroState
 var water_prone: bool = false
 var death_prone: bool = true
 
-func on_enter():
-	pass
-
 func on_process(_delta: float):
 	if hero.velocity.y > -10\
 	and not Utils.is_pushing_sides():
@@ -57,6 +54,3 @@ func on_physics_process(delta: float):
 		hero.repel_ass(delta)
 	
 	hero.move_and_slide()
-
-func on_exit():
-	pass

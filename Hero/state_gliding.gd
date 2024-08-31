@@ -36,7 +36,6 @@ func on_process(_delta: float):
 		return
 
 func on_physics_process(delta: float):
-	
 	if Input.is_action_pressed("jump")\
 	and timer_before_glide.is_stopped():
 		hero.velocity.y -= 25000 * delta
@@ -48,7 +47,6 @@ func on_physics_process(delta: float):
 	hero.step_walljump()
 	
 	hero.move_and_slide()
-
 
 func on_exit():
 	if $"../../Gfx/ParachuteAnim".get_frame() > 9:

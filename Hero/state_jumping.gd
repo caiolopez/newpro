@@ -56,7 +56,3 @@ func on_physics_process(delta: float):
 	if Input.is_action_just_released("jump"): hero.velocity.y *= 0.25
 	
 	hero.move_and_slide()
-
-
-func on_exit():
-	pass

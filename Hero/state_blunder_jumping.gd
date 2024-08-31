@@ -25,8 +25,6 @@ func on_process(delta: float):
 		shoot_hold_time += delta
 		if timer_between_blunder_jumping_shots.is_stopped():
 			hero.shooter.shoot_ad_hoc(hero.regular_shot_speed, hero.current_blunder_jump_angle, true)
-			
-			# Calculate new wait time
 			var new_wait_time = max(MIN_SHOT_INTERVAL, INITIAL_SHOT_INTERVAL
 			- (shoot_hold_time * SHOT_INTERVAL_DECREASE_RATE))
 			timer_between_blunder_jumping_shots.set_wait_time(new_wait_time)
@@ -67,14 +65,12 @@ func on_process(delta: float):
 	and Input.is_action_just_released("jump"):
 		hero.velocity.y *= 0.5
 
-
 func on_physics_process(delta: float):
 	hero.current_blunder_jump_angle += delta * 1080 * hero.facing_direction
 	
 	hero.step_grav(delta)
 	hero.step_lateral_mov(delta)
 	hero.move_and_slide()
-
 
 func on_exit():
 	$"../../Shooter".return_to_og_pos()

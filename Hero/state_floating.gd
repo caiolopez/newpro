@@ -54,6 +54,3 @@ func on_physics_process(delta: float):
 		hero.repel_ass(delta)
 
 	hero.move_and_slide()
-
-func on_exit():
-	pass

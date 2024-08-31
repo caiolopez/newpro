@@ -20,7 +20,6 @@ func on_process(_delta: float):
 		machine.set_state("StateIdle")
 		return
 
-
 func on_physics_process(delta: float):
 	hero.global_position.y = lerp(hero.global_position.y, target_y_position, 15 * delta)
 	
@@ -28,7 +27,3 @@ func on_physics_process(delta: float):
 	hero.step_lateral_mov(delta)
 	
 	hero.move_and_slide()
-
-
-func on_exit():
-	pass

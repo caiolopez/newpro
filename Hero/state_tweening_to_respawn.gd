@@ -20,9 +20,3 @@ func on_process(_delta: float):
 		tween.kill()
 		machine.set_state("StateRespawning")
 		return
-
-func on_physics_process(_delta: float):
-	pass
-
-func on_exit():
-	pass

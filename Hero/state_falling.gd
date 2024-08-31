@@ -65,13 +65,8 @@ func on_process(_delta: float):
 		machine.set_state("StateIdle")
 		return
 
-
 func on_physics_process(delta: float):
 	hero.step_grav(delta, hero.FAST_FALL_GRAVITY)
 	hero.step_lateral_mov(delta)
 	hero.step_walljump()
 	hero.move_and_slide()
-
-
-func on_exit():
-	pass

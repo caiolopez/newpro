@@ -11,9 +11,6 @@ func on_enter():
 		return
 	machine.set_state("StateIdle")
 
-func on_process(_delta: float):
-	pass
-
 func on_physics_process(_delta: float):
 	hero.move_and_slide()
 

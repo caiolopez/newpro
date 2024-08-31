@@ -22,19 +22,12 @@ func on_process(_delta: float):
 	if not Input.is_action_pressed("jump"):
 		machine.set_state("StateDescending")
 
-
 func on_physics_process(delta: float):
 	if hero.global_position.y > hero.last_water_surface + 64:
 		hero.velocity.y = hero.ASCENDING_VELOCITY
 	else:
 		hero.velocity.y = 0
-
 	hero.step_lateral_mov(delta)
-	
 	if hero.pelvis_back_rc.is_colliding():
 		hero.repel_ass(delta)
-
 	hero.move_and_slide()
-
-func on_exit():
-	pass

@@ -5,7 +5,6 @@ var death_prone: bool = true
 
 func on_enter():
 	$"../../Gfx/AnimatedSprite2D".play("wallclimb")
-
 	hero.velocity.y = hero.CLIMB_VELOCITY
 
 func on_process(_delta: float):

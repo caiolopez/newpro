@@ -5,7 +5,6 @@ var death_prone: bool = true
 
 func on_enter():
 	$"../../Gfx/AnimatedSprite2D".play("walk")
-	pass
 
 func on_process(_delta: float):
 	hero.step_shooting()
@@ -35,6 +34,3 @@ func on_physics_process(delta: float):
 	hero.step_grav(delta)
 	hero.step_lateral_mov(delta)
 	hero.move_and_slide()
-
-func on_exit():
-	pass

@@ -21,7 +21,6 @@ func on_enter():
 		sticky = c
 		sticky_offset = Vector2(hero.position.x - c.position.x, hero.position.y - c.position.y)
 
-
 func on_process(_delta: float):
 	hero.step_shooting(inverted)
 
@@ -37,16 +36,12 @@ func on_process(_delta: float):
 		machine.set_state("StateFalling")
 		return
 
-
 func on_physics_process(_delta: float):
 	if sticky: hero.position = sticky.position + sticky_offset
 	hero.move_and_slide()
-
 
 func on_exit():
 	$"../../Shooter".return_to_og_pos()
 	$"../../Gfx/Muzzle".position = $"../../Shooter".position
 	$"../../Gfx/Muzzle".flip_h = false
-	
 	sticky = null
-	pass
