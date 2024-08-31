@@ -27,13 +27,12 @@ func on_process(_delta: float):
 		machine.set_state("StateWallClimbing")
 		return
 
-	if hero.velocity.y > 0:
+	if hero.velocity.y >= 0:
 		machine.set_state("StateFalling")
 		return
 
-	if hero.velocity.y > -50\
+	if hero.velocity.y > -500\
 	and hero.is_pushing_wall()\
-	and not hero.pelvis_rc.is_colliding()\
 	and not hero.shoulder_rc.is_colliding()\
 	and hero.next_grd_height_rc.is_colliding():
 		machine.set_state("StateVaulting")
