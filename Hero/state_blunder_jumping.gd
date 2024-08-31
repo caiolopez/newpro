@@ -2,6 +2,7 @@ extends HeroState
 
 var water_prone: bool = false
 var death_prone: bool = true
+
 var bounce_count: int = 0
 var shoot_hold_time: float = 0.0
 

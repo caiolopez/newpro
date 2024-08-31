@@ -2,6 +2,7 @@ extends HeroState
 
 var water_prone: bool = true
 var death_prone: bool = true
+
 var target_y_position: float
 
 func on_enter():

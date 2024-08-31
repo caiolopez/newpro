@@ -3,7 +3,6 @@ extends HeroState
 var water_prone: bool = false
 var death_prone: bool = true
 
-
 func on_enter():
 	timer_blunder_shoot_duration.set_wait_time(hero.BLUNDER_UNDERWATER_DURATION)
 	hero.velocity.x = hero.BLUNDER_UNDERWATER_VELOCITY.x*hero.facing_direction
@@ -33,14 +32,12 @@ func on_process(_delta: float):
 			machine.set_state("StateFloating")
 			return
 
-
 func on_physics_process(delta: float):
 	if hero.pelvis_back_rc.is_colliding()\
 	and not hero.is_on_floor():
 		hero.repel_ass(delta, 10000)
 	
 	hero.move_and_slide()
-
 
 func on_exit():
 	timer_blunder_shoot_cooldown.start()

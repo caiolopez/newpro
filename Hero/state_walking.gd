@@ -3,7 +3,6 @@ extends HeroState
 var water_prone: bool = true
 var death_prone: bool = true
 
-
 func on_enter():
 	$"../../Gfx/AnimatedSprite2D".play("walk")
 	pass

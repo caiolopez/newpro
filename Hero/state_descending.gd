@@ -3,7 +3,6 @@ extends HeroState
 var water_prone: bool = false
 var death_prone: bool = true
 
-
 func on_enter():
 	pass
 
@@ -44,7 +43,6 @@ func on_process(_delta: float):
 		machine.set_state("StateAscending")
 		return
 
-
 func on_physics_process(delta: float):
 	hero.step_grav(delta, hero.UNDERWATER_GRAVITY)
 	hero.step_lateral_mov(delta)
@@ -59,7 +57,6 @@ func on_physics_process(delta: float):
 		hero.repel_ass(delta)
 	
 	hero.move_and_slide()
-
 
 func on_exit():
 	pass

@@ -3,13 +3,10 @@ extends HeroState
 var water_prone: bool = true
 var death_prone: bool = true
 
-var can_wj: bool
-
 func on_enter():
 	$"../../Gfx/AnimatedSprite2D".play("wallclimb")
 
 	hero.velocity.y = hero.CLIMB_VELOCITY
-	can_wj = false
 
 func on_process(_delta: float):
 	hero.step_shooting()
@@ -19,11 +16,8 @@ func on_process(_delta: float):
 			$"../../Gfx/AnimatedSprite2D".frame = 0
 			$"../../Gfx/AnimatedSprite2D".play("wallclimb")
 			hero.velocity.y = hero.CLIMB_VELOCITY
-			can_wj = false
 			return
 
-	if Input.is_action_just_released("jump"): can_wj = true
-	
 	if hero.velocity.y < 0\
 	and not hero.pelvis_rc.is_colliding()\
 	and not hero.shoulder_rc.is_colliding()\

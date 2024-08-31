@@ -3,7 +3,6 @@ extends HeroState
 var water_prone: bool = false
 var death_prone: bool = true
 
-
 func on_enter():
 	$"../../Gfx/AnimatedSprite2D".play("water_swim")
 
@@ -36,7 +35,6 @@ func on_physics_process(delta: float):
 		hero.repel_ass(delta)
 
 	hero.move_and_slide()
-
 
 func on_exit():
 	pass

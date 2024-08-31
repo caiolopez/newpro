@@ -4,7 +4,6 @@ var water_prone: bool = false
 var death_prone: bool = false
 var tween: Tween
 
-
 func on_enter():
 	$"../../Gfx/AnimatedSprite2D".play("teleport")
 	
@@ -15,7 +14,6 @@ func on_enter():
 		hero.facing_direction = get_node(hero.current_checkpoint_path).direction
 	tween = get_tree().create_tween()
 	tween.tween_property(hero, "global_position", destination, 0.5).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
-
 
 func on_process(_delta: float):
 	if not tween.is_running():

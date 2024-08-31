@@ -2,9 +2,9 @@ extends HeroState
 
 var water_prone: bool = true
 var death_prone: bool = true
+
 var sticky_offset: Vector2
 var sticky: Node2D = null
-
 const inverted: bool = true
 
 func on_enter():

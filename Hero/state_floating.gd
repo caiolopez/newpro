@@ -3,7 +3,6 @@ extends HeroState
 var water_prone: bool = false
 var death_prone: bool = true
 
-
 func on_enter():
 	if not machine.last_state.name == "StateWetBlunderShooting":
 		PropManager.place_prop(Vector2(hero.global_position.x, hero.last_water_surface), &"splash")
@@ -44,10 +43,7 @@ func on_process(_delta: float):
 		machine.set_state("StateJumping")
 		return
 
-
 func on_physics_process(delta: float):
-	
-
 	if not hero.can_dive:
 		hero.velocity.y = (hero.velocity.y - (hero.BUOYANCY * (hero.global_position.y - (hero.last_water_surface))*delta - 50))*pow(0.80, 1-delta)
 
@@ -58,7 +54,6 @@ func on_physics_process(delta: float):
 		hero.repel_ass(delta)
 
 	hero.move_and_slide()
-
 
 func on_exit():
 	pass

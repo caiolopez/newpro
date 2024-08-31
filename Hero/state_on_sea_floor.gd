@@ -3,7 +3,6 @@ extends HeroState
 var water_prone: bool = false
 var death_prone: bool = true
 
-
 func on_enter():
 	pass
 
@@ -50,7 +49,6 @@ func on_physics_process(delta: float):
 		hero.velocity.y = 0
 
 	hero.move_and_slide()
-
 
 func on_exit():
 	pass
