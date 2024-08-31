@@ -18,7 +18,7 @@ func on_process(_delta: float):
 	if hero.is_on_floor()\
 	and not hero.pelvis_rc.is_colliding()\
 	and not hero.shoulder_rc.is_colliding()\
-	and  hero.next_grd_height_rc.is_colliding()\
+	and hero.next_grd_height_rc.is_colliding()\
 	and hero.is_pushing_wall():
 		machine.set_state("StateVaulting")
 		return

@@ -32,7 +32,7 @@ func on_physics_process(delta: float):
 
 	hero.step_lateral_mov(delta)
 	
-	if hero.ass_rc.is_colliding():
+	if hero.pelvis_back_rc.is_colliding():
 		hero.repel_ass(delta)
 
 	hero.move_and_slide()

@@ -10,10 +10,10 @@ class_name Hero extends CharacterBody2D
 @export var GLIDE_VELOCITY: float = 300 ## The speed at which the hero slowly descends when airborne and holding Jump.
 @export var GLIDE_X_DRAG: float = -3000 ## The rate at which it decelerates to normal SPEED after walljump.
 @export var BLUNDER_AIRBORNE_VELOCITY = Vector2(-2000, 0) ## The strength of the recoil when blundershooting on air.
-@export var BLUNDER_GROUNDED_VELOCITY = Vector2(-2000, 0) ## The strength of the recoil when blundershooting on ground.
+@export var BLUNDER_GROUNDED_VELOCITY = Vector2(-1000, 0) ## The strength of the recoil when blundershooting on ground.
 @export var BLUNDER_UNDERWATER_VELOCITY = Vector2(-800, 0) ## The strength of the recoil when blundershooting on ground.
 @export var BLUNDER_AIRBORNE_DURATION: float = 0.2 ## The duration of the recoil when blundershooting on air.
-@export var BLUNDER_GROUNDED_DURATION: float = 0.05 ## The duration of the recoil when blundershooting on ground.
+@export var BLUNDER_GROUNDED_DURATION: float = 0.1 ## The duration of the recoil when blundershooting on ground.
 @export var BLUNDER_UNDERWATER_DURATION: float = 0.15 ## The duration of the recoil when blundershooting on water.
 @export var BLUNDER_JUMP_VELOCITY: float = -1200 ## The speed the hero jumps after blundershooting airborne.
 @export var BLUNDER_JUMP_WATER_BOUNCE_VELOCITY: float = -1000 ## The speed the hero jumps after tapping jump while blunderjumping on water surface. Like Kiddy Kong.
@@ -30,7 +30,8 @@ class_name Hero extends CharacterBody2D
 @onready var pelvis_rc: RayCast2D = $PelvisRC
 @onready var next_grd_height_rc: RayCast2D = $NextGrdHeightRC
 @onready var headbutt_assist_rc : RayCast2D = $HeadbuttAssistRC
-@onready var ass_rc: RayCast2D = $AssRC
+@onready var shoulder_back_rc: RayCast2D = $ShoulderBackRC
+@onready var pelvis_back_rc: RayCast2D = $PelvisBackRC
 @onready var dmg_taker: DmgTaker = $DmgTaker
 @onready var shooter: Shooter = $Shooter
 const is_foe: bool = false ## Flag necessary for components that are shared between Hero and enemies.
@@ -100,9 +101,10 @@ func step_lateral_mov(delta, speed: float = SPEED):
 	velocity.x += GLIDE_X_DRAG * facing_direction * delta
 	velocity.x = maxf(abs(velocity.x), speed) * facing_direction
 
-	ass_rc.update_direction()
 	shoulder_rc.update_direction()
+	shoulder_back_rc.update_direction()
 	pelvis_rc.update_direction()
+	pelvis_back_rc.update_direction()
 	next_grd_height_rc.update_position()
 	headbutt_assist_rc.update_direction()
 	headbutt_assist_rc.update_position()
@@ -134,7 +136,7 @@ func is_input_blunder_shoot() -> bool:
 
 func step_walljump() -> void:
 	if $StateMachine/TimerBufferWallJump.is_stopped() or not Utils.is_pushing_sides(): return
-	if ass_rc.is_colliding():
+	if pelvis_back_rc.is_colliding() or shoulder_back_rc.is_colliding():
 		state_machine.set_state("StateWallJumping")
 
 func check_value_change():

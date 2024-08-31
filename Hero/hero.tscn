@@ -1,4 +1,4 @@
-[gd_scene load_steps=220 format=3 uid="uid://1md1m8n6iq5x"]
+[gd_scene load_steps=218 format=3 uid="uid://1md1m8n6iq5x"]
 
 [ext_resource type="Script" path="res://Hero/hero.gd" id="1_dmqn8"]
 [ext_resource type="PackedScene" uid="uid://box2ff3vwcc7w" path="res://EntityComponents/DmgTaker.tscn" id="2_ktrux"]
@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://ceh74a36ajg0o" path="res://Hero/Gfx/jump.png" id="7_dntm4"]
 [ext_resource type="Script" path="res://Hero/state_falling.gd" id="7_qsa0a"]
 [ext_resource type="Script" path="res://Hero/state_gliding.gd" id="8_4k4qv"]
-[ext_resource type="Texture2D" uid="uid://jnu2i2a6unn4" path="res://Hero/Gfx/glide_in.png" id="8_djkmc"]
+[ext_resource type="Texture2D" uid="uid://jnu2i2a6unn4" path="res://Hero/Gfx/glide.png" id="8_djkmc"]
 [ext_resource type="Texture2D" uid="uid://cqgrp1arxqyp6" path="res://Hero/Gfx/ascend_h.png" id="8_i1q84"]
 [ext_resource type="Texture2D" uid="uid://pq2fuhkblrjg" path="res://Hero/Gfx/blunderjump.png" id="8_qxmo7"]
 [ext_resource type="Script" path="res://Hero/state_wall_grabbing.gd" id="9_d343a"]
@@ -53,7 +53,7 @@
 [ext_resource type="PackedScene" uid="uid://bricuoof7bhn1" path="res://EntityComponents/BlurFX.tscn" id="50_6e2hc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wwsjr"]
-size = Vector2(48, 112)
+size = Vector2(48, 114)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l5a25"]
 atlas = ExtResource("10_js46x")
@@ -364,14 +364,6 @@ region = Rect2(80, 0, 40, 40)
 [sub_resource type="AtlasTexture" id="AtlasTexture_l2wy8"]
 atlas = ExtResource("8_djkmc")
 region = Rect2(120, 0, 40, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2g4tx"]
-atlas = ExtResource("8_djkmc")
-region = Rect2(40, 0, 40, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cmumi"]
-atlas = ExtResource("8_djkmc")
-region = Rect2(80, 0, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fyumc"]
 atlas = ExtResource("7_dntm4")
@@ -888,19 +880,8 @@ animations = [{
 "texture": SubResource("AtlasTexture_l326r")
 }],
 "loop": false,
-"name": &"glide_in",
+"name": &"glide",
 "speed": 15.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2g4tx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cmumi")
-}],
-"loop": false,
-"name": &"glide_loop",
-"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -1383,13 +1364,13 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_361o4"]
-size = Vector2(60, 152)
+size = Vector2(60, 156)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8r0xo"]
-size = Vector2(80, 152)
+size = Vector2(60, 156)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3saph"]
-size = Vector2(32, 24)
+size = Vector2(36, 24)
 
 [node name="Hero" type="CharacterBody2D" node_paths=PackedStringArray("state_machine") groups=["heroes", "uncrushables"]]
 collision_layer = 8
@@ -1402,18 +1383,18 @@ metadata/_edit_group_ = true
 [node name="DmgTaker" parent="." instance=ExtResource("2_ktrux")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DmgTaker"]
-position = Vector2(0, -16)
+position = Vector2(0, -15)
 shape = SubResource("RectangleShape2D_wwsjr")
 debug_color = Color(0.683323, 0.501593, 0.0283101, 0.42)
 
 [node name="NextGrdHeightRC" type="RayCast2D" parent="."]
-position = Vector2(80, 0)
-target_position = Vector2(0, 64)
+position = Vector2(42, 0)
+target_position = Vector2(0, 66)
 script = ExtResource("3_6dncg")
 
 [node name="HeadbuttAssistRC" type="RayCast2D" parent="."]
-position = Vector2(-16, -96)
-target_position = Vector2(-24, 0)
+position = Vector2(0, -102)
+target_position = Vector2(-30, 0)
 script = ExtResource("3_6dncg")
 
 [node name="ShoulderRC" type="RayCast2D" parent="."]
@@ -1427,13 +1408,20 @@ target_position = Vector2(120, 0)
 script = ExtResource("3_6dncg")
 
 [node name="InnardsRC" type="RayCast2D" parent="."]
-position = Vector2(16, -16)
+position = Vector2(18, -72)
 target_position = Vector2(-32, 32)
 hit_from_inside = true
 script = ExtResource("3_6dncg")
 
-[node name="AssRC" type="RayCast2D" parent="."]
-target_position = Vector2(-104, 0)
+[node name="ShoulderBackRC" type="RayCast2D" parent="."]
+position = Vector2(0, -24)
+target_position = Vector2(-120, 0)
+hit_from_inside = true
+script = ExtResource("3_6dncg")
+
+[node name="PelvisBackRC" type="RayCast2D" parent="."]
+position = Vector2(0, 24)
+target_position = Vector2(-120, 0)
 hit_from_inside = true
 script = ExtResource("3_6dncg")
 
@@ -1458,10 +1446,10 @@ animation = &"deploy_parachute"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Gfx"]
 use_parent_material = true
-position = Vector2(0, -32)
+position = Vector2(0, -30)
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_tm5on")
-animation = &"glide_in"
+animation = &"water_swim"
 
 [node name="Muzzle" type="AnimatedSprite2D" parent="Gfx"]
 visible = false
@@ -1633,10 +1621,15 @@ position = Vector2(0, -12)
 shape = SubResource("RectangleShape2D_8r0xo")
 
 [node name="BlurFX" parent="." instance=ExtResource("50_6e2hc")]
+fade_time = 0.1
+
+[node name="BwShaderSetter" parent="BlurFX" instance=ExtResource("27_8ng6k")]
+dark_color = Color(0.466968, 0.204362, 0.536221, 1)
+light_color = Color(0.252611, 0.425058, 0.490277, 1)
 
 [node name="IsInWaterNotifier_GUN" parent="." instance=ExtResource("49_p6sxx")]
 auto_connect_to_parent = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="IsInWaterNotifier_GUN"]
-position = Vector2(0, -44)
+position = Vector2(0, -42)
 shape = SubResource("RectangleShape2D_3saph")

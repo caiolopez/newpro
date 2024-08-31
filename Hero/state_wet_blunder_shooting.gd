@@ -35,7 +35,7 @@ func on_process(_delta: float):
 
 
 func on_physics_process(delta: float):
-	if hero.ass_rc.is_colliding()\
+	if hero.pelvis_back_rc.is_colliding()\
 	and not hero.is_on_floor():
 		hero.repel_ass(delta, 10000)
 	

@@ -55,7 +55,7 @@ func on_physics_process(delta: float):
 	and hero.global_position.y < hero.last_water_surface + 64:
 		hero.velocity.y = 0
 	
-	if hero.ass_rc.is_colliding():
+	if hero.pelvis_back_rc.is_colliding():
 		hero.repel_ass(delta)
 	
 	hero.move_and_slide()
