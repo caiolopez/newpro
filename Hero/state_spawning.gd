@@ -9,7 +9,7 @@ func on_enter():
 		destination = get_node(hero.current_checkpoint_path).global_position
 		hero.facing_direction = get_node(hero.current_checkpoint_path).direction
 	hero.global_position = destination
-	
+
 	Events.camera_set_glpos.emit(hero.global_position)
 	AppManager.is_time_running = true
 	machine.set_state("StateIdle")

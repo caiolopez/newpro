@@ -32,6 +32,7 @@ class_name Hero extends CharacterBody2D
 @onready var headbutt_assist_rc : RayCast2D = $HeadbuttAssistRC
 @onready var shoulder_back_rc: RayCast2D = $ShoulderBackRC
 @onready var pelvis_back_rc: RayCast2D = $PelvisBackRC
+@onready var innards_rc: RayCast2D = $InnardsRC
 @onready var dmg_taker: DmgTaker = $DmgTaker
 @onready var shooter: Shooter = $Shooter
 const is_foe: bool = false ## Flag necessary for components that are shared between Hero and enemies.
@@ -66,7 +67,7 @@ func _process(_delta):
 	check_value_change()
 	
 	if dmg_taker.current_hp == 0: die()
-	if $InnardsRC.is_colliding(): die()
+	if innards_rc.is_colliding(): die()
 	if is_in_water\
 	and state_machine.current_state.water_prone\
 	and global_position.y > last_water_surface:
