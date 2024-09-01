@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://cv2bdmdm7ivmp"]
+[gd_scene load_steps=52 format=3 uid="uid://cv2bdmdm7ivmp"]
 
 [ext_resource type="Script" path="res://Regions/region.gd" id="1_fjngo"]
 [ext_resource type="PackedScene" uid="uid://csvdenv1i3dc3" path="res://Bullet/Teleporter.tscn" id="2_6ojyo"]
@@ -89,6 +89,9 @@ size = Vector2(128, 216)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jexxc"]
 size = Vector2(138, 202)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mapt8"]
+size = Vector2(1056, 636)
 
 [node name="TEST" type="Node2D"]
 position = Vector2(2800, -1368)
@@ -360,21 +363,6 @@ is_unique = true
 [node name="Marker2D" parent="CameraLocker7" index="1"]
 position = Vector2(-8, 328)
 
-[node name="Water" parent="." instance=ExtResource("16_786dt")]
-position = Vector2(-4003, 1897)
-scale = Vector2(54.5835, 52.2739)
-collision_mask = 12
-
-[node name="Water2" parent="." instance=ExtResource("16_786dt")]
-position = Vector2(3408, 3056)
-scale = Vector2(81.538, 58.676)
-collision_mask = 12
-
-[node name="Water3" parent="." instance=ExtResource("16_786dt")]
-position = Vector2(4832, 3056)
-scale = Vector2(81.538, 58.676)
-collision_mask = 12
-
 [node name="CheckpointTrigger" parent="." instance=ExtResource("17_bl8nk")]
 position = Vector2(-2472, 1408)
 rotation = 3.14159
@@ -613,6 +601,13 @@ position = Vector2(-3392, 600)
 
 [node name="CollectOnTouch" parent="underwater_ammo" index="0"]
 type = 2
+
+[node name="Water" parent="." instance=ExtResource("16_786dt")]
+position = Vector2(-3970, 1650)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Water"]
+position = Vector2(-12, 132)
+shape = SubResource("RectangleShape2D_mapt8")
 
 [node name="aqualung" parent="." instance=ExtResource("30_1hxe5")]
 position = Vector2(-3104, 1232)
