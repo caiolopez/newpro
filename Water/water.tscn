@@ -1,46 +1,49 @@
-[gd_scene load_steps=14 format=3 uid="uid://bt23waqbakmop"]
+[gd_scene load_steps=17 format=3 uid="uid://bt23waqbakmop"]
 
-[ext_resource type="Script" path="res://Bullet/water.gd" id="1_j6gn3"]
-[ext_resource type="Texture2D" uid="uid://4txykn3mnj1c" path="res://Bullet/water_surface.png" id="2_lavdt"]
+[ext_resource type="Script" path="res://Water/water.gd" id="1_j6gn3"]
+[ext_resource type="Texture2D" uid="uid://cjnw02dkcpqnu" path="res://Water/water_surface_tile.png" id="2_yk3ra"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2q2hy"]
+load_path = "res://.godot/imported/water_surface.png-807a59705babc5230046e322caa9ec97.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sni4x"]
-atlas = ExtResource("2_lavdt")
+atlas = SubResource("CompressedTexture2D_2q2hy")
 region = Rect2(0, 0, 30, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hfmik"]
-atlas = ExtResource("2_lavdt")
+atlas = SubResource("CompressedTexture2D_2q2hy")
 region = Rect2(30, 0, 30, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r3wdt"]
-atlas = ExtResource("2_lavdt")
+atlas = SubResource("CompressedTexture2D_2q2hy")
 region = Rect2(60, 0, 30, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kh5qd"]
-atlas = ExtResource("2_lavdt")
+atlas = SubResource("CompressedTexture2D_2q2hy")
 region = Rect2(90, 0, 30, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7cdw3"]
-atlas = ExtResource("2_lavdt")
+atlas = SubResource("CompressedTexture2D_2q2hy")
 region = Rect2(120, 0, 30, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tk2e2"]
-atlas = ExtResource("2_lavdt")
+atlas = SubResource("CompressedTexture2D_2q2hy")
 region = Rect2(150, 0, 30, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kxxab"]
-atlas = ExtResource("2_lavdt")
+atlas = SubResource("CompressedTexture2D_2q2hy")
 region = Rect2(180, 0, 30, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iqihy"]
-atlas = ExtResource("2_lavdt")
+atlas = SubResource("CompressedTexture2D_2q2hy")
 region = Rect2(210, 0, 30, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a6mn0"]
-atlas = ExtResource("2_lavdt")
+atlas = SubResource("CompressedTexture2D_2q2hy")
 region = Rect2(240, 0, 30, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_42666"]
-atlas = ExtResource("2_lavdt")
+atlas = SubResource("CompressedTexture2D_2q2hy")
 region = Rect2(270, 0, 30, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ws8ep"]
@@ -81,6 +84,20 @@ animations = [{
 "speed": 30.0
 }]
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_70at8"]
+texture = ExtResource("2_yk3ra")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_6hvv6"]
+sources/0 = SubResource("TileSetAtlasSource_70at8")
+
 [node name="Water" type="Area2D"]
 script = ExtResource("1_j6gn3")
 
@@ -88,3 +105,6 @@ script = ExtResource("1_j6gn3")
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_ws8ep")
 autoplay = "default"
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_set = SubResource("TileSet_6hvv6")

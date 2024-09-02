@@ -1449,7 +1449,7 @@ use_parent_material = true
 position = Vector2(0, -30)
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_tm5on")
-animation = &"water_swim"
+animation = &"walljump"
 
 [node name="Muzzle" type="AnimatedSprite2D" parent="Gfx"]
 visible = false

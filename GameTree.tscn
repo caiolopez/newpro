@@ -1,7 +1,6 @@
-[gd_scene load_steps=19 format=4 uid="uid://1xi1vmc3x5ck"]
+[gd_scene load_steps=18 format=4 uid="uid://1xi1vmc3x5ck"]
 
 [ext_resource type="PackedScene" uid="uid://b424bvcxa2fbn" path="res://GUI/BossOverlay.tscn" id="1_tkq5o"]
-[ext_resource type="PackedScene" uid="uid://ctbx6yfgdfo4b" path="res://block.tscn" id="1_weaqc"]
 [ext_resource type="PackedScene" uid="uid://1md1m8n6iq5x" path="res://Hero/hero.tscn" id="2_acvau"]
 [ext_resource type="PackedScene" uid="uid://d1h8vf2t5pgey" path="res://GUI/mini_map.tscn" id="2_is0lr"]
 [ext_resource type="PackedScene" uid="uid://j6oxe1axyrgk" path="res://Bullet/bullet_manager.tscn" id="3_j1ahj"]
@@ -41,13 +40,6 @@ texture = ExtResource("8_01mxc")
 5:1/0 = 0
 6:1/0 = 0
 7:1/0 = 0
-0:2/animation_columns = 4
-0:2/animation_speed = 10.0
-0:2/animation_frame_0/duration = 1.0
-0:2/animation_frame_1/duration = 1.0
-0:2/animation_frame_2/duration = 1.0
-0:2/animation_frame_3/duration = 1.0
-0:2/0 = 0
 5:2/0 = 0
 6:2/0 = 0
 7:2/0 = 0
@@ -76,6 +68,13 @@ texture = ExtResource("8_01mxc")
 0:6/0 = 0
 1:6/0 = 0
 2:6/0 = 0
+1:2/animation_columns = 4
+1:2/animation_speed = 10.0
+1:2/0 = 0
+0:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_cxrg1"]
 physics_layer_0/collision_layer = 1
@@ -108,10 +107,6 @@ catch_up_speed = Vector2(0.01, 0.01)
 [node name="TEST" parent="." instance=ExtResource("6_mtnve")]
 
 [node name="Common" type="Node2D" parent="."]
-
-[node name="Block24" parent="Common" instance=ExtResource("1_weaqc")]
-position = Vector2(-3680, -400)
-scale = Vector2(20, 8)
 
 [node name="RegionTrigger" parent="Common" instance=ExtResource("6_mg0bt")]
 position = Vector2(-1048, -1408)

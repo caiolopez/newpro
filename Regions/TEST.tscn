@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://boug41cw8taxh" path="res://ElevatorController/ElevatorButton.tscn" id="13_nrmce"]
 [ext_resource type="PackedScene" uid="uid://dd08gffrk8txn" path="res://EntityComponents/Elevator.tscn" id="14_0odo4"]
 [ext_resource type="PackedScene" uid="uid://bgty58ccnncxy" path="res://Camera/camera_locker.tscn" id="15_rjmeg"]
-[ext_resource type="PackedScene" uid="uid://bt23waqbakmop" path="res://Bullet/water.tscn" id="16_786dt"]
+[ext_resource type="PackedScene" uid="uid://bt23waqbakmop" path="res://Water/water.tscn" id="16_786dt"]
 [ext_resource type="PackedScene" uid="uid://boan2jyc4hlda" path="res://Checkpoint/checkpoint_trigger.tscn" id="17_bl8nk"]
 [ext_resource type="Texture2D" uid="uid://d2gdo5bbgykv2" path="res://icon.svg" id="18_kv622"]
 [ext_resource type="PackedScene" uid="uid://bwugl7674migl" path="res://Bullet/Effector.tscn" id="19_0xbib"]
@@ -91,7 +91,7 @@ size = Vector2(128, 216)
 size = Vector2(138, 202)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mapt8"]
-size = Vector2(1056, 636)
+size = Vector2(1056, 672)
 
 [node name="TEST" type="Node2D"]
 position = Vector2(2800, -1368)
@@ -606,7 +606,7 @@ type = 2
 position = Vector2(-3970, 1650)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Water"]
-position = Vector2(-12, 132)
+position = Vector2(-30, 102)
 shape = SubResource("RectangleShape2D_mapt8")
 
 [node name="aqualung" parent="." instance=ExtResource("30_1hxe5")]

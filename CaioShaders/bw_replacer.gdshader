@@ -6,7 +6,7 @@ uniform float threshold : hint_range(0.0, 0.1) = 0.01;
 
 void fragment() {
     vec4 color = texture(TEXTURE, UV);
-    
+
     // Check for pure black (allowing for a small threshold)
     if (length(color.rgb) <= threshold) {
         COLOR = vec4(replace_black.rgb, color.a);
