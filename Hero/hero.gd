@@ -53,6 +53,7 @@ var is_in_water: bool = false
 var is_just_in_water: bool
 var just_left_water: bool
 var last_water_surface: float
+var last_water_color: Array[Color]
 
 func _ready():
 	Events.hero_got_collectible.connect(handle_powerups)
@@ -199,6 +200,7 @@ func insta_spawn():
 func on_water_status_changed(_is_in_water: bool, water: Water):
 	self.is_in_water = _is_in_water
 	last_water_surface = water.get_surface_global_position()
+	last_water_color = water.bw_shader_setter.get_color()
 
 func on_water_status_changed_on_gun(_is_in_water: bool, _water: Water):
 	shooter.is_in_water = _is_in_water

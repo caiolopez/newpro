@@ -57,7 +57,7 @@ func on_process(delta: float):
 			var boost =  -50 * (mini(bounce_count, 5) + 1)
 			hero.velocity.y = hero.BLUNDER_JUMP_WATER_BOUNCE_VELOCITY + boost
 			bounce_count += 1
-			PropManager.place_prop(Vector2(hero.global_position.x, hero.last_water_surface), &"splash")
+			PropManager.place_prop(Vector2(hero.global_position.x, hero.last_water_surface), &"splash", hero.last_water_color)
 		else:
 			machine.set_state("StateFloating")
 

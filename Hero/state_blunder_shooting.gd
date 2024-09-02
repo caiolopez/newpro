@@ -52,7 +52,7 @@ func on_process(_delta: float):
 func on_physics_process(_delta: float):
 	if hero.is_in_water\
 	and not hero.is_on_wall():
-		PropManager.place_prop(Vector2(hero.global_position.x, hero.last_water_surface), &"splash")
+		PropManager.place_prop(Vector2(hero.global_position.x, hero.last_water_surface), &"splash", hero.last_water_color)
 
 	hero.move_and_slide()
 

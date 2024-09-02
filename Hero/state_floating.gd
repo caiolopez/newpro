@@ -5,7 +5,7 @@ var death_prone: bool = true
 
 func on_enter():
 	if not machine.last_state.name == "StateWetBlunderShooting":
-		PropManager.place_prop(Vector2(hero.global_position.x, hero.last_water_surface), &"splash")
+		PropManager.place_prop(Vector2(hero.global_position.x, hero.last_water_surface), &"splash", hero.last_water_color)
 
 func on_process(_delta: float):
 	if Utils.is_pushing_sides():

@@ -50,7 +50,7 @@ func populate_pools():
 			game_tree.add_child(prop)
 			prop_pools[prop_name].append(prop)
 
-func place_prop(global_pos: Vector2, prop_name: StringName, auto_play: bool = true) -> Node2D:
+func place_prop(global_pos: Vector2, prop_name: StringName, color_pair: Array[Color] = [], auto_play: bool = true) -> Node2D:
 	# Check if we should skip this placement
 	var current_time = Time.get_ticks_msec() / 1000.0
 	if prop_name in last_placement:
@@ -78,6 +78,7 @@ func place_prop(global_pos: Vector2, prop_name: StringName, auto_play: bool = tr
 	prop.visible = true
 	prop.global_position = global_pos
 	if auto_play: prop.play()
+	if color_pair.size() == 2: _color_prop(prop, color_pair)
 	
 	last_placement[prop_name] = {"position": global_pos, "time": current_time}
 	
@@ -87,3 +88,9 @@ func return_prop(prop: Node2D):
 	var prop_name = prop.get_meta("prop_name")
 	prop.visible = false
 	prop_pools[prop_name].append(prop)
+
+func _color_prop(prop: Node2D, color_pair: Array[Color]) -> void:
+	for child in prop.get_children():
+		if child is BwShaderSetter:
+			child.set_color(color_pair[0], color_pair[1])
+	

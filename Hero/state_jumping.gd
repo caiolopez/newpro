@@ -10,7 +10,8 @@ func on_enter():
 
 func on_process(_delta: float):
 	if hero.just_left_water:
-		PropManager.place_prop(Vector2(hero.global_position.x, hero.last_water_surface), &"splash")
+		PropManager.place_prop(Vector2(hero.global_position.x, hero.last_water_surface), &"splash", hero.last_water_color)
+		
 	
 	hero.step_shooting()
 	

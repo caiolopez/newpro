@@ -60,8 +60,7 @@ func on_water_status_changed(is_in_water: bool, water: Water):
 
 	if water:
 		if abs(global_position.y - water.get_surface_global_position()) <= 16:
-			PropManager.place_prop(Vector2(global_position.x, water.get_surface_global_position()), &"splash")
-
+			PropManager.place_prop(Vector2(global_position.x, water.get_surface_global_position()), &"splash", water.bw_shader_setter.get_color())
 func animate():
 	var a: String
 	match bullet_type:
