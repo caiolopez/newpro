@@ -1,98 +1,22 @@
-[gd_scene load_steps=17 format=3 uid="uid://bt23waqbakmop"]
+[gd_scene load_steps=6 format=3 uid="uid://bt23waqbakmop"]
 
 [ext_resource type="Script" path="res://Water/water.gd" id="1_j6gn3"]
 [ext_resource type="Texture2D" uid="uid://cjnw02dkcpqnu" path="res://Water/water_surface_tile.png" id="2_yk3ra"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2q2hy"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sni4x"]
-atlas = SubResource("CompressedTexture2D_2q2hy")
-region = Rect2(0, 0, 30, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hfmik"]
-atlas = SubResource("CompressedTexture2D_2q2hy")
-region = Rect2(30, 0, 30, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_r3wdt"]
-atlas = SubResource("CompressedTexture2D_2q2hy")
-region = Rect2(60, 0, 30, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kh5qd"]
-atlas = SubResource("CompressedTexture2D_2q2hy")
-region = Rect2(90, 0, 30, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7cdw3"]
-atlas = SubResource("CompressedTexture2D_2q2hy")
-region = Rect2(120, 0, 30, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tk2e2"]
-atlas = SubResource("CompressedTexture2D_2q2hy")
-region = Rect2(150, 0, 30, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kxxab"]
-atlas = SubResource("CompressedTexture2D_2q2hy")
-region = Rect2(180, 0, 30, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_iqihy"]
-atlas = SubResource("CompressedTexture2D_2q2hy")
-region = Rect2(210, 0, 30, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_a6mn0"]
-atlas = SubResource("CompressedTexture2D_2q2hy")
-region = Rect2(240, 0, 30, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_42666"]
-atlas = SubResource("CompressedTexture2D_2q2hy")
-region = Rect2(270, 0, 30, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_ws8ep"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sni4x")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hfmik")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_r3wdt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kh5qd")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7cdw3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tk2e2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kxxab")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_iqihy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_a6mn0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_42666")
-}],
-"loop": true,
-"name": &"default",
-"speed": 30.0
-}]
+[ext_resource type="PackedScene" uid="uid://1votnx34efdj" path="res://EntityComponents/BWShaderSetter.tscn" id="3_xui5l"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_70at8"]
 texture = ExtResource("2_yk3ra")
+0:0/animation_columns = 8
+0:0/animation_speed = 10.0
+0:0/animation_frame_0/duration = 1.0
+0:0/animation_frame_1/duration = 1.0
+0:0/animation_frame_2/duration = 1.0
+0:0/animation_frame_3/duration = 1.0
+0:0/animation_frame_4/duration = 1.0
+0:0/animation_frame_5/duration = 1.0
+0:0/animation_frame_6/duration = 1.0
+0:0/animation_frame_7/duration = 1.0
 0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-3:0/0 = 0
-4:0/0 = 0
-5:0/0 = 0
-6:0/0 = 0
-7:0/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_6hvv6"]
 sources/0 = SubResource("TileSetAtlasSource_70at8")
@@ -100,10 +24,10 @@ sources/0 = SubResource("TileSetAtlasSource_70at8")
 [node name="Water" type="Area2D"]
 script = ExtResource("1_j6gn3")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(6, 6)
-sprite_frames = SubResource("SpriteFrames_ws8ep")
-autoplay = "default"
-
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
+use_parent_material = true
+scale = Vector2(6, 6)
 tile_set = SubResource("TileSet_6hvv6")
+
+[node name="BwShaderSetter" parent="." instance=ExtResource("3_xui5l")]
+dark_color = Color(0.484306, 0.18678, 0.487616, 1)
