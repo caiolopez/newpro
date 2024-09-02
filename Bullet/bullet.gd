@@ -88,7 +88,6 @@ func color_owner_muzzle(muzzle: Node2D):
 		muzzle.get_node("BwShaderSetter").set_color(current_dark_color, current_light_color)
 
 func kill_bullet():
-	var new_dies_prop = PropManager.place_prop(global_position, &"bullet_dies")
-	if new_dies_prop:
-		new_dies_prop.get_node("BwShaderSetter").set_color(current_dark_color, current_light_color)
+	var color_pair: Array[Color] = [current_dark_color, current_light_color]
+	PropManager.place_prop(global_position, &"bullet_dies", color_pair)
 	BulletManager.release_bullet(self)
