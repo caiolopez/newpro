@@ -9,6 +9,13 @@ func _ready():
 		if combo == "FullScreen": toggle_fullscreen())
 	ComboParser.combo_performed.connect(func(combo):
 		blunder_on_single_button = combo == "BlunderOnSingleButton")
+	ComboParser.combo_performed.connect(func(combo): if combo == "AllPowerups":
+		var hero = Utils.find_hero()
+		hero.handle_powerups("INCENDIARY_AMMO")
+		hero.handle_powerups("UNDERWATER_AMMO")
+		hero.handle_powerups("AQUALUNG")
+		hero.handle_powerups("TELEPORTER")
+		)
 
 func _process(_delta):
 	input_bin()

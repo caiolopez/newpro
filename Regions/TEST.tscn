@@ -109,13 +109,11 @@ position = Vector2(248, 704)
 position = Vector2(1472, 1664)
 motion_mode = 1
 
-[node name="Zombie" parent="." instance=ExtResource("5_qi3l2")]
-position = Vector2(2784, 2064)
+[node name="Zombie2" parent="." instance=ExtResource("5_qi3l2")]
+position = Vector2(44, 2232)
 
-[node name="Walker" parent="Zombie" index="5"]
-avoids_pits = false
-climbs_walls = true
-jumps_to_grab_target = true
+[node name="Zombie3" parent="." instance=ExtResource("5_qi3l2")]
+position = Vector2(410, 2226)
 
 [node name="Spike" parent="." instance=ExtResource("6_n6uxi")]
 position = Vector2(-968, 848)
@@ -615,7 +613,6 @@ position = Vector2(-3104, 1232)
 [node name="CollectOnTouch" parent="aqualung" index="0"]
 type = 3
 
-[editable path="Zombie"]
 [editable path="Spike"]
 [editable path="Spike2"]
 [editable path="CameraLocker5"]

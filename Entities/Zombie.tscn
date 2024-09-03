@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://4cnf50mcwol8"]
+[gd_scene load_steps=13 format=3 uid="uid://4cnf50mcwol8"]
 
 [ext_resource type="PackedScene" uid="uid://upm0adhb85ik" path="res://EntityComponents/DmgDealer.tscn" id="1_1av7w"]
 [ext_resource type="PackedScene" uid="uid://box2ff3vwcc7w" path="res://EntityComponents/DmgTaker.tscn" id="2_ggaqd"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cqyj0bkuiosbs" path="res://EntityComponents/Walker.tscn" id="4_rakle"]
 [ext_resource type="PackedScene" uid="uid://p2v7a1ixtrxw" path="res://EntityComponents/IsInWaterNotifier.tscn" id="6_iunim"]
 [ext_resource type="PackedScene" uid="uid://dqho171mcdsmr" path="res://EntityComponents/FaceHero.tscn" id="6_q6noj"]
+[ext_resource type="PackedScene" uid="uid://c831sdplau83s" path="res://EntityComponents/Ignitable.tscn" id="8_x6n07"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n1i3v"]
 size = Vector2(80, 112)
@@ -17,8 +18,12 @@ size = Vector2(96, 96)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_17ebl"]
 size = Vector2(96, 96)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u2hnc"]
+size = Vector2(192, 184)
+
 [node name="Zombie" type="CharacterBody2D"]
 collision_layer = 4
+collision_mask = 5
 
 [node name="PitRC" type="RayCast2D" parent="."]
 position = Vector2(80, 0)
@@ -48,8 +53,15 @@ scale = Vector2(16, 16)
 texture = ExtResource("4_cy23t")
 
 [node name="Walker" parent="." instance=ExtResource("4_rakle")]
+MININUM_DIST_FROM_TARGET = 50.0
 
 [node name="IsInWaterNotifier" parent="Walker" instance=ExtResource("6_iunim")]
 use_parent_area = true
 
 [node name="FaceHero" parent="." instance=ExtResource("6_q6noj")]
+
+[node name="Ignitable" parent="." instance=ExtResource("8_x6n07")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ignitable"]
+position = Vector2(0, -28)
+shape = SubResource("RectangleShape2D_u2hnc")

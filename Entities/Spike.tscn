@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bp1e8lhbqp3me"]
+[gd_scene load_steps=13 format=3 uid="uid://bp1e8lhbqp3me"]
 
 [ext_resource type="PackedScene" uid="uid://upm0adhb85ik" path="res://EntityComponents/DmgDealer.tscn" id="1_ns2lo"]
 [ext_resource type="PackedScene" uid="uid://box2ff3vwcc7w" path="res://EntityComponents/DmgTaker.tscn" id="1_yjiw5"]
@@ -8,11 +8,15 @@
 [ext_resource type="PackedScene" uid="uid://v4xmqsgktgpw" path="res://EntityComponents/FriendOrFoe.tscn" id="7_onfop"]
 [ext_resource type="PackedScene" uid="uid://bmt5sjek4aha4" path="res://EntityComponents/OpenDoorsIfDead.tscn" id="8_1vvap"]
 [ext_resource type="Texture2D" uid="uid://d2gdo5bbgykv2" path="res://icon.svg" id="8_mniiy"]
+[ext_resource type="PackedScene" uid="uid://c831sdplau83s" path="res://EntityComponents/Ignitable.tscn" id="9_830ym"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v2koo"]
 size = Vector2(106, 102)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pauev"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_48xw4"]
+size = Vector2(177, 185)
 
 [node name="Spike" type="Node2D"]
 
@@ -49,3 +53,9 @@ texture = ExtResource("8_mniiy")
 
 [node name="OpenDoorsIfDead" parent="." instance=ExtResource("8_1vvap")]
 position = Vector2(4330.41, -2569.76)
+
+[node name="Ignitable" parent="." instance=ExtResource("9_830ym")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ignitable"]
+position = Vector2(-4.5, -3.5)
+shape = SubResource("RectangleShape2D_48xw4")

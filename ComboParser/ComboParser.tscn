@@ -22,6 +22,10 @@ seq = Array[StringName]([&"up", &"down", &"left", &"right", &"shoulder_right"])
 script = ExtResource("2_kbqkx")
 seq = Array[StringName]([&"up", &"down", &"left", &"right", &"triangle"])
 
+[node name="AllPowerups" type="Node" parent="."]
+script = ExtResource("2_kbqkx")
+seq = Array[StringName]([&"up", &"down", &"left", &"right", &"right", &"right"])
+
 [node name="FullScreen" type="Node" parent="."]
 script = ExtResource("2_kbqkx")
 seq = Array[StringName]([&"up", &"down", &"left", &"right", &"shoot"])
