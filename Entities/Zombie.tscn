@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://4cnf50mcwol8"]
+[gd_scene load_steps=15 format=3 uid="uid://4cnf50mcwol8"]
 
 [ext_resource type="PackedScene" uid="uid://upm0adhb85ik" path="res://EntityComponents/DmgDealer.tscn" id="1_1av7w"]
+[ext_resource type="Script" path="res://EntityComponents/entity_collider.gd" id="1_bhep5"]
 [ext_resource type="PackedScene" uid="uid://box2ff3vwcc7w" path="res://EntityComponents/DmgTaker.tscn" id="2_ggaqd"]
 [ext_resource type="PackedScene" uid="uid://djwwpps3fxvtg" path="res://EntityComponents/GfxController.tscn" id="3_k0c3i"]
 [ext_resource type="Texture2D" uid="uid://0l05qi2ha4p5" path="res://hero.png" id="4_cy23t"]
@@ -8,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://p2v7a1ixtrxw" path="res://EntityComponents/IsInWaterNotifier.tscn" id="6_iunim"]
 [ext_resource type="PackedScene" uid="uid://dqho171mcdsmr" path="res://EntityComponents/FaceHero.tscn" id="6_q6noj"]
 [ext_resource type="PackedScene" uid="uid://c831sdplau83s" path="res://EntityComponents/Ignitable.tscn" id="8_x6n07"]
+[ext_resource type="PackedScene" uid="uid://4s6dlxxxx05e" path="res://EntityComponents/PlacePropWhenDead.tscn" id="9_r5s6f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n1i3v"]
 size = Vector2(80, 112)
@@ -29,9 +31,10 @@ collision_mask = 5
 position = Vector2(80, 0)
 target_position = Vector2(0, 80)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="EntityCollider" type="CollisionShape2D" parent="."]
 position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_n1i3v")
+script = ExtResource("1_bhep5")
 
 [node name="DmgDealer" parent="." instance=ExtResource("1_1av7w")]
 
@@ -65,3 +68,9 @@ use_parent_area = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ignitable"]
 position = Vector2(0, -28)
 shape = SubResource("RectangleShape2D_u2hnc")
+
+[node name="PlacePropWhenDead" parent="." instance=ExtResource("9_r5s6f")]
+prop_to_place = &"puff"
+amount = 5
+interval_between_placements = 0.1
+random_radius = 40.0

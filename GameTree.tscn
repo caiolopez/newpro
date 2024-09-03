@@ -11,9 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://bp7vnugiq46o" path="res://Tilesets/alienscape_tileset_transparent.png" id="8_01mxc"]
 [ext_resource type="PackedScene" uid="uid://bu38boui2wxu" path="res://SwitchesAndDoors/SwitchGroupController.tscn" id="12_u6t76"]
 [ext_resource type="PackedScene" uid="uid://ruri8ytnt6k" path="res://SwitchesAndDoors/Door.tscn" id="13_c20o3"]
-[ext_resource type="PackedScene" uid="uid://xc3uchpjcg0y" path="res://Bullet/UniqueCollider.tscn" id="14_umo0q"]
+[ext_resource type="PackedScene" uid="uid://xc3uchpjcg0y" path="res://EntityComponents/UniqueCollider.tscn" id="14_umo0q"]
 [ext_resource type="PackedScene" uid="uid://0fx3l1vwyhr4" path="res://SwitchesAndDoors/Switch.tscn" id="15_tdva6"]
-[ext_resource type="Script" path="res://Bullet/unique_collider.gd" id="24_1i71r"]
+[ext_resource type="Script" path="res://EntityComponents/unique_collider.gd" id="24_1i71r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uqtgy"]
 size = Vector2(504, 296)
