@@ -30,6 +30,11 @@ const PROP_TYPE: Dictionary = {
 		"scene": preload("res://Props/SplashProp.tscn"),
 		"amount": 10,
 		"create_on_demand": false
+	},
+	&"puff": {
+		"scene": preload("res://Props/PuffProp.tscn"),
+		"amount": 10,
+		"create_on_demand": false
 	}
 }
 
