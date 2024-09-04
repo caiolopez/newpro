@@ -71,6 +71,4 @@ shape = SubResource("RectangleShape2D_u2hnc")
 
 [node name="PlacePropWhenDead" parent="." instance=ExtResource("9_r5s6f")]
 prop_to_place = &"puff"
-amount = 5
 interval_between_placements = 0.1
-random_radius = 40.0
