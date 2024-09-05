@@ -1,6 +1,7 @@
 extends Node
 
 
+
 func dt_lerp(speed: float, delta: float) -> float:
 	if delta < 0 or speed < 0:
 		push_error("Delta and ratio should be non-negative")
@@ -147,14 +148,20 @@ func get_polygon_extents(points: PackedVector2Array) -> Rect2:
 
 	return Rect2(Vector2(min_x, min_y), Vector2(max_x - min_x, max_y - min_y))
 
+var current_tween: Tween = null 
+
 func fade_in(node: CanvasItem, duration: float = 1.0) -> Tween:
-	var tween = create_tween()
+	if current_tween:
+		current_tween.kill()
 	node.show()
-	tween.tween_property(node, "modulate:a", 1.0, duration).from(0.0)
-	return tween
+	current_tween = create_tween()
+	current_tween.tween_property(node, "modulate:a", 1.0, duration).from(node.modulate.a)
+	return current_tween
 
 func fade_out(node: CanvasItem, duration: float = 1.0) -> Tween:
-	var tween = create_tween()
-	tween.tween_property(node, "modulate:a", 0.0, duration).from(1.0)
-	tween.tween_callback(node.hide)
-	return tween
+	if current_tween:
+		current_tween.kill()
+	current_tween = create_tween()
+	current_tween.tween_property(node, "modulate:a", 0.0, duration).from(node.modulate.a)
+	current_tween.tween_callback(node.hide)
+	return current_tween
