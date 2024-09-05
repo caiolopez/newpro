@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://4cnf50mcwol8"]
+[gd_scene load_steps=16 format=3 uid="uid://4cnf50mcwol8"]
 
 [ext_resource type="PackedScene" uid="uid://upm0adhb85ik" path="res://EntityComponents/DmgDealer.tscn" id="1_1av7w"]
 [ext_resource type="Script" path="res://EntityComponents/entity_collider.gd" id="1_bhep5"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dqho171mcdsmr" path="res://EntityComponents/FaceHero.tscn" id="6_q6noj"]
 [ext_resource type="PackedScene" uid="uid://c831sdplau83s" path="res://EntityComponents/Ignitable.tscn" id="8_x6n07"]
 [ext_resource type="PackedScene" uid="uid://4s6dlxxxx05e" path="res://EntityComponents/PlacePropWhenDead.tscn" id="9_r5s6f"]
+[ext_resource type="PackedScene" uid="uid://1votnx34efdj" path="res://EntityComponents/BWShaderSetter.tscn" id="11_330bm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n1i3v"]
 size = Vector2(80, 112)
@@ -50,10 +51,12 @@ shape = SubResource("RectangleShape2D_17ebl")
 [node name="GfxController" parent="." instance=ExtResource("3_k0c3i")]
 
 [node name="Sprite2D" type="Sprite2D" parent="GfxController"]
-modulate = Color(1, 0.247059, 0.25098, 1)
 position = Vector2(-9.53674e-07, -5.24521e-06)
 scale = Vector2(16, 16)
 texture = ExtResource("4_cy23t")
+
+[node name="BwShaderSetter" parent="GfxController" instance=ExtResource("11_330bm")]
+dark_color = Color(0.705382, 0.180767, 0.47636, 1)
 
 [node name="Walker" parent="." instance=ExtResource("4_rakle")]
 MININUM_DIST_FROM_TARGET = 50.0
@@ -69,6 +72,7 @@ use_parent_area = true
 position = Vector2(0, -28)
 shape = SubResource("RectangleShape2D_u2hnc")
 
-[node name="PlacePropWhenDead" parent="." instance=ExtResource("9_r5s6f")]
+[node name="PlacePropWhenDead" parent="." node_paths=PackedStringArray("color_pair_source") instance=ExtResource("9_r5s6f")]
 prop_to_place = &"puff"
 interval_between_placements = 0.1
+color_pair_source = NodePath("../GfxController/BwShaderSetter")

@@ -429,7 +429,7 @@ position = Vector2(-56, -1824)
 [node name="Marker2D" parent="Boss1" index="7"]
 position = Vector2(16, 592)
 
-[node name="OpenDoorsIfDead" parent="Boss1" node_paths=PackedStringArray("doors_to_open") instance=ExtResource("22_t4q2k")]
+[node name="OpenDoorsIfDead2g" parent="Boss1" node_paths=PackedStringArray("doors_to_open") instance=ExtResource("22_t4q2k")]
 doors_to_open = [NodePath("../../SwitchGroupController2/Door2"), NodePath("../../SwitchGroupController2/Door")]
 
 [node name="BossFence" parent="." instance=ExtResource("23_qpijk")]
