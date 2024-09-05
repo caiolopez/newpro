@@ -224,4 +224,10 @@ func handle_powerups(type: StringName):
 		"TELEPORTER":
 			AppManager.teleporters_are_active = true
 			SaveManager.log_hero_change("got_teleporter", true)
+
+func is_currently_dead() -> bool:
+	return state_machine.current_state.name in [
+		"StateDeathSnapshot",
+		"StateTweeningToRespawn",
+		"StateRespawning"]
 		

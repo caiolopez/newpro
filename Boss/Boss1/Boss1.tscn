@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://1hdjstkw22a7"]
+[gd_scene load_steps=24 format=3 uid="uid://1hdjstkw22a7"]
 
 [ext_resource type="PackedScene" uid="uid://b2g8tlm31pxpm" path="res://EntityComponents/Flier.tscn" id="1_3eidg"]
 [ext_resource type="Script" path="res://state_machine.gd" id="1_hm4cg"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://cgexjtuxybh5l" path="res://EntityComponents/MoveStraight.tscn" id="15_w8a43"]
 [ext_resource type="Script" path="res://Boss/Boss1/b_state_dying.gd" id="16_axfqk"]
 [ext_resource type="Script" path="res://Boss/Boss1/b_state_dead.gd" id="17_4lka5"]
+[ext_resource type="PackedScene" uid="uid://bmt5sjek4aha4" path="res://EntityComponents/OpenDoorsIfDead.tscn" id="20_filis"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5xncf"]
 radius = 96.0
@@ -120,5 +121,7 @@ one_shot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_4o8a3")
+
+[node name="OpenDoorsIfDead" parent="." instance=ExtResource("20_filis")]
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
