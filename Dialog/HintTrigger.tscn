@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b11j0nuv0kq0q"]
+
+[ext_resource type="Script" path="res://Dialog/hint_trigger.gd" id="1_fsmcl"]
+
+[node name="HintTrigger" type="Area2D"]
+collision_mask = 8
+script = ExtResource("1_fsmcl")

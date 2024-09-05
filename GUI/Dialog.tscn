@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://dvk1kn7j0htsi"]
+[gd_scene load_steps=5 format=3 uid="uid://dvk1kn7j0htsi"]
 
 [ext_resource type="Script" path="res://GUI/dialog_manager.gd" id="1_mwgls"]
 [ext_resource type="Texture2D" uid="uid://dh3cmurbvddhl" path="res://frame.png" id="1_xmoqf"]
 [ext_resource type="Texture2D" uid="uid://d2gdo5bbgykv2" path="res://icon.svg" id="2_u4vqf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jbmk4"]
+font_size = 49
 
 [node name="DialogManager" type="Control"]
 layout_mode = 3
@@ -64,3 +67,17 @@ shortcut_keys_enabled = false
 deselect_on_focus_loss_enabled = false
 drag_and_drop_selection_enabled = false
 visible_characters_behavior = 1
+
+[node name="HintLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1272.0
+offset_top = 8.0
+offset_right = -64.0
+offset_bottom = -824.0
+text = "Hint Label Text"
+label_settings = SubResource("LabelSettings_jbmk4")
+horizontal_alignment = 2
+vertical_alignment = 1

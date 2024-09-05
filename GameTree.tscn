@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://1xi1vmc3x5ck"]
+[gd_scene load_steps=20 format=4 uid="uid://1xi1vmc3x5ck"]
 
 [ext_resource type="PackedScene" uid="uid://b424bvcxa2fbn" path="res://GUI/BossOverlay.tscn" id="1_tkq5o"]
 [ext_resource type="PackedScene" uid="uid://1md1m8n6iq5x" path="res://Hero/hero.tscn" id="2_acvau"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bu38boui2wxu" path="res://SwitchesAndDoors/SwitchGroupController.tscn" id="12_u6t76"]
 [ext_resource type="PackedScene" uid="uid://ruri8ytnt6k" path="res://SwitchesAndDoors/Door.tscn" id="13_c20o3"]
 [ext_resource type="PackedScene" uid="uid://xc3uchpjcg0y" path="res://EntityComponents/UniqueCollider.tscn" id="14_umo0q"]
+[ext_resource type="PackedScene" uid="uid://b11j0nuv0kq0q" path="res://Dialog/HintTrigger.tscn" id="15_45vhb"]
 [ext_resource type="PackedScene" uid="uid://0fx3l1vwyhr4" path="res://SwitchesAndDoors/Switch.tscn" id="15_tdva6"]
 [ext_resource type="Script" path="res://EntityComponents/unique_collider.gd" id="24_1i71r"]
 
@@ -81,6 +82,9 @@ physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 15
 sources/0 = SubResource("TileSetAtlasSource_tmq20")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y05kc"]
+size = Vector2(282, 258)
+
 [node name="GameTree" type="Node"]
 
 [node name="HUD" type="CanvasLayer" parent="." groups=["hud"]]
@@ -94,7 +98,7 @@ process_mode = 3
 
 [node name="Hero" parent="." instance=ExtResource("2_acvau")]
 z_index = 2
-position = Vector2(5208, -936)
+position = Vector2(-2958, -2880)
 
 [node name="Camera" parent="." node_paths=PackedStringArray("hero") instance=ExtResource("3_o6dt5")]
 unique_name_in_owner = true
@@ -144,3 +148,11 @@ position = Vector2(0, -12.625)
 
 [node name="Switch" parent="Common/SwitchGroupController" instance=ExtResource("15_tdva6")]
 toggle = true
+
+[node name="HintTrigger" parent="Common" instance=ExtResource("15_45vhb")]
+position = Vector2(-2400, -2256)
+hint_id = &"teach_ascend"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Common/HintTrigger"]
+position = Vector2(9, 15)
+shape = SubResource("RectangleShape2D_y05kc")

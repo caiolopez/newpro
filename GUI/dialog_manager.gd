@@ -18,6 +18,12 @@ var avatar_textures = {
 	"npc": preload("res://icon.svg"),
 }
 
+var hints = {
+	"teach_ascend": "Hold A to swim up.",
+	"teach_blundershoot": "Push Y to powershoot",
+	"teach_blunderjump": "Push A after an airborne powershot to powerjump"
+}
+
 var current_dialog = []
 var dialog_index: int = 0
 var tween_chars: Tween
@@ -26,11 +32,16 @@ var tween_pos: Tween
 @onready var dialog_box: NinePatchRect = $DialogBox
 @onready var avatar: TextureRect = $DialogBox/Avatar
 @onready var text_label: RichTextLabel = $DialogBox/MainText
+@onready var hint_label: Label = $HintLabel
 
 func _ready() -> void:
 	Events.show_dialog.connect(start_dialog)
 	Events.hide_dialog.connect(hide_dialog)
+	Events.show_hint.connect(show_hint)
+	Events.hide_hint.connect(hide_hint)
 	dialog_box.hide()
+	hint_label.hide()
+	
 
 func _input(event: InputEvent) -> void:
 	if not event.is_pressed(): return
@@ -81,3 +92,11 @@ func tween_dialog_box(show: bool) -> void:
 	else:
 		tween_pos.tween_property(dialog_box, "position", start_position, 0.25).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_BACK)
 		tween_pos.tween_callback(dialog_box.hide)
+
+func show_hint(hint: StringName) -> void:
+	if not hint: return
+	hint_label.text = hints.get(hint)
+	Utils.fade_in(hint_label)
+
+func hide_hint() -> void:  
+	Utils.fade_out(hint_label)

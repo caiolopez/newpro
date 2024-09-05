@@ -146,3 +146,15 @@ func get_polygon_extents(points: PackedVector2Array) -> Rect2:
 		max_y = max(max_y, point.y)
 
 	return Rect2(Vector2(min_x, min_y), Vector2(max_x - min_x, max_y - min_y))
+
+func fade_in(node: CanvasItem, duration: float = 1.0) -> Tween:
+	var tween = create_tween()
+	node.show()
+	tween.tween_property(node, "modulate:a", 1.0, duration).from(0.0)
+	return tween
+
+func fade_out(node: CanvasItem, duration: float = 1.0) -> Tween:
+	var tween = create_tween()
+	tween.tween_property(node, "modulate:a", 0.0, duration).from(1.0)
+	tween.tween_callback(node.hide)
+	return tween
