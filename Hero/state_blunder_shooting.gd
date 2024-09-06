@@ -21,7 +21,8 @@ func on_enter():
 	hero.velocity.y = blunder_vel.y
 
 	timer_blunder_shoot_duration.start()
-	timer_blunder_jump_window.start()
+	if not hero.is_on_floor():
+		timer_blunder_jump_window.start()
 
 	$"../../Gfx/AnimatedSprite2D".play("recoil")
 	if hero.is_on_wall()\
