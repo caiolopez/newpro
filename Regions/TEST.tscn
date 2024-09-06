@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://cv2bdmdm7ivmp"]
+[gd_scene load_steps=54 format=3 uid="uid://cv2bdmdm7ivmp"]
 
 [ext_resource type="Script" path="res://Regions/region.gd" id="1_fjngo"]
 [ext_resource type="PackedScene" uid="uid://csvdenv1i3dc3" path="res://Bullet/Teleporter.tscn" id="2_6ojyo"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://EntityComponents/unique_collider.gd" id="9_kml0t"]
 [ext_resource type="PackedScene" uid="uid://0fx3l1vwyhr4" path="res://SwitchesAndDoors/Switch.tscn" id="10_g2n75"]
 [ext_resource type="PackedScene" uid="uid://ctacpi3nbykd3" path="res://ElevatorController/ElevatorController.tscn" id="12_pbx3v"]
+[ext_resource type="PackedScene" uid="uid://vc4ntbqc6jti" path="res://EntityComponents/CycleMover.tscn" id="13_f0qdj"]
 [ext_resource type="PackedScene" uid="uid://boug41cw8taxh" path="res://ElevatorController/ElevatorButton.tscn" id="13_nrmce"]
 [ext_resource type="PackedScene" uid="uid://dd08gffrk8txn" path="res://EntityComponents/Elevator.tscn" id="14_0odo4"]
 [ext_resource type="PackedScene" uid="uid://bgty58ccnncxy" path="res://Camera/camera_locker.tscn" id="15_rjmeg"]
@@ -179,6 +180,15 @@ toggle = true
 position = Vector2(1296, 144)
 rotation = 1.5708
 toggle = true
+
+[node name="Block25" parent="." groups=["sticky"] instance=ExtResource("2_p7ua5")]
+position = Vector2(-4174, 210)
+scale = Vector2(6, 6)
+
+[node name="CycleMover" parent="Block25" instance=ExtResource("13_f0qdj")]
+rotation_angle = 360.0
+rotation_time = 8.0
+translation_loop = false
 
 [node name="Blocks" type="Node2D" parent="."]
 position = Vector2(-4578, 1791)
@@ -619,6 +629,7 @@ type = 3
 
 [editable path="Spike"]
 [editable path="Spike2"]
+[editable path="Block25"]
 [editable path="CameraLocker5"]
 [editable path="CameraLocker6"]
 [editable path="CameraLocker7"]

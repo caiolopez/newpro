@@ -47,6 +47,7 @@ func on_process(delta: float):
 		return
 	
 	if hero.is_pushing_wall()\
+	and not hero.is_pushing_overhanging_wall()\
 	and Input.is_action_just_pressed("jump"):
 		machine.set_state("StateWallClimbing")
 		return

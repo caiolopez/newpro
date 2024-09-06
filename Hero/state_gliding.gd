@@ -24,6 +24,7 @@ func on_process(_delta: float):
 		return
 
 	if hero.is_pushing_wall()\
+	and not hero.is_pushing_overhanging_wall()\
 	and not timer_buffer_climbing.is_stopped():
 		timer_buffer_climbing.stop()
 		machine.set_state("StateWallClimbing")

@@ -119,6 +119,10 @@ func is_pushing_wall() -> bool:
 			pushing_wall = facing_direction == -round(get_wall_normal().x)
 	return pushing_wall
 
+func is_pushing_overhanging_wall() -> bool:
+	if not is_pushing_wall(): return false
+	return get_wall_normal().y > 0
+
 func is_move_dir_away_from_last_wall() -> bool:
 	var mov_away
 	mov_away = (round(get_wall_normal().x) == -1 and Input.is_action_pressed("move_left"))\
