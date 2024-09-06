@@ -56,7 +56,8 @@ func on_process(_delta: float):
 	if Input.is_action_pressed("jump")\
 	and hero.is_pushing_wall()\
 	and hero.pelvis_rc.is_colliding()\
-	and hero.shoulder_rc.is_colliding():
+	and hero.shoulder_rc.is_colliding()\
+	and abs(hero.get_wall_normal().x) > 0.99:
 		machine.set_state("StateWallGrabbing")
 		return
 
