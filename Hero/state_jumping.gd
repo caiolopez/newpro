@@ -11,10 +11,10 @@ func on_enter():
 func on_process(_delta: float):
 	if hero.just_left_water:
 		PropManager.place_prop(Vector2(hero.global_position.x, hero.last_water_surface), &"splash", hero.last_water_color)
-		
-	
-	hero.step_shooting()
-	
+
+	if hero.step_shooting():
+		return
+
 	if not hero.is_on_wall()\
 	and Input.is_action_just_pressed("jump"):
 		timer_buffer_climbing.start()
@@ -37,7 +37,7 @@ func on_process(_delta: float):
 	and not hero.shoulder_rc.is_colliding()\
 	and hero.next_grd_height_rc.is_colliding():
 		machine.set_state("StateVaulting")
-	
+
 	if hero.is_pushing_wall()\
 	and not timer_buffer_climbing.is_stopped():
 		timer_buffer_climbing.stop()

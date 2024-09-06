@@ -12,7 +12,8 @@ func on_enter():
 		timer_buffer_climbing.start()
 
 func on_process(_delta: float):
-	hero.step_shooting()
+	if hero.step_shooting():
+		return
 
 	if hero.is_on_floor():
 		machine.set_state("StateIdle")

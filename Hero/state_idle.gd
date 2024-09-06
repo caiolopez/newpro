@@ -13,7 +13,8 @@ func on_enter():
 		return
 
 func on_process(_delta: float):
-	hero.step_shooting()
+	if hero.step_shooting():
+		return
 
 	if hero.is_on_floor()\
 	and not hero.pelvis_rc.is_colliding()\

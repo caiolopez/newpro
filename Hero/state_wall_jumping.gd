@@ -15,7 +15,8 @@ func on_enter():
 	hero.velocity.y = hero.WALLJUMP_VELOCITY.y
 
 func on_process(_delta: float):
-	hero.step_shooting()
+	if hero.step_shooting():
+		return
 
 	if not hero.is_on_floor() and hero.velocity.y > 0:
 		timer_walljump_duration.stop()

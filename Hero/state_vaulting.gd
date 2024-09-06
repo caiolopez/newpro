@@ -10,7 +10,8 @@ func on_enter():
 	target_y_position = hero.next_grd_height_rc.get_collision_point().y - %HeroCollider.shape.get_rect().size.y/2 - 1
 
 func on_process(_delta: float):
-	hero.step_shooting()
+	if hero.step_shooting():
+		return
 	
 	if Input.is_action_just_pressed("jump"):
 		machine.set_state("StateJumping")

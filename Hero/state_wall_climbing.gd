@@ -8,7 +8,8 @@ func on_enter():
 	hero.velocity.y = hero.CLIMB_VELOCITY
 
 func on_process(_delta: float):
-	hero.step_shooting()
+	if hero.step_shooting():
+		return
 
 	if Input.is_action_just_pressed("jump"):
 		if hero.is_pushing_wall():
