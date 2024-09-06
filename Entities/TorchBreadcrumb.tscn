@@ -1,0 +1,148 @@
+[gd_scene load_steps=22 format=3 uid="uid://bk5ljm7453xvm"]
+
+[ext_resource type="Texture2D" uid="uid://dh3cmurbvddhl" path="res://frame.png" id="1_olvtx"]
+[ext_resource type="PackedScene" uid="uid://box2ff3vwcc7w" path="res://EntityComponents/DmgTaker.tscn" id="2_cqlok"]
+[ext_resource type="Script" path="res://Entities/breadcrumb.gd" id="2_vh141"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7exbe"]
+atlas = ExtResource("1_olvtx")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gh5bs"]
+atlas = ExtResource("1_olvtx")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3sqi1"]
+atlas = ExtResource("1_olvtx")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ajxpl"]
+atlas = ExtResource("1_olvtx")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jg7rd"]
+atlas = ExtResource("1_olvtx")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ka4if"]
+atlas = ExtResource("1_olvtx")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7v8gc"]
+atlas = ExtResource("1_olvtx")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s7gme"]
+atlas = ExtResource("1_olvtx")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lgm0n"]
+atlas = ExtResource("1_olvtx")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0htce"]
+atlas = ExtResource("1_olvtx")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5u5ib"]
+atlas = ExtResource("1_olvtx")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3hspj"]
+atlas = ExtResource("1_olvtx")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mf8aw"]
+atlas = ExtResource("1_olvtx")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x2jwg"]
+atlas = ExtResource("1_olvtx")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tynt0"]
+atlas = ExtResource("1_olvtx")
+region = Rect2(64, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mad5o"]
+atlas = ExtResource("1_olvtx")
+region = Rect2(96, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vtjwr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7exbe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gh5bs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3sqi1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ajxpl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jg7rd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ka4if")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7v8gc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s7gme")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lgm0n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0htce")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5u5ib")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3hspj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mf8aw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x2jwg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tynt0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mad5o")
+}],
+"loop": true,
+"name": &"default",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gh5bs")
+}],
+"loop": true,
+"name": &"interacted",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3don0"]
+size = Vector2(36, 36)
+
+[node name="TorchBreadcrumb" type="AnimatedSprite2D"]
+scale = Vector2(6, 6)
+sprite_frames = SubResource("SpriteFrames_vtjwr")
+script = ExtResource("2_vh141")
+
+[node name="DmgTaker" parent="." instance=ExtResource("2_cqlok")]
+HP_AMOUNT = 3
+QUEUE_FREE_ON_CHECKPOINT = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DmgTaker"]
+shape = SubResource("RectangleShape2D_3don0")

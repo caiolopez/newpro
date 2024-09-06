@@ -92,6 +92,9 @@ func inject_changes_into_regions():
 						"on_and_saved":
 							if has_node(key):
 								get_node(key).force_group_on_and_saved()
+						"interacted":
+							if has_node(key):
+								get_node(key).set_as_interacted()
 
 func inject_changes_into_hero():
 	var h = Utils.find_hero()

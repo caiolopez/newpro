@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://cv2bdmdm7ivmp"]
+[gd_scene load_steps=53 format=3 uid="uid://cv2bdmdm7ivmp"]
 
 [ext_resource type="Script" path="res://Regions/region.gd" id="1_fjngo"]
 [ext_resource type="PackedScene" uid="uid://csvdenv1i3dc3" path="res://Bullet/Teleporter.tscn" id="2_6ojyo"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cih4ag7u6dc0q" path="res://Entities/Spiny.tscn" id="3_ya2uu"]
 [ext_resource type="PackedScene" uid="uid://8q0hcl7qc4ve" path="res://Entities/Ghost.tscn" id="4_dbebo"]
 [ext_resource type="PackedScene" uid="uid://4cnf50mcwol8" path="res://Entities/Zombie.tscn" id="5_qi3l2"]
+[ext_resource type="PackedScene" uid="uid://bk5ljm7453xvm" path="res://Entities/TorchBreadcrumb.tscn" id="6_06o0u"]
 [ext_resource type="PackedScene" uid="uid://bp1e8lhbqp3me" path="res://Entities/Spike.tscn" id="6_n6uxi"]
 [ext_resource type="PackedScene" uid="uid://bu38boui2wxu" path="res://SwitchesAndDoors/SwitchGroupController.tscn" id="7_fvj7q"]
 [ext_resource type="PackedScene" uid="uid://ruri8ytnt6k" path="res://SwitchesAndDoors/Door.tscn" id="8_ed8iu"]
@@ -114,6 +115,9 @@ position = Vector2(44, 2232)
 
 [node name="Zombie3" parent="." instance=ExtResource("5_qi3l2")]
 position = Vector2(410, 2226)
+
+[node name="TorchBreadcrumb" parent="." instance=ExtResource("6_06o0u")]
+position = Vector2(-4732, 642)
 
 [node name="Spike" parent="." instance=ExtResource("6_n6uxi")]
 position = Vector2(-968, 848)
