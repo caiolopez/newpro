@@ -1381,10 +1381,6 @@ state_machine = NodePath("StateMachine")
 metadata/_edit_group_ = true
 
 [node name="DmgTaker" parent="." instance=ExtResource("2_ktrux")]
-HP_AMOUNT = 1
-RESET_UPON_RESPAWN = true
-QUEUE_FREE_ON_CHECKPOINT = true
-immune_to = Array[int]([])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DmgTaker"]
 position = Vector2(0, -15)

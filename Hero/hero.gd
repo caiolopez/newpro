@@ -172,7 +172,7 @@ func update_current_checkpoint_path(new_checkpoint_path: NodePath):
 	current_checkpoint_path = new_checkpoint_path
 	SaveManager.log_hero_change("current_checkpoint_path", current_checkpoint_path)
 
-func step_shooting(inverted: bool = false, wet: bool = false) -> void:
+func step_shooting(inverted: bool = false, wet: bool = false) -> bool:
 	if is_input_blunder_shoot()\
 	and $StateMachine/TimerBlunderShootCooldown.is_stopped():
 		$Gfx/Muzzle.visible = true
@@ -180,12 +180,13 @@ func step_shooting(inverted: bool = false, wet: bool = false) -> void:
 		if wet: state_machine.set_state("StateWetBlunderShooting")
 		else: state_machine.set_state("StateBlunderShooting")
 		shooter.shoot()
-		return
+		return true ## Returns true if a blundershoot change of state occurred
 
 	if Input.is_action_just_pressed("shoot"):
 		$Gfx/Muzzle.visible = true
 		$Gfx/Muzzle.play("default")
 		shooter.shoot_ad_hoc(regular_shot_speed, 0, false, inverted)
+	return false
 
 func color_muzzle(dark: Color, light: Color) -> void:
 	$Gfx/Muzzle/BwShaderSetter.set_color(dark, light)
