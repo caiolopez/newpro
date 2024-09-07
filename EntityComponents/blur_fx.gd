@@ -1,24 +1,31 @@
 extends Node2D
 
-@export var trail_length = 5
-@export var fade_time = 0.2
-@export var target_path: NodePath
-var target: AnimatedSprite2D
+@export var cloning_frequence = 30 ## The amount of clones created every second.
+@export var clone_lifetime = 0.15 ## The lifetime of a clone, from creating to being hidden.
+@export var target: AnimatedSprite2D
+
 var trail_sprites: Array[Sprite2D] = []
 var positions: Array = []
 var scales: Array = []
 var times: Array = []
-var generating_copies = false
+var textures: Array = []
+var flips: Array = []
+var generating_clones = false
+var time_since_last_clone = 0.0
+
+func start_generating():
+	generating_clones = true
+
+func stop_generating():
+	generating_clones = false
 
 func _ready():
-	target = get_node(target_path)
 	if not target: return
 
 	z_index = target.z_index - 1
 
-	for i in range(trail_length):
+	for i in range(cloning_frequence):
 		var trail_sprite = Sprite2D.new()
-		trail_sprite.texture = target.sprite_frames.get_frame_texture(target.animation, 0)
 		trail_sprite.visible = false
 		trail_sprite.z_index = -i - 1
 		trail_sprite.use_parent_material = true
@@ -27,7 +34,9 @@ func _ready():
 
 		positions.append(Vector2.ZERO)
 		scales.append(Vector2.ONE)
-		times.append(0.0)
+		times.append(-1.0)  # Initialize with -1 to indicate inactive clone
+		textures.append(null)
+		flips.append(false)
 
 func _process(delta: float) -> void:
 	if not is_instance_valid(target):
@@ -35,29 +44,47 @@ func _process(delta: float) -> void:
 
 	var parent_scale = target.get_parent().scale if target.get_parent() is Node2D else Vector2.ONE
 
-	if generating_copies:
-		for i in range(trail_length - 1, 0, -1):
-			positions[i] = positions[i-1]
-			scales[i] = scales[i-1]
-			times[i] = times[i-1]
+	if generating_clones:
+		time_since_last_clone += delta
+		if time_since_last_clone >= 1.0 / cloning_frequence:
+			time_since_last_clone = 0.0
+			create_new_clone(parent_scale)
 
-		positions[0] = target.global_position
-		scales[0] = Vector2(abs(parent_scale.x) * target.scale.x, parent_scale.y * target.scale.y)
-		times[0] = 0.0
+	update_clones(delta)
 
-	for i in range(trail_length):
+func create_new_clone(parent_scale: Vector2):
+	for i in range(cloning_frequence):
+		if times[i] < 0:  # Find the first inactive clone
+			positions[i] = target.global_position
+			scales[i] = Vector2(abs(parent_scale.x) * target.scale.x, parent_scale.y * target.scale.y)
+			times[i] = 0.0
+			textures[i] = target.sprite_frames.get_frame_texture(target.animation, target.frame)
+			flips[i] = parent_scale.x < 0
+			break
+
+func update_clones(delta: float):
+	for i in range(cloning_frequence):
 		var sprite = trail_sprites[i]
-		sprite.global_position = positions[i]
-		sprite.texture = target.sprite_frames.get_frame_texture(target.animation, target.frame)
-		sprite.flip_h = parent_scale.x < 0
-		sprite.scale = scales[i]
-		
-		times[i] += delta
-		sprite.visible = times[i] < fade_time and generating_copies
+		if times[i] >= 0:  # Active clone
+			sprite.global_position = positions[i]
+			sprite.texture = textures[i]
+			sprite.flip_h = flips[i]
+			sprite.scale = scales[i]
+			
+			times[i] += delta
+			if times[i] >= clone_lifetime:
+				sprite.visible = false
+				times[i] = -1.0  # Deactivate the clone
+			else:
+				sprite.visible = true
+		else:
+			sprite.visible = false
 
 func clear_trail() -> void:
-	for i in range(trail_length):
+	for i in range(cloning_frequence):
 		trail_sprites[i].visible = false
 		positions[i] = Vector2.ZERO
 		scales[i] = Vector2.ONE
-		times[i] = 0.0
+		times[i] = -1.0  # Deactivate all clones
+		textures[i] = null
+		flips[i] = false

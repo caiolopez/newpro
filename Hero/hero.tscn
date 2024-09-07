@@ -1620,8 +1620,8 @@ visible = false
 position = Vector2(0, -12)
 shape = SubResource("RectangleShape2D_8r0xo")
 
-[node name="BlurFX" parent="." instance=ExtResource("50_6e2hc")]
-fade_time = 0.1
+[node name="BlurFX" parent="." node_paths=PackedStringArray("target") instance=ExtResource("50_6e2hc")]
+target = NodePath("../Gfx/AnimatedSprite2D")
 
 [node name="BwShaderSetter" parent="BlurFX" instance=ExtResource("27_8ng6k")]
 dark_color = Color(0.466968, 0.204362, 0.536221, 1)
