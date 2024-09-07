@@ -1621,6 +1621,7 @@ position = Vector2(0, -12)
 shape = SubResource("RectangleShape2D_8r0xo")
 
 [node name="BlurFX" parent="." node_paths=PackedStringArray("target") instance=ExtResource("50_6e2hc")]
+cloning_frequence = 60
 target = NodePath("../Gfx/AnimatedSprite2D")
 
 [node name="BwShaderSetter" parent="BlurFX" instance=ExtResource("27_8ng6k")]
