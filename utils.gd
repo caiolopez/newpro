@@ -153,6 +153,8 @@ var current_tween: Tween = null
 func fade_in(node: CanvasItem, duration: float = 1.0) -> Tween:
 	if current_tween:
 		current_tween.kill()
+	else:
+		node.modulate.a = 0
 	node.show()
 	current_tween = create_tween()
 	current_tween.tween_property(node, "modulate:a", 1.0, duration).from(node.modulate.a)
