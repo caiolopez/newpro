@@ -13,19 +13,18 @@ class Locker:
 var lockers: Array[Locker] = []
 
 @export var hero: Node2D ## What body will the camera follow, primarely. E.g. The main character.
-@export var state_machine: StateMachine ## The state machine that governs this camera controller. Drag-and-drop the state-machine object to this field.
 @export var lerp_speed: Vector2 ## The main smoothing factor. The lag before the camera starts to follow the Hero.
 @export var catch_up_speed: Vector2 ## How fast will the camera catch up with the Hero's speed.
 @export var lookahead_activation_vel: Vector2 = Vector2(10,2000) ## The minimum body velocity that activates the lookahead behavior. NOTE: Hard-coded to not work going up.
 @export var lookahead_amount: Vector2 = Vector2(200,200) ## The distance the camera frames in advance when performing lookahead.
 @export var show_gizmo: bool = false ## When set to true, camera position and camera target position are drawn.
+@onready var state_machine: StateMachine = $StateMachine
 var current_lerp_speed: Vector2
 var current_lookahead: Vector2
 var target: Vector2
 var hero_last_velocity: Vector2
 var shake_amount: float = 0
 var shake_duration: float = 0
-
 var hero_real_vel: Vector2
 var hero_vel: Vector2
 var hero_dir: int

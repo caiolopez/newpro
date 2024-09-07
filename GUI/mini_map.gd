@@ -7,6 +7,7 @@ var min_scale: Vector2:
 var max_scale: Vector2:
 	get: return Vector2(maximum_scale, maximum_scale)
 @onready var mini_hero: Sprite2D = $Icons/MiniHero
+@onready var hero: Hero = Utils.find_hero()
 var waypoint_scene = load("res://GUI/Waypoint.tscn")
 var default_scale: float = 0.1
 var scale_speed: Vector2 = Vector2(2.5, 2.5)
@@ -49,7 +50,7 @@ func delete_sector_from_map(sector_path: NodePath):
 			poly.queue_free()
 
 func update_mini_hero_pos():
-	mini_hero.position = Utils.find_hero().global_position
+	mini_hero.position = hero.global_position
 
 func center_map():
 	update_mini_hero_pos()
