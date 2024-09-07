@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dq7x4yq3rebxc"]
+
+[ext_resource type="Script" path="res://Regions/region_manager.gd" id="1_hrsp6"]
+
+[node name="RegionManager" type="Node"]
+script = ExtResource("1_hrsp6")

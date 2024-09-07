@@ -1,6 +1,6 @@
 extends Node
 
-var bullet_res = preload("res://Bullet/bullet.tscn")
+var bullet_res = preload("res://Bullet/Bullet.tscn")
 
 func _ready():
 	Events.hero_respawned_at_checkpoint.connect(free_all_bullets)
