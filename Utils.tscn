@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cs4ma2e34xkls"]
-
-[ext_resource type="Script" path="res://utils.gd" id="1_lsmvi"]
-
-[node name="Utils" type="Node"]
-script = ExtResource("1_lsmvi")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=22 format=3 uid="uid://csvdenv1i3dc3"]
 
-[ext_resource type="Script" path="res://Bullet/teleporter.gd" id="1_wgfu5"]
+[ext_resource type="Script" path="res://Teleporter/teleporter.gd" id="1_wgfu5"]
 [ext_resource type="Texture2D" uid="uid://d2gdo5bbgykv2" path="res://icon.svg" id="2_0ikth"]
 [ext_resource type="PackedScene" uid="uid://manmyevja5y2" path="res://EntityComponents/OnParentAnimEnd.tscn" id="3_rduq0"]
 

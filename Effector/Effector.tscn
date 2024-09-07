@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bwugl7674migl"]
 
-[ext_resource type="Script" path="res://Bullet/effector.gd" id="1_qeqhe"]
+[ext_resource type="Script" path="res://Effector/effector.gd" id="1_qeqhe"]
 
 [node name="Effector" type="Area2D"]
 collision_mask = 8
