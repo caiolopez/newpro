@@ -13,6 +13,7 @@ const MIN_SHOT_INTERVAL: float = 0.01
 func on_enter():
 	$"../../Gfx/AnimatedSprite2D".play("blunderjump")
 	$"../../Shooter".position = Vector2(0, 0)
+	$"../../BlurFX".start_generating()
 
 	hero.current_blunder_jump_angle = 0
 	hero.velocity.y = hero.BLUNDER_JUMP_VELOCITY
@@ -74,6 +75,7 @@ func on_physics_process(delta: float):
 	hero.move_and_slide()
 
 func on_exit():
+	$"../../BlurFX".stop_generating()
 	$"../../Shooter".return_to_og_pos()
 	$"../../Gfx".rotation_degrees = 0
 	hero.current_blunder_jump_angle = 0

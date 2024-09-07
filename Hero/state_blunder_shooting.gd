@@ -7,7 +7,7 @@ var blunder_vel: Vector2
 var blunder_dur: float
 
 func on_enter():
-	$"../../BlurFX".generating_copies = true
+	$"../../BlurFX".start_generating()
 
 	if hero.is_on_floor():
 		blunder_vel = hero.BLUNDER_GROUNDED_VELOCITY
@@ -58,6 +58,6 @@ func on_physics_process(_delta: float):
 	hero.move_and_slide()
 
 func on_exit():
-	$"../../BlurFX".generating_copies = false
+	$"../../BlurFX".stop_generating()
 	timer_blunder_shoot_cooldown.start()
 	hero.velocity.x = hero.SPEED * -hero.facing_direction
