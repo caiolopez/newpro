@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://0l05qi2ha4p5" path="res://hero.png" id="5_6rkle"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xvu6l"]
+size = Vector2(48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iabct"]
 atlas = ExtResource("5_6rkle")
@@ -138,7 +139,7 @@ script = ExtResource("2_s03ty")
 shape = SubResource("RectangleShape2D_xvu6l")
 
 [node name="GfxController" parent="." instance=ExtResource("3_h4oeq")]
-scale = Vector2(6, 6)
+scale = Vector2(24, 24)
 
 [node name="BwShaderSetter" parent="GfxController" instance=ExtResource("4_g3b68")]
 dark_color = Color(0.4584, 0.116928, 0.157117, 1)
