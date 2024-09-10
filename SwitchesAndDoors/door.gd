@@ -6,46 +6,46 @@ class_name Door extends AnimatableBody2D
 @onready var closed_pos: Vector2 = position
 var state_machine: StateMachine
 var door_tween: Tween
-var has_unique_collider: bool = false
+var door_collider: CollisionShape2D = null
 signal should_open()
 signal should_close()
 signal stopped_moving_at_origin()
 signal stopped_moving_at_offset()
-
 
 func _ready():
 	state_machine = $StateMachine
 	if auto_close_time > 0:
 		$StateMachine/TimerAutoClose.set_wait_time(auto_close_time)
 	state_machine.start()
-
-	resize_9p()
+	
+	for child in get_children():
+		if child is CollisionShape2D:
+			door_collider = child
+			break
+	
+	if door_collider:
+		setup_art()
+		setup_anticrush_area()
 
 func open():
 	should_open.emit()
 
-
 func close():
 	should_close.emit()
-
 
 func insta_open():
 	position = closed_pos + open_offset
 	state_machine.set_state("StateOpen")
 
-
 func insta_close():
 	position = closed_pos
 	state_machine.set_state("StateClosed")
 
-
 func tween_door_to_origin():
 	tween_door(Vector2.ZERO)
-	
 
 func tween_door_to_offset():
 	tween_door(open_offset)
-
 
 func tween_door(offset: Vector2):
 	door_tween = create_tween()
@@ -56,13 +56,11 @@ func tween_door(offset: Vector2):
 		duration).set_trans(Tween.TRANS_EXPO)
 	door_tween.finished.connect(on_tween_finished)
 
-
 func on_tween_finished():
 	if Utils.aprox_equal_vector2(position, closed_pos):
 		stopped_moving_at_origin.emit()
 	if Utils.aprox_equal_vector2(position, closed_pos + open_offset):
 		stopped_moving_at_offset.emit()
-
 
 func area_has_uncrushables() -> bool:
 	var has: bool = false
@@ -72,10 +70,13 @@ func area_has_uncrushables() -> bool:
 			break
 	return has
 
+func setup_art():
+	$NinePDoorArt.size = door_collider.shape.get_rect().size
+	$NinePDoorArt.position = door_collider.position - $NinePDoorArt.size/2
 
-func resize_9p():
-	for child in get_children():
-		if child is UniqueCollider:
-			$NinePDoorArt.size = child.shape.get_rect().size
-			$NinePDoorArt.position = child.position - $NinePDoorArt.size/2
-			return
+func setup_anticrush_area():
+	var anti_crush_collider: CollisionShape2D = door_collider.duplicate()
+	$AntiCrushArea.add_child(anti_crush_collider)
+	$AntiCrushArea.set_as_top_level(true)
+	$AntiCrushArea.global_position = global_position
+	

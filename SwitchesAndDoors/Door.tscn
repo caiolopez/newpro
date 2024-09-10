@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ruri8ytnt6k"]
+[gd_scene load_steps=10 format=3 uid="uid://ruri8ytnt6k"]
 
 [ext_resource type="Script" path="res://SwitchesAndDoors/door.gd" id="1_bavxp"]
 [ext_resource type="Texture2D" uid="uid://dh3cmurbvddhl" path="res://frame.png" id="2_edu7e"]
@@ -9,9 +9,6 @@
 [ext_resource type="Script" path="res://SwitchesAndDoors/state_closing.gd" id="6_fh1vt"]
 [ext_resource type="Script" path="res://SwitchesAndDoors/state_rev_from_closing.gd" id="8_blgy7"]
 [ext_resource type="Script" path="res://SwitchesAndDoors/state_temporarily_open.gd" id="9_37487"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ibah"]
-size = Vector2(128, 128)
 
 [node name="Door" type="AnimatableBody2D" groups=["kills_bullets", "sticky"]]
 script = ExtResource("1_bavxp")
@@ -38,10 +35,6 @@ patch_margin_bottom = 24
 
 [node name="AntiCrushArea" type="Area2D" parent="."]
 collision_mask = 12
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AntiCrushArea"]
-position = Vector2(0, 64)
-shape = SubResource("RectangleShape2D_6ibah")
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("3_vgayv")
