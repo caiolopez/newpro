@@ -2,10 +2,9 @@
 
 [ext_resource type="Script" path="res://EntityComponents/unique_collider.gd" id="1_jxxrj"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6k5tf"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ucq0"]
 size = Vector2(428.5, 314.5)
 
 [node name="UniqueCollider" type="CollisionShape2D"]
-shape = SubResource("RectangleShape2D_6k5tf")
+shape = SubResource("RectangleShape2D_4ucq0")
 script = ExtResource("1_jxxrj")
-is_unique = true
