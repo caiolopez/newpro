@@ -22,6 +22,7 @@ signal hero_got_collectible(type: StringName)
 signal show_dialog(dialog: StringName)
 signal hide_dialog()
 signal show_hint(hint: StringName)
+signal show_hint_text(hint: String)
 signal hide_hint()
 
 signal chart_map_sector(sector: MapSector)

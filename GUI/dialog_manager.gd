@@ -38,6 +38,7 @@ func _ready() -> void:
 	Events.show_dialog.connect(start_dialog)
 	Events.hide_dialog.connect(hide_dialog)
 	Events.show_hint.connect(show_hint)
+	Events.show_hint_text.connect(show_hint_text)
 	Events.hide_hint.connect(hide_hint)
 	dialog_box.hide()
 	hint_label.hide()
@@ -96,6 +97,11 @@ func tween_dialog_box(show: bool) -> void:
 func show_hint(hint: StringName) -> void:
 	if not hint: return
 	hint_label.text = hints.get(hint)
+	Utils.fade_in(hint_label)
+
+func show_hint_text(hint: String) -> void:
+	if not hint: return
+	hint_label.text = hint
 	Utils.fade_in(hint_label)
 
 func hide_hint() -> void:  
