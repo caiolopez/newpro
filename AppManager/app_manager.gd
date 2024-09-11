@@ -1,5 +1,6 @@
 extends Node
 
+@onready var curtain = get_node("/root/GameTree/HUD/BlackCurtain")
 @onready var state_machine: StateMachine = $StateMachine
 var game_time: float = 0.0
 var teleporters_are_active: bool:
