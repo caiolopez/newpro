@@ -6,4 +6,5 @@ func on_enter():
 	if DebugTools.print_stuff: print("Game Paused.")
 
 func on_exit():
+	app_manager.game_unpaused.emit()
 	pass
