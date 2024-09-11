@@ -92,4 +92,4 @@ func clear_trail() -> void:
 		times[i] = -1.0  # Deactivate all clones
 		textures[i] = null
 		flips[i] = false
-		trail_sprites[i].z_index = 0  # Reset z_index 
+		trail_sprites[i].z_index = 0  # Reset z_index
