@@ -15,4 +15,5 @@ func on_process(_delta):
 		reel.skip_all()
 
 func on_exit():
-	pass
+	Events.game_started.emit()
+	AppManager.is_time_running = true

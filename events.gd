@@ -19,7 +19,7 @@ signal teleporters_activated(enabled: bool) # When hero collects powerup that ac
 
 signal hero_reached_checkpoint()
 signal hero_respawned_at_checkpoint()
-signal hero_spawned()
+signal game_started()
 signal hero_died()
 
 signal hero_got_collectible(type: StringName)
