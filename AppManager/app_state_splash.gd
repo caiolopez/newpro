@@ -11,8 +11,12 @@ func on_enter():
 		CONNECT_ONE_SHOT)
 
 func on_process(_delta):
-	if Input.is_action_just_pressed("ui_cancel"):
-		reel.skip_all()
+	if Input.is_action_just_pressed("cancel")\
+	or Input.is_action_just_pressed("accept"):
+		if Input.is_action_pressed("down"):
+			reel.skip_all()
+		else:
+			reel.skip_current_slide()
 
 func on_exit():
 	Events.game_started.emit()
