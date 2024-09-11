@@ -27,7 +27,6 @@ func _ready():
 	for i in range(cloning_frequence):
 		var trail_sprite = Sprite2D.new()
 		trail_sprite.visible = false
-		trail_sprite.z_index = -i - 1
 		trail_sprite.use_parent_material = true
 		add_child(trail_sprite)
 		trail_sprites.append(trail_sprite)
@@ -60,6 +59,11 @@ func create_new_clone(parent_scale: Vector2):
 			times[i] = 0.0
 			textures[i] = target.sprite_frames.get_frame_texture(target.animation, target.frame)
 			flips[i] = parent_scale.x < 0
+			trail_sprites[i].z_index = z_index - 1  # Set z_index for newest clone
+			# Decrease z_index of other active clones
+			for j in range(cloning_frequence):
+				if j != i and times[j] >= 0:
+					trail_sprites[j].z_index -= 1
 			break
 
 func update_clones(delta: float):
@@ -88,3 +92,4 @@ func clear_trail() -> void:
 		times[i] = -1.0  # Deactivate all clones
 		textures[i] = null
 		flips[i] = false
+		trail_sprites[i].z_index = 0  # Reset z_index 
