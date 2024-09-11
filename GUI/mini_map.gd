@@ -82,7 +82,7 @@ func adjust_icon_scale():
 
 func _process(delta):
 	if state == States.OFF:
-		if not AppManager.state_machine.is_current_state("AppStatePaused")\
+		if AppManager.state_machine.is_current_state("AppStateInGame")\
 		and Input.is_action_just_pressed("pause"):
 			center_map()
 			fade_in_minimap()
