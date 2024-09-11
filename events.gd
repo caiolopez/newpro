@@ -9,6 +9,11 @@ signal camera_shake(duration: float, amount: float)
 signal camera_stop_shake()
 signal camera_set_glpos(glpos: Vector2)
 
+signal curtain_fade_in(duration: float)
+signal curtain_fade_out(duration: float)
+signal curtain_fade_in_ended()
+signal curtain_fade_out_ended()
+
 signal hero_hit_teleporter(teleporter: Teleporter) # When a hero shot hits active teleporter
 signal teleporters_activated(enabled: bool) # When hero collects powerup that activates teleporters
 

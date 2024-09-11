@@ -4,7 +4,7 @@ func on_enter():
 	$"../../SlideReel".reset()
 	$"../../SlideReel".start_reel()
 	$"../../SlideReel".reel_finished.connect(func():
-		app_manager.curtain.fade_out()
+		Events.curtain_fade_out.emit()
 		machine.set_state("AppStateInGame"),
 		CONNECT_ONE_SHOT)
 
