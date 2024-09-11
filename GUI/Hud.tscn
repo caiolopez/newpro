@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://bepfiwkv4q3o8"]
+
+[ext_resource type="Script" path="res://black_curtain.gd" id="1_lj2gn"]
+[ext_resource type="PackedScene" uid="uid://b424bvcxa2fbn" path="res://GUI/BossOverlay.tscn" id="2_tgb1q"]
+[ext_resource type="PackedScene" uid="uid://d1h8vf2t5pgey" path="res://GUI/MiniMap.tscn" id="3_c3rbp"]
+[ext_resource type="PackedScene" uid="uid://dvk1kn7j0htsi" path="res://GUI/Dialog.tscn" id="4_6bhca"]
+
+[node name="Hud" type="CanvasLayer"]
+process_mode = 3
+
+[node name="BlackCurtain" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("1_lj2gn")
+
+[node name="BossOverlay" parent="." instance=ExtResource("2_tgb1q")]
+
+[node name="MiniMap" parent="." instance=ExtResource("3_c3rbp")]
+
+[node name="Dialog" parent="." instance=ExtResource("4_6bhca")]

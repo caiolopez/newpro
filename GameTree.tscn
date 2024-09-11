@@ -1,11 +1,7 @@
-[gd_scene load_steps=23 format=4 uid="uid://cqeapgf5ajw56"]
+[gd_scene load_steps=19 format=4 uid="uid://cqeapgf5ajw56"]
 
-[ext_resource type="Script" path="res://black_curtain.gd" id="1_0kahf"]
-[ext_resource type="PackedScene" uid="uid://b424bvcxa2fbn" path="res://GUI/BossOverlay.tscn" id="1_tkq5o"]
 [ext_resource type="PackedScene" uid="uid://1md1m8n6iq5x" path="res://Hero/hero.tscn" id="2_acvau"]
-[ext_resource type="PackedScene" uid="uid://d1h8vf2t5pgey" path="res://GUI/mini_map.tscn" id="2_is0lr"]
 [ext_resource type="PackedScene" uid="uid://c48ye6g4s5ufc" path="res://Camera/Camera.tscn" id="3_o6dt5"]
-[ext_resource type="PackedScene" uid="uid://dvk1kn7j0htsi" path="res://GUI/Dialog.tscn" id="3_v2q5r"]
 [ext_resource type="Texture2D" uid="uid://bp7vnugiq46o" path="res://Tilesets/alienscape_tileset_transparent.png" id="8_01mxc"]
 [ext_resource type="PackedScene" uid="uid://bt23waqbakmop" path="res://Water/Water.tscn" id="11_elcok"]
 [ext_resource type="PackedScene" uid="uid://bu38boui2wxu" path="res://SwitchesAndDoors/SwitchGroupController.tscn" id="12_u6t76"]
@@ -97,24 +93,6 @@ size = Vector2(474, 258)
 size = Vector2(1176, 321)
 
 [node name="GameTree" type="Node"]
-
-[node name="HUD" type="CanvasLayer" parent="." groups=["hud"]]
-process_mode = 3
-
-[node name="BlackCurtain" type="ColorRect" parent="HUD"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
-script = ExtResource("1_0kahf")
-
-[node name="BossOverlay" parent="HUD" instance=ExtResource("1_tkq5o")]
-
-[node name="MiniMap" parent="HUD" instance=ExtResource("2_is0lr")]
-
-[node name="Dialog" parent="HUD" instance=ExtResource("3_v2q5r")]
 
 [node name="Hero" parent="." instance=ExtResource("2_acvau")]
 z_index = 2

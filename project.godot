@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+Hud="*res://GUI/Hud.tscn"
 Constants="*res://constants.gd"
 Utils="*res://utils.gd"
 Events="*res://events.gd"
