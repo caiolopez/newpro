@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://bepfiwkv4q3o8"]
+[gd_scene load_steps=9 format=3 uid="uid://bepfiwkv4q3o8"]
 
 [ext_resource type="Script" path="res://black_curtain.gd" id="1_lj2gn"]
 [ext_resource type="PackedScene" uid="uid://b424bvcxa2fbn" path="res://GUI/BossOverlay.tscn" id="2_tgb1q"]
 [ext_resource type="PackedScene" uid="uid://d1h8vf2t5pgey" path="res://GUI/MiniMap.tscn" id="3_c3rbp"]
 [ext_resource type="PackedScene" uid="uid://dvk1kn7j0htsi" path="res://GUI/Dialog.tscn" id="4_6bhca"]
+[ext_resource type="Script" path="res://AppManager/slide_reel.gd" id="5_s2mhd"]
+[ext_resource type="Texture2D" uid="uid://0l05qi2ha4p5" path="res://hero.png" id="6_r73ht"]
+[ext_resource type="Script" path="res://AppManager/slide.gd" id="7_fr8wc"]
+[ext_resource type="Texture2D" uid="uid://d2gdo5bbgykv2" path="res://icon.svg" id="8_qfp0p"]
 
 [node name="Hud" type="CanvasLayer"]
 process_mode = 3
@@ -22,3 +26,26 @@ script = ExtResource("1_lj2gn")
 [node name="MiniMap" parent="." instance=ExtResource("3_c3rbp")]
 
 [node name="Dialog" parent="." instance=ExtResource("4_6bhca")]
+
+[node name="SlideReel" type="CanvasLayer" parent="."]
+script = ExtResource("5_s2mhd")
+
+[node name="Slide1" type="TextureRect" parent="SlideReel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -8.0
+offset_bottom = -8.0
+texture = ExtResource("6_r73ht")
+script = ExtResource("7_fr8wc")
+metadata/_edit_use_anchors_ = true
+
+[node name="Slide2" type="TextureRect" parent="SlideReel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -8.0
+offset_bottom = -8.0
+texture = ExtResource("8_qfp0p")
+script = ExtResource("7_fr8wc")
+metadata/_edit_use_anchors_ = true

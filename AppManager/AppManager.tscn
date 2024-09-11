@@ -1,14 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://1jofyd1fb13e"]
+[gd_scene load_steps=6 format=3 uid="uid://1jofyd1fb13e"]
 
 [ext_resource type="Script" path="res://AppManager/app_manager.gd" id="1_3s7ri"]
 [ext_resource type="Script" path="res://state_machine.gd" id="1_uyv8v"]
 [ext_resource type="Script" path="res://AppManager/app_state_splash.gd" id="2_dk1i5"]
 [ext_resource type="Script" path="res://AppManager/app_state_in_game.gd" id="3_3momj"]
 [ext_resource type="Script" path="res://AppManager/app_state_paused.gd" id="4_ywd8t"]
-[ext_resource type="Script" path="res://AppManager/slide_reel.gd" id="6_cfsev"]
-[ext_resource type="Script" path="res://AppManager/slide.gd" id="7_n6ln8"]
-[ext_resource type="Texture2D" uid="uid://0l05qi2ha4p5" path="res://hero.png" id="8_kfk5e"]
-[ext_resource type="Texture2D" uid="uid://d2gdo5bbgykv2" path="res://icon.svg" id="9_vrvd2"]
 
 [node name="AppManager" type="Node"]
 process_mode = 3
@@ -35,24 +31,3 @@ script = ExtResource("4_ywd8t")
 [node name="AppStateCredits" type="Node" parent="StateMachine"]
 
 [node name="Timer" type="Timer" parent="StateMachine"]
-
-[node name="SlideReel" type="CanvasLayer" parent="."]
-script = ExtResource("6_cfsev")
-
-[node name="Slide1" type="TextureRect" parent="SlideReel"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -8.0
-offset_bottom = -8.0
-texture = ExtResource("8_kfk5e")
-script = ExtResource("7_n6ln8")
-
-[node name="Slide2" type="TextureRect" parent="SlideReel"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -8.0
-offset_bottom = -8.0
-texture = ExtResource("9_vrvd2")
-script = ExtResource("7_n6ln8")
