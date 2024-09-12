@@ -14,8 +14,8 @@ func _ready():
 		)
 	ComboParser.combo_performed.connect(func(combo):
 		if combo == "LoadCurrentGame":
-			load_from_slot()
-			Events.game_started.emit()
+			if load_from_slot():
+				AppManager.game_started.emit()
 			)
 
 func add_region_entry(region: Region):
@@ -57,22 +57,33 @@ func save_file():
 	else:
 		if DebugTools.print_stuff: print("Error saving game: ", FileAccess.get_open_error())
 
-func load_file():
+func load_file() -> bool:
 	var file = FileAccess.open("user://save_" + str(current_slot) + ".dat", FileAccess.READ)
 	if file == null:
 		if DebugTools.print_stuff: print("File: user://save_" + str(current_slot) + ".dat does not exist.")
-		return
+		return false
+
 	var data = file.get_as_text()
 	var json = JSON.new()
 	var error = json.parse(data)
-	if error == OK:
-		if typeof(json.data) == TYPE_DICTIONARY: if DebugTools.print_stuff: print(json.data)
-	else:
+	if error != OK:
 		if DebugTools.print_stuff: print("JSON Parse Error: ", json.get_error_message(), " in ", data, " at line ", json.get_error_line())
+		return false
+
+	if typeof(json.data) != TYPE_DICTIONARY:
+		if DebugTools.print_stuff: print("Parsed JSON is not a dictionary")
+		return false
+
+	if not json.data.has_all(["hero_changes", "entity_changes", "minimap"]):
+		if DebugTools.print_stuff: print("Save file is missing required data")
+		return false
 
 	hero_persistence = json.data["hero_changes"]
 	regions = json.data["entity_changes"]
 	minimap = json.data["minimap"]
+
+	if DebugTools.print_stuff: print("File loaded successfully")
+	return true
 
 func inject_changes_into_regions():
 	if not RegionManager.current_region:
@@ -115,14 +126,15 @@ func inject_changes_into_hero():
 			"elapsed_time": AppManager.game_time = value
 			"current_region": RegionManager.change_region(Constants.RegName.get(value))
 
-func load_from_slot(slot: int = current_slot):
+func load_from_slot(slot: int = current_slot) -> bool:
 	current_slot = slot
-	load_file()
+	if not load_file():
+		return false
 	inject_changes_into_hero()
 	inject_changes_into_regions()
-	Utils.find_hero().insta_spawn()
 	game_loaded_from_disk.emit()
 	if DebugTools.print_stuff: print("Game loaded from slot ", slot, ".")
+	return true
 
 func clear_slot(slot: int):
 	var path = "user://save_" + str(slot) + ".dat"
