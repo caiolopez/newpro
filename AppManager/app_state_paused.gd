@@ -6,5 +6,6 @@ func on_enter():
 	if DebugTools.print_stuff: print("Game Paused.")
 
 func on_exit():
+	get_tree().paused = false
 	app_manager.game_unpaused.emit()
-	pass
+	if DebugTools.print_stuff: print("Game Unpaused.")
