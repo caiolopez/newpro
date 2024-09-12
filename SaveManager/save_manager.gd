@@ -9,8 +9,14 @@ signal game_loaded_from_disk
 signal game_saved_to_disk
 
 func _ready():
-	ComboParser.combo_performed.connect(func(combo): if combo == "SaveCurrentGame": save_file())
-	ComboParser.combo_performed.connect(func(combo): if combo == "LoadCurrentGame": load_from_slot())
+	ComboParser.combo_performed.connect(func(combo):
+		if combo == "SaveCurrentGame": save_file()
+		)
+	ComboParser.combo_performed.connect(func(combo):
+		if combo == "LoadCurrentGame":
+			load_from_slot()
+			Events.game_started.emit()
+			)
 
 func add_region_entry(region: Region):
 	if not regions.has(region.name):

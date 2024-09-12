@@ -11,8 +11,10 @@ func on_enter():
 	hero.global_position = destination
 
 	Events.camera_set_glpos.emit(hero.global_position)
-	
-	machine.set_state("StateIdle")
-	
+
+	Events.game_started.connect(func():
+		machine.set_state("StateIdle"),
+		CONNECT_ONE_SHOT)
+
 func on_exit():
 	Utils.create_blinking_timer(hero, 0.08, 0.5)
