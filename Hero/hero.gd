@@ -200,6 +200,7 @@ func die():
 		state_machine.set_state("StateDeathSnapshot")
 
 func insta_spawn():
+	if state_machine.is_current_state("StateSpawning"): return
 	state_machine.set_state("StateSpawning")
 
 func on_water_status_changed(_is_in_water: bool, water: Water):
