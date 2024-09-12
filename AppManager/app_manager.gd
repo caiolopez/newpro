@@ -10,6 +10,7 @@ var teleporters_are_active: bool:
 		Events.teleporters_activated.emit(value)
 var is_time_running: bool = false
 
+signal game_started
 signal game_paused
 signal game_unpaused
 

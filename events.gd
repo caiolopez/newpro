@@ -8,7 +8,6 @@ signal hero_hit_teleporter(teleporter: Teleporter) # When a hero shot hits activ
 signal teleporters_activated(enabled: bool) # When hero collects powerup that activates teleporters
 signal hero_reached_checkpoint()
 signal hero_respawned_at_checkpoint()
-signal game_started()
 signal hero_died()
 signal hero_got_collectible(type: StringName)
 signal boss_trigger_entered(boss: Node)
