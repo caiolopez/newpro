@@ -10,5 +10,4 @@ func on_enter():
 
 func on_exit():
 	Events.curtain_fade_out.emit()
-	AppManager.is_time_running = true
 	app_manager.game_started.emit()
