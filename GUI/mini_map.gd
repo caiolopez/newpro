@@ -205,7 +205,6 @@ func serialize_flags() -> Array:
 
 func update_from_dictionary():
 	var data: Dictionary = SaveManager.minimap
-	print("IIIIHAAA")
 	
 	for child in $SectorPolygons.get_children():
 		child.queue_free()
