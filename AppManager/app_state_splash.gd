@@ -1,13 +1,12 @@
 extends AppState
 
-@onready var reel = Hud.get_node("SlideReel")
+@onready var reel = UI.get_node("SlideReel")
 
 func on_enter():
 	reel.reset()
 	reel.start_reel()
 	reel.reel_finished.connect(func():
-		Events.curtain_fade_out.emit()
-		machine.set_state("AppStateInGame"),
+		machine.set_state("AppStateMainMenu"),
 		CONNECT_ONE_SHOT)
 
 func on_process(_delta):
@@ -17,7 +16,3 @@ func on_process(_delta):
 			reel.skip_all()
 		else:
 			reel.skip_current_slide()
-
-func on_exit():
-	Events.game_started.emit()
-	AppManager.is_time_running = true

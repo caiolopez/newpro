@@ -132,3 +132,26 @@ func print_all_dics():
 	print("------------------------------")
 	print(regions)
 	print("")
+
+func has_valid_save_file(slot: int = current_slot) -> bool:
+	var file_path = "user://save_" + str(slot) + ".dat"
+	if not FileAccess.file_exists(file_path):
+		return false
+	
+	var file = FileAccess.open(file_path, FileAccess.READ)
+	if file == null:
+		return false
+
+	var data = file.get_as_text()
+	var json = JSON.new()
+	var error = json.parse(data)
+
+	if error != OK or typeof(json.data) != TYPE_DICTIONARY:
+		return false
+	
+	var required_keys = ["hero_changes", "entity_changes", "minimap"]
+	for key in required_keys:
+		if not json.data.has(key):
+			return false
+
+	return true

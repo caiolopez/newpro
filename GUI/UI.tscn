@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://cgntexit802at"]
+
+[ext_resource type="Script" path="res://black_curtain.gd" id="1_2fegy"]
+[ext_resource type="Script" path="res://AppManager/slide_reel.gd" id="5_edbe7"]
+[ext_resource type="PackedScene" uid="uid://ms4uukon6dti" path="res://GUI/MainMenu.tscn" id="6_60d5t"]
+[ext_resource type="Texture2D" uid="uid://0l05qi2ha4p5" path="res://hero.png" id="6_j0bi8"]
+[ext_resource type="Script" path="res://AppManager/slide.gd" id="7_0ssnq"]
+[ext_resource type="Texture2D" uid="uid://d2gdo5bbgykv2" path="res://icon.svg" id="8_7bl5a"]
+
+[node name="UI" type="CanvasLayer"]
+process_mode = 3
+
+[node name="BlackCurtain" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("1_2fegy")
+
+[node name="SlideReel" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_edbe7")
+
+[node name="Slide1" type="TextureRect" parent="SlideReel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_j0bi8")
+script = ExtResource("7_0ssnq")
+metadata/_edit_use_anchors_ = true
+
+[node name="Slide2" type="TextureRect" parent="SlideReel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_7bl5a")
+script = ExtResource("7_0ssnq")
+metadata/_edit_use_anchors_ = true
+
+[node name="MainMenu" parent="." instance=ExtResource("6_60d5t")]

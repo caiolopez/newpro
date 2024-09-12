@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://1jofyd1fb13e"]
+[gd_scene load_steps=9 format=3 uid="uid://1jofyd1fb13e"]
 
 [ext_resource type="Script" path="res://AppManager/app_manager.gd" id="1_3s7ri"]
 [ext_resource type="Script" path="res://state_machine.gd" id="1_uyv8v"]
 [ext_resource type="Script" path="res://AppManager/app_state_splash.gd" id="2_dk1i5"]
 [ext_resource type="Script" path="res://AppManager/app_state_in_game.gd" id="3_3momj"]
+[ext_resource type="Script" path="res://AppManager/app_state_main_menu.gd" id="4_aloiq"]
+[ext_resource type="Script" path="res://AppManager/app_state_new_game_init.gd" id="4_qc6je"]
 [ext_resource type="Script" path="res://AppManager/app_state_paused.gd" id="4_ywd8t"]
+[ext_resource type="Script" path="res://AppManager/app_state_load_game_init.gd" id="6_myns1"]
 
 [node name="AppManager" type="Node"]
 process_mode = 3
@@ -16,13 +19,20 @@ script = ExtResource("1_uyv8v")
 [node name="AppStateSplash" type="Node" parent="StateMachine"]
 script = ExtResource("2_dk1i5")
 
+[node name="AppStateMainMenu" type="Node" parent="StateMachine"]
+script = ExtResource("4_aloiq")
+
+[node name="AppStateNewGameInit" type="Node" parent="StateMachine"]
+script = ExtResource("4_qc6je")
+
+[node name="AppStateLoadGameInit" type="Node" parent="StateMachine"]
+script = ExtResource("6_myns1")
+
 [node name="AppStateInGame" type="Node" parent="StateMachine"]
 script = ExtResource("3_3momj")
 
 [node name="AppStatePaused" type="Node" parent="StateMachine"]
 script = ExtResource("4_ywd8t")
-
-[node name="AppStateMainMenu" type="Node" parent="StateMachine"]
 
 [node name="AppStateIntro" type="Node" parent="StateMachine"]
 

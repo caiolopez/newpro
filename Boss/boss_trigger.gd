@@ -2,7 +2,6 @@ extends Area2D
 
 @export var boss: Node
 @export var doors_to_close: Array[Door] = []
-var hud: CanvasLayer
 var is_active: bool = false
 
 func _ready():
