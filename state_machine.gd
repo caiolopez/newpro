@@ -36,6 +36,10 @@ func start() -> void:
 	last_state = null
 	set_state(states[0])
 
+func start_if_stopped() -> void:
+	if current_state == null:
+		start()
+
 func get_states() -> void:
 	states = []
 	for child in get_children().filter(func(entry): return entry is _State):
