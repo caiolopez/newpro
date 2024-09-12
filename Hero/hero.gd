@@ -56,13 +56,13 @@ var last_water_surface: float
 var last_water_color: Array[Color]
 
 func _ready():
+	AppManager.game_started.connect(func(): state_machine.start())
 	Events.hero_got_collectible.connect(handle_powerups)
 	Events.hero_hit_teleporter.connect(_on_hero_hit_teleporter)
 	ComboParser.combo_performed.connect(func(combo): if combo == "Die": die())
 	$IsInWaterNotifier_GUN.water_state_changed.connect(on_water_status_changed_on_gun)
 
 	set_safe_margin(0.08)
-	state_machine.start()
 
 func _process(_delta):
 	check_value_change()
@@ -199,10 +199,6 @@ func die():
 	if state_machine.current_state.death_prone:
 		state_machine.set_state("StateDeathSnapshot")
 
-func insta_spawn():
-	if state_machine.is_current_state("StateSpawning"): return
-	state_machine.set_state("StateSpawning")
-
 func on_water_status_changed(_is_in_water: bool, water: Water):
 	self.is_in_water = _is_in_water
 	last_water_surface = water.get_surface_global_position()
@@ -236,4 +232,3 @@ func is_currently_dead() -> bool:
 		"StateDeathSnapshot",
 		"StateTweeningToRespawn",
 		"StateRespawning"]
-		
