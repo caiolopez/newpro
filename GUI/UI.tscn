@@ -1,14 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://cgntexit802at"]
+[gd_scene load_steps=9 format=3 uid="uid://cgntexit802at"]
 
 [ext_resource type="Script" path="res://black_curtain.gd" id="1_2fegy"]
+[ext_resource type="Script" path="res://GUI/ui.gd" id="1_lqxss"]
 [ext_resource type="Script" path="res://AppManager/slide_reel.gd" id="5_edbe7"]
 [ext_resource type="PackedScene" uid="uid://ms4uukon6dti" path="res://GUI/MainMenu.tscn" id="6_60d5t"]
 [ext_resource type="Texture2D" uid="uid://0l05qi2ha4p5" path="res://hero.png" id="6_j0bi8"]
 [ext_resource type="Script" path="res://AppManager/slide.gd" id="7_0ssnq"]
+[ext_resource type="PackedScene" uid="uid://cnil5t8gbosn3" path="res://GUI/OptionsMenu.tscn" id="7_3hcxp"]
 [ext_resource type="Texture2D" uid="uid://d2gdo5bbgykv2" path="res://icon.svg" id="8_7bl5a"]
 
 [node name="UI" type="CanvasLayer"]
 process_mode = 3
+script = ExtResource("1_lqxss")
 
 [node name="BlackCurtain" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -51,3 +54,5 @@ script = ExtResource("7_0ssnq")
 metadata/_edit_use_anchors_ = true
 
 [node name="MainMenu" parent="." instance=ExtResource("6_60d5t")]
+
+[node name="OptionsMenu" parent="." instance=ExtResource("7_3hcxp")]
