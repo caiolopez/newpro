@@ -83,7 +83,7 @@ func adjust_icon_scale():
 func _process(delta):
 	if state == States.OFF:
 		if AppManager.state_machine.is_current_state("AppStateInGame")\
-		and Input.is_action_just_pressed("pause"):
+		and Input.is_action_just_pressed("minimap"):
 			center_map()
 			fade_in_minimap()
 			state = States.ANIMATING_IN
@@ -110,10 +110,11 @@ func _process(delta):
 	
 	handle_actions(delta)
 	
-	if Input.is_action_just_pressed("unpause") and AppManager.state_machine.is_current_state("AppStatePaused"):
-		fade_out_minimap()
-		AppManager.unpause()
-		state = States.ANIMATING_OUT
+	if AppManager.state_machine.is_current_state("AppStatePaused"):
+		if Input.is_action_just_released("minimap") or Input.is_action_just_pressed("cancel"):
+			fade_out_minimap()
+			AppManager.unpause()
+			state = States.ANIMATING_OUT
 
 func handle_actions(delta):
 	if Input.is_action_pressed("up") and position.y + bottom_bound * scale.y > bound_padding.y:
@@ -125,10 +126,10 @@ func handle_actions(delta):
 	if Input.is_action_pressed("right") and position.x + left_bound * scale.x < get_viewport_rect().size.x - bound_padding.x: 
 		position.x += move_speed.x * delta
 
-	if Input.is_action_pressed("shoulder_left") and scale > min_scale:
-		adjust_scale(delta, -1)
-	if Input.is_action_pressed("shoulder_right") and scale < max_scale:
-		adjust_scale(delta, 1)
+	#if Input.is_action_pressed("shoulder_left") and scale > min_scale:
+	#	adjust_scale(delta, -1)
+	#if Input.is_action_pressed("shoulder_right") and scale < max_scale:
+	#	adjust_scale(delta, 1)
 
 	if Input.is_action_just_pressed("center_map"):
 		center_map()

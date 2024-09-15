@@ -1,10 +1,13 @@
-[gd_scene load_steps=21 format=4 uid="uid://cqeapgf5ajw56"]
+[gd_scene load_steps=25 format=4 uid="uid://cqeapgf5ajw56"]
 
 [ext_resource type="PackedScene" uid="uid://1md1m8n6iq5x" path="res://Hero/hero.tscn" id="2_acvau"]
 [ext_resource type="PackedScene" uid="uid://c48ye6g4s5ufc" path="res://Camera/Camera.tscn" id="3_o6dt5"]
+[ext_resource type="Script" path="res://Regions/region.gd" id="3_w6t45"]
 [ext_resource type="Texture2D" uid="uid://bp7vnugiq46o" path="res://Tilesets/alienscape_tileset_transparent.png" id="8_01mxc"]
 [ext_resource type="PackedScene" uid="uid://boan2jyc4hlda" path="res://Checkpoint/CheckpointTrigger.tscn" id="11_dx8wo"]
 [ext_resource type="PackedScene" uid="uid://bt23waqbakmop" path="res://Water/Water.tscn" id="11_elcok"]
+[ext_resource type="PackedScene" uid="uid://7jpetdd82f2l" path="res://GUI/MapSector.tscn" id="11_fdldt"]
+[ext_resource type="PackedScene" uid="uid://bp1e8lhbqp3me" path="res://Entities/Spike.tscn" id="12_ouglo"]
 [ext_resource type="PackedScene" uid="uid://bu38boui2wxu" path="res://SwitchesAndDoors/SwitchGroupController.tscn" id="12_u6t76"]
 [ext_resource type="PackedScene" uid="uid://ruri8ytnt6k" path="res://SwitchesAndDoors/Door.tscn" id="13_c20o3"]
 [ext_resource type="PackedScene" uid="uid://bfhx6g0duy3tv" path="res://Collectibles/IncendiaryAmmo.tscn" id="13_qbgu6"]
@@ -96,6 +99,9 @@ size = Vector2(1176, 321)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gfpin"]
 size = Vector2(178, 486)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vln41"]
+size = Vector2(178, 486)
+
 [node name="GameTree" type="Node"]
 
 [node name="Hero" parent="." instance=ExtResource("2_acvau")]
@@ -109,6 +115,7 @@ lerp_speed = Vector2(3, 3)
 catch_up_speed = Vector2(0.01, 0.01)
 
 [node name="LEVEL" type="Node2D" parent="."]
+script = ExtResource("3_w6t45")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="LEVEL" groups=["kills_bullets"]]
 scale = Vector2(6, 6)
@@ -193,12 +200,37 @@ metadata/_edit_group_ = true
 [node name="CollectOnTouch" parent="LEVEL/IncendiaryAmmo" index="0"]
 type = 3
 
+[node name="MapSector" parent="LEVEL" instance=ExtResource("11_fdldt")]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LEVEL/MapSector"]
+polygon = PackedVector2Array(-3294, -1356, -3108, -2322, -3846, -1914, -3876, -510, -3288, 78)
+
+[node name="Spike" parent="LEVEL/MapSector" instance=ExtResource("12_ouglo")]
+position = Vector2(-5412, -1056)
+
+[node name="Spike" parent="LEVEL" instance=ExtResource("12_ouglo")]
+position = Vector2(-6408, -2190)
+
+[node name="MapSector2" parent="LEVEL" instance=ExtResource("11_fdldt")]
+position = Vector2(-996, -1134)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LEVEL/MapSector2"]
+position = Vector2(126, 90)
+polygon = PackedVector2Array(-2400, -1458, -3108, -2322, -3846, -1914, -3876, -510, -3096, 30)
+
 [node name="CheckpointTrigger" parent="." instance=ExtResource("11_dx8wo")]
 position = Vector2(-4104, -780)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CheckpointTrigger"]
 position = Vector2(79, -69)
 shape = SubResource("RectangleShape2D_gfpin")
+
+[node name="CheckpointTrigger2" parent="." instance=ExtResource("11_dx8wo")]
+position = Vector2(-3036, -1110)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckpointTrigger2"]
+position = Vector2(79, -69)
+shape = SubResource("RectangleShape2D_vln41")
 
 [editable path="LEVEL/IncendiaryAmmo2"]
 [editable path="LEVEL/IncendiaryAmmo"]
