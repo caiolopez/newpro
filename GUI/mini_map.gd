@@ -24,6 +24,7 @@ enum States {ON, ANIMATING_IN, ANIMATING_OUT, OFF}
 var state: States = States.OFF
 
 func _ready():
+	AppManager.minimap_node = self # self-registration
 	Events.chart_map_sector.connect(append_sector_to_map)
 	Events.unchart_map_sector.connect(delete_sector_from_map)
 	Events.hero_reached_checkpoint.connect(update_to_dictionary)
@@ -80,16 +81,22 @@ func adjust_icon_scale():
 	for child in $Icons.get_children():
 		child.scale = Vector2.ONE / scale
 
-func _process(delta):
+func show_minimap() -> bool:
 	if state == States.OFF:
-		if AppManager.state_machine.is_current_state("AppStateInGame")\
-		and Input.is_action_just_pressed("minimap"):
-			center_map()
-			fade_in_minimap()
-			state = States.ANIMATING_IN
-			AppManager.pause()
-			return
+		center_map()
+		_fade_in_minimap()
+		state = States.ANIMATING_IN
+		return true
+	return false
 
+func hide_minimap():
+	if state == States.ON:
+		_fade_out_minimap()
+		state = States.ANIMATING_OUT
+		return true
+	return false
+
+func _process(delta):
 	if state == States.ANIMATING_IN:
 		if scale > min_scale:
 			adjust_scale(delta, -1)
@@ -102,19 +109,9 @@ func _process(delta):
 		update_mini_hero_pos()
 		return
 
-	if state != States.ON:
-		return
-
 	update_mini_hero_pos()
-	set_bounds()
-	
 	handle_actions(delta)
-	
-	if AppManager.state_machine.is_current_state("AppStatePaused"):
-		if Input.is_action_just_released("minimap") or Input.is_action_just_pressed("cancel"):
-			fade_out_minimap()
-			AppManager.unpause()
-			state = States.ANIMATING_OUT
+	set_bounds()
 
 func handle_actions(delta):
 	if Input.is_action_pressed("up") and position.y + bottom_bound * scale.y > bound_padding.y:
@@ -166,12 +163,12 @@ func set_bounds():
 	left_bound = left
 	right_bound = right
 
-func fade_in_minimap():
+func _fade_in_minimap():
 	var t = create_tween()
 	t.tween_property($SectorPolygons, "self_modulate", Color.CORNFLOWER_BLUE, 0.5)
 	t.parallel().tween_property($Icons, "self_modulate", Color.WHITE, 0.5)
 
-func fade_out_minimap():
+func _fade_out_minimap():
 	var t = create_tween()
 	t.tween_property($SectorPolygons, "self_modulate", Color.TRANSPARENT, 0.25)
 	t.parallel().tween_property($Icons, "self_modulate", Color.TRANSPARENT, 0.25)

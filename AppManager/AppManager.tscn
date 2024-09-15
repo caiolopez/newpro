@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://1jofyd1fb13e"]
+[gd_scene load_steps=10 format=3 uid="uid://1jofyd1fb13e"]
 
 [ext_resource type="Script" path="res://AppManager/app_manager.gd" id="1_3s7ri"]
 [ext_resource type="Script" path="res://state_machine.gd" id="1_uyv8v"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://AppManager/app_state_new_game_init.gd" id="4_qc6je"]
 [ext_resource type="Script" path="res://AppManager/app_state_paused.gd" id="4_ywd8t"]
 [ext_resource type="Script" path="res://AppManager/app_state_load_game_init.gd" id="6_myns1"]
+[ext_resource type="Script" path="res://AppManager/app_state_minimap.gd" id="9_t1nyb"]
 
 [node name="AppManager" type="Node"]
 process_mode = 3
@@ -33,6 +34,9 @@ script = ExtResource("3_3momj")
 
 [node name="AppStatePaused" type="Node" parent="StateMachine"]
 script = ExtResource("4_ywd8t")
+
+[node name="AppStateMinimap" type="Node" parent="StateMachine"]
+script = ExtResource("9_t1nyb")
 
 [node name="AppStateIntro" type="Node" parent="StateMachine"]
 
