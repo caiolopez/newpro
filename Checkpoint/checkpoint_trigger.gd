@@ -9,9 +9,13 @@ func _ready():
 	if scale.x < 0: direction = -1
 
 func on_body_entered(body):
-	if not body is Hero: return
-	if body.current_checkpoint_path == self.get_path() and not force_trigger: return
-	if recall_hero_direction: direction = body.facing_direction
+	if not body is Hero:
+		return
+	if body.current_checkpoint_path == self.get_path() and not force_trigger:
+		return
+	if recall_hero_direction:
+		direction = body.facing_direction
 	body.update_current_checkpoint_path(self.get_path())
 	Events.hero_reached_checkpoint.emit()
- 
+	await get_tree().process_frame
+	SaveManager.save_file()
