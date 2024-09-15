@@ -42,7 +42,7 @@ size_flags_vertical = 4
 [node name="MusicLabel" type="Label" parent="VBoxContainer/HBoxContainerMusic"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Volume"
+text = "Music Volume"
 
 [node name="MusicSlider" type="HSlider" parent="VBoxContainer/HBoxContainerMusic"]
 layout_mode = 2
@@ -58,7 +58,7 @@ size_flags_vertical = 4
 [node name="SfxLabel" type="Label" parent="VBoxContainer/HBoxContainerSfx"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Volume"
+text = "Effects Volume"
 
 [node name="SfxSlider" type="HSlider" parent="VBoxContainer/HBoxContainerSfx"]
 layout_mode = 2
