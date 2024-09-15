@@ -124,7 +124,11 @@ func inject_changes_into_hero():
 			"got_aqualung": h.can_dive = value
 			"got_teleporter": AppManager.teleporters_are_active = value
 			"elapsed_time": AppManager.game_time = value
-			"current_region": RegionManager.change_region(Constants.RegName.get(value))
+			"current_region":
+				if Constants.RegName.get(value):
+					RegionManager.change_region(Constants.RegName.get(value))
+				else:
+					push_warning("Current region ", value, " not in Constants.RegName. change_region() failed.")
 
 func load_from_slot(slot: int = current_slot) -> bool:
 	current_slot = slot
