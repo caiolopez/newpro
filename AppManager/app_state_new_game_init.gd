@@ -8,4 +8,5 @@ func on_enter():
 
 func on_exit():
 	Events.curtain_fade_out.emit()
+	get_tree().paused = false
 	app_manager.game_started.emit()

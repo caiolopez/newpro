@@ -122,7 +122,7 @@ func inject_changes_into_hero():
 			"got_incendiary_ammo": h.shooter.bullet_type = Constants.BulletType.FIRE
 			"got_underwater_ammo": h.shooter.shoots_underwater_ammo = value
 			"got_aqualung": h.can_dive = value
-			"got_teleporter": AppManager.teleporters_are_active = value
+			"got_teleporter": AppManager.set_teleporters_active(value)
 			"elapsed_time": AppManager.game_time = value
 			"current_region":
 				if Constants.RegName.get(value):
@@ -143,6 +143,11 @@ func load_from_slot(slot: int = current_slot) -> bool:
 func clear_slot(slot: int):
 	var path = "user://save_" + str(slot) + ".dat"
 	return DirAccess.remove_absolute(path) == OK
+
+func clear_dictionary():
+	hero_persistence.clear()
+	regions.clear()
+	minimap.clear()
 
 func print_all_dics():
 	print("")

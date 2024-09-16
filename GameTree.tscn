@@ -208,9 +208,6 @@ polygon = PackedVector2Array(-3294, -1356, -3108, -2322, -3846, -1914, -3876, -5
 [node name="Spike" parent="LEVEL/MapSector" instance=ExtResource("12_ouglo")]
 position = Vector2(-5412, -1056)
 
-[node name="Spike" parent="LEVEL" instance=ExtResource("12_ouglo")]
-position = Vector2(-6408, -2190)
-
 [node name="MapSector2" parent="LEVEL" instance=ExtResource("11_fdldt")]
 position = Vector2(-996, -1134)
 
@@ -218,17 +215,17 @@ position = Vector2(-996, -1134)
 position = Vector2(126, 90)
 polygon = PackedVector2Array(-2400, -1458, -3108, -2322, -3846, -1914, -3876, -510, -3096, 30)
 
-[node name="CheckpointTrigger" parent="." instance=ExtResource("11_dx8wo")]
+[node name="CheckpointTrigger" parent="LEVEL" instance=ExtResource("11_dx8wo")]
 position = Vector2(-4104, -780)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckpointTrigger"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LEVEL/CheckpointTrigger"]
 position = Vector2(79, -69)
 shape = SubResource("RectangleShape2D_gfpin")
 
-[node name="CheckpointTrigger2" parent="." instance=ExtResource("11_dx8wo")]
+[node name="CheckpointTrigger2" parent="LEVEL" instance=ExtResource("11_dx8wo")]
 position = Vector2(-3036, -1110)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckpointTrigger2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LEVEL/CheckpointTrigger2"]
 position = Vector2(79, -69)
 shape = SubResource("RectangleShape2D_vln41")
 

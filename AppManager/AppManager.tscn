@@ -11,7 +11,6 @@
 [ext_resource type="Script" path="res://AppManager/app_state_minimap.gd" id="9_t1nyb"]
 
 [node name="AppManager" type="Node"]
-process_mode = 3
 script = ExtResource("1_3s7ri")
 
 [node name="StateMachine" type="Node" parent="."]

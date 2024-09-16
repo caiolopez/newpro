@@ -29,10 +29,6 @@ func _ready():
 	all_powerups_button.pressed.connect(_grant_all_powerups)
 	back_button.pressed.connect(close_options)
 
-func _input(event):
-	if event.is_action_pressed("ui_cancel") and visible:
-		close_options()
-
 func show_options():
 	show()
 	music_slider.grab_focus()

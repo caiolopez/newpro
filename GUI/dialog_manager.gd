@@ -104,5 +104,5 @@ func show_hint_text(hint: String) -> void:
 	hint_label.text = hint
 	Utils.fade_in(hint_label)
 
-func hide_hint() -> void:  
+func hide_hint() -> void:
 	Utils.fade_out(hint_label)

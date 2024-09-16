@@ -15,4 +15,5 @@ func show_menu():
 	(load_game_button if load_game_button.visible else $VBoxContainer/NewGameButton).grab_focus()
 
 func _on_options_closed():
-	$VBoxContainer/OptionsButton.grab_focus()
+	if self.visible:
+		$VBoxContainer/OptionsButton.grab_focus()

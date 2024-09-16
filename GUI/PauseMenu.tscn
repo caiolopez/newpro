@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dst760bvjwktu"]
 
-[ext_resource type="Script" path="res://GUI/options_menu.gd" id="1_ne1ik"]
+[ext_resource type="Script" path="res://GUI/pause_menu.gd" id="1_2tpcy"]
 
 [node name="PauseMenu" type="Control"]
 layout_mode = 3
@@ -10,7 +10,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.00107, 1)
-script = ExtResource("1_ne1ik")
+script = ExtResource("1_2tpcy")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -35,18 +35,14 @@ offset_bottom = 92.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="DedicatedBlunderToggle" type="CheckButton" parent="VBoxContainer"]
+[node name="ResumeButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "Powershoot using triangle"
+text = "Resume Game"
 
-[node name="FullscreenToggle" type="CheckButton" parent="VBoxContainer"]
+[node name="OptionsButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "Fullscreen mode"
+text = "Options"
 
-[node name="AllPowerups" type="Button" parent="VBoxContainer"]
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "Grant all powerups"
-
-[node name="BackButton" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-text = "Back"
+text = "Save & Quit"

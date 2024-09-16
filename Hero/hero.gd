@@ -225,7 +225,7 @@ func handle_powerups(type: StringName):
 			can_dive = true
 			SaveManager.log_hero_change("got_aqualung", true)
 		"TELEPORTER":
-			AppManager.teleporters_are_active = true
+			AppManager.set_teleporters_active(true)
 			SaveManager.log_hero_change("got_teleporter", true)
 
 func is_currently_dead() -> bool:
@@ -233,3 +233,46 @@ func is_currently_dead() -> bool:
 		"StateDeathSnapshot",
 		"StateTweeningToRespawn",
 		"StateRespawning"]
+
+func reset_all_variables() -> void:
+	global_position = original_position
+	velocity = Vector2.ZERO
+	facing_direction = 1
+	is_in_water = false
+	last_water_surface = 0
+	last_water_color = []
+	current_checkpoint_path = NodePath()
+	can_dive = false
+	shooter.bullet_type = Constants.BulletType.REGULAR
+	shooter.shoots_underwater_ammo = false
+	shooter.is_in_water = false
+	dmg_taker.current_hp = dmg_taker.HP_AMOUNT
+
+	was_on_wall = false
+	was_on_floor = false
+	was_pushing_wall = false
+	was_in_water = false
+	was_auto_snapping = false
+	on_wall_value_just_changed = false
+	is_just_on_floor = false
+	is_just_pushing_wall = false
+	just_stopped_pushing_wall = false
+	is_just_in_water = false
+	just_left_water = false
+
+	$StateMachine/TimerCoyoteJump.stop()
+	$StateMachine/TimerBufferJump.stop()
+	$StateMachine/TimerCoyoteWall.stop()
+	$StateMachine/TimerBufferWallJump.stop()
+	$StateMachine/TimerWallJumpDuration.stop()
+	$StateMachine/TimerBlunderShootDuration.stop()
+	$StateMachine/TimerBlunderShootCooldown.stop()
+	$StateMachine/TimerBlunderJumpWindow.stop()
+	$StateMachine/TimerLeavingWall.stop()
+	$StateMachine/TimerBufferClimbing.stop()
+	$StateMachine/TimerDeathSnapshot.stop()
+	$StateMachine/TimerSuperBounceWindow.stop()
+	$StateMachine/TimerBetweenBlunderJumpingShots.stop()
+	$StateMachine/TimerBeforeGlide.stop()
+
+	$Gfx/Muzzle.hide()

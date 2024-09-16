@@ -1,11 +1,21 @@
 extends CanvasLayer
 
 @onready var main_menu = $MainMenu
+@onready var pause_menu = $PauseMenu
 @onready var options_menu = $OptionsMenu
 @onready var game_time_label = $GameTimeLabel
 
 func _ready():
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	options_menu.options_closed.connect(main_menu._on_options_closed)
+	options_menu.options_closed.connect(pause_menu._on_options_closed)
+
+func _unhandled_input(event):
+	if event.is_action_pressed("ui_cancel"):
+		if options_menu.visible:
+			options_menu.close_options()
+		elif pause_menu.visible:
+			AppManager.unpause()
 
 func toggle_fullscreen():
 		if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN:
