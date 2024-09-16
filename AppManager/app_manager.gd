@@ -4,6 +4,7 @@ extends Node
 @onready var game_tree = get_node("/root/GameTree")
 @onready var state_machine: StateMachine = $StateMachine
 var minimap_node
+var is_speedrun_mode: bool = false
 var game_time: float = 0.0
 var teleporters_are_active: bool:
 	set(value):
