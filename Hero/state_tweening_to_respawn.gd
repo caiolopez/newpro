@@ -7,7 +7,7 @@ var tween: Tween
 func on_enter():
 	$"../../Gfx/AnimatedSprite2D".play("teleport")
 	
-	BulletManager.free_all_bullets()
+	BulletManager.return_all_bullets()
 	var destination = hero.original_position
 	if hero.current_checkpoint_path:
 		destination = get_node(hero.current_checkpoint_path).global_position

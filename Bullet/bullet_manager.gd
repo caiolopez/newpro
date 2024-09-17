@@ -3,7 +3,7 @@ extends Node
 var bullet_res = preload("res://Bullet/Bullet.tscn")
 
 func _ready():
-	Events.hero_respawned_at_checkpoint.connect(free_all_bullets)
+	Events.hero_respawned_at_checkpoint.connect(return_all_bullets)
 
 	for i in range(Constants.BULLET_POOL_SIZE):
 		var bullet: Bullet = bullet_res.instantiate()
@@ -40,7 +40,7 @@ func release_bullet(bullet):
 	bullet.call_deferred("reparent", $FreeBullets)
 
 
-func free_all_bullets():
+func return_all_bullets():
 	for c in get_children():
 		if c is Bullet:
 			release_bullet(c)

@@ -29,6 +29,8 @@ func set_teleporters_active(state: bool):
 func start_fresh():
 	SaveManager.clear_dictionary()
 	Utils.find_hero().reset_all_variables()
-	BulletManager.free_all_bullets()
+	BulletManager.return_all_bullets()
+	PropManager.return_all_props()
+	minimap_node.reset()
 	game_time = 0.0
 	teleporters_are_active = false

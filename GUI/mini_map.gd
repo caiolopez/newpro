@@ -224,4 +224,16 @@ func update_from_dictionary():
 			new_flag.position = str_to_var(flag_data["position"])
 			$Icons.add_child(new_flag)
 			map_flags.append(new_flag)
-	
+
+func reset():
+	for child in $SectorPolygons.get_children():
+		child.queue_free()
+
+	for flag in map_flags:
+		flag.queue_free()
+	map_flags.clear()
+
+	top_bound = INF
+	bottom_bound = -INF
+	left_bound = INF
+	right_bound = -INF
