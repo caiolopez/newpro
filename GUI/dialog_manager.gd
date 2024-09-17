@@ -46,7 +46,7 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if not event.is_pressed(): return
-	if event.is_action_pressed("up"):
+	if event.is_action_pressed("down"):
 		if text_label.visible_ratio < 1.0:
 			text_label.visible_ratio = 1.0
 			tween_chars.kill()
