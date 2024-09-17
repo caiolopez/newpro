@@ -99,3 +99,12 @@ func _color_prop(prop: Node2D, color_pair: Array[Color]) -> void:
 		if child is BwShaderSetter:
 			child.set_color(color_pair[0], color_pair[1])
 	
+func return_all_props():
+	for child in game_tree.get_children():
+		if child.has_meta("prop_name"):
+			var prop_name = child.get_meta("prop_name")
+			if prop_name in prop_pools:
+				child.visible = false
+				if child not in prop_pools[prop_name]:
+					prop_pools[prop_name].append(child)
+	last_placement.clear()
