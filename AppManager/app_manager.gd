@@ -8,9 +8,9 @@ var is_speedrun_mode: bool = false
 var game_time: float = 0.0
 var teleporters_are_active: bool = false
 
-signal game_started
-signal game_paused
-signal game_unpaused
+signal game_started # Emited when leaving AppStateNewGameInit/AppStateLoadGameInit
+signal game_paused # Emited when entering AppStatePaused
+signal game_unpaused # Emited when leaving AppStatePaused
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
