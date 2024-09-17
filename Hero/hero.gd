@@ -55,6 +55,7 @@ var is_just_in_water: bool
 var just_left_water: bool
 var last_water_surface: float
 var last_water_color: Array[Color]
+var last_move_input: StringName = ""
 
 func _ready():
 	AppManager.game_started.connect(func(): state_machine.start())
@@ -86,17 +87,31 @@ func step_grav(delta, downward_accel: float = GRAVITY):
 
 func step_lateral_mov(delta, speed: float = SPEED):
 	var dir_just_changed = false
-	if Input.is_action_pressed("move_left") == Input.is_action_pressed("move_right"):
+	
+	if Input.is_action_just_pressed("move_left"):
+		last_move_input = "move_left"
+	elif Input.is_action_just_pressed("move_right"):
+		last_move_input = "move_right"
+	
+	if not Input.is_action_pressed("move_left") and not Input.is_action_pressed("move_right"):
 		velocity.x = 0
+		last_move_input = ""
 		return
 	
-	if Input.is_action_pressed("move_left"):
-		dir_just_changed = facing_direction == 1
-		facing_direction = -1
-	if Input.is_action_pressed("move_right"):
-		dir_just_changed = facing_direction == -1
-		facing_direction = 1
-
+	var move_direction = 0
+	if last_move_input == "move_left" and Input.is_action_pressed("move_left"):
+		move_direction = -1
+	elif last_move_input == "move_right" and Input.is_action_pressed("move_right"):
+		move_direction = 1
+	elif Input.is_action_pressed("move_left"):
+		move_direction = -1
+	elif Input.is_action_pressed("move_right"):
+		move_direction = 1
+	
+	if move_direction != 0:
+		dir_just_changed = facing_direction != move_direction
+		facing_direction = move_direction
+	
 	if dir_just_changed:
 		velocity.x = 0
 		$Gfx/Muzzle.hide()
