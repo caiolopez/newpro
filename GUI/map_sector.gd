@@ -1,6 +1,6 @@
 class_name MapSector extends Area2D
 
-enum S {UNCHARTED, CHARTING, CHARTED}
+enum S {UNCHARTED = 0, CHARTING = 1, CHARTED = 2}
 var status: S = S.UNCHARTED
 
 

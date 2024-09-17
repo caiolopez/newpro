@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cgntexit802at"]
+[gd_scene load_steps=13 format=3 uid="uid://cgntexit802at"]
 
 [ext_resource type="Script" path="res://black_curtain.gd" id="1_2fegy"]
 [ext_resource type="Script" path="res://GUI/ui.gd" id="1_lqxss"]
@@ -9,6 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://cnil5t8gbosn3" path="res://GUI/OptionsMenu.tscn" id="7_3hcxp"]
 [ext_resource type="Texture2D" uid="uid://d2gdo5bbgykv2" path="res://icon.svg" id="8_7bl5a"]
 [ext_resource type="PackedScene" uid="uid://dst760bvjwktu" path="res://GUI/PauseMenu.tscn" id="9_u7t3d"]
+[ext_resource type="PackedScene" uid="uid://b424bvcxa2fbn" path="res://GUI/BossOverlay.tscn" id="10_coqvt"]
+[ext_resource type="PackedScene" uid="uid://d1h8vf2t5pgey" path="res://GUI/MiniMap.tscn" id="11_01e55"]
+[ext_resource type="PackedScene" uid="uid://dvk1kn7j0htsi" path="res://GUI/Dialog.tscn" id="12_kwodg"]
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_lqxss")
@@ -68,3 +71,11 @@ metadata/_edit_use_anchors_ = true
 [node name="PauseMenu" parent="." instance=ExtResource("9_u7t3d")]
 
 [node name="OptionsMenu" parent="." instance=ExtResource("7_3hcxp")]
+
+[node name="Hud" type="Node" parent="."]
+
+[node name="BossOverlay" parent="Hud" instance=ExtResource("10_coqvt")]
+
+[node name="MiniMap" parent="Hud" instance=ExtResource("11_01e55")]
+
+[node name="Dialog" parent="Hud" instance=ExtResource("12_kwodg")]
