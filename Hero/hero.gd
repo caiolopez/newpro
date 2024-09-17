@@ -235,6 +235,8 @@ func is_currently_dead() -> bool:
 		"StateRespawning"]
 
 func reset_all_variables() -> void:
+	state_machine.set_state("StateSpawning")
+
 	global_position = original_position
 	velocity = Vector2.ZERO
 	facing_direction = 1
@@ -276,3 +278,16 @@ func reset_all_variables() -> void:
 	$StateMachine/TimerBeforeGlide.stop()
 
 	$Gfx/Muzzle.hide()
+	
+func force_water_detection() -> bool:
+	var water_notifier = $IsInWaterNotifier
+	if water_notifier.current_water_areas.is_empty():
+		is_in_water = false
+		return false
+	
+	var water = water_notifier.current_water_areas[0]  # Get the first water area
+	is_in_water = true
+	last_water_surface = water.get_surface_global_position()
+	last_water_color = water.bw_shader_setter.get_color()
+	on_water_status_changed(true, water)
+	return true
