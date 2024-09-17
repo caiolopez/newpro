@@ -1,6 +1,7 @@
 extends Node
 
-
+func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 
 func dt_lerp(speed: float, delta: float) -> float:
 	if delta < 0 or speed < 0:
