@@ -6,6 +6,8 @@ func on_enter():
 
 func on_process(_delta):
 	if Input.is_action_just_pressed("pause"):
+		if UI.options_menu.visible:
+			UI.options_menu.close_options()
 		machine.set_state("AppStateInGame")
 
 func on_exit():
