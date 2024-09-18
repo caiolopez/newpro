@@ -17,13 +17,14 @@ func _ready():
 	quit_button.pressed.connect(_on_quit_pressed)
 
 func show_menu():
+	load_game_button.visible = SaveManager.has_valid_save_file()
+	v_box_container.modulate.a = 0
 	show()
 	is_transitioning = true
 	var tween = create_tween()
 	tween.tween_property(v_box_container, "modulate:a", 1.0, 0.5)
 	await tween.finished
 	is_transitioning = false
-	load_game_button.visible = SaveManager.has_valid_save_file()
 	(load_game_button if load_game_button.visible else new_game_button).grab_focus()
 
 func hide_menu():
@@ -55,6 +56,7 @@ func _on_new_game_pressed():
 		else:
 			new_game_button.grab_focus()
 	else:
+		Utils.lose_focus()
 		await hide_menu()
 		Events.request_new_game.emit()
 
