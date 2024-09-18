@@ -10,9 +10,6 @@ extends CanvasLayer
 
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	options_menu.options_closed.connect(main_menu._on_options_closed)
-	options_menu.options_closed.connect(pause_menu._on_options_closed)
-	SaveManager.game_saved_to_disk.connect(func(): show_notification("Auto-saved."))
 
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel"):

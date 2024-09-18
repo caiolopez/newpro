@@ -6,7 +6,7 @@ extends Control
 @onready var quit_button = $VBoxContainer/QuitButton
 @onready var v_box_container = $VBoxContainer
 
-var is_transitioning = false
+@onready var options_menu = $"../OptionsMenu"
 
 func _ready():
 	v_box_container.modulate.a = 0
@@ -15,24 +15,22 @@ func _ready():
 	new_game_button.pressed.connect(_on_new_game_pressed)
 	options_button.pressed.connect(_on_options_pressed)
 	quit_button.pressed.connect(_on_quit_pressed)
+	options_menu.options_closed.connect(_on_options_closed)
 
 func show_menu():
 	load_game_button.visible = SaveManager.has_valid_save_file()
 	v_box_container.modulate.a = 0
 	show()
-	is_transitioning = true
 	var tween = create_tween()
 	tween.tween_property(v_box_container, "modulate:a", 1.0, 0.5)
 	await tween.finished
-	is_transitioning = false
 	(load_game_button if load_game_button.visible else new_game_button).grab_focus()
 
 func hide_menu():
-	is_transitioning = true
+	Utils.lose_focus()
 	var tween = create_tween()
 	tween.tween_property(v_box_container, "modulate:a", 0.0, 0.5)
 	await tween.finished
-	is_transitioning = false
 	hide()
 
 func _on_options_closed():
@@ -72,7 +70,3 @@ func _on_quit_pressed():
 		get_tree().quit()
 	else:
 		quit_button.grab_focus()
-
-func _unhandled_input(_event):
-	if is_transitioning:
-		get_viewport().set_input_as_handled()

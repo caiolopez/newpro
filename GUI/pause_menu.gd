@@ -1,8 +1,10 @@
 extends Control
 
+@onready var options_menu = $"../OptionsMenu"
 
 func _ready() -> void:
 	hide()
+	options_menu.options_closed.connect(_on_options_closed)
 	AppManager.game_paused.connect(_show_menu)
 	AppManager.game_unpaused.connect(_hide_menu)
 	$VBoxContainer/ResumeButton.pressed.connect(AppManager.unpause)
