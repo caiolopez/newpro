@@ -3,6 +3,7 @@ extends AppState
 @onready var reel = UI.get_node("SlideReel")
 
 func on_enter():
+	get_tree().paused = true
 	reel.reset()
 	reel.start_reel()
 	reel.reel_finished.connect(func():
