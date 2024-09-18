@@ -1,15 +1,11 @@
 extends Node
 
-func _ready() -> void:
-	process_mode = Node.PROCESS_MODE_ALWAYS
-
 func dt_lerp(speed: float, delta: float) -> float:
 	if delta < 0 or speed < 0:
 		push_error("Delta and ratio should be non-negative")
 		return -1.0
 	var dtlerp = 1 - pow(0.5, delta * speed)
 	return clamp(dtlerp, 0.0, 1.0)
-
 
 func find_dmg_taker(node: Node) -> DmgTaker:
 	var dmg_taker: DmgTaker = null
@@ -18,7 +14,6 @@ func find_dmg_taker(node: Node) -> DmgTaker:
 			dmg_taker = child
 			break
 	return dmg_taker
-
 
 func check_if_foe(node: Node) -> bool:
 	var is_foe: bool = true
@@ -33,32 +28,26 @@ func check_if_foe(node: Node) -> bool:
 
 	return is_foe
 
-
 func disconnect_all(sig: Signal):
 	for connection in sig.get_connections():
 		sig.disconnect(connection["callable"])
-
 
 func aprox_equal_vector2(a: Vector2, b: Vector2, tolerance: float = 1.0) -> bool:
 	var x = abs(a.x - b.x) < tolerance
 	var y = abs(a.y - b.y) < tolerance
 	return x and y
 
-
 func subtract_vector2(a: Vector2, b: Vector2) -> Vector2:
 	return Vector2(a.x - b.x, a.y - b.y)
-
 
 func get_animation_frame_count(animated_sprite: AnimatedSprite2D, anim_name: StringName) -> int:
 	var frames = animated_sprite.sprite_frames
 	return frames.get_frame_count(anim_name) if frames and frames.has_animation(anim_name) else 0
 
-
 func randomize_animation_frame(animated_sprite: AnimatedSprite2D, anim_name: StringName = &""):
 	if anim_name == &"":
 		anim_name = animated_sprite.animation
 	animated_sprite.frame = randi_range(0, get_animation_frame_count(animated_sprite, anim_name))
-
 
 func paint_white(active: bool, target: CanvasItem, duration: float = 0.0):
 	var white_material: ShaderMaterial = preload("res://CaioShaders/white.tres")
@@ -77,7 +66,6 @@ func paint_white(active: bool, target: CanvasItem, duration: float = 0.0):
 		target.material = null
 		if "original_material" in target:
 			target.material = target.original_material
-
 
 func create_blinking_timer(target: Node2D, duration: float = 0.8, auto_stop_time: float = 0.5) -> Timer:
 	var og_mod: Color = target.modulate
@@ -149,25 +137,35 @@ func get_polygon_extents(points: PackedVector2Array) -> Rect2:
 
 	return Rect2(Vector2(min_x, min_y), Vector2(max_x - min_x, max_y - min_y))
 
-var current_tween: Tween = null 
-
 func fade_in(node: CanvasItem, duration: float = 1.0) -> Tween:
-	if current_tween:
-		current_tween.kill()
-	else:
-		node.modulate.a = 0
+	_kill_existing_fade_tween(node)
+	node.modulate.a = 0
 	node.show()
-	current_tween = create_tween()
-	current_tween.tween_property(node, "modulate:a", 1.0, duration).from(node.modulate.a)
-	return current_tween
+	var tween = create_tween()
+	tween.tween_property(node, "modulate:a", 1.0, duration)
+	tween.finished.connect(func(): _clean_up_tween(node))
+	node.set_meta("fade_tween", tween)
+	return tween
 
 func fade_out(node: CanvasItem, duration: float = 1.0) -> Tween:
-	if current_tween:
-		current_tween.kill()
-	current_tween = create_tween()
-	current_tween.tween_property(node, "modulate:a", 0.0, duration).from(node.modulate.a)
-	current_tween.tween_callback(node.hide)
-	return current_tween
+	_kill_existing_fade_tween(node)
+	var tween = create_tween()
+	tween.tween_property(node, "modulate:a", 0.0, duration)
+	tween.tween_callback(node.hide)
+	tween.finished.connect(func(): _clean_up_tween(node))
+	node.set_meta("fade_tween", tween)
+	return tween
+
+func _kill_existing_fade_tween(node: CanvasItem):
+	if node.has_meta("fade_tween"):
+		var existing_tween = node.get_meta("fade_tween")
+		if existing_tween.is_valid():
+			existing_tween.kill()
+		_clean_up_tween(node)
+
+func _clean_up_tween(node: CanvasItem):
+	if node.has_meta("fade_tween"):
+		node.remove_meta("fade_tween")
 
 func lose_focus():
 	var focused_node = get_viewport().gui_get_focus_owner()
