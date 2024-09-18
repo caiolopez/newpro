@@ -138,6 +138,7 @@ func load_from_slot(slot: int = current_slot) -> bool:
 func clear_slot(slot: int):
 	var path = "user://save_" + str(slot) + ".dat"
 	if DebugTools.print_stuff: print("Save slot ", str(slot), " data cleared.")
+	UI.show_notification("Saved data cleared.")
 	return DirAccess.remove_absolute(path) == OK
 
 func clear_dictionary():
