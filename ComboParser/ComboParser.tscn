@@ -10,10 +10,6 @@ script = ExtResource("1_3m4re")
 script = ExtResource("2_kbqkx")
 seq = Array[StringName]([&"up", &"down", &"left", &"right", &"up", &"down", &"left", &"right", &"jump"])
 
-[node name="SaveCurrentGame" type="Node" parent="."]
+[node name="ClearAppData" type="Node" parent="."]
 script = ExtResource("2_kbqkx")
 seq = Array[StringName]([&"up", &"down", &"left", &"right", &"shoulder_left"])
-
-[node name="LoadCurrentGame" type="Node" parent="."]
-script = ExtResource("2_kbqkx")
-seq = Array[StringName]([&"up", &"down", &"left", &"right", &"shoulder_right"])

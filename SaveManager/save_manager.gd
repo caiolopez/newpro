@@ -10,13 +10,8 @@ signal game_saved_to_disk
 
 func _ready():
 	ComboParser.combo_performed.connect(func(combo):
-		if combo == "SaveCurrentGame": save_file()
+		if combo == "ClearAppData": clear_slot(current_slot)
 		)
-	ComboParser.combo_performed.connect(func(combo):
-		if combo == "LoadCurrentGame":
-			if load_from_slot():
-				AppManager.game_started.emit()
-			)
 
 func add_region_entry(region: Region):
 	if not regions.has(region.name):
@@ -142,6 +137,7 @@ func load_from_slot(slot: int = current_slot) -> bool:
 
 func clear_slot(slot: int):
 	var path = "user://save_" + str(slot) + ".dat"
+	if DebugTools.print_stuff: print("Save slot ", str(slot), " data cleared.")
 	return DirAccess.remove_absolute(path) == OK
 
 func clear_dictionary():
