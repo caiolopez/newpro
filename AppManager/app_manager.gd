@@ -33,3 +33,9 @@ func start_fresh():
 	minimap_node.reset()
 	game_time = 0.0
 	teleporters_are_active = false
+
+func instantiate_camera() -> Camera2D:
+	var camera_scene = preload("res://Camera/Camera.tscn")
+	var camera_instance = camera_scene.instantiate()
+	game_tree.add_child(camera_instance)
+	return camera_instance

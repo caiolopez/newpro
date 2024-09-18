@@ -1,6 +1,8 @@
 extends AppState
 
 func on_enter():
+	AppManager.instantiate_camera()
+	await get_tree().process_frame
 	machine.set_state("AppStateInGame")
 
 func on_exit():
