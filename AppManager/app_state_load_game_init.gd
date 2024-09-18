@@ -7,6 +7,6 @@ func on_enter():
 		machine.set_state("AppStateSplash")
 
 func on_exit():
-	Events.curtain_fade_out.emit()
+	UI.curtain.fade_out(0.5)
 	get_tree().paused = false
-	app_manager.game_started.emit()
+	AppManager.game_started.emit()

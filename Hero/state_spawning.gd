@@ -11,7 +11,7 @@ func on_enter():
 	hero.global_position = destination
 
 	Events.camera_set_glpos.emit(hero.global_position)
-	print(hero.force_water_detection())
+	hero.force_water_detection()
 
 	machine.set_state("StateIdle")
 

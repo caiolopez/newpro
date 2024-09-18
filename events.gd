@@ -18,8 +18,6 @@ signal camera_stop_shake()
 signal camera_set_glpos(glpos: Vector2)
 
 # UI Signals
-signal curtain_fade_in(duration: float)
-signal curtain_fade_out(duration: float)
 signal curtain_fade_in_ended()
 signal curtain_fade_out_ended()
 

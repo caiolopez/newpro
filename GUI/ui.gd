@@ -3,7 +3,10 @@ extends CanvasLayer
 @onready var main_menu = $MainMenu
 @onready var pause_menu = $PauseMenu
 @onready var options_menu = $OptionsMenu
+@onready var confirmation_menu = $ConfirmationMenu
 @onready var game_time_label = $GameTimeLabel
+@onready var curtain = $BlackCurtain
+
 
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS

@@ -11,7 +11,7 @@ func _ready() -> void:
 		if self.is_ignited:
 			if area is Ignitable and not area.is_ignited:
 				area.ignite()
-				print(area, " was ignited by ", self)
+				if DebugTools.print_stuff: print(area, " was ignited by ", self)
 		elif area is Bullet\
 		and area.bullet_type == Constants.BulletType.FIRE:
 			self.ignite()

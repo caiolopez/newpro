@@ -2,11 +2,7 @@ extends CanvasItem
 
 var current_tween: Tween = null
 
-func _ready() -> void:
-	Events.curtain_fade_in.connect(_on_fade_in)
-	Events.curtain_fade_out.connect(_on_fade_out)
-
-func _on_fade_in(duration: float = 1.0) -> Tween:
+func fade_in(duration: float = 1.0) -> Signal:
 	cancel_fade()
 	modulate.a = 0
 	show()
@@ -16,9 +12,9 @@ func _on_fade_in(duration: float = 1.0) -> Tween:
 		current_tween.tween_callback(Events.curtain_fade_in_ended.emit)
 	else:
 		push_error("Failed to create tween for fade in")
-	return current_tween
+	return Events.curtain_fade_in_ended
 
-func _on_fade_out(duration: float = 1.0) -> Tween:
+func fade_out(duration: float = 1.0) -> Signal:
 	cancel_fade()
 	current_tween = create_tween()
 	if current_tween:
@@ -27,7 +23,7 @@ func _on_fade_out(duration: float = 1.0) -> Tween:
 		current_tween.tween_callback(hide)
 	else:
 		push_error("Failed to create tween for fade out")
-	return current_tween
+	return Events.curtain_fade_out_ended
 
 func cancel_fade() -> void:
 	if current_tween:

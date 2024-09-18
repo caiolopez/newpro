@@ -7,7 +7,8 @@ func _ready() -> void:
 	AppManager.game_unpaused.connect(_hide_menu)
 	$VBoxContainer/ResumeButton.pressed.connect(AppManager.unpause)
 	$VBoxContainer/OptionsButton.pressed.connect(func(): UI.options_menu.show_options())
-	$VBoxContainer/QuitButton.pressed.connect(_on_quit_to_main)
+	$VBoxContainer/QuitButton.pressed.connect(func():
+		AppManager.state_machine.set_state("AppStateQuittingToMain"))
 
 func _show_menu() -> void:
 	show()
@@ -19,8 +20,3 @@ func _hide_menu() -> void:
 func _on_options_closed() -> void:
 	if self.visible:
 		$VBoxContainer/OptionsButton.grab_focus()
-
-func _on_quit_to_main() -> void:
-	SaveManager.save_file()
-	AppManager.state_machine.set_state("AppStateMainMenu") # TODO this should be an app_state
-	Events.curtain_fade_in.emit()

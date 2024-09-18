@@ -52,7 +52,6 @@ func _on_blunder_opt_changed(state: bool):
 		Utils.find_hero().dedicated_blunder_button = state
 
 func _on_speedrun_opt_changed(state: bool):
-	print("changed from ", )
 	options_data["speedrun_mode"] = state
 	AppManager.is_speedrun_mode = state
 	UI.call_deferred("set_igt_visible", state)
