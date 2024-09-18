@@ -6,12 +6,15 @@ extends CanvasLayer
 @onready var confirmation_menu = $ConfirmationMenu
 @onready var game_time_label = $GameTimeLabel
 @onready var curtain = $BlackCurtain
+@onready var notification_label = $OnScreenNotificationLabel
+var current_notification_tween: Tween = null
 
 
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	options_menu.options_closed.connect(main_menu._on_options_closed)
 	options_menu.options_closed.connect(pause_menu._on_options_closed)
+	SaveManager.game_saved_to_disk.connect(func(): show_notification("Auto-saved."))
 
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel"):
@@ -38,3 +41,18 @@ func set_fullscreen(set_to: bool):
 
 func set_igt_visible(state: bool):
 	game_time_label.visible = state
+
+func show_notification(text: StringName, duration: float = 3.0):
+	if current_notification_tween and current_notification_tween.is_valid():
+		current_notification_tween.kill()
+	notification_label.text = text
+	notification_label.modulate.a = 0
+	notification_label.visible = true
+	current_notification_tween = create_tween()
+	current_notification_tween.tween_property(notification_label, "modulate:a", 1.0, 0.25)
+	current_notification_tween.tween_interval(duration)
+	current_notification_tween.tween_property(notification_label, "modulate:a", 0.0, 0.25)
+	await current_notification_tween.finished
+	if current_notification_tween.is_valid():
+		notification_label.visible = false
+		current_notification_tween = null
