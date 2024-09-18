@@ -168,3 +168,8 @@ func fade_out(node: CanvasItem, duration: float = 1.0) -> Tween:
 	current_tween.tween_property(node, "modulate:a", 0.0, duration).from(node.modulate.a)
 	current_tween.tween_callback(node.hide)
 	return current_tween
+
+func lose_focus():
+	var focused_node = get_viewport().gui_get_focus_owner()
+	if focused_node:
+		focused_node.release_focus()
