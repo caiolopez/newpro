@@ -8,15 +8,15 @@ var game_time: float = 0.0
 var teleporters_are_active: bool = false
 
 signal game_started # Emited when leaving AppStateNewGameInit/AppStateLoadGameInit
-signal game_paused # Emited when entering AppStatePaused
-signal game_unpaused # Emited when leaving AppStatePaused
+signal game_paused # Emited when entering AppStatePausedInGame
+signal game_unpaused # Emited when leaving AppStatePausedInGame
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	state_machine.start()
 
 func pause():
-	state_machine.set_state("AppStatePaused")
+	state_machine.set_state("AppStatePausedInGame")
 
 func unpause():
 	state_machine.set_state("AppStateInGame") 

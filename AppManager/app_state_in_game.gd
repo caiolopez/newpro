@@ -10,7 +10,7 @@ func on_process(delta):
 		UI.game_time_label.text = Utils.parse_time_as_string(AppManager.game_time, false)
 
 	if Input.is_action_just_pressed("pause"):
-		machine.set_state("AppStatePaused")
+		machine.set_state("AppStatePausedInGame")
 
 	if Input.is_action_just_pressed("minimap"):
 		if AppManager.minimap_node.show_minimap():

@@ -32,7 +32,7 @@ script = ExtResource("6_myns1")
 [node name="AppStateInGame" type="Node" parent="StateMachine"]
 script = ExtResource("3_3momj")
 
-[node name="AppStatePaused" type="Node" parent="StateMachine"]
+[node name="AppStatePausedInGame" type="Node" parent="StateMachine"]
 script = ExtResource("4_ywd8t")
 
 [node name="AppStateQuittingToMain" type="Node" parent="StateMachine"]
