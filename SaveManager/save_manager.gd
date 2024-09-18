@@ -48,6 +48,7 @@ func save_file():
 	if file:
 		file.store_string(json_string)
 		if DebugTools.print_stuff: print("Saved.")
+		UI.notification_label.show_notification("Auto-saved.")
 		game_saved_to_disk.emit()
 	else:
 		if DebugTools.print_stuff: print("Error saving game: ", FileAccess.get_open_error())

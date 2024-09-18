@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cgntexit802at"]
+[gd_scene load_steps=15 format=3 uid="uid://cgntexit802at"]
 
 [ext_resource type="Script" path="res://black_curtain.gd" id="1_2fegy"]
 [ext_resource type="Script" path="res://GUI/ui.gd" id="1_lqxss"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://b424bvcxa2fbn" path="res://GUI/BossOverlay.tscn" id="10_coqvt"]
 [ext_resource type="PackedScene" uid="uid://y7aq3dk02d8w" path="res://GUI/ConfirmationMenu.tscn" id="10_mlc10"]
 [ext_resource type="PackedScene" uid="uid://d1h8vf2t5pgey" path="res://GUI/MiniMap.tscn" id="11_01e55"]
+[ext_resource type="Script" path="res://GUI/on_screen_notification_label.gd" id="11_ahf6e"]
 [ext_resource type="PackedScene" uid="uid://dvk1kn7j0htsi" path="res://GUI/Dialog.tscn" id="12_kwodg"]
 
 [node name="UI" type="CanvasLayer"]
@@ -90,6 +91,7 @@ theme_override_font_sizes/font_size = 20
 text = "Game Saved"
 horizontal_alignment = 2
 vertical_alignment = 2
+script = ExtResource("11_ahf6e")
 
 [node name="Hud" type="Node" parent="."]
 
