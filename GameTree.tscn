@@ -105,7 +105,6 @@ size = Vector2(178, 486)
 [node name="GameTree" type="Node"]
 
 [node name="Hero" parent="." instance=ExtResource("2_acvau")]
-z_index = 2
 position = Vector2(-2760, -1170)
 
 [node name="Camera" parent="." instance=ExtResource("3_o6dt5")]
