@@ -4,6 +4,7 @@ var water_prone: bool = false
 var death_prone: bool = true
 
 func on_enter():
+	hero.resize_collider_to_swim()
 	if not machine.last_state.name == "StateWetBlunderShooting":
 		PropManager.place_prop(Vector2(hero.global_position.x, hero.last_water_surface), &"splash", hero.last_water_color)
 
@@ -31,7 +32,7 @@ func on_process(_delta: float):
 	and hero.is_head_above_water():
 		machine.set_state("StateJumping")
 		return
-	
+
 	if Input.is_action_just_pressed("jump")\
 	and hero.is_on_floor():
 		machine.set_state("StateJumping")
@@ -50,7 +51,6 @@ func on_physics_process(delta: float):
 	hero.step_grav(delta)
 	hero.step_lateral_mov(delta)
 	
-	if hero.pelvis_back_rc.is_colliding():
-		hero.repel_ass(delta)
+	hero.step_repel_swim_feet(delta)
 
 	hero.move_and_slide()

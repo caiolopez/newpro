@@ -22,10 +22,6 @@ func on_process(_delta: float):
 		machine.set_state("StateJumping")
 		return
 
-	if hero.is_on_floor():
-		machine.set_state("StateOnSeaFloor")
-		return
-
 	if Input.is_action_just_pressed("jump")\
 	and hero.is_head_above_water()\
 	and hero.is_on_floor():
@@ -50,7 +46,6 @@ func on_physics_process(delta: float):
 	and hero.global_position.y < hero.last_water_surface + 64:
 		hero.velocity.y = 0
 	
-	if hero.pelvis_back_rc.is_colliding():
-		hero.repel_ass(delta)
+	hero.step_repel_swim_feet(delta)
 	
 	hero.move_and_slide()

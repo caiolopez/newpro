@@ -32,6 +32,7 @@ const MAX_DESCENT_VEL_Y: float = 300 ## The maximum downward speed when diving (
 @onready var headbutt_assist_rc : RayCast2D = $HeadbuttAssistRC
 @onready var shoulder_back_rc: RayCast2D = $ShoulderBackRC
 @onready var pelvis_back_rc: RayCast2D = $PelvisBackRC
+@onready var swim_feet_rc: RayCast2D = $SwimFeetRC
 @onready var innards_rc: RayCast2D = $InnardsRC
 @onready var dmg_taker: DmgTaker = $DmgTaker
 @onready var shooter: Shooter = $Shooter
@@ -123,6 +124,7 @@ func step_lateral_mov(delta, speed: float = SPEED):
 	shoulder_back_rc.update_direction()
 	pelvis_rc.update_direction()
 	pelvis_back_rc.update_direction()
+	swim_feet_rc.update_direction()
 	next_grd_height_rc.update_position()
 	headbutt_assist_rc.update_direction()
 	headbutt_assist_rc.update_position()
@@ -223,8 +225,11 @@ func on_water_status_changed(_is_in_water: bool, water: Water):
 func on_water_status_changed_on_gun(_is_in_water: bool, _water: Water):
 	shooter.is_in_water = _is_in_water
 
-func repel_ass(delta, repulsion_velocity: float = 50000):
-	velocity.x = repulsion_velocity * facing_direction * delta
+func step_repel_swim_feet(delta, repulsion_velocity: float = 10000):
+	if swim_feet_rc.is_colliding():
+		var proposed_velocity = repulsion_velocity * facing_direction * delta
+		if abs(proposed_velocity) > abs(velocity.x):
+			velocity.x = proposed_velocity
 
 func handle_powerups(type: StringName):
 	match type:
@@ -293,7 +298,7 @@ func reset_all_variables() -> void:
 	$StateMachine/TimerBeforeGlide.stop()
 
 	$Gfx/Muzzle.hide()
-	
+
 func force_water_detection() -> bool:
 	var water_notifier = $IsInWaterNotifier
 	if water_notifier.current_water_areas.is_empty():
@@ -306,3 +311,17 @@ func force_water_detection() -> bool:
 	last_water_color = water.bw_shader_setter.get_color()
 	on_water_status_changed(true, water)
 	return true
+
+func resize_collider_to_swim() -> void:
+	%HeroCollider.shape.size.y = 78
+	%HeroCollider.position.y = -51
+	var dmg_coll: CollisionShape2D = dmg_taker.get_node("CollisionShape2D")
+	dmg_coll.shape.size.y = 72
+	dmg_coll.position.y = -36
+
+func resize_collider_to_regular() -> void:
+	%HeroCollider.shape.size.y = 156
+	%HeroCollider.position.y = -12
+	var dmg_coll: CollisionShape2D = dmg_taker.get_node("CollisionShape2D")
+	dmg_coll.shape.size.y = 114
+	dmg_coll.position.y = -15

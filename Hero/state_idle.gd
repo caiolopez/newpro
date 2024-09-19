@@ -4,6 +4,7 @@ var water_prone: bool = true
 var death_prone: bool = true
 
 func on_enter():
+	hero.resize_collider_to_regular()
 	$"../../Gfx/AnimatedSprite2D".play("idle")
 	if Input.is_action_pressed("jump")\
 	and not timer_buffer_jump.is_stopped():

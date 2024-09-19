@@ -28,6 +28,5 @@ func on_physics_process(delta: float):
 	else:
 		hero.velocity.y = 0
 	hero.step_lateral_mov(delta)
-	if hero.pelvis_back_rc.is_colliding():
-		hero.repel_ass(delta)
+	hero.step_repel_swim_feet(delta)
 	hero.move_and_slide()
