@@ -14,6 +14,8 @@ signal game_unpaused # Emited when leaving AppStatePausedInGame
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	state_machine.start()
+	SaveManager.game_saved_to_disk.connect(func():
+		UI.notification_label.show_notification("Auto-saved."))
 
 func pause():
 	state_machine.set_state("AppStatePausedInGame")
