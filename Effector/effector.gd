@@ -22,7 +22,7 @@ func _ready():
 func on_body_entered(body):
 	if not body is Hero: return
 	for e in entities:
-		if e != null and is_instance_valid(e):      
+		if e:      
 			match effect:
 				Effects.QUEUE_FREE: q_free(e)
 				Effects.DISPLACE: displace_entities(e)
@@ -32,7 +32,7 @@ func on_body_entered(body):
 
 func add_children_to_entities():
 	for c in get_children():
-		if not c == UniqueCollider:
+		if not c is CollisionShape2D:
 			entities.append(c)
 
 

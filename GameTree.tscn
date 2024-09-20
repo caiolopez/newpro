@@ -1,7 +1,8 @@
-[gd_scene load_steps=24 format=4 uid="uid://cqeapgf5ajw56"]
+[gd_scene load_steps=26 format=4 uid="uid://cqeapgf5ajw56"]
 
 [ext_resource type="PackedScene" uid="uid://1md1m8n6iq5x" path="res://Hero/hero.tscn" id="2_acvau"]
 [ext_resource type="Script" path="res://Regions/region.gd" id="3_w6t45"]
+[ext_resource type="PackedScene" uid="uid://bwugl7674migl" path="res://Effector/Effector.tscn" id="4_mfpwg"]
 [ext_resource type="Texture2D" uid="uid://bp7vnugiq46o" path="res://Tilesets/alienscape_tileset_transparent.png" id="8_01mxc"]
 [ext_resource type="PackedScene" uid="uid://boan2jyc4hlda" path="res://Checkpoint/CheckpointTrigger.tscn" id="11_dx8wo"]
 [ext_resource type="PackedScene" uid="uid://bt23waqbakmop" path="res://Water/Water.tscn" id="11_elcok"]
@@ -77,11 +78,14 @@ physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 15
 sources/0 = SubResource("TileSetAtlasSource_tmq20")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_eisaw"]
-size = Vector2(132, 288)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0xomm"]
+size = Vector2(250, 71)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_01ia8"]
 size = Vector2(4842, 942)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eisaw"]
+size = Vector2(132, 288)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wqnmk"]
 size = Vector2(765, 303)
@@ -115,6 +119,22 @@ tile_map_data = PackedByteArray("AADf//D/AAAAAAAAAADx//b/AAAAAAAAAADy//b/AAAAAAA
 tile_set = SubResource("TileSet_cxrg1")
 metadata/_edit_lock_ = true
 
+[node name="Effector" parent="LEVEL" instance=ExtResource("4_mfpwg")]
+position = Vector2(-5004, -504)
+effect = 1
+destination = Vector2(-4644, -470)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LEVEL/Effector"]
+shape = SubResource("RectangleShape2D_0xomm")
+
+[node name="Water" parent="LEVEL/Effector" instance=ExtResource("11_elcok")]
+position = Vector2(366, -336)
+
+[node name="UniqueCollider" parent="LEVEL/Effector/Water" instance=ExtResource("14_umo0q")]
+position = Vector2(-285, 447)
+shape = SubResource("RectangleShape2D_01ia8")
+metadata/original_shape_hash = 621653651
+
 [node name="SwitchGroupController" parent="LEVEL" instance=ExtResource("12_u6t76")]
 position = Vector2(-3444, -1374)
 
@@ -130,14 +150,6 @@ metadata/original_shape_hash = 77546991
 position = Vector2(792, 756)
 rotation = 1.5708
 toggle = true
-
-[node name="Water" parent="LEVEL/SwitchGroupController" instance=ExtResource("11_elcok")]
-position = Vector2(-1194, 534)
-
-[node name="UniqueCollider" parent="LEVEL/SwitchGroupController/Water" instance=ExtResource("14_umo0q")]
-position = Vector2(-285, 447)
-shape = SubResource("RectangleShape2D_01ia8")
-metadata/original_shape_hash = 621653651
 
 [node name="Water2" parent="LEVEL/SwitchGroupController" instance=ExtResource("11_elcok")]
 position = Vector2(-1488, -294)
@@ -192,6 +204,13 @@ metadata/_edit_group_ = true
 [node name="CollectOnTouch" parent="LEVEL/IncendiaryAmmo" index="0"]
 type = 3
 
+[node name="IncendiaryAmmo3" parent="LEVEL" instance=ExtResource("13_qbgu6")]
+position = Vector2(-3528, -1002)
+metadata/_edit_group_ = true
+
+[node name="CollectOnTouch" parent="LEVEL/IncendiaryAmmo3" index="0"]
+type = 3
+
 [node name="MapSector" parent="LEVEL" instance=ExtResource("11_fdldt")]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LEVEL/MapSector"]
@@ -223,3 +242,4 @@ shape = SubResource("RectangleShape2D_vln41")
 
 [editable path="LEVEL/IncendiaryAmmo2"]
 [editable path="LEVEL/IncendiaryAmmo"]
+[editable path="LEVEL/IncendiaryAmmo3"]
