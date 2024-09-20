@@ -20,7 +20,8 @@ func on_process(_delta: float):
 	and Input.is_action_just_pressed("jump"):
 		timer_buffer_climbing.start()
 
-	if hero.is_just_on_floor:
+	if hero.is_just_on_floor\
+	and not hero.is_in_water:
 		machine.set_state("StateIdle")
 		return
 

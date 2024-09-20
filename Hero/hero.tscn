@@ -1425,7 +1425,7 @@ hit_from_inside = true
 script = ExtResource("3_6dncg")
 
 [node name="SwimFeetRC" type="RayCast2D" parent="."]
-position = Vector2(0, -18)
+position = Vector2(0, -36)
 target_position = Vector2(-90, 0)
 hit_from_inside = true
 script = ExtResource("3_6dncg")
