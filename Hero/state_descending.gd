@@ -8,7 +8,10 @@ func on_process(_delta: float):
 	and not Utils.is_pushing_sides():
 		$"../../Gfx/AnimatedSprite2D".play("water_idle")
 	else:
-		$"../../Gfx/AnimatedSprite2D".play("water_swim")
+		if not hero.is_pushing_wall():
+			$"../../Gfx/AnimatedSprite2D".play("water_swim")
+		else:
+			$"../../Gfx/AnimatedSprite2D".play("water_idle")
 
 	hero.step_shooting(false, true) # inverted: false, wet: true
 
