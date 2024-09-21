@@ -51,6 +51,7 @@ var is_just_on_floor: bool
 var is_just_pushing_wall: bool
 var just_stopped_pushing_wall: bool
 var facing_direction = 1
+var current_water: Water = null
 var is_in_water: bool = false
 var is_just_in_water: bool
 var just_left_water: bool
@@ -76,6 +77,10 @@ func _process(_delta):
 	and state_machine.current_state.water_prone\
 	and global_position.y > last_water_surface:
 		state_machine.set_state("StateFloating")
+	
+	if is_in_water and current_water and current_water.is_movable:
+		last_water_surface = current_water.get_surface_global_position()
+		last_water_color = current_water.bw_shader_setter.get_color()
 
 func _physics_process(_delta):
 	if is_on_floor():
@@ -219,6 +224,7 @@ func die():
 
 func on_water_status_changed(_is_in_water: bool, water: Water):
 	self.is_in_water = _is_in_water
+	current_water = water
 	last_water_surface = water.get_surface_global_position()
 	last_water_color = water.bw_shader_setter.get_color()
 
