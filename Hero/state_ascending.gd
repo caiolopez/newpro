@@ -23,9 +23,10 @@ func on_process(_delta: float):
 		machine.set_state("StateDescending")
 
 func on_physics_process(delta: float):
-	if hero.global_position.y > hero.last_water_surface + 64:
+	if hero.global_position.y - hero.last_water_surface > 72:
 		hero.velocity.y = hero.ASCENDING_VELOCITY
 	else:
+		hero.global_position.y = hero.last_water_surface + 64
 		hero.velocity.y = 0
 	hero.step_lateral_mov(delta)
 	hero.step_repel_swim_feet(delta)

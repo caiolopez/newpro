@@ -46,7 +46,7 @@ func on_process(_delta: float):
 
 func on_physics_process(delta: float):
 	if not hero.can_dive:
-		hero.velocity.y = (hero.velocity.y - (hero.BUOYANCY * (hero.global_position.y - (hero.last_water_surface))*delta - 50))*pow(0.80, 1-delta)
+		hero.velocity.y = (hero.velocity.y - (hero.BUOYANCY * (hero.global_position.y - (hero.last_water_surface))*delta - 64))*pow(0.80, 1-delta)
 
 	hero.step_grav(delta)
 	hero.step_lateral_mov(delta)
