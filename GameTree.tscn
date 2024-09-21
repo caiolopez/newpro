@@ -116,19 +116,19 @@ position = Vector2(-2760, -1170)
 [node name="LEVEL" type="Node2D" parent="."]
 script = ExtResource("3_w6t45")
 
-[node name="ElevatorController" parent="LEVEL" node_paths=PackedStringArray("elevator") instance=ExtResource("3_yfqsg")]
-elevator = NodePath("WaterElevator/Elevator")
-
-[node name="WaterElevator" parent="LEVEL/ElevatorController" instance=ExtResource("11_elcok")]
+[node name="WaterElevator" parent="LEVEL" instance=ExtResource("11_elcok")]
 position = Vector2(-4704, -1188)
 
-[node name="UniqueCollider" parent="LEVEL/ElevatorController/WaterElevator" instance=ExtResource("14_umo0q")]
+[node name="UniqueCollider" parent="LEVEL/WaterElevator" instance=ExtResource("14_umo0q")]
 position = Vector2(0, 132)
 shape = SubResource("RectangleShape2D_wqnmk")
 metadata/original_shape_hash = 621653651
 
-[node name="Elevator" parent="LEVEL/ElevatorController/WaterElevator" instance=ExtResource("6_xsr10")]
+[node name="Elevator" parent="LEVEL/WaterElevator" instance=ExtResource("6_xsr10")]
 end_position = Vector2(0, 200)
+
+[node name="ElevatorController" parent="LEVEL" node_paths=PackedStringArray("elevator") instance=ExtResource("3_yfqsg")]
+elevator = NodePath("../WaterElevator/Elevator")
 
 [node name="ElevatorButtonOrigin" parent="LEVEL/ElevatorController" instance=ExtResource("6_8dtw4")]
 position = Vector2(-3696, -1338)

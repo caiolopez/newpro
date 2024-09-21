@@ -22,6 +22,12 @@ func tween_to_start():
 func tween_to_end():
 	tween_to(starting_position + end_position, starting_rotation + end_rotation)
 
+func set_to_end():
+	if tween and tween.is_running():
+		tween.stop()
+	get_parent().position = end_position
+	get_parent().rotation = end_rotation
+
 func tween_to(pos: Vector2, rot: float):
 	var d = (get_parent().position.distance_to(pos) / starting_position.distance_to( starting_position + end_position)) * duration
 	if tween and tween.is_running():

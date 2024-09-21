@@ -1,17 +1,12 @@
-extends Node
+class_name ElevatorController extends Node
 
 @export var elevator: Elevator
 
-
-func push_origin():
+func send_elevator_to(where: StringName):
 	if elevator == null:
 		push_warning("No elevator is linked to ", self.name, ". Nothing will happen.")
 		return
-	elevator.tween_to_start()
-
-
-func push_destination():
-	if elevator == null:
-		push_warning("No elevator is linked to ", self.name, ". Nothing will happen.")
-		return
-	elevator.tween_to_end()
+	if where == &"origin":
+		elevator.tween_to_start()
+	else:
+		elevator.tween_to_end()

@@ -20,20 +20,18 @@ func on_area_entered(area):
 	last_processed_bullet = area
 	if not is_active:
 		if type == button_type.ORIGIN:
-			get_parent().push_origin()
+			get_parent().send_elevator_to(&"origin")
 		if type == button_type.DESTINATION:
-			get_parent().push_destination()
+			get_parent().send_elevator_to(&"destination")
 	area.kill_bullet()
 	for b in get_parent().get_children():
 		if b is ElevatorButton:
 			b.set_inactive()
 	set_active()
 
-
 func set_active():
 	is_active = true
 	$Sprite2D.modulate = Color.AQUA
-
 
 func set_inactive():
 	is_active = false
