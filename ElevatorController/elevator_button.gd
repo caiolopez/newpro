@@ -11,6 +11,7 @@ func _ready():
 	area_exited.connect(func(area): if area == last_processed_bullet:
 		last_processed_bullet = null, CONNECT_DEFERRED)
 	get_parent().elevator.tween_ended.connect(set_inactive)
+	get_parent().elevator.was_reset.connect(set_inactive)
 
 func on_area_entered(area):
 	if not area is Bullet:
@@ -27,12 +28,22 @@ func on_area_entered(area):
 	for b in get_parent().get_children():
 		if b is ElevatorButton:
 			b.set_inactive()
-	set_active()
+	call_deferred("set_active")
 
 func set_active():
 	is_active = true
-	$Sprite2D.modulate = Color.AQUA
+	$Sprite2D.modulate = Color.DARK_GREEN
+	print("set to green")
 
 func set_inactive():
 	is_active = false
-	$Sprite2D.modulate = Color.WHITE
+	call_deferred("evaluate_inactivity")
+
+func evaluate_inactivity():
+	var elevator_state = get_parent().elevator.current_state
+	print("BUTTON: ", type, "| ELEVATOR: ", elevator_state)
+	if type == elevator_state:
+		$Sprite2D.modulate = Color.RED
+	else:
+		$Sprite2D.modulate = Color.WHITE
+	

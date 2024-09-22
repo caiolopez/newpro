@@ -107,6 +107,10 @@ func inject_changes_into_regions():
 						"interacted":
 							if has_node(key):
 								get_node(key).set_as_interacted()
+						"elevator_at_destination":
+							if has_node(key):
+								get_node(key).force_loaded_state()
+
 
 func inject_changes_into_hero():
 	var h = Utils.find_hero()
@@ -138,7 +142,7 @@ func load_from_slot(slot: int = current_slot) -> bool:
 func clear_slot(slot: int):
 	var path = "user://save_" + str(slot) + ".dat"
 	if DebugTools.print_stuff: print("Save slot ", str(slot), " data cleared.")
-	UI.show_notification("Saved data cleared.")
+	UI.notification_label.show_notification("Saved data cleared.")
 	return DirAccess.remove_absolute(path) == OK
 
 func clear_dictionary():
