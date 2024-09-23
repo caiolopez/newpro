@@ -1,11 +1,10 @@
-[gd_scene load_steps=29 format=4 uid="uid://cqeapgf5ajw56"]
+[gd_scene load_steps=28 format=4 uid="uid://cqeapgf5ajw56"]
 
 [ext_resource type="PackedScene" uid="uid://1md1m8n6iq5x" path="res://Hero/hero.tscn" id="2_acvau"]
 [ext_resource type="Script" path="res://Regions/region.gd" id="3_w6t45"]
-[ext_resource type="PackedScene" uid="uid://ctacpi3nbykd3" path="res://ElevatorController/ElevatorController.tscn" id="3_yfqsg"]
 [ext_resource type="PackedScene" uid="uid://bwugl7674migl" path="res://Effector/Effector.tscn" id="4_mfpwg"]
-[ext_resource type="PackedScene" uid="uid://boug41cw8taxh" path="res://ElevatorController/ElevatorButton.tscn" id="6_8dtw4"]
-[ext_resource type="PackedScene" uid="uid://dd08gffrk8txn" path="res://EntityComponents/Elevator.tscn" id="6_xsr10"]
+[ext_resource type="PackedScene" uid="uid://boug41cw8taxh" path="res://ElevatorSystem/ElevatorButton.tscn" id="6_8dtw4"]
+[ext_resource type="PackedScene" uid="uid://dd08gffrk8txn" path="res://ElevatorSystem/ElevatorSystem.tscn" id="6_xsr10"]
 [ext_resource type="Texture2D" uid="uid://bp7vnugiq46o" path="res://Tilesets/alienscape_tileset_transparent.png" id="8_01mxc"]
 [ext_resource type="PackedScene" uid="uid://boan2jyc4hlda" path="res://Checkpoint/CheckpointTrigger.tscn" id="11_dx8wo"]
 [ext_resource type="PackedScene" uid="uid://bt23waqbakmop" path="res://Water/Water.tscn" id="11_elcok"]
@@ -116,25 +115,23 @@ position = Vector2(-2760, -1170)
 [node name="LEVEL" type="Node2D" parent="."]
 script = ExtResource("3_w6t45")
 
-[node name="WaterElevator" parent="LEVEL" instance=ExtResource("11_elcok")]
+[node name="ElevatorSystem" parent="LEVEL" node_paths=PackedStringArray("elevator_node") instance=ExtResource("6_xsr10")]
+elevator_node = NodePath("WaterElevator")
+end_position = Vector2(0, 200)
+savable = true
+
+[node name="WaterElevator" parent="LEVEL/ElevatorSystem" instance=ExtResource("11_elcok")]
 position = Vector2(-4704, -1188)
 
-[node name="UniqueCollider" parent="LEVEL/WaterElevator" instance=ExtResource("14_umo0q")]
+[node name="UniqueCollider" parent="LEVEL/ElevatorSystem/WaterElevator" instance=ExtResource("14_umo0q")]
 position = Vector2(0, 132)
 shape = SubResource("RectangleShape2D_wqnmk")
 metadata/original_shape_hash = 621653651
 
-[node name="Elevator" parent="LEVEL/WaterElevator" instance=ExtResource("6_xsr10")]
-end_position = Vector2(0, 200)
-savable = true
-
-[node name="ElevatorController" parent="LEVEL" node_paths=PackedStringArray("elevator") instance=ExtResource("3_yfqsg")]
-elevator = NodePath("../WaterElevator/Elevator")
-
-[node name="ElevatorButtonOrigin" parent="LEVEL/ElevatorController" instance=ExtResource("6_8dtw4")]
+[node name="ElevatorButtonOrigin" parent="LEVEL/ElevatorSystem" instance=ExtResource("6_8dtw4")]
 position = Vector2(-3696, -1338)
 
-[node name="ElevatorButtonDestination" parent="LEVEL/ElevatorController" instance=ExtResource("6_8dtw4")]
+[node name="ElevatorButtonDestination" parent="LEVEL/ElevatorSystem" instance=ExtResource("6_8dtw4")]
 position = Vector2(-3684, -1056)
 type = 1
 

@@ -1,6 +1,7 @@
 class_name ElevatorButton extends Area2D
 
 @export var type: button_type
+@onready var parent: ElevatorSystem = get_parent()
 enum button_type {ORIGIN, DESTINATION}
 var is_active: bool
 var last_processed_bullet: Bullet = null
@@ -10,8 +11,8 @@ func _ready():
 	area_entered.connect(on_area_entered)
 	area_exited.connect(func(area): if area == last_processed_bullet:
 		last_processed_bullet = null, CONNECT_DEFERRED)
-	get_parent().elevator.tween_ended.connect(set_inactive)
-	get_parent().elevator.was_reset.connect(set_inactive)
+	parent.tween_ended.connect(set_inactive)
+	parent.was_reset.connect(set_inactive)
 
 func on_area_entered(area):
 	if not area is Bullet:
@@ -21,13 +22,12 @@ func on_area_entered(area):
 	last_processed_bullet = area
 	if not is_active:
 		if type == button_type.ORIGIN:
-			get_parent().send_elevator_to(&"origin")
+			parent.send_elevator_to(&"origin")
 		if type == button_type.DESTINATION:
-			get_parent().send_elevator_to(&"destination")
+			parent.send_elevator_to(&"destination")
 	area.kill_bullet()
-	for b in get_parent().get_children():
-		if b is ElevatorButton:
-			b.set_inactive()
+	for b in parent.elevator_button_list:
+		b.set_inactive()
 	call_deferred("set_active")
 
 func set_active():
@@ -39,7 +39,7 @@ func set_inactive():
 	call_deferred("_evaluate_inactivity")
 
 func _evaluate_inactivity():
-	var elevator_state = get_parent().elevator.current_state
+	var elevator_state = parent.current_state
 	if type == elevator_state:
 		$Sprite2D.modulate = Color.RED
 	else:
