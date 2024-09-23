@@ -126,6 +126,7 @@ metadata/original_shape_hash = 621653651
 
 [node name="Elevator" parent="LEVEL/WaterElevator" instance=ExtResource("6_xsr10")]
 end_position = Vector2(0, 200)
+savable = true
 
 [node name="ElevatorController" parent="LEVEL" node_paths=PackedStringArray("elevator") instance=ExtResource("3_yfqsg")]
 elevator = NodePath("../WaterElevator/Elevator")

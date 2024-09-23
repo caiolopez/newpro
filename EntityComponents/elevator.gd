@@ -8,6 +8,7 @@ enum State {ORIGIN, DESTINATION, MOVING_TO_ORIGIN, MOVING_TO_DESTINATION}
 @export var end_rotation: float ## This value will be added to initial rotation
 @export var curve: Tween.TransitionType = Tween.TransitionType.TRANS_QUAD
 @export var easing: Tween.EaseType = Tween.EaseType.EASE_IN_OUT
+@export var savable: bool = false ## If true and reached end, will save its status upon checkpoint. Note: will not save state if hasn't gone all the way to end.
 @export_range(0.001, 200) var duration: float = 5.0
 @onready var starting_position: Vector2 = get_parent().position
 @onready var starting_rotation: float = get_parent().rotation
@@ -19,25 +20,25 @@ signal tween_ended
 signal was_reset
 
 func _ready():
-	Events.hero_reached_checkpoint.connect(commit_status)
-	Events.hero_respawned_at_checkpoint.connect(reset_status)
+	Events.hero_reached_checkpoint.connect(_commit_status)
+	Events.hero_respawned_at_checkpoint.connect(_reset_status)
 
 func tween_to_start():
-	tween_to(starting_position, starting_rotation)
+	_tween_to(starting_position, starting_rotation)
 	current_state = State.MOVING_TO_ORIGIN
 
 func tween_to_end():
-	tween_to(starting_position + end_position, starting_rotation + end_rotation)
+	_tween_to(starting_position + end_position, starting_rotation + end_rotation)
 	current_state = State.MOVING_TO_DESTINATION
 
-func set_to_end():
+func _set_to_end():
 	if tween and tween.is_running():
 		tween.stop()
 	get_parent().position = starting_position + end_position
 	get_parent().rotation = starting_rotation + end_rotation
 	current_state = State.DESTINATION
 
-func tween_to(pos: Vector2, rot: float):
+func _tween_to(pos: Vector2, rot: float):
 	var d = (get_parent().position.distance_to(pos) / starting_position.distance_to(starting_position + end_position)) * duration
 	if tween and tween.is_running():
 		tween.kill()
@@ -51,23 +52,24 @@ func tween_to(pos: Vector2, rot: float):
 		current_state = State.ORIGIN if get_parent().position.is_equal_approx(starting_position) else State.DESTINATION
 	)
 
-func set_to_start():
+func _set_to_start():
 	if tween and tween.is_running():
 		tween.stop()
 	get_parent().position = starting_position
 	get_parent().rotation = starting_rotation
 	current_state = State.ORIGIN
 
-func reset_status() -> void:
-	if is_saved: set_to_end()
-	else: set_to_start()
+func _reset_status() -> void:
+	if is_saved: _set_to_end()
+	else: _set_to_start()
 	was_reset.emit()
 
-func commit_status() -> void:
+func _commit_status() -> void:
+	if not savable: return
 	if current_state in [State.DESTINATION, State.MOVING_TO_ORIGIN]:
 		is_saved = true
 		SaveManager.log_entity_change(self, &"elevator_at_destination")
 
 func force_loaded_state() -> void:
 	is_saved = true
-	reset_status()
+	_reset_status()

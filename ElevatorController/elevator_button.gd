@@ -33,15 +33,13 @@ func on_area_entered(area):
 func set_active():
 	is_active = true
 	$Sprite2D.modulate = Color.DARK_GREEN
-	print("set to green")
 
 func set_inactive():
 	is_active = false
-	call_deferred("evaluate_inactivity")
+	call_deferred("_evaluate_inactivity")
 
-func evaluate_inactivity():
+func _evaluate_inactivity():
 	var elevator_state = get_parent().elevator.current_state
-	print("BUTTON: ", type, "| ELEVATOR: ", elevator_state)
 	if type == elevator_state:
 		$Sprite2D.modulate = Color.RED
 	else:
