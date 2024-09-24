@@ -13,12 +13,12 @@ enum State {ORIGIN, DESTINATION, MOVING_TO_ORIGIN, MOVING_TO_DESTINATION}
 @export var easing: Tween.EaseType = Tween.EaseType.EASE_IN_OUT
 @export var savable: bool = false ## If true and reached end, will save its status upon checkpoint. Note: will not save state if hasn't gone all the way to end.
 @export_range(0.001, 200) var duration: float = 5.0
-@onready var starting_position: Vector2 = elevator_node.position
-@onready var starting_rotation: float = elevator_node.rotation
+@onready var starting_position: Vector2 = elevator_node.position if elevator_node else Vector2.ZERO
+@onready var starting_rotation: float = elevator_node.rotation if elevator_node else 0.0
 var elevator_button_list: Array[ElevatorButton] = []
 var current_state: State = State.ORIGIN
 var tween: Tween
-var is_saved: bool = false
+var _is_saved: bool = false
 
 signal tween_ended
 signal was_reset
@@ -67,18 +67,18 @@ func _set_to_start():
 	current_state = State.ORIGIN
 
 func _reset_status() -> void:
-	if is_saved: _set_to_end()
+	if _is_saved: _set_to_end()
 	else: _set_to_start()
 	was_reset.emit()
 
 func _commit_status() -> void:
 	if not savable: return
 	if current_state in [State.DESTINATION, State.MOVING_TO_ORIGIN]:
-		is_saved = true
+		_is_saved = true
 		SaveManager.log_entity_change(self, &"elevator_at_destination")
 
 func force_loaded_state() -> void:
-	is_saved = true
+	_is_saved = true
 	_reset_status()
 
 func send_elevator_to(where: StringName):
