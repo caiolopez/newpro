@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://cgntexit802at"]
 
-[ext_resource type="Script" path="res://black_curtain.gd" id="1_2fegy"]
+[ext_resource type="Script" path="res://GUI/black_curtain.gd" id="1_2fegy"]
 [ext_resource type="Script" path="res://GUI/ui.gd" id="1_lqxss"]
 [ext_resource type="Script" path="res://AppManager/slide_reel.gd" id="5_edbe7"]
 [ext_resource type="PackedScene" uid="uid://ms4uukon6dti" path="res://GUI/MainMenu.tscn" id="6_60d5t"]
