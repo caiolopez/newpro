@@ -2,6 +2,7 @@ extends Node2D
 
 @export var print_stuff: bool = true
 @export var input_stuff: bool = true
+@export var debug_mode: bool = true
 
 func _ready():
 	pass
@@ -14,10 +15,11 @@ func input_bin():
 	if not input_stuff: return
 	if Input.is_action_just_pressed("Debug Action 1"):
 		pass #SaveManager.print_all_dics()
-	if Input.is_action_just_pressed("Debug Action 2"):
-		pass
-		print(Utils.parse_time_as_string(AppManager.game_time, false))
-	
+
+	if DebugTools.debug_mode\
+	and Input.is_action_just_pressed("Debug Action 2"):
+		Utils.find_hero().state_machine.set_state("StateDebug")
+
 	#if Input.is_action_just_pressed("shoot"): print("SHOOT!")
 	#if Input.is_action_just_pressed("jump"): print("J")
 	#if Input.is_action_just_pressed("move_left"): print("LEFT")

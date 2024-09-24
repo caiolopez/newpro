@@ -1,4 +1,4 @@
-[gd_scene load_steps=217 format=3 uid="uid://1md1m8n6iq5x"]
+[gd_scene load_steps=218 format=3 uid="uid://1md1m8n6iq5x"]
 
 [ext_resource type="Script" path="res://Hero/hero.gd" id="1_dmqn8"]
 [ext_resource type="PackedScene" uid="uid://box2ff3vwcc7w" path="res://EntityComponents/DmgTaker.tscn" id="2_ktrux"]
@@ -48,6 +48,7 @@
 [ext_resource type="Script" path="res://Hero/state_respawning.gd" id="24_ppe7q"]
 [ext_resource type="PackedScene" uid="uid://1votnx34efdj" path="res://EntityComponents/BWShaderSetter.tscn" id="27_8ng6k"]
 [ext_resource type="Script" path="res://timer_utils.gd" id="28_goaiv"]
+[ext_resource type="Script" path="res://Hero/state_debug.gd" id="48_4diic"]
 [ext_resource type="PackedScene" uid="uid://p2v7a1ixtrxw" path="res://EntityComponents/IsInWaterNotifier.tscn" id="49_p6sxx"]
 [ext_resource type="PackedScene" uid="uid://bricuoof7bhn1" path="res://EntityComponents/BlurFX.tscn" id="50_6e2hc"]
 
@@ -1542,6 +1543,9 @@ script = ExtResource("23_datsc")
 
 [node name="StateRespawning" type="Node" parent="StateMachine"]
 script = ExtResource("24_ppe7q")
+
+[node name="StateDebug" type="Node" parent="StateMachine"]
+script = ExtResource("48_4diic")
 
 [node name="TimerCoyoteJump" type="Timer" parent="StateMachine"]
 wait_time = 0.1
