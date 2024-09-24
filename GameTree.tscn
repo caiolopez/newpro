@@ -241,6 +241,9 @@ polygon = PackedVector2Array(-3294, -1356, -3108, -2322, -3846, -1914, -3876, -5
 [node name="Spike" parent="LEVEL/MapSector" instance=ExtResource("12_ouglo")]
 position = Vector2(-5472, -1056)
 
+[node name="DmgTaker" parent="LEVEL/MapSector/Spike" index="1"]
+auto_regen_time = 1.0
+
 [node name="MapSector2" parent="LEVEL" instance=ExtResource("11_fdldt")]
 position = Vector2(-996, -1134)
 
@@ -265,3 +268,4 @@ shape = SubResource("RectangleShape2D_vln41")
 [editable path="LEVEL/IncendiaryAmmo2"]
 [editable path="LEVEL/IncendiaryAmmo"]
 [editable path="LEVEL/IncendiaryAmmo3"]
+[editable path="LEVEL/MapSector/Spike"]

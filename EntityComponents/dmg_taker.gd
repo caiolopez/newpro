@@ -4,14 +4,18 @@ class_name DmgTaker extends Area2D
 @export var RESET_UPON_RESPAWN: bool = true ## When set to true, entities will have all their attributes reset when the Hero respawns.
 @export var QUEUE_FREE_ON_CHECKPOINT: bool = true ## When set to true, will prevent dead entities from reappearing when the Hero respawns.
 @export var immune_to: Array[Constants.BulletType] = [] ## Bullet types in this list will not affect entities.
+@export var auto_regen_time: float = 0.0 ## The time it takes for it to regain one HP automatically. Set to zero to disable feature.
 @onready var is_foe: bool = Utils.check_if_foe(self.get_parent()) ## If no FriendOrFoe sibling component is found, assumes is_foe = true.
 @onready var current_hp: int = HP_AMOUNT
 var currently_immune: bool = false
 var last_processed_bullet: Bullet = null
+var regen_timer: Timer = null
 
 signal died
 signal resurrected
 signal suffered(hp: int)
+signal regenerated
+
 
 func _ready():
 	Events.hero_reached_checkpoint.connect(commit_status)
@@ -20,15 +24,30 @@ func _ready():
 	area_exited.connect(func(area): if area == last_processed_bullet:
 		last_processed_bullet = null, CONNECT_DEFERRED)
 
+	if auto_regen_time > 0:
+		regen_timer = Timer.new()
+		regen_timer.wait_time = auto_regen_time
+		regen_timer.timeout.connect(regen_dmg)
+		add_child(regen_timer)
+		regen_timer.start()
+
+
+func regen_dmg():
+	if current_hp < HP_AMOUNT:
+		current_hp = mini(current_hp + 1, HP_AMOUNT)
+		regenerated.emit()
+		if DebugTools.print_stuff: print(get_parent().name, ": HP restored: 1. Current HP: ", current_hp)
+
 
 func take_dmg(amount: int):
 	if currently_immune\
 	or current_hp <= 0:
 		return
 
-	current_hp -= amount
-	current_hp = maxi(current_hp, 0)
+	current_hp = maxi(current_hp - amount, 0)
 	if current_hp == 0:
+		if regen_timer:
+			regen_timer.stop()
 		died.emit()
 	else:
 		suffered.emit(current_hp)
@@ -59,4 +78,6 @@ func commit_status():
 func reset_status():
 	if not RESET_UPON_RESPAWN: return
 	current_hp = HP_AMOUNT
+	if regen_timer:
+		regen_timer.start()
 	resurrected.emit()
