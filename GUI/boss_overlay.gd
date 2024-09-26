@@ -59,7 +59,7 @@ func _update_bar():
 
 func _update_bar_animated(_hp):
 	_update_bar()
-	Utils.paint_white(true, $HpBar, 0.1)
+	Utils.colorize_silhouette(true, $HpBar, 0.1)
 	var tween = create_tween()
 	tween.tween_property(
 		$HpBar,

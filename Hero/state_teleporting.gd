@@ -7,7 +7,7 @@ var tween: Tween
 
 func on_enter():
 	$"../../Gfx/AnimatedSprite2D".play("teleport")
-	Utils.paint_white(true, $"../../Gfx")
+	Utils.colorize_silhouette(true, $"../../Gfx")
 	tween = get_tree().create_tween()
 	tween.tween_property(hero, "global_position", destination, 0.4).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
 
@@ -19,4 +19,4 @@ func on_process(_delta: float):
 		return
 
 func on_exit():
-	Utils.paint_white(false, $"../../Gfx")
+	Utils.colorize_silhouette(false, $"../../Gfx")

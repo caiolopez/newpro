@@ -29,7 +29,8 @@ func _ready():
 		regen_timer.wait_time = auto_regen_time
 		regen_timer.timeout.connect(regen_dmg)
 		add_child(regen_timer)
-		regen_timer.start()
+		if current_hp < HP_AMOUNT:
+			regen_timer.start()
 
 
 func regen_dmg():
@@ -51,6 +52,9 @@ func take_dmg(amount: int):
 		died.emit()
 	else:
 		suffered.emit(current_hp)
+		if regen_timer:
+			regen_timer.stop()
+			regen_timer.start()
 	if DebugTools.print_stuff: print(get_parent().name, ": Damage taken: ", amount, ". Current HP: ", current_hp)
 
 

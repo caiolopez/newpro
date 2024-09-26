@@ -7,7 +7,7 @@ func _ready() -> void:
 	
 	if dmg_taker != null:
 		dmg_taker.died.connect(_on_died)
-		dmg_taker.suffered.connect(func(_hp): Utils.paint_white(true, self, 0.1))
+		dmg_taker.suffered.connect(func(_hp): Utils.colorize_silhouette(true, self, 0.1))
 		dmg_taker.resurrected.connect(_on_resurrected)
 
 func _on_died() -> void:

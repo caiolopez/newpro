@@ -15,7 +15,7 @@ func _ready():
 		and is_active:
 			var destination = global_position + Vector2(signf(scale.x)*64, 0)
 			Events.hero_hit_teleporter.emit(destination)
-			Utils.paint_white(true, get_node("AnimatedSprite2D"), 0.1)
+			Utils.colorize_silhouette(true, get_node("AnimatedSprite2D"), 0.1)
 			area.kill_bullet()
 	)
 

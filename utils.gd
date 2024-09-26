@@ -49,8 +49,8 @@ func randomize_animation_frame(animated_sprite: AnimatedSprite2D, anim_name: Str
 		anim_name = animated_sprite.animation
 	animated_sprite.frame = randi_range(0, get_animation_frame_count(animated_sprite, anim_name))
 
-func paint_white(active: bool, target: CanvasItem, duration: float = 0.0):
-	var white_material: ShaderMaterial = preload("res://CaioShaders/white.tres")
+func colorize_silhouette(active: bool, target: CanvasItem, duration: float = 0.0, color: Color = Color.WHITE):
+	var silhouette_material: ShaderMaterial = preload("res://CaioShaders/silhouette.tres")
 	if active:
 		if duration > 0.0:
 			var timer = Timer.new()
@@ -59,9 +59,10 @@ func paint_white(active: bool, target: CanvasItem, duration: float = 0.0):
 			timer.one_shot = true
 			timer.timeout.connect(func() -> void:
 				timer.queue_free()
-				paint_white(false, target, 0.0))
+				colorize_silhouette(false, target, 0.0))
 			timer.start()
-		target.material = white_material
+		silhouette_material.set_shader_parameter("custom_color", color)
+		target.material = silhouette_material
 	else:
 		target.material = null
 		if "original_material" in target:

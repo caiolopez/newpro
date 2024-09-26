@@ -8,10 +8,10 @@ func on_enter():
 	Events.camera_shake.emit()
 	Events.hero_died.emit()
 	timer_death_snapshot.start()
-	Utils.paint_white(true, $"../../Gfx")
+	Utils.colorize_silhouette(true, $"../../Gfx")
 	$"../../Gfx/AnimatedSprite2D".stop()
 
 func on_process(_delta: float):
 	if timer_death_snapshot.is_stopped():
-		Utils.paint_white(false, $"../../Gfx")
+		Utils.colorize_silhouette(false, $"../../Gfx")
 		machine.set_state("StateTweeningToRespawn")

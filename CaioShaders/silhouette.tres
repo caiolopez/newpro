@@ -1,7 +1,7 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cx1j4g6cf503k"]
 
-[ext_resource type="Shader" path="res://CaioShaders/white.gdshader" id="1_uru83"]
+[ext_resource type="Shader" path="res://CaioShaders/silhouette.gdshader" id="1_0fb6t"]
 
 [resource]
-shader = ExtResource("1_uru83")
+shader = ExtResource("1_0fb6t")
 shader_parameter/custom_color = Color(1, 1, 1, 1)

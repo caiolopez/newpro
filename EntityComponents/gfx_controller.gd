@@ -17,6 +17,7 @@ func _ready():
 		dmg_taker.died.connect(on_died)
 		dmg_taker.resurrected.connect(on_resurrected)
 		dmg_taker.suffered.connect(on_suffered)
+		dmg_taker.regenerated.connect(on_regenerated)
 
 	if force_children_to_use_parent_material:
 		for child in get_children():
@@ -45,4 +46,7 @@ func on_resurrected():
 	visible = true
 
 func on_suffered(_hp):
-	Utils.paint_white(true, self, 0.1)
+	Utils.colorize_silhouette(true, self, 0.1)
+
+func on_regenerated():
+	Utils.colorize_silhouette(true, self, 0.02, Color.RED)
