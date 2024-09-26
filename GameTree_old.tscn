@@ -2,10 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://b424bvcxa2fbn" path="res://GUI/BossOverlay.tscn" id="1_tkq5o"]
 [ext_resource type="PackedScene" uid="uid://1md1m8n6iq5x" path="res://Hero/hero.tscn" id="2_acvau"]
-[ext_resource type="PackedScene" uid="uid://d1h8vf2t5pgey" path="res://GUI/mini_map.tscn" id="2_is0lr"]
+[ext_resource type="PackedScene" uid="uid://d1h8vf2t5pgey" path="res://GUI/MiniMap.tscn" id="2_is0lr"]
 [ext_resource type="PackedScene" uid="uid://c48ye6g4s5ufc" path="res://Camera/Camera.tscn" id="3_o6dt5"]
 [ext_resource type="PackedScene" uid="uid://dvk1kn7j0htsi" path="res://GUI/Dialog.tscn" id="3_v2q5r"]
-[ext_resource type="PackedScene" uid="uid://ch0ldys5y2avd" path="res://Regions/RegionTrigger.tscn" id="6_mg0bt"]
+[ext_resource type="PackedScene" uid="uid://ch0ldys5y2avd" path="res://RegionManagement/RegionTrigger.tscn" id="6_mg0bt"]
 [ext_resource type="PackedScene" uid="uid://cv2bdmdm7ivmp" path="res://Regions/TEST.tscn" id="6_mtnve"]
 [ext_resource type="Texture2D" uid="uid://bp7vnugiq46o" path="res://Tilesets/alienscape_tileset_transparent.png" id="8_01mxc"]
 [ext_resource type="PackedScene" uid="uid://bu38boui2wxu" path="res://SwitchesAndDoors/SwitchGroupController.tscn" id="12_u6t76"]

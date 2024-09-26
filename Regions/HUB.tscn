@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://6yx2isfbpjml"]
 
-[ext_resource type="Script" path="res://Regions/region.gd" id="1_v8lrc"]
+[ext_resource type="Script" path="res://RegionManagement/region.gd" id="1_v8lrc"]
 [ext_resource type="PackedScene" uid="uid://ctbx6yfgdfo4b" path="res://block.tscn" id="2_a8cbc"]
 
 [node name="HUB" type="Node2D"]

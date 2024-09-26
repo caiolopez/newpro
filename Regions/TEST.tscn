@@ -1,6 +1,6 @@
 [gd_scene load_steps=54 format=3 uid="uid://cv2bdmdm7ivmp"]
 
-[ext_resource type="Script" path="res://Regions/region.gd" id="1_fjngo"]
+[ext_resource type="Script" path="res://RegionManagement/region.gd" id="1_fjngo"]
 [ext_resource type="PackedScene" uid="uid://csvdenv1i3dc3" path="res://Teleporter/Teleporter.tscn" id="2_6ojyo"]
 [ext_resource type="PackedScene" uid="uid://ctbx6yfgdfo4b" path="res://block.tscn" id="2_p7ua5"]
 [ext_resource type="PackedScene" uid="uid://cih4ag7u6dc0q" path="res://Entities/Spiny.tscn" id="3_ya2uu"]

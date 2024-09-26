@@ -1433,7 +1433,8 @@ script = ExtResource("3_6dncg")
 
 [node name="Shooter" parent="." node_paths=PackedStringArray("muzzle") instance=ExtResource("4_1v5xt")]
 position = Vector2(72, -48)
-pellet_amount = 6
+pellet_amount = 3
+pellet_separation_angle = 15.0
 pellet_speed = 1000.0
 time_before_visible = 0.05
 muzzle = NodePath("../Gfx/Muzzle")
