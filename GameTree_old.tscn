@@ -1,10 +1,6 @@
-[gd_scene load_steps=19 format=4 uid="uid://1xi1vmc3x5ck"]
+[gd_scene load_steps=17 format=4 uid="uid://1xi1vmc3x5ck"]
 
-[ext_resource type="PackedScene" uid="uid://b424bvcxa2fbn" path="res://GUI/BossOverlay.tscn" id="1_tkq5o"]
 [ext_resource type="PackedScene" uid="uid://1md1m8n6iq5x" path="res://Hero/hero.tscn" id="2_acvau"]
-[ext_resource type="PackedScene" uid="uid://d1h8vf2t5pgey" path="res://GUI/MiniMap.tscn" id="2_is0lr"]
-[ext_resource type="PackedScene" uid="uid://c48ye6g4s5ufc" path="res://Camera/Camera.tscn" id="3_o6dt5"]
-[ext_resource type="PackedScene" uid="uid://dvk1kn7j0htsi" path="res://GUI/Dialog.tscn" id="3_v2q5r"]
 [ext_resource type="PackedScene" uid="uid://ch0ldys5y2avd" path="res://RegionManagement/RegionTrigger.tscn" id="6_mg0bt"]
 [ext_resource type="PackedScene" uid="uid://cv2bdmdm7ivmp" path="res://Regions/TEST.tscn" id="6_mtnve"]
 [ext_resource type="Texture2D" uid="uid://bp7vnugiq46o" path="res://Tilesets/alienscape_tileset_transparent.png" id="8_01mxc"]
@@ -15,7 +11,10 @@
 [ext_resource type="PackedScene" uid="uid://0fx3l1vwyhr4" path="res://SwitchesAndDoors/Switch.tscn" id="15_tdva6"]
 [ext_resource type="Script" path="res://EntityComponents/unique_collider.gd" id="24_1i71r"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uqtgy"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8bud7"]
+size = Vector2(504, 296)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lg4iu"]
 size = Vector2(504, 296)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tmq20"]
@@ -81,29 +80,16 @@ physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 15
 sources/0 = SubResource("TileSetAtlasSource_tmq20")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_haeti"]
+size = Vector2(428.5, 314.5)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y05kc"]
 size = Vector2(282, 258)
 
 [node name="GameTree" type="Node"]
 
-[node name="HUD" type="CanvasLayer" parent="." groups=["hud"]]
-process_mode = 3
-
-[node name="BossOverlay" parent="HUD" instance=ExtResource("1_tkq5o")]
-
-[node name="MiniMap" parent="HUD" instance=ExtResource("2_is0lr")]
-
-[node name="Dialog" parent="HUD" instance=ExtResource("3_v2q5r")]
-
 [node name="Hero" parent="." instance=ExtResource("2_acvau")]
-z_index = 2
 position = Vector2(-2136, -1758)
-
-[node name="Camera" parent="." node_paths=PackedStringArray("hero") instance=ExtResource("3_o6dt5")]
-unique_name_in_owner = true
-hero = NodePath("../Hero")
-lerp_speed = Vector2(3, 3)
-catch_up_speed = Vector2(0.01, 0.01)
 
 [node name="TEST" parent="." instance=ExtResource("6_mtnve")]
 
@@ -114,9 +100,9 @@ position = Vector2(-1048, -1408)
 
 [node name="UniqueCollider" type="CollisionShape2D" parent="Common/RegionTrigger"]
 position = Vector2(-1896, 208)
-shape = SubResource("RectangleShape2D_uqtgy")
+shape = SubResource("RectangleShape2D_8bud7")
 script = ExtResource("24_1i71r")
-is_unique = true
+metadata/original_shape_hash = 1789737840
 
 [node name="RegionTrigger2" parent="Common" instance=ExtResource("6_mg0bt")]
 position = Vector2(-2560, -1376)
@@ -124,9 +110,9 @@ to_region = 2
 
 [node name="UniqueCollider" type="CollisionShape2D" parent="Common/RegionTrigger2"]
 position = Vector2(-1896, 208)
-shape = SubResource("RectangleShape2D_uqtgy")
+shape = SubResource("RectangleShape2D_lg4iu")
 script = ExtResource("24_1i71r")
-is_unique = true
+metadata/original_shape_hash = 570918615
 
 [node name="TileMapLayer" type="TileMapLayer" parent="Common" groups=["kills_bullets"]]
 scale = Vector2(6, 6)
@@ -142,6 +128,8 @@ position = Vector2(942, 96)
 
 [node name="UniqueCollider" parent="Common/SwitchGroupController/Door" instance=ExtResource("14_umo0q")]
 position = Vector2(0, -12.625)
+shape = SubResource("RectangleShape2D_haeti")
+metadata/original_shape_hash = 1807611657
 
 [node name="Switch" parent="Common/SwitchGroupController" instance=ExtResource("15_tdva6")]
 toggle = true

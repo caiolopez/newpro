@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://ruri8ytnt6k" path="res://SwitchesAndDoors/Door.tscn" id="8_ed8iu"]
 [ext_resource type="Script" path="res://EntityComponents/unique_collider.gd" id="9_kml0t"]
 [ext_resource type="PackedScene" uid="uid://0fx3l1vwyhr4" path="res://SwitchesAndDoors/Switch.tscn" id="10_g2n75"]
-[ext_resource type="PackedScene" path="res://ElevatorController/ElevatorController.tscn" id="12_pbx3v"]
 [ext_resource type="PackedScene" uid="uid://vc4ntbqc6jti" path="res://EntityComponents/CycleMover.tscn" id="13_f0qdj"]
 [ext_resource type="PackedScene" uid="uid://boug41cw8taxh" path="res://ElevatorSystem/ElevatorButton.tscn" id="13_nrmce"]
 [ext_resource type="PackedScene" uid="uid://dd08gffrk8txn" path="res://ElevatorSystem/ElevatorSystem.tscn" id="14_0odo4"]
@@ -33,60 +32,63 @@
 [ext_resource type="PackedScene" uid="uid://ctie7rq86pefq" path="res://Dialog/DialogTrigger.tscn" id="29_tvc4e"]
 [ext_resource type="PackedScene" uid="uid://bfhx6g0duy3tv" path="res://Collectibles/IncendiaryAmmo.tscn" id="30_1hxe5"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1suec"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yluf0"]
 size = Vector2(128, 128)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6aaj6"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_n648b"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_guv4y"]
 size = Vector2(205, 226.579)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_iaki2"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ekhr3"]
 size = Vector2(1920, 1080)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_v4vog"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i07nf"]
 size = Vector2(223, 153.421)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_djh68"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qf4er"]
 size = Vector2(98, 592)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6erpd"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ytbep"]
 size = Vector2(120, 335.998)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_aw58c"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_prlyo"]
 size = Vector2(136, 144)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_b85na"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_itmnb"]
 size = Vector2(80, 1230.5)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_h6dxx"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2dlwn"]
 size = Vector2(80, 1230.5)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lrqo2"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4wmms"]
 size = Vector2(2762.5, 142.5)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5payo"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qqu6n"]
 size = Vector2(2762.5, 142.5)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3kow1"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rwt0u"]
 size = Vector2(80, 1230.5)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_odu8b"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1sdf6"]
 size = Vector2(80, 1230.5)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_aryew"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_74joo"]
 size = Vector2(2762.5, 142.5)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7n73v"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nug8b"]
 size = Vector2(2762.5, 142.5)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ysl3y"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ensxx"]
 size = Vector2(378, 464.5)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jpqot"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7u3bv"]
 size = Vector2(378, 464.5)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nj7ht"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8viyc"]
+size = Vector2(128, 216)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fi1jg"]
 size = Vector2(128, 216)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jexxc"]
@@ -157,9 +159,9 @@ position = Vector2(768, 496)
 open_offset = Vector2(0, -200)
 
 [node name="UniqueCollider" type="CollisionShape2D" parent="SwitchGroupController/Door"]
-shape = SubResource("RectangleShape2D_1suec")
+shape = SubResource("RectangleShape2D_yluf0")
 script = ExtResource("9_kml0t")
-is_unique = true
+metadata/original_shape_hash = 1172450511
 
 [node name="Door2" parent="SwitchGroupController" instance=ExtResource("8_ed8iu")]
 position = Vector2(528, 392)
@@ -313,25 +315,20 @@ skew = -1.10315
 position = Vector2(-1248.76, -8.31583)
 skew = 1.75238e-05
 
-[node name="ElevatorController" parent="." node_paths=PackedStringArray("elevator") instance=ExtResource("12_pbx3v")]
-elevator = NodePath("../AnimatableBody2D/Elevator")
+[node name="ElevatorSystem" parent="." node_paths=PackedStringArray("elevator_node") instance=ExtResource("14_0odo4")]
+elevator_node = NodePath("../AnimatableBody2D")
+end_position = Vector2(800, -800)
 
-[node name="ElevatorButton" parent="ElevatorController" instance=ExtResource("13_nrmce")]
+[node name="ElevatorButton" parent="ElevatorSystem" instance=ExtResource("13_nrmce")]
 position = Vector2(928, 368)
 
-[node name="ElevatorButton2" parent="ElevatorController" instance=ExtResource("13_nrmce")]
+[node name="ElevatorButton2" parent="ElevatorSystem" instance=ExtResource("13_nrmce")]
 position = Vector2(-32, 504)
 type = 1
 
 [node name="AnimatableBody2D" type="AnimatableBody2D" parent="." groups=["sticky"]]
 position = Vector2(-2040, 1536)
 scale = Vector2(11.33, 11.33)
-
-[node name="Elevator" parent="AnimatableBody2D" instance=ExtResource("14_0odo4")]
-end_position = Vector2(800, -800)
-end_rotation = 90.0
-curve = 0
-duration = 7.223
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D"]
 shape = SubResource("RectangleShape2D_6aaj6")
@@ -343,8 +340,8 @@ center_at_edge = true
 
 [node name="UniqueCollider" parent="CameraLocker5" index="0"]
 position = Vector2(0, 0)
-shape = SubResource("RectangleShape2D_n648b")
-is_unique = true
+shape = SubResource("RectangleShape2D_guv4y")
+metadata/original_shape_hash = 1984059192
 
 [node name="Marker2D" parent="CameraLocker5" index="1"]
 position = Vector2(-40, 72)
@@ -355,9 +352,9 @@ axes_to_lock = 2
 
 [node name="UniqueCollider" parent="CameraLocker6" index="0"]
 position = Vector2(-208, 20)
-shape = SubResource("RectangleShape2D_iaki2")
+shape = SubResource("RectangleShape2D_ekhr3")
 debug_color = Color(1, 0, 1, 0.5)
-is_unique = true
+metadata/original_shape_hash = 1811791923
 
 [node name="Marker2D" parent="CameraLocker6" index="1"]
 position = Vector2(-216, 16)
@@ -368,9 +365,9 @@ axes_to_lock = 1
 
 [node name="UniqueCollider" parent="CameraLocker7" index="0"]
 position = Vector2(0, -8)
-shape = SubResource("RectangleShape2D_v4vog")
+shape = SubResource("RectangleShape2D_i07nf")
 debug_color = Color(1, 0, 0, 0.5)
-is_unique = true
+metadata/original_shape_hash = 767098425
 
 [node name="Marker2D" parent="CameraLocker7" index="1"]
 position = Vector2(-8, 328)
@@ -381,9 +378,9 @@ rotation = 3.14159
 
 [node name="UniqueCollider" type="CollisionShape2D" parent="CheckpointTrigger"]
 position = Vector2(-38.9998, -56)
-shape = SubResource("RectangleShape2D_djh68")
+shape = SubResource("RectangleShape2D_qf4er")
 script = ExtResource("9_kml0t")
-is_unique = true
+metadata/original_shape_hash = 1876306957
 
 [node name="CheckpointTrigger2" parent="." instance=ExtResource("17_bl8nk")]
 position = Vector2(-1792, 1592)
@@ -394,9 +391,9 @@ position = Vector2(2.40002, -2.6226e-05)
 rotation = 3.14159
 scale = Vector2(0.2, 0.03125)
 skew = -1.5974e-05
-shape = SubResource("RectangleShape2D_6erpd")
+shape = SubResource("RectangleShape2D_ytbep")
 script = ExtResource("9_kml0t")
-is_unique = true
+metadata/original_shape_hash = 449697027
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 visible = false
@@ -420,9 +417,9 @@ effect = 1
 
 [node name="UniqueCollider2" type="CollisionShape2D" parent="Effector"]
 position = Vector2(4, -40)
-shape = SubResource("RectangleShape2D_aw58c")
+shape = SubResource("RectangleShape2D_prlyo")
 script = ExtResource("9_kml0t")
-is_unique = true
+metadata/original_shape_hash = 1801513717
 
 [node name="Sprite2D2" type="Sprite2D" parent="Effector"]
 position = Vector2(24, -232)
@@ -451,31 +448,31 @@ position = Vector2(-792, -3208)
 
 [node name="UniqueCollider" type="CollisionShape2D" parent="BossFence"]
 position = Vector2(-224, 1912)
-shape = SubResource("RectangleShape2D_b85na")
+shape = SubResource("RectangleShape2D_itmnb")
 debug_color = Color(0.420282, 0.577532, 0.499651, 0.42)
 script = ExtResource("9_kml0t")
-is_unique = true
+metadata/original_shape_hash = 1074966760
 
 [node name="UniqueCollider2" type="CollisionShape2D" parent="BossFence"]
 position = Vector2(1712, 1968)
-shape = SubResource("RectangleShape2D_h6dxx")
+shape = SubResource("RectangleShape2D_2dlwn")
 debug_color = Color(0.420282, 0.577532, 0.499651, 0.42)
 script = ExtResource("9_kml0t")
-is_unique = true
+metadata/original_shape_hash = 238957654
 
 [node name="UniqueCollider3" type="CollisionShape2D" parent="BossFence"]
 position = Vector2(888, 1400)
-shape = SubResource("RectangleShape2D_lrqo2")
+shape = SubResource("RectangleShape2D_4wmms")
 debug_color = Color(0.420282, 0.577532, 0.499651, 0.42)
 script = ExtResource("9_kml0t")
-is_unique = true
+metadata/original_shape_hash = 1174007924
 
 [node name="UniqueCollider4" type="CollisionShape2D" parent="BossFence"]
 position = Vector2(1000, 2560)
-shape = SubResource("RectangleShape2D_5payo")
+shape = SubResource("RectangleShape2D_qqu6n")
 debug_color = Color(0.420282, 0.577532, 0.499651, 0.42)
 script = ExtResource("9_kml0t")
-is_unique = true
+metadata/original_shape_hash = 1671882543
 
 [node name="Boss2" parent="." instance=ExtResource("24_ff27i")]
 position = Vector2(3464, -824)
@@ -485,31 +482,31 @@ position = Vector2(2168, -3192)
 
 [node name="UniqueCollider" type="CollisionShape2D" parent="BossFence2"]
 position = Vector2(-224, 1912)
-shape = SubResource("RectangleShape2D_3kow1")
+shape = SubResource("RectangleShape2D_rwt0u")
 debug_color = Color(0.420282, 0.577532, 0.499651, 0.42)
 script = ExtResource("9_kml0t")
-is_unique = true
+metadata/original_shape_hash = 504490323
 
 [node name="UniqueCollider2" type="CollisionShape2D" parent="BossFence2"]
 position = Vector2(1712, 1968)
-shape = SubResource("RectangleShape2D_odu8b")
+shape = SubResource("RectangleShape2D_1sdf6")
 debug_color = Color(0.420282, 0.577532, 0.499651, 0.42)
 script = ExtResource("9_kml0t")
-is_unique = true
+metadata/original_shape_hash = 1656770139
 
 [node name="UniqueCollider3" type="CollisionShape2D" parent="BossFence2"]
 position = Vector2(888, 1400)
-shape = SubResource("RectangleShape2D_aryew")
+shape = SubResource("RectangleShape2D_74joo")
 debug_color = Color(0.420282, 0.577532, 0.499651, 0.42)
 script = ExtResource("9_kml0t")
-is_unique = true
+metadata/original_shape_hash = 1208575118
 
 [node name="UniqueCollider4" type="CollisionShape2D" parent="BossFence2"]
 position = Vector2(1000, 2560)
-shape = SubResource("RectangleShape2D_7n73v")
+shape = SubResource("RectangleShape2D_nug8b")
 debug_color = Color(0.420282, 0.577532, 0.499651, 0.42)
 script = ExtResource("9_kml0t")
-is_unique = true
+metadata/original_shape_hash = 1129951550
 
 [node name="BossTrigger" parent="." node_paths=PackedStringArray("boss", "doors_to_close") instance=ExtResource("25_qcpih")]
 position = Vector2(120, -888)
@@ -519,8 +516,8 @@ doors_to_close = [NodePath("../SwitchGroupController2/Door2"), NodePath("../Swit
 
 [node name="UniqueCollider" parent="BossTrigger" index="0"]
 position = Vector2(-168, -24)
-shape = SubResource("RectangleShape2D_ysl3y")
-is_unique = true
+shape = SubResource("RectangleShape2D_ensxx")
+metadata/original_shape_hash = 298493887
 
 [node name="BossTrigger2" parent="." node_paths=PackedStringArray("boss") instance=ExtResource("25_qcpih")]
 position = Vector2(120, -888)
@@ -529,8 +526,8 @@ boss = NodePath("../Boss2")
 
 [node name="UniqueCollider" parent="BossTrigger2" index="0"]
 position = Vector2(2792, -48)
-shape = SubResource("RectangleShape2D_jpqot")
-is_unique = true
+shape = SubResource("RectangleShape2D_7u3bv")
+metadata/original_shape_hash = 2056402113
 
 [node name="SwitchGroupController2" parent="." instance=ExtResource("7_fvj7q")]
 position = Vector2(-2800, 1368)
@@ -541,7 +538,8 @@ open_offset = Vector2(0, -256)
 
 [node name="UniqueCollider" parent="SwitchGroupController2/Door2" instance=ExtResource("26_gjqow")]
 position = Vector2(0, -44)
-shape = SubResource("RectangleShape2D_nj7ht")
+shape = SubResource("RectangleShape2D_8viyc")
+metadata/original_shape_hash = 1662404877
 
 [node name="Door" parent="SwitchGroupController2" instance=ExtResource("8_ed8iu")]
 position = Vector2(1760, -2152)
@@ -549,7 +547,8 @@ open_offset = Vector2(0, -256)
 
 [node name="UniqueCollider" parent="SwitchGroupController2/Door" instance=ExtResource("26_gjqow")]
 position = Vector2(0, -44)
-shape = SubResource("RectangleShape2D_nj7ht")
+shape = SubResource("RectangleShape2D_fi1jg")
+metadata/original_shape_hash = 1479634733
 
 [node name="Switch" parent="SwitchGroupController2" instance=ExtResource("10_g2n75")]
 position = Vector2(1640, -2376)
