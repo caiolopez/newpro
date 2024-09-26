@@ -27,8 +27,10 @@ func _ready():
 	Events.hero_reached_checkpoint.connect(_commit_status)
 	Events.hero_respawned_at_checkpoint.connect(_reset_status)
 	for child in get_children():
-		if child is ElevatorButton:
+		if child is ElevatorButton: 
 			elevator_button_list.append(child)
+	if elevator_node and elevator_node is Water:
+		elevator_node.is_movable = true
 
 func tween_to_start():
 	_tween_to(starting_position, starting_rotation)

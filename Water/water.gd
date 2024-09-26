@@ -2,7 +2,7 @@ class_name Water extends Area2D
 
 var bw_shader_setter: BwShaderSetter
 var collider: CollisionShape2D
-@onready var is_movable: bool = has_node("Elevator")
+var is_movable: bool = false ## When set to true, causes hero to update surface information frequently.
 @onready var tile_map_layer: TileMapLayer = $TileMapLayer
 
 func _ready() -> void:
