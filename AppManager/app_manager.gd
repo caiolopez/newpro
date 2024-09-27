@@ -2,6 +2,7 @@ extends Node
 
 @onready var game_tree = get_node("/root/GameTree")
 @onready var state_machine: StateMachine = $StateMachine
+var developer_mode: bool = true
 var hero: Hero = null
 var minimap_node
 var is_speedrun_mode: bool = false
@@ -11,6 +12,7 @@ var teleporters_are_active: bool = false
 signal game_started # Emited when leaving AppStateNewGameInit/AppStateLoadGameInit
 signal game_paused # Emited when entering AppStatePausedInGame
 signal game_unpaused # Emited when leaving AppStatePausedInGame
+signal hero_ready # Emited when AppManager instantiates a new Hero
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -22,7 +24,7 @@ func pause():
 	state_machine.set_state("AppStatePausedInGame")
 
 func unpause():
-	state_machine.set_state("AppStateInGame") 
+	state_machine.set_state("AppStateInGame")
 
 func set_teleporters_active(state: bool):
 	teleporters_are_active = state
@@ -43,12 +45,13 @@ func instantiate_camera() -> Camera2D:
 	game_tree.add_child(camera_instance)
 	return camera_instance
 
-func instantiate_hero() -> Hero:
+func instantiate_hero() -> void:
 	if hero:
 		push_warning("An instance of Hero already exists.")
+		call_deferred("emit_signal", "hero_ready")
 		return
 	var hero_scene = preload("res://Hero/Hero.tscn")
 	var hero_instance = hero_scene.instantiate()
 	game_tree.add_child(hero_instance)
 	hero = hero_instance
-	return hero_instance
+	call_deferred("emit_signal", "hero_ready")
