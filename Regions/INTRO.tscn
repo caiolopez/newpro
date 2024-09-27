@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://datwnf1ab8341"]
+[gd_scene load_steps=6 format=4 uid="uid://datwnf1ab8341"]
 
 [ext_resource type="Script" path="res://RegionManagement/region.gd" id="1_l82iy"]
 [ext_resource type="Texture2D" uid="uid://bp7vnugiq46o" path="res://Tilesets/alienscape_tileset_transparent.png" id="2_5i63v"]
+[ext_resource type="Script" path="res://Regions/hero_positioner.gd" id="2_orj6q"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tclv4"]
 texture = ExtResource("2_5i63v")
@@ -69,7 +70,12 @@ sources/0 = SubResource("TileSetAtlasSource_tclv4")
 [node name="INTRO" type="Node2D"]
 script = ExtResource("1_l82iy")
 
+[node name="HeroPositioner" type="Marker2D" parent="."]
+position = Vector2(168, -216)
+script = ExtResource("2_orj6q")
+
 [node name="TileMapLayer" type="TileMapLayer" parent="." groups=["kills_bullets"]]
 scale = Vector2(6, 6)
+tile_map_data = PackedByteArray("AAD8/wMAAAAAAAAAAAD9/wMAAAAAAAAAAAD+/wMAAAAAAAAAAAD//wMAAAAAAAAAAAAAAAMAAAAAAAAAAAABAAMAAAAAAAAAAAACAAMAAAAAAAAAAAADAAMAAAAAAAAAAAAEAAMAAAAAAAAAAAAFAAMAAAAAAAAAAAAGAAMAAAAAAAAAAAAHAAMAAAAAAAAAAAAIAAMAAAAAAAAAAAAJAAMAAAAAAAAAAAAKAAMAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_qbxtp")
 metadata/_edit_lock_ = true
