@@ -65,7 +65,7 @@ func _ready():
 	Events.hero_hit_teleporter.connect(_on_hero_hit_teleporter)
 	ComboParser.combo_performed.connect(func(combo): if combo == "Die": die())
 	$IsInWaterNotifier_GUN.water_state_changed.connect(on_water_status_changed_on_gun)
-
+	if not AppManager.hero: AppManager.hero = self
 	set_safe_margin(0.08)
 
 func _process(_delta):

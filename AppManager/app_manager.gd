@@ -2,6 +2,7 @@ extends Node
 
 @onready var game_tree = get_node("/root/GameTree")
 @onready var state_machine: StateMachine = $StateMachine
+var hero: Hero = null
 var minimap_node
 var is_speedrun_mode: bool = false
 var game_time: float = 0.0
@@ -29,7 +30,7 @@ func set_teleporters_active(state: bool):
 
 func start_fresh():
 	SaveManager.clear_dictionary()
-	Utils.find_hero().reset_all_variables()
+	if hero: hero.reset_all_variables()
 	BulletManager.return_all_bullets()
 	PropManager.return_all_props()
 	minimap_node.reset()
@@ -41,3 +42,13 @@ func instantiate_camera() -> Camera2D:
 	var camera_instance = camera_scene.instantiate()
 	game_tree.add_child(camera_instance)
 	return camera_instance
+
+func instantiate_hero() -> Hero:
+	if hero:
+		push_warning("An instance of Hero already exists.")
+		return
+	var hero_scene = preload("res://Hero/Hero.tscn")
+	var hero_instance = hero_scene.instantiate()
+	game_tree.add_child(hero_instance)
+	hero = hero_instance
+	return hero_instance

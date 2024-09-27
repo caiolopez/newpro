@@ -6,4 +6,7 @@ func on_enter():
 	SaveManager.save_file()
 	await UI.curtain.fade_in(0.5)
 	get_node("/root/GameTree/Camera").queue_free()
+	if AppManager.hero:
+		AppManager.hero.queue_free()
+		AppManager.hero = null
 	AppManager.state_machine.set_state("AppStateMainMenu")
