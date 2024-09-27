@@ -3,6 +3,10 @@ extends AppState
 @onready var reel = UI.get_node("SlideReel")
 
 func on_enter():
+	if AppManager.developer_mode:
+		machine.set_state("AppStateNewGameInit")
+		return
+
 	get_tree().paused = true
 	reel.reset()
 	reel.start_reel()
