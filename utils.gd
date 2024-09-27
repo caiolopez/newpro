@@ -98,14 +98,6 @@ func create_blinking_timer(target: Node2D, duration: float = 0.8, auto_stop_time
 func is_pushing_sides() -> bool:
 	return Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right")
 
-func find_hero() -> Hero:
-	var hero: Hero = null
-	if get_tree().get_nodes_in_group("heroes").is_empty():
-		push_warning("Could not locate Hero within tree.")
-	else:
-		hero = get_tree().get_first_node_in_group("heroes")
-	return hero
-
 func get_ancestors(node: Node) -> Array:
 	var ancestors = []
 	var current_node = node

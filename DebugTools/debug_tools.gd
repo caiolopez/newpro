@@ -18,7 +18,7 @@ func input_bin():
 
 	if DebugTools.debug_mode\
 	and Input.is_action_just_pressed("Debug Action 2"):
-		Utils.find_hero().state_machine.set_state("StateDebug")
+		AppManager.hero.state_machine.set_state("StateDebug")
 
 	#if Input.is_action_just_pressed("shoot"): print("SHOOT!")
 	#if Input.is_action_just_pressed("jump"): print("J")

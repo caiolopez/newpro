@@ -18,7 +18,7 @@ var lockers: Array[Locker] = []
 @export var lookahead_amount: Vector2 = Vector2(200,200) ## The distance the camera frames in advance when performing lookahead.
 @export var show_gizmo: bool = false ## When set to true, camera position and camera target position are drawn.
 @onready var state_machine: StateMachine = $StateMachine
-@onready var hero: Node2D = Utils.find_hero()
+@onready var hero: Hero = AppManager.hero
 var current_lerp_speed: Vector2
 var current_lookahead: Vector2
 var target: Vector2
@@ -51,9 +51,10 @@ func _process(_delta):
 		get_node("TargetMarker").visible = false
 		get_node("CameraMarker").visible = false
 
-	hero_real_vel = hero.get_real_velocity()
-	hero_vel = hero.velocity
-	hero_dir = hero.facing_direction
+	if hero:
+		hero_real_vel = hero.get_real_velocity()
+		hero_vel = hero.velocity
+		hero_dir = hero.facing_direction
 
 
 func lock_camera(origin, axes: Constants.Axes, lock_position: Vector2) -> void:
@@ -138,7 +139,8 @@ func step_camera_lockers():
 
 
 func step_camera_position(delta: float):
-	target = hero.global_position + current_lookahead
+	if hero:
+		target = hero.global_position + current_lookahead
 	step_camera_lockers()
 	position = lerp_vector2(position, target, current_lerp_speed, delta)
 

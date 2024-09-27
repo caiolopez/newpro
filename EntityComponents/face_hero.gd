@@ -2,7 +2,7 @@ class_name FaceHero extends Node2D
 
 @export var face_hero: bool = false
 @onready var parent: Node2D = get_parent()
-@onready var hero: CharacterBody2D = Utils.find_hero()
+@onready var hero: Hero = AppManager.hero
 var last_hero_dir: int
 signal update(dir: int)
 

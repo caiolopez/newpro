@@ -54,7 +54,7 @@ func _ready():
 	if "target" in parent:
 		target_entity = parent.target
 	else:
-		target_entity = Utils.find_hero()
+		target_entity = AppManager.hero
 		
 	
 	state_machine.start()

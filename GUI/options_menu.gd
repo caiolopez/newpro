@@ -48,8 +48,8 @@ func _on_sfx_volume_changed(value):
 
 func _on_blunder_opt_changed(state: bool):
 	options_data["dedicated_blunder"] = state
-	if Utils.find_hero():
-		Utils.find_hero().dedicated_blunder_button = state
+	if AppManager.hero:
+		AppManager.hero.dedicated_blunder_button = state
 
 func _on_speedrun_opt_changed(state: bool):
 	options_data["speedrun_mode"] = state
@@ -61,8 +61,8 @@ func _on_fullscreen_changed(state: bool):
 	UI.set_fullscreen(state)
 
 func _grant_all_powerups():
-	if not Utils.find_hero(): return
-	var hero = Utils.find_hero()
+	var hero = AppManager.hero
+	if not hero: return
 	hero.handle_powerups("INCENDIARY_AMMO")
 	hero.handle_powerups("UNDERWATER_AMMO")
 	hero.handle_powerups("AQUALUNG")
@@ -90,8 +90,8 @@ func apply_loaded_options():
 	sfx_slider.value = options_data["sfx_volume"]
 	
 	blunder_opt.button_pressed = options_data["dedicated_blunder"]
-	if Utils.find_hero():
-		Utils.find_hero().dedicated_blunder_button = options_data["dedicated_blunder"]
+	if AppManager.hero:
+		AppManager.hero.dedicated_blunder_button = options_data["dedicated_blunder"]
 
 	speedrun_opt.button_pressed = options_data["speedrun_mode"]
 	AppManager.is_speedrun_mode = options_data["speedrun_mode"]

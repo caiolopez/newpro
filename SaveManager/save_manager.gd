@@ -113,7 +113,7 @@ func inject_changes_into_regions():
 
 
 func inject_changes_into_hero():
-	var h = Utils.find_hero()
+	var h = AppManager.hero
 	for key in hero_persistence:
 		var value = hero_persistence[key]
 		match key:

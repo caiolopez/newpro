@@ -7,7 +7,7 @@ var min_scale: Vector2:
 var max_scale: Vector2:
 	get: return Vector2(maximum_scale, maximum_scale)
 @onready var mini_hero: Sprite2D = $Icons/MiniHero
-@onready var hero: Hero = Utils.find_hero()
+@onready var hero: Hero = AppManager.hero
 var waypoint_scene = load("res://GUI/Waypoint.tscn")
 var default_scale: float = 0.1
 var scale_speed: Vector2 = Vector2(2.5, 2.5)
@@ -34,7 +34,6 @@ func _ready():
 	$SectorPolygons.self_modulate = Color.TRANSPARENT
 	$Icons.self_modulate = Color.TRANSPARENT
 	adjust_icon_scale()
-	center_map()
 
 func append_sector_to_map(sector: MapSector):
 	var sect_coll = sector.extract_coll_polygon_2d()
@@ -109,7 +108,6 @@ func _process(delta):
 		update_mini_hero_pos()
 		return
 
-	update_mini_hero_pos()
 	handle_actions(delta)
 	set_bounds()
 

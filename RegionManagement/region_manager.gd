@@ -38,7 +38,7 @@ func set_current_region(region: Region):
 
 func infer_current_region_from_last_floor():
 	if current_region: return
-	var hero: Hero = Utils.find_hero()
+	var hero: Hero = AppManager.hero
 	if hero.get_slide_collision_count() > 0:
 		var latest_floor: Object = hero.get_slide_collision(0).get_collider()
 		if latest_floor and is_instance_valid(latest_floor):
