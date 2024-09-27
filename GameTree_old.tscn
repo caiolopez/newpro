@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=4 uid="uid://1xi1vmc3x5ck"]
 
-[ext_resource type="PackedScene" uid="uid://1md1m8n6iq5x" path="res://Hero/hero.tscn" id="2_acvau"]
+[ext_resource type="PackedScene" uid="uid://1md1m8n6iq5x" path="res://Hero/Hero.tscn" id="2_acvau"]
 [ext_resource type="PackedScene" uid="uid://ch0ldys5y2avd" path="res://RegionManagement/RegionTrigger.tscn" id="6_mg0bt"]
 [ext_resource type="PackedScene" uid="uid://cv2bdmdm7ivmp" path="res://Regions/TEST.tscn" id="6_mtnve"]
 [ext_resource type="Texture2D" uid="uid://bp7vnugiq46o" path="res://Tilesets/alienscape_tileset_transparent.png" id="8_01mxc"]

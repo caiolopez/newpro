@@ -1372,7 +1372,7 @@ size = Vector2(60, 156)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3saph"]
 size = Vector2(36, 24)
 
-[node name="Hero" type="CharacterBody2D" groups=["heroes", "uncrushables"]]
+[node name="Hero" type="CharacterBody2D" groups=["uncrushables"]]
 z_index = 2
 collision_layer = 8
 floor_snap_length = 12.0

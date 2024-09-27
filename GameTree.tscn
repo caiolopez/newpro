@@ -1,11 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://cqeapgf5ajw56"]
 
-[ext_resource type="PackedScene" uid="uid://1md1m8n6iq5x" path="res://Hero/hero.tscn" id="2_acvau"]
 [ext_resource type="PackedScene" uid="uid://datwnf1ab8341" path="res://Regions/INTRO.tscn" id="2_dlhtt"]
+[ext_resource type="PackedScene" uid="uid://1md1m8n6iq5x" path="res://Hero/Hero.tscn" id="2_r7oh5"]
 
 [node name="GameTree" type="Node"]
 
-[node name="Hero" parent="." instance=ExtResource("2_acvau")]
-position = Vector2(-2760, -1170)
-
 [node name="INTRO" parent="." instance=ExtResource("2_dlhtt")]
+
+[node name="Hero" parent="." instance=ExtResource("2_r7oh5")]
