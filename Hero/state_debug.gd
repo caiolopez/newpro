@@ -15,13 +15,13 @@ func on_physics_process(delta: float):
 		return
 
 	if Input.is_action_pressed("up"):
-		Utils.find_hero().global_position.y -= 1000 * delta
+		hero.global_position.y -= 1000 * delta
 	if Input.is_action_pressed("down"):
-		Utils.find_hero().global_position.y += 1000 * delta
+		hero.global_position.y += 1000 * delta
 	if Input.is_action_pressed("left"):
-		Utils.find_hero().global_position.x -= 1000 * delta
+		hero.global_position.x -= 1000 * delta
 	if Input.is_action_pressed("right"):
-		Utils.find_hero().global_position.x += 1000 * delta
+		hero.global_position.x += 1000 * delta
 
 func on_exit():
 	hero.dmg_taker.currently_immune = false
