@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://cv2bdmdm7ivmp"]
+[gd_scene load_steps=51 format=3 uid="uid://cv2bdmdm7ivmp"]
 
 [ext_resource type="Script" path="res://RegionManagement/region.gd" id="1_fjngo"]
 [ext_resource type="PackedScene" uid="uid://csvdenv1i3dc3" path="res://Teleporter/Teleporter.tscn" id="2_6ojyo"]
@@ -36,15 +36,6 @@
 size = Vector2(128, 128)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6aaj6"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_guv4y"]
-size = Vector2(205, 226.579)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ekhr3"]
-size = Vector2(1920, 1080)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_i07nf"]
-size = Vector2(223, 153.421)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qf4er"]
 size = Vector2(98, 592)
@@ -336,46 +327,17 @@ debug_color = Color(0.412372, 0.598973, 0.267216, 0.42)
 
 [node name="CameraLocker5" parent="." instance=ExtResource("15_rjmeg")]
 position = Vector2(-168, 1824)
-center_at = Object(Marker2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(-40, 72),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"gizmo_extents":59.6,"script":null)
-
-
-[node name="UniqueCollider" parent="CameraLocker5" index="0"]
-position = Vector2(0, 0)
-shape = SubResource("RectangleShape2D_guv4y")
-metadata/original_shape_hash = 1984059192
-
-[node name="Marker2D" parent="CameraLocker5" index="1"]
-position = Vector2(-40, 72)
+center_at = 0
 
 [node name="CameraLocker6" parent="." instance=ExtResource("15_rjmeg")]
 position = Vector2(160, -1248)
 axes_to_lock = 2
-center_at = Object(Marker2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(-216, 16),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"gizmo_extents":59.6,"script":null)
-
-
-[node name="UniqueCollider" parent="CameraLocker6" index="0"]
-position = Vector2(-208, 20)
-shape = SubResource("RectangleShape2D_ekhr3")
-debug_color = Color(1, 0, 1, 0.5)
-metadata/original_shape_hash = 1811791923
-
-[node name="Marker2D" parent="CameraLocker6" index="1"]
-position = Vector2(-216, 16)
+center_at = 0
 
 [node name="CameraLocker7" parent="." instance=ExtResource("15_rjmeg")]
 position = Vector2(824, 1968)
 axes_to_lock = 1
-center_at = Object(Marker2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(-8, 328),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"gizmo_extents":59.6,"script":null)
-
-
-[node name="UniqueCollider" parent="CameraLocker7" index="0"]
-position = Vector2(0, -8)
-shape = SubResource("RectangleShape2D_i07nf")
-debug_color = Color(1, 0, 0, 0.5)
-metadata/original_shape_hash = 767098425
-
-[node name="Marker2D" parent="CameraLocker7" index="1"]
-position = Vector2(-8, 328)
+center_at = 0
 
 [node name="CheckpointTrigger" parent="." instance=ExtResource("17_bl8nk")]
 position = Vector2(-2472, 1408)

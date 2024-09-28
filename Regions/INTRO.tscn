@@ -69,8 +69,8 @@ physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 15
 sources/0 = SubResource("TileSetAtlasSource_tclv4")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ng600"]
-size = Vector2(1848, 322)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_foqno"]
+size = Vector2(2232, 761)
 
 [node name="INTRO" type="Node2D"]
 script = ExtResource("1_l82iy")
@@ -86,13 +86,14 @@ tile_set = SubResource("TileSet_qbxtp")
 metadata/_edit_lock_ = true
 
 [node name="CameraLocker" parent="." instance=ExtResource("4_2o0al")]
+axes_to_lock = 2
 center_at = 1
 
 [node name="UniqueCollider" type="CollisionShape2D" parent="CameraLocker"]
-position = Vector2(336, 168)
-shape = SubResource("RectangleShape2D_ng600")
-debug_color = Color(0, 0, 1, 0.5)
+position = Vector2(324, -51.5)
+shape = SubResource("RectangleShape2D_foqno")
+debug_color = Color(1, 0, 1, 0.5)
 script = ExtResource("5_fcl45")
-metadata/original_shape_hash = 564936338
+metadata/original_shape_hash = 1542196942
 
 [node name="Marker2D" type="Marker2D" parent="CameraLocker"]
