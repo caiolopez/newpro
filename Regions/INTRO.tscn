@@ -69,7 +69,7 @@ physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 15
 sources/0 = SubResource("TileSetAtlasSource_tclv4")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_foqno"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ur4tq"]
 size = Vector2(2232, 761)
 
 [node name="INTRO" type="Node2D"]
@@ -80,7 +80,7 @@ position = Vector2(168, -216)
 script = ExtResource("2_orj6q")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." groups=["kills_bullets"]]
-scale = Vector2(6, 6)
+scale = Vector2(5, 5)
 tile_map_data = PackedByteArray("AAD8/wMAAAAAAAAAAAD9/wMAAAAAAAAAAAD+/wMAAAAAAAAAAAD//wMAAAAAAAAAAAAAAAMAAAAAAAAAAAABAAMAAAAAAAAAAAACAAMAAAAAAAAAAAADAAMAAAAAAAAAAAAEAAMAAAAAAAAAAAAFAAMAAAAAAAAAAAAGAAMAAAAAAAAAAAAHAAMAAAAAAAAAAAAIAAMAAAAAAAAAAAAJAAMAAAAAAAAAAAAKAAMAAAAAAAAAAAALAAMAAAAAAAAAAAAMAAMAAAAAAAAAAAANAAMAAAAAAAAAAAAOAAMAAAAAAAAAAAD7/wMAAAAAAAAAAAD6/wMAAAAAAAAAAAD5/wMAAAAAAAAAAAD4/wMAAAAAAAAAAAANAAIAAAAAAAAAAAANAAEAAAAAAAAAAAANAAAAAAAAAAAAAAD5/wIAAAAAAAAAAAD5/wEAAAAAAAAAAAD5/wAAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_qbxtp")
 metadata/_edit_lock_ = true
@@ -91,9 +91,9 @@ center_at = 1
 
 [node name="UniqueCollider" type="CollisionShape2D" parent="CameraLocker"]
 position = Vector2(324, -51.5)
-shape = SubResource("RectangleShape2D_foqno")
+shape = SubResource("RectangleShape2D_ur4tq")
 debug_color = Color(1, 0, 1, 0.5)
 script = ExtResource("5_fcl45")
-metadata/original_shape_hash = 1542196942
+metadata/original_shape_hash = 169367947
 
 [node name="Marker2D" type="Marker2D" parent="CameraLocker"]

@@ -208,7 +208,7 @@ shape = SubResource("CircleShape2D_450i0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 use_parent_material = true
-scale = Vector2(6, 6)
+scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_eo4fx")
 animation = &"fire"
 

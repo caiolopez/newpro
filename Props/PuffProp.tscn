@@ -188,7 +188,7 @@ animations = [{
 }]
 
 [node name="PuffProp" type="AnimatedSprite2D"]
-scale = Vector2(6, 6)
+scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_bseya")
 animation = &"big"
 

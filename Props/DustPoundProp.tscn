@@ -77,7 +77,7 @@ animations = [{
 }]
 
 [node name="DustPoundProp" type="AnimatedSprite2D"]
-scale = Vector2(6, 6)
+scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_n72fd")
 offset = Vector2(0, 3)
 

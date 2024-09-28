@@ -216,7 +216,7 @@ animations = [{
 }]
 
 [node name="SplashProp" type="AnimatedSprite2D"]
-scale = Vector2(6, 6)
+scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_x5ep3")
 animation = &"splash2"
 offset = Vector2(0, -5)

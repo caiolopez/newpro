@@ -63,7 +63,7 @@ animations = [{
 }]
 
 [node name="DustJumpProp" type="AnimatedSprite2D"]
-scale = Vector2(6, 6)
+scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_5cvca")
 offset = Vector2(0, 3)
 
