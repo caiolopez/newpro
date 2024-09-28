@@ -1,20 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bgty58ccnncxy"]
+[gd_scene load_steps=2 format=3 uid="uid://bgty58ccnncxy"]
 
 [ext_resource type="Script" path="res://Camera/camera_locker.gd" id="1_0mlkh"]
-[ext_resource type="Script" path="res://EntityComponents/unique_collider.gd" id="2_pi0ny"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_a482a"]
 
 [node name="CameraLocker" type="Area2D"]
 collision_mask = 8
 script = ExtResource("1_0mlkh")
+center_at = Object(Marker2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(-515, 90),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"gizmo_extents":59.6,"script":null)
 
-[node name="UniqueCollider" type="CollisionShape2D" parent="."]
-position = Vector2(-499, 63.421)
-shape = SubResource("RectangleShape2D_a482a")
-debug_color = Color(0, 0, 1, 0.5)
-script = ExtResource("2_pi0ny")
-
-[node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(-515, 90)
-gizmo_extents = 59.6
