@@ -48,10 +48,11 @@ func instantiate_camera() -> Camera2D:
 func instantiate_hero() -> void:
 	if hero:
 		push_warning("An instance of Hero already exists.")
-		call_deferred("emit_signal", "hero_ready")
+		hero_ready.emit()
 		return
 	var hero_scene = preload("res://Hero/Hero.tscn")
 	var hero_instance = hero_scene.instantiate()
 	game_tree.add_child(hero_instance)
+	hero_instance.name = &"HeroInstance"
 	hero = hero_instance
 	call_deferred("emit_signal", "hero_ready")
