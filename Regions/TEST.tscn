@@ -336,7 +336,8 @@ debug_color = Color(0.412372, 0.598973, 0.267216, 0.42)
 
 [node name="CameraLocker5" parent="." instance=ExtResource("15_rjmeg")]
 position = Vector2(-168, 1824)
-center_at_edge = true
+center_at = Object(Marker2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(-40, 72),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"gizmo_extents":59.6,"script":null)
+
 
 [node name="UniqueCollider" parent="CameraLocker5" index="0"]
 position = Vector2(0, 0)
@@ -349,6 +350,8 @@ position = Vector2(-40, 72)
 [node name="CameraLocker6" parent="." instance=ExtResource("15_rjmeg")]
 position = Vector2(160, -1248)
 axes_to_lock = 2
+center_at = Object(Marker2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(-216, 16),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"gizmo_extents":59.6,"script":null)
+
 
 [node name="UniqueCollider" parent="CameraLocker6" index="0"]
 position = Vector2(-208, 20)
@@ -362,6 +365,8 @@ position = Vector2(-216, 16)
 [node name="CameraLocker7" parent="." instance=ExtResource("15_rjmeg")]
 position = Vector2(824, 1968)
 axes_to_lock = 1
+center_at = Object(Marker2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(-8, 328),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"gizmo_extents":59.6,"script":null)
+
 
 [node name="UniqueCollider" parent="CameraLocker7" index="0"]
 position = Vector2(0, -8)

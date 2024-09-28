@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=4 uid="uid://datwnf1ab8341"]
+[gd_scene load_steps=9 format=4 uid="uid://datwnf1ab8341"]
 
 [ext_resource type="Script" path="res://RegionManagement/region.gd" id="1_l82iy"]
 [ext_resource type="Texture2D" uid="uid://bp7vnugiq46o" path="res://Tilesets/alienscape_tileset_transparent.png" id="2_5i63v"]
 [ext_resource type="Script" path="res://Regions/hero_positioner.gd" id="2_orj6q"]
+[ext_resource type="PackedScene" uid="uid://bgty58ccnncxy" path="res://Camera/CameraLocker.tscn" id="4_2o0al"]
+[ext_resource type="Script" path="res://EntityComponents/unique_collider.gd" id="5_fcl45"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tclv4"]
 texture = ExtResource("2_5i63v")
@@ -67,6 +69,9 @@ physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 15
 sources/0 = SubResource("TileSetAtlasSource_tclv4")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ng600"]
+size = Vector2(1848, 322)
+
 [node name="INTRO" type="Node2D"]
 script = ExtResource("1_l82iy")
 
@@ -76,6 +81,18 @@ script = ExtResource("2_orj6q")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." groups=["kills_bullets"]]
 scale = Vector2(6, 6)
-tile_map_data = PackedByteArray("AAD8/wMAAAAAAAAAAAD9/wMAAAAAAAAAAAD+/wMAAAAAAAAAAAD//wMAAAAAAAAAAAAAAAMAAAAAAAAAAAABAAMAAAAAAAAAAAACAAMAAAAAAAAAAAADAAMAAAAAAAAAAAAEAAMAAAAAAAAAAAAFAAMAAAAAAAAAAAAGAAMAAAAAAAAAAAAHAAMAAAAAAAAAAAAIAAMAAAAAAAAAAAAJAAMAAAAAAAAAAAAKAAMAAAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAD8/wMAAAAAAAAAAAD9/wMAAAAAAAAAAAD+/wMAAAAAAAAAAAD//wMAAAAAAAAAAAAAAAMAAAAAAAAAAAABAAMAAAAAAAAAAAACAAMAAAAAAAAAAAADAAMAAAAAAAAAAAAEAAMAAAAAAAAAAAAFAAMAAAAAAAAAAAAGAAMAAAAAAAAAAAAHAAMAAAAAAAAAAAAIAAMAAAAAAAAAAAAJAAMAAAAAAAAAAAAKAAMAAAAAAAAAAAALAAMAAAAAAAAAAAAMAAMAAAAAAAAAAAANAAMAAAAAAAAAAAAOAAMAAAAAAAAAAAD7/wMAAAAAAAAAAAD6/wMAAAAAAAAAAAD5/wMAAAAAAAAAAAD4/wMAAAAAAAAAAAANAAIAAAAAAAAAAAANAAEAAAAAAAAAAAANAAAAAAAAAAAAAAD5/wIAAAAAAAAAAAD5/wEAAAAAAAAAAAD5/wAAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_qbxtp")
 metadata/_edit_lock_ = true
+
+[node name="CameraLocker" parent="." instance=ExtResource("4_2o0al")]
+center_at = 1
+
+[node name="UniqueCollider" type="CollisionShape2D" parent="CameraLocker"]
+position = Vector2(336, 168)
+shape = SubResource("RectangleShape2D_ng600")
+debug_color = Color(0, 0, 1, 0.5)
+script = ExtResource("5_fcl45")
+metadata/original_shape_hash = 564936338
+
+[node name="Marker2D" type="Marker2D" parent="CameraLocker"]
