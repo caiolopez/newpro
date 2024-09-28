@@ -90,8 +90,13 @@ func apply_loaded_options():
 	sfx_slider.value = options_data["sfx_volume"]
 	
 	blunder_opt.button_pressed = options_data["dedicated_blunder"]
+
 	if AppManager.hero:
 		AppManager.hero.dedicated_blunder_button = options_data["dedicated_blunder"]
+	else:
+		AppManager.hero_ready.connect(func():
+			AppManager.hero.dedicated_blunder_button = options_data["dedicated_blunder"],
+			CONNECT_ONE_SHOT)
 
 	speedrun_opt.button_pressed = options_data["speedrun_mode"]
 	AppManager.is_speedrun_mode = options_data["speedrun_mode"]
