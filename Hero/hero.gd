@@ -319,15 +319,15 @@ func force_water_detection() -> bool:
 	return true
 
 func resize_collider_to_regular() -> void:
-	%HeroCollider.shape.size.y = 156
-	%HeroCollider.position.y = -12
+	%HeroCollider.shape.size.y = 130
+	%HeroCollider.position.y = 0
 	var dmg_coll: CollisionShape2D = dmg_taker.get_node("CollisionShape2D")
-	dmg_coll.shape.size.y = 114
-	dmg_coll.position.y = -15
+	dmg_coll.shape.size.y = 120
+	dmg_coll.position.y = 0
 
 func resize_collider_to_swim() -> void:
-	%HeroCollider.shape.size.y = 78
-	%HeroCollider.position.y = -51
+	%HeroCollider.shape.size.y = 60
+	%HeroCollider.position.y = -35
 	var dmg_coll: CollisionShape2D = dmg_taker.get_node("CollisionShape2D")
-	dmg_coll.shape.size.y = 48
-	dmg_coll.position.y = -48
+	dmg_coll.shape.size.y = 50
+	dmg_coll.position.y = -35
