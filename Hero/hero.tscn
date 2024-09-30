@@ -1364,13 +1364,13 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_361o4"]
-size = Vector2(60, 156)
+size = Vector2(60, 155)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8r0xo"]
 size = Vector2(60, 156)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3saph"]
-size = Vector2(36, 24)
+size = Vector2(40, 15)
 
 [node name="Hero" type="CharacterBody2D" groups=["uncrushables"]]
 z_index = 2
@@ -1388,22 +1388,22 @@ shape = SubResource("RectangleShape2D_wwsjr")
 debug_color = Color(0.683323, 0.501593, 0.0283101, 0.42)
 
 [node name="NextGrdHeightRC" type="RayCast2D" parent="."]
-position = Vector2(42, 0)
-target_position = Vector2(0, 66)
+position = Vector2(40, 0)
+target_position = Vector2(0, 65)
 script = ExtResource("3_6dncg")
 
 [node name="HeadbuttAssistRC" type="RayCast2D" parent="."]
-position = Vector2(0, -102)
+position = Vector2(0, -100)
 target_position = Vector2(-30, 0)
 script = ExtResource("3_6dncg")
 
 [node name="ShoulderRC" type="RayCast2D" parent="."]
-position = Vector2(0, -24)
+position = Vector2(0, -25)
 target_position = Vector2(120, 0)
 script = ExtResource("3_6dncg")
 
 [node name="PelvisRC" type="RayCast2D" parent="."]
-position = Vector2(0, 24)
+position = Vector2(0, 25)
 target_position = Vector2(120, 0)
 script = ExtResource("3_6dncg")
 
@@ -1414,20 +1414,20 @@ hit_from_inside = true
 script = ExtResource("3_6dncg")
 
 [node name="ShoulderBackRC" type="RayCast2D" parent="."]
-position = Vector2(0, -24)
+position = Vector2(0, -25)
 target_position = Vector2(-120, 0)
 hit_from_inside = true
 script = ExtResource("3_6dncg")
 
 [node name="PelvisBackRC" type="RayCast2D" parent="."]
-position = Vector2(0, 24)
+position = Vector2(0, 25)
 target_position = Vector2(-120, 0)
 hit_from_inside = true
 script = ExtResource("3_6dncg")
 
 [node name="SwimFeetRC" type="RayCast2D" parent="."]
-position = Vector2(0, -36)
-target_position = Vector2(-90, 0)
+position = Vector2(0, -20)
+target_position = Vector2(-75, 0)
 hit_from_inside = true
 script = ExtResource("3_6dncg")
 
@@ -1453,10 +1453,10 @@ animation = &"deploy_parachute"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Gfx"]
 use_parent_material = true
-position = Vector2(0, -14)
+position = Vector2(0, -15)
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_tm5on")
-animation = &"idle"
+animation = &"water_swim"
 
 [node name="Muzzle" type="AnimatedSprite2D" parent="Gfx"]
 visible = false
@@ -1479,7 +1479,7 @@ light_color = Color(0.870695, 0.627091, 0.723424, 1)
 
 [node name="HeroCollider" type="CollisionShape2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(0, -12)
+position = Vector2(0, -12.5)
 shape = SubResource("RectangleShape2D_361o4")
 
 [node name="StateMachine" type="Node" parent="."]
@@ -1639,5 +1639,5 @@ light_color = Color(0.252611, 0.425058, 0.490277, 1)
 auto_connect_to_parent = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="IsInWaterNotifier_GUN"]
-position = Vector2(0, -42)
+position = Vector2(0, -27.5)
 shape = SubResource("RectangleShape2D_3saph")
