@@ -35,7 +35,7 @@ func on_process(_delta: float):
 		machine.set_state("StateFalling")
 		return
 
-	if absf(hero.velocity.y) < 10\
+	if absf(hero.velocity.y) < 200\
 	and hero.is_pushing_wall()\
 	and not hero.shoulder_rc.is_colliding()\
 	and not hero.pelvis_rc.is_colliding()\
