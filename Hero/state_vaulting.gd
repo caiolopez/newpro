@@ -7,6 +7,7 @@ var target_y_position: float
 var target_x_position: float
 
 func on_enter():
+	$"../../Gfx/AnimatedSprite2D".play("vault")
 	hero.velocity.y = hero.VAULT_VELOCITY
 	target_y_position = hero.next_grd_height_rc.get_collision_point().y - %HeroCollider.shape.get_rect().size.y/2 - 5
 	target_x_position = hero.global_position.x + 10 * hero.facing_direction
@@ -25,6 +26,10 @@ func on_process(_delta: float):
 
 	if hero.is_on_floor():
 		machine.set_state("StateIdle")
+		return
+
+	if not hero.next_grd_height_rc.is_colliding():
+		machine.set_state("StateFalling")
 		return
 
 func on_physics_process(delta: float):
