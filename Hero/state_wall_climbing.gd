@@ -21,18 +21,17 @@ func on_process(_delta: float):
 	if hero.velocity.y < 0\
 	and not hero.pelvis_rc.is_colliding()\
 	and not hero.shoulder_rc.is_colliding()\
-	and hero.next_grd_height_rc.is_colliding()\
-	and hero.is_pushing_wall():
+	and hero.next_grd_height_rc.is_colliding():
 		machine.set_state("StateVaulting")
 		return
-	
+
 	if hero.velocity.y > 0:
 		machine.set_state("StateFalling")
 
 	if hero.is_on_floor():
 		machine.set_state("StateIdle")
 		return
-		
+
 	if Input.is_action_just_released("jump"):
 		hero.velocity.y *= 0.5
 
