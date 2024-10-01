@@ -70,7 +70,7 @@ physics_layer_0/collision_mask = 15
 sources/0 = SubResource("TileSetAtlasSource_tclv4")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ur4tq"]
-size = Vector2(2232, 761)
+size = Vector2(2232, 1144)
 
 [node name="INTRO" type="Node2D"]
 script = ExtResource("1_l82iy")
@@ -90,7 +90,7 @@ axes_to_lock = 2
 center_at = 1
 
 [node name="UniqueCollider" type="CollisionShape2D" parent="CameraLocker"]
-position = Vector2(324, -51.5)
+position = Vector2(324, -243)
 shape = SubResource("RectangleShape2D_ur4tq")
 debug_color = Color(1, 0, 1, 0.5)
 script = ExtResource("5_fcl45")

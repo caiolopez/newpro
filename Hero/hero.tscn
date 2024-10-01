@@ -1,4 +1,4 @@
-[gd_scene load_steps=208 format=3 uid="uid://1md1m8n6iq5x"]
+[gd_scene load_steps=207 format=3 uid="uid://1md1m8n6iq5x"]
 
 [ext_resource type="Script" path="res://Hero/hero.gd" id="1_dmqn8"]
 [ext_resource type="PackedScene" uid="uid://box2ff3vwcc7w" path="res://EntityComponents/DmgTaker.tscn" id="2_ktrux"]
@@ -424,9 +424,21 @@ region = Rect2(40, 0, 40, 40)
 atlas = ExtResource("8_qxmo7")
 region = Rect2(0, 0, 40, 40)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_x4vov"]
-atlas = ExtResource("7_abyu7")
-region = Rect2(40, 0, 40, 40)
+[sub_resource type="AtlasTexture" id="AtlasTexture_bif83"]
+atlas = ExtResource("16_s43rd")
+region = Rect2(160, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bmv88"]
+atlas = ExtResource("16_s43rd")
+region = Rect2(200, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o1736"]
+atlas = ExtResource("16_s43rd")
+region = Rect2(240, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4acqm"]
+atlas = ExtResource("16_s43rd")
+region = Rect2(280, 0, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m2yn6"]
 atlas = ExtResource("5_nryls")
@@ -491,22 +503,6 @@ region = Rect2(80, 0, 40, 40)
 [sub_resource type="AtlasTexture" id="AtlasTexture_qhrvd"]
 atlas = ExtResource("16_s43rd")
 region = Rect2(120, 0, 40, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bif83"]
-atlas = ExtResource("16_s43rd")
-region = Rect2(160, 0, 40, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bmv88"]
-atlas = ExtResource("16_s43rd")
-region = Rect2(200, 0, 40, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_o1736"]
-atlas = ExtResource("16_s43rd")
-region = Rect2(240, 0, 40, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4acqm"]
-atlas = ExtResource("16_s43rd")
-region = Rect2(280, 0, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q6d7q"]
 atlas = ExtResource("16_s43rd")
@@ -943,11 +939,20 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_x4vov")
+"texture": SubResource("AtlasTexture_bif83")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bmv88")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o1736")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4acqm")
 }],
 "loop": false,
 "name": &"vault",
-"speed": 5.0
+"speed": 30.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -1419,7 +1424,7 @@ use_parent_material = true
 position = Vector2(0, -15)
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_tm5on")
-animation = &"fall_loop"
+animation = &"vault"
 
 [node name="Muzzle" type="AnimatedSprite2D" parent="Gfx"]
 visible = false
@@ -1531,7 +1536,7 @@ one_shot = true
 script = ExtResource("28_goaiv")
 
 [node name="TimerWallJumpDuration" type="Timer" parent="StateMachine"]
-wait_time = 0.05
+wait_time = 0.075
 one_shot = true
 script = ExtResource("28_goaiv")
 
