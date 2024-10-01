@@ -7,7 +7,7 @@ var target_y_position: float
 
 func on_enter():
 	hero.velocity.y = hero.VAULT_VELOCITY
-	target_y_position = hero.next_grd_height_rc.get_collision_point().y - %HeroCollider.shape.get_rect().size.y/2 - 1
+	target_y_position = hero.next_grd_height_rc.get_collision_point().y - %HeroCollider.shape.get_rect().size.y/2 - 5
 
 func on_process(_delta: float):
 	if hero.step_shooting():

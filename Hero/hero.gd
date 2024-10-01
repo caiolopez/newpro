@@ -2,8 +2,8 @@ class_name Hero extends CharacterBody2D
 
 const REGULAR_SHOT_SPEED: float = 1000 ## The speed the normal shot moves. For blundershot setup, use Shooter component.
 const SPEED: float = 600.0 ## The moving speed of the hero.
-const JUMP_VELOCITY: float  = -1000.0 ## The speed the hero jumps when grounded.
-const VAULT_VELOCITY: float = -200.0 ## The speed the hero jumps when performing the vault. Vaulting is an assist that aims at standardize velocity.y when the hero climbs a wall all the way up.
+const JUMP_VELOCITY: float  = -940.0 ## The speed the hero jumps when grounded.
+const VAULT_VELOCITY: float = -250.0 ## The speed the hero jumps when performing the vault. Vaulting is an assist that aims at standardize velocity.y when the hero climbs a wall all the way up.
 const HEADBUTT_THRESHOLD_VEL: float = -300.0 ## The minimum upward velocity required for the headbutt assist to take place and snap the Hero.
 const WALLJUMP_VELOCITY = Vector2(1600, -600) ## The speed the hero walljumps away from a wall.
 const CLIMB_VELOCITY: float = -1000 ## The speed the hero jumps upward when jumping to the same side of the wall (Megaman-style walljump).
@@ -319,15 +319,15 @@ func force_water_detection() -> bool:
 	return true
 
 func resize_collider_to_regular() -> void:
-	%HeroCollider.shape.size.y = 156
-	%HeroCollider.position.y = -12
+	%HeroCollider.shape.size.y = 130
+	%HeroCollider.position.y = 0
 	var dmg_coll: CollisionShape2D = dmg_taker.get_node("CollisionShape2D")
-	dmg_coll.shape.size.y = 114
-	dmg_coll.position.y = -15
+	dmg_coll.shape.size.y = 110
+	dmg_coll.position.y = 0
 
 func resize_collider_to_swim() -> void:
-	%HeroCollider.shape.size.y = 78
-	%HeroCollider.position.y = -51
+	%HeroCollider.shape.size.y = 60
+	%HeroCollider.position.y = -35
 	var dmg_coll: CollisionShape2D = dmg_taker.get_node("CollisionShape2D")
-	dmg_coll.shape.size.y = 48
-	dmg_coll.position.y = -48
+	dmg_coll.shape.size.y = 50
+	dmg_coll.position.y = -30
