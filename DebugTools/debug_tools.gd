@@ -21,7 +21,7 @@ func input_bin():
 		AppManager.hero.state_machine.set_state("StateDebug")
 
 	#if Input.is_action_just_pressed("shoot"): print("SHOOT!")
-	#if Input.is_action_just_pressed("jump"): print("J")
+	#if Input.is_action_just_pressed("jump"): print("J ", AppManager.hero.pelvis_back_rc.is_colliding(), AppManager.hero.shoulder_back_rc.is_colliding())
 	#if Input.is_action_just_pressed("move_left"): print("LEFT")
 	#if Input.is_action_just_pressed("move_right"): print("RIGHT")
 	#if Input.is_action_just_released("jump"): print("j")

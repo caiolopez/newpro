@@ -90,6 +90,7 @@ axes_to_lock = 2
 center_at = 1
 
 [node name="UniqueCollider" type="CollisionShape2D" parent="CameraLocker"]
+visible = false
 position = Vector2(324, -243)
 shape = SubResource("RectangleShape2D_ur4tq")
 debug_color = Color(1, 0, 1, 0.5)

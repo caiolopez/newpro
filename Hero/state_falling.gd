@@ -18,6 +18,8 @@ func on_process(_delta: float):
 	if Input.is_action_just_pressed("jump"):
 		timer_buffer_walljump.start()
 
+	hero.step_walljump()
+
 	if hero.step_shooting():
 		return
 
@@ -72,5 +74,4 @@ func on_process(_delta: float):
 func on_physics_process(delta: float):
 	hero.step_grav(delta, hero.FAST_FALL_GRAVITY)
 	hero.step_lateral_mov(delta)
-	hero.step_walljump()
 	hero.move_and_slide()

@@ -16,6 +16,11 @@ func on_process(_delta: float):
 	if hero.step_shooting():
 		return
 
+	if Input.is_action_just_pressed("jump"):
+		timer_buffer_walljump.start()
+
+	hero.step_walljump()
+
 	if not hero.is_on_wall()\
 	and Input.is_action_just_pressed("jump"):
 		timer_buffer_climbing.start()
