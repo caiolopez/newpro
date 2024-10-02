@@ -28,6 +28,13 @@ func on_process(_delta: float):
 		machine.set_state("StateFalling")
 		return
 
+	if hero.velocity.y < 0\
+	and hero.is_pushing_wall()\
+	and not hero.shoulder_rc.is_colliding()\
+	and not hero.pelvis_rc.is_colliding()\
+	and hero.next_grd_height_rc.is_colliding():
+		machine.set_state("StateVaulting")
+
 func on_physics_process(delta: float):
 	hero.step_grav(delta)
 	if timer_walljump_duration.is_stopped():
