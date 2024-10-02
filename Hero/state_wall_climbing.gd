@@ -20,10 +20,10 @@ func on_process(_delta: float):
 
 	if hero.velocity.y < 0\
 	and not hero.pelvis_rc.is_colliding()\
-	and not hero.shoulder_rc.is_colliding():
+	and not hero.shoulder_rc.is_colliding(): 
 		if hero.next_grd_height_rc.is_colliding():
 			machine.set_state("StateVaulting")
-		else:
+		elif not hero.is_pushing_wall():
 			machine.set_state("StateFalling")
 		return
 
