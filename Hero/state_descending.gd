@@ -16,7 +16,10 @@ func on_process(_delta: float):
 	hero.step_shooting(false, true) # inverted: false, wet: true
 
 	if not hero.is_in_water:
+		hero.resize_collider_to_regular()
 		machine.set_state("StateIdle")
+		if hero.is_on_floor():
+			hero.global_position.y -= hero.FLOAT_TO_IDLE_HEIGHT_COMPENSATION
 		return
 
 	if Input.is_action_just_pressed("jump")\
@@ -35,9 +38,9 @@ func on_process(_delta: float):
 		timer_buffer_jump.start()
 
 	if Input.is_action_pressed("jump")\
-	and hero.global_position.y > hero.last_water_surface + 64:
+	and hero.global_position.y > hero.last_water_surface + 16: # Magic Number Alert
 		machine.set_state("StateAscending")
-		return
+		return 
 
 func on_physics_process(delta: float):
 	hero.step_grav(delta, hero.UNDERWATER_GRAVITY)
@@ -46,7 +49,7 @@ func on_physics_process(delta: float):
 	hero.velocity.y = minf(hero.velocity.y, hero.MAX_DESCENT_VEL_Y)
 	
 	if hero.velocity.y < 0\
-	and hero.global_position.y < hero.last_water_surface + 64:
+	and hero.global_position.y - hero.last_water_surface < 32: # Magic Number Alert
 		hero.velocity.y = 0
 	
 	hero.step_repel_swim_feet(delta)

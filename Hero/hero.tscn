@@ -1332,7 +1332,7 @@ animations = [{
 size = Vector2(50, 130)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8r0xo"]
-size = Vector2(60, 156)
+size = Vector2(50, 70)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3saph"]
 size = Vector2(40, 15)
@@ -1364,11 +1364,13 @@ script = ExtResource("3_6dncg")
 [node name="ShoulderRC" type="RayCast2D" parent="."]
 position = Vector2(0, -25)
 target_position = Vector2(100, 0)
+hit_from_inside = true
 script = ExtResource("3_6dncg")
 
 [node name="PelvisRC" type="RayCast2D" parent="."]
 position = Vector2(0, 25)
 target_position = Vector2(100, 0)
+hit_from_inside = true
 script = ExtResource("3_6dncg")
 
 [node name="InnardsRC" type="RayCast2D" parent="."]
@@ -1421,7 +1423,7 @@ use_parent_material = true
 position = Vector2(0, -15)
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_tm5on")
-animation = &"vault"
+animation = &"water_swim"
 
 [node name="Muzzle" type="AnimatedSprite2D" parent="Gfx"]
 visible = false
@@ -1587,8 +1589,7 @@ script = ExtResource("28_goaiv")
 [node name="IsInWaterNotifier" parent="." instance=ExtResource("49_p6sxx")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="IsInWaterNotifier"]
-visible = false
-position = Vector2(0, -12)
+position = Vector2(0, -30)
 shape = SubResource("RectangleShape2D_8r0xo")
 
 [node name="BlurFX" parent="." node_paths=PackedStringArray("target") instance=ExtResource("50_6e2hc")]

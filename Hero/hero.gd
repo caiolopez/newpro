@@ -23,6 +23,7 @@ const UNDERWATER_GRAVITY: float = 500 ## The downward force, in absolute values,
 const MAX_FALL_VEL_Y: float = 2000.0 ## The maximum downward speed when falling.
 const BUOYANCY: float = 100 ## The upward acceleration when underwater. Only affects state Floating.
 const ASCENDING_VELOCITY: float = -300.0 ## The Y speed at which the hero swims upwards when holding jump while underwater. CAN_DIVE must be set to true.
+const FLOAT_TO_IDLE_HEIGHT_COMPENSATION: float = 80.0 ## The increment in vertical position when transitioning floating to idle.
 const MAX_DESCENT_VEL_Y: float = 300 ## The maximum downward speed when diving (CAN_DIVE must be set to true).
 @onready var original_position: Vector2 = global_position
 @onready var state_machine: StateMachine = $StateMachine
@@ -326,8 +327,8 @@ func resize_collider_to_regular() -> void:
 	dmg_coll.position.y = 0
 
 func resize_collider_to_swim() -> void:
-	%HeroCollider.shape.size.y = 60
-	%HeroCollider.position.y = -35
+	%HeroCollider.shape.size.y = 70
+	%HeroCollider.position.y = -30
 	var dmg_coll: CollisionShape2D = dmg_taker.get_node("CollisionShape2D")
 	dmg_coll.shape.size.y = 50
 	dmg_coll.position.y = -30

@@ -1,10 +1,16 @@
-[gd_scene load_steps=9 format=4 uid="uid://datwnf1ab8341"]
+[gd_scene load_steps=13 format=4 uid="uid://datwnf1ab8341"]
 
 [ext_resource type="Script" path="res://RegionManagement/region.gd" id="1_l82iy"]
 [ext_resource type="Texture2D" uid="uid://bp7vnugiq46o" path="res://Tilesets/alienscape_tileset_transparent.png" id="2_5i63v"]
 [ext_resource type="Script" path="res://Regions/hero_positioner.gd" id="2_orj6q"]
+[ext_resource type="PackedScene" uid="uid://dd08gffrk8txn" path="res://ElevatorSystem/ElevatorSystem.tscn" id="3_rou1q"]
 [ext_resource type="PackedScene" uid="uid://bgty58ccnncxy" path="res://Camera/CameraLocker.tscn" id="4_2o0al"]
+[ext_resource type="PackedScene" uid="uid://boug41cw8taxh" path="res://ElevatorSystem/ElevatorButton.tscn" id="4_tvbtk"]
+[ext_resource type="PackedScene" uid="uid://bt23waqbakmop" path="res://Water/Water.tscn" id="4_xeylp"]
 [ext_resource type="Script" path="res://EntityComponents/unique_collider.gd" id="5_fcl45"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vc0ri"]
+size = Vector2(1520, 400)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tclv4"]
 texture = ExtResource("2_5i63v")
@@ -79,9 +85,27 @@ script = ExtResource("1_l82iy")
 position = Vector2(168, -216)
 script = ExtResource("2_orj6q")
 
+[node name="ElevatorSystem" parent="." node_paths=PackedStringArray("elevator_node") instance=ExtResource("3_rou1q")]
+elevator_node = NodePath("../Water")
+end_position = Vector2(0, -200)
+
+[node name="ElevatorButton" parent="ElevatorSystem" instance=ExtResource("4_tvbtk")]
+
+[node name="ElevatorButton2" parent="ElevatorSystem" instance=ExtResource("4_tvbtk")]
+position = Vector2(0, 65)
+type = 1
+
+[node name="Water" parent="." instance=ExtResource("4_xeylp")]
+
+[node name="UniqueCollider" type="CollisionShape2D" parent="Water"]
+position = Vector2(280, 40)
+shape = SubResource("RectangleShape2D_vc0ri")
+script = ExtResource("5_fcl45")
+metadata/original_shape_hash = 229854038
+
 [node name="TileMapLayer" type="TileMapLayer" parent="." groups=["kills_bullets"]]
 scale = Vector2(5, 5)
-tile_map_data = PackedByteArray("AAD8/wMAAAAAAAAAAAD9/wMAAAAAAAAAAAD+/wMAAAAAAAAAAAD//wMAAAAAAAAAAAAAAAMAAAAAAAAAAAABAAMAAAAAAAAAAAACAAMAAAAAAAAAAAADAAMAAAAAAAAAAAAEAAMAAAAAAAAAAAAFAAMAAAAAAAAAAAAGAAMAAAAAAAAAAAAHAAMAAAAAAAAAAAAIAAMAAAAAAAAAAAAJAAMAAAAAAAAAAAAKAAMAAAAAAAAAAAALAAMAAAAAAAAAAAAMAAMAAAAAAAAAAAANAAMAAAAAAAAAAAAOAAMAAAAAAAAAAAD7/wMAAAAAAAAAAAD6/wMAAAAAAAAAAAD5/wMAAAAAAAAAAAD4/wMAAAAAAAAAAAANAAIAAAAAAAAAAAANAAEAAAAAAAAAAAANAAAAAAAAAAAAAAD5/wIAAAAAAAAAAAD5/wEAAAAAAAAAAAD5/wAAAAAAAAAAAAD+/wIAAAAAAAAAAAACAAIAAAAAAAAAAAACAAEAAAAAAAAAAAAIAAIAAAAAAAAAAAAIAAEAAAAAAAAAAAAIAAAAAAAAAAAAAAAIAP//AAAAAAAAAAD9//z/AAAAAAAAAAD9//3/AAAAAAAAAAD9//v/AAAAAAAAAAANAP//AAAAAAAAAAANAP7/AAAAAAAAAAADAP3/AAAAAAAAAAACAP3/AAAAAAAAAAAMAPz/AAAAAAAAAAAIAP7/AAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAD8/wMAAAAAAAAAAAD9/wMAAAAAAAAAAAD+/wMAAAAAAAAAAAD//wMAAAAAAAAAAAAAAAMAAAAAAAAAAAABAAMAAAAAAAAAAAACAAMAAAAAAAAAAAADAAMAAAAAAAAAAAAEAAMAAAAAAAAAAAAFAAMAAAAAAAAAAAAGAAMAAAAAAAAAAAAHAAMAAAAAAAAAAAAIAAMAAAAAAAAAAAAJAAMAAAAAAAAAAAAKAAMAAAAAAAAAAAALAAMAAAAAAAAAAAAMAAMAAAAAAAAAAAANAAMAAAAAAAAAAAAOAAMAAAAAAAAAAAD7/wMAAAAAAAAAAAD6/wMAAAAAAAAAAAD5/wMAAAAAAAAAAAD4/wMAAAAAAAAAAAANAAIAAAAAAAAAAAANAAEAAAAAAAAAAAANAAAAAAAAAAAAAAD5/wIAAAAAAAAAAAD5/wEAAAAAAAAAAAD5/wAAAAAAAAAAAAD+/wIAAAAAAAAAAAACAAIAAAAAAAAAAAACAAEAAAAAAAAAAAAIAAIAAAAAAAAAAAAIAAEAAAAAAAAAAAAIAAAAAAAAAAAAAAAIAP//AAAAAAAAAAD9//z/AAAAAAAAAAD9//3/AAAAAAAAAAD9//v/AAAAAAAAAAANAP//AAAAAAAAAAANAP7/AAAAAAAAAAADAP3/AAAAAAAAAAACAP3/AAAAAAAAAAAMAPz/AAAAAAAAAAAIAP7/AAAAAAAAAAD9//7/AAAAAAAAAAADAP7/AAABAAAAAAA=")
 tile_set = SubResource("TileSet_qbxtp")
 metadata/_edit_lock_ = true
 

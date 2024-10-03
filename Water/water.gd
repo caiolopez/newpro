@@ -20,7 +20,7 @@ func get_surface_global_position() -> float:
 	return collider.global_position.y - shape_extents.y
 
 func _setup_water_surface_art() -> void:
-	var fine_tune: Vector2 = Vector2(0, -80)
+	var fine_tune: Vector2 = Vector2(0, -50)
 	
 	var shape_extents = collider.shape.extents
 	var tile_size = tile_map_layer.tile_set.tile_size.x * tile_map_layer.scale.x

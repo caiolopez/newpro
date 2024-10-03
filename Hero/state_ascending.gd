@@ -16,17 +16,20 @@ func on_process(_delta: float):
 		return
 
 	if not hero.is_in_water:
+		hero.resize_collider_to_regular()
 		machine.set_state("StateIdle")
+		if hero.is_on_floor():
+			hero.global_position.y -= hero.FLOAT_TO_IDLE_HEIGHT_COMPENSATION
 		return
 
 	if not Input.is_action_pressed("jump"):
 		machine.set_state("StateDescending")
 
 func on_physics_process(delta: float):
-	if hero.global_position.y - hero.last_water_surface > 72:
+	if hero.global_position.y - hero.last_water_surface > 36: # Magic Number Alert
 		hero.velocity.y = hero.ASCENDING_VELOCITY
 	else:
-		hero.global_position.y = hero.last_water_surface + 64
+		hero.global_position.y = hero.last_water_surface + 34 # Magic Number Alert
 		hero.velocity.y = 0
 	hero.step_lateral_mov(delta)
 	hero.step_repel_swim_feet(delta)
