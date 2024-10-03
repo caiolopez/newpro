@@ -12,6 +12,7 @@ func on_process(_delta: float):
 	if not timer_buffer_jump.is_stopped()\
 	and hero.is_pushing_wall()\
 	and hero.is_head_above_water():
+		hero.resize_collider_to_regular()
 		machine.set_state("StateJumping")
 		return
 

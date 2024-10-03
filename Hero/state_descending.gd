@@ -22,20 +22,15 @@ func on_process(_delta: float):
 			hero.global_position.y -= hero.FLOAT_TO_IDLE_HEIGHT_COMPENSATION
 		return
 
+	if Input.is_action_just_pressed("jump"):
+		timer_buffer_jump.start()
+		
 	if Input.is_action_just_pressed("jump")\
 	and hero.is_head_above_water()\
 	and hero.is_pushing_wall():
+		hero.resize_collider_to_regular()
 		machine.set_state("StateJumping")
 		return
-
-	if Input.is_action_just_pressed("jump")\
-	and hero.is_head_above_water()\
-	and hero.is_on_floor():
-		machine.set_state("StateJumping")
-		return
-
-	if Input.is_action_just_pressed("jump"):
-		timer_buffer_jump.start()
 
 	if Input.is_action_pressed("jump")\
 	and hero.global_position.y > hero.last_water_surface + 16: # Magic Number Alert

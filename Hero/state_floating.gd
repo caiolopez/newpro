@@ -34,20 +34,10 @@ func on_process(_delta: float):
 	if Input.is_action_just_pressed("jump"):
 		timer_buffer_jump.start()
 
-	if not timer_buffer_jump.is_stopped()\
+	if (not timer_buffer_jump.is_stopped() or Input.is_action_just_pressed("jump"))\
 	and hero.is_pushing_wall()\
 	and hero.is_head_above_water():
-		machine.set_state("StateJumping")
-		return
-
-	if Input.is_action_just_pressed("jump")\
-	and hero.is_on_floor():
-		machine.set_state("StateJumping")
-		return
-
-	if Input.is_action_just_pressed("jump")\
-	and hero.is_pushing_wall()\
-	and hero.is_head_above_water():
+		hero.resize_collider_to_regular()
 		machine.set_state("StateJumping")
 		return
 
