@@ -3,4 +3,6 @@
 [ext_resource type="Script" path="res://EntityComponents/is_in_water_notifier.gd" id="1_45ur1"]
 
 [node name="IsInWaterNotifier" type="Area2D"]
+collision_layer = 0
+collision_mask = 64
 script = ExtResource("1_45ur1")

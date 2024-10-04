@@ -22,6 +22,8 @@ texture = ExtResource("2_yk3ra")
 sources/0 = SubResource("TileSetAtlasSource_70at8")
 
 [node name="Water" type="Area2D"]
+collision_layer = 64
+collision_mask = 0
 script = ExtResource("1_j6gn3")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]

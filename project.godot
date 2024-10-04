@@ -208,9 +208,13 @@ minimap={
 
 [layer_names]
 
+2d_physics/layer_1="terrain"
 2d_physics/layer_2="tilemap_hazards"
 2d_physics/layer_3="enemies"
 2d_physics/layer_4="hero"
+2d_physics/layer_5="bullets"
+2d_physics/layer_6="interactibles"
+2d_physics/layer_7="water"
 
 [rendering]
 

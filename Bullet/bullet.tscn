@@ -201,6 +201,8 @@ animations = [{
 
 [node name="Bullet" type="Area2D" groups=["bullets", "dmg_dealers"]]
 z_index = 1
+collision_layer = 16
+collision_mask = 65
 script = ExtResource("1_hqyxv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
