@@ -222,6 +222,7 @@ func color_muzzle(dark: Color, light: Color) -> void:
 func die():
 	if state_machine.current_state.death_prone:
 		state_machine.set_state("StateDeathSnapshot")
+		resize_collider_to_regular()
 
 func on_water_status_changed(_is_in_water: bool, water: Water):
 	self.is_in_water = _is_in_water
@@ -274,6 +275,7 @@ func reset_all_variables() -> void:
 	can_dive = false
 	shooter.bullet_type = Constants.BulletType.REGULAR
 	shooter.shoots_underwater_ammo = false
+	resize_collider_to_regular()
 	shooter.is_in_water = false
 	dmg_taker.current_hp = dmg_taker.HP_AMOUNT
 

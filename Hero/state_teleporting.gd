@@ -15,6 +15,7 @@ func on_process(_delta: float):
 	if not tween.is_running():
 		tween.kill()
 		hero.velocity = Vector2.ZERO
+		hero.resize_collider_to_regular()
 		machine.set_state("StateIdle")
 		return
 
