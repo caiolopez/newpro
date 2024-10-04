@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://datwnf1ab8341"]
+[gd_scene load_steps=18 format=4 uid="uid://datwnf1ab8341"]
 
 [ext_resource type="Script" path="res://RegionManagement/region.gd" id="1_l82iy"]
 [ext_resource type="Texture2D" uid="uid://bp7vnugiq46o" path="res://Tilesets/alienscape_tileset_transparent.png" id="2_5i63v"]
@@ -9,6 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://bt23waqbakmop" path="res://Water/Water.tscn" id="4_xeylp"]
 [ext_resource type="Script" path="res://EntityComponents/unique_collider.gd" id="5_fcl45"]
 [ext_resource type="PackedScene" uid="uid://csvdenv1i3dc3" path="res://Teleporter/Teleporter.tscn" id="9_el3li"]
+[ext_resource type="PackedScene" uid="uid://bu38boui2wxu" path="res://SwitchesAndDoors/SwitchGroupController.tscn" id="10_81iia"]
+[ext_resource type="PackedScene" uid="uid://ruri8ytnt6k" path="res://SwitchesAndDoors/Door.tscn" id="11_1j06n"]
+[ext_resource type="PackedScene" uid="uid://0fx3l1vwyhr4" path="res://SwitchesAndDoors/Switch.tscn" id="12_5fehb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4jspg"]
 size = Vector2(1520, 400)
@@ -82,6 +85,9 @@ sources/0 = SubResource("TileSetAtlasSource_tclv4")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ur4tq"]
 size = Vector2(2232, 1144)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mg72c"]
+size = Vector2(70, 130)
+
 [node name="INTRO" type="Node2D"]
 script = ExtResource("1_l82iy")
 
@@ -128,4 +134,17 @@ metadata/original_shape_hash = 169367947
 [node name="Marker2D" type="Marker2D" parent="CameraLocker"]
 
 [node name="Teleporter" parent="." instance=ExtResource("9_el3li")]
-position = Vector2(-365, -420)
+position = Vector2(-455, -495)
+
+[node name="SwitchGroupController" parent="." instance=ExtResource("10_81iia")]
+
+[node name="Door" parent="SwitchGroupController" instance=ExtResource("11_1j06n")]
+position = Vector2(190, -355)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SwitchGroupController/Door"]
+position = Vector2(15, 50)
+shape = SubResource("RectangleShape2D_mg72c")
+
+[node name="Switch" parent="SwitchGroupController" instance=ExtResource("12_5fehb")]
+position = Vector2(-450, -655)
+toggle = true
