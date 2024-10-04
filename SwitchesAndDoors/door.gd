@@ -53,7 +53,7 @@ func tween_door(offset: Vector2):
 		self,
 		"position",
 		closed_pos + offset,
-		duration).set_trans(Tween.TRANS_EXPO)
+		duration).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
 	door_tween.finished.connect(on_tween_finished)
 
 func on_tween_finished():

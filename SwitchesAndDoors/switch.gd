@@ -1,7 +1,7 @@
 class_name Switch extends Area2D
 
 @export var toggle: bool = false ## Default switches (toggle == false) can only be turned on. Set this to true if this switch can be turned off as well.
-var controller: Node2D
+var controller: SwitchGroupController
 var current_state: Constants.SwitchState
 var last_processed_bullet: Bullet = null
 

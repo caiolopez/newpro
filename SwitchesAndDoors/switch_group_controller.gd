@@ -1,4 +1,4 @@
-extends Node2D
+class_name SwitchGroupController extends Node
 
 
 @export var req_simultaneous: bool = false ## Set this to true if all switches must be activated at the same time.

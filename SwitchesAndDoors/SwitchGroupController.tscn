@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" path="res://SwitchesAndDoors/switch_group_controller.gd" id="1_4audi"]
 
-[node name="SwitchGroupController" type="Node2D"]
+[node name="SwitchGroupController" type="Node"]
 script = ExtResource("1_4audi")
