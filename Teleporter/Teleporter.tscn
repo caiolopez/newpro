@@ -147,13 +147,13 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bvbew"]
-size = Vector2(128, 128)
+size = Vector2(80, 80)
 
 [node name="Teleporter" type="Area2D"]
 script = ExtResource("1_wgfu5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(6, 6)
+scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_bo581")
 animation = &"offline"
 

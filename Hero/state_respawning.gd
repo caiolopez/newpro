@@ -3,15 +3,15 @@ extends HeroState
 var water_prone: bool = false
 var death_prone: bool = false
 
-var curr_signal: int = 1
+var curr_sign: int = 1
 
 func on_enter():
 	Events.hero_respawned_at_checkpoint.emit()
 
 func on_process(_delta: float):
 	if hero.innards_rc.is_colliding():
-		hero.global_position.x += 128 * curr_signal
-		curr_signal *= -1
+		hero.global_position.x += 128 * curr_sign
+		curr_sign *= -1
 		return
 
 	if hero.is_in_water:
