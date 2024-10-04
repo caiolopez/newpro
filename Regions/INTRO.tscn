@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://datwnf1ab8341"]
+[gd_scene load_steps=14 format=4 uid="uid://datwnf1ab8341"]
 
 [ext_resource type="Script" path="res://RegionManagement/region.gd" id="1_l82iy"]
 [ext_resource type="Texture2D" uid="uid://bp7vnugiq46o" path="res://Tilesets/alienscape_tileset_transparent.png" id="2_5i63v"]
@@ -8,8 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://boug41cw8taxh" path="res://ElevatorSystem/ElevatorButton.tscn" id="4_tvbtk"]
 [ext_resource type="PackedScene" uid="uid://bt23waqbakmop" path="res://Water/Water.tscn" id="4_xeylp"]
 [ext_resource type="Script" path="res://EntityComponents/unique_collider.gd" id="5_fcl45"]
+[ext_resource type="PackedScene" uid="uid://csvdenv1i3dc3" path="res://Teleporter/Teleporter.tscn" id="9_el3li"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rb7aw"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4jspg"]
 size = Vector2(1520, 400)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tclv4"]
@@ -19,6 +20,7 @@ texture = ExtResource("2_5i63v")
 1:0/0 = 0
 1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, 8, 0, -8, 0, -8, -8)
 2:0/0 = 0
+2:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(0, 4, 4, 0, 4, 0, 0, -4, -4, 0, 0, 4)
 3:0/0 = 0
 4:0/0 = 0
 5:0/0 = 0
@@ -73,6 +75,8 @@ texture = ExtResource("2_5i63v")
 [sub_resource type="TileSet" id="TileSet_qbxtp"]
 physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 15
+physics_layer_1/collision_layer = 2
+physics_layer_1/collision_mask = 8
 sources/0 = SubResource("TileSetAtlasSource_tclv4")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ur4tq"]
@@ -99,13 +103,13 @@ type = 1
 
 [node name="UniqueCollider" type="CollisionShape2D" parent="Water"]
 position = Vector2(280, 40)
-shape = SubResource("RectangleShape2D_rb7aw")
+shape = SubResource("RectangleShape2D_4jspg")
 script = ExtResource("5_fcl45")
-metadata/original_shape_hash = 786358363
+metadata/original_shape_hash = 222042692
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." groups=["kills_bullets"]]
 scale = Vector2(5, 5)
-tile_map_data = PackedByteArray("AAD8/wMAAAAAAAAAAAD9/wMAAAAAAAAAAAD+/wMAAAAAAAAAAAD//wMAAAAAAAAAAAAAAAMAAAAAAAAAAAABAAMAAAAAAAAAAAACAAMAAAAAAAAAAAADAAMAAAAAAAAAAAAEAAMAAAAAAAAAAAAFAAMAAAAAAAAAAAAGAAMAAAAAAAAAAAAHAAMAAAAAAAAAAAAIAAMAAAAAAAAAAAAJAAMAAAAAAAAAAAAKAAMAAAAAAAAAAAALAAMAAAAAAAAAAAAMAAMAAAAAAAAAAAANAAMAAAAAAAAAAAAOAAMAAAAAAAAAAAD7/wMAAAAAAAAAAAD6/wMAAAAAAAAAAAD5/wMAAAAAAAAAAAD4/wMAAAAAAAAAAAANAAIAAAAAAAAAAAANAAEAAAAAAAAAAAANAAAAAAAAAAAAAAD5/wIAAAAAAAAAAAD5/wEAAAAAAAAAAAD5/wAAAAAAAAAAAAD+/wIAAAAAAAAAAAACAAIAAAAAAAAAAAACAAEAAAAAAAAAAAAIAAIAAAAAAAAAAAAIAAEAAAAAAAAAAAAIAAAAAAAAAAAAAAAIAP//AAAAAAAAAAD9//z/AAAAAAAAAAD9//3/AAAAAAAAAAD9//v/AAAAAAAAAAANAP//AAAAAAAAAAANAP7/AAAAAAAAAAADAP3/AAAAAAAAAAACAP3/AAAAAAAAAAAMAPz/AAAAAAAAAAAIAP7/AAAAAAAAAAD9//7/AAAAAAAAAAADAP7/AAAAAAAAAAACAP7/AAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAD8/wMAAAAAAAAAAAD9/wMAAAAAAAAAAAD+/wMAAAAAAAAAAAD//wMAAAAAAAAAAAAAAAMAAAAAAAAAAAABAAMAAAAAAAAAAAACAAMAAAAAAAAAAAADAAMAAAAAAAAAAAAEAAMAAAAAAAAAAAAFAAMAAAAAAAAAAAAGAAMAAAAAAAAAAAAHAAMAAAAAAAAAAAAIAAMAAAAAAAAAAAAJAAMAAAAAAAAAAAAKAAMAAAAAAAAAAAALAAMAAAAAAAAAAAAMAAMAAAAAAAAAAAANAAMAAAAAAAAAAAAOAAMAAAAAAAAAAAD7/wMAAAAAAAAAAAD6/wMAAAAAAAAAAAD5/wMAAAAAAAAAAAD4/wMAAAAAAAAAAAANAAIAAAAAAAAAAAANAAEAAAAAAAAAAAANAAAAAAAAAAAAAAD5/wIAAAAAAAAAAAD5/wEAAAAAAAAAAAD5/wAAAAAAAAAAAAD+/wIAAAAAAAAAAAACAAIAAAAAAAAAAAACAAEAAAAAAAAAAAAIAAIAAAAAAAAAAAAIAAEAAAAAAAAAAAAIAAAAAAAAAAAAAAAIAP//AAAAAAAAAAD9//z/AAAAAAAAAAD9//3/AAAAAAAAAAD9//v/AAAAAAAAAAANAP//AAAAAAAAAAANAP7/AAAAAAAAAAADAP3/AAAAAAAAAAACAP3/AAAAAAAAAAAMAPz/AAAAAAAAAAAIAP7/AAAAAAAAAAD9//7/AAAAAAAAAAADAP7/AAAAAAAAAAACAP7/AAAAAAAAAAAIAPz/AAACAAAAAAADAPz/AAACAAAAAAA=")
 tile_set = SubResource("TileSet_qbxtp")
 metadata/_edit_lock_ = true
 
@@ -122,3 +126,6 @@ script = ExtResource("5_fcl45")
 metadata/original_shape_hash = 169367947
 
 [node name="Marker2D" type="Marker2D" parent="CameraLocker"]
+
+[node name="Teleporter" parent="." instance=ExtResource("9_el3li")]
+position = Vector2(-365, -420)

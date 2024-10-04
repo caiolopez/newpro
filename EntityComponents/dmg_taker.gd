@@ -20,6 +20,7 @@ signal regenerated
 func _ready():
 	Events.hero_reached_checkpoint.connect(commit_status)
 	Events.hero_respawned_at_checkpoint.connect(reset_status)
+	body_entered.connect(func(_body): take_dmg(1))
 	area_entered.connect(on_area_entered)
 	area_exited.connect(func(area): if area == last_processed_bullet:
 		last_processed_bullet = null, CONNECT_DEFERRED)

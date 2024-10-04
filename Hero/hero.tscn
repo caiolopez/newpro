@@ -1346,6 +1346,7 @@ script = ExtResource("1_dmqn8")
 metadata/_edit_group_ = true
 
 [node name="DmgTaker" parent="." instance=ExtResource("2_ktrux")]
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DmgTaker"]
 shape = SubResource("RectangleShape2D_wwsjr")
