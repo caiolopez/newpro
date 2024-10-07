@@ -68,7 +68,7 @@ func on_switch_turned_on():
 	if req_simultaneous:
 		var all_temp: bool = true
 		for sw in related_switches:
-			if sw.current_state != Constants.SwitchState.TEMP_ON:
+			if not sw.is_state_temp_on():
 				all_temp = false
 		if all_temp:
 			turn_on_rel_switches()
