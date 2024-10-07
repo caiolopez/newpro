@@ -1,4 +1,7 @@
+@tool
 class_name Door extends AnimatableBody2D
+
+@export_tool_button("Bake Art") var v = func(): if find_door_collider(): setup_art()
 
 @export var duration: float = 1.0
 @export var open_offset: Vector2 = Vector2(0.0, -288.0)
@@ -18,12 +21,7 @@ func _ready():
 		$StateMachine/TimerAutoClose.set_wait_time(auto_close_time)
 	state_machine.start()
 	
-	for child in get_children():
-		if child is CollisionShape2D:
-			door_collider = child
-			break
-	
-	if door_collider:
+	if find_door_collider():
 		setup_art()
 		setup_anticrush_area()
 
@@ -79,4 +77,12 @@ func setup_anticrush_area():
 	$AntiCrushArea.add_child(anti_crush_collider)
 	$AntiCrushArea.set_as_top_level(true)
 	$AntiCrushArea.global_position = global_position
-	
+
+func find_door_collider() -> CollisionShape2D:
+	var collider: CollisionShape2D = null
+	for child in get_children():
+		if child is CollisionShape2D:
+			collider = child
+			break
+	door_collider = collider
+	return collider
