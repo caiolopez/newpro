@@ -38,24 +38,23 @@ collision_mask = 12
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("3_vgayv")
-does_print = false
 
-[node name="StateClosed" type="Node" parent="StateMachine"]
+[node name="DoorStateClosed" type="Node" parent="StateMachine"]
 script = ExtResource("4_vsukd")
 
-[node name="StateOpen" type="Node" parent="StateMachine"]
+[node name="DoorStateOpen" type="Node" parent="StateMachine"]
 script = ExtResource("4_qyouu")
 
-[node name="StateClosing" type="Node" parent="StateMachine"]
+[node name="DoorStateClosing" type="Node" parent="StateMachine"]
 script = ExtResource("6_fh1vt")
 
-[node name="StateOpening" type="Node" parent="StateMachine"]
+[node name="DoorStateOpening" type="Node" parent="StateMachine"]
 script = ExtResource("5_dl3qx")
 
-[node name="StateTemporarilyOpen" type="Node" parent="StateMachine"]
+[node name="DoorStateTemporarilyOpen" type="Node" parent="StateMachine"]
 script = ExtResource("9_37487")
 
-[node name="StateRevFromClosing" type="Node" parent="StateMachine"]
+[node name="DoorStateRevFromClosing" type="Node" parent="StateMachine"]
 script = ExtResource("8_blgy7")
 
 [node name="TimerAutoClose" type="Timer" parent="StateMachine"]

@@ -14,8 +14,8 @@ func on_exit():
 
 
 func on_close_door():
-	machine.set_state("StateClosing")
+	machine.set_state("DoorDoorStateClosing")
 
 
 func on_timeout():
-	machine.set_state("StateClosing")
+	machine.set_state("DoorDoorStateClosing")

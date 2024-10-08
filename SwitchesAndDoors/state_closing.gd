@@ -6,7 +6,7 @@ func on_enter():
 	$"../../AntiCrushArea".body_entered.connect(on_body_entered_doorway)
 	
 	if door.area_has_uncrushables():
-		machine.set_state("StateRevFromClosing")
+		machine.set_state("DoorStateRevFromClosing")
 		return
 	else:
 		door.tween_door_to_origin()
@@ -23,12 +23,12 @@ func _disconnect_signals() -> void:
 	$"../../AntiCrushArea".body_entered.disconnect(on_body_entered_doorway)
 
 func on_stopped_moving():
-	machine.set_state("StateClosed")
+	machine.set_state("DoorStateClosed")
 
 func on_open_door():
-	machine.set_state("StateOpening")
+	machine.set_state("DoorStateOpening")
 
 func on_body_entered_doorway(body):
 	if not body.is_in_group("uncrushables"):
 		return
-	machine.set_state("StateRevFromClosing")
+	machine.set_state("DoorStateRevFromClosing")

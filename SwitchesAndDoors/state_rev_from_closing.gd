@@ -11,4 +11,4 @@ func on_exit():
 
 
 func on_stopped_moving():
-	machine.set_state("StateClosing")
+	machine.set_state("DoorStateClosing")

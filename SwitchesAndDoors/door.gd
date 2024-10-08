@@ -2,7 +2,6 @@
 class_name Door extends AnimatableBody2D
 
 @export_tool_button("Bake Art") var v = func(): if find_door_collider(): setup_art()
-
 @export var duration: float = 1.0
 @export var open_offset: Vector2 = Vector2(0.0, -288.0)
 @export var auto_close_time: float = 0.0 ## If not zero, causes the door to automatically close after the specified time.
@@ -33,11 +32,11 @@ func close():
 
 func insta_open():
 	position = closed_pos + open_offset
-	state_machine.set_state("StateOpen")
+	state_machine.set_state("DoorStateOpen")
 
 func insta_close():
 	position = closed_pos
-	state_machine.set_state("StateClosed")
+	state_machine.set_state("DoorStateClosed")
 
 func tween_door_to_origin():
 	tween_door(Vector2.ZERO)

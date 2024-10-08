@@ -10,4 +10,4 @@ func on_exit():
 
 
 func on_open_door():
-	machine.set_state("StateOpening")
+	machine.set_state("DoorStateOpening")
