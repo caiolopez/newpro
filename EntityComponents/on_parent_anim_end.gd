@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 
 enum Effects {FREE, RETURN_PROP, HIDE, REPLACE_ANIMATION}
 @export var animation_name: StringName = &"" # Optional animation filter.

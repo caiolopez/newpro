@@ -1,4 +1,4 @@
-class_name BwShaderSetter extends Node2D
+class_name BwShaderSetter extends Node
 
 @export var dark_color: Color = Color.BLACK ## The color that will replace the black pixels. Note: Is overwritten by "Dark Color Name".
 @export var dark_color_name: StringName ## The name of the constant bearing the desired color value, as implemented in the Constants file. This has priority over the color picker value.

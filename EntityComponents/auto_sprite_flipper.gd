@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 
 @export var randomize_h: bool = true
 @export var randomize_v: bool = false

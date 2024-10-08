@@ -1,1 +1,1 @@
-class_name Region extends Node2D
+class_name Region extends Node

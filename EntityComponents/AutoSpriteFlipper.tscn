@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" path="res://EntityComponents/auto_sprite_flipper.gd" id="1_aq05r"]
 
-[node name="AutoSpriteFlipper" type="Node2D"]
+[node name="AutoSpriteFlipper" type="Node"]
 script = ExtResource("1_aq05r")

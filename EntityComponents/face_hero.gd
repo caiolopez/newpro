@@ -1,4 +1,4 @@
-class_name FaceHero extends Node2D
+class_name FaceHero extends Node
 
 @export var face_hero: bool = false
 @onready var parent: Node2D = get_parent()

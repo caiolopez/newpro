@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 
 @onready var game_tree = get_node("/root/GameTree")
 var last_placement: Dictionary = {}

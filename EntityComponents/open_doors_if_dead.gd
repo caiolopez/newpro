@@ -1,4 +1,4 @@
-class_name OpenDoorsIfDead extends Node2D
+class_name OpenDoorsIfDead extends Node
 
 @export var doors_to_open: Array[Door] = []
 @onready var dmg_taker: DmgTaker = Utils.find_dmg_taker(self.get_parent())

@@ -1,4 +1,4 @@
-class_name PlacePropWhenDead extends Node2D
+class_name PlacePropWhenDead extends Node
 
 @export var prop_to_place: StringName
 @export var amount: int = 1 ## The amount of props that are going to be instantiated.

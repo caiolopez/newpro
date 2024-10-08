@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 
 @export var print_stuff: bool = true
 @export var input_stuff: bool = true

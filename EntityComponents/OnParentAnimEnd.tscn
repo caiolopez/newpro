@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" path="res://EntityComponents/on_parent_anim_end.gd" id="1_cdyl4"]
 
-[node name="OnParentAnimEnd" type="Node2D"]
+[node name="OnParentAnimEnd" type="Node"]
 script = ExtResource("1_cdyl4")

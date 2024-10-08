@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" path="res://EntityComponents/bw_shader_setter.gd" id="1_4monm"]
 
-[node name="BwShaderSetter" type="Node2D"]
+[node name="BwShaderSetter" type="Node"]
 script = ExtResource("1_4monm")
