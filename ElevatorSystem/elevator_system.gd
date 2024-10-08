@@ -2,11 +2,11 @@ class_name ElevatorSystem extends Node
 
 ## Usage: Requires ElevatorButtons as children.
 
-enum Property {position, rotation}
+enum Property {POSITION, ROTATION}
 enum State {ORIGIN, DESTINATION, MOVING_TO_ORIGIN, MOVING_TO_DESTINATION}
 
 @export var elevator_node: Node2D = null ## The Node2D that will be tweened, aka the actual elevator
-@export var property_to_tween: Property = Property.position
+@export var property_to_tween: Property = Property.POSITION
 @export var end_position: Vector2 ## This value will be added to initial position
 @export var end_rotation: float ## This value will be added to initial rotation
 @export var curve: Tween.TransitionType = Tween.TransitionType.TRANS_QUAD
@@ -52,9 +52,9 @@ func _tween_to(pos: Vector2, rot: float):
 	if tween and tween.is_running():
 		tween.kill()
 	tween = create_tween()
-	if property_to_tween == Property.position:
+	if property_to_tween == Property.POSITION:
 		tween.parallel().tween_property(elevator_node, "position", pos, d).set_trans(curve).set_ease(easing)
-	elif property_to_tween == Property.rotation:
+	elif property_to_tween == Property.ROTATION:
 		tween.tween_property(elevator_node, "rotation_degrees", rot, d).set_trans(curve).set_ease(easing)
 	tween.tween_callback(func():
 		tween_ended.emit()
