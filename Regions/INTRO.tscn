@@ -92,7 +92,7 @@ size = Vector2(70, 130)
 script = ExtResource("1_l82iy")
 
 [node name="HeroPositioner" type="Marker2D" parent="."]
-position = Vector2(168, -216)
+position = Vector2(30, -335)
 script = ExtResource("2_orj6q")
 
 [node name="ElevatorSystem" parent="." node_paths=PackedStringArray("elevator_node") instance=ExtResource("3_rou1q")]

@@ -31,10 +31,14 @@ func close():
 	should_close.emit()
 
 func insta_open():
+	if door_tween and door_tween.is_running():
+		door_tween.kill()
 	position = closed_pos + open_offset
 	state_machine.set_state("DoorStateOpen")
 
 func insta_close():
+	if door_tween and door_tween.is_running():
+		door_tween.kill()
 	position = closed_pos
 	state_machine.set_state("DoorStateClosed")
 
