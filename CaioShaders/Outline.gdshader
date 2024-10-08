@@ -53,7 +53,7 @@ void fragment(){
 	if (square_border){
 		for(int i=0;i<ring_count;++i){
 			float r = float(i) / float(ring_count) + ring_offset;
-			alpha = max(alpha,texture(TEXTURE, uv + o + size * square(r) * vec2(aspect_ratio,1.0)).a * outline_color.a);}// texture sampling fix is disabled because both with and without give the same result
+			alpha = max(alpha,texture(TEXTURE, uv + o + size * square(r) * vec2(aspect_ratio,1.0)).a * outline_color.a);}// texture sampling fix is disabled because either with and without give the same result
 	}else{
 		for(int i=0;i<ring_count;++i){
 			float r = float(i) * 3.14159 / float(ring_count) * 2.0 + ring_offset;

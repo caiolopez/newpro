@@ -19,6 +19,8 @@ var lockers: Array[Locker] = []
 @export var show_gizmo: bool = false ## When set to true, camera position and camera target position are drawn.
 @onready var state_machine: StateMachine = $StateMachine
 @onready var hero: Hero = AppManager.hero
+@onready var target_marker = $TargetMarker
+@onready var camera_marker = $CameraMarker
 var current_lerp_speed: Vector2
 var current_lookahead: Vector2
 var target: Vector2
@@ -31,35 +33,29 @@ var hero_dir: int
 var la_timer: Timer
 var last_hero_dir: int
 
-
 func _ready():
 	state_machine.start()
 	Events.hero_entered_camera_locker.connect(lock_camera)
 	Events.hero_exited_camera_locker.connect(unlock_camera)
-	
+
 	Events.camera_set_glpos.connect(func(glpos): global_position = glpos)
 	Events.camera_shake.connect(shake)
 	Events.camera_stop_shake.connect(stop_shake)
 
+	target_marker.visible = show_gizmo
+	camera_marker.visible = show_gizmo
 
 func _process(_delta):
 	if show_gizmo:
-		get_node("TargetMarker").visible = true
-		get_node("TargetMarker").visible = true
 		debug_gizmos()
-	else:
-		get_node("TargetMarker").visible = false
-		get_node("CameraMarker").visible = false
 
 	if hero:
 		hero_real_vel = hero.get_real_velocity()
 		hero_vel = hero.velocity
 		hero_dir = hero.facing_direction
 
-
 func lock_camera(origin, axes: Constants.Axes, lock_position: Vector2) -> void:
 	lockers.append(Locker.new(origin, axes, lock_position))
-
 
 func unlock_camera(origin, _axes: Constants.Axes) -> void:
 	for locker in lockers:
@@ -71,23 +67,20 @@ func unlock_camera(origin, _axes: Constants.Axes) -> void:
 		current_lookahead.x = 0
 		state_machine.set_state("CStateFollowHero")
 
-
 func lerp_vector2(v1: Vector2, v2: Vector2, speed: Vector2, delta: float) -> Vector2:
 	return Vector2(
 		lerp(v1.x, v2.x, Utils.dt_lerp(speed.x, delta)),
 		lerp(v1.y, v2.y, Utils.dt_lerp(speed.y, delta))
 	)
 
-
 func is_hero_just_reduced_velocity(threshold, axes: Constants.Axes) -> bool:
 	var is_breaking = false
-	if axes == Constants.Axes.x:
+	if axes == Constants.Axes.HORIZONTAL_LOCK:
 		is_breaking = abs(hero_last_velocity.x) > abs(hero.velocity.x) + threshold
-	if axes == Constants.Axes.y:	
+	if axes == Constants.Axes.VERTICAL_LOCK:	
 		is_breaking = abs(hero_last_velocity.y) > abs(hero.velocity.y) + threshold
 	hero_last_velocity = Vector2(hero.velocity.x, hero.velocity.y)
 	return is_breaking
-
 
 func step_shake(delta: float, current_pos: Vector2):
 	if shake_duration > 0:
@@ -97,21 +90,17 @@ func step_shake(delta: float, current_pos: Vector2):
 			shake_duration = 0
 			position = current_pos
 
-
 func step_lookahead_y(delta: float):
 	if hero_vel.y > 0:
 		current_lookahead.y = lerp(0.0, lookahead_amount.y, minf(abs(hero_vel.y), lookahead_activation_vel.y) / lookahead_activation_vel.y)
 	else: current_lookahead.y = lerp(current_lookahead.y, 0.0, clampf(10 * delta, 0, 1))
 
-
 func shake(duration: float = 0.2, amount: float = 10):
 	shake_amount = amount
 	shake_duration = duration
 
-
 func stop_shake():
 	shake_duration = 0
-
 
 func step_catch_up(delta: float):
 	if abs(hero_real_vel.x) < lerp_speed.x\
@@ -124,19 +113,17 @@ func step_catch_up(delta: float):
 	else: current_lerp_speed.y = lerp(current_lerp_speed.y, abs(hero_real_vel.y) * lerp_speed.y, Utils.dt_lerp(catch_up_speed.y, delta))
 	last_hero_dir = hero_dir
 
-
 func step_camera_lockers():
 	for top_locker in lockers:
-		if top_locker.axes == Constants.Axes.x:
+		if top_locker.axes == Constants.Axes.HORIZONTAL_LOCK:
 			target.x = top_locker.lock_position.x 
 			current_lerp_speed.x = lerp_speed.x
-		elif top_locker.axes == Constants.Axes.y:
+		elif top_locker.axes == Constants.Axes.VERTICAL_LOCK:
 			target.y = top_locker.lock_position.y
 			current_lerp_speed.y = lerp_speed.y
-		elif top_locker.axes == Constants.Axes.both:
+		elif top_locker.axes == Constants.Axes.FULL_LOCK:
 			target = top_locker.lock_position
 			current_lerp_speed = lerp_speed
-
 
 func step_camera_position(delta: float):
 	if hero:
@@ -144,10 +131,9 @@ func step_camera_position(delta: float):
 	step_camera_lockers()
 	position = lerp_vector2(position, target, current_lerp_speed, delta)
 
-
 func debug_gizmos():
-	get_node("TargetMarker").global_position = target
-	if get_node("TargetMarker").global_position.distance_squared_to(get_node("CameraMarker").global_position) < 10:
-		get_node("TargetMarker").modulate = Color(1,0,0,1)
-	else: get_node("TargetMarker").modulate = Color(1,1,1,1)
-		
+	target_marker.global_position = target
+	if target_marker.global_position.distance_squared_to(camera_marker.global_position) < 10:
+		target_marker.modulate = Color(1,0,0,1)
+	else:
+		target_marker.modulate = Color(1,1,1,1)

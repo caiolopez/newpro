@@ -6,9 +6,6 @@ enum LockHandles {
 	MARKER_OBJECT = 2			## Centers the camera at a custom position provided by a Marker2D node attached to locker.
 	}
 
-const debug_color_x: Color = Color(0, 0, 1, 0.5)
-const debug_color_y: Color = Color(1, 0, 0, 0.5)
-const debug_color_both: Color = Color(1, 0, 1, 0.5)
 @export var axes_to_lock: Constants.Axes:
 	get:
 		return axes_to_lock
@@ -41,7 +38,7 @@ func on_hero_entered_locker(body: Node2D):
 			lock_position = find_collider().global_position
 		LockHandles.MARKER_OBJECT:
 			lock_position = center_mark.global_position
-		
+
 	Events.hero_entered_camera_locker.emit(self, axes_to_lock, lock_position)
 
 func on_hero_exited_locker(body: Node2D):
@@ -51,9 +48,9 @@ func on_hero_exited_locker(body: Node2D):
 func debug_color_changer():
 	var color: Color
 	match axes_to_lock:
-		Constants.Axes.x: color = debug_color_x
-		Constants.Axes.y: color = debug_color_y
-		Constants.Axes.both: color = debug_color_both
+		Constants.Axes.HORIZONTAL_LOCK: color = Color(0, 0, 1, 0.5)
+		Constants.Axes.VERTICAL_LOCK: color = Color(1, 0, 0, 0.5)
+		Constants.Axes.FULL_LOCK: color = Color(1, 0, 1, 0.5)
 	for child in get_children():
 		if child is CollisionShape2D:
 			child.debug_color = color
