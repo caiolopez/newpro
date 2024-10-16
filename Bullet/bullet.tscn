@@ -215,8 +215,6 @@ sprite_frames = SubResource("SpriteFrames_eo4fx")
 animation = &"fire"
 
 [node name="AutoSpriteFlipper" parent="AnimatedSprite2D" instance=ExtResource("5_ta7p5")]
-position = Vector2(-7.68811, -7.46451)
-scale = Vector2(0.166667, 0.166667)
 randomize_h = false
 randomize_v = true
 

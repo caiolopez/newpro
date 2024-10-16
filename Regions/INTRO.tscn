@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://datwnf1ab8341"]
+[gd_scene load_steps=19 format=4 uid="uid://datwnf1ab8341"]
 
 [ext_resource type="Script" path="res://RegionManagement/region.gd" id="1_l82iy"]
 [ext_resource type="Texture2D" uid="uid://bp7vnugiq46o" path="res://Tilesets/alienscape_tileset_transparent.png" id="2_5i63v"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bu38boui2wxu" path="res://SwitchesAndDoors/SwitchGroupController.tscn" id="10_81iia"]
 [ext_resource type="PackedScene" uid="uid://ruri8ytnt6k" path="res://SwitchesAndDoors/Door.tscn" id="11_1j06n"]
 [ext_resource type="PackedScene" uid="uid://0fx3l1vwyhr4" path="res://SwitchesAndDoors/Switch.tscn" id="12_5fehb"]
+[ext_resource type="PackedScene" uid="uid://p6no8gdu6s5o" path="res://Boss/Boss2/Boss2.tscn" id="13_fos5u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4jspg"]
 size = Vector2(1520, 400)
@@ -148,3 +149,6 @@ shape = SubResource("RectangleShape2D_mg72c")
 [node name="Switch" parent="SwitchGroupController" instance=ExtResource("12_5fehb")]
 position = Vector2(-450, -655)
 toggle = true
+
+[node name="Boss2" parent="." instance=ExtResource("13_fos5u")]
+position = Vector2(580, -490)
