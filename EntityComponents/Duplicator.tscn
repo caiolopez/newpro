@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://w5x08b1bgqsi"]
+
+[ext_resource type="Script" path="res://EntityComponents/duplicator.gd" id="1_kdw5w"]
+
+[node name="Duplicator" type="Node"]
+script = ExtResource("1_kdw5w")
