@@ -4,15 +4,12 @@ enum SwitchState {ON, OFF, TEMP_ON}
 @export var toggle: bool = false ## Default switches (toggle == false) can only be turned on. Set this to true if this switch can be turned off as well.
 var controller: SwitchGroupController
 var current_state: SwitchState
-var last_processed_bullet: Bullet = null
 
 func _ready():
 	controller = get_parent()
 	$TimerSimultWindow.set_wait_time(controller.simult_window_duration)
 	$TimerSimultWindow.timeout.connect(on_simult_window_timeout)
 	area_entered.connect(on_bullet_entered)
-	area_exited.connect(func(area): if area == last_processed_bullet:
-		last_processed_bullet = null, CONNECT_DEFERRED)
 	switch_off()
 
 func switch_on():
@@ -35,11 +32,9 @@ func on_simult_window_timeout():
 
 func on_bullet_entered(area):
 	if not area is Bullet: return
-	if area == last_processed_bullet: return
 	if not $TimerCooldown.is_stopped(): return
 
 	$TimerCooldown.start()
-	last_processed_bullet = area
 
 	match current_state:
 		SwitchState.OFF:
@@ -53,10 +48,6 @@ func on_bullet_entered(area):
 			$TimerSimultWindow.start()
 		
 	area.kill_bullet()
-
-func on_bullet_exited(area):
-	if area == last_processed_bullet:
-		last_processed_bullet = null
 
 func is_state_temp_on() -> bool:
 	return self.current_state == SwitchState.TEMP_ON
