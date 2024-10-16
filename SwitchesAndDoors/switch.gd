@@ -36,7 +36,9 @@ func on_simult_window_timeout():
 func on_bullet_entered(area):
 	if not area is Bullet: return
 	if area == last_processed_bullet: return
+	if not $TimerCooldown.is_stopped(): return
 
+	$TimerCooldown.start()
 	last_processed_bullet = area
 
 	match current_state:
