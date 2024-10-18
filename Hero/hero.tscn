@@ -1376,8 +1376,8 @@ hit_from_inside = true
 script = ExtResource("3_6dncg")
 
 [node name="InnardsRC" type="RayCast2D" parent="."]
-position = Vector2(15, -55)
-target_position = Vector2(-30, 30)
+position = Vector2(10, -50)
+target_position = Vector2(-20, 20)
 hit_from_inside = true
 script = ExtResource("3_6dncg")
 
