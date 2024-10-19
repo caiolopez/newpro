@@ -1341,7 +1341,6 @@ size = Vector2(40, 15)
 z_index = 2
 collision_layer = 8
 floor_snap_length = 12.0
-platform_on_leave = 2
 script = ExtResource("1_dmqn8")
 metadata/_edit_group_ = true
 
