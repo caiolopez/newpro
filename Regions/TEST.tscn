@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://cv2bdmdm7ivmp"]
+[gd_scene load_steps=49 format=3 uid="uid://cv2bdmdm7ivmp"]
 
 [ext_resource type="Script" path="res://RegionManagement/region.gd" id="1_fjngo"]
 [ext_resource type="PackedScene" uid="uid://csvdenv1i3dc3" path="res://Teleporter/Teleporter.tscn" id="2_6ojyo"]
@@ -70,12 +70,6 @@ size = Vector2(2762.5, 142.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nug8b"]
 size = Vector2(2762.5, 142.5)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ensxx"]
-size = Vector2(378, 464.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7u3bv"]
-size = Vector2(378, 464.5)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8viyc"]
 size = Vector2(128, 216)
 
@@ -143,7 +137,6 @@ pellet_amount = 0
 doors_to_open = [NodePath("../../SwitchGroupController/Door")]
 
 [node name="SwitchGroupController" parent="." instance=ExtResource("7_fvj7q")]
-position = Vector2(-2800, 1368)
 
 [node name="Door" parent="SwitchGroupController" instance=ExtResource("8_ed8iu")]
 position = Vector2(768, 496)
@@ -327,17 +320,14 @@ debug_color = Color(0.412372, 0.598973, 0.267216, 0.42)
 
 [node name="CameraLocker5" parent="." instance=ExtResource("15_rjmeg")]
 position = Vector2(-168, 1824)
-center_at = 0
 
 [node name="CameraLocker6" parent="." instance=ExtResource("15_rjmeg")]
 position = Vector2(160, -1248)
 axes_to_lock = 2
-center_at = 0
 
 [node name="CameraLocker7" parent="." instance=ExtResource("15_rjmeg")]
 position = Vector2(824, 1968)
 axes_to_lock = 1
-center_at = 0
 
 [node name="CheckpointTrigger" parent="." instance=ExtResource("17_bl8nk")]
 position = Vector2(-2472, 1408)
@@ -401,45 +391,50 @@ scale = Vector2(0.952147, -6.73451)
 [node name="Spike3" parent="Effector" instance=ExtResource("6_n6uxi")]
 position = Vector2(344, -144)
 
-[node name="Boss1" parent="." instance=ExtResource("21_o8yeg")]
-position = Vector2(-56, -1824)
+[node name="Node" type="Node" parent="."]
 
-[node name="Marker2D" parent="Boss1" index="7"]
-position = Vector2(16, 592)
+[node name="Boss1" parent="Node" instance=ExtResource("21_o8yeg")]
+position = Vector2(2744, -3192)
 
-[node name="OpenDoorsIfDead2g" parent="Boss1" node_paths=PackedStringArray("doors_to_open") instance=ExtResource("22_t4q2k")]
-doors_to_open = [NodePath("../../SwitchGroupController2/Door2"), NodePath("../../SwitchGroupController2/Door")]
+[node name="OpenDoorsIfDead2g" parent="Node/Boss1" node_paths=PackedStringArray("doors_to_open") instance=ExtResource("22_t4q2k")]
+doors_to_open = [NodePath("../../../SwitchGroupController2/Door2"), NodePath("../../../SwitchGroupController2/Door")]
 
-[node name="BossFence" parent="." instance=ExtResource("23_qpijk")]
-position = Vector2(-792, -3208)
+[node name="BossFence" parent="Node" instance=ExtResource("23_qpijk")]
+position = Vector2(2008, -4576)
 
-[node name="UniqueCollider" type="CollisionShape2D" parent="BossFence"]
+[node name="UniqueCollider" type="CollisionShape2D" parent="Node/BossFence"]
 position = Vector2(-224, 1912)
 shape = SubResource("RectangleShape2D_itmnb")
 debug_color = Color(0.420282, 0.577532, 0.499651, 0.42)
 script = ExtResource("9_kml0t")
 metadata/original_shape_hash = 1074966760
 
-[node name="UniqueCollider2" type="CollisionShape2D" parent="BossFence"]
+[node name="UniqueCollider2" type="CollisionShape2D" parent="Node/BossFence"]
 position = Vector2(1712, 1968)
 shape = SubResource("RectangleShape2D_2dlwn")
 debug_color = Color(0.420282, 0.577532, 0.499651, 0.42)
 script = ExtResource("9_kml0t")
 metadata/original_shape_hash = 238957654
 
-[node name="UniqueCollider3" type="CollisionShape2D" parent="BossFence"]
+[node name="UniqueCollider3" type="CollisionShape2D" parent="Node/BossFence"]
 position = Vector2(888, 1400)
 shape = SubResource("RectangleShape2D_4wmms")
 debug_color = Color(0.420282, 0.577532, 0.499651, 0.42)
 script = ExtResource("9_kml0t")
 metadata/original_shape_hash = 1174007924
 
-[node name="UniqueCollider4" type="CollisionShape2D" parent="BossFence"]
+[node name="UniqueCollider4" type="CollisionShape2D" parent="Node/BossFence"]
 position = Vector2(1000, 2560)
 shape = SubResource("RectangleShape2D_qqu6n")
 debug_color = Color(0.420282, 0.577532, 0.499651, 0.42)
 script = ExtResource("9_kml0t")
 metadata/original_shape_hash = 1671882543
+
+[node name="BossTrigger" parent="Node" node_paths=PackedStringArray("boss", "doors_to_close") instance=ExtResource("25_qcpih")]
+position = Vector2(2920, -2256)
+collision_mask = 8
+boss = NodePath("../Boss1")
+doors_to_close = [NodePath("../../SwitchGroupController2/Door2"), NodePath("../../SwitchGroupController2/Door")]
 
 [node name="Boss2" parent="." instance=ExtResource("24_ff27i")]
 position = Vector2(3464, -824)
@@ -475,29 +470,12 @@ debug_color = Color(0.420282, 0.577532, 0.499651, 0.42)
 script = ExtResource("9_kml0t")
 metadata/original_shape_hash = 1129951550
 
-[node name="BossTrigger" parent="." node_paths=PackedStringArray("boss", "doors_to_close") instance=ExtResource("25_qcpih")]
-position = Vector2(120, -888)
-collision_mask = 8
-boss = NodePath("../Boss1")
-doors_to_close = [NodePath("../SwitchGroupController2/Door2"), NodePath("../SwitchGroupController2/Door")]
-
-[node name="UniqueCollider" parent="BossTrigger" index="0"]
-position = Vector2(-168, -24)
-shape = SubResource("RectangleShape2D_ensxx")
-metadata/original_shape_hash = 298493887
-
 [node name="BossTrigger2" parent="." node_paths=PackedStringArray("boss") instance=ExtResource("25_qcpih")]
 position = Vector2(120, -888)
 collision_mask = 8
 boss = NodePath("../Boss2")
 
-[node name="UniqueCollider" parent="BossTrigger2" index="0"]
-position = Vector2(2792, -48)
-shape = SubResource("RectangleShape2D_7u3bv")
-metadata/original_shape_hash = 2056402113
-
 [node name="SwitchGroupController2" parent="." instance=ExtResource("7_fvj7q")]
-position = Vector2(-2800, 1368)
 
 [node name="Door2" parent="SwitchGroupController2" instance=ExtResource("8_ed8iu")]
 position = Vector2(3744, -2160)
@@ -599,8 +577,8 @@ type = 3
 [editable path="CameraLocker5"]
 [editable path="CameraLocker6"]
 [editable path="CameraLocker7"]
-[editable path="Boss1"]
-[editable path="BossTrigger"]
+[editable path="Node/Boss1"]
+[editable path="Node/BossTrigger"]
 [editable path="BossTrigger2"]
 [editable path="Node2D/MapSector"]
 [editable path="Node2D/MapSector4"]
