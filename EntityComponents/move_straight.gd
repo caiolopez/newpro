@@ -21,7 +21,9 @@ func _ready():
 	if "target" in parent:
 		target_entity = parent.target
 	else:
-		target_entity = AppManager.hero
+		AppManager.hero_ready.connect(func():
+			target_entity = AppManager.hero
+			)
 
 	if parent.has_method("move_and_slide"):
 		PARENT_HAS_MOVE_AND_SLIDE = true

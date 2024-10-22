@@ -54,7 +54,9 @@ func _ready():
 	if "target" in parent:
 		target_entity = parent.target
 	else:
-		target_entity = AppManager.hero
+		AppManager.hero_ready.connect(func():
+			target_entity = AppManager.hero
+			)
 		
 	
 	state_machine.start()
