@@ -15,7 +15,7 @@ const BLUNDER_UNDERWATER_VELOCITY = Vector2(-800, 0) ## The strength of the reco
 const BLUNDER_AIRBORNE_DURATION: float = 0.2 ## The duration of the recoil when blundershooting on air.
 const BLUNDER_GROUNDED_DURATION: float = 0.1 ## The duration of the recoil when blundershooting on ground.
 const BLUNDER_UNDERWATER_DURATION: float = 0.15 ## The duration of the recoil when blundershooting on water.
-const BLUNDER_JUMP_VELOCITY: float = -1000 ## The speed the hero jumps after blundershooting airborne.
+const BLUNDER_JUMP_VELOCITY: float = -1050 ## The speed the hero jumps after blundershooting airborne.
 const BLUNDER_JUMP_WATER_BOUNCE_VELOCITY: float = -1000 ## The speed the hero jumps after tapping jump while blunderjumping on water surface. Like Kiddy Kong.
 const GRAVITY: float = 2000 ## The standard downward force, in absolute values.
 const FAST_FALL_GRAVITY: float = 3000 ## The downward force, in absolute values, used in falling. Should be higher than GRAVITY, in order to make the Hero fall faster.
@@ -162,7 +162,7 @@ func is_move_dir_just_away_from_last_wall() -> bool:
 func is_input_blunder_shoot() -> bool:
 	if not dedicated_blunder_button:
 		return Input.is_action_pressed("duck") and Input.is_action_just_pressed("shoot")
-	else: return Input.is_action_just_pressed("triangle")
+	else: return Input.is_action_just_pressed("blundershoot")
 
 func step_walljump() -> void:
 	if $StateMachine/TimerBufferWallJump.is_stopped() or not Utils.is_pushing_sides(): return
