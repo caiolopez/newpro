@@ -1,12 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://dx16ogatm4lny"]
 
-[ext_resource type="AudioStream" uid="uid://b3sw5on4wv1m0" path="res://AudioManager/Giorgio Moroder - Rotwang's Party (Robot Dance) [HD Remastered Audio].mp3" id="1_5cyd7"]
 [ext_resource type="Script" path="res://AudioManager/audio_manager.gd" id="1_sulfk"]
+[ext_resource type="Script" path="res://AudioManager/analyzer.gd" id="2_k8shx"]
 
 [node name="AudioManager" type="Node"]
 script = ExtResource("1_sulfk")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("1_5cyd7")
-autoplay = true
-playback_type = 1
+[node name="Analyzer" type="Node" parent="."]
+script = ExtResource("2_k8shx")
+is_operating = false
