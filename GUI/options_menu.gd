@@ -5,6 +5,7 @@ signal options_closed
 @onready var sfx_slider = $VBoxContainer/HBoxContainerSfx/SfxSlider
 @onready var blunder_opt = $VBoxContainer/DedicatedBlunderToggle
 @onready var speedrun_opt = $VBoxContainer/SpeedrunModeToggle
+@onready var background_opt = $VBoxContainer/RenderBackgroundToggle
 @onready var fullscreen_opt = $VBoxContainer/FullscreenToggle
 @onready var all_powerups_button = $VBoxContainer/AllPowerups
 @onready var back_button = $VBoxContainer/BackButton
@@ -14,6 +15,7 @@ var options_data = {
 	"sfx_volume": 1.0,
 	"dedicated_blunder": false,
 	"speedrun_mode": false,
+	"render_background": true,
 	"fullscreen": false
 }
 
@@ -25,6 +27,7 @@ func _ready():
 	sfx_slider.value_changed.connect(_on_sfx_volume_changed)
 	blunder_opt.toggled.connect(_on_blunder_opt_changed)
 	speedrun_opt.toggled.connect(_on_speedrun_opt_changed)
+	background_opt.toggled.connect(_on_render_background_changed)
 	fullscreen_opt.toggled.connect(_on_fullscreen_changed)
 	all_powerups_button.pressed.connect(_grant_all_powerups)
 	back_button.pressed.connect(close_options)
@@ -54,6 +57,10 @@ func _on_speedrun_opt_changed(state: bool):
 	options_data["speedrun_mode"] = state
 	AppManager.is_speedrun_mode = state
 	UI.call_deferred("set_igt_visible", state)
+
+func _on_render_background_changed(state: bool):
+	options_data["render_background"] = state
+	Background3DManager.call_deferred("set_render_backgrounds", state)
 
 func _on_fullscreen_changed(state: bool):
 	options_data["fullscreen"] = state
@@ -94,6 +101,9 @@ func apply_loaded_options():
 	AppManager.is_speedrun_mode = options_data["speedrun_mode"]
 	speedrun_opt.button_pressed = options_data["speedrun_mode"]
 	UI.call_deferred("set_igt_visible", options_data["speedrun_mode"])
+
+	Background3DManager.call_deferred("set_render_backgrounds", options_data["render_background"])
+	background_opt.button_pressed = options_data["render_background"]
 
 	fullscreen_opt.button_pressed = options_data["fullscreen"]
 	UI.set_fullscreen(options_data["fullscreen"])

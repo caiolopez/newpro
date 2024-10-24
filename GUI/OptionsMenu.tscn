@@ -75,6 +75,10 @@ text = "Powershoot using triangle"
 layout_mode = 2
 text = "Speedrun mode"
 
+[node name="RenderBackgroundToggle" type="CheckButton" parent="VBoxContainer"]
+layout_mode = 2
+text = "Render 3D Backgrounds"
+
 [node name="FullscreenToggle" type="CheckButton" parent="VBoxContainer"]
 layout_mode = 2
 text = "Fullscreen mode"
