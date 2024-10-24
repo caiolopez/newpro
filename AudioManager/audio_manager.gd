@@ -2,6 +2,7 @@ extends Node
 
 var music_player: AudioStreamPlayer
 var sfx_players: Array[AudioStreamPlayer] = []
+var intended_track: String = ""
 var current_track: String = ""
 const POOL_SIZE: int = 10
 const SFX_COOLDOWN: float = 0.05
@@ -40,21 +41,27 @@ func _ready():
 			music_player.stream = load(MUSIC_TRACKS[current_track]["loop"])
 			music_player.play()
 	)
-	play_music("gorgo")
+
 func play_music(track_name: String):
-	if current_track == track_name: return
+	if intended_track == track_name: return
 	if not MUSIC_TRACKS.has(track_name):
 		push_error("Track name not found: " + track_name)
 		return
 	
+	intended_track = track_name
+	
 	if music_player.is_playing():
-		_fade_out_music(track_name)
+		_fade_out_music()
 	else:
 		_start_new_track(track_name)
 
-func _fade_out_music(next_track: String = ""):
-	if fade_tween:
+func _fade_out_music():
+	if fade_tween and fade_tween.is_valid():
 		fade_tween.kill()
+	
+	if not music_player.is_playing() or music_player.volume_db <= linear_to_db(0.0):
+		_on_fade_complete()
+		return
 	
 	fade_tween = create_tween()
 	fade_tween.set_trans(Tween.TRANS_LINEAR)
@@ -69,12 +76,15 @@ func _fade_out_music(next_track: String = ""):
 		FADE_DURATION
 	)
 
-	fade_tween.tween_callback(func():
-		music_player.stop()
-		music_player.volume_db = linear_to_db(initial_volume)
-		if next_track != "":
-			_start_new_track(next_track)
-	)
+	fade_tween.finished.connect(_on_fade_complete, CONNECT_ONE_SHOT)
+
+func _on_fade_complete():
+	music_player.stop()
+	music_player.volume_db = 0
+	if intended_track != "":
+		_start_new_track(intended_track)
+	else:
+		current_track = ""
 
 func _start_new_track(track_name: String):
 	current_track = track_name
@@ -101,4 +111,5 @@ func play_sound(sfx_path: String):
 			return
 
 func stop_music():
+	intended_track = ""
 	_fade_out_music()

@@ -340,7 +340,6 @@ polygon = PackedVector2Array(-60, 25, -10, 105, 145, 75, 140, 15)
 
 [node name="MusicTrigger2" parent="BossBattle" instance=ExtResource("14_8brwy")]
 position = Vector2(275, 140)
-track = "gorgo"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BossBattle/MusicTrigger2"]
 position = Vector2(1280, 695)
