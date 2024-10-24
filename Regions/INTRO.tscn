@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://datwnf1ab8341"]
+[gd_scene load_steps=27 format=4 uid="uid://datwnf1ab8341"]
 
 [ext_resource type="Script" path="res://RegionManagement/region.gd" id="1_l82iy"]
 [ext_resource type="Texture2D" uid="uid://bp7vnugiq46o" path="res://Tilesets/alienscape_tileset_transparent.png" id="2_5i63v"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://0fx3l1vwyhr4" path="res://SwitchesAndDoors/Switch.tscn" id="12_5fehb"]
 [ext_resource type="PackedScene" uid="uid://bmt5sjek4aha4" path="res://EntityComponents/OpenDoorsIfDead.tscn" id="12_giyit"]
 [ext_resource type="PackedScene" uid="uid://dw2f74vrka2qn" path="res://Boss/BossFence.tscn" id="13_ptfg2"]
+[ext_resource type="PackedScene" uid="uid://ca18mmoda2mp" path="res://AudioManager/MusicTrigger.tscn" id="14_8brwy"]
 [ext_resource type="PackedScene" uid="uid://d2vfkstnke1s4" path="res://Boss/BossTrigger.tscn" id="14_74i5l"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tclv4"]
@@ -328,6 +329,22 @@ shape = SubResource("RectangleShape2D_mg72c")
 
 [node name="Switch" parent="BossBattle/SwitchGroupController-boss" instance=ExtResource("12_5fehb")]
 position = Vector2(-5495, -845)
+
+[node name="MusicTrigger" parent="BossBattle" instance=ExtResource("14_8brwy")]
+position = Vector2(275, 140)
+track = "giorgio"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BossBattle/MusicTrigger"]
+position = Vector2(-5, 30)
+polygon = PackedVector2Array(-60, 25, -10, 105, 145, 75, 140, 15)
+
+[node name="MusicTrigger2" parent="BossBattle" instance=ExtResource("14_8brwy")]
+position = Vector2(275, 140)
+track = "gorgo"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BossBattle/MusicTrigger2"]
+position = Vector2(1280, 695)
+polygon = PackedVector2Array(-60, 25, -10, 105, 145, 75, 140, 15)
 
 [node name="CameraLockers" type="Node" parent="."]
 

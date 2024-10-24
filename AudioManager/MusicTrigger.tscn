@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://ca18mmoda2mp"]
+
+[ext_resource type="Script" path="res://AudioManager/music_trigger.gd" id="1_6t351"]
+
+[node name="MusicTrigger" type="Area2D"]
+collision_mask = 8
+script = ExtResource("1_6t351")
