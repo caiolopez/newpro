@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://n0y364bc5ssb"]
+[gd_scene load_steps=11 format=3 uid="uid://n0y364bc5ssb"]
 
+[ext_resource type="Script" path="res://3DBackground/background_3d_manager.gd" id="1_kbe5r"]
 [ext_resource type="Script" path="res://3DBackground/constant_rotation.gd" id="1_nk7e8"]
 [ext_resource type="Script" path="res://3DBackground/background_camera.gd" id="2_mgg5l"]
 
@@ -22,6 +23,7 @@ font_size = 58
 background_mode = 1
 
 [node name="3DBackgroundManager" type="CanvasLayer"]
+script = ExtResource("1_kbe5r")
 
 [node name="Background3D" type="Node3D" parent="."]
 

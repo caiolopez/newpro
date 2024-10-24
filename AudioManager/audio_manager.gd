@@ -9,7 +9,6 @@ const SFX_COOLDOWN: float = 0.05
 const FADE_DURATION: float = 5.0
 var sfx_cooldowns: Dictionary = {}
 var fade_tween: Tween
-@onready var music_analyzer: MusicAnalyzer = $Analyzer
 
 signal bass_current_value(value: float)
 signal mid_current_value(value: float)
@@ -97,6 +96,10 @@ func _start_new_track(track_name: String):
 	
 	music_player.play()
 
+func stop_music():
+	intended_track = ""
+	_fade_out_music()
+
 func play_sound(sfx_path: String):
 	if sfx_path in sfx_cooldowns:
 		var time_since_last_play = Time.get_ticks_msec() - sfx_cooldowns[sfx_path]
@@ -109,7 +112,3 @@ func play_sound(sfx_path: String):
 			sfx_player.play()
 			sfx_cooldowns[sfx_path] = Time.get_ticks_msec()
 			return
-
-func stop_music():
-	intended_track = ""
-	_fade_out_music()
