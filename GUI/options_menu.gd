@@ -40,16 +40,15 @@ func close_options():
 
 func _on_music_volume_changed(value):
 	options_data["music_volume"] = value
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear_to_db(value))
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), linear_to_db(value))
 
 func _on_sfx_volume_changed(value):
 	options_data["sfx_volume"] = value
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear_to_db(value))
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), linear_to_db(value))
 
 func _on_blunder_opt_changed(state: bool):
 	options_data["dedicated_blunder"] = state
-	if AppManager.hero:
-		AppManager.hero.dedicated_blunder_button = state
+	AppManager.dedicated_blunder_button = state
 
 func _on_speedrun_opt_changed(state: bool):
 	options_data["speedrun_mode"] = state
@@ -84,16 +83,16 @@ func load_options():
 	apply_loaded_options()
 
 func apply_loaded_options():
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear_to_db(options_data["music_volume"]))
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear_to_db(options_data["sfx_volume"]))
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), linear_to_db(options_data["music_volume"]))
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), linear_to_db(options_data["sfx_volume"]))
 	music_slider.value = options_data["music_volume"]
 	sfx_slider.value = options_data["sfx_volume"]
 
 	AppManager.dedicated_blunder_button = options_data["dedicated_blunder"]
 	blunder_opt.button_pressed = options_data["dedicated_blunder"]
 
-	speedrun_opt.button_pressed = options_data["speedrun_mode"]
 	AppManager.is_speedrun_mode = options_data["speedrun_mode"]
+	speedrun_opt.button_pressed = options_data["speedrun_mode"]
 	UI.call_deferred("set_igt_visible", options_data["speedrun_mode"])
 
 	fullscreen_opt.button_pressed = options_data["fullscreen"]
