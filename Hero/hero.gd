@@ -37,7 +37,6 @@ const MAX_DESCENT_VEL_Y: float = 300 ## The maximum downward speed when diving (
 @onready var innards_rc: RayCast2D = $InnardsRC
 @onready var dmg_taker: DmgTaker = $DmgTaker
 @onready var shooter: Shooter = $Shooter
-var dedicated_blunder_button = false
 const is_foe: bool = false ## Flag necessary for components that are shared between Hero and enemies.
 var can_dive: bool = false ## Whether the hero has the ability to dive into water instead of floating.
 var current_checkpoint_path: NodePath
@@ -160,7 +159,7 @@ func is_move_dir_just_away_from_last_wall() -> bool:
 	return mov_away
 
 func is_input_blunder_shoot() -> bool:
-	if not dedicated_blunder_button:
+	if not AppManager.dedicated_blunder_button:
 		return Input.is_action_pressed("duck") and Input.is_action_just_pressed("shoot")
 	else: return Input.is_action_just_pressed("blundershoot")
 

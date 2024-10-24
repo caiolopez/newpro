@@ -6,6 +6,7 @@ var developer_mode: bool = true
 var hero: Hero = null
 var minimap_node
 var is_speedrun_mode: bool = false
+var dedicated_blunder_button: bool = true
 var game_time: float = 0.0
 var teleporters_are_active: bool = false
 
