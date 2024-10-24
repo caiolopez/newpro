@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://n0y364bc5ssb"]
+[gd_scene load_steps=10 format=3 uid="uid://n0y364bc5ssb"]
 
 [ext_resource type="Script" path="res://3DBackground/constant_rotation.gd" id="1_nk7e8"]
+[ext_resource type="Script" path="res://3DBackground/background_camera.gd" id="2_mgg5l"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o5sud"]
 
@@ -73,6 +74,7 @@ randomize_rotations = true
 environment = SubResource("Environment_13nke")
 current = true
 size = 3.031
+script = ExtResource("2_mgg5l")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Background3D"]
 light_color = Color(0.804659, 0.000769322, 0.849138, 1)
