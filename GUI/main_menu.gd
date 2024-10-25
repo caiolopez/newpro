@@ -27,6 +27,8 @@ func show_menu():
 	(load_game_button if load_game_button.visible else new_game_button).grab_focus()
 
 func hide_menu():
+	AudioManager.stop_music_immediately()
+	AudioManager.play_sound(&"snare")
 	Utils.lose_focus()
 	var tween = create_tween()
 	tween.tween_property(v_box_container, "modulate:a", 0.0, 0.5)
