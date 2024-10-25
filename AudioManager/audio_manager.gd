@@ -2,8 +2,8 @@ extends Node
 
 var music_player: AudioStreamPlayer
 var sfx_players: Array[AudioStreamPlayer] = []
-var intended_track: String = ""
-var current_track: String = ""
+var intended_track_name: StringName = ""
+var current_track_name: StringName = ""
 const POOL_SIZE: int = 10
 const SFX_COOLDOWN: float = 0.05
 const FADE_DURATION: float = 5.0
@@ -19,12 +19,24 @@ const MUSIC_TRACKS = {
 		"loop": "res://AudioManager/giorgio_loop.mp3",
 		"intro": "res://AudioManager/giorgio_intro.mp3" # optional
 	},
+	"main_menu": {
+		"loop": "res://AudioManager/bizarre.mp3",
+	},
 	"gorgo": {
 		"loop": "res://AudioManager/giorgio_loop.mp3",
 	}
 }
 
+const SFX = {
+	"snare": preload("res://AudioManager/snare.mp3")
+}
+
 func _ready():
+	AppManager.game_paused.connect(_on_game_paused)
+	AppManager.game_unpaused.connect(_on_game_unpaused)
+	
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	
 	music_player = AudioStreamPlayer.new()
 	add_child(music_player)
 	music_player.bus = "Music"
@@ -36,18 +48,19 @@ func _ready():
 		sfx_players.append(sfx_player)
 	
 	music_player.finished.connect(func():
-		if current_track:
-			music_player.stream = load(MUSIC_TRACKS[current_track]["loop"])
+		if current_track_name:
+			music_player.stream = load(MUSIC_TRACKS[current_track_name]["loop"])
 			music_player.play()
 	)
 
 func play_music(track_name: String):
-	if intended_track == track_name: return
+	if intended_track_name == track_name: return
 	if not MUSIC_TRACKS.has(track_name):
 		push_error("Track name not found: " + track_name)
 		return
 	
-	intended_track = track_name
+	intended_track_name = track_name
+	SaveManager.log_hero_change("current_music", intended_track_name)
 	
 	if music_player.is_playing():
 		_fade_out_music()
@@ -80,13 +93,13 @@ func _fade_out_music():
 func _on_fade_complete():
 	music_player.stop()
 	music_player.volume_db = 0
-	if intended_track != "":
-		_start_new_track(intended_track)
+	if intended_track_name != "":
+		_start_new_track(intended_track_name)
 	else:
-		current_track = ""
+		current_track_name = ""
 
 func _start_new_track(track_name: String):
-	current_track = track_name
+	current_track_name = track_name
 	var track_data = MUSIC_TRACKS[track_name]
 	
 	if track_data.has("intro"):
@@ -97,18 +110,40 @@ func _start_new_track(track_name: String):
 	music_player.play()
 
 func stop_music():
-	intended_track = ""
+	intended_track_name = ""
 	_fade_out_music()
 
-func play_sound(sfx_path: String):
-	if sfx_path in sfx_cooldowns:
-		var time_since_last_play = Time.get_ticks_msec() - sfx_cooldowns[sfx_path]
+func stop_music_immediately():
+	intended_track_name = ""
+	music_player.stop()
+	music_player.volume_db = 0
+	current_track_name = ""
+	if fade_tween and fade_tween.is_valid():
+		fade_tween.kill()
+
+func play_sound(sfx_name: StringName):
+	if sfx_name in sfx_cooldowns:
+		var time_since_last_play = Time.get_ticks_msec() - sfx_cooldowns[sfx_name]
 		if time_since_last_play < SFX_COOLDOWN * 1000:
 			return
 	
 	for sfx_player in sfx_players:
 		if not sfx_player.is_playing():
-			sfx_player.stream = load(sfx_path)
+			sfx_player.stream = SFX[sfx_name]
 			sfx_player.play()
-			sfx_cooldowns[sfx_path] = Time.get_ticks_msec()
+			sfx_cooldowns[sfx_name] = Time.get_ticks_msec()
 			return
+
+func _on_game_paused():
+	if music_player.playing:
+		music_player.set_stream_paused(true)
+	for sfx_player in sfx_players:
+		if sfx_player.playing:
+			sfx_player.set_stream_paused(true)
+
+func _on_game_unpaused():
+	if music_player.stream:
+		music_player.set_stream_paused(false)
+	for sfx_player in sfx_players:
+		if sfx_player.stream:
+			sfx_player.set_stream_paused(false)
