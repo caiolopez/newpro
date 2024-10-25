@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://datwnf1ab8341"]
+[gd_scene load_steps=28 format=4 uid="uid://datwnf1ab8341"]
 
 [ext_resource type="Script" path="res://RegionManagement/region.gd" id="1_l82iy"]
 [ext_resource type="Texture2D" uid="uid://bp7vnugiq46o" path="res://Tilesets/alienscape_tileset_transparent.png" id="2_5i63v"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://dw2f74vrka2qn" path="res://Boss/BossFence.tscn" id="13_ptfg2"]
 [ext_resource type="PackedScene" uid="uid://ca18mmoda2mp" path="res://AudioManager/MusicTrigger.tscn" id="14_8brwy"]
 [ext_resource type="PackedScene" uid="uid://d2vfkstnke1s4" path="res://Boss/BossTrigger.tscn" id="14_74i5l"]
+[ext_resource type="PackedScene" uid="uid://b44gelsmm85o0" path="res://3DBackground/Background3DTrigger.tscn" id="16_v1sgg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tclv4"]
 texture = ExtResource("2_5i63v")
@@ -401,5 +402,21 @@ shape = SubResource("RectangleShape2D_ur4tq")
 debug_color = Color(1, 0, 1, 0.5)
 script = ExtResource("5_fcl45")
 metadata/original_shape_hash = 169367947
+
+[node name="Background3dTrigger" parent="." instance=ExtResource("16_v1sgg")]
+position = Vector2(680, 135)
+collision_mask = 9
+background = &"pink"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Background3dTrigger"]
+polygon = PackedVector2Array(-75, 25, 85, 65, 380, -20, 325, -175)
+
+[node name="Background3dTrigger2" parent="." instance=ExtResource("16_v1sgg")]
+position = Vector2(680, 135)
+background = &"green"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Background3dTrigger2"]
+position = Vector2(-1125, 0)
+polygon = PackedVector2Array(-75, 25, 85, 65, 380, -20, 325, -175)
 
 [editable path="BossBattle/BossTrigger"]

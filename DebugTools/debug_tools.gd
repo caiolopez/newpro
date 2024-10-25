@@ -20,7 +20,7 @@ func input_bin():
 	and Input.is_action_just_pressed("Debug Action 2"):
 		AppManager.hero.state_machine.set_state("StateDebug")
 	
-	if Input.is_action_just_pressed("shoot"): AudioManager.play_sound("res://AudioManager/shot.mp3")
+	if Input.is_action_just_pressed("shoot"): AudioManager.play_sound(&"snare")
 	#if Input.is_action_just_pressed("jump"): AudioManager.play_music("giorgio")
 
 	#if Input.is_action_just_pressed("shoot"): print("SHOOT!")
