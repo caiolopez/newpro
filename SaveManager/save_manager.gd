@@ -123,6 +123,8 @@ func inject_changes_into_hero():
 			"got_aqualung": h.can_dive = value
 			"got_teleporter": AppManager.set_teleporters_active(value)
 			"elapsed_time": AppManager.game_time = value
+			"current_music": AudioManager.play_music(value)
+			"current_background": Background3DManager.change_background(value)
 			"current_region":
 				if Constants.RegName.get(value):
 					RegionManager.change_region(Constants.RegName.get(value))
