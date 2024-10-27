@@ -48,3 +48,9 @@ func infer_current_region_from_last_floor():
 				set_current_region(region_from_floor)
 				if DebugTools.print_stuff: print("RegionManager.current_region set to ", region_from_floor.name, " via touching floor." )
 	else: if DebugTools.print_stuff: print("Couldn't infer region.")
+
+func free_all_regions() -> void:
+	for child in get_node("/root/GameTree").get_children():
+		if child is Region:
+			child.queue_free()
+	current_region = null

@@ -10,4 +10,5 @@ func on_enter():
 	if AppManager.hero:
 		AppManager.hero.queue_free()
 		AppManager.hero = null
+	RegionManager.free_all_regions()
 	AppManager.state_machine.set_state("AppStateMainMenu")
