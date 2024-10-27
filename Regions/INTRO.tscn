@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://datwnf1ab8341"]
+[gd_scene load_steps=30 format=4 uid="uid://datwnf1ab8341"]
 
 [ext_resource type="Script" path="res://RegionManagement/region.gd" id="1_l82iy"]
 [ext_resource type="Texture2D" uid="uid://bp7vnugiq46o" path="res://Tilesets/alienscape_tileset_transparent.png" id="2_5i63v"]
@@ -15,7 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://dw2f74vrka2qn" path="res://Boss/BossFence.tscn" id="13_ptfg2"]
 [ext_resource type="PackedScene" uid="uid://ca18mmoda2mp" path="res://AudioManager/MusicTrigger.tscn" id="14_8brwy"]
 [ext_resource type="PackedScene" uid="uid://d2vfkstnke1s4" path="res://Boss/BossTrigger.tscn" id="14_74i5l"]
-[ext_resource type="PackedScene" uid="uid://b44gelsmm85o0" path="res://3DBackground/Background3DTrigger.tscn" id="16_v1sgg"]
+[ext_resource type="PackedScene" uid="uid://b44gelsmm85o0" path="res://Background/BackgroundTrigger.tscn" id="16_v1sgg"]
+[ext_resource type="PackedScene" uid="uid://boan2jyc4hlda" path="res://Checkpoint/CheckpointTrigger.tscn" id="17_jt88f"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tclv4"]
 texture = ExtResource("2_5i63v")
@@ -158,6 +159,9 @@ size = Vector2(320, 960)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ur4tq"]
 size = Vector2(1760, 960)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0177v"]
+size = Vector2(240, 320)
 
 [node name="INTRO" type="Node2D"]
 script = ExtResource("1_l82iy")
@@ -331,25 +335,10 @@ shape = SubResource("RectangleShape2D_mg72c")
 [node name="Switch" parent="BossBattle/SwitchGroupController-boss" instance=ExtResource("12_5fehb")]
 position = Vector2(-5495, -845)
 
-[node name="MusicTrigger" parent="BossBattle" instance=ExtResource("14_8brwy")]
-position = Vector2(275, 140)
-track = "giorgio"
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BossBattle/MusicTrigger"]
-position = Vector2(-5, 30)
-polygon = PackedVector2Array(-60, 25, -10, 105, 145, 75, 140, 15)
-
-[node name="MusicTrigger2" parent="BossBattle" instance=ExtResource("14_8brwy")]
-position = Vector2(275, 140)
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BossBattle/MusicTrigger2"]
-position = Vector2(1280, 695)
-polygon = PackedVector2Array(-60, 25, -10, 105, 145, 75, 140, 15)
-
-[node name="CameraLockers" type="Node" parent="."]
+[node name="CameraLockers" type="Node2D" parent="."]
+visible = false
 
 [node name="CameraLocker" parent="CameraLockers" instance=ExtResource("4_2o0al")]
-visible = false
 axes_to_lock = 2
 center_at = 1
 
@@ -363,7 +352,6 @@ metadata/original_shape_hash = 169367947
 [node name="Marker2D" type="Marker2D" parent="CameraLockers/CameraLocker"]
 
 [node name="CameraLocker2" parent="CameraLockers" instance=ExtResource("4_2o0al")]
-visible = false
 position = Vector2(-60, 3315)
 axes_to_lock = 2
 center_at = 1
@@ -378,7 +366,6 @@ metadata/original_shape_hash = 169367947
 [node name="Marker2D" type="Marker2D" parent="CameraLockers/CameraLocker2"]
 
 [node name="CameraLocker3" parent="CameraLockers" instance=ExtResource("4_2o0al")]
-visible = false
 position = Vector2(-60, 3315)
 axes_to_lock = 2
 center_at = 1
@@ -403,20 +390,45 @@ debug_color = Color(1, 0, 1, 0.5)
 script = ExtResource("5_fcl45")
 metadata/original_shape_hash = 169367947
 
-[node name="Background3dTrigger" parent="." instance=ExtResource("16_v1sgg")]
-position = Vector2(680, 135)
+[node name="CommonTriggers" type="Node2D" parent="."]
+position = Vector2(-445, 135)
+
+[node name="BGTrigger" parent="CommonTriggers" instance=ExtResource("16_v1sgg")]
+position = Vector2(1125, 0)
 collision_mask = 9
 background = &"pink"
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Background3dTrigger"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CommonTriggers/BGTrigger"]
 polygon = PackedVector2Array(-75, 25, 85, 65, 380, -20, 325, -175)
 
-[node name="Background3dTrigger2" parent="." instance=ExtResource("16_v1sgg")]
-position = Vector2(680, 135)
+[node name="BGTrigger2" parent="CommonTriggers" instance=ExtResource("16_v1sgg")]
+position = Vector2(1125, 0)
 background = &"green"
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Background3dTrigger2"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CommonTriggers/BGTrigger2"]
 position = Vector2(-1125, 0)
 polygon = PackedVector2Array(-75, 25, 85, 65, 380, -20, 325, -175)
+
+[node name="MusicTrigger" parent="CommonTriggers" instance=ExtResource("14_8brwy")]
+position = Vector2(720, 5)
+track = "giorgio"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CommonTriggers/MusicTrigger"]
+position = Vector2(-5, 30)
+polygon = PackedVector2Array(-60, 25, -10, 105, 145, 75, 140, 15)
+
+[node name="MusicTrigger2" parent="CommonTriggers" instance=ExtResource("14_8brwy")]
+position = Vector2(720, 5)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CommonTriggers/MusicTrigger2"]
+position = Vector2(1280, 695)
+polygon = PackedVector2Array(-60, 25, -10, 105, 145, 75, 140, 15)
+
+[node name="CheckpointTrigger" parent="CommonTriggers" instance=ExtResource("17_jt88f")]
+position = Vector2(765, 185)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CommonTriggers/CheckpointTrigger"]
+position = Vector2(5, 0)
+shape = SubResource("RectangleShape2D_0177v")
 
 [editable path="BossBattle/BossTrigger"]

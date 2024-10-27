@@ -32,7 +32,7 @@ BulletManager="*res://Bullet/BulletManager.tscn"
 ComboParser="*res://ComboParser/ComboParser.tscn"
 DebugTools="*res://DebugTools/DebugTools.tscn"
 AppManager="*res://AppManager/AppManager.tscn"
-Background3DManager="*res://3DBackground/3d_background_manager.tscn"
+BackgroundManager="*res://Background/BackgroundManager.tscn"
 AudioManager="*res://AudioManager/AudioManager.tscn"
 
 [debug]

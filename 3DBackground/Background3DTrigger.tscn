@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://b44gelsmm85o0"]
-
-[ext_resource type="Script" path="res://3DBackground/background_3d_trigger.gd" id="1_sb06d"]
-
-[node name="Background3dTrigger" type="Area2D"]
-collision_mask = 8
-script = ExtResource("1_sb06d")

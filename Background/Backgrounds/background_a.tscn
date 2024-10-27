@@ -1,7 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://dfj5x7i2hy0pq"]
+[gd_scene load_steps=10 format=3 uid="uid://sxdpqvsx3dc1"]
 
-[ext_resource type="Script" path="res://3DBackground/3DBackgroundComponents/constant_rotation.gd" id="1_rf045"]
-[ext_resource type="Script" path="res://3DBackground/background_camera.gd" id="2_dvl52"]
+[ext_resource type="Script" path="res://Background/BackgroundComponents/constant_rotation.gd" id="1_ya4tk"]
+[ext_resource type="Script" path="res://Background/background_camera.gd" id="2_4cagp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o5sud"]
 
@@ -21,7 +21,7 @@ font_size = 58
 [sub_resource type="Environment" id="Environment_13nke"]
 background_mode = 1
 
-[node name="BackgroundB" type="Node"]
+[node name="BackgroundA" type="Node"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.06877)
@@ -29,7 +29,7 @@ mesh = SubResource("PrismMesh_nvk0e")
 skeleton = NodePath("../Camera3D")
 
 [node name="RandomRotation" type="Node" parent="MeshInstance3D"]
-script = ExtResource("1_rf045")
+script = ExtResource("1_ya4tk")
 randomize_rotations = true
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
@@ -38,7 +38,7 @@ mesh = SubResource("TextMesh_l4088")
 skeleton = NodePath("../Camera3D")
 
 [node name="RandomRotation" type="Node" parent="MeshInstance3D2"]
-script = ExtResource("1_rf045")
+script = ExtResource("1_ya4tk")
 randomize_rotations = true
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
@@ -47,7 +47,7 @@ mesh = SubResource("BoxMesh_pa078")
 skeleton = NodePath("../Camera3D")
 
 [node name="RandomRotation" type="Node" parent="MeshInstance3D3"]
-script = ExtResource("1_rf045")
+script = ExtResource("1_ya4tk")
 randomize_rotations = true
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
@@ -56,7 +56,7 @@ mesh = SubResource("BoxMesh_5c3qw")
 skeleton = NodePath("../Camera3D")
 
 [node name="RandomRotation" type="Node" parent="MeshInstance3D4"]
-script = ExtResource("1_rf045")
+script = ExtResource("1_ya4tk")
 randomize_rotations = true
 
 [node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
@@ -65,17 +65,17 @@ mesh = SubResource("CapsuleMesh_7xci1")
 skeleton = NodePath("../Camera3D")
 
 [node name="RandomRotation" type="Node" parent="MeshInstance3D5"]
-script = ExtResource("1_rf045")
+script = ExtResource("1_ya4tk")
 randomize_rotations = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
 environment = SubResource("Environment_13nke")
 current = true
 size = 3.031
-script = ExtResource("2_dvl52")
+script = ExtResource("2_4cagp")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-light_color = Color(0.303235, 0.589863, 3.85046e-07, 1)
+light_color = Color(0.804659, 0.000769322, 0.849138, 1)
 light_specular = 10.225
 light_bake_mode = 1
 omni_range = 4.056

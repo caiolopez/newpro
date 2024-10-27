@@ -60,7 +60,7 @@ func _on_speedrun_opt_changed(state: bool):
 
 func _on_render_background_changed(state: bool):
 	options_data["render_background"] = state
-	Background3DManager.call_deferred("set_render_backgrounds", state)
+	BackgroundManager.call_deferred("set_render_backgrounds", state)
 
 func _on_fullscreen_changed(state: bool):
 	options_data["fullscreen"] = state
@@ -102,7 +102,7 @@ func apply_loaded_options():
 	speedrun_opt.button_pressed = options_data["speedrun_mode"]
 	UI.call_deferred("set_igt_visible", options_data["speedrun_mode"])
 
-	Background3DManager.call_deferred("set_render_backgrounds", options_data["render_background"])
+	BackgroundManager.call_deferred("set_render_backgrounds", options_data["render_background"])
 	background_opt.button_pressed = options_data["render_background"]
 
 	fullscreen_opt.button_pressed = options_data["fullscreen"]

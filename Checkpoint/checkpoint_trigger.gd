@@ -5,12 +5,13 @@ extends Area2D
 var direction: int = 1
 
 func _ready():
-	body_entered.connect(on_body_entered)
+	body_entered.connect(_on_body_entered)
 	if scale.x < 0: direction = -1
 
-func on_body_entered(body):
-	if not body is Hero:
-		return
+func _on_body_entered(body):
+	print("oi")
+	if not body is Hero: return
+	if not body.state_machine.current_state.death_prone: return
 	if body.current_checkpoint_path == self.get_path() and not force_trigger:
 		return
 	if recall_hero_direction:
