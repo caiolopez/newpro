@@ -5,6 +5,3 @@
 [node name="CheckpointTrigger" type="Area2D"]
 collision_mask = 8
 script = ExtResource("1_4e7d7")
-
-[node name="RayCast2D" type="RayCast2D" parent="."]
-target_position = Vector2(50, 0)

@@ -428,7 +428,6 @@ polygon = PackedVector2Array(-60, 25, -10, 105, 145, 75, 140, 15)
 position = Vector2(765, 185)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CommonTriggers/CheckpointTrigger"]
-position = Vector2(5, 0)
 shape = SubResource("RectangleShape2D_0177v")
 
 [editable path="BossBattle/BossTrigger"]
