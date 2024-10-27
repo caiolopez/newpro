@@ -3,19 +3,20 @@ extends Node
 var current_region: Region = null
 
 func change_region(to_region: Constants.RegName) -> void:
+	var to_region_name = Constants.RegName.find_key(to_region)
 	if current_region:
-		if current_region.name == Constants.RegName.keys()[to_region]:
+		if current_region.name == to_region_name:
 			if DebugTools.print_stuff: print("Current region is already set.")
 			return
 		else:
 			current_region.queue_free()
 			if DebugTools.print_stuff: print("Region ", current_region.name, " freed.")
 
-	var new_region = get_node_or_null("/root/GameTree/" + Constants.RegName.keys()[to_region])
+	var new_region = get_node_or_null("/root/GameTree/" + to_region_name)
 
 	if not new_region:
-		new_region = load("res://Regions/" + Constants.RegName.keys()[to_region] + ".tscn").instantiate()
-		new_region.name = Constants.RegName.keys()[to_region]
+		new_region = load("res://Regions/" + to_region_name + ".tscn").instantiate()
+		new_region.name = to_region_name
 		get_node("/root/GameTree").add_child(new_region)
 		if DebugTools.print_stuff: print("Region ", new_region.name, " loaded from resource.")
 
