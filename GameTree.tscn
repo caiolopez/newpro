@@ -1,7 +1,3 @@
-[gd_scene load_steps=2 format=3 uid="uid://cqeapgf5ajw56"]
-
-[ext_resource type="PackedScene" uid="uid://datwnf1ab8341" path="res://Regions/INTRO.tscn" id="2_dlhtt"]
+[gd_scene format=3 uid="uid://cqeapgf5ajw56"]
 
 [node name="GameTree" type="Node"]
-
-[node name="INTRO" parent="." instance=ExtResource("2_dlhtt")]

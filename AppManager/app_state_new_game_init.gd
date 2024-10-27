@@ -1,6 +1,7 @@
 extends AppState
 
 func on_enter():
+	RegionManager.change_region(AppManager.starting_region)
 	AppManager.instantiate_hero()
 	AppManager.instantiate_camera()
 	await get_tree().process_frame

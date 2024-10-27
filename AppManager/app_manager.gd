@@ -9,6 +9,7 @@ var is_speedrun_mode: bool = false
 var dedicated_blunder_button: bool = true
 var game_time: float = 0.0
 var teleporters_are_active: bool = false
+var starting_region: Constants.RegName = Constants.RegName.INTRO
 
 signal game_started # Emited when leaving AppStateNewGameInit/AppStateLoadGameInit
 signal game_paused # Emited when entering AppStatePausedInGame

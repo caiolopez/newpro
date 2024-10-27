@@ -1,7 +1,7 @@
 extends Node
 
 enum Axes {HORIZONTAL_LOCK, VERTICAL_LOCK, FULL_LOCK}
-enum RegName {TEST = 0, INTRO = 1, HUB = 2, ICE = 3, FIRE = 4, CAVE = 5}
+enum RegName {TEST = -1, NULL = 0, INTRO = 1, HUB = 2, ICE = 3, FIRE = 4, CAVE = 5}
 enum BulletType {REGULAR = 0, FIRE = 1, UNDERWATER = 2}
 
 const BULLET_POOL_SIZE: int = 50
