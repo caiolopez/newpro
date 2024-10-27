@@ -38,7 +38,7 @@ func change_background(new_bg_name: StringName) -> void:
 	await shutter.open()
 
 func reset() -> void:
-	render_backgrounds = true
-	current_background.queue_free()
-	current_background = null
 	intended_background_name = ""
+	if current_background:
+		current_background.queue_free()
+		current_background = null
