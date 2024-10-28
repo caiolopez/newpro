@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bfhx6g0duy3tv" path="res://Collectibles/IncendiaryAmmo.tscn" id="12_xtqga"]
 [ext_resource type="PackedScene" uid="uid://7jpetdd82f2l" path="res://GUI/MapSector.tscn" id="13_nlr6c"]
 [ext_resource type="PackedScene" uid="uid://bp1e8lhbqp3me" path="res://Entities/Spike.tscn" id="14_35p7v"]
-[ext_resource type="PackedScene" uid="uid://boan2jyc4hlda" path="res://Checkpoint/CheckpointTrigger.tscn" id="15_j1baa"]
+[ext_resource type="PackedScene" uid="uid://boan2jyc4hlda" path="res://Checkpoint/CheckpointController.tscn" id="15_j1baa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wqnmk"]
 size = Vector2(765, 288)

@@ -1,25 +1,17 @@
-extends Area2D
+class_name CheckpointTrigger extends CollisionShape2D
 
-func _ready():
-	body_shape_entered.connect(_on_body_shape_entered)
+## Must be inside a CheckpointGroup object in order to work. Add an optional Marker2D node as a child to overwrite position.
 
-func _on_body_shape_entered(_rid, body, _body_shape, area_shape_index):
-	if not body is Hero and not body.state_machine.current_state.death_prone:
-		return
-	var local_shape_node = get_collision_shape_by_index(area_shape_index)
-	var direction: int = local_shape_node.direction
-	if body.current_checkpoint_path == local_shape_node.get_path() and not local_shape_node.always_trigger:
-		return
-	if not direction:
-		direction = body.facing_direction
-		
-	body.update_current_checkpoint_info(local_shape_node.get_path(), direction)
-	Events.hero_reached_checkpoint.emit()
-	await get_tree().process_frame
-	SaveManager.save_file()
+enum Direction {
+	LEFT = -1, ## Hero will respawn facing left.
+	RIGHT = 1, ## Hero will respawn facing right.
+	RECALL_HERO_DIRECTION = 0 ## Hero will respawn facing the direction he was when the trigger was entered.
+	}
+@export var direction: Direction = Direction.RECALL_HERO_DIRECTION
+@export var always_trigger: bool = false ## If set to true, causes this checkpoint to work consecutively. When set to false (normal behavior), this checkpoint cannot be triggered multiple times in a row. NOTE: Developed so designers don't have to place two normal checkpoints back to back after boss battles.
+var spawn_pivot: Vector2 = self.global_position
 
-func get_collision_shape_by_index(shape_index: int) -> CollisionShape2D:
-	var shapes = get_children().filter(func(node): return node is CollisionShape2D)
-	if shape_index >= 0 and shape_index < shapes.size():
-		return shapes[shape_index]
-	return null
+func _ready() -> void:
+	for child in self.get_children():
+		if child is Marker2D:
+			spawn_pivot = child.global_position

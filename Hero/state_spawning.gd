@@ -8,7 +8,7 @@ func on_enter():
 	if hero.current_checkpoint_path:
 		var curr_checkpoint = get_node(hero.current_checkpoint_path)
 		if curr_checkpoint:
-			destination = curr_checkpoint.global_position
+			destination = curr_checkpoint.spawn_pivot
 			hero.facing_direction = hero.current_checkpoint_direction
 	hero.global_position = destination
 

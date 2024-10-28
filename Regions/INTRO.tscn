@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://bp7vnugiq46o" path="res://Tilesets/alienscape_tileset_transparent.png" id="2_5i63v"]
 [ext_resource type="Script" path="res://Regions/hero_positioner.gd" id="2_orj6q"]
 [ext_resource type="PackedScene" uid="uid://bgty58ccnncxy" path="res://Camera/CameraLocker.tscn" id="4_2o0al"]
-[ext_resource type="Script" path="res://EntityComponents/unique_collider.gd" id="5_fcl45"]
 [ext_resource type="PackedScene" uid="uid://dd08gffrk8txn" path="res://ElevatorSystem/ElevatorSystem.tscn" id="9_ndrav"]
 [ext_resource type="PackedScene" uid="uid://boug41cw8taxh" path="res://ElevatorSystem/ElevatorButton.tscn" id="10_7j0mw"]
 [ext_resource type="PackedScene" uid="uid://bu38boui2wxu" path="res://SwitchesAndDoors/SwitchGroupController.tscn" id="10_81iia"]
@@ -16,8 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://ca18mmoda2mp" path="res://AudioManager/MusicTrigger.tscn" id="14_8brwy"]
 [ext_resource type="PackedScene" uid="uid://d2vfkstnke1s4" path="res://Boss/BossTrigger.tscn" id="14_74i5l"]
 [ext_resource type="PackedScene" uid="uid://b44gelsmm85o0" path="res://Background/BackgroundTrigger.tscn" id="16_v1sgg"]
-[ext_resource type="PackedScene" uid="uid://boan2jyc4hlda" path="res://Checkpoint/CheckpointTrigger.tscn" id="17_jt88f"]
-[ext_resource type="Script" path="res://Regions/checkpoint_shape.gd" id="18_tp1rd"]
+[ext_resource type="PackedScene" uid="uid://boan2jyc4hlda" path="res://Checkpoint/CheckpointController.tscn" id="17_jt88f"]
+[ext_resource type="Script" path="res://Checkpoint/checkpoint_trigger.gd" id="18_tp1rd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tclv4"]
 texture = ExtResource("2_5i63v")
@@ -173,7 +172,10 @@ size = Vector2(80, 240)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ur4tq"]
 size = Vector2(1760, 960)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_26pys"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pttoj"]
+size = Vector2(160, 320)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i27f6"]
 size = Vector2(160, 320)
 
 [node name="INTRO" type="Node2D"]
@@ -295,32 +297,28 @@ position = Vector2(0, 415)
 [node name="BossFence" parent="BossBattle" instance=ExtResource("13_ptfg2")]
 position = Vector2(-4415, -1040)
 
-[node name="UniqueCollider3" type="CollisionShape2D" parent="BossBattle/BossFence"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BossBattle/BossFence"]
 position = Vector2(-945, 0)
 shape = SubResource("RectangleShape2D_o1yq5")
 debug_color = Color(0.420282, 0.577532, 0.499651, 0.42)
-script = ExtResource("5_fcl45")
 metadata/original_shape_hash = 238957654
 
-[node name="UniqueCollider2" type="CollisionShape2D" parent="BossBattle/BossFence"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="BossBattle/BossFence"]
 position = Vector2(975, 0)
 shape = SubResource("RectangleShape2D_o1yq5")
 debug_color = Color(0.420282, 0.577532, 0.499651, 0.42)
-script = ExtResource("5_fcl45")
 metadata/original_shape_hash = 238957654
 
-[node name="UniqueCollider4" type="CollisionShape2D" parent="BossBattle/BossFence"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="BossBattle/BossFence"]
 position = Vector2(15, 560)
 shape = SubResource("RectangleShape2D_6vd2q")
 debug_color = Color(0.420282, 0.577532, 0.499651, 0.42)
-script = ExtResource("5_fcl45")
 metadata/original_shape_hash = 1671882543
 
-[node name="UniqueCollider5" type="CollisionShape2D" parent="BossBattle/BossFence"]
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="BossBattle/BossFence"]
 position = Vector2(15, -560)
 shape = SubResource("RectangleShape2D_6vd2q")
 debug_color = Color(0.420282, 0.577532, 0.499651, 0.42)
-script = ExtResource("5_fcl45")
 metadata/original_shape_hash = 1671882543
 
 [node name="BossTrigger" parent="BossBattle" node_paths=PackedStringArray("boss", "switch_group_to_close") instance=ExtResource("14_74i5l")]
@@ -360,11 +358,10 @@ visible = false
 axes_to_lock = 2
 center_at = 1
 
-[node name="UniqueCollider" type="CollisionShape2D" parent="CameraLockers/CameraLocker"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLockers/CameraLocker"]
 position = Vector2(320, -243)
 shape = SubResource("RectangleShape2D_ur4tq")
 debug_color = Color(1, 0, 1, 0.5)
-script = ExtResource("5_fcl45")
 metadata/original_shape_hash = 169367947
 
 [node name="Marker2D" type="Marker2D" parent="CameraLockers/CameraLocker"]
@@ -374,11 +371,10 @@ position = Vector2(-60, 3315)
 axes_to_lock = 2
 center_at = 1
 
-[node name="UniqueCollider" type="CollisionShape2D" parent="CameraLockers/CameraLocker2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLockers/CameraLocker2"]
 position = Vector2(340, -75)
 shape = SubResource("RectangleShape2D_ur4tq")
 debug_color = Color(1, 0, 1, 0.5)
-script = ExtResource("5_fcl45")
 metadata/original_shape_hash = 169367947
 
 [node name="Marker2D" type="Marker2D" parent="CameraLockers/CameraLocker2"]
@@ -388,11 +384,10 @@ position = Vector2(-60, 3315)
 axes_to_lock = 2
 center_at = 1
 
-[node name="UniqueCollider" type="CollisionShape2D" parent="CameraLockers/CameraLocker3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLockers/CameraLocker3"]
 position = Vector2(-3420, -1355)
 shape = SubResource("RectangleShape2D_ur4tq")
 debug_color = Color(1, 0, 1, 0.5)
-script = ExtResource("5_fcl45")
 metadata/original_shape_hash = 169367947
 
 [node name="Marker2D" type="Marker2D" parent="CameraLockers/CameraLocker3"]
@@ -402,14 +397,27 @@ position = Vector2(-4400, -1040)
 axes_to_lock = 2
 center_at = 1
 
-[node name="UniqueCollider" type="CollisionShape2D" parent="CameraLockers/CameraLocker4"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLockers/CameraLocker4"]
 shape = SubResource("RectangleShape2D_ur4tq")
 debug_color = Color(1, 0, 1, 0.5)
-script = ExtResource("5_fcl45")
 metadata/original_shape_hash = 169367947
 
+[node name="CheckpointController" parent="." instance=ExtResource("17_jt88f")]
+
+[node name="Checkpoint" type="CollisionShape2D" parent="CheckpointController"]
+position = Vector2(320, 320)
+shape = SubResource("RectangleShape2D_pttoj")
+script = ExtResource("18_tp1rd")
+
+[node name="Marker2D" type="Marker2D" parent="CheckpointController/Checkpoint"]
+position = Vector2(660, -475)
+
+[node name="Checkpoint2" type="CollisionShape2D" parent="CheckpointController"]
+position = Vector2(625, 720)
+shape = SubResource("RectangleShape2D_i27f6")
+script = ExtResource("18_tp1rd")
+
 [node name="CommonTriggers" type="Node2D" parent="."]
-position = Vector2(-445, 135)
 
 [node name="BGTrigger" parent="CommonTriggers" instance=ExtResource("16_v1sgg")]
 position = Vector2(1125, 0)
@@ -441,17 +449,5 @@ position = Vector2(720, 5)
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CommonTriggers/MusicTrigger2"]
 position = Vector2(1280, 695)
 polygon = PackedVector2Array(-60, 25, -10, 105, 145, 75, 140, 15)
-
-[node name="CheckpointTrigger" parent="CommonTriggers" instance=ExtResource("17_jt88f")]
-position = Vector2(765, 185)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CommonTriggers/CheckpointTrigger"]
-shape = SubResource("RectangleShape2D_26pys")
-script = ExtResource("18_tp1rd")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="CommonTriggers/CheckpointTrigger"]
-position = Vector2(265, 405)
-shape = SubResource("RectangleShape2D_26pys")
-script = ExtResource("18_tp1rd")
 
 [editable path="BossBattle/BossTrigger"]

@@ -17,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://dd08gffrk8txn" path="res://ElevatorSystem/ElevatorSystem.tscn" id="14_0odo4"]
 [ext_resource type="PackedScene" uid="uid://bgty58ccnncxy" path="res://Camera/CameraLocker.tscn" id="15_rjmeg"]
 [ext_resource type="PackedScene" uid="uid://bt23waqbakmop" path="res://Water/Water.tscn" id="16_786dt"]
-[ext_resource type="PackedScene" uid="uid://boan2jyc4hlda" path="res://Checkpoint/CheckpointTrigger.tscn" id="17_bl8nk"]
+[ext_resource type="PackedScene" uid="uid://boan2jyc4hlda" path="res://Checkpoint/CheckpointController.tscn" id="17_bl8nk"]
 [ext_resource type="Texture2D" uid="uid://d2gdo5bbgykv2" path="res://icon.svg" id="18_kv622"]
 [ext_resource type="PackedScene" uid="uid://bwugl7674migl" path="res://Effector/Effector.tscn" id="19_0xbib"]
 [ext_resource type="Texture2D" uid="uid://dn7mn5lnxyon3" path="res://DOCS/obsidian/_META/IMG/camera_forbidden_zone_1.png" id="20_fir8g"]
