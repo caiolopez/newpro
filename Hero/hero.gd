@@ -40,6 +40,7 @@ const MAX_DESCENT_VEL_Y: float = 300 ## The maximum downward speed when diving (
 const is_foe: bool = false ## Flag necessary for components that are shared between Hero and enemies.
 var can_dive: bool = false ## Whether the hero has the ability to dive into water instead of floating.
 var current_checkpoint_path: NodePath
+var current_checkpoint_direction: int = 1
 var current_blunder_jump_angle: float
 var was_on_wall: bool ## For variable change caculation
 var was_on_floor: bool ## For variable change caculation
@@ -50,7 +51,7 @@ var on_wall_value_just_changed: bool
 var is_just_on_floor: bool
 var is_just_pushing_wall: bool
 var just_stopped_pushing_wall: bool
-var facing_direction = 1
+var facing_direction: int = 1
 var current_water: Water = null
 var is_in_water: bool = false
 var is_just_in_water: bool
@@ -195,9 +196,11 @@ func _on_hero_hit_teleporter(destination: Vector2):
 	$StateMachine/StateTeleporting.destination = destination
 	state_machine.set_state("StateTeleporting")
 
-func update_current_checkpoint_path(new_checkpoint_path: NodePath):
-	current_checkpoint_path = new_checkpoint_path
+func update_current_checkpoint_info(new_cp_path: NodePath, new_cp_dir: int):
+	current_checkpoint_path = new_cp_path
+	current_checkpoint_direction = new_cp_dir
 	SaveManager.log_hero_change("current_checkpoint_path", current_checkpoint_path)
+	SaveManager.log_hero_change("current_checkpoint_direction", current_checkpoint_direction)
 
 func step_shooting(inverted: bool = false, wet: bool = false) -> bool:
 	if is_input_blunder_shoot()\

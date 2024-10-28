@@ -118,6 +118,7 @@ func inject_changes_into_hero():
 		var value = hero_persistence[key]
 		match key:
 			"current_checkpoint_path": h.current_checkpoint_path = value
+			"current_checkpoint_direction": h.current_checkpoint_direction = value
 			"got_incendiary_ammo": h.shooter.bullet_type = Constants.BulletType.FIRE
 			"got_underwater_ammo": h.shooter.shoots_underwater_ammo = value
 			"got_aqualung": h.can_dive = value

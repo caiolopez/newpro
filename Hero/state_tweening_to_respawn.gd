@@ -11,8 +11,9 @@ func on_enter():
 	var destination = hero.original_position
 	if hero.current_checkpoint_path:
 		var curr_checkpoint = get_node(hero.current_checkpoint_path)
-		destination = curr_checkpoint.global_position
-		hero.facing_direction = curr_checkpoint.direction
+		if curr_checkpoint:
+			destination = curr_checkpoint.global_position
+			hero.facing_direction = hero.current_checkpoint_direction
 	tween = get_tree().create_tween()
 	tween.tween_property(hero, "global_position", destination, 0.5).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
 
