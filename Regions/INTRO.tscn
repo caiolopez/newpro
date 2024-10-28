@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=4 uid="uid://datwnf1ab8341"]
+[gd_scene load_steps=35 format=4 uid="uid://datwnf1ab8341"]
 
 [ext_resource type="Script" path="res://RegionManagement/region.gd" id="1_l82iy"]
 [ext_resource type="Texture2D" uid="uid://bp7vnugiq46o" path="res://Tilesets/alienscape_tileset_transparent.png" id="2_5i63v"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://d2vfkstnke1s4" path="res://Boss/BossTrigger.tscn" id="14_74i5l"]
 [ext_resource type="PackedScene" uid="uid://b44gelsmm85o0" path="res://Background/BackgroundTrigger.tscn" id="16_v1sgg"]
 [ext_resource type="PackedScene" uid="uid://boan2jyc4hlda" path="res://Checkpoint/CheckpointTrigger.tscn" id="17_jt88f"]
+[ext_resource type="Script" path="res://Regions/checkpoint_shape.gd" id="18_tp1rd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tclv4"]
 texture = ExtResource("2_5i63v")
@@ -173,30 +174,6 @@ size = Vector2(80, 240)
 size = Vector2(1760, 960)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_26pys"]
-size = Vector2(160, 320)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_05jet"]
-size = Vector2(160, 240)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6j7c8"]
-size = Vector2(160, 240)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ywxr1"]
-size = Vector2(160, 240)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vra6b"]
-size = Vector2(160, 320)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qrv1k"]
-size = Vector2(240, 320)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0g3i0"]
-size = Vector2(240, 960)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dn2gd"]
-size = Vector2(160, 320)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_evi8o"]
 size = Vector2(160, 320)
 
 [node name="INTRO" type="Node2D"]
@@ -470,60 +447,11 @@ position = Vector2(765, 185)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CommonTriggers/CheckpointTrigger"]
 shape = SubResource("RectangleShape2D_26pys")
+script = ExtResource("18_tp1rd")
 
-[node name="CheckpointTrigger6" parent="CommonTriggers" instance=ExtResource("17_jt88f")]
-position = Vector2(-995, 1145)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CommonTriggers/CheckpointTrigger6"]
-position = Vector2(0, 40)
-shape = SubResource("RectangleShape2D_05jet")
-
-[node name="CheckpointTrigger7" parent="CommonTriggers" instance=ExtResource("17_jt88f")]
-position = Vector2(-995, 2745)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CommonTriggers/CheckpointTrigger7"]
-position = Vector2(0, -40)
-shape = SubResource("RectangleShape2D_6j7c8")
-
-[node name="CheckpointTrigger8" parent="CommonTriggers" instance=ExtResource("17_jt88f")]
-position = Vector2(-435, 3385)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CommonTriggers/CheckpointTrigger8"]
-position = Vector2(-5, -40)
-shape = SubResource("RectangleShape2D_ywxr1")
-
-[node name="CheckpointTrigger9" parent="CommonTriggers" instance=ExtResource("17_jt88f")]
-position = Vector2(-1310, 3705)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CommonTriggers/CheckpointTrigger9"]
-position = Vector2(-5, -80)
-shape = SubResource("RectangleShape2D_vra6b")
-
-[node name="CheckpointTrigger2" parent="CommonTriggers" instance=ExtResource("17_jt88f")]
-position = Vector2(2005, 1625)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CommonTriggers/CheckpointTrigger2"]
-position = Vector2(5, 0)
-shape = SubResource("RectangleShape2D_qrv1k")
-
-[node name="CheckpointTrigger5" parent="CommonTriggers" instance=ExtResource("17_jt88f")]
-position = Vector2(-400, 2105)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CommonTriggers/CheckpointTrigger5"]
-position = Vector2(5, -320)
-shape = SubResource("RectangleShape2D_0g3i0")
-
-[node name="CheckpointTrigger3" parent="CommonTriggers" instance=ExtResource("17_jt88f")]
-position = Vector2(765, -495)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CommonTriggers/CheckpointTrigger3"]
-shape = SubResource("RectangleShape2D_dn2gd")
-
-[node name="CheckpointTrigger4" parent="CommonTriggers" instance=ExtResource("17_jt88f")]
-position = Vector2(2045, 665)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CommonTriggers/CheckpointTrigger4"]
-position = Vector2(-80, 0)
-shape = SubResource("RectangleShape2D_evi8o")
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CommonTriggers/CheckpointTrigger"]
+position = Vector2(265, 405)
+shape = SubResource("RectangleShape2D_26pys")
+script = ExtResource("18_tp1rd")
 
 [editable path="BossBattle/BossTrigger"]
