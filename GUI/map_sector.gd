@@ -3,14 +3,9 @@ class_name MapSector extends Area2D
 enum S {UNCHARTED = 0, CHARTING = 1, CHARTED = 2}
 var status: S = S.UNCHARTED
 
-
 func _ready():
-	var has_coll_poly: bool = false
-	for child in get_children():
-		if child is CollisionPolygon2D:
-			has_coll_poly = true
-	if has_coll_poly == false:
-		push_error(self, " requires a CollisionPolygon2D node.")
+	if get_children().filter(func(node): return node is CollisionPolygon2D).is_empty():
+		push_error(self, " requires at least one CollisionPolygon2D node.")
 		return
 
 	body_entered.connect(func(body):
