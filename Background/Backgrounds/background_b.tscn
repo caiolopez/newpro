@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://dfj5x7i2hy0pq"]
+[gd_scene load_steps=12 format=3 uid="uid://dfj5x7i2hy0pq"]
 
 [ext_resource type="Script" path="res://Background/BackgroundComponents/constant_rotation.gd" id="1_rf045"]
 [ext_resource type="Script" path="res://Background/background_camera.gd" id="2_dvl52"]
+[ext_resource type="Shader" path="res://CaioShaders/pixelate_w_gaps.gdshader" id="3_vkkds"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o5sud"]
 
@@ -20,6 +21,11 @@ font_size = 58
 
 [sub_resource type="Environment" id="Environment_13nke"]
 background_mode = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a84mi"]
+shader = ExtResource("3_vkkds")
+shader_parameter/pixel_size = 32.0
+shader_parameter/gap_size = 0.2
 
 [node name="BackgroundB" type="Node"]
 
@@ -80,3 +86,11 @@ light_specular = 10.225
 light_bake_mode = 1
 omni_range = 4.056
 omni_attenuation = 1.503
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_a84mi")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

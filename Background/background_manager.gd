@@ -34,6 +34,7 @@ func change_background(new_bg_name: StringName) -> void:
 	var background_scene = load(BACKGROUNDS[new_bg_name]).instantiate()
 	if current_background: current_background.queue_free()
 	add_child(background_scene)
+	move_child(background_scene, 0)
 	current_background = background_scene
 	await shutter.open()
 
