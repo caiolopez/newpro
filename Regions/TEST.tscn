@@ -27,7 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://p6no8gdu6s5o" path="res://Boss/Boss2/Boss2.tscn" id="24_ff27i"]
 [ext_resource type="PackedScene" uid="uid://d2vfkstnke1s4" path="res://Boss/BossTrigger.tscn" id="25_qcpih"]
 [ext_resource type="PackedScene" path="res://EntityComponents/UniqueCollider.tscn" id="26_gjqow"]
-[ext_resource type="PackedScene" uid="uid://7jpetdd82f2l" path="res://GUI/MapSector.tscn" id="27_eveqp"]
+[ext_resource type="PackedScene" uid="uid://7jpetdd82f2l" path="res://GUI/MapSectorController.tscn" id="27_eveqp"]
 [ext_resource type="PackedScene" uid="uid://3evhvetyekwd" path="res://Entities/Slinky.tscn" id="28_48pge"]
 [ext_resource type="PackedScene" uid="uid://ctie7rq86pefq" path="res://Dialog/DialogTrigger.tscn" id="29_tvc4e"]
 [ext_resource type="PackedScene" uid="uid://bfhx6g0duy3tv" path="res://Collectibles/IncendiaryAmmo.tscn" id="30_1hxe5"]
