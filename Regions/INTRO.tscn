@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=4 uid="uid://datwnf1ab8341"]
+[gd_scene load_steps=52 format=4 uid="uid://datwnf1ab8341"]
 
 [ext_resource type="Script" path="res://RegionManagement/region.gd" id="1_l82iy"]
 [ext_resource type="Texture2D" uid="uid://bp7vnugiq46o" path="res://Tilesets/alienscape_tileset_transparent.png" id="2_5i63v"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://boan2jyc4hlda" path="res://Checkpoint/CheckpointController.tscn" id="17_jt88f"]
 [ext_resource type="PackedScene" uid="uid://7jpetdd82f2l" path="res://GUI/MapSector.tscn" id="18_ggtev"]
 [ext_resource type="Script" path="res://Checkpoint/checkpoint_trigger.gd" id="18_tp1rd"]
+[ext_resource type="Script" path="res://Regions/map_sector_trigger.gd" id="20_c6610"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tclv4"]
 texture = ExtResource("2_5i63v")
@@ -540,15 +541,14 @@ position = Vector2(720, 5)
 position = Vector2(-1440, -750)
 polygon = PackedVector2Array(-60, 25, -10, 105, 145, 75, 140, 15)
 
-[node name="MinimapSectors" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="MapSector" parent="." instance=ExtResource("18_ggtev")]
 
-[node name="MapSector" parent="MinimapSectors" instance=ExtResource("18_ggtev")]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MapSector"]
+polygon = PackedVector2Array(-550, -750, -540, 460, 1190, 485, 1215, -725)
+script = ExtResource("20_c6610")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MinimapSectors/MapSector"]
-polygon = PackedVector2Array(-250, -95, -210, 175, 1000, 165, 1015, -45)
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="MapSector"]
+polygon = PackedVector2Array(965, 585, 955, 1135, 2105, 1470, 1930, 505)
+script = ExtResource("20_c6610")
 
 [editable path="BossBattle/BossTrigger"]

@@ -34,11 +34,10 @@ func _ready():
 	$Icons.self_modulate = Color.TRANSPARENT
 	adjust_icon_scale()
 
-func append_sector_to_map(sector: MapSector):
-	var sect_coll = sector.extract_coll_polygon_2d()
+func append_sector_to_map(sect_coll: MapSectorTrigger):
 	
 	var new_mini_sector = SectorPolygon.new()
-	new_mini_sector.ref = sector.get_path()
+	new_mini_sector.ref = sect_coll.get_path()
 	new_mini_sector.polygon = sect_coll.polygon
 	new_mini_sector.global_position = sect_coll.global_position
 	$SectorPolygons.add_child(new_mini_sector)

@@ -27,7 +27,7 @@ signal show_hint(hint: StringName)
 signal show_hint_text(hint: String)
 signal hide_hint()
 
-signal chart_map_sector(sector: MapSector)
+signal chart_map_sector(sector: MapSectorTrigger)
 signal unchart_map_sector(sector_path: NodePath)
 
 signal request_new_game()
