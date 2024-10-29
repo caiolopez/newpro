@@ -3,8 +3,12 @@ class_name CheckpointController extends Area2D
 
 @export_tool_button("Make all unique") var v = make_all_collision_shapes_unique
 
+func _init():
+	if Engine.is_editor_hint():
+		child_entered_tree.connect(make_all_collision_shapes_unique)
+
 func _ready():
-	body_shape_entered.connect(_on_body_shape_entered)
+	body_shape_entered.connect(_on_body_shape_entered) 
 
 func _on_body_shape_entered(_rid, body, _body_shape, area_shape_index):
 	if not body is Hero and not body.state_machine.current_state.death_prone:
@@ -25,9 +29,9 @@ func get_collision_shape_by_index(shape_index: int) -> CheckpointTrigger:
 	var shapes = get_children().filter(func(node): return node is CheckpointTrigger)
 	if shape_index >= 0 and shape_index < shapes.size():
 		return shapes[shape_index]
-	return null
+	else: return null
 
-func make_all_collision_shapes_unique() -> void:
+func make_all_collision_shapes_unique(_node) -> void:
 	for shape in get_children().filter(func(node): return node is CheckpointTrigger):
 		print("Made ", shape, " unique.")
 		shape.shape = shape.shape.duplicate()
