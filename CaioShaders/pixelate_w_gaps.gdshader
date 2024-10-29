@@ -17,14 +17,14 @@ uniform float gap_size: hint_range(0.0, 1.0) = 0.1;
 void fragment() {
     vec2 uv = SCREEN_UV;
     vec2 screen_size = vec2(textureSize(SCREEN_TEXTURE, 0));
-    
+
     // Calculate pixel coordinates
     vec2 pixelated_uv = floor(uv * screen_size / pixel_size) * pixel_size / screen_size;
-    
+
     if (gap_size > 0.0) {
         // Calculate position within each pixel (0 to 1)
         vec2 pixel_position = fract(uv * screen_size / pixel_size);
-        
+
         // If we're in the gap area, make it black
         if (pixel_position.x < gap_size || pixel_position.x > (1.0 - gap_size) ||
             pixel_position.y < gap_size || pixel_position.y > (1.0 - gap_size)) {

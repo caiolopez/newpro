@@ -164,3 +164,9 @@ func lose_focus():
 	var focused_node = get_viewport().gui_get_focus_owner()
 	if focused_node:
 		focused_node.release_focus()
+
+func get_collision_shape_by_index(parent_area: Area2D, shape_index: int) -> CollisionShape2D:
+	var shapes = parent_area.get_children().filter(func(node): return node is CollisionShape2D)
+	if shape_index >= 0 and shape_index < shapes.size():
+		return shapes[shape_index]
+	return null

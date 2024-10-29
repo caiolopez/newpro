@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bgty58ccnncxy"]
 
-[ext_resource type="Script" path="res://Camera/camera_locker.gd" id="1_0mlkh"]
+[ext_resource type="Script" path="res://Camera/camera_locker_controller.gd" id="1_0mlkh"]
 
 [node name="CameraLocker" type="Area2D"]
 collision_mask = 8

@@ -1,8 +1,8 @@
 extends Node
 
 # Gameplay Signals
-signal hero_entered_camera_locker(camera_locker: CameraLocker, axes: Constants.Axes, lock_position: Vector2)
-signal hero_exited_camera_locker(camera_locker: CameraLocker, axes: Constants.Axes)
+signal hero_entered_camera_locker(camera_locker: CameraTrigger, axes: Constants.Axes, lock_position: Vector2)
+signal hero_exited_camera_locker(camera_locker: CameraTrigger, axes: Constants.Axes)
 signal hero_changed_dir(new_dir: float)
 signal hero_hit_teleporter(teleporter: Teleporter) # When a hero shot hits active teleporter
 signal teleporters_activated(enabled: bool) # When hero collects powerup that activates teleporters
