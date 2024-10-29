@@ -8,9 +8,7 @@ func _ready():
 		return
 
 	body_shape_entered.connect(func(_rid, body: Node2D, _body_shape, area_shape_index: int):
-		if not body is Hero:
-			return
-		if not body.state_machine.current_state.death_prone:
+		if not body is Hero and not body.state_machine.current_state.death_prone:
 			return
 
 		var sector: MapSectorTrigger = Utils.get_collision_polygon_by_index(self, area_shape_index)

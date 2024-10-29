@@ -172,7 +172,9 @@ func get_collision_shape_by_index(parent_area: Area2D, shape_index: int) -> Coll
 	return null
 
 func get_collision_polygon_by_index(parent_area: Area2D, shape_index: int) -> CollisionPolygon2D:
-	var shapes = parent_area.get_children().filter(func(node): return node is CollisionPolygon2D)
-	if shape_index >= 0 and shape_index < shapes.size():
-		return shapes[shape_index]
+	var shape_owner = parent_area.shape_find_owner(shape_index)
+	if shape_owner >= 0:
+		var node = parent_area.shape_owner_get_owner(shape_owner)
+		if node is CollisionPolygon2D:
+			return node
 	return null
