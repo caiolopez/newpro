@@ -3,4 +3,5 @@
 [ext_resource type="Script" path="res://Boss/boss_fence.gd" id="1_q2t5t"]
 
 [node name="BossFence" type="Area2D"]
+collision_mask = 0
 script = ExtResource("1_q2t5t")

@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://Background/background_trigger.gd" id="1_dgffw"]
 
 [node name="BGTrigger" type="Area2D"]
+collision_layer = 0
 collision_mask = 8
 script = ExtResource("1_dgffw")
 background = null
