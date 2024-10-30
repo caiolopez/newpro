@@ -8,8 +8,8 @@ var current_state: SwitchState
 func _ready():
 	controller = get_parent()
 	$TimerSimultWindow.set_wait_time(controller.simult_window_duration)
-	$TimerSimultWindow.timeout.connect(on_simult_window_timeout)
-	area_entered.connect(on_bullet_entered)
+	$TimerSimultWindow.timeout.connect(switch_off)
+	area_entered.connect(_on_area_entered)
 	switch_off()
 
 func switch_on():
@@ -22,15 +22,12 @@ func switch_off():
 	$TimerSimultWindow.stop()
 	modulate = Color(1, 0, 0)
 
-func temporarily_switch_on():
+func _temporarily_switch_on():
 	current_state = SwitchState.TEMP_ON
 	$TimerSimultWindow.start()
 	modulate = Color(1, 1, 0)
 
-func on_simult_window_timeout():
-	switch_off()
-
-func on_bullet_entered(area):
+func _on_area_entered(area):
 	if not area is Bullet: return
 	if not $TimerCooldown.is_stopped():
 		area.kill_bullet()
@@ -41,7 +38,7 @@ func on_bullet_entered(area):
 	match current_state:
 		SwitchState.OFF:
 			if controller.req_simultaneous:
-				temporarily_switch_on()
+				_temporarily_switch_on()
 			controller.on_switch_turned_on()
 		SwitchState.ON:
 			if toggle:

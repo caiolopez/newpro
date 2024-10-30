@@ -7,9 +7,11 @@ var is_active: bool = false
 
 func _ready():
 	body_entered.connect(func(body):
-		if not body is Hero\
-		or is_active:
+		if is_active:
 			return
+		if not body is Hero and not body.state_machine.current_state.death_prone:
+			return
+ 
 		if boss and boss != null:
 			Events.boss_trigger_entered.emit(boss)
 			_close_doors()

@@ -1,7 +1,7 @@
 @tool
 class_name Door extends AnimatableBody2D
 
-@export_tool_button("Bake Art") var v = func(): if find_door_collider(): setup_art()
+@export_tool_button("Bake Art") var v = func(): if _find_door_collider(): _setup_art()
 @export var duration: float = 1.0
 @export var open_offset: Vector2 = Vector2(0.0, -288.0)
 @export var auto_close_time: float = 0.0 ## If not zero, causes the door to automatically close after the specified time.
@@ -20,9 +20,9 @@ func _ready():
 		$StateMachine/TimerAutoClose.set_wait_time(auto_close_time)
 	state_machine.start()
 	
-	if find_door_collider():
-		setup_art()
-		setup_anticrush_area()
+	if _find_door_collider():
+		_setup_art()
+		_setup_anticrush_area()
 
 func open():
 	should_open.emit()
@@ -55,9 +55,9 @@ func tween_door(offset: Vector2):
 		"position",
 		closed_pos + offset,
 		duration).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
-	door_tween.finished.connect(on_tween_finished)
+	door_tween.finished.connect(_on_door_tween_finished)
 
-func on_tween_finished():
+func _on_door_tween_finished():
 	if Utils.aprox_equal_vector2(position, closed_pos):
 		stopped_moving_at_origin.emit()
 	if Utils.aprox_equal_vector2(position, closed_pos + open_offset):
@@ -71,17 +71,17 @@ func area_has_uncrushables() -> bool:
 			break
 	return has
 
-func setup_art():
+func _setup_art():
 	$NinePDoorArt.size = door_collider.shape.get_rect().size
 	$NinePDoorArt.position = door_collider.position - $NinePDoorArt.size/2
 
-func setup_anticrush_area():
+func _setup_anticrush_area():
 	var anti_crush_collider: CollisionShape2D = door_collider.duplicate()
 	$AntiCrushArea.add_child(anti_crush_collider)
 	$AntiCrushArea.set_as_top_level(true)
 	$AntiCrushArea.global_position = global_position
 
-func find_door_collider() -> CollisionShape2D:
+func _find_door_collider() -> CollisionShape2D:
 	var collider: CollisionShape2D = null
 	for child in get_children():
 		if child is CollisionShape2D:
