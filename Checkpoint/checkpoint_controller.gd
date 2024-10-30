@@ -5,7 +5,8 @@ class_name CheckpointController extends Area2D
 
 func _init():
 	if Engine.is_editor_hint():
-		child_entered_tree.connect(_make_all_collision_shapes_unique)
+		child_entered_tree.connect(_make_collision_shape_unique)
+		set_meta("init_time", Time.get_ticks_msec())
 
 func _ready():
 	body_shape_entered.connect(_on_body_shape_entered) 
@@ -30,4 +31,10 @@ func _make_all_collision_shapes_unique(_node) -> void:
 	for shape in get_children().filter(func(node): return node is CollisionShape2D):
 		count += 1
 		shape.shape = shape.shape.duplicate()
-	if count: print(count, " shapes were made unique by ", self.name)
+	if count and DebugTools.print_stuff: print(count, " shapes were made unique by ", self.name)
+
+func _make_collision_shape_unique(node) -> void:
+	if not node is CollisionShape2D: return
+	if Time.get_ticks_msec() - get_meta("init_time") < 1000: return
+	node.shape = node.shape.duplicate()
+	if DebugTools.print_stuff: print(node.name, " shape was made unique by ", self.name)
