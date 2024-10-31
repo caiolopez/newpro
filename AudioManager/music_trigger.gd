@@ -1,6 +1,6 @@
 extends Area2D
 
-@export_enum("nothing", "giorgio", "gorgo") var track: String
+@export var track: StringName
 
 func _ready():
 	body_entered.connect(func(body):

@@ -25,6 +25,9 @@ func set_render_backgrounds(state: bool) -> void:
 			change_background(intended_background_name)
 
 func change_background(new_bg_name: StringName) -> void:
+	if not BACKGROUNDS.has(new_bg_name):
+		push_error("Invalid background name: " + new_bg_name)
+		return
 	if current_background and new_bg_name == intended_background_name: return
 	intended_background_name = new_bg_name
 	SaveManager.log_hero_change("current_background", intended_background_name)

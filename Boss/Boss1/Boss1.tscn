@@ -74,7 +74,6 @@ time_between_shots = 0.2
 shot_burst_amount = 60
 
 [node name="DmgTaker" parent="." instance=ExtResource("7_fd85g")]
-collision_layer = 4
 collision_mask = 16
 HP_AMOUNT = 40
 

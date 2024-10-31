@@ -1,22 +1,18 @@
 extends Node2D
 
-
 @onready var center: Vector2 = $Marker2D.global_position
 @onready var state_machine: StateMachine = $StateMachine
 var current_stage: int = 0
-
 
 func _ready():
 	$DmgTaker.suffered.connect(on_suffered)
 	$DmgTaker.died.connect(func(): state_machine.set_state("BStateDying"))
 	$DmgTaker.resurrected.connect(func(): state_machine.set_state("BStateDormant"))
 
-
 func _on_area_2d_area_entered(area):
 	if area is BossFence\
 	and state_machine.current_state.name == "BStateDashing":
 		state_machine.set_state("BStatePostDash")
-
 
 func update_current_stage(hp):
 	var st: Array[int] = [30, 20, 10, 0]
@@ -25,7 +21,6 @@ func update_current_stage(hp):
 		if hp > st[i]:
 			current_stage = i
 			return
-
 
 func reparametrize_boss():
 	match current_stage:
@@ -50,7 +45,6 @@ func reparametrize_boss():
 			$Shooter.time_between_shots = 0.05
 			$Flier.SPEED = 1000
 			$MoveStraight.SPEED = 3000
-
 
 func on_suffered(hp: int):
 	var prev_stage = current_stage

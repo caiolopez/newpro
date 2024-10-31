@@ -53,7 +53,7 @@ func _ready():
 			music_player.play()
 	)
 
-func play_music(track_name: String):
+func play_music(track_name: StringName):
 	if intended_track_name == track_name: return
 	if not MUSIC_TRACKS.has(track_name):
 		push_error("Track name not found: " + track_name)
