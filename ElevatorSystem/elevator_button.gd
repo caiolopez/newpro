@@ -4,20 +4,14 @@ class_name ElevatorButton extends Area2D
 @onready var parent: ElevatorSystem = get_parent()
 enum button_type {ORIGIN, DESTINATION}
 var is_active: bool
-var last_processed_bullet: Bullet = null
 
 func _ready():
 	set_inactive()
 	area_entered.connect(on_area_entered)
-	area_exited.connect(func(area): if area == last_processed_bullet:
-		last_processed_bullet = null, CONNECT_DEFERRED)
 
 func on_area_entered(area):
-	if not area is Bullet:
-		return
-	if area == last_processed_bullet:
-		return
-	last_processed_bullet = area
+	if not area is Bullet: return
+	if area.handled: return
 	if not is_active:
 		if type == button_type.ORIGIN:
 			parent.send_elevator_to(&"origin")

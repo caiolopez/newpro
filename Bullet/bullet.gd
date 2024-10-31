@@ -15,6 +15,7 @@ var is_underwater_ammo: bool
 var time_before_visible: float = 0.05
 var timer_before_visible: Timer
 var dull: bool = false
+var handled: bool = true
 
 func _ready():
 	$IsInWaterNotifier.water_state_changed.connect(on_water_status_changed)
@@ -41,6 +42,7 @@ func restart():
 	current_drag = AIR_DRAG
 	current_gravity = 0
 	dull = false
+	handled = false
 	animate()
 
 func _physics_process(delta):
@@ -88,6 +90,7 @@ func color_owner_muzzle(muzzle: Node2D):
 		muzzle.get_node("BwShaderSetter").set_color(current_dark_color, current_light_color)
 
 func kill_bullet():
+	handled = true
 	var color_pair: Array[Color] = [current_dark_color, current_light_color]
 	PropManager.place_prop(global_position, &"bullet_dies", color_pair)
 	BulletManager.release_bullet(self)
