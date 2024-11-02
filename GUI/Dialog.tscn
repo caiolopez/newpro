@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dvk1kn7j0htsi"]
+[gd_scene load_steps=6 format=3 uid="uid://dvk1kn7j0htsi"]
 
 [ext_resource type="Script" path="res://GUI/dialog_manager.gd" id="1_mwgls"]
 [ext_resource type="Texture2D" uid="uid://dh3cmurbvddhl" path="res://frame.png" id="1_xmoqf"]
 [ext_resource type="Texture2D" uid="uid://d2gdo5bbgykv2" path="res://icon.svg" id="2_u4vqf"]
+[ext_resource type="Texture2D" uid="uid://dvquovvyhrd7w" path="res://GUI/down_arrow.png" id="4_g12x8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_jbmk4"]
 font_size = 49
@@ -41,13 +42,15 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 48.0
+offset_left = 32.0001
 offset_top = 40.0
 offset_right = -320.0
-offset_bottom = -48.0
+offset_bottom = -32.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_u4vqf")
+expand_mode = 2
+stretch_mode = 6
 
 [node name="MainText" type="RichTextLabel" parent="DialogBox"]
 layout_mode = 1
@@ -67,6 +70,19 @@ shortcut_keys_enabled = false
 deselect_on_focus_loss_enabled = false
 drag_and_drop_selection_enabled = false
 visible_characters_behavior = 1
+
+[node name="MorePagesIndicator" type="TextureRect" parent="DialogBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 216.0
+offset_top = 144.0
+offset_right = -216.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_g12x8")
 
 [node name="HintLabel" type="Label" parent="."]
 layout_mode = 1
