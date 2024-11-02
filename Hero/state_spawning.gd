@@ -5,6 +5,8 @@ var death_prone: bool = false
 
 func on_enter():
 	var destination = hero.original_position
+	if not hero.current_checkpoint_path:
+		hero.current_checkpoint_path = RegionManager.current_region.default_checkpoint_trigger.get_path()
 	if hero.current_checkpoint_path:
 		var curr_checkpoint = get_node(hero.current_checkpoint_path)
 		if curr_checkpoint:
