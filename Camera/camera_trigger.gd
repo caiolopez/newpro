@@ -15,6 +15,12 @@ class_name CameraTrigger extends CollisionShape2D
 @export var center_at: CameraLockerController.LockHandles = CameraLockerController.LockHandles.PLACE_OF_CONTACT
 var center_mark: Marker2D = null
 
+func _ready() -> void:
+	for child in get_children():
+		if child is Marker2D:
+			center_mark = child
+			break
+
 func debug_color_changer():
 	match axes_to_lock:
 		Constants.Axes.HORIZONTAL_LOCK: debug_color = Color(0, 0, 1, 0.5)
