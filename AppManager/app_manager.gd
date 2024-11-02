@@ -2,7 +2,7 @@ extends Node
 
 @onready var game_tree = get_node("/root/GameTree")
 @onready var state_machine: StateMachine = $StateMachine
-var developer_mode: bool = true
+var developer_mode: bool = false
 var hero: Hero = null
 var minimap_node
 var is_speedrun_mode: bool = false

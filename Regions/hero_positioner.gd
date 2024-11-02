@@ -1,4 +1,4 @@
-extends Marker2D
+class_name HeroPositioner extends Marker2D
  
 func _ready() -> void:
 	if AppManager.developer_mode:

@@ -13,7 +13,7 @@ signal options_closed
 var options_data = {
 	"music_volume": 1.0,
 	"sfx_volume": 1.0,
-	"dedicated_blunder": false,
+	"dedicated_blunder": true,
 	"speedrun_mode": false,
 	"render_background": true,
 	"fullscreen": false
