@@ -26,7 +26,7 @@ func show_menu():
 	await tween.finished
 	(load_game_button if load_game_button.visible else new_game_button).grab_focus()
 
-func hide_menu():
+func _hide_menu():
 	AudioManager.stop_music_immediately()
 	AudioManager.play_sound(&"snare")
 	Utils.lose_focus()
@@ -41,7 +41,7 @@ func _on_options_closed():
  
 func _on_load_game_pressed():
 	Utils.lose_focus()
-	await hide_menu()
+	await _hide_menu()
 	Events.request_load_game.emit()
 
 func _on_new_game_pressed():
@@ -51,13 +51,13 @@ func _on_new_game_pressed():
 			"Start New Game"
 		)
 		if confirmed:
-			await hide_menu()
+			await _hide_menu()
 			Events.request_new_game.emit()
 		else:
 			new_game_button.grab_focus()
 	else:
 		Utils.lose_focus()
-		await hide_menu()
+		await _hide_menu()
 		Events.request_new_game.emit()
 
 func _on_options_pressed():
