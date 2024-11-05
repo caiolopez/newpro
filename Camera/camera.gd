@@ -37,8 +37,9 @@ func _ready():
 	state_machine.start()
 	Events.hero_entered_camera_locker.connect(lock_camera)
 	Events.hero_exited_camera_locker.connect(unlock_camera)
+	Events.hero_first_spawned.connect(func():
+		self.global_position = AppManager.hero.global_position)
 
-	Events.camera_set_glpos.connect(func(glpos): global_position = glpos)
 	Events.camera_shake.connect(shake)
 	Events.camera_stop_shake.connect(stop_shake)
 

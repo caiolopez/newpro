@@ -14,7 +14,7 @@ func on_enter():
 			hero.facing_direction = hero.current_checkpoint_direction
 	hero.global_position = destination
 
-	Events.camera_set_glpos.emit(hero.global_position)
+	Events.hero_first_spawned.emit()
 	hero.force_water_detection()
 
 	machine.set_state("StateIdle")
