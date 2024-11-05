@@ -5,3 +5,4 @@
 [node name="CheckpointController" type="Area2D"]
 collision_mask = 8
 script = ExtResource("1_4e7d7")
+metadata/init_time = 10161535
