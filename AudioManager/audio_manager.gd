@@ -53,14 +53,15 @@ func _ready():
 			music_player.play()
 	)
 
-func play_music(track_name: StringName):
+func play_music(track_name: StringName, should_save: bool = true):
 	if intended_track_name == track_name: return
 	if not MUSIC_TRACKS.has(track_name):
 		push_error("Track name not found: " + track_name)
 		return
 	
 	intended_track_name = track_name
-	SaveManager.log_hero_change("current_music", intended_track_name)
+	if should_save:
+		SaveManager.log_hero_change("current_music", intended_track_name)
 	
 	if music_player.is_playing():
 		_fade_out_music()
