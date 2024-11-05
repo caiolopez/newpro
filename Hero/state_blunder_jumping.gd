@@ -36,6 +36,7 @@ func on_process(delta: float):
 	if Input.is_action_just_pressed("jump"):
 		timer_super_bounce_window.start()
 		timer_buffer_jump.start()
+		timer_buffer_walljump.start()
 
 	if hero.is_on_floor():
 		PropManager.place_prop(hero.global_position, &"dust_pound")
@@ -70,6 +71,7 @@ func on_process(delta: float):
 func on_physics_process(delta: float):
 	hero.current_blunder_jump_angle += delta * 1080 * hero.facing_direction
 	
+	hero.step_walljump()
 	hero.step_grav(delta)
 	hero.step_lateral_mov(delta)
 	hero.move_and_slide()
