@@ -4,6 +4,7 @@ signal options_closed
 @onready var music_slider = $VBoxContainer/HBoxContainerMusic/MusicSlider
 @onready var sfx_slider = $VBoxContainer/HBoxContainerSfx/SfxSlider
 @onready var blunder_opt = $VBoxContainer/DedicatedBlunderToggle
+@onready var physics_opt = $VBoxContainer/PhysicsInterpolationToggle
 @onready var speedrun_opt = $VBoxContainer/SpeedrunModeToggle
 @onready var background_opt = $VBoxContainer/RenderBackgroundToggle
 @onready var fullscreen_opt = $VBoxContainer/FullscreenToggle
@@ -14,6 +15,7 @@ var options_data = {
 	"music_volume": 1.0,
 	"sfx_volume": 1.0,
 	"dedicated_blunder": true,
+	"physics_interpolation": false,
 	"speedrun_mode": false,
 	"render_background": true,
 	"fullscreen": false
@@ -26,6 +28,7 @@ func _ready():
 	music_slider.value_changed.connect(_on_music_volume_changed)
 	sfx_slider.value_changed.connect(_on_sfx_volume_changed)
 	blunder_opt.toggled.connect(_on_blunder_opt_changed)
+	physics_opt.toggled.connect(_on_physics_opt_changed)
 	speedrun_opt.toggled.connect(_on_speedrun_opt_changed)
 	background_opt.toggled.connect(_on_render_background_changed)
 	fullscreen_opt.toggled.connect(_on_fullscreen_changed)
@@ -52,6 +55,11 @@ func _on_sfx_volume_changed(value):
 func _on_blunder_opt_changed(state: bool):
 	options_data["dedicated_blunder"] = state
 	AppManager.dedicated_blunder_button = state
+
+func _on_physics_opt_changed(state: bool):
+	options_data["physics_interpolation"] = state
+	Engine.physics_jitter_fix = 0.0 if state else 0.5
+	get_tree().physics_interpolation = state
 
 func _on_speedrun_opt_changed(state: bool):
 	options_data["speedrun_mode"] = state
@@ -97,6 +105,10 @@ func apply_loaded_options():
 
 	AppManager.dedicated_blunder_button = options_data["dedicated_blunder"]
 	blunder_opt.button_pressed = options_data["dedicated_blunder"]
+
+	get_tree().physics_interpolation = options_data["physics_interpolation"]
+	Engine.physics_jitter_fix = 0.0 if options_data["physics_interpolation"] else 0.5
+	physics_opt.button_pressed = options_data["physics_interpolation"]
 
 	AppManager.is_speedrun_mode = options_data["speedrun_mode"]
 	speedrun_opt.button_pressed = options_data["speedrun_mode"]

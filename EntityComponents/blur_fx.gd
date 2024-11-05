@@ -37,7 +37,7 @@ func _ready():
 		textures.append(null)
 		flips.append(false)
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if not is_instance_valid(target):
 		return
 

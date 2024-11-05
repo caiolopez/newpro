@@ -12,7 +12,7 @@ func _ready() -> void:
 		parent.rotate_y(randf())
 		parent.rotate_z(randf())
 
-func _process(delta):
+func _physics_process(delta):
 	parent.rotate_x(rotation_speed.x * delta)
 	parent.rotate_y(rotation_speed.y * delta)
 	parent.rotate_z(rotation_speed.z * delta)

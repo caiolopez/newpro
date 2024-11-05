@@ -71,6 +71,10 @@ step = 0.01
 layout_mode = 2
 text = "Powershoot using triangle"
 
+[node name="PhysicsInterpolationToggle" type="CheckButton" parent="VBoxContainer"]
+layout_mode = 2
+text = "Physics Interpolation"
+
 [node name="SpeedrunModeToggle" type="CheckButton" parent="VBoxContainer"]
 layout_mode = 2
 text = "Speedrun mode"
