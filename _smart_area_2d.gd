@@ -1,3 +1,4 @@
+@icon("res://EditorIcons/_smart_area_2d_icon.svg")
 @tool
 class_name _SmartArea2D extends Area2D
 
