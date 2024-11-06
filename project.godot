@@ -13,7 +13,11 @@ config_version=5
 config/name="New Pro"
 run/main_scene="res://GameTree.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/image="res://Hero/Gfx/teleport.png"
+boot_splash/fullsize=false
+boot_splash/use_filter=false
+config/icon="res://hero.png"
 
 [audio]
 
@@ -44,7 +48,6 @@ gdscript/warnings/native_method_override=1
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/no_focus=true
 window/size/window_width_override=500
 window/size/window_height_override=500
 window/stretch/mode="viewport"
