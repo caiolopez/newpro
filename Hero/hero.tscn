@@ -1,4 +1,4 @@
-[gd_scene load_steps=207 format=3 uid="uid://1md1m8n6iq5x"]
+[gd_scene load_steps=208 format=3 uid="uid://1md1m8n6iq5x"]
 
 [ext_resource type="Script" path="res://Hero/hero.gd" id="1_dmqn8"]
 [ext_resource type="PackedScene" uid="uid://box2ff3vwcc7w" path="res://EntityComponents/DmgTaker.tscn" id="2_ktrux"]
@@ -48,6 +48,7 @@
 [ext_resource type="Script" path="res://Hero/state_respawning.gd" id="24_ppe7q"]
 [ext_resource type="PackedScene" uid="uid://1votnx34efdj" path="res://EntityComponents/BWShaderSetter.tscn" id="27_8ng6k"]
 [ext_resource type="Script" path="res://timer_utils.gd" id="28_goaiv"]
+[ext_resource type="Script" path="res://Hero/state_bubble_jumping.gd" id="32_touqf"]
 [ext_resource type="Script" path="res://Hero/state_debug.gd" id="48_4diic"]
 [ext_resource type="PackedScene" uid="uid://p2v7a1ixtrxw" path="res://EntityComponents/IsInWaterNotifier.tscn" id="49_p6sxx"]
 [ext_resource type="PackedScene" uid="uid://bricuoof7bhn1" path="res://EntityComponents/BlurFX.tscn" id="50_6e2hc"]
@@ -1462,6 +1463,9 @@ script = ExtResource("4_wtfn7")
 
 [node name="StateJumping" type="Node" parent="StateMachine"]
 script = ExtResource("6_igfrg")
+
+[node name="StateBubbleJumping" type="Node" parent="StateMachine"]
+script = ExtResource("32_touqf")
 
 [node name="StateFalling" type="Node" parent="StateMachine"]
 script = ExtResource("7_qsa0a")

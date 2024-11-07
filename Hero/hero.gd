@@ -59,12 +59,14 @@ var just_left_water: bool
 var last_water_surface: float
 var last_water_color: Array[Color]
 var last_move_input: StringName = ""
+var latest_bubble_velocity: float = 0.0
 
 func _ready():
 	AppManager.game_started.connect(func(): state_machine.start())
 	Events.hero_got_collectible.connect(handle_powerups)
 	Events.hero_hit_teleporter.connect(_on_hero_hit_teleporter)
 	ComboParser.combo_performed.connect(func(combo): if combo == "Die": die())
+	Events.hero_touched_bubble.connect(_on_bubble_touch)
 	$IsInWaterNotifier_GUN.water_state_changed.connect(on_water_status_changed_on_gun)
 	if not AppManager.hero: AppManager.hero = self
 	set_safe_margin(0.08)
@@ -336,3 +338,8 @@ func resize_collider_to_swim() -> void:
 	var dmg_coll: CollisionShape2D = dmg_taker.get_node("CollisionShape2D")
 	dmg_coll.shape.size.y = 50
 	dmg_coll.position.y = -30
+
+func _on_bubble_touch(bubble: Bubble):
+	latest_bubble_velocity = -bubble.strength
+	state_machine.set_state("StateBubbleJumping")
+	bubble.burst()

@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://c2el03royo3hg"]
+
+[ext_resource type="Script" path="res://Entities/jump_bubble.gd" id="1_hyc8i"]
+[ext_resource type="Texture2D" uid="uid://0l05qi2ha4p5" path="res://hero.png" id="2_ribfc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cqgma"]
+size = Vector2(80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ltf1x"]
+atlas = ExtResource("2_ribfc")
+region = Rect2(2, 4, 2, 2)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mahgt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ltf1x")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Bubble" type="Area2D"]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("1_hyc8i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_cqgma")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(40, 40)
+sprite_frames = SubResource("SpriteFrames_mahgt")

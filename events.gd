@@ -11,6 +11,7 @@ signal hero_respawned_at_checkpoint()
 signal hero_died()
 signal hero_got_collectible(type: StringName)
 signal boss_trigger_entered(boss: Node)
+signal hero_touched_bubble(bubble: Bubble)
 signal hero_first_spawned()  # When the hero is first placed in the map.
 
 # Camera Signals
