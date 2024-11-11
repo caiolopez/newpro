@@ -19,6 +19,7 @@ class_name Shooter extends Node2D
 @onready var timer_burst_cooldown: Timer = get_node("TimeBetweenBursts")
 @onready var is_foe: bool = Utils.check_if_foe(self.get_parent()) ## If no FriendOrFoe sibling component is found, assumes is_foe = true.
 @onready var og_pos: Vector2 = position
+var face_hero_node: FaceHero
 var is_in_water: bool = false
 var shot_offset: Vector2 = Vector2.ZERO
 var facing_direction: int = 1
@@ -27,6 +28,10 @@ var halt: bool = false
 signal just_shot
 
 func _ready():
+	if get_parent().has_node("FaceHero"):
+		face_hero_node = get_parent().get_node("FaceHero")
+		face_hero_node.update.connect(update_direction)
+	
 	timer_shot_cooldown.wait_time = time_between_shots
 	timer_burst_cooldown.wait_time = time_between_bursts
 	
@@ -97,6 +102,12 @@ func shoot(speed: float = pellet_speed, angle: float = 0, amount: int = pellet_a
 
 func shoot_ad_hoc(speed: float = 200, angle: float = 0, ignore_facing_direction: bool = false, inverted: bool = false) -> Array[Area2D]:
 	return shoot(speed, angle, 1, ignore_facing_direction, inverted)
+
+func update_direction(dir: int):
+	if dir != 0:
+		facing_direction = dir
+	else:
+		push_error("Direction should never be zero.")
 
 func reset_behavior():
 	if auto_shoots:
