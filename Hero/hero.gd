@@ -37,7 +37,6 @@ const MAX_DESCENT_VEL_Y: float = 300 ## The maximum downward speed when diving (
 @onready var innards_rc: RayCast2D = $InnardsRC
 @onready var dmg_taker: DmgTaker = $DmgTaker
 @onready var shooter: Shooter = $Shooter
-const is_foe: bool = false ## Flag necessary for components that are shared between Hero and enemies.
 var can_dive: bool = false ## Whether the hero has the ability to dive into water instead of floating.
 var current_checkpoint_path: NodePath
 var current_checkpoint_direction: int = 1

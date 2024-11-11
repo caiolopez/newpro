@@ -16,17 +16,7 @@ func find_dmg_taker(node: Node) -> DmgTaker:
 	return dmg_taker
 
 func check_if_foe(node: Node) -> bool:
-	var is_foe: bool = true
-
-	if "is_foe" in node:
-		is_foe = node.is_foe
-
-	for child in node.get_children():
-		if child is FriendOrFoe:
-			is_foe = child.is_foe
-			break
-
-	return is_foe
+	return node.is_in_group("foes")
 
 func disconnect_all(sig: Signal):
 	for connection in sig.get_connections():

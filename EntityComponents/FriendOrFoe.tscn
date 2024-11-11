@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://v4xmqsgktgpw"]
-
-[ext_resource type="Script" path="res://EntityComponents/friend_or_foe.gd" id="1_bu7r4"]
-
-[node name="FriendOrFoe" type="Node"]
-script = ExtResource("1_bu7r4")
