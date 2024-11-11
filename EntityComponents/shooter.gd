@@ -24,6 +24,7 @@ var shot_offset: Vector2 = Vector2.ZERO
 var facing_direction: int = 1
 var current_burst_count: int = 1
 var halt: bool = false
+signal just_shot
 
 func _ready():
 	timer_shot_cooldown.wait_time = time_between_shots
@@ -91,6 +92,7 @@ func shoot(speed: float = pellet_speed, angle: float = 0, amount: int = pellet_a
 			muzzle
 		)
 		bullets.append(bullet)
+	just_shot.emit()
 	return bullets
 
 func shoot_ad_hoc(speed: float = 200, angle: float = 0, ignore_facing_direction: bool = false, inverted: bool = false) -> Array[Area2D]:
