@@ -317,97 +317,97 @@ size = Vector2(1760, 160)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6klrm"]
 size = Vector2(320, 960)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_a1vnb"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8kn4x"]
 size = Vector2(1760, 640)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1wmly"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gd1s0"]
 size = Vector2(1760, 1080)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wgpkk"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nowx1"]
 size = Vector2(1280, 800)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6mcmn"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4kqee"]
 size = Vector2(560, 400)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gagi1"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5qkyq"]
 size = Vector2(640, 560)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nj42b"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n0x6e"]
 size = Vector2(1760, 960)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_572eo"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r6b3u"]
 size = Vector2(1760, 1080)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_h1hc7"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j556q"]
 size = Vector2(3840, 1040)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1poq5"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gtdej"]
 size = Vector2(2480, 320)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8qwqv"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_675lx"]
 size = Vector2(960, 3720)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_k556l"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4s8jb"]
 size = Vector2(1280, 400)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5jlkw"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wqrth"]
 size = Vector2(160, 480)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lhu4k"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kxx0s"]
 size = Vector2(960, 2400)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_352gk"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ixehp"]
 size = Vector2(960, 960)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hah8c"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v15px"]
 size = Vector2(640, 2080)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ssfu"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0564t"]
 size = Vector2(160, 240)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wxv56"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bugi8"]
 size = Vector2(160, 240)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_j8y18"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1bkhk"]
 size = Vector2(320, 315)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0b3ve"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bgal4"]
 size = Vector2(140.5, 560)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rnpsu"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ha2ak"]
 size = Vector2(80, 400)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_04ki7"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pkk7s"]
 size = Vector2(640, 325)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dvoee"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0vt55"]
 size = Vector2(240, 721.25)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_olpfc"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o7rk7"]
 size = Vector2(240, 240.625)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_li2vq"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cfnr4"]
 size = Vector2(240, 240)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kji6b"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tvvhk"]
 size = Vector2(240, 240)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bp8kj"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1oum6"]
 size = Vector2(320, 200)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ghidw"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ut3es"]
 size = Vector2(200, 320)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_c2six"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_02pae"]
 size = Vector2(200, 320)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0u521"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pg5cg"]
 size = Vector2(155, 320)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_eyudu"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rne6q"]
 size = Vector2(160, 320)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6weip"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yvt43"]
 size = Vector2(155, 160)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2l0br"]
@@ -615,7 +615,7 @@ metadata/init_time = 7088
 
 [node name="CameraTrigger" type="CollisionShape2D" parent="CameraLockerController"]
 position = Vector2(721, -480)
-shape = SubResource("RectangleShape2D_a1vnb")
+shape = SubResource("RectangleShape2D_8kn4x")
 debug_color = Color(1, 0, 1, 0.5)
 script = ExtResource("14_2v70t")
 axes_to_lock = 2
@@ -627,7 +627,7 @@ position = Vector2(-1, -160)
 
 [node name="CameraTrigger2" type="CollisionShape2D" parent="CameraLockerController"]
 position = Vector2(320, 3600)
-shape = SubResource("RectangleShape2D_1wmly")
+shape = SubResource("RectangleShape2D_gd1s0")
 debug_color = Color(1, 0, 1, 0.5)
 script = ExtResource("14_2v70t")
 axes_to_lock = 2
@@ -636,7 +636,7 @@ metadata/original_shape_hash = 169367947
 
 [node name="CameraTrigger3" type="CollisionShape2D" parent="CameraLockerController"]
 position = Vector2(-2560, 4000)
-shape = SubResource("RectangleShape2D_wgpkk")
+shape = SubResource("RectangleShape2D_nowx1")
 debug_color = Color(1, 0, 1, 0.5)
 script = ExtResource("14_2v70t")
 axes_to_lock = 2
@@ -648,7 +648,7 @@ position = Vector2(-320, 0)
 
 [node name="CameraTrigger11" type="CollisionShape2D" parent="CameraLockerController"]
 position = Vector2(-3400, 4200)
-shape = SubResource("RectangleShape2D_6mcmn")
+shape = SubResource("RectangleShape2D_4kqee")
 debug_color = Color(1, 0, 0, 0.5)
 script = ExtResource("14_2v70t")
 axes_to_lock = 1
@@ -660,7 +660,7 @@ position = Vector2(0, -200)
 
 [node name="CameraTrigger13" type="CollisionShape2D" parent="CameraLockerController"]
 position = Vector2(-6720, -440)
-shape = SubResource("RectangleShape2D_gagi1")
+shape = SubResource("RectangleShape2D_5qkyq")
 debug_color = Color(1, 0, 0, 0.5)
 script = ExtResource("14_2v70t")
 axes_to_lock = 1
@@ -672,7 +672,7 @@ position = Vector2(0, -200)
 
 [node name="CameraTrigger8" type="CollisionShape2D" parent="CameraLockerController"]
 position = Vector2(-5520, -640)
-shape = SubResource("RectangleShape2D_nj42b")
+shape = SubResource("RectangleShape2D_n0x6e")
 debug_color = Color(1, 0, 1, 0.5)
 script = ExtResource("14_2v70t")
 axes_to_lock = 2
@@ -681,7 +681,7 @@ metadata/original_shape_hash = 169367947
 
 [node name="CameraTrigger9" type="CollisionShape2D" parent="CameraLockerController"]
 position = Vector2(-4640, 2420)
-shape = SubResource("RectangleShape2D_572eo")
+shape = SubResource("RectangleShape2D_r6b3u")
 debug_color = Color(1, 0, 1, 0.5)
 script = ExtResource("14_2v70t")
 axes_to_lock = 2
@@ -690,7 +690,7 @@ metadata/original_shape_hash = 169367947
 
 [node name="CameraTrigger4" type="CollisionShape2D" parent="CameraLockerController"]
 position = Vector2(800, 1960)
-shape = SubResource("RectangleShape2D_h1hc7")
+shape = SubResource("RectangleShape2D_j556q")
 debug_color = Color(1, 0, 0, 0.5)
 script = ExtResource("14_2v70t")
 axes_to_lock = 1
@@ -702,7 +702,7 @@ position = Vector2(360, -40)
 
 [node name="CameraTrigger15" type="CollisionShape2D" parent="CameraLockerController"]
 position = Vector2(-2040, 240)
-shape = SubResource("RectangleShape2D_1poq5")
+shape = SubResource("RectangleShape2D_gtdej")
 debug_color = Color(1, 0, 0, 0.5)
 script = ExtResource("14_2v70t")
 axes_to_lock = 1
@@ -710,14 +710,14 @@ metadata/original_shape_hash = 169367947
 
 [node name="CameraTrigger5" type="CollisionShape2D" parent="CameraLockerController"]
 position = Vector2(2241, 220)
-shape = SubResource("RectangleShape2D_8qwqv")
+shape = SubResource("RectangleShape2D_675lx")
 debug_color = Color(0, 0, 1, 0.5)
 script = ExtResource("14_2v70t")
 metadata/original_shape_hash = 169367947
 
 [node name="CameraTrigger6" type="CollisionShape2D" parent="CameraLockerController"]
 position = Vector2(480, 280)
-shape = SubResource("RectangleShape2D_k556l")
+shape = SubResource("RectangleShape2D_4s8jb")
 debug_color = Color(1, 0, 1, 0.5)
 script = ExtResource("14_2v70t")
 axes_to_lock = 2
@@ -729,7 +729,7 @@ position = Vector2(240, 200)
 
 [node name="CameraTrigger10" type="CollisionShape2D" parent="CameraLockerController"]
 position = Vector2(720, -40)
-shape = SubResource("RectangleShape2D_5jlkw")
+shape = SubResource("RectangleShape2D_wqrth")
 debug_color = Color(0, 0, 1, 0.5)
 script = ExtResource("14_2v70t")
 center_at = 1
@@ -737,14 +737,14 @@ metadata/original_shape_hash = 169367947
 
 [node name="CameraTrigger7" type="CollisionShape2D" parent="CameraLockerController"]
 position = Vector2(-1760, 2240)
-shape = SubResource("RectangleShape2D_lhu4k")
+shape = SubResource("RectangleShape2D_kxx0s")
 debug_color = Color(0, 0, 1, 0.5)
 script = ExtResource("14_2v70t")
 metadata/original_shape_hash = 169367947
 
 [node name="CameraTrigger14" type="CollisionShape2D" parent="CameraLockerController"]
 position = Vector2(-1280, 560)
-shape = SubResource("RectangleShape2D_352gk")
+shape = SubResource("RectangleShape2D_ixehp")
 debug_color = Color(0, 0, 1, 0.5)
 script = ExtResource("14_2v70t")
 center_at = 1
@@ -752,7 +752,7 @@ metadata/original_shape_hash = 169367947
 
 [node name="CameraTrigger12" type="CollisionShape2D" parent="CameraLockerController"]
 position = Vector2(-3360, 3280)
-shape = SubResource("RectangleShape2D_hah8c")
+shape = SubResource("RectangleShape2D_v15px")
 debug_color = Color(0, 0, 1, 0.5)
 script = ExtResource("14_2v70t")
 center_at = 2
@@ -767,95 +767,95 @@ metadata/init_time = 7843
 
 [node name="Checkpoint" type="CollisionShape2D" parent="CheckpointController"]
 position = Vector2(720, -40)
-shape = SubResource("RectangleShape2D_2ssfu")
+shape = SubResource("RectangleShape2D_0564t")
 script = ExtResource("18_tp1rd")
 
 [node name="Checkpoint15" type="CollisionShape2D" parent="CheckpointController"]
 position = Vector2(721, -757)
-shape = SubResource("RectangleShape2D_wxv56")
+shape = SubResource("RectangleShape2D_bugi8")
 script = ExtResource("18_tp1rd")
 
 [node name="Checkpoint3" type="CollisionShape2D" parent="CheckpointController"]
 position = Vector2(2001, 405.5)
-shape = SubResource("RectangleShape2D_j8y18")
+shape = SubResource("RectangleShape2D_1bkhk")
 script = ExtResource("18_tp1rd")
 direction = 1
 
 [node name="Checkpoint16" type="CollisionShape2D" parent="CheckpointController"]
 position = Vector2(-1400, -1880)
-shape = SubResource("RectangleShape2D_0b3ve")
+shape = SubResource("RectangleShape2D_bgal4")
 script = ExtResource("18_tp1rd")
 direction = 1
 
 [node name="Checkpoint2" type="CollisionShape2D" parent="CheckpointController"]
 position = Vector2(1240, 280)
-shape = SubResource("RectangleShape2D_rnpsu")
+shape = SubResource("RectangleShape2D_ha2ak")
 script = ExtResource("18_tp1rd")
 direction = 1
 
 [node name="Checkpoint4" type="CollisionShape2D" parent="CheckpointController"]
 position = Vector2(1760, 1840)
-shape = SubResource("RectangleShape2D_04ki7")
+shape = SubResource("RectangleShape2D_pkk7s")
 script = ExtResource("18_tp1rd")
 direction = -1
 
 [node name="Checkpoint5" type="CollisionShape2D" parent="CheckpointController"]
 position = Vector2(-1000, 2040)
-shape = SubResource("RectangleShape2D_dvoee")
+shape = SubResource("RectangleShape2D_0vt55")
 script = ExtResource("18_tp1rd")
 direction = -1
 
 [node name="Checkpoint6" type="CollisionShape2D" parent="CheckpointController"]
 position = Vector2(-1240, 1319.69)
-shape = SubResource("RectangleShape2D_olpfc")
+shape = SubResource("RectangleShape2D_o7rk7")
 script = ExtResource("18_tp1rd")
 direction = -1
 
 [node name="Checkpoint7" type="CollisionShape2D" parent="CheckpointController"]
 position = Vector2(-520, 3240)
-shape = SubResource("RectangleShape2D_li2vq")
+shape = SubResource("RectangleShape2D_cfnr4")
 script = ExtResource("18_tp1rd")
 direction = 1
 
 [node name="Checkpoint8" type="CollisionShape2D" parent="CheckpointController"]
 position = Vector2(-2840, 4280)
-shape = SubResource("RectangleShape2D_kji6b")
+shape = SubResource("RectangleShape2D_tvvhk")
 script = ExtResource("18_tp1rd")
 direction = -1
 
 [node name="Checkpoint9" type="CollisionShape2D" parent="CheckpointController"]
 position = Vector2(-3480, 4140)
-shape = SubResource("RectangleShape2D_bp8kj")
+shape = SubResource("RectangleShape2D_1oum6")
 script = ExtResource("18_tp1rd")
 direction = 1
 
 [node name="Checkpoint10" type="CollisionShape2D" parent="CheckpointController"]
 position = Vector2(-3820, 2000)
-shape = SubResource("RectangleShape2D_ghidw")
+shape = SubResource("RectangleShape2D_ut3es")
 script = ExtResource("18_tp1rd")
 direction = -1
 
 [node name="Checkpoint11" type="CollisionShape2D" parent="CheckpointController"]
 position = Vector2(-6060, 2080)
-shape = SubResource("RectangleShape2D_c2six")
+shape = SubResource("RectangleShape2D_02pae")
 script = ExtResource("18_tp1rd")
 direction = -1
 
 [node name="Checkpoint12" type="CollisionShape2D" parent="CheckpointController"]
 position = Vector2(-6957.5, 1360)
-shape = SubResource("RectangleShape2D_0u521")
+shape = SubResource("RectangleShape2D_pg5cg")
 script = ExtResource("18_tp1rd")
 direction = -1
 
 [node name="Checkpoint14" type="CollisionShape2D" parent="CheckpointController"]
 position = Vector2(-6840, -320)
-shape = SubResource("RectangleShape2D_eyudu")
+shape = SubResource("RectangleShape2D_rne6q")
 script = ExtResource("18_tp1rd")
 direction = 1
 
 [node name="Checkpoint13" type="CollisionShape2D" parent="CheckpointController"]
 position = Vector2(-7920, 480)
-shape = SubResource("RectangleShape2D_6weip")
+shape = SubResource("RectangleShape2D_yvt43")
 script = ExtResource("18_tp1rd")
 direction = 1
 

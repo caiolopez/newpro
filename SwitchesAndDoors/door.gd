@@ -23,6 +23,7 @@ func _ready():
 	
 	$DoorStop.set_as_top_level(true)
 	$DoorStop.global_position = self.global_position
+	$DoorStop.material = self.material
 
 func open():
 	should_open.emit()

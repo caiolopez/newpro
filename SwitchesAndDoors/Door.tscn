@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ruri8ytnt6k"]
+[gd_scene load_steps=16 format=3 uid="uid://ruri8ytnt6k"]
 
 [ext_resource type="Script" path="res://SwitchesAndDoors/door.gd" id="1_bavxp"]
 [ext_resource type="Script" path="res://state_machine.gd" id="3_vgayv"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://SwitchesAndDoors/state_rev_from_closing.gd" id="8_blgy7"]
 [ext_resource type="Texture2D" uid="uid://bafy7qdnjv6t5" path="res://SwitchesAndDoors/Gfx/door_anim.png" id="9_14l4i"]
 [ext_resource type="Script" path="res://SwitchesAndDoors/state_temporarily_open.gd" id="9_37487"]
+[ext_resource type="PackedScene" uid="uid://1votnx34efdj" path="res://EntityComponents/BWShaderSetter.tscn" id="10_c6eg3"]
 [ext_resource type="Texture2D" uid="uid://mvtvu0ch35er" path="res://SwitchesAndDoors/Gfx/door_stop.png" id="10_wbtyf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_an4kw"]
@@ -75,10 +76,16 @@ script = ExtResource("8_blgy7")
 one_shot = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+use_parent_material = true
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_q4n6f")
 animation = &"closed"
 
 [node name="DoorStop" type="Sprite2D" parent="."]
+use_parent_material = true
 scale = Vector2(5, 5)
 texture = ExtResource("10_wbtyf")
+
+[node name="BwShaderSetter" parent="." instance=ExtResource("10_c6eg3")]
+dark_color = Color(0.297504, 0.197899, 0.0157033, 1)
+light_color = Color(100, 0.419, 0.073, 1)
