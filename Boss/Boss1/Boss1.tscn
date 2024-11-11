@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://1hdjstkw22a7"]
+[gd_scene load_steps=24 format=3 uid="uid://1hdjstkw22a7"]
 
 [ext_resource type="PackedScene" uid="uid://b2g8tlm31pxpm" path="res://EntityComponents/Flier.tscn" id="1_3eidg"]
 [ext_resource type="Script" path="res://state_machine.gd" id="1_hm4cg"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://cgexjtuxybh5l" path="res://EntityComponents/MoveStraight.tscn" id="15_w8a43"]
 [ext_resource type="Script" path="res://Boss/Boss1/b_state_dying.gd" id="16_axfqk"]
 [ext_resource type="Script" path="res://Boss/Boss1/b_state_dead.gd" id="17_4lka5"]
+[ext_resource type="Script" path="res://EntityComponents/kill_foe_bullets_if_dead.gd" id="20_rjmgc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5xncf"]
 radius = 96.0
@@ -28,7 +29,7 @@ size = Vector2(256, 256)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4o8a3"]
 
-[node name="Boss1" type="Node2D"]
+[node name="Boss1" type="Node2D" groups=["foes"]]
 script = ExtResource("1_u6ci4")
 
 [node name="GfxController" parent="." instance=ExtResource("2_3hehl")]
@@ -122,5 +123,8 @@ one_shot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_4o8a3")
+
+[node name="KillFoeBulletsIfDead" type="Node" parent="."]
+script = ExtResource("20_rjmgc")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

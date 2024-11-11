@@ -44,3 +44,9 @@ func return_all_bullets():
 	for c in get_children():
 		if c is Bullet:
 			release_bullet(c)
+
+
+func kill_all_foe_bullets():
+	for c in get_children():
+		if c is Bullet and c.is_foe:
+			c.kill_bullet()
