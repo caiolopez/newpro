@@ -68,7 +68,7 @@ resetables=""
 dmg_dealers=""
 uncrushables=""
 map_icons=""
-hud=""
+foes=""
 
 [input]
 
