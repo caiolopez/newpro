@@ -1,7 +1,5 @@
-@tool
 class_name Door extends AnimatableBody2D
 
-@export_tool_button("Bake Art") var v = func(): if _find_door_collider(): _setup_art()
 @export var duration: float = 1.0
 @export var open_offset: Vector2 = Vector2(0.0, -288.0)
 @export var auto_close_time: float = 0.0 ## If not zero, causes the door to automatically close after the specified time.
@@ -21,8 +19,10 @@ func _ready():
 	state_machine.start()
 	
 	if _find_door_collider():
-		_setup_art()
 		_setup_anticrush_area()
+	
+	$DoorStop.set_as_top_level(true)
+	$DoorStop.global_position = self.global_position
 
 func open():
 	should_open.emit()
@@ -71,9 +71,6 @@ func area_has_uncrushables() -> bool:
 			break
 	return has
 
-func _setup_art():
-	$NinePDoorArt.size = door_collider.shape.get_rect().size
-	$NinePDoorArt.position = door_collider.position - $NinePDoorArt.size/2
 
 func _setup_anticrush_area():
 	var anti_crush_collider: CollisionShape2D = door_collider.duplicate()
