@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcoepnhhviad0"]
+
+[ext_resource type="Script" path="res://EntityComponents/figure_8_mover.gd" id="1_1geov"]
+
+[node name="Figure8Mover" type="Node" groups=["resetables"]]
+script = ExtResource("1_1geov")
