@@ -20,9 +20,16 @@ var _is_saved: bool = false
 func _ready():
 	Events.hero_reached_checkpoint.connect(_commit_status)
 	Events.hero_respawned_at_checkpoint.connect(_reset_status)
+
 	for child in get_children():
 		if child is ElevatorButton: 
 			elevator_button_list.append(child)
+
+	if elevator_node:
+		for child in elevator_node.get_children():
+			if child is ElevatorButton:
+				elevator_button_list.append(child)
+
 	if elevator_node and elevator_node is Water:
 		elevator_node.is_movable = true
 	target_position = starting_position

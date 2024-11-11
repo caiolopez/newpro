@@ -1,22 +1,22 @@
 class_name ElevatorButton extends Area2D
 
 @export var type: button_type
-@onready var parent: ElevatorSystem = get_parent()
+@onready var elevator_system: ElevatorSystem = _find_elevator_system()
 enum button_type {ORIGIN, DESTINATION}
 var is_active: bool
 
 func _ready():
 	set_inactive()
-	area_entered.connect(on_area_entered)
+	area_entered.connect(_on_area_entered)
 
-func on_area_entered(area):
+func _on_area_entered(area):
 	if not area is Bullet: return
 	if area.handled: return
 	if not is_active:
 		if type == button_type.ORIGIN:
-			parent.send_elevator_to(&"origin")
+			elevator_system.send_elevator_to(&"origin")
 		if type == button_type.DESTINATION:
-			parent.send_elevator_to(&"destination")
+			elevator_system.send_elevator_to(&"destination")
 	area.kill_bullet()
 
 func set_active():
@@ -25,8 +25,15 @@ func set_active():
 
 func set_inactive():
 	is_active = false
-	if type == parent.current_state:
+	if type == elevator_system.current_state:
 		$Sprite2D.modulate = Color.RED
 	else:
 		$Sprite2D.modulate = Color.WHITE
-	
+
+func _find_elevator_system() -> ElevatorSystem:
+	var current_parent = get_parent()
+	if current_parent is ElevatorSystem:
+		return current_parent
+	elif current_parent.get_parent() is ElevatorSystem:
+		return current_parent.get_parent()
+	return null
