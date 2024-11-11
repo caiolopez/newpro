@@ -4,6 +4,7 @@ class_name GfxController extends Node2D
 @export var force_children_to_use_parent_material: bool = true
 @onready var dmg_taker: DmgTaker = Utils.find_dmg_taker(self.get_parent())
 var face_hero_node: FaceHero
+var shooter_node: Shooter
 var original_material: Material = null
 
 func _ready():
@@ -11,7 +12,11 @@ func _ready():
 
 	if get_parent().has_node("FaceHero"):
 		face_hero_node = get_parent().get_node("FaceHero")
-		face_hero_node.update.connect(update_direction)
+		face_hero_node.update.connect(_update_direction)
+
+	if get_parent().has_node("Shooter"):
+		shooter_node = get_parent().get_node("Shooter")
+		shooter_node.just_shot.connect(_on_shoot)
 
 	if dmg_taker != null:
 		dmg_taker.died.connect(on_died)
@@ -21,9 +26,10 @@ func _ready():
 
 	if force_children_to_use_parent_material:
 		for child in get_children():
-			child.use_parent_material = true
+			if child is Node2D:
+				child.use_parent_material = true
 
-func update_direction(dir: float, rot: float = 0):
+func _update_direction(dir: int, rot: float = 0):
 	if dir != 0:
 		scale.x = abs(scale.x) * dir
 	else:
@@ -37,6 +43,13 @@ func set_movement_halted(halted: bool = false):
 				c.animation = &"idle"
 			else:
 				c.animation = &"moving"
+
+func _on_shoot():
+	for c in get_children():
+		if c is AnimatedSprite2D:
+			c.play(&"shoot")
+
+			print(c.animation)
 
 func on_died():
 	if hide_when_dead:

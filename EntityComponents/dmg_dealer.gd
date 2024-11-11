@@ -2,7 +2,7 @@ class_name DmgDealer extends Area2D
 
 @export var DMG_AMOUNT: int = 1
 @onready var dmg_taker: DmgTaker = Utils.find_dmg_taker(self.get_parent())
-@onready var is_foe: bool = Utils.check_if_foe(self.get_parent()) ## If no FriendOrFoe sibling component is found, assumes is_foe = true.
+@onready var is_foe: bool = Utils.check_if_foe(self.get_parent())
 
 
 func _ready():
