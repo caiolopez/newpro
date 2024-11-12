@@ -41,7 +41,10 @@ func randomize_animation_frame(animated_sprite: AnimatedSprite2D, anim_name: Str
 
 func colorize_silhouette(active: bool, target: CanvasItem, duration: float = 0.0, color: Color = Color.WHITE):
 	var silhouette_material: ShaderMaterial = preload("res://CaioShaders/silhouette.tres")
+	
 	if active:
+		target.set_meta("original_material", target.material)
+			
 		if duration > 0.0:
 			var timer = Timer.new()
 			target.add_child(timer)
@@ -51,12 +54,15 @@ func colorize_silhouette(active: bool, target: CanvasItem, duration: float = 0.0
 				timer.queue_free()
 				colorize_silhouette(false, target, 0.0))
 			timer.start()
+			
 		silhouette_material.set_shader_parameter("custom_color", color)
 		target.material = silhouette_material
 	else:
-		target.material = null
-		if "original_material" in target:
-			target.material = target.original_material
+		if target.has_meta("original_material"):
+			target.material = target.get_meta("original_material")
+			target.remove_meta("original_material")
+		else:
+			target.material = null
 
 func create_blinking_timer(target: Node2D, duration: float = 0.8, auto_stop_time: float = 0.5) -> Timer:
 	var og_mod: Color = target.modulate
