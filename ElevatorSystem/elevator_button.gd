@@ -2,12 +2,18 @@ class_name ElevatorButton extends Area2D
 
 @export var type: button_type
 @onready var elevator_system: ElevatorSystem = _find_elevator_system()
+@onready var sprite_shader: BwShaderSetter = $BwShaderSetter
 enum button_type {ORIGIN, DESTINATION}
 var is_active: bool
+
+var _blink_timer: Timer
+var _blink_timer_turn: bool = false
+
 
 func _ready():
 	set_inactive()
 	area_entered.connect(_on_area_entered)
+	_setup_blink()
 
 func _on_area_entered(area):
 	if not area is Bullet: return
@@ -17,18 +23,19 @@ func _on_area_entered(area):
 			elevator_system.send_elevator_to(&"origin")
 		if type == button_type.DESTINATION:
 			elevator_system.send_elevator_to(&"destination")
+	Utils.colorize_silhouette(true, self, 0.1)
 	area.kill_bullet()
 
 func set_active():
 	is_active = true
-	$Sprite2D.modulate = Color.DARK_GREEN
+	_blink()
 
 func set_inactive():
 	is_active = false
 	if type == elevator_system.current_state:
-		$Sprite2D.modulate = Color.RED
+		sprite_shader.set_color_pair(Constants.ELEVATOR_BUTTON_UNAVAILABLE_COLORS)
 	else:
-		$Sprite2D.modulate = Color.WHITE
+		sprite_shader.set_color_pair(Constants.ELEVATOR_BUTTON_AVAILABLE_COLORS)
 
 func _find_elevator_system() -> ElevatorSystem:
 	var current_parent = get_parent()
@@ -37,3 +44,23 @@ func _find_elevator_system() -> ElevatorSystem:
 	elif current_parent.get_parent() is ElevatorSystem:
 		return current_parent.get_parent()
 	return null
+
+func _setup_blink():
+	_blink_timer = Timer.new()
+	add_child(_blink_timer)
+	_blink_timer.wait_time = 0.25
+
+func _blink():
+	_blink_timer.stop()  # Stop any existing timer
+	if _blink_timer.timeout.is_connected(_on_blink_timeout):
+		_blink_timer.timeout.disconnect(_on_blink_timeout)
+	_blink_timer.timeout.connect(_on_blink_timeout)
+	_blink_timer.start()
+
+func _on_blink_timeout():
+	if is_active:
+		_blink_timer_turn = !_blink_timer_turn
+		if _blink_timer_turn:
+			sprite_shader.set_color_pair(Constants.ELEVATOR_BUTTON_AVAILABLE_COLORS)
+		else:
+			sprite_shader.set_color_pair(Constants.ELEVATOR_BUTTON_UNAVAILABLE_COLORS)
