@@ -29,5 +29,12 @@ func set_color(dark: Color, light: Color):
 	light_color = light
 	_update_color()
 
+func set_color_pair(color_pair: Array[Color]):
+	dark_color_name = &""
+	light_color_name = &""
+	dark_color = color_pair[0]
+	light_color = color_pair[1]
+	_update_color()
+
 func get_color() -> Array[Color]:
 	return [dark_color, light_color]

@@ -2,6 +2,7 @@ extends BossState
 
 
 func on_enter():
+	$"../../GfxController/AnimatedSprite2D".play("idle_stage" + str(boss.current_stage))
 	$"../../Flier".inertia_only = false
 	$"../../Flier".process_mode = Node.PROCESS_MODE_INHERIT
 	$"../../Shooter".process_mode = Node.PROCESS_MODE_DISABLED

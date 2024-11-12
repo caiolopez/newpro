@@ -13,3 +13,7 @@ const BULLET_FIRE_COLORS:Array[Color] =				[Color(1.0, 0.5, 0.5), 	Color(1.0, 1.
 const BULLET_FIRE_DULL_COLORS:Array[Color] =		[Color(1.0, 0.0, 0.5), 	Color(1.0, 0.0, 0.0)]
 const BULLET_UNDERWATER_COLORS:Array[Color] =		[Color(0.0, 0.0, 1.0), 	Color(0.5, 0.5, 1.0)]
 const BULLET_UNDERWATER_DULL_COLORS:Array[Color] =	[Color(0.0, 0.0, 1.0), 	Color(0.5, 0.5, 1.0)]
+
+const SWITCH_OFF_COLORS:Array[Color] = 				[Color(0.5, 0.0, 0.0), 	Color(1.0, 0.5, 0.5)]
+const SWITCH_ON_COLORS:Array[Color] = 				[Color(0.0, 0.5, 0.0), 	Color(0.5, 1.0, 0.5)]
+const SWITCH_TEMP_ON_COLORS:Array[Color] = 			[Color(0.5, 0.5, 0.0), 	Color(1.0, 1.0, 0.5)]

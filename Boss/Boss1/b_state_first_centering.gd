@@ -19,6 +19,7 @@ func on_enter():
 
 
 func on_exit():
+	boss.z_index = 1
 	$"../../DmgDealer".process_mode = Node.PROCESS_MODE_INHERIT
 	$"../../DmgTaker".currently_immune = false
 	tn.kill()

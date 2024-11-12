@@ -8,6 +8,7 @@ class_name Shooter extends Node2D
 @export var rotates_with_parent: bool = false
 @export var time_before_visible: float = 0.01 ## The time it takes for the bullet to become visible after being shot. Useful to hide bullets before they left the barrel, for instance.
 @export var muzzle: Node2D = null ## The reference for the muzzle graphics from who shot it.
+@export var emit_signal_upon_shooting: bool = true
 @export_group("autoshoot")
 @export var auto_shoots: bool = true
 @export var time_between_shots: float = 1
@@ -97,7 +98,7 @@ func shoot(speed: float = pellet_speed, angle: float = 0, amount: int = pellet_a
 			muzzle
 		)
 		bullets.append(bullet)
-	just_shot.emit()
+	if emit_signal_upon_shooting: just_shot.emit()
 	return bullets
 
 func shoot_ad_hoc(speed: float = 200, angle: float = 0, ignore_facing_direction: bool = false, inverted: bool = false) -> Array[Area2D]:

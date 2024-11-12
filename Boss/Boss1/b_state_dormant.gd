@@ -2,6 +2,7 @@ extends BossState
 
 
 func on_enter():
+	boss.z_index = 0
 	boss.current_stage = 0
 	boss.reparametrize_boss()
 	boss.rotation = 0

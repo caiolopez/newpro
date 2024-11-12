@@ -27,24 +27,28 @@ func reparametrize_boss():
 		0:
 			$Flier.SPEED = 600
 			$MoveStraight.SPEED = 2000
+			$GfxController/BwShaderSetter.set_color_pair(Constants.SWITCH_ON_COLORS)
 		1:
 			$Shooter.pellet_amount = 1
 			$Shooter.pellet_separation_angle = 20
 			$Shooter.time_between_shots = 0.5
-			$Flier.SPEED = 800
+			$Flier.SPEED = 700
 			$MoveStraight.SPEED = 2500
+			$GfxController/BwShaderSetter.set_color_pair(Constants.SWITCH_TEMP_ON_COLORS)
 		2:
 			$Shooter.pellet_amount = 3
 			$Shooter.pellet_separation_angle = 10
 			$Shooter.time_between_shots = 0.05
-			$Flier.SPEED = 1000
+			$Flier.SPEED = 800
 			$MoveStraight.SPEED = 3000
+			$GfxController/BwShaderSetter.set_color_pair(Constants.SWITCH_OFF_COLORS)
 		3:
 			$Shooter.pellet_amount = 6
 			$Shooter.pellet_separation_angle = 5
 			$Shooter.time_between_shots = 0.05
-			$Flier.SPEED = 1000
+			$Flier.SPEED = 900
 			$MoveStraight.SPEED = 3000
+			$GfxController/BwShaderSetter.set_color_pair(Constants.SWITCH_OFF_COLORS)
 
 func on_suffered(hp: int):
 	var prev_stage = current_stage
