@@ -15,17 +15,17 @@ func _ready():
 func switch_on():
 	current_state = SwitchState.ON
 	$TimerSimultWindow.stop()
-	modulate = Color(0, 1, 0)
+	$BwShaderSetter.set_color_pair(Constants.SWITCH_ON_COLORS)
 
 func switch_off():
 	current_state = SwitchState.OFF
 	$TimerSimultWindow.stop()
-	modulate = Color(1, 0, 0)
+	$BwShaderSetter.set_color_pair(Constants.SWITCH_OFF_COLORS)
 
 func _temporarily_switch_on():
 	current_state = SwitchState.TEMP_ON
 	$TimerSimultWindow.start()
-	modulate = Color(1, 1, 0)
+	$BwShaderSetter.set_color_pair(Constants.SWITCH_TEMP_ON_COLORS)
 
 func _on_area_entered(area):
 	if not area is Bullet: return

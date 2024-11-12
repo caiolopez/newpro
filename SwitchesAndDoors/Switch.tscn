@@ -1,22 +1,42 @@
-[gd_scene load_steps=4 format=3 uid="uid://0fx3l1vwyhr4"]
+[gd_scene load_steps=7 format=3 uid="uid://0fx3l1vwyhr4"]
 
 [ext_resource type="Script" path="res://SwitchesAndDoors/switch.gd" id="1_bkl3k"]
-[ext_resource type="Texture2D" uid="uid://csgur14gs821i" path="res://SwitchesAndDoors/switch.png" id="1_vmec6"]
+[ext_resource type="Texture2D" uid="uid://csx1ugxovrq4q" path="res://SwitchesAndDoors/Gfx/switch_anim.png" id="2_777cb"]
+[ext_resource type="PackedScene" uid="uid://1votnx34efdj" path="res://EntityComponents/BWShaderSetter.tscn" id="3_oj7qx"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_tj451"]
-radius = 50.0
+[sub_resource type="AtlasTexture" id="AtlasTexture_mjv2y"]
+atlas = ExtResource("2_777cb")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_knqm7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mjv2y")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yuyy0"]
+size = Vector2(40, 100)
 
 [node name="Switch" type="Area2D"]
 collision_layer = 32
 collision_mask = 16
 script = ExtResource("1_bkl3k")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_vmec6")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+use_parent_material = true
+position = Vector2(-10, 0)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_knqm7")
+autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 5)
-shape = SubResource("CircleShape2D_tj451")
+position = Vector2(-20, 0)
+shape = SubResource("RectangleShape2D_yuyy0")
 
 [node name="TimerSimultWindow" type="Timer" parent="."]
 wait_time = 0.1
@@ -25,3 +45,5 @@ one_shot = true
 [node name="TimerCooldown" type="Timer" parent="."]
 wait_time = 0.25
 one_shot = true
+
+[node name="BwShaderSetter" parent="." instance=ExtResource("3_oj7qx")]
