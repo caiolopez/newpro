@@ -53,6 +53,7 @@ collision_mask = 12
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("3_vgayv")
+does_print = false
 
 [node name="DoorStateClosed" type="Node" parent="StateMachine"]
 script = ExtResource("4_vsukd")
