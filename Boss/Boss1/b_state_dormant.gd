@@ -14,6 +14,11 @@ func on_enter():
 	$"../../MoveStraight".process_mode = Node.PROCESS_MODE_DISABLED
 	$"../../Shooter".process_mode = Node.PROCESS_MODE_DISABLED
 	
-	Events.boss_trigger_entered.connect(func(b):
-		if b and b == boss:
-			machine.set_state("BStateFirstCentering"), CONNECT_ONE_SHOT)
+	Events.boss_trigger_entered.connect(_on_boss_triggered)
+
+func _on_boss_triggered(boss_to_wake: Node) -> void:
+	if boss_to_wake and boss_to_wake == boss:
+		machine.set_state("BStateFirstCentering")
+
+func on_exit():
+	Events.boss_trigger_entered.disconnect(_on_boss_triggered)
