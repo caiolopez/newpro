@@ -5,8 +5,11 @@ class_name GfxController extends Node2D
 @onready var dmg_taker: DmgTaker = Utils.find_dmg_taker(self.get_parent())
 var face_hero_node: FaceHero
 var shooter_node: Shooter
+var original_material: Material = null
 
 func _ready():
+	original_material = material
+
 	if get_parent().has_node("FaceHero"):
 		face_hero_node = get_parent().get_node("FaceHero")
 		face_hero_node.update.connect(_update_direction)
