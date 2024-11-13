@@ -5,12 +5,13 @@ class_name ElevatorButton extends Area2D
 @onready var sprite_shader: BwShaderSetter = $BwShaderSetter
 enum button_type {ORIGIN, DESTINATION}
 var is_active: bool
-
+var original_material: Material = null
 var _blink_timer: Timer
 var _blink_timer_turn: bool = false
 
 
 func _ready():
+	original_material = material
 	set_inactive()
 	area_entered.connect(_on_area_entered)
 	_setup_blink()

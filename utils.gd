@@ -40,6 +40,7 @@ func randomize_animation_frame(animated_sprite: AnimatedSprite2D, anim_name: Str
 	animated_sprite.frame = randi_range(0, get_animation_frame_count(animated_sprite, anim_name))
 
 func colorize_silhouette(active: bool, target: CanvasItem, duration: float = 0.0, color: Color = Color.WHITE):
+	## Nodes using this function in conjunction with another shader MUST have "original_material" variable.
 	var silhouette_material: ShaderMaterial = preload("res://CaioShaders/silhouette.tres")
 	if active:
 		if duration > 0.0:
