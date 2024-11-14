@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=3 uid="uid://1hdjstkw22a7"]
+[gd_scene load_steps=73 format=3 uid="uid://1hdjstkw22a7"]
 
 [ext_resource type="PackedScene" uid="uid://b2g8tlm31pxpm" path="res://EntityComponents/Flier.tscn" id="1_3eidg"]
 [ext_resource type="Script" path="res://state_machine.gd" id="1_hm4cg"]
@@ -22,6 +22,7 @@
 [ext_resource type="Script" path="res://Boss/Boss1/b_state_dead.gd" id="17_4lka5"]
 [ext_resource type="Script" path="res://EntityComponents/kill_foe_bullets_if_dead.gd" id="20_rjmgc"]
 [ext_resource type="PackedScene" uid="uid://1votnx34efdj" path="res://EntityComponents/BWShaderSetter.tscn" id="22_6vlhg"]
+[ext_resource type="PackedScene" uid="uid://br5m3o56osblx" path="res://EntityComponents/HaltWhenHeroDead.tscn" id="23_lwabm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_34igu"]
 atlas = ExtResource("3_b8ngm")
@@ -545,5 +546,7 @@ shape = SubResource("RectangleShape2D_4o8a3")
 
 [node name="KillFoeBulletsIfDead" type="Node" parent="."]
 script = ExtResource("20_rjmgc")
+
+[node name="HaltWhenHeroDead" parent="." instance=ExtResource("23_lwabm")]
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
