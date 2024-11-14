@@ -1442,8 +1442,6 @@ dark_color = Color(0, 0.319513, 0.21921, 1)
 light_color = Color(0.362225, 0.746721, 0.515539, 1)
 
 [node name="BwShaderSetter" parent="Gfx" instance=ExtResource("27_8ng6k")]
-dark_color = Color(0.715191, 0.00292471, 0.416343, 1)
-light_color = Color(0.870695, 0.627091, 0.723424, 1)
 
 [node name="HeroCollider" type="CollisionShape2D" parent="."]
 unique_name_in_owner = true

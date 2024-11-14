@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c48ye6g4s5ufc"]
+[gd_scene load_steps=11 format=3 uid="uid://c48ye6g4s5ufc"]
 
 [ext_resource type="Script" path="res://Camera/camera.gd" id="1_465f0"]
 [ext_resource type="Script" path="res://state_machine.gd" id="2_51bgi"]
@@ -7,6 +7,13 @@
 [ext_resource type="Script" path="res://timer_utils.gd" id="5_gc01k"]
 [ext_resource type="Texture2D" uid="uid://b8rg54dkjrvw4" path="res://Camera/marker_icon_a.png" id="5_kga7k"]
 [ext_resource type="Texture2D" uid="uid://prl8d6n0ya3v" path="res://Camera/marker_icon_b.png" id="6_0iqy3"]
+[ext_resource type="Script" path="res://Camera/film.gd" id="8_8hydq"]
+
+[sub_resource type="Gradient" id="Gradient_pg0w2"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0x3md"]
+gradient = SubResource("Gradient_pg0w2")
 
 [node name="Camera" type="Camera2D"]
 editor_draw_limits = true
@@ -32,3 +39,11 @@ texture = ExtResource("6_0iqy3")
 
 [node name="TargetMarker" type="Sprite2D" parent="."]
 texture = ExtResource("5_kga7k")
+
+[node name="Film" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.243)
+z_index = 1
+position = Vector2(8.58307e-06, 1.66893e-06)
+scale = Vector2(6, 3.375)
+texture = SubResource("GradientTexture2D_0x3md")
+script = ExtResource("8_8hydq")
