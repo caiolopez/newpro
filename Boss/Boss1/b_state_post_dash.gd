@@ -2,7 +2,7 @@ extends BossState
 
 
 func on_enter():
-	t.wait_time = 1
+	t.wait_time = boss.stunned_time_sfter_dash
 	t.start()
 	t.timeout.connect(func():
 		if machine.current_state.name == "BStatePostDash":

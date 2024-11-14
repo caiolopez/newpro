@@ -13,3 +13,9 @@ func on_enter():
 		if machine.current_state.name == "BStateChasing":
 			machine.set_state("BStatePreDash")
 			$"../../Flier".inertia_only = true, CONNECT_ONE_SHOT)
+
+func on_physics_process(_delta):
+	if AppManager.hero.is_on_floor():
+		$"../../Flier".target_offset = Vector2(0.0, 0.0)
+	else:
+		$"../../Flier".target_offset = Vector2(0.0, 160.0)

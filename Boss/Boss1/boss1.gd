@@ -3,6 +3,7 @@ extends Node2D
 @onready var center: Vector2 = $Marker2D.global_position
 @onready var state_machine: StateMachine = $StateMachine
 var current_stage: int = 0
+var stunned_time_sfter_dash: float = 1
 
 func _ready():
 	$DmgTaker.suffered.connect(on_suffered)
@@ -27,28 +28,32 @@ func reparametrize_boss():
 		0:
 			$Flier.SPEED = 600
 			$MoveStraight.SPEED = 2000
-			$GfxController/BwShaderSetter.set_color_pair(Constants.SWITCH_ON_COLORS)
+			stunned_time_sfter_dash = 1.0
+			$GfxController/BwShaderSetter.set_color_pair(Constants.BOSS_STAGE0_COLORS)
 		1:
 			$Shooter.pellet_amount = 1
 			$Shooter.pellet_separation_angle = 20
 			$Shooter.time_between_shots = 0.5
 			$Flier.SPEED = 700
 			$MoveStraight.SPEED = 2500
-			$GfxController/BwShaderSetter.set_color_pair(Constants.SWITCH_TEMP_ON_COLORS)
+			stunned_time_sfter_dash = 0.75
+			$GfxController/BwShaderSetter.set_color_pair(Constants.BOSS_STAGE1_COLORS)
 		2:
 			$Shooter.pellet_amount = 3
 			$Shooter.pellet_separation_angle = 10
 			$Shooter.time_between_shots = 0.05
 			$Flier.SPEED = 800
 			$MoveStraight.SPEED = 3000
-			$GfxController/BwShaderSetter.set_color_pair(Constants.SWITCH_OFF_COLORS)
+			stunned_time_sfter_dash = 0.5
+			$GfxController/BwShaderSetter.set_color_pair(Constants.BOSS_STAGE2_COLORS)
 		3:
 			$Shooter.pellet_amount = 6
 			$Shooter.pellet_separation_angle = 5
 			$Shooter.time_between_shots = 0.05
 			$Flier.SPEED = 900
-			$MoveStraight.SPEED = 3000
-			$GfxController/BwShaderSetter.set_color_pair(Constants.SWITCH_OFF_COLORS)
+			$MoveStraight.SPEED = 3200
+			stunned_time_sfter_dash = 0.25
+			$GfxController/BwShaderSetter.set_color_pair(Constants.BOSS_STAGE3_COLORS)
 
 func on_suffered(hp: int):
 	var prev_stage = current_stage

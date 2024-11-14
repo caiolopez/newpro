@@ -132,6 +132,7 @@ pellet_separation_angle = 5.0
 pellet_speed = 600.0
 time_before_visible = 0.05
 time_between_shots = 0.5
+shot_burst_amount = 2
 
 [node name="FaceHero" parent="." instance=ExtResource("7_vqtqv")]
 face_hero = true

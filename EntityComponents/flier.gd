@@ -6,7 +6,7 @@ class_name Flier extends Node2D
 @export var ACTIVATION_RADIUS: float = 1600.0
 @export var MIN_DIST_FROM_TARGET: float = 800.0
 @export var DEAD_ZONE: float = 200.0
-@export var TARGET_OFFSET: Vector2 = Vector2(0.0, 0.0)
+@export var target_offset: Vector2 = Vector2(0.0, 0.0)
 @onready var target_entity: Node2D = null
 @onready var dmg_taker: DmgTaker = Utils.find_dmg_taker(self.get_parent())
 @onready var parent: Node2D = get_parent()
@@ -58,7 +58,7 @@ func reset_behavior():
 func step_lateral_mov(delta: float):
 	var move: bool = false
 	var move_dir: Vector2 = Vector2.ZERO
-	var target_distance = (target_entity.global_position + TARGET_OFFSET) - Vector2(self.global_position.x, self.global_position.y)
+	var target_distance = (target_entity.global_position + target_offset) - Vector2(self.global_position.x, self.global_position.y)
 
 	if is_target_within_activation_radius():
 		if target_distance.length() > MIN_DIST_FROM_TARGET + DEAD_ZONE:
