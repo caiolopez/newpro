@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://b72dw5w58sesm"]
+[gd_scene load_steps=21 format=3 uid="uid://b72dw5w58sesm"]
 
 [ext_resource type="PackedScene" uid="uid://upm0adhb85ik" path="res://EntityComponents/DmgDealer.tscn" id="1_ivjkf"]
 [ext_resource type="PackedScene" uid="uid://box2ff3vwcc7w" path="res://EntityComponents/DmgTaker.tscn" id="2_ra6d2"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://manmyevja5y2" path="res://EntityComponents/OnParentAnimEnd.tscn" id="6_j1c1c"]
 [ext_resource type="PackedScene" uid="uid://cupxj14lcnr75" path="res://EntityComponents/Shooter.tscn" id="6_xwwbl"]
 [ext_resource type="PackedScene" uid="uid://dqho171mcdsmr" path="res://EntityComponents/FaceHero.tscn" id="7_vqtqv"]
+[ext_resource type="PackedScene" uid="uid://4s6dlxxxx05e" path="res://EntityComponents/PlacePropWhenDead.tscn" id="10_galw1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v2koo"]
 size = Vector2(80, 80)
@@ -136,3 +137,9 @@ shot_burst_amount = 2
 
 [node name="FaceHero" parent="." instance=ExtResource("7_vqtqv")]
 face_hero = true
+
+[node name="PlacePropWhenDead" parent="." node_paths=PackedStringArray("color_pair_source") instance=ExtResource("10_galw1")]
+prop_to_place = &"puff"
+amount = 4
+random_radius = 80.0
+color_pair_source = NodePath("../GfxController/BwShaderSetter")

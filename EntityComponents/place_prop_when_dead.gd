@@ -2,7 +2,7 @@ class_name PlacePropWhenDead extends Node
 
 @export var prop_to_place: StringName
 @export var amount: int = 1 ## The amount of props that are going to be instantiated.
-@export var interval_between_placements: float = 1 ## The amount of time between each placement.
+@export var interval_between_placements: float = 0.1 ## The amount of time between each placement.
 @export var random_radius: float = 0 ## Randomizes prop placement within this radius.
 @export var color_pair_source: BwShaderSetter = null ## Select the source (BwShaderSetter node) of the color scheme to be applied into the placed props.
 @onready var dmg_taker: DmgTaker = Utils.find_dmg_taker(self.get_parent())

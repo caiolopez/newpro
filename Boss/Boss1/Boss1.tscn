@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://1hdjstkw22a7"]
+[gd_scene load_steps=75 format=3 uid="uid://1hdjstkw22a7"]
 
 [ext_resource type="PackedScene" uid="uid://b2g8tlm31pxpm" path="res://EntityComponents/Flier.tscn" id="1_3eidg"]
 [ext_resource type="Script" path="res://state_machine.gd" id="1_hm4cg"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cfxvsi1gjrjfd" path="res://Boss/Boss1/Gfx/boss_01_charging.png" id="4_klkqa"]
 [ext_resource type="Script" path="res://Boss/Boss1/b_state_first_centering.gd" id="4_sjh8q"]
 [ext_resource type="Script" path="res://Boss/Boss1/b_state_chasing.gd" id="5_kiowl"]
+[ext_resource type="PackedScene" uid="uid://7teblr87y0tj" path="res://Boss/Boss1/Boss1DmgParticles.tscn" id="6_ku5wi"]
 [ext_resource type="PackedScene" uid="uid://box2ff3vwcc7w" path="res://EntityComponents/DmgTaker.tscn" id="7_fd85g"]
 [ext_resource type="Script" path="res://Boss/Boss1/b_state_pre_dash.gd" id="8_rdyyk"]
 [ext_resource type="Script" path="res://Boss/Boss1/b_state_dashing.gd" id="9_4tlv1"]
@@ -23,6 +24,7 @@
 [ext_resource type="Script" path="res://EntityComponents/kill_foe_bullets_if_dead.gd" id="20_rjmgc"]
 [ext_resource type="PackedScene" uid="uid://1votnx34efdj" path="res://EntityComponents/BWShaderSetter.tscn" id="22_6vlhg"]
 [ext_resource type="PackedScene" uid="uid://br5m3o56osblx" path="res://EntityComponents/HaltWhenHeroDead.tscn" id="23_lwabm"]
+[ext_resource type="PackedScene" uid="uid://4s6dlxxxx05e" path="res://EntityComponents/PlacePropWhenDead.tscn" id="25_os6h5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_34igu"]
 atlas = ExtResource("3_b8ngm")
@@ -449,14 +451,20 @@ script = ExtResource("1_u6ci4")
 
 [node name="GfxController" parent="." instance=ExtResource("2_3hehl")]
 hide_when_dead = false
+force_children_to_use_parent_material = false
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="GfxController"]
+use_parent_material = true
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_ymqwu")
 animation = &"pre_dash_stage0"
 autoplay = "dormant"
 
 [node name="BwShaderSetter" parent="GfxController" instance=ExtResource("22_6vlhg")]
+
+[node name="Boss1DmgParticles" parent="GfxController" instance=ExtResource("6_ku5wi")]
+z_index = -1
+lifetime = 2.0
 
 [node name="DmgDealer" parent="." instance=ExtResource("2_ahp3q")]
 process_mode = 4
@@ -548,5 +556,11 @@ shape = SubResource("RectangleShape2D_4o8a3")
 script = ExtResource("20_rjmgc")
 
 [node name="HaltWhenHeroDead" parent="." instance=ExtResource("23_lwabm")]
+
+[node name="PlacePropWhenDead" parent="." node_paths=PackedStringArray("color_pair_source") instance=ExtResource("25_os6h5")]
+prop_to_place = &"puff"
+amount = 10
+random_radius = 120.0
+color_pair_source = NodePath("../GfxController/BwShaderSetter")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
