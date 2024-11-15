@@ -7,6 +7,7 @@ signal hero_changed_dir(new_dir: float)
 signal hero_hit_teleporter(teleporter: Teleporter) # When a hero shot hits active teleporter.
 signal teleporters_activated(enabled: bool) # When hero collects powerup that activates teleporters.
 signal hero_reached_checkpoint()
+signal hero_started_tweening_to_respawn()
 signal hero_respawned_at_checkpoint()
 signal hero_died()
 signal hero_got_collectible(type: StringName)

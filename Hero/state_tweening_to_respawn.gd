@@ -5,6 +5,7 @@ var death_prone: bool = false
 var tween: Tween
 
 func on_enter():
+	Events.hero_started_tweening_to_respawn.emit()
 	$"../../Gfx/AnimatedSprite2D".play("teleport")
 	
 	BulletManager.return_all_bullets()
