@@ -14,6 +14,6 @@ func _ready() -> void:
 func _process(_delta):
 	if hero and face_hero:
 		var hero_dir = sign(hero.global_position.x - parent.global_position.x)
-		if hero_dir != last_hero_dir:
+		if hero_dir != 0 and hero_dir != last_hero_dir:
 			last_hero_dir = hero_dir
 			update.emit(hero_dir)
