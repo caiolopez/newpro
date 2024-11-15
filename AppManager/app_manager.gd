@@ -4,6 +4,7 @@ extends Node
 @onready var state_machine: StateMachine = $StateMachine
 var developer_mode: bool = true
 var hero: Hero = null
+var camera: Camera2D = null
 var minimap_node
 var is_speedrun_mode: bool = false
 var dedicated_blunder_button: bool = true
@@ -15,7 +16,7 @@ signal game_started # Emited when leaving AppStateNewGameInit/AppStateLoadGameIn
 signal game_paused # Emited when entering AppStatePausedInGame
 signal game_unpaused # Emited when leaving AppStatePausedInGame
 signal hero_ready # Emited when AppManager instantiates a new Hero
-signal camera_ready(camera) # Emited when AppManager instantiates a new Camera
+signal camera_ready # Emited when AppManager instantiates a new Camera
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -46,7 +47,8 @@ func instantiate_camera() -> Camera2D:
 	var camera_scene = preload("res://Camera/Camera.tscn")
 	var camera_instance = camera_scene.instantiate()
 	game_tree.add_child(camera_instance)
-	call_deferred("emit_signal", "camera_ready", camera_instance)
+	call_deferred("emit_signal", "camera_ready")
+	camera = camera_instance
 	return camera_instance
 
 func instantiate_hero() -> void:
