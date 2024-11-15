@@ -17,4 +17,5 @@ func _on_body_shape_entered(_rid, body: Node2D, _body_shape, area_shape_index: i
 	body.update_current_checkpoint_info(cp.get_path(), direction)
 	Events.hero_reached_checkpoint.emit()
 	await get_tree().process_frame
-	SaveManager.save_file()
+	if not cp.dont_save_to_disk:
+		SaveManager.save_file()

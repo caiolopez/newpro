@@ -9,6 +9,7 @@ enum Direction {
 	}
 @export var direction: Direction = Direction.RECALL_HERO_DIRECTION
 @export var always_trigger: bool = false ## If set to true, causes this checkpoint to work consecutively. When set to false (normal behavior), this checkpoint cannot be triggered multiple times in a row. NOTE: Developed so designers don't have to place two normal checkpoints back to back after boss battles.
+@export var dont_save_to_disk: bool = false ## Normal behavior is to always save to disk upon reaching a checkpoint. Set this to true if saving to disk is not needed or wanted.
 var spawn_pivot: Vector2 = self.global_position
 
 func _ready() -> void:
