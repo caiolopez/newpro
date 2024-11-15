@@ -14,10 +14,6 @@ signal boss_trigger_entered(boss: Node)
 signal hero_touched_bubble(bubble: Bubble)
 signal hero_first_spawned()  # When the hero is first placed in the map.
 
-# Camera Signals
-signal camera_shake(duration: float, amount: float)
-signal camera_stop_shake()
-
 # UI Signals
 signal curtain_fade_in_ended()
 signal curtain_fade_out_ended()

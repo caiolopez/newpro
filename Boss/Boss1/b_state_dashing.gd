@@ -9,4 +9,4 @@ func on_enter():
 
 func on_exit():
 	$"../../MoveStraight".process_mode = Node.PROCESS_MODE_DISABLED
-	Events.camera_shake.emit()
+	AppManager.camera.shake()

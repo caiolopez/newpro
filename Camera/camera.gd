@@ -40,9 +40,6 @@ func _ready():
 	Events.hero_first_spawned.connect(func():
 		self.global_position = AppManager.hero.global_position)
 
-	Events.camera_shake.connect(shake)
-	Events.camera_stop_shake.connect(stop_shake)
-
 	target_marker.visible = show_gizmo
 	camera_marker.visible = show_gizmo
 
@@ -96,7 +93,7 @@ func step_lookahead_y(delta: float):
 		current_lookahead.y = lerp(0.0, lookahead_amount.y, minf(abs(hero_vel.y), lookahead_activation_vel.y) / lookahead_activation_vel.y)
 	else: current_lookahead.y = lerp(current_lookahead.y, 0.0, clampf(10 * delta, 0, 1))
 
-func shake(duration: float = 0.2, amount: float = 10):
+func shake(duration: float = 0.2, amount: float = 20):
 	shake_amount = amount
 	shake_duration = duration
 
