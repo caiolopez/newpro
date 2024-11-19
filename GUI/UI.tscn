@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cgntexit802at"]
+[gd_scene load_steps=16 format=3 uid="uid://cgntexit802at"]
 
 [ext_resource type="Script" path="res://GUI/black_curtain.gd" id="1_2fegy"]
 [ext_resource type="Script" path="res://GUI/ui.gd" id="1_lqxss"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://d1h8vf2t5pgey" path="res://GUI/MiniMap.tscn" id="11_01e55"]
 [ext_resource type="Script" path="res://GUI/on_screen_notification_label.gd" id="11_ahf6e"]
 [ext_resource type="PackedScene" uid="uid://dvk1kn7j0htsi" path="res://GUI/Dialog.tscn" id="12_kwodg"]
+[ext_resource type="Script" path="res://GUI/hud.gd" id="12_qer54"]
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_lqxss")
@@ -94,6 +95,7 @@ vertical_alignment = 2
 script = ExtResource("11_ahf6e")
 
 [node name="Hud" type="Node" parent="."]
+script = ExtResource("12_qer54")
 
 [node name="BossOverlay" parent="Hud" instance=ExtResource("10_coqvt")]
 
