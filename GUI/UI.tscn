@@ -38,6 +38,15 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 script = ExtResource("1_2fegy")
 
+[node name="Hud" type="Node" parent="."]
+script = ExtResource("12_qer54")
+
+[node name="BossOverlay" parent="Hud" instance=ExtResource("10_coqvt")]
+
+[node name="MiniMap" parent="Hud" instance=ExtResource("11_01e55")]
+
+[node name="Dialog" parent="Hud" instance=ExtResource("12_kwodg")]
+
 [node name="SlideReel" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
@@ -93,12 +102,3 @@ text = "Game Saved"
 horizontal_alignment = 2
 vertical_alignment = 2
 script = ExtResource("11_ahf6e")
-
-[node name="Hud" type="Node" parent="."]
-script = ExtResource("12_qer54")
-
-[node name="BossOverlay" parent="Hud" instance=ExtResource("10_coqvt")]
-
-[node name="MiniMap" parent="Hud" instance=ExtResource("11_01e55")]
-
-[node name="Dialog" parent="Hud" instance=ExtResource("12_kwodg")]
