@@ -22,10 +22,10 @@ vec3 hsv2rgb(vec3 c) {
 void fragment() {
     vec4 color = texture(SCREEN_TEXTURE, SCREEN_UV);
     vec3 hsv = rgb2hsv(color.rgb);
-    
+
     // Shift the hue
     hsv.x = fract(hsv.x + hue_shift);
-    
+
     // Convert back to RGB
     color.rgb = hsv2rgb(hsv);
     COLOR = color;
