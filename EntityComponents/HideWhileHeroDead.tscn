@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://yjy1nsje8t60"]
+
+[ext_resource type="Script" path="res://EntityComponents/hide_while_hero_dead.gd" id="1_mfbjo"]
+
+[node name="HideWhenHeroDead" type="Node"]
+script = ExtResource("1_mfbjo")
