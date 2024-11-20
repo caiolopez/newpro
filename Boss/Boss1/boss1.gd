@@ -59,7 +59,7 @@ func on_suffered(hp: int):
 	var prev_stage = current_stage
 	update_current_stage(hp)
 	if prev_stage < current_stage:
-		$GfxController/Boss1DmgParticles.emitting = true
+		$GfxController/ParticleGroup.emit_particles()
 		AppManager.camera.shake()
 		if state_machine.current_state.name != "BStateSpinShooting":
 			state_machine.set_state("BStateCentering")

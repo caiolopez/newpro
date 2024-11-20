@@ -1,12 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://7teblr87y0tj"]
+[gd_scene load_steps=3 format=3 uid="uid://7teblr87y0tj"]
 
 [ext_resource type="Texture2D" uid="uid://b6ner0fb6ycks" path="res://Boss/Boss1/Gfx/boss_bits.png" id="1_w2gx1"]
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6coj8"]
-particles_animation = true
-particles_anim_h_frames = 2
-particles_anim_v_frames = 2
-particles_anim_loop = false
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gg825"]
 particle_flag_disable_z = true
@@ -19,12 +13,8 @@ angular_velocity_max = 720.0
 gravity = Vector3(0, 900, 0)
 scale_min = 5.0
 scale_max = 5.0
-hue_variation_min = -1.0
-hue_variation_max = 1.0
-anim_offset_max = 1.0
 
 [node name="Boss1DmgParticles" type="GPUParticles2D"]
-material = SubResource("CanvasItemMaterial_6coj8")
 emitting = false
 amount = 50
 one_shot = true
