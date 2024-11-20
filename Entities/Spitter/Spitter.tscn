@@ -140,6 +140,6 @@ face_hero = true
 
 [node name="PlacePropWhenDead" parent="." node_paths=PackedStringArray("color_pair_source") instance=ExtResource("10_galw1")]
 prop_to_place = &"puff"
-amount = 4
+amount = 2
 random_radius = 80.0
 color_pair_source = NodePath("../GfxController/BwShaderSetter")
