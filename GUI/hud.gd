@@ -9,7 +9,7 @@ func _ready() -> void:
 		)
 
 func force_hide_hud_elements() -> void:
-	$BossOverlay.hide_hp_bar()
+	$BossOverlay.hide_hp_bar_instantly()
 	$MiniMap.hide_minimap()
 	$Dialog.hide_dialog()
 	$Dialog.hide_hint()
