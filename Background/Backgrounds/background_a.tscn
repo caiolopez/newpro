@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://sxdpqvsx3dc1"]
 
-[ext_resource type="Script" path="res://Background/BackgroundComponents/constant_rotation.gd" id="1_ya4tk"]
-[ext_resource type="Script" path="res://Background/background_camera.gd" id="2_4cagp"]
+[ext_resource type="Script" uid="uid://dq2jqhcobrv5p" path="res://Background/BackgroundComponents/constant_rotation.gd" id="1_ya4tk"]
+[ext_resource type="Script" uid="uid://ds4mh6wwrpwn4" path="res://Background/background_camera.gd" id="2_4cagp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o5sud"]
 
