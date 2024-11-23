@@ -13,6 +13,7 @@
 
 [node name="AppManager" type="Node"]
 script = ExtResource("1_3s7ri")
+developer_mode = true
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("1_uyv8v")

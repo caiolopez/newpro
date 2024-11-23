@@ -1,7 +1,7 @@
 extends Node
 
 var music_player: AudioStreamPlayer
-var sfx_players: Array[AudioStreamPlayer] = []
+var sfx_players: Array[AudioStreamPlayer2D] = []
 var intended_track_name: StringName = ""
 var current_track_name: StringName = ""
 const POOL_SIZE: int = 10
@@ -28,7 +28,8 @@ const MUSIC_TRACKS = {
 }
 
 const SFX = {
-	"snare": preload("res://AudioManager/snare.mp3")
+	"snare": preload("res://AudioManager/snare.mp3"),
+	"white_noise_loop": preload("res://AudioEmiter/white_noise.ogg")
 }
 
 func _ready():
@@ -42,7 +43,7 @@ func _ready():
 	music_player.bus = "Music"
 	
 	for i in POOL_SIZE:
-		var sfx_player = AudioStreamPlayer.new()
+		var sfx_player = AudioStreamPlayer2D.new()
 		add_child(sfx_player)
 		sfx_player.bus = "SFX"
 		sfx_players.append(sfx_player)
@@ -122,15 +123,16 @@ func stop_music_immediately():
 	if fade_tween and fade_tween.is_valid():
 		fade_tween.kill()
 
-func play_sound(sfx_name: StringName):
-	if sfx_name in sfx_cooldowns:
-		var time_since_last_play = Time.get_ticks_msec() - sfx_cooldowns[sfx_name]
-		if time_since_last_play < SFX_COOLDOWN * 1000:
+func play_sfx(sfx_name: StringName):
+	if _is_sfx_in_cooldown(sfx_name):
 			return
 	
 	for sfx_player in sfx_players:
 		if not sfx_player.is_playing():
 			sfx_player.stream = SFX[sfx_name]
+			sfx_player.max_distance = 100000000
+			sfx_player.attenuation = 0.0
+			sfx_player.panning_strength = 0.0
 			sfx_player.play()
 			sfx_cooldowns[sfx_name] = Time.get_ticks_msec()
 			return
@@ -148,3 +150,26 @@ func _on_game_unpaused():
 	for sfx_player in sfx_players:
 		if sfx_player.stream:
 			sfx_player.set_stream_paused(false)
+
+func play_positional_sfx(sfx_name: StringName, position: Vector2, max_distance: float = 10000.0):
+	for sfx_player in sfx_players:
+		if not sfx_player.is_playing():
+			sfx_player.stream = SFX[sfx_name]
+			sfx_player.global_position = position
+			sfx_player.max_distance = max_distance
+
+			sfx_player.play()
+			sfx_cooldowns[sfx_name] = Time.get_ticks_msec()
+			return
+
+func stop_sfx(sfx_name: StringName):
+	for sfx_player in sfx_players:
+		if sfx_player.is_playing() and sfx_player.stream == SFX[sfx_name]:
+			sfx_player.stop()
+
+func _is_sfx_in_cooldown(sfx_name: StringName) -> bool:
+	if sfx_name in sfx_cooldowns:
+		var time_since_last_play = Time.get_ticks_msec() - sfx_cooldowns[sfx_name]
+		if time_since_last_play < SFX_COOLDOWN * 1000:
+			return true
+	return false

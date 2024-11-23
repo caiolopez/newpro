@@ -2,7 +2,7 @@ extends Node
 
 @onready var game_tree = get_node("/root/GameTree")
 @onready var state_machine: StateMachine = $StateMachine
-var developer_mode: bool = true
+@export var developer_mode: bool = false
 var hero: Hero = null
 var camera: Camera2D = null
 var minimap_node
