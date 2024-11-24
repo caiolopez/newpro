@@ -127,7 +127,7 @@ effect = 3
 next_animation_name = &"idle"
 
 [node name="BwShaderSetter" parent="GfxController" instance=ExtResource("7_75ucg")]
-light_color = Color(100, 0, 0, 1)
+light_color = Color(0.996078, 0.027451, 0.305882, 1)
 
 [node name="FaceHero" parent="." instance=ExtResource("9_qg6oe")]
 face_hero = true
