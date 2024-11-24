@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://c7c5dsoxo6rb5"]
+
+[ext_resource type="Texture2D" uid="uid://buwhp4tpagksi" path="res://Entities/Silhouette/silhouette.png" id="1_unr3s"]
+[ext_resource type="PackedScene" uid="uid://1votnx34efdj" path="res://EntityComponents/BWShaderSetter.tscn" id="2_fcpdr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fcpdr"]
+atlas = ExtResource("1_unr3s")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_76cm4"]
+atlas = ExtResource("1_unr3s")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sju0o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fcpdr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_76cm4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Silhouette" type="AnimatedSprite2D"]
+z_index = -1
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_sju0o")
+
+[node name="BwShaderSetter" parent="." instance=ExtResource("2_fcpdr")]
+light_color = Color(0.996078, 0.027451, 0.305882, 1)
