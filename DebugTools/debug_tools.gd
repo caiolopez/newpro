@@ -17,10 +17,11 @@ func input_bin():
 		pass #SaveManager.print_all_dics()
 
 	if DebugTools.debug_mode\
-	and Input.is_action_just_pressed("Debug Action 2"):
+	and Input.is_action_just_pressed("Debug Action 2")\
+	and AppManager.hero.state_machine.current_state.death_prone:
 		AppManager.hero.state_machine.set_state("StateDebug")
 	
-	if Input.is_action_just_pressed("shoot"): AudioManager.play_sound(&"snare")
+	if Input.is_action_just_pressed("shoot"): AudioManager.play_sfx(&"snare")
 	#if Input.is_action_just_pressed("jump"): AudioManager.play_music("giorgio")
 
 	#if Input.is_action_just_pressed("shoot"): print("SHOOT!")

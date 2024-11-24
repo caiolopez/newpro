@@ -98,7 +98,8 @@ func show_next_line() -> void:
 		tween_dialog_box(false)
 
 func hide_dialog() -> void:
-	tween_chars.kill()
+	if tween_chars:
+		tween_chars.kill()
 	text_label.visible_ratio = 1.0
 	_handle_indicator(false)
 	tween_dialog_box(false)

@@ -22,6 +22,7 @@ func _ready() -> void:
 	add_child(cooldown_timer)
 
 func _reappear() -> void:
+	if not is_on_cooldown: return
 	is_on_cooldown = false
 	show()
 	for body in get_overlapping_bodies():

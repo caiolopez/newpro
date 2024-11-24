@@ -4,6 +4,7 @@ var water_prone: bool = true
 var death_prone: bool = true
 
 func on_enter():
+	hero.resize_collider_to_airborne()
 	$"../../Gfx/AnimatedSprite2D".play("wallclimb")
 	hero.velocity.y = hero.CLIMB_VELOCITY
 
@@ -41,3 +42,6 @@ func on_physics_process(delta: float):
 	hero.step_grav(delta)
 	hero.step_lateral_mov(delta)
 	hero.move_and_slide()
+
+func on_exit():
+	hero.resize_collider_to_regular()

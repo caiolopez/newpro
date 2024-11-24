@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cummbv72iiri0"]
+
+[ext_resource type="Script" uid="uid://dij16f1j6bf1s" path="res://AudioEmiter/audio_emiter.gd" id="1_0e4rd"]
+
+[node name="AudioEmiter" type="Node2D"]
+script = ExtResource("1_0e4rd")

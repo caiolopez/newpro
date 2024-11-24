@@ -1,30 +1,36 @@
-[gd_scene load_steps=75 format=3 uid="uid://1hdjstkw22a7"]
+[gd_scene load_steps=81 format=3 uid="uid://1hdjstkw22a7"]
 
 [ext_resource type="PackedScene" uid="uid://b2g8tlm31pxpm" path="res://EntityComponents/Flier.tscn" id="1_3eidg"]
-[ext_resource type="Script" path="res://state_machine.gd" id="1_hm4cg"]
-[ext_resource type="Script" path="res://Boss/Boss1/boss1.gd" id="1_u6ci4"]
+[ext_resource type="Script" uid="uid://nx0nm05072bl" path="res://state_machine.gd" id="1_hm4cg"]
+[ext_resource type="Script" uid="uid://neu2ix13jrim" path="res://Boss/Boss1/boss1.gd" id="1_u6ci4"]
 [ext_resource type="PackedScene" uid="uid://djwwpps3fxvtg" path="res://EntityComponents/GfxController.tscn" id="2_3hehl"]
 [ext_resource type="PackedScene" uid="uid://upm0adhb85ik" path="res://EntityComponents/DmgDealer.tscn" id="2_ahp3q"]
 [ext_resource type="Texture2D" uid="uid://e8eosyh150o6" path="res://Boss/Boss1/Gfx/boss_01_idle.png" id="3_b8ngm"]
-[ext_resource type="Script" path="res://Boss/Boss1/b_state_dormant.gd" id="4_ig5lj"]
+[ext_resource type="Script" uid="uid://xlxwnlt1cbdg" path="res://Boss/Boss1/b_state_dormant.gd" id="4_ig5lj"]
 [ext_resource type="Texture2D" uid="uid://cfxvsi1gjrjfd" path="res://Boss/Boss1/Gfx/boss_01_charging.png" id="4_klkqa"]
-[ext_resource type="Script" path="res://Boss/Boss1/b_state_first_centering.gd" id="4_sjh8q"]
-[ext_resource type="Script" path="res://Boss/Boss1/b_state_chasing.gd" id="5_kiowl"]
+[ext_resource type="Script" uid="uid://c12eo7aw2ntud" path="res://Boss/Boss1/b_state_first_centering.gd" id="4_sjh8q"]
+[ext_resource type="Script" uid="uid://bim3isgd26ysy" path="res://Boss/Boss1/b_state_chasing.gd" id="5_kiowl"]
+[ext_resource type="Script" uid="uid://ot0nyvvsd3xg" path="res://Boss/Boss1/particle_group.gd" id="6_kg2o2"]
 [ext_resource type="PackedScene" uid="uid://7teblr87y0tj" path="res://Boss/Boss1/Boss1DmgParticles.tscn" id="6_ku5wi"]
 [ext_resource type="PackedScene" uid="uid://box2ff3vwcc7w" path="res://EntityComponents/DmgTaker.tscn" id="7_fd85g"]
-[ext_resource type="Script" path="res://Boss/Boss1/b_state_pre_dash.gd" id="8_rdyyk"]
-[ext_resource type="Script" path="res://Boss/Boss1/b_state_dashing.gd" id="9_4tlv1"]
-[ext_resource type="Script" path="res://Boss/Boss1/b_state_post_dash.gd" id="10_iatjr"]
-[ext_resource type="Script" path="res://Boss/Boss1/b_state_centering.gd" id="11_xn0th"]
-[ext_resource type="Script" path="res://Boss/Boss1/b_state_spin_shooting.gd" id="12_lnayk"]
+[ext_resource type="Texture2D" uid="uid://criosi81qe0yb" path="res://Boss/Boss1/Gfx/boss1_bits_a.png" id="8_n51xe"]
+[ext_resource type="Script" uid="uid://crotnxkqpa4hi" path="res://Boss/Boss1/b_state_pre_dash.gd" id="8_rdyyk"]
+[ext_resource type="Script" uid="uid://bvrpohgjbjl7d" path="res://Boss/Boss1/b_state_dashing.gd" id="9_4tlv1"]
+[ext_resource type="Texture2D" uid="uid://d1rhtyab0dfi3" path="res://Boss/Boss1/Gfx/boss1_bits_b.png" id="9_gj3oh"]
+[ext_resource type="Texture2D" uid="uid://c7gdlnygjxcq8" path="res://Boss/Boss1/Gfx/boss1_bits_c.png" id="10_48g5d"]
+[ext_resource type="Script" uid="uid://b6qp4ga625ob8" path="res://Boss/Boss1/b_state_post_dash.gd" id="10_iatjr"]
+[ext_resource type="Texture2D" uid="uid://gvqh4bioeuiy" path="res://Boss/Boss1/Gfx/boss1_bits_d.png" id="11_72lvv"]
+[ext_resource type="Script" uid="uid://cp68anudf2ewj" path="res://Boss/Boss1/b_state_centering.gd" id="11_xn0th"]
+[ext_resource type="Script" uid="uid://0s3fg1ur0qyh" path="res://Boss/Boss1/b_state_spin_shooting.gd" id="12_lnayk"]
 [ext_resource type="PackedScene" uid="uid://cupxj14lcnr75" path="res://EntityComponents/Shooter.tscn" id="13_pyl3o"]
 [ext_resource type="PackedScene" uid="uid://cgexjtuxybh5l" path="res://EntityComponents/MoveStraight.tscn" id="15_w8a43"]
-[ext_resource type="Script" path="res://Boss/Boss1/b_state_dying.gd" id="16_axfqk"]
-[ext_resource type="Script" path="res://Boss/Boss1/b_state_dead.gd" id="17_4lka5"]
-[ext_resource type="Script" path="res://EntityComponents/kill_foe_bullets_if_dead.gd" id="20_rjmgc"]
+[ext_resource type="Script" uid="uid://6qa3n5bja2jk" path="res://Boss/Boss1/b_state_dying.gd" id="16_axfqk"]
+[ext_resource type="Script" uid="uid://dwv8kg1kwkquf" path="res://Boss/Boss1/b_state_dead.gd" id="17_4lka5"]
+[ext_resource type="Script" uid="uid://c5naigmca7nny" path="res://EntityComponents/kill_foe_bullets_if_dead.gd" id="20_rjmgc"]
 [ext_resource type="PackedScene" uid="uid://1votnx34efdj" path="res://EntityComponents/BWShaderSetter.tscn" id="22_6vlhg"]
 [ext_resource type="PackedScene" uid="uid://br5m3o56osblx" path="res://EntityComponents/HaltWhenHeroDead.tscn" id="23_lwabm"]
 [ext_resource type="PackedScene" uid="uid://4s6dlxxxx05e" path="res://EntityComponents/PlacePropWhenDead.tscn" id="25_os6h5"]
+[ext_resource type="PackedScene" uid="uid://yjy1nsje8t60" path="res://EntityComponents/HideWhileHeroDead.tscn" id="31_gsuau"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_34igu"]
 atlas = ExtResource("3_b8ngm")
@@ -462,9 +468,37 @@ autoplay = "dormant"
 
 [node name="BwShaderSetter" parent="GfxController" instance=ExtResource("22_6vlhg")]
 
-[node name="Boss1DmgParticles" parent="GfxController" instance=ExtResource("6_ku5wi")]
+[node name="ParticleGroup" type="Node2D" parent="GfxController"]
+use_parent_material = true
+script = ExtResource("6_kg2o2")
+
+[node name="Boss1DmgParticlesA" parent="GfxController/ParticleGroup" instance=ExtResource("6_ku5wi")]
 z_index = -1
+use_parent_material = true
+amount = 5
 lifetime = 2.0
+texture = ExtResource("8_n51xe")
+
+[node name="Boss1DmgParticlesB" parent="GfxController/ParticleGroup" instance=ExtResource("6_ku5wi")]
+z_index = -1
+use_parent_material = true
+amount = 5
+lifetime = 2.0
+texture = ExtResource("9_gj3oh")
+
+[node name="Boss1DmgParticlesC" parent="GfxController/ParticleGroup" instance=ExtResource("6_ku5wi")]
+z_index = -1
+use_parent_material = true
+amount = 5
+lifetime = 2.0
+texture = ExtResource("10_48g5d")
+
+[node name="Boss1DmgParticlesD" parent="GfxController/ParticleGroup" instance=ExtResource("6_ku5wi")]
+z_index = -1
+use_parent_material = true
+amount = 5
+lifetime = 2.0
+texture = ExtResource("11_72lvv")
 
 [node name="DmgDealer" parent="." instance=ExtResource("2_ahp3q")]
 process_mode = 4
@@ -480,7 +514,7 @@ process_mode = 4
 SPEED = 1000.0
 ACCEL = 4000.0
 DECEL = 4000.0
-ACTIVATION_RADIUS = 2000.0
+ACTIVATION_RADIUS = 20000.0
 MIN_DIST_FROM_TARGET = 0.0
 DEAD_ZONE = 0.0
 
@@ -562,5 +596,6 @@ prop_to_place = &"puff"
 amount = 10
 random_radius = 120.0
 color_pair_source = NodePath("../GfxController/BwShaderSetter")
+lazy_evaluate_color_pair = true
 
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[node name="HideWhileHeroDead" parent="." instance=ExtResource("31_gsuau")]

@@ -4,6 +4,7 @@ var water_prone: bool = false
 var death_prone: bool = true
 
 func on_enter():
+	hero.resize_collider_to_airborne()
 	$"../../Gfx/AnimatedSprite2D".play("jump")
 	PropManager.place_prop(hero.global_position, &"dust_jump")
 	hero.velocity.y = hero.JUMP_VELOCITY
@@ -65,3 +66,6 @@ func on_physics_process(delta: float):
 	if Input.is_action_just_released("jump"): hero.velocity.y *= 0.25
 	
 	hero.move_and_slide()
+
+func on_exit():
+	hero.resize_collider_to_regular()

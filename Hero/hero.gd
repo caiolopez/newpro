@@ -331,6 +331,13 @@ func resize_collider_to_regular() -> void:
 	dmg_coll.shape.size.y = 110
 	dmg_coll.position.y = 0
 
+func resize_collider_to_airborne() -> void:
+	%HeroCollider.shape.size.y = 130
+	%HeroCollider.position.y = 0
+	var dmg_coll: CollisionShape2D = dmg_taker.get_node("CollisionShape2D")
+	dmg_coll.shape.size.y = 85
+	dmg_coll.position.y = -12.5
+
 func resize_collider_to_swim() -> void:
 	%HeroCollider.shape.size.y = 70
 	%HeroCollider.position.y = -30
