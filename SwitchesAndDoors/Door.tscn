@@ -1,14 +1,14 @@
 [gd_scene load_steps=16 format=3 uid="uid://ruri8ytnt6k"]
 
-[ext_resource type="Script" path="res://SwitchesAndDoors/door.gd" id="1_bavxp"]
-[ext_resource type="Script" path="res://state_machine.gd" id="3_vgayv"]
-[ext_resource type="Script" path="res://SwitchesAndDoors/state_open.gd" id="4_qyouu"]
-[ext_resource type="Script" path="res://SwitchesAndDoors/state_closed.gd" id="4_vsukd"]
-[ext_resource type="Script" path="res://SwitchesAndDoors/state_opening.gd" id="5_dl3qx"]
-[ext_resource type="Script" path="res://SwitchesAndDoors/state_closing.gd" id="6_fh1vt"]
-[ext_resource type="Script" path="res://SwitchesAndDoors/state_rev_from_closing.gd" id="8_blgy7"]
+[ext_resource type="Script" uid="uid://cpgbh6b53iawo" path="res://SwitchesAndDoors/door.gd" id="1_bavxp"]
+[ext_resource type="Script" uid="uid://dnpyqmg5e03hs" path="res://state_machine.gd" id="3_vgayv"]
+[ext_resource type="Script" uid="uid://rotq5h5ep724" path="res://SwitchesAndDoors/state_open.gd" id="4_qyouu"]
+[ext_resource type="Script" uid="uid://c45mumgqc6g06" path="res://SwitchesAndDoors/state_closed.gd" id="4_vsukd"]
+[ext_resource type="Script" uid="uid://hasaexkqoeif" path="res://SwitchesAndDoors/state_opening.gd" id="5_dl3qx"]
+[ext_resource type="Script" uid="uid://dwmept4l4hnkf" path="res://SwitchesAndDoors/state_closing.gd" id="6_fh1vt"]
+[ext_resource type="Script" uid="uid://daoy3uslvoew8" path="res://SwitchesAndDoors/state_rev_from_closing.gd" id="8_blgy7"]
 [ext_resource type="Texture2D" uid="uid://bafy7qdnjv6t5" path="res://SwitchesAndDoors/Gfx/door_anim.png" id="9_14l4i"]
-[ext_resource type="Script" path="res://SwitchesAndDoors/state_temporarily_open.gd" id="9_37487"]
+[ext_resource type="Script" uid="uid://ciumpdb26lxai" path="res://SwitchesAndDoors/state_temporarily_open.gd" id="9_37487"]
 [ext_resource type="PackedScene" uid="uid://1votnx34efdj" path="res://EntityComponents/BWShaderSetter.tscn" id="10_c6eg3"]
 [ext_resource type="Texture2D" uid="uid://mvtvu0ch35er" path="res://SwitchesAndDoors/Gfx/door_stop.png" id="10_wbtyf"]
 
@@ -77,6 +77,7 @@ script = ExtResource("8_blgy7")
 one_shot = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = -1
 use_parent_material = true
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_q4n6f")
@@ -88,5 +89,5 @@ scale = Vector2(5, 5)
 texture = ExtResource("10_wbtyf")
 
 [node name="BwShaderSetter" parent="." instance=ExtResource("10_c6eg3")]
-dark_color = Color(0.297504, 0.197899, 0.0157033, 1)
-light_color = Color(100, 0.419, 0.073, 1)
+dark_color = Color(0.211765, 0.133333, 0.105882, 1)
+light_color = Color(0.878431, 0.67451, 0.235294, 1)
