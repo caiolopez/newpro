@@ -22,7 +22,7 @@ const ELEVATOR_BUTTON_MOVING_COLORS:Array[Color] = 		[Color(0.0, 0.5, 0.0),		Col
 const ELEVATOR_BUTTON_UNAVAILABLE_COLORS:Array[Color] =	[Color(0.25, 0.12, 0.0), 	Color(0.5, 0.25, 0.0)]
 const ELEVATOR_BUTTON_AVAILABLE_COLORS:Array[Color] =	[Color(0.5, 0.25, 0.0), 	Color(1.0, 0.5, 0.0)]
 
-const BOSS_STAGE0_COLORS:Array[Color] = 		[Color(0.0, 0.5, 0.0),		Color(0.5, 1.0, 0.5)]
-const BOSS_STAGE1_COLORS:Array[Color] = 		[Color(0.5, 0.5, 0.0),		Color(1.0, 1.0, 0.5)]
-const BOSS_STAGE2_COLORS:Array[Color] = 		[Color(0.5, 0.25, 0.0),		Color(1.0, 0.5, 0.5)]
-const BOSS_STAGE3_COLORS:Array[Color] = 		[Color(0.5, 0.0, 0.0),		Color(1.0, 0.5, 0.5)]
+const BOSS_STAGE0_COLORS:Array[Color] = 		[Color("000000"),		Color("e0ac3c")]
+const BOSS_STAGE1_COLORS:Array[Color] = 		[Color("000000"),		Color("f67f00")]
+const BOSS_STAGE2_COLORS:Array[Color] = 		[Color("000000"),		Color("f94a22")]
+const BOSS_STAGE3_COLORS:Array[Color] = 		[Color("000000"),		Color("fe074e")]
