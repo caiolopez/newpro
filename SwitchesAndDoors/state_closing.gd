@@ -1,6 +1,7 @@
 extends DoorState # State Closing
 
 func on_enter():
+	AudioManager.hooks.door_close_sfx()
 	door.stopped_moving_at_origin.connect(on_stopped_moving)
 	door.should_open.connect(on_open_door)
 	$"../../AntiCrushArea".body_entered.connect(on_body_entered_doorway)

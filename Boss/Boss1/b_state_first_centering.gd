@@ -3,6 +3,7 @@ extends BossState
 var tn
 
 func on_enter():
+	AudioManager.hooks.boss1_wakes_sfx()
 	var duration: float = 3.0
 	var tween = create_tween()
 	tn = tween
@@ -14,6 +15,7 @@ func on_enter():
 	tween.tween_callback(func():
 		if machine.current_state.name == "BStateFirstCentering":
 			machine.set_state("BStateChasing")
+			AudioManager.hooks.boss1_fight_start_sfx()
 			tween.kill()
 			)
 

@@ -7,8 +7,10 @@ func on_enter():
 	hero.velocity = Vector2.ZERO
 	AppManager.camera.shake()
 	Events.hero_died.emit()
+	BulletManager.return_all_bullets()
 	timer_death_snapshot.start()
 	Utils.colorize_silhouette(true, $"../../Gfx")
+	AudioManager.hooks.hero_die_sfx()
 	$"../../Gfx/AnimatedSprite2D".stop()
 
 func on_process(_delta: float):

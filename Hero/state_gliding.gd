@@ -7,6 +7,7 @@ func on_enter():
 	$"../../Gfx/ParachuteAnim".show()
 	$"../../Gfx/ParachuteAnim".play("deploy_parachute")
 	$"../../Gfx/AnimatedSprite2D".play("glide")
+	AudioManager.hooks.hero_glide_start_sfx()
 
 	if not hero.is_on_wall() and Input.is_action_just_pressed("jump"):
 		timer_buffer_climbing.start()
@@ -18,6 +19,7 @@ func on_process(_delta: float):
 	hero.step_walljump()
 
 	if hero.is_on_floor():
+		AudioManager.hooks.hero_fall_sfx()
 		machine.set_state("StateIdle")
 		return
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ruri8ytnt6k"]
+[gd_scene load_steps=15 format=3 uid="uid://ruri8ytnt6k"]
 
 [ext_resource type="Script" uid="uid://dnvc0muxjskkx" path="res://SwitchesAndDoors/door.gd" id="1_bavxp"]
 [ext_resource type="Script" uid="uid://nx0nm05072bl" path="res://state_machine.gd" id="3_vgayv"]
@@ -8,7 +8,6 @@
 [ext_resource type="Script" uid="uid://dnduix8avk80r" path="res://SwitchesAndDoors/state_closing.gd" id="6_fh1vt"]
 [ext_resource type="Script" uid="uid://ddoigraqtywoq" path="res://SwitchesAndDoors/state_rev_from_closing.gd" id="8_blgy7"]
 [ext_resource type="Texture2D" uid="uid://bafy7qdnjv6t5" path="res://SwitchesAndDoors/Gfx/door_anim.png" id="9_14l4i"]
-[ext_resource type="Script" uid="uid://cafv5sv2nl7t2" path="res://SwitchesAndDoors/state_temporarily_open.gd" id="9_37487"]
 [ext_resource type="PackedScene" uid="uid://1votnx34efdj" path="res://EntityComponents/BWShaderSetter.tscn" id="10_c6eg3"]
 [ext_resource type="Texture2D" uid="uid://mvtvu0ch35er" path="res://SwitchesAndDoors/Gfx/door_stop.png" id="10_wbtyf"]
 
@@ -67,14 +66,8 @@ script = ExtResource("6_fh1vt")
 [node name="DoorStateOpening" type="Node" parent="StateMachine"]
 script = ExtResource("5_dl3qx")
 
-[node name="DoorStateTemporarilyOpen" type="Node" parent="StateMachine"]
-script = ExtResource("9_37487")
-
 [node name="DoorStateRevFromClosing" type="Node" parent="StateMachine"]
 script = ExtResource("8_blgy7")
-
-[node name="TimerAutoClose" type="Timer" parent="StateMachine"]
-one_shot = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = -1

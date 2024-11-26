@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dx16ogatm4lny"]
+[gd_scene load_steps=4 format=3 uid="uid://dx16ogatm4lny"]
 
 [ext_resource type="Script" uid="uid://b1fvh3csmw1rp" path="res://AudioManager/audio_manager.gd" id="1_sulfk"]
 [ext_resource type="Script" uid="uid://bs7hhmehdu7pq" path="res://AudioManager/analyzer.gd" id="2_k8shx"]
+[ext_resource type="Script" uid="uid://dr033ydhgwxfe" path="res://AudioManager/sfx_hooks.gd" id="3_cic6f"]
 
 [node name="AudioManager" type="Node"]
 script = ExtResource("1_sulfk")
@@ -9,3 +10,6 @@ script = ExtResource("1_sulfk")
 [node name="Analyzer" type="Node" parent="."]
 script = ExtResource("2_k8shx")
 is_operating = false
+
+[node name="SfxHooks" type="Node" parent="."]
+script = ExtResource("3_cic6f")

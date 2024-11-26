@@ -208,6 +208,7 @@ func step_shooting(inverted: bool = false, wet: bool = false) -> bool:
 	and $StateMachine/TimerBlunderShootCooldown.is_stopped():
 		$Gfx/Muzzle.visible = true
 		$Gfx/Muzzle.play("blunder")
+		AudioManager.hooks.hero_blunder_shoot_sfx()
 		if wet: state_machine.set_state("StateWetBlunderShooting")
 		else: state_machine.set_state("StateBlunderShooting")
 		shooter.shoot()
@@ -216,6 +217,7 @@ func step_shooting(inverted: bool = false, wet: bool = false) -> bool:
 	if Input.is_action_just_pressed("shoot"):
 		$Gfx/Muzzle.visible = true
 		$Gfx/Muzzle.play("default")
+		AudioManager.hooks.hero_shoot_sfx()
 		shooter.shoot_ad_hoc(REGULAR_SHOT_SPEED, 0, false, inverted)
 	return false
 

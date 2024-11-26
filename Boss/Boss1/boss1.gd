@@ -60,6 +60,7 @@ func on_suffered(hp: int):
 	var prev_stage = current_stage
 	update_current_stage(hp)
 	if prev_stage < current_stage:
+		AudioManager.hooks.boss1_change_level_sfx()
 		$GfxController/ParticleGroup.emit_particles()
 		AppManager.camera.shake()
 		if state_machine.current_state.name != "BStateSpinShooting":

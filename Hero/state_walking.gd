@@ -10,6 +10,9 @@ func on_process(_delta: float):
 	if hero.step_shooting():
 		return
 
+	if $"../../Gfx/AnimatedSprite2D".frame in [4, 10]:
+		AudioManager.hooks.hero_step_sfx()
+
 	if hero.is_on_floor()\
 	and not hero.pelvis_rc.is_colliding()\
 	and not hero.shoulder_rc.is_colliding()\

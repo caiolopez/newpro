@@ -1,6 +1,12 @@
 [gd_scene load_steps=2 format=3 uid="uid://bu38boui2wxu"]
 
-[ext_resource type="Script" path="res://SwitchesAndDoors/switch_group_controller.gd" id="1_4audi"]
+[ext_resource type="Script" uid="uid://cjvmyx62vohkv" path="res://SwitchesAndDoors/switch_group_controller.gd" id="1_4audi"]
 
 [node name="SwitchGroupController" type="Node"]
 script = ExtResource("1_4audi")
+
+[node name="AutoOffTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="BeepTimer" type="Timer" parent="."]
+wait_time = 0.244

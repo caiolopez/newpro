@@ -11,6 +11,7 @@ const SHOT_INTERVAL_DECREASE_RATE: float = 0.08
 const MIN_SHOT_INTERVAL: float = 0.01
 
 func on_enter():
+	AudioManager.hooks.hero_blunder_jump_sfx()
 	$"../../Gfx/AnimatedSprite2D".play("blunderjump")
 	$"../../Shooter".position = Vector2(0, 0)
 	$"../../BlurFX".start_generating()
@@ -40,6 +41,7 @@ func on_process(delta: float):
 
 	if hero.is_on_floor():
 		PropManager.place_prop(hero.global_position, &"dust_pound")
+		AudioManager.hooks.hero_fall_sfx()
 		machine.set_state("StateIdle")
 		return
 

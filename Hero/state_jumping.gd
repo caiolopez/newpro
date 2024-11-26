@@ -5,6 +5,7 @@ var death_prone: bool = true
 
 func on_enter():
 	hero.resize_collider_to_airborne()
+	AudioManager.hooks.hero_jump_sfx()
 	$"../../Gfx/AnimatedSprite2D".play("jump")
 	PropManager.place_prop(hero.global_position, &"dust_jump")
 	hero.velocity.y = hero.JUMP_VELOCITY

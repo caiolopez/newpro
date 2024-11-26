@@ -11,6 +11,7 @@ const SFX_COOLDOWN: float = 0.05
 const FADE_DURATION: float = 5.0
 var sfx_cooldowns: Dictionary = {}
 var fade_tween: Tween
+@onready var hooks: Node = $SfxHooks
 
 signal bass_current_value(value: float)
 signal mid_current_value(value: float)

@@ -10,6 +10,7 @@ const INVERTED: bool = true
 func on_enter():
 	hero.velocity.y = 0
 	
+	AudioManager.hooks.hero_wall_grab_sfx()
 	$"../../Gfx/AnimatedSprite2D".play("wallgrab")
 	if $"../../Gfx/Muzzle".is_playing(): $"../../Gfx/Muzzle".hide()
 	$"../../Shooter".position = Vector2(88, -40)

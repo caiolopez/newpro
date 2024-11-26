@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://0fx3l1vwyhr4"]
 
-[ext_resource type="Script" path="res://SwitchesAndDoors/switch.gd" id="1_bkl3k"]
+[ext_resource type="Script" uid="uid://cunoru645f6k" path="res://SwitchesAndDoors/switch.gd" id="1_bkl3k"]
 [ext_resource type="Texture2D" uid="uid://csx1ugxovrq4q" path="res://SwitchesAndDoors/Gfx/switch_anim.png" id="2_777cb"]
 [ext_resource type="PackedScene" uid="uid://1votnx34efdj" path="res://EntityComponents/BWShaderSetter.tscn" id="3_oj7qx"]
 
@@ -43,6 +43,10 @@ wait_time = 0.1
 one_shot = true
 
 [node name="TimerCooldown" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+
+[node name="TimerBeep" type="Timer" parent="."]
 wait_time = 0.25
 one_shot = true
 

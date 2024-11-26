@@ -2,7 +2,6 @@ class_name Door extends AnimatableBody2D
 
 @export var duration: float = 1.0
 @export var open_offset: Vector2 = Vector2(0.0, -288.0)
-@export var auto_close_time: float = 0.0 ## If not zero, causes the door to automatically close after the specified time.
 @onready var closed_pos: Vector2 = position
 var state_machine: StateMachine
 var door_tween: Tween
@@ -14,8 +13,6 @@ signal stopped_moving_at_offset()
 
 func _ready():
 	state_machine = $StateMachine
-	if auto_close_time > 0:
-		$StateMachine/TimerAutoClose.set_wait_time(auto_close_time)
 	state_machine.start()
 	
 	if _find_door_collider():

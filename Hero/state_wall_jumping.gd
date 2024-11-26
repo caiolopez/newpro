@@ -5,6 +5,7 @@ var death_prone: bool = true
 
 func on_enter():
 	$"../../Gfx/AnimatedSprite2D".play("walljump")
+	AudioManager.hooks.hero_wall_jump_sfx()
 	
 	PropManager.place_prop(Vector2(
 		hero.global_position.x - 64 * hero.facing_direction,

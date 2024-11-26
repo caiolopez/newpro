@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dd08gffrk8txn"]
 
-[ext_resource type="Script" path="res://ElevatorSystem/elevator_system.gd" id="1_duvcj"]
+[ext_resource type="Script" uid="uid://b8ulf3pkrwn7" path="res://ElevatorSystem/elevator_system.gd" id="1_duvcj"]
 
 [node name="ElevatorSystem" type="Node"]
 script = ExtResource("1_duvcj")

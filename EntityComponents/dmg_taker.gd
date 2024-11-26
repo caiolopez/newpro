@@ -5,6 +5,8 @@ class_name DmgTaker extends Area2D
 @export var QUEUE_FREE_ON_CHECKPOINT: bool = true ## When set to true, will prevent dead entities from reappearing when the Hero respawns.
 @export var immune_to: Array[Constants.BulletType] = [] ## Bullet types in this list will not affect entities.
 @export var auto_regen_time: float = 0.0 ## The time it takes for it to regain one HP automatically. Set to zero to disable feature.
+@export var death_sfx: StringName = &"" ## The sound this entity makes when it dies.
+@export var suffer_sfx: StringName = &"" ## The sound this entity makes when it loses one HP.
 @onready var is_foe: bool = Utils.check_if_foe(self.get_parent()) ## If no FriendOrFoe sibling component is found, assumes is_foe = true.
 @onready var current_hp: int = HP_AMOUNT
 var currently_immune: bool = false
@@ -45,8 +47,10 @@ func take_dmg(amount: int):
 		if regen_timer:
 			regen_timer.stop()
 		died.emit()
+		if death_sfx: AudioManager.play_sfx(death_sfx)
 	else:
 		suffered.emit(current_hp)
+		if suffer_sfx: AudioManager.play_sfx(suffer_sfx)
 		if regen_timer:
 			regen_timer.stop()
 			regen_timer.start()

@@ -1424,9 +1424,7 @@ use_parent_material = true
 position = Vector2(0, -15)
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_tm5on")
-animation = &"jump"
-frame = 7
-frame_progress = 1.0
+animation = &"walk"
 
 [node name="Muzzle" type="AnimatedSprite2D" parent="Gfx"]
 visible = false

@@ -24,6 +24,7 @@ func on_enter():
 	if not hero.is_on_floor():
 		timer_blunder_jump_window.start()
 
+	AudioManager.hooks.hero_recoil_sfx()
 	$"../../Gfx/AnimatedSprite2D".play("recoil")
 	if hero.is_on_wall()\
 	and hero.facing_direction == round(hero.get_wall_normal().x):

@@ -6,9 +6,9 @@ var tween: Tween
 
 func on_enter():
 	Events.hero_started_tweening_to_respawn.emit()
+	AudioManager.hooks.hero_tweening_to_respawn_sfx()
 	$"../../Gfx/AnimatedSprite2D".play("teleport")
-	
-	BulletManager.return_all_bullets()
+
 	var destination = hero.original_position
 	if hero.current_checkpoint_path:
 		var curr_checkpoint = get_node(hero.current_checkpoint_path)

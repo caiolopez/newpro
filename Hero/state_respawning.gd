@@ -7,6 +7,7 @@ var curr_sign: int = 1
 
 func on_enter():
 	Events.hero_respawned_at_checkpoint.emit()
+	AudioManager.hooks.hero_respawn_sfx()
 
 func on_process(_delta: float):
 	if hero.innards_rc.is_colliding():

@@ -69,6 +69,7 @@ func on_process(_delta: float):
 		if top_fall_vel > 1200:
 			PropManager.place_prop(hero.global_position, &"dust_pound")
 		machine.set_state("StateIdle")
+		AudioManager.hooks.hero_fall_sfx()
 		return
 
 func on_physics_process(delta: float):

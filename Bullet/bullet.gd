@@ -92,5 +92,6 @@ func color_owner_muzzle(muzzle: Node2D):
 func kill_bullet():
 	handled = true
 	var color_pair: Array[Color] = [current_dark_color, current_light_color]
+	AudioManager.hooks.bullet_die_sfx()
 	PropManager.place_prop(global_position, &"bullet_dies", color_pair)
 	BulletManager.release_bullet(self)
