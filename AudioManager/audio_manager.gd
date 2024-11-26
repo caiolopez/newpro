@@ -6,7 +6,7 @@ var positional_sfx_players: Array[AudioStreamPlayer2D] = []
 var active_positional_sfx: Dictionary = {}
 var intended_track_name: StringName = ""
 var current_track_name: StringName = ""
-const POOL_SIZE: int = 10
+const POOL_SIZE: int = 1000
 const SFX_COOLDOWN: float = 0.05
 const FADE_DURATION: float = 5.0
 var sfx_cooldowns: Dictionary = {}
@@ -26,7 +26,10 @@ const MUSIC_TRACKS = {
 		"loop": "res://AudioManager/bizarre.mp3",
 		},
 	"gorgo": {
-		"loop": "res://AudioManager/giorgio_loop.mp3",
+		"loop": "res://AudioManager/Music/test1.mp3",
+		},
+	"test2": {
+		"loop": "res://AudioManager/Music/test2.mp3",
 		}
 }
 
@@ -38,7 +41,23 @@ const SFX = {
 	"white_noise_loop": {
 		"resource": preload("res://AudioEmiter/white_noise.ogg"),
 		"pausable": true
-		}
+		},
+	"shot": {
+		"resource": preload("res://AudioManager/Sounds/shot.wav"),
+		"pausable": false
+		},
+	"dash1": {
+		"resource": preload("res://AudioManager/Sounds/dash1.wav"),
+		"pausable": false
+		},
+	"alert1": {
+		"resource": preload("res://AudioManager/Sounds/Environment/alert1.wav"),
+		"pausable": true
+		},
+	"weird1": {
+		"resource": preload("res://AudioManager/Sounds/Environment/weird1.wav"),
+		"pausable": true
+		},
 }
 
 func _ready():
@@ -180,13 +199,14 @@ func stop_music_immediately():
 	if fade_tween and fade_tween.is_valid():
 		fade_tween.kill()
 
-func play_sfx(sfx_name: StringName):
+func play_sfx(sfx_name: StringName, volume_adjustment: float = 0.0):
 	if _is_sfx_in_cooldown(sfx_name):
 			return
 	
 	for sfx_player in sfx_players:
 		if not sfx_player.is_playing():
 			sfx_player.stream = SFX[sfx_name]["resource"]
+			sfx_player.volume_db = volume_adjustment
 			sfx_player.play()
 			sfx_cooldowns[sfx_name] = Time.get_ticks_msec()
 			return
@@ -203,7 +223,7 @@ func _is_sfx_in_cooldown(sfx_name: StringName) -> bool:
 			return true
 	return false
 
-func play_positional_sfx(sfx_name: StringName, position: Vector2, source_object: Node, max_distance: float = 10000.0) -> AudioStreamPlayer2D:
+func play_positional_sfx(sfx_name: StringName, position: Vector2, source_object: Node, max_distance: float = 10000.0, volume_adjustment: float = 0.0) -> AudioStreamPlayer2D:
 	if source_object in active_positional_sfx:
 		var player = active_positional_sfx[source_object]
 		player.stream = SFX[sfx_name]["resource"]
@@ -215,6 +235,7 @@ func play_positional_sfx(sfx_name: StringName, position: Vector2, source_object:
 	for player in positional_sfx_players:
 		if not player.is_playing():
 			player.stream = SFX[sfx_name]["resource"]
+			player.volume_db = volume_adjustment
 			player.global_position = position
 			player.max_distance = max_distance
 			player.attenuation = 1.0

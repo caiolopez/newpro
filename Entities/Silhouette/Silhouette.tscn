@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://c7c5dsoxo6rb5"]
+[gd_scene load_steps=12 format=3 uid="uid://c7c5dsoxo6rb5"]
 
 [ext_resource type="Texture2D" uid="uid://buwhp4tpagksi" path="res://Entities/Silhouette/silhouette.png" id="1_unr3s"]
+[ext_resource type="Script" uid="uid://bpdji7no8od2t" path="res://Entities/Silhouette/silhouette.gd" id="2_76cm4"]
 [ext_resource type="PackedScene" uid="uid://1votnx34efdj" path="res://EntityComponents/BWShaderSetter.tscn" id="2_fcpdr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fcpdr"]
@@ -11,6 +12,10 @@ region = Rect2(0, 0, 16, 16)
 atlas = ExtResource("1_unr3s")
 region = Rect2(16, 0, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_unr3s"]
+atlas = ExtResource("1_unr3s")
+region = Rect2(32, 0, 16, 16)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_sju0o"]
 animations = [{
 "frames": [{
@@ -19,16 +24,84 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_76cm4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_unr3s")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_fcpdr"]
+resource_name = "blink1"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 0]
+}
+
+[sub_resource type="Animation" id="Animation_76cm4"]
+resource_name = "blink2"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 1]
+}
+
+[sub_resource type="Animation" id="Animation_fjmem"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_biw5k"]
+_data = {
+&"RESET": SubResource("Animation_fjmem"),
+&"blink1": SubResource("Animation_fcpdr"),
+&"blink2": SubResource("Animation_76cm4")
+}
+
 [node name="Silhouette" type="AnimatedSprite2D"]
 z_index = -1
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_sju0o")
+frame = 1
+script = ExtResource("2_76cm4")
 
 [node name="BwShaderSetter" parent="." instance=ExtResource("2_fcpdr")]
 light_color = Color(0.996078, 0.027451, 0.305882, 1)
+
+[node name="BlinkTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_biw5k")
+}
+speed_scale = 3.0
