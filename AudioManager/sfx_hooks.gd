@@ -24,6 +24,9 @@ func hero_recoil_sfx():
 func hero_wall_jump_sfx():
 	pass
 
+func hero_wall_climb_sfx():
+	pass
+
 func hero_glide_start_sfx():
 	pass
 

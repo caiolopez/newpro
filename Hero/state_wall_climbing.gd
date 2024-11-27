@@ -6,6 +6,7 @@ var death_prone: bool = true
 func on_enter():
 	hero.resize_collider_to_airborne()
 	$"../../Gfx/AnimatedSprite2D".play("wallclimb")
+	AudioManager.hooks.hero_wall_climb_sfx()
 	hero.velocity.y = hero.CLIMB_VELOCITY
 
 func on_process(_delta: float):
@@ -16,6 +17,7 @@ func on_process(_delta: float):
 		if hero.is_pushing_wall():
 			$"../../Gfx/AnimatedSprite2D".frame = 0
 			$"../../Gfx/AnimatedSprite2D".play("wallclimb")
+			AudioManager.hooks.hero_wall_climb_sfx()
 			hero.velocity.y = hero.CLIMB_VELOCITY
 			return
 
