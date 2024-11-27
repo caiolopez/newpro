@@ -20,6 +20,12 @@ func _ready():
 				if body is Hero:
 					_deactivate()
 				)
+	
+	for child in get_parent().get_children():
+		if child is DmgTaker:
+			child.died.connect(_deactivate)
+			child.resurrected.connect(_activate)
+			break
 
 func _process(_delta: float) -> void:
 	AudioManager.update_positional_sfx_position(self, self.global_position)
