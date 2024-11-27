@@ -99,8 +99,11 @@ func shoot(speed: float = pellet_speed, angle: float = 0, amount: int = pellet_a
 			muzzle
 		)
 		bullets.append(bullet)
-	if emit_signal_upon_shooting: just_shot.emit()
-	if sound_fx: AudioManager.play_sfx(sound_fx)
+	if emit_signal_upon_shooting:
+		just_shot.emit()
+		Events.entity_shot.emit(self)
+	if sound_fx:
+		AudioManager.play_sfx(sound_fx)
 	return bullets
 
 func shoot_ad_hoc(speed: float = 200, angle: float = 0, ignore_facing_direction: bool = false, inverted: bool = false) -> Array[Area2D]:

@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://dfj5x7i2hy0pq"]
+[gd_scene load_steps=12 format=3 uid="uid://dfj5x7i2hy0pq"]
 
-[ext_resource type="Script" uid="uid://di87ai28fund6" path="res://Background/background_camera.gd" id="2_dvl52"]
+[ext_resource type="Script" uid="uid://drj0oeyl2uqfh" path="res://Background/Backgrounds/background_b.gd" id="1_knjxx"]
+[ext_resource type="Script" uid="uid://ds4mh6wwrpwn4" path="res://Background/background_camera.gd" id="2_dvl52"]
 [ext_resource type="Shader" uid="uid://drai65ddx1sgn" path="res://CaioShaders/pixelate_w_gaps.gdshader" id="3_vkkds"]
-[ext_resource type="Script" path="res://Background/Backgrounds/background_cube.gd" id="4_a1xs1"]
+[ext_resource type="Script" uid="uid://bhg6or7ea4i0d" path="res://Background/Backgrounds/background_cube.gd" id="4_a1xs1"]
 [ext_resource type="Shader" uid="uid://05qxh5f086p0" path="res://Shaders/ocean.gdshader" id="4_knjxx"]
 
 [sub_resource type="Environment" id="Environment_13nke"]
@@ -39,6 +40,8 @@ glow_bloom = 1.0
 fog_density = 0.0165
 
 [node name="BackgroundB" type="Node"]
+script = ExtResource("1_knjxx")
+_monitor_entity_died = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
 environment = SubResource("Environment_13nke")

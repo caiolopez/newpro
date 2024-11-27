@@ -62,6 +62,7 @@ func on_suffered(hp: int):
 	if prev_stage < current_stage:
 		AudioManager.hooks.boss1_change_level_sfx()
 		$GfxController/ParticleGroup.emit_particles()
+		Events.boss_changed_stage.emit(self)
 		AppManager.camera.shake()
 		if state_machine.current_state.name != "BStateSpinShooting":
 			state_machine.set_state("BStateCentering")

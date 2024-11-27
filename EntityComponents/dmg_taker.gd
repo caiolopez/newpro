@@ -35,6 +35,7 @@ func regen_dmg():
 	if current_hp < HP_AMOUNT:
 		current_hp = mini(current_hp + 1, HP_AMOUNT)
 		regenerated.emit()
+		Events.entity_regenerated.emit(self)
 		if DebugTools.print_stuff: print(get_parent().name, ": HP restored: 1. Current HP: ", current_hp)
 
 func take_dmg(amount: int):
@@ -47,9 +48,11 @@ func take_dmg(amount: int):
 		if regen_timer:
 			regen_timer.stop()
 		died.emit()
+		Events.entity_died.emit(self)
 		if death_sfx: AudioManager.play_sfx(death_sfx)
 	else:
 		suffered.emit(current_hp)
+		Events.entity_suffered.emit(self)
 		if suffer_sfx: AudioManager.play_sfx(suffer_sfx)
 		if regen_timer:
 			regen_timer.stop()
@@ -80,3 +83,4 @@ func reset_status():
 	if regen_timer:
 		regen_timer.start()
 	resurrected.emit()
+	Events.entity_resurrected.emit(self)
