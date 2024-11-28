@@ -51,14 +51,7 @@ func door_open_sfx():
 func door_close_sfx():
 	pass
 
-func elevator_start_sfx(): #####
-	pass
-
-func elevator_stop_sfx(): #####
-	pass
-
-func elevator_move_sfx(): #####
-	pass
+# Elevator sounds and loops ar dealt directly in ElevatorSystem node.
 
 func switch_on_sfx():
 	pass
@@ -67,7 +60,6 @@ func switch_off_sfx():
 	pass
 
 func timed_door_beep_sfx(): # An intermitent beep signaling that this switch will close itself eventually.
-	AudioManager.play_sfx(&"snare")
 	pass
 
 func boss1_wakes_sfx():
