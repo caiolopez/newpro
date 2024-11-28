@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://ms4uukon6dti"]
+[gd_scene load_steps=3 format=3 uid="uid://ms4uukon6dti"]
 
-[ext_resource type="Script" path="res://GUI/main_menu.gd" id="1_llf6l"]
+[ext_resource type="Script" uid="uid://efloca47p352" path="res://GUI/main_menu.gd" id="1_llf6l"]
+[ext_resource type="Theme" uid="uid://dediyadnq7o1d" path="res://GUI/main.theme" id="1_qi1wx"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -10,6 +11,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 2
+theme = ExtResource("1_qi1wx")
 script = ExtResource("1_llf6l")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -20,25 +22,29 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -67.5
-offset_top = -50.5
+offset_top = -68.0
 offset_right = 67.5
-offset_bottom = 50.5
+offset_bottom = 68.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
 [node name="LoadGameButton" type="Button" parent="VBoxContainer"]
+texture_filter = 2
 layout_mode = 2
 text = "Load Game"
 
 [node name="NewGameButton" type="Button" parent="VBoxContainer"]
+texture_filter = 2
 layout_mode = 2
 text = "Start New Game"
 
 [node name="OptionsButton" type="Button" parent="VBoxContainer"]
+texture_filter = 2
 layout_mode = 2
 text = "Options"
 
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
+texture_filter = 2
 layout_mode = 2
 text = "Quit"
