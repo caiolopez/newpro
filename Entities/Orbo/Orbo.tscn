@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://1votnx34efdj" path="res://EntityComponents/BWShaderSetter.tscn" id="7_75ucg"]
 [ext_resource type="PackedScene" uid="uid://dcoepnhhviad0" path="res://EntityComponents/Figure8Mover.tscn" id="8_20wvu"]
 [ext_resource type="PackedScene" uid="uid://dqho171mcdsmr" path="res://EntityComponents/FaceHero.tscn" id="9_qg6oe"]
+[ext_resource type="PackedScene" uid="uid://4s6dlxxxx05e" path="res://EntityComponents/PlacePropWhenDead.tscn" id="10_gt7jv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v2koo"]
 size = Vector2(80, 80)
@@ -127,6 +128,7 @@ effect = 3
 next_animation_name = &"idle"
 
 [node name="BwShaderSetter" parent="GfxController" instance=ExtResource("7_75ucg")]
+dark_color_name = &"ZONE_1_BG_COLOR"
 light_color = Color(0.996078, 0.027451, 0.305882, 1)
 
 [node name="FaceHero" parent="." instance=ExtResource("9_qg6oe")]
@@ -134,3 +136,16 @@ face_hero = true
 
 [node name="Figure8Mover" parent="." instance=ExtResource("8_20wvu")]
 width = 25.0
+
+[node name="PlacePropWhenDead" parent="." node_paths=PackedStringArray("color_pair_source") instance=ExtResource("10_gt7jv")]
+prop_to_place = &"puff"
+random_radius = 40.0
+color_pair_source = NodePath("../GfxController/BwShaderSetter")
+
+[node name="AudioEmiter" type="Node2D" parent="."]
+script = ExtResource("9_7s6el")
+sfx_name = &"orbo_idle"
+max_distance = 800.0
+fixed_position = false
+volume_db = -24.0
+metadata/_custom_type_script = ExtResource("9_7s6el")
