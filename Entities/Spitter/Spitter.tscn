@@ -124,6 +124,7 @@ effect = 3
 next_animation_name = &"idle"
 
 [node name="BwShaderSetter" parent="GfxController" instance=ExtResource("6_bou2g")]
+dark_color_name = &"ZONE_1_BG_COLOR"
 light_color = Color(0.996078, 0.027451, 0.305882, 1)
 
 [node name="Shooter" parent="." instance=ExtResource("6_xwwbl")]
@@ -131,6 +132,7 @@ position = Vector2(20, 0)
 pellet_amount = 3
 pellet_separation_angle = 5.0
 pellet_speed = 600.0
+bullet_type = 3
 time_before_visible = 0.05
 time_between_shots = 0.5
 shot_burst_amount = 2
@@ -140,6 +142,5 @@ face_hero = true
 
 [node name="PlacePropWhenDead" parent="." node_paths=PackedStringArray("color_pair_source") instance=ExtResource("10_galw1")]
 prop_to_place = &"puff"
-amount = 2
-random_radius = 80.0
+random_radius = 40.0
 color_pair_source = NodePath("../GfxController/BwShaderSetter")
