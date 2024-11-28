@@ -1,0 +1,48 @@
+[gd_resource type="Resource" script_class="AudioBank" load_steps=21 format=3 uid="uid://bv5cd44g6qoku"]
+
+[ext_resource type="Script" uid="uid://dguxp5teonsit" path="res://AudioManager/sfx_data.gd" id="1_bsy3s"]
+[ext_resource type="Script" uid="uid://bspi6arxg5tdy" path="res://AudioManager/AudioBanks/audio_bank.gd" id="1_gie4n"]
+[ext_resource type="AudioStream" uid="uid://dtx00uvtg036k" path="res://AudioManager/Music/test1.mp3" id="2_xeu7h"]
+[ext_resource type="AudioStream" uid="uid://7mv3mekm20eq" path="res://AudioManager/Music/test2.mp3" id="3_fh14d"]
+[ext_resource type="Resource" uid="uid://310xvfiweer0" path="res://AudioManager/Sounds/shot.tres" id="3_wokt5"]
+[ext_resource type="Resource" uid="uid://c8nkmcw03ouec" path="res://AudioManager/Sounds/dash1.tres" id="4_0me4g"]
+[ext_resource type="Resource" uid="uid://dmjs7gpm3k33g" path="res://AudioManager/Sounds/Environment/alert1.tres" id="5_64vsv"]
+[ext_resource type="Resource" uid="uid://dsxh555oopmi4" path="res://AudioManager/Sounds/Environment/weird1.tres" id="6_05p53"]
+[ext_resource type="Resource" uid="uid://drycl216qlbbk" path="res://AudioManager/Sounds/Environment/big_fan.tres" id="7_tuejf"]
+[ext_resource type="Resource" uid="uid://wwa118wosji1" path="res://AudioManager/Sounds/impact1.tres" id="8_moatu"]
+[ext_resource type="Resource" uid="uid://ct1bs55ppafmd" path="res://AudioManager/Sounds/jump.tres" id="9_fgr03"]
+[ext_resource type="Resource" uid="uid://dpqnlirmc7jou" path="res://AudioManager/Sounds/death.tres" id="10_oximb"]
+[ext_resource type="Resource" uid="uid://cqmrooank3vvn" path="res://AudioManager/Sounds/respawn.tres" id="11_8tbm3"]
+[ext_resource type="Resource" uid="uid://dp4u12dfmn1bu" path="res://AudioManager/Sounds/Enemy/spitter_shot.tres" id="12_85vpm"]
+[ext_resource type="Resource" uid="uid://b17etmidr055s" path="res://AudioManager/Sounds/Enemy/orbo_hit.tres" id="13_3kll0"]
+[ext_resource type="Resource" uid="uid://r7orin4x7b3b" path="res://AudioManager/Sounds/Footsteps/footsteps.tres" id="14_1ti8r"]
+[ext_resource type="Resource" uid="uid://of8md1t1cee4" path="res://AudioManager/Sounds/land.tres" id="15_xeu7h"]
+[ext_resource type="Resource" uid="uid://qmw1rqs2ceaq" path="res://AudioManager/Sounds/Environment/deep_hum1.tres" id="16_fh14d"]
+[ext_resource type="Resource" uid="uid://b55uxdsgsnbjx" path="res://AudioManager/Sounds/Enemy/orbo_idle.tres" id="17_85vpm"]
+[ext_resource type="Resource" uid="uid://d30fdspmr5ykt" path="res://AudioManager/Sounds/Environment/computery_speech1.tres" id="18_3kll0"]
+
+[resource]
+script = ExtResource("1_gie4n")
+sfx_dictionary = Dictionary[String, ExtResource("1_bsy3s")]({
+"alert1": ExtResource("5_64vsv"),
+"big_fan": ExtResource("7_tuejf"),
+"computery_speech1": ExtResource("18_3kll0"),
+"dash1": ExtResource("4_0me4g"),
+"death": ExtResource("10_oximb"),
+"deep_hum1": ExtResource("16_fh14d"),
+"footstep": ExtResource("14_1ti8r"),
+"impact1": ExtResource("8_moatu"),
+"jump": ExtResource("9_fgr03"),
+"land": ExtResource("15_xeu7h"),
+"orbo_hit": ExtResource("13_3kll0"),
+"orbo_idle": ExtResource("17_85vpm"),
+"respawn": ExtResource("11_8tbm3"),
+"shot": ExtResource("3_wokt5"),
+"spitter_shot": ExtResource("12_85vpm"),
+"weird1": ExtResource("6_05p53")
+})
+music_dictionary = Dictionary[String, AudioStream]({
+"test1": ExtResource("2_xeu7h"),
+"test2": ExtResource("3_fh14d")
+})
+metadata/_custom_type_script = ExtResource("1_gie4n")
