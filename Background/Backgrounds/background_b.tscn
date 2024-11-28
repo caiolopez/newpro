@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://drj0oeyl2uqfh" path="res://Background/Backgrounds/background_b.gd" id="1_knjxx"]
 [ext_resource type="Script" uid="uid://ds4mh6wwrpwn4" path="res://Background/background_camera.gd" id="2_dvl52"]
 [ext_resource type="Shader" uid="uid://drai65ddx1sgn" path="res://CaioShaders/pixelate_w_gaps.gdshader" id="3_vkkds"]
-[ext_resource type="Script" uid="uid://bhg6or7ea4i0d" path="res://Background/Backgrounds/background_cube.gd" id="4_a1xs1"]
+[ext_resource type="Script" path="res://Background/Backgrounds/background_cube.gd" id="4_a1xs1"]
 [ext_resource type="Shader" uid="uid://05qxh5f086p0" path="res://Shaders/ocean.gdshader" id="4_knjxx"]
 
 [sub_resource type="Environment" id="Environment_13nke"]
