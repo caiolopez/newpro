@@ -1,49 +1,49 @@
 extends Node
 
 func hero_shoot_sfx():
-	pass
+	AudioManager.play_sfx(&"shot", -8.0)
 
 func hero_blunder_shoot_sfx(): # shoots a shotgun-like spread
-	pass
+	AudioManager.play_sfx(&"dash1", -6.0)
 
 func hero_jump_sfx():
-	pass
+	AudioManager.play_sfx(&"jump", -24.0)
 
 func hero_fall_sfx():
-	pass
+	AudioManager.play_sfx(&"land", -24.0)
 
 func hero_step_sfx():
-	pass
+	AudioManager.play_sfx(&"footstep", -30.0)
 
 func hero_blunder_jump_sfx():
-	pass
+	AudioManager.play_sfx(&"dash1", -12.0) # placeholder
 
 func hero_recoil_sfx():
 	pass
 
 func hero_wall_jump_sfx():
-	pass
+	AudioManager.play_sfx(&"jump", -24.0) # placeholder
 
 func hero_wall_climb_sfx():
-	pass
+	AudioManager.play_sfx(&"jump", -24.0) # placeholder
 
 func hero_glide_start_sfx():
-	pass
+	AudioManager.play_sfx(&"jump", -24.0) # placeholder
 
 func hero_wall_grab_sfx():
-	pass
+	AudioManager.play_sfx(&"footstep", -30.0)
 
 func hero_die_sfx():
-	pass
+	AudioManager.play_sfx(&"death", -18.0)
 
 func hero_tweening_to_respawn_sfx():
 	pass
 
 func hero_respawn_sfx():
-	pass
+	AudioManager.play_sfx(&"respawn", -24.0)
 
 func bullet_die_sfx():
-	pass
+	AudioManager.play_sfx(&"impact1", -18.0)
 
 func door_open_sfx():
 	pass
