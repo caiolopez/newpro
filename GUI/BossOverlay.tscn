@@ -37,3 +37,18 @@ texture_under = ExtResource("2_ahil6")
 texture_progress = ExtResource("2_7ylhw")
 
 [node name="BwShaderSetter" parent="." instance=ExtResource("4_t7oo8")]
+
+[node name="NameLabel" type="RichTextLabel" parent="."]
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -432.0
+offset_top = 48.0
+offset_right = 432.0
+offset_bottom = 112.0
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 42
+text = "BOSS NAME"
+horizontal_alignment = 1

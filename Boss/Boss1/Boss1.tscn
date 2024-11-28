@@ -454,6 +454,7 @@ size = Vector2(80, 80)
 
 [node name="Boss1" type="Node2D" groups=["foes"]]
 script = ExtResource("1_u6ci4")
+metadata/name = &"CACODEMON"
 
 [node name="GfxController" parent="." instance=ExtResource("2_3hehl")]
 hide_when_dead = false

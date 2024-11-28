@@ -8,12 +8,14 @@ var dt: DmgTaker:
 		else:
 			return null
 var _hp_bar_tween: Tween
+var original_material: Material = null
 
 func _ready():
+	original_material = material
 	hide()
-	Events.boss_trigger_entered.connect(_setup_bar)
 	Events.boss_trigger_entered.connect(func(boss):
 		_grab_boss_color(boss)
+		_setup_bar(boss)
 		_show_hp_bar()
 		)
 	Events.hero_died.connect(hide_hp_bar_instantly)
@@ -26,6 +28,9 @@ func _setup_bar(boss):
 	dt.died.connect(_hide_hp_bar)
 	dt.suffered.connect(_update_bar_animated)
 	dt.resurrected.connect(_update_bar)
+	$NameLabel.scale.y = 0
+	if boss.has_meta("name"):
+		$NameLabel.text = boss.get_meta("name")
 
 func _show_hp_bar():
 	_update_bar()
@@ -39,17 +44,26 @@ func _show_hp_bar():
 		$HpBar,
 		"position",
 		Vector2($HpBar.position.x, 100),
-		2)\
-		.set_trans(Tween.TransitionType.TRANS_BACK)\
+		1)\
+		.set_trans(Tween.TransitionType.TRANS_QUAD)\
 		.set_ease(Tween.EaseType.EASE_OUT)\
-		.set_delay(2)
+		.set_delay(1)
+	
+	_hp_bar_tween.parallel().tween_property(
+		$NameLabel,
+		"scale:y",
+		1.0,
+		0.1)\
+		.set_trans(Tween.TransitionType.TRANS_QUAD)\
+		.set_ease(Tween.EaseType.EASE_OUT)\
+		.set_delay(1)
 
 func hide_hp_bar_instantly():
 		_hide_hp_bar(true)
 
 func _hide_hp_bar(instant: bool = false):
 	if not visible: return
-
+	$NameLabel.scale.y = 0
 	if _hp_bar_tween and _hp_bar_tween.is_valid():
 		_hp_bar_tween.kill()
 
@@ -79,7 +93,7 @@ func _update_bar():
 
 func _update_bar_animated(_hp):
 	_update_bar()
-	Utils.colorize_silhouette(true, $HpBar, 0.1)
+	Utils.colorize_silhouette(true, self, 0.1)
 
 	if _hp_bar_tween and _hp_bar_tween.is_valid():
 		_hp_bar_tween.kill()
