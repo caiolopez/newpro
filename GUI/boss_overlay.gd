@@ -12,8 +12,12 @@ var _hp_bar_tween: Tween
 func _ready():
 	hide()
 	Events.boss_trigger_entered.connect(_setup_bar)
-	Events.boss_trigger_entered.connect(func(_boss): _show_hp_bar())
+	Events.boss_trigger_entered.connect(func(boss):
+		_grab_boss_color(boss)
+		_show_hp_bar()
+		)
 	Events.hero_died.connect(hide_hp_bar_instantly)
+	Events.boss_changed_stage.connect(_grab_boss_color, CONNECT_DEFERRED)
 
 func _setup_bar(boss):
 	current_boss = boss
@@ -86,3 +90,8 @@ func _update_bar_animated(_hp):
 		"position",
 		Vector2($HpBar.position.x, 100),
 		0.2).from(Vector2($HpBar.position.x, 90)).set_trans(Tween.TransitionType.TRANS_BACK)
+
+func _grab_boss_color(boss: Node):
+	if boss.has_node("GfxController/BwShaderSetter"):
+		var boss_current_color = boss.get_node("GfxController/BwShaderSetter").get_color()
+		$BwShaderSetter.set_color_pair(boss_current_color)

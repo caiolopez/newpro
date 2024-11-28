@@ -5,7 +5,7 @@ class_name BwShaderSetter extends Node
 @export var light_color: Color = Color.WHITE ## The color that will replace the white pixels. Note: Is overwritten by "Light Color Name".
 @export var light_color_name: StringName ## The name of the constant bearing the desired color value, as implemented in the Constants file. This has priority over the color picker value.
 @export var transparency: float = 0.0
-@onready var parent: Node2D = get_parent()
+@onready var parent: Node = get_parent()
 var mat: ShaderMaterial
 
 func _ready() -> void:
