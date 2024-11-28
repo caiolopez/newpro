@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://box2ff3vwcc7w"]
 
-[ext_resource type="Script" path="res://EntityComponents/dmg_taker.gd" id="1_ynf2i"]
+[ext_resource type="Script" uid="uid://75q6db3njxmg" path="res://EntityComponents/dmg_taker.gd" id="1_ynf2i"]
 
 [node name="DmgTaker" type="Area2D"]
 collision_layer = 0
