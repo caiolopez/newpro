@@ -2,11 +2,10 @@ extends Node
 
 var music_player: AudioStreamPlayer
 var sfx_players: Array[AudioStreamPlayer] = []
-var positional_sfx_players: Array[AudioStreamPlayer2D] = []
-var active_positional_sfx: Dictionary = {}
+var positional_sfx_players: Dictionary = {}
 var intended_track_name: StringName = ""
 var current_track_name: StringName = ""
-const POOL_SIZE: int = 1000
+const POOL_SIZE: int = 100
 const SFX_COOLDOWN: float = 0.05
 const FADE_DURATION: float = 5.0
 var sfx_cooldowns: Dictionary = {}
@@ -39,6 +38,10 @@ const SFX = {
 		"pausable": false
 		},
 	"white_noise_loop": {
+		"resource": preload("res://AudioEmiter/white_noise.ogg"),
+		"pausable": true
+		},
+	"white_noise_floop": {
 		"resource": preload("res://AudioEmiter/white_noise.ogg"),
 		"pausable": true
 		},
@@ -76,13 +79,6 @@ func _ready():
 		sfx_player.bus = "SFX"
 		sfx_players.append(sfx_player)
 
-	for i in POOL_SIZE:
-		var positional_sfx_player = AudioStreamPlayer2D.new()
-		add_child(positional_sfx_player)
-		positional_sfx_player.bus = "SFX"
-		positional_sfx_player.process_mode = Node.PROCESS_MODE_PAUSABLE
-		positional_sfx_players.append(positional_sfx_player)
-
 	music_player.finished.connect(func():
 		if current_track_name:
 			music_player.stream = load(MUSIC_TRACKS[current_track_name]["loop"])
@@ -95,8 +91,8 @@ func _process(_delta):
 func _process_audio_distances():
 	if AppManager.camera:
 		var camera_pos = AppManager.camera.global_position
-		for source_object in active_positional_sfx.keys():
-			var player = active_positional_sfx[source_object]
+		for source_object in positional_sfx_players.keys():
+			var player = positional_sfx_players[source_object]
 			var distance = camera_pos.distance_to(player.global_position)
 
 			if player.playing:
@@ -116,7 +112,7 @@ func _on_game_paused():
 			for sfx_name in SFX:
 				if sfx_player.stream == SFX[sfx_name]["resource"] and SFX[sfx_name]["pausable"]:
 					sfx_player.set_stream_paused(true)
-	for player in active_positional_sfx.values():
+	for player in positional_sfx_players.values():
 		player.process_mode = Node.PROCESS_MODE_DISABLED
 
 func _on_game_unpaused():
@@ -127,7 +123,7 @@ func _on_game_unpaused():
 			for sfx_name in SFX:
 				if sfx_player.stream == SFX[sfx_name]["resource"] and SFX[sfx_name]["pausable"]:
 					sfx_player.set_stream_paused(false)
-	for player in active_positional_sfx.values():
+	for player in positional_sfx_players.values():
 		player.process_mode = Node.PROCESS_MODE_PAUSABLE
 
 func play_music(track_name: StringName, should_save: bool = true):
@@ -224,45 +220,53 @@ func _is_sfx_in_cooldown(sfx_name: StringName) -> bool:
 	return false
 
 func play_positional_sfx(sfx_name: StringName, position: Vector2, source_object: Node, max_distance: float = 10000.0, volume_adjustment: float = 0.0) -> AudioStreamPlayer2D:
-	if source_object in active_positional_sfx:
-		var player = active_positional_sfx[source_object]
-		player.stream = SFX[sfx_name]["resource"]
-		player.global_position = position
-		player.max_distance = max_distance
-		player.play()
-		return player
+	if source_object in positional_sfx_players:
+		var existing_player = positional_sfx_players[source_object]
+		existing_player.stream = SFX[sfx_name]["resource"]
+		existing_player.global_position = position
+		existing_player.max_distance = max_distance
+		existing_player.play()
+		return existing_player
 
-	for player in positional_sfx_players:
-		if not player.is_playing():
-			player.stream = SFX[sfx_name]["resource"]
-			player.volume_db = volume_adjustment
-			player.global_position = position
-			player.max_distance = max_distance
-			player.attenuation = 1.0
-			player.panning_strength = 1.0
-			player.play()
-			
-			active_positional_sfx[source_object] = player
-			player.finished.connect(func(): _on_positional_sfx_finished(source_object))
-			return player
-	return null
+	var new_player = AudioStreamPlayer2D.new()
+	add_child(new_player)
+	new_player.bus = "SFX"
+	new_player.process_mode = Node.PROCESS_MODE_PAUSABLE
+	new_player.stream = SFX[sfx_name]["resource"]
+	new_player.volume_db = volume_adjustment
+	new_player.global_position = position
+	new_player.max_distance = max_distance
+	new_player.attenuation = 1.0
+	new_player.panning_strength = 1.0
+	new_player.play()
+	
+	positional_sfx_players[source_object] = new_player
+	new_player.finished.connect(func(): _on_positional_sfx_finished(source_object))
+	return new_player
 
 func _on_positional_sfx_finished(source_object: Node):
-	if source_object in active_positional_sfx:
-		active_positional_sfx.erase(source_object)
+	if source_object in positional_sfx_players:
+		var player = positional_sfx_players[source_object]
+		player.queue_free()
+		positional_sfx_players.erase(source_object)
 
 func update_positional_sfx_position(source_object: Node, position: Vector2):
-	if source_object in active_positional_sfx:
-		active_positional_sfx[source_object].global_position = position
+	if source_object in positional_sfx_players:
+		positional_sfx_players[source_object].global_position = position
+
+func update_positional_sfx_pitch(source_object: Node, pitch: float):
+	if source_object in positional_sfx_players:
+		positional_sfx_players[source_object].pitch_scale = pitch
 
 func stop_specific_positional_sfx(source_object: Node):
-	if source_object in active_positional_sfx:
-		active_positional_sfx[source_object].stop()
-		active_positional_sfx[source_object].stream = null
-		active_positional_sfx.erase(source_object)
+	if source_object in positional_sfx_players:
+		var player = positional_sfx_players[source_object]
+		player.stop()
+		player.queue_free()
+		positional_sfx_players.erase(source_object)
 
 func stop_all_positional_sfx():
-	for player in active_positional_sfx.values():
+	for player in positional_sfx_players.values():
 		player.stop()
-		player.stream = null
-	active_positional_sfx.clear()
+		player.queue_free()
+	positional_sfx_players.clear()
