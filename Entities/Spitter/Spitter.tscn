@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://b72dw5w58sesm"]
+[gd_scene load_steps=22 format=3 uid="uid://b72dw5w58sesm"]
 
 [ext_resource type="PackedScene" uid="uid://upm0adhb85ik" path="res://EntityComponents/DmgDealer.tscn" id="1_ivjkf"]
 [ext_resource type="PackedScene" uid="uid://box2ff3vwcc7w" path="res://EntityComponents/DmgTaker.tscn" id="2_ra6d2"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cupxj14lcnr75" path="res://EntityComponents/Shooter.tscn" id="6_xwwbl"]
 [ext_resource type="PackedScene" uid="uid://dqho171mcdsmr" path="res://EntityComponents/FaceHero.tscn" id="7_vqtqv"]
 [ext_resource type="PackedScene" uid="uid://4s6dlxxxx05e" path="res://EntityComponents/PlacePropWhenDead.tscn" id="10_galw1"]
+[ext_resource type="Script" uid="uid://dij16f1j6bf1s" path="res://AudioEmiter/audio_emiter.gd" id="11_43kix"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v2koo"]
 size = Vector2(80, 80)
@@ -95,12 +96,25 @@ scale = Vector2(6.36, 6.4)
 collision_layer = 4
 collision_mask = 16
 HP_AMOUNT = 3
+death_sfx = &"orbo_hit"
+death_sfx_volume_adjustment = -6.0
+suffer_sfx = &"orbo_hit"
+suffer_sfx_volume_adjustment = -12.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DmgTaker"]
 position = Vector2(2.0303e-06, 4.68749)
 scale = Vector2(0.999999, 0.999999)
 shape = SubResource("RectangleShape2D_pauev")
 debug_color = Color(0.684632, 0.499866, 0.0905798, 0.42)
+
+[node name="AudioEmiter" type="Node2D" parent="DmgTaker"]
+scale = Vector2(0.157233, 0.15625)
+script = ExtResource("11_43kix")
+sfx_name = &"orbo_idle"
+max_distance = 800.0
+fixed_position = false
+volume_db = -24.0
+metadata/_custom_type_script = ExtResource("11_43kix")
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
 position = Vector2(-3.8147e-06, -3.8147e-06)
@@ -134,6 +148,8 @@ pellet_separation_angle = 5.0
 pellet_speed = 600.0
 bullet_type = 3
 time_before_visible = 0.05
+sound_fx = &"spitter_shot"
+sound_fx_volume_adjustment = -18.0
 time_between_shots = 0.5
 shot_burst_amount = 2
 
