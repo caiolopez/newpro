@@ -25,8 +25,9 @@ var current_lerp_speed: Vector2
 var current_lookahead: Vector2
 var target: Vector2
 var hero_last_velocity: Vector2
-var shake_amount: float = 0
-var shake_duration: float = 0
+var _shake_amount: float = 0
+var _shake_duration: float = 0
+var _current_shake_duration: float
 var hero_real_vel: Vector2
 var hero_vel: Vector2
 var hero_dir: int
@@ -80,25 +81,32 @@ func is_hero_just_reduced_velocity(threshold, axes: Constants.Axes) -> bool:
 	hero_last_velocity = Vector2(hero.velocity.x, hero.velocity.y)
 	return is_breaking
 
-func step_shake(delta: float, current_pos: Vector2):
-	if shake_duration > 0:
-		shake_duration -= delta
-		position = current_pos + Vector2(randf_range(-shake_amount, shake_amount), randf_range(-shake_amount, shake_amount))
-		if shake_duration <= 0:
-			shake_duration = 0
-			position = current_pos
+func step_shake(delta: float, reducing_magnitude: bool = true):
+	if _current_shake_duration > 0:
+		_current_shake_duration -= delta
+
+		var current_amount = _shake_amount
+		if reducing_magnitude:
+			var magnitude_multiplier = _current_shake_duration / _shake_duration
+			current_amount *= magnitude_multiplier
+
+		position = position + Vector2(
+			randf_range(-current_amount, current_amount), 
+			randf_range(-current_amount, current_amount)
+		)
 
 func step_lookahead_y(delta: float):
 	if hero_vel.y > 0:
 		current_lookahead.y = lerp(0.0, lookahead_amount.y, minf(abs(hero_vel.y), lookahead_activation_vel.y) / lookahead_activation_vel.y)
 	else: current_lookahead.y = lerp(current_lookahead.y, 0.0, clampf(10 * delta, 0, 1))
 
-func shake(duration: float = 0.2, amount: float = 20):
-	shake_amount = amount
-	shake_duration = duration
+func shake(duration: float = 0.2, amount: float = 40):
+	_shake_amount = amount
+	_shake_duration = duration
+	_current_shake_duration = duration
 
 func stop_shake():
-	shake_duration = 0
+	_shake_duration = 0
 
 func step_catch_up(delta: float):
 	if abs(hero_real_vel.x) < lerp_speed.x\
