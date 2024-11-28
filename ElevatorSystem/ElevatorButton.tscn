@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://boug41cw8taxh"]
 
-[ext_resource type="Script" path="res://ElevatorSystem/elevator_button.gd" id="1_3igk5"]
+[ext_resource type="Script" uid="uid://cvl7g548p2oy8" path="res://ElevatorSystem/elevator_button.gd" id="1_3igk5"]
 [ext_resource type="Texture2D" uid="uid://b606rlw15rkvt" path="res://ElevatorSystem/Gfx/elevator_button_anim.png" id="2_mcxac"]
 [ext_resource type="PackedScene" uid="uid://1votnx34efdj" path="res://EntityComponents/BWShaderSetter.tscn" id="3_u2tm0"]
 

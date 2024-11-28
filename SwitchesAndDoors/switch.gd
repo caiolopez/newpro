@@ -3,9 +3,11 @@ class_name Switch extends Area2D
 enum SwitchState {ON, OFF, TEMP_ON}
 @export var toggle: bool = false ## Default switches (toggle == false) can only be turned on. Set this to true if this switch can be turned off as well.
 var controller: SwitchGroupController
+var original_material: Material = null
 var current_state: SwitchState
 
 func _ready():
+	original_material = material
 	controller = get_parent()
 	$TimerSimultWindow.set_wait_time(controller.simult_window_duration)
 	$TimerSimultWindow.timeout.connect(switch_off)
@@ -37,6 +39,7 @@ func _temporarily_switch_on():
 func _on_area_entered(area):
 	if not area is Bullet: return
 	if not $TimerCooldown.is_stopped():
+		Utils.colorize_silhouette(true, self, 0.1)
 		area.kill_bullet()
 		return
 
