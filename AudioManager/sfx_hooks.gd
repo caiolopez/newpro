@@ -48,24 +48,22 @@ func bullet_die_sfx():
 	AudioManager.play_sfx(&"impact1", -18.0)
 
 func door_open_sfx():
-	pass
+	AudioManager.play_sfx(&"door1_open", -8.0)
 
 func door_close_sfx():
-	pass
-
-# Elevator sounds and loops ar dealt directly in ElevatorSystem node.
+	AudioManager.play_sfx(&"door1_close", -12.0)
 
 func switch_on_sfx():
-	pass
+	AudioManager.play_sfx(&"switch1_on", -12.0)
 
 func switch_off_sfx():
-	pass
+	AudioManager.play_sfx(&"switch1_off", -12.0)
 
 func timed_door_beep_sfx(): # An intermitent beep signaling that this switch will close itself eventually.
-	pass
+	AudioManager.play_sfx(&"switch_beep", -3.0)
 
 func boss1_wakes_sfx():
-	pass
+	AudioManager.play_sfx(&"boss1_awakes", -12.0)
 
 func boss1_fight_start_sfx():
 	pass
