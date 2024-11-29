@@ -16,7 +16,7 @@ var is_moving: bool = true
 func _ready():
 	if dmg_taker != null:
 		dmg_taker.died.connect(_on_died)
-		dmg_taker.resurrected.connect(_on_resurrected)
+		dmg_taker.restored.connect(_on_restored)
 	Events.hero_respawned_at_checkpoint.connect(_reset_behavior)
 
 	original_position = get_parent().position
@@ -48,7 +48,7 @@ func _reset_behavior():
 func _on_died():
 	_stop_movement()
 
-func _on_resurrected():
+func _on_restored():
 	_reset_behavior()
 
 func _randomize_time():

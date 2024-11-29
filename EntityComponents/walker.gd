@@ -66,7 +66,7 @@ func _ready():
 	if dmg_taker != null:
 		dmg_taker.died.connect(on_died)
 		dmg_taker.suffered.connect(on_suffered)
-		dmg_taker.resurrected.connect(on_resurrected)
+		dmg_taker.restored.connect(on_restored)
 
 	area_entered.connect(on_area_entered)
 	$TimerStun.timeout.connect(func(): is_stunned = false)
@@ -83,7 +83,7 @@ func on_suffered(_hp):
 		is_stunned = true
 		$TimerStun.start()
 
-func on_resurrected():
+func on_restored():
 	reset_behavior()
 
 func step_grav(delta, downward_accel: float = GRAVITY):

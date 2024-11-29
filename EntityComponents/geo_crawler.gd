@@ -20,7 +20,7 @@ func _ready():
 	if dmg_taker != null:
 		dmg_taker.died.connect(on_died)
 		dmg_taker.suffered.connect(on_suffered)
-		dmg_taker.resurrected.connect(on_resurrected)
+		dmg_taker.restored.connect(on_restored)
 	
 	
 	if get_parent().has_node("FaceHero"):
@@ -85,7 +85,7 @@ func on_suffered(_hp):
 		$TimerStun.start()
 
 
-func on_resurrected():
+func on_restored():
 	reset_behavior()
 
 

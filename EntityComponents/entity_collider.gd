@@ -5,12 +5,12 @@ class_name EntityCollider extends CollisionShape2D
 func _ready():
 	if dmg_taker != null:
 		dmg_taker.died.connect(on_died)
-		dmg_taker.resurrected.connect(on_resurrected)
+		dmg_taker.restored.connect(on_restored)
 
 
 func on_died():
 	self.set_deferred("disabled", true)
 
 
-func on_resurrected():
+func on_restored():
 	self.set_deferred("disabled", false)

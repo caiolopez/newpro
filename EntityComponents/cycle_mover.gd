@@ -18,7 +18,7 @@ var pos_tween: Tween
 func _ready():
 	if dmg_taker != null:
 		dmg_taker.died.connect(on_died)
-		dmg_taker.resurrected.connect(on_resurrected)
+		dmg_taker.restored.connect(on_restored)
 	Events.hero_respawned_at_checkpoint.connect(reset_behavior)
 
 	original_angle = get_parent().rotation_degrees
@@ -71,5 +71,5 @@ func on_died():
 	stop_movement()
 
 
-func on_resurrected():
+func on_restored():
 	reset_behavior()

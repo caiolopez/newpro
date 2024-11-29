@@ -16,9 +16,10 @@ var currently_immune: bool = false
 var regen_timer: Timer = null
 
 signal died
-signal resurrected
-signal suffered(hp: int)
-signal regenerated
+signal restored ## When the entity is reset
+signal resurrected ## When the entity restored was previously dead
+signal regenerated ## When the entity is added one hp, automatically
+signal suffered(hp: int) ## When the entity takes any damage, except for the last
 
 func _ready():
 	Events.hero_reached_checkpoint.connect(commit_status)
@@ -39,7 +40,7 @@ func regen_dmg():
 		current_hp = mini(current_hp + 1, HP_AMOUNT)
 		regenerated.emit()
 		Events.entity_regenerated.emit(self)
-		if DebugTools.print_stuff: print(get_parent().name, ": HP restored: 1. Current HP: ", current_hp)
+		if DebugTools.print_stuff: print(get_parent().name, ": HP regained: 1. Current HP: ", current_hp)
 
 func take_dmg(amount: int):
 	if currently_immune\
@@ -83,8 +84,10 @@ func commit_status():
 
 func reset_status():
 	if not RESET_UPON_RESPAWN: return
+	if current_hp == 0:
+		resurrected.emit()
 	current_hp = HP_AMOUNT
 	if regen_timer:
 		regen_timer.start()
-	resurrected.emit()
-	Events.entity_resurrected.emit(self)
+	restored.emit()
+	Events.entity_restored.emit(self)

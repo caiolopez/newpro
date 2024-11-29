@@ -8,7 +8,7 @@ class_name DmgDealer extends Area2D
 func _ready():
 	if dmg_taker != null:
 		dmg_taker.died.connect(on_died)
-		dmg_taker.resurrected.connect(on_resurrected)
+		dmg_taker.restored.connect(on_restored)
 
 
 func on_died():
@@ -17,7 +17,7 @@ func on_died():
 			child.set_deferred("disabled", true)
 
 
-func on_resurrected():
+func on_restored():
 	for child in get_children():
 		if child is CollisionShape2D:
 			child.set_deferred("disabled", false)

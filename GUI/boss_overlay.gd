@@ -27,7 +27,7 @@ func _setup_bar(boss):
 	_update_bar()
 	dt.died.connect(_hide_hp_bar)
 	dt.suffered.connect(_update_bar_animated)
-	dt.resurrected.connect(_update_bar)
+	dt.restored.connect(_update_bar)
 	$NameLabel.scale.y = 0
 	if boss.has_meta("name"):
 		$NameLabel.text = boss.get_meta("name")
@@ -85,8 +85,8 @@ func _hide_hp_bar(instant: bool = false):
 		dt.died.disconnect(_hide_hp_bar)
 	if dt.suffered.is_connected(_update_bar_animated):
 		dt.suffered.disconnect(_update_bar_animated)
-	if dt.resurrected.is_connected(_update_bar):
-		dt.resurrected.disconnect(_update_bar)
+	if dt.restored.is_connected(_update_bar):
+		dt.restored.disconnect(_update_bar)
 
 func _update_bar():
 	$HpBar.value = dt.current_hp

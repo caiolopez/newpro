@@ -13,7 +13,7 @@ func _ready():
 			if switch_group_to_open:
 				switch_group_to_open.open_whole_group()
 			)
-		dmg_taker.resurrected.connect(func():
+		dmg_taker.restored.connect(func():
 			for d in doors_to_open:
 				if d: d.insta_close()
 			if switch_group_to_open:
