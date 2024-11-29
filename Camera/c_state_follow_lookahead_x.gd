@@ -16,8 +16,8 @@ func on_process(delta: float):
 		c.step_camera_position(delta)
 		return
 	
+	c.step_shake(delta)
 	c.step_catch_up(delta)
 	c.step_lookahead_y(delta)
 	c.current_lookahead.x = lerp(c.lookahead_amount.x * c.hero_dir, 0.0, la_timer.time_left)
 	c.step_camera_position(delta)
-	c.step_shake(delta)

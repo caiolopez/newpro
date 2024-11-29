@@ -24,22 +24,26 @@ var lockers: Array[Locker] = []
 var current_lerp_speed: Vector2
 var current_lookahead: Vector2
 var target: Vector2
-var hero_last_velocity: Vector2
 var _shake_amount: float = 0
 var _shake_duration: float = 0
+var _shake_reducing_magnitude: bool = true
 var _current_shake_duration: float
+var hero_last_velocity: Vector2
 var hero_real_vel: Vector2
 var hero_vel: Vector2
 var hero_dir: int
 var la_timer: Timer
 var last_hero_dir: int
+var _meta_position: Vector2
 
 func _ready():
 	state_machine.start()
 	Events.hero_entered_camera_locker.connect(lock_camera)
 	Events.hero_exited_camera_locker.connect(unlock_camera)
 	Events.hero_first_spawned.connect(func():
-		self.global_position = AppManager.hero.global_position)
+		self.global_position = AppManager.hero.global_position
+		_meta_position = self.global_position
+		)
 
 	target_marker.visible = show_gizmo
 	camera_marker.visible = show_gizmo
@@ -81,12 +85,12 @@ func is_hero_just_reduced_velocity(threshold, axes: Constants.Axes) -> bool:
 	hero_last_velocity = Vector2(hero.velocity.x, hero.velocity.y)
 	return is_breaking
 
-func step_shake(delta: float, reducing_magnitude: bool = true):
+func step_shake(delta: float):	
 	if _current_shake_duration > 0:
 		_current_shake_duration -= delta
 
 		var current_amount = _shake_amount
-		if reducing_magnitude:
+		if _shake_reducing_magnitude:
 			var magnitude_multiplier = _current_shake_duration / _shake_duration
 			current_amount *= magnitude_multiplier
 
@@ -100,11 +104,12 @@ func step_lookahead_y(delta: float):
 		current_lookahead.y = lerp(0.0, lookahead_amount.y, minf(abs(hero_vel.y), lookahead_activation_vel.y) / lookahead_activation_vel.y)
 	else: current_lookahead.y = lerp(current_lookahead.y, 0.0, clampf(10 * delta, 0, 1))
 
-func shake(duration: float = 0.2, amount: float = 40):
+func shake(duration: float = 0.2, amount: float = 60, reducing_magnitude: bool = true):
 	if AppManager.is_accessibility_mode: return
 	_shake_amount = amount
 	_shake_duration = duration
 	_current_shake_duration = duration
+	_shake_reducing_magnitude = reducing_magnitude
 
 func stop_shake():
 	_shake_duration = 0
@@ -136,7 +141,9 @@ func step_camera_position(delta: float):
 	if hero:
 		target = hero.global_position + current_lookahead
 	step_camera_lockers()
-	position = lerp_vector2(position, target, current_lerp_speed, delta)
+	_meta_position = lerp_vector2(_meta_position, target, current_lerp_speed, delta)
+	position = _meta_position
+	step_shake(delta)
 
 func debug_gizmos():
 	target_marker.global_position = target
