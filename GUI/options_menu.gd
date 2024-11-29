@@ -92,18 +92,19 @@ func _grant_all_powerups():
 	hero.handle_powerups("TELEPORTER")
 
 func save_options():
-	var file = FileAccess.open("user://options.save", FileAccess.WRITE)
-	file.store_var(options_data)
-	file.close()
+	var config = ConfigFile.new()
+	for key in options_data:
+		config.set_value("Settings", key, options_data[key])
+	config.save("user://options.cfg")
 
 func load_options():
-	if FileAccess.file_exists("user://options.save"):
-		var file = FileAccess.open("user://options.save", FileAccess.READ)
-		var loaded_data = file.get_var()
-		file.close()
-		for key in loaded_data:
-			if key in options_data:
-				options_data[key] = loaded_data[key]
+	var config = ConfigFile.new()
+	var err = config.load("user://options.cfg")
+	if err == OK:
+		for key in options_data:
+			if config.has_section_key("Settings", key):
+				options_data[key] = config.get_value("Settings", key)
+
 	apply_loaded_options()
 
 func apply_loaded_options():
