@@ -20,6 +20,7 @@ var elevator_button_list: Array[ElevatorButton] = []
 var current_state: State = State.ORIGIN
 var current_velocity: float = 0.0
 var target_position: Vector2
+var is_moving: bool = false
 var _is_saved: bool = false
 
 func _ready():
@@ -89,17 +90,19 @@ func move_to_end():
 func _set_to_end():
 	elevator_node.position = starting_position + end_position
 	current_state = State.DESTINATION
-	current_velocity = 0
 
 func _set_to_start():
 	elevator_node.position = starting_position
 	current_state = State.ORIGIN
-	current_velocity = 0
 
 func _reset_status() -> void:
 	if _is_saved: _set_to_end()
 	else: _set_to_start()
 	_set_all_buttons_to_inactive()
+	current_velocity = 0
+	is_moving = false
+	if audio_emiter:
+		audio_emiter.deactivate()
 
 func _commit_status() -> void:
 	if not savable: return
@@ -132,8 +135,6 @@ func _toggle_all_buttons_of_type(button_type: ElevatorButton.button_type, toggle
 func _set_all_buttons_to_inactive():
 	for button in elevator_button_list:
 		button.set_inactive()
-
-var is_moving: bool = false
 
 func _sfx_start():
 	if not is_moving:
