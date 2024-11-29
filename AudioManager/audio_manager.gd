@@ -2,11 +2,10 @@ extends Node
 
 var music_player: AudioStreamPlayer
 var sfx_players: Array[SFXPlayer] = []
-var positional_sfx_players: Array[SFXPlayer2D] = []
-var active_positional_sfx: Dictionary = {}
+var positional_sfx_players: Dictionary = {}
 var intended_track_name: StringName = ""
 var current_track_name: StringName = ""
-const POOL_SIZE: int = 1000
+const POOL_SIZE: int = 100
 const SFX_COOLDOWN: float = 0.05
 const FADE_DURATION: float = 2.0
 var sfx_cooldowns: Dictionary = {}
@@ -50,13 +49,6 @@ func _ready():
 		sfx_player.bus = "SFX"
 		sfx_players.append(sfx_player)
 
-	for i in POOL_SIZE:
-		var positional_sfx_player: SFXPlayer2D = SFXPlayer2D.new()
-		add_child(positional_sfx_player)
-		positional_sfx_player.bus = "SFX"
-		positional_sfx_player.process_mode = Node.PROCESS_MODE_PAUSABLE
-		positional_sfx_players.append(positional_sfx_player)
-
 	music_player.finished.connect(func():
 		if current_track_name:
 			music_player.stream = load(MUSIC_TRACKS[current_track_name]["loop"])
@@ -69,8 +61,8 @@ func _process(_delta):
 func _process_audio_distances():
 	if AppManager.camera:
 		var camera_pos = AppManager.camera.global_position
-		for source_object in active_positional_sfx.keys():
-			var player = active_positional_sfx[source_object]
+		for source_object in positional_sfx_players.keys():
+			var player = positional_sfx_players[source_object]
 			var distance = camera_pos.distance_to(player.global_position)
 
 			if player.playing:
@@ -89,7 +81,7 @@ func _on_game_paused():
 	for sfx_player in sfx_players:
 		if sfx_player.playing && sfx_player.pausable:
 			sfx_player.set_stream_paused(true)
-	for player in active_positional_sfx.values():
+	for player in positional_sfx_players.values():
 		player.process_mode = Node.PROCESS_MODE_DISABLED
 
 func _on_game_unpaused():
@@ -98,7 +90,7 @@ func _on_game_unpaused():
 	for sfx_player in sfx_players:
 		if sfx_player.stream && sfx_player.pausable:
 			sfx_player.set_stream_paused(false)
-	for player in active_positional_sfx.values():
+	for player in positional_sfx_players.values():
 		player.process_mode = Node.PROCESS_MODE_PAUSABLE
 
 func play_music(track_name: StringName, should_save: bool = true):
@@ -201,61 +193,61 @@ func _is_sfx_in_cooldown(sfx_name: StringName) -> bool:
 	return false
 
 func play_positional_sfx(sfx_name: StringName, position: Vector2, source_object: Node, max_distance: float = 10000.0, volume_adjustment: float = 0.0) -> AudioStreamPlayer2D:
-	if source_object in active_positional_sfx:
-		var player: SFXPlayer2D = active_positional_sfx[source_object]
-		var sfx_data: SFXData = audio_banks.get_sfx_data(sfx_name)
-		if !sfx_data:
-			return null
+	var sfx_data: SFXData = audio_banks.get_sfx_data(sfx_name)
 
-		player.sfx_name = sfx_name
-		player.pausable = sfx_data.pausable
-		player.stream = sfx_data.pick_sound()
-		player.pitch_scale = sfx_data.pick_pitch_scale()
-		player.global_position = position
-		player.max_distance = max_distance
-		player.play()
-		return player
+	if source_object in positional_sfx_players:
+		var existing_player: SFXPlayer2D = positional_sfx_players[source_object]
+		existing_player.sfx_name = sfx_name
+		existing_player.pausable = sfx_data.pausable
+		existing_player.stream = sfx_data.pick_sound()
+		existing_player.pitch_scale = sfx_data.pick_pitch_scale()
+		existing_player.global_position = position
+		existing_player.max_distance = max_distance
+		existing_player.play()
+		return existing_player
 
-	for player in positional_sfx_players:
-		if not player.is_playing():
-			var sfx_data: SFXData = audio_banks.get_sfx_data(sfx_name)
-			if !sfx_data:
-				return null
-
-			player.sfx_name = sfx_name
-			player.pausable = sfx_data.pausable
-			player.stream = sfx_data.pick_sound()
-			player.pitch_scale = sfx_data.pick_pitch_scale()
-			player.volume_db = volume_adjustment
-			player.global_position = position
-			player.max_distance = max_distance
-			player.attenuation = 1.0
-			player.panning_strength = 1.0
-			player.play()
-			
-			active_positional_sfx[source_object] = player
-			player.finished.connect(func(): _on_positional_sfx_finished(source_object))
-			return player
-	return null
+	var new_player = SFXPlayer2D.new()
+	add_child(new_player)
+	new_player.bus = "SFX"
+	new_player.process_mode = Node.PROCESS_MODE_PAUSABLE
+	new_player.sfx_name = sfx_name
+	new_player.pausable = sfx_data.pausable
+	new_player.stream = sfx_data.pick_sound()
+	new_player.pitch_scale = sfx_data.pick_pitch_scale()
+	new_player.volume_db = volume_adjustment
+	new_player.global_position = position
+	new_player.max_distance = max_distance
+	new_player.attenuation = 1.0
+	new_player.panning_strength = 1.0
+	new_player.play()
+	
+	positional_sfx_players[source_object] = new_player
+	new_player.finished.connect(func(): _on_positional_sfx_finished(source_object))
+	return new_player
 
 func _on_positional_sfx_finished(source_object: Node):
-	if source_object in active_positional_sfx:
-		active_positional_sfx.erase(source_object)
+	if source_object in positional_sfx_players:
+		var player = positional_sfx_players[source_object]
+		player.queue_free()
+		positional_sfx_players.erase(source_object)
 
 func update_positional_sfx_position(source_object: Node, position: Vector2):
-	if source_object in active_positional_sfx:
-		active_positional_sfx[source_object].global_position = position
+	if source_object in positional_sfx_players:
+		positional_sfx_players[source_object].global_position = position
+
+func update_positional_sfx_pitch(source_object: Node, pitch: float):
+	if source_object in positional_sfx_players:
+		positional_sfx_players[source_object].pitch_scale = pitch
 
 func stop_specific_positional_sfx(source_object: Node):
-	if source_object in active_positional_sfx:
-		active_positional_sfx[source_object].stop()
-		active_positional_sfx[source_object].stream = null
-		active_positional_sfx.erase(source_object)
+	if source_object in positional_sfx_players:
+		var player = positional_sfx_players[source_object]
+		player.stop()
+		player.queue_free()
+		positional_sfx_players.erase(source_object)
 
 func stop_all_positional_sfx():
-	for player: SFXPlayer2D in active_positional_sfx.values():
+	for player: SFXPlayer2D in positional_sfx_players.values():
 		player.stop()
-		player.stream = null
-		player.sfx_name = ""
-		player.pausable = false
-	active_positional_sfx.clear()
+		player.queue_free()
+	positional_sfx_players.clear()

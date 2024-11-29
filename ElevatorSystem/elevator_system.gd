@@ -10,7 +10,12 @@ enum State {ORIGIN, DESTINATION, MOVING_TO_ORIGIN, MOVING_TO_DESTINATION}
 @export var acceleration: float = 50.0 ## Acceleration rate
 @export var deceleration: float = 100.0 ## Deceleration rate
 @export var savable: bool = false ## If true and reached end, will save its status upon checkpoint. Note: will not save state if hasn't gone all the way to end.
+@export_category("Audio")
+@export var start_sfx: StringName = &""
+@export var stop_sfx: StringName = &""
+@export var set_pitch_to_speed: bool = true ## Causes an optional AudioEmiter attached to Elevator Node to change its pitch with motion, simulating an engine sound.
 @onready var starting_position: Vector2 = elevator_node.position if elevator_node else Vector2.ZERO
+var audio_emiter: AudioEmiter = null
 var elevator_button_list: Array[ElevatorButton] = []
 var current_state: State = State.ORIGIN
 var current_velocity: float = 0.0
@@ -18,6 +23,12 @@ var target_position: Vector2
 var _is_saved: bool = false
 
 func _ready():
+	if elevator_node:
+		for child in elevator_node.get_children():
+			if child is AudioEmiter:
+				audio_emiter = child
+				break
+
 	Events.hero_reached_checkpoint.connect(_commit_status)
 	Events.hero_respawned_at_checkpoint.connect(_reset_status)
 
@@ -42,6 +53,7 @@ func _physics_process(delta):
 	var distance_to_target = elevator_node.position.distance_to(target_position)
 
 	if distance_to_target > 0.1:
+		_sfx_start()
 		if distance_to_target < current_velocity * current_velocity / (2 * deceleration):
 			current_velocity = max(current_velocity - deceleration * delta, 0)
 		else:
@@ -54,6 +66,8 @@ func _physics_process(delta):
 		elif current_state == State.MOVING_TO_DESTINATION:
 			current_state = State.MOVING_TO_DESTINATION
 	else:
+		if current_velocity > 0:
+			_sfx_stop()
 		elevator_node.position = target_position
 		current_velocity = 0
 		if current_state == State.MOVING_TO_ORIGIN:
@@ -61,6 +75,8 @@ func _physics_process(delta):
 		elif current_state == State.MOVING_TO_DESTINATION:
 			current_state = State.DESTINATION
 		_set_all_buttons_to_inactive()
+
+	_step_sfx_pitch()
 
 func move_to_start():
 	target_position = starting_position
@@ -116,3 +132,31 @@ func _toggle_all_buttons_of_type(button_type: ElevatorButton.button_type, toggle
 func _set_all_buttons_to_inactive():
 	for button in elevator_button_list:
 		button.set_inactive()
+
+var is_moving: bool = false
+
+func _sfx_start():
+	if not is_moving:
+		is_moving = true
+		if start_sfx: AudioManager.play_sfx(start_sfx)
+		if audio_emiter: audio_emiter.activate()
+
+func _sfx_stop():
+	if is_moving:
+		is_moving = false
+		if stop_sfx: AudioManager.play_sfx(stop_sfx)
+		if audio_emiter: audio_emiter.deactivate()
+
+func _step_sfx_pitch():
+	if set_pitch_to_speed\
+	and audio_emiter\
+	and audio_emiter.currently_active\
+	and current_state in [State.MOVING_TO_ORIGIN, State.MOVING_TO_DESTINATION]:
+		var normalized_pitch = lerp(0.15, 1.0, current_velocity / max_speed)
+		AudioManager.update_positional_sfx_pitch(audio_emiter, normalized_pitch)
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed:
+		if event.keycode == KEY_T:  # Will trigger when T is pressed
+			if audio_emiter:
+				audio_emiter.activate()
