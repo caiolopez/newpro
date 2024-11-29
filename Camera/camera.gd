@@ -24,24 +24,26 @@ var lockers: Array[Locker] = []
 var current_lerp_speed: Vector2
 var current_lookahead: Vector2
 var target: Vector2
-var hero_last_velocity: Vector2
 var _shake_amount: float = 0
 var _shake_duration: float = 0
 var _shake_reducing_magnitude: bool = true
 var _current_shake_duration: float
+var hero_last_velocity: Vector2
 var hero_real_vel: Vector2
 var hero_vel: Vector2
 var hero_dir: int
 var la_timer: Timer
 var last_hero_dir: int
-var meta_position: Vector2
+var _meta_position: Vector2
 
 func _ready():
 	state_machine.start()
 	Events.hero_entered_camera_locker.connect(lock_camera)
 	Events.hero_exited_camera_locker.connect(unlock_camera)
 	Events.hero_first_spawned.connect(func():
-		self.global_position = AppManager.hero.global_position)
+		self.global_position = AppManager.hero.global_position
+		_meta_position = self.global_position
+		)
 
 	target_marker.visible = show_gizmo
 	camera_marker.visible = show_gizmo
@@ -139,8 +141,8 @@ func step_camera_position(delta: float):
 	if hero:
 		target = hero.global_position + current_lookahead
 	step_camera_lockers()
-	meta_position = lerp_vector2(meta_position, target, current_lerp_speed, delta)
-	position = meta_position
+	_meta_position = lerp_vector2(_meta_position, target, current_lerp_speed, delta)
+	position = _meta_position
 	step_shake(delta)
 
 func debug_gizmos():
