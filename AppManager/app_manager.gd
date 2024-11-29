@@ -7,6 +7,7 @@ var hero: Hero = null
 var camera: Camera2D = null
 var minimap_node
 var is_speedrun_mode: bool = false
+var is_accessibility_mode: bool = false
 var dedicated_blunder_button: bool = true
 var game_time: float = 0.0
 var teleporters_are_active: bool = false
@@ -61,4 +62,5 @@ func instantiate_hero() -> void:
 	game_tree.add_child(hero_instance)
 	hero_instance.name = &"HeroInstance"
 	hero = hero_instance
+	hero.tint_as_accessibility()
 	call_deferred("emit_signal", "hero_ready")

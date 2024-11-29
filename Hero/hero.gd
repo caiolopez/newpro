@@ -351,3 +351,9 @@ func _on_bubble_touch(bubble: Bubble):
 	latest_bubble_velocity = -bubble.strength
 	state_machine.set_state("StateBubbleJumping")
 	bubble.burst()
+
+func tint_as_accessibility():
+	if AppManager.is_accessibility_mode:
+		$Gfx/BwShaderSetter.set_color_pair(Constants.HERO_ACCESSIBILITY_COLORS)
+	else:
+		$Gfx/BwShaderSetter.set_color_pair(Constants.HERO_COLORS)

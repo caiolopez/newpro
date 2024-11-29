@@ -7,6 +7,7 @@ signal options_closed
 @onready var physics_opt = $VBoxContainer/PhysicsInterpolationToggle
 @onready var speedrun_opt = $VBoxContainer/SpeedrunModeToggle
 @onready var background_opt = $VBoxContainer/RenderBackgroundToggle
+@onready var accessibility_opt = $VBoxContainer/AccessibilityToggle
 @onready var fullscreen_opt = $VBoxContainer/FullscreenToggle
 @onready var all_powerups_button = $VBoxContainer/AllPowerups
 @onready var back_button = $VBoxContainer/BackButton
@@ -18,6 +19,7 @@ var options_data = {
 	"physics_interpolation": false,
 	"speedrun_mode": false,
 	"render_background": true,
+	"accessibility_mode": true,
 	"fullscreen": false
 }
 
@@ -31,6 +33,7 @@ func _ready():
 	physics_opt.toggled.connect(_on_physics_opt_changed)
 	speedrun_opt.toggled.connect(_on_speedrun_opt_changed)
 	background_opt.toggled.connect(_on_render_background_changed)
+	accessibility_opt.toggled.connect(_on_accessibility_changed)
 	fullscreen_opt.toggled.connect(_on_fullscreen_changed)
 	all_powerups_button.pressed.connect(_grant_all_powerups)
 	back_button.pressed.connect(close_options)
@@ -69,6 +72,12 @@ func _on_speedrun_opt_changed(state: bool):
 func _on_render_background_changed(state: bool):
 	options_data["render_background"] = state
 	BackgroundManager.call_deferred("set_render_backgrounds", state)
+
+func _on_accessibility_changed(state: bool):
+	options_data["accessibility_mode"] = state
+	AppManager.is_accessibility_mode = state
+	if AppManager.hero:
+		AppManager.hero.tint_as_accessibility()
 
 func _on_fullscreen_changed(state: bool):
 	options_data["fullscreen"] = state
@@ -116,6 +125,11 @@ func apply_loaded_options():
 
 	BackgroundManager.call_deferred("set_render_backgrounds", options_data["render_background"])
 	background_opt.button_pressed = options_data["render_background"]
+
+	AppManager.is_accessibility_mode = options_data["accessibility_mode"]
+	accessibility_opt.button_pressed = options_data["accessibility_mode"]
+	if AppManager.hero:
+		AppManager.hero.tint_as_accessibility()
 
 	fullscreen_opt.button_pressed = options_data["fullscreen"]
 	UI.set_fullscreen(options_data["fullscreen"])

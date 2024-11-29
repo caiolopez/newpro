@@ -7,6 +7,7 @@ enum BulletType {REGULAR = 0, FIRE = 1, UNDERWATER = 2, LIVING = 3}
 const BULLET_POOL_SIZE: int = 50
 
 const HERO_COLORS:Array[Color] =						[Color(0.0, 0.0, 0.0),	Color(1.0, 1.0, 1.0)]
+const HERO_ACCESSIBILITY_COLORS:Array[Color] =			[Color(0.0, 0.0, 0.0),	Color(1.0, 0.5, 1.0)]
 const BULLET_REGULAR_COLORS:Array[Color] =				[Color(0.0, 0.0, 0.0), 	Color(1.0, 1.0, 1.0)]
 const BULLET_REGULAR_DULL_COLORS:Array[Color] =			[Color(0.0, 0.0, 0.0),	Color(1.0, 1.0, 1.0)]
 const BULLET_FIRE_COLORS:Array[Color] =					[Color(1.0, 0.5, 0.5), 	Color(1.0, 1.0, 0.0)]
