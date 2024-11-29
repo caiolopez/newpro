@@ -22,18 +22,21 @@ func switch_on():
 	current_state = SwitchState.ON
 	$TimerSimultWindow.stop()
 	$TimerBeep.stop()
+	$AnimatedSprite2D.play("on")
 	$BwShaderSetter.set_color_pair(Constants.SWITCH_ON_COLORS)
 
 func switch_off():
 	current_state = SwitchState.OFF
 	$TimerSimultWindow.stop()
 	$TimerBeep.stop()
+	$AnimatedSprite2D.play("off")
 	$BwShaderSetter.set_color_pair(Constants.SWITCH_OFF_COLORS)
 
 func _temporarily_switch_on():
 	current_state = SwitchState.TEMP_ON
 	$TimerSimultWindow.start()
 	$TimerBeep.start()
+	$AnimatedSprite2D.play("on")
 	$BwShaderSetter.set_color_pair(Constants.SWITCH_TEMP_ON_COLORS)
 
 func _on_area_entered(area):
