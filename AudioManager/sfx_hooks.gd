@@ -16,19 +16,20 @@ func hero_step_sfx():
 	AudioManager.play_sfx(&"footstep", -30.0)
 
 func hero_blunder_jump_sfx():
-	AudioManager.play_sfx(&"dash1", -12.0) # placeholder
+	AudioManager.play_sfx(&"blunderjump1", -16.0)
 
+# Basically unused for now
 func hero_recoil_sfx():
 	pass
 
 func hero_wall_jump_sfx():
-	AudioManager.play_sfx(&"jump", -24.0) # placeholder
+	AudioManager.play_sfx(&"wallclimb_metal", -20.0)
 
 func hero_wall_climb_sfx():
-	AudioManager.play_sfx(&"jump", -24.0) # placeholder
+	AudioManager.play_sfx(&"wallclimb_metal", -24.0)
 
 func hero_glide_start_sfx():
-	AudioManager.play_sfx(&"jump", -24.0) # placeholder
+	AudioManager.play_sfx(&"parachute_open", -20.0)
 
 func hero_wall_grab_sfx():
 	AudioManager.play_sfx(&"footstep", -30.0)
@@ -36,6 +37,7 @@ func hero_wall_grab_sfx():
 func hero_die_sfx():
 	AudioManager.play_sfx(&"death", -18.0)
 
+# Basically unused for now
 func hero_tweening_to_respawn_sfx():
 	pass
 
