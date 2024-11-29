@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="SFXData" load_steps=3 format=3 uid="uid://wwa118wosji1"]
+
+[ext_resource type="Script" uid="uid://dguxp5teonsit" path="res://AudioManager/sfx_data.gd" id="1_rw3qn"]
+[ext_resource type="AudioStream" uid="uid://m01ofj1b4m32" path="res://AudioManager/Sounds/impact1.wav" id="2_jjlgp"]
+
+[resource]
+script = ExtResource("1_rw3qn")
+sound = ExtResource("2_jjlgp")
+sounds = Array[AudioStream]([])
+playback_mode = 0
+pausable = false
+randomize_pitch_scale = true
+pitch_scale_min = 1.05
+pitch_scale_max = 0.95
+metadata/_custom_type_script = ExtResource("1_rw3qn")

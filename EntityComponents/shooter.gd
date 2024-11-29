@@ -9,6 +9,7 @@ class_name Shooter extends Node2D
 @export var time_before_visible: float = 0.01 ## The time it takes for the bullet to become visible after being shot. Useful to hide bullets before they left the barrel, for instance.
 @export var muzzle: Node2D = null ## The reference for the muzzle graphics from who shot it.
 @export var sound_fx: StringName = &"" ## The name of the audio sfx, as in the AudioManager sfx dictionary. Leave empty to no sound.
+@export var sound_fx_volume_adjustment: float = 0.0
 @export var emit_signal_upon_shooting: bool = true
 @export_group("autoshoot")
 @export var auto_shoots: bool = true
@@ -103,7 +104,8 @@ func shoot(speed: float = pellet_speed, angle: float = 0, amount: int = pellet_a
 		just_shot.emit()
 		Events.entity_shot.emit(self)
 	if sound_fx:
-		AudioManager.play_sfx(sound_fx)
+		AudioManager.play_sfx(sound_fx, sound_fx_volume_adjustment)
+	if emit_signal_upon_shooting: just_shot.emit()
 	return bullets
 
 func shoot_ad_hoc(speed: float = 200, angle: float = 0, ignore_facing_direction: bool = false, inverted: bool = false) -> Array[Area2D]:

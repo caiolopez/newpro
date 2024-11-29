@@ -1,23 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://0fx3l1vwyhr4"]
+[gd_scene load_steps=5 format=3 uid="uid://0fx3l1vwyhr4"]
 
 [ext_resource type="Script" uid="uid://cunoru645f6k" path="res://SwitchesAndDoors/switch.gd" id="1_bkl3k"]
-[ext_resource type="Texture2D" uid="uid://csx1ugxovrq4q" path="res://SwitchesAndDoors/Gfx/switch_anim.png" id="2_777cb"]
+[ext_resource type="SpriteFrames" uid="uid://cfwaqjk7xi7r5" path="res://SwitchesAndDoors/Gfx/switch_animation_frames.tres" id="2_6arrv"]
 [ext_resource type="PackedScene" uid="uid://1votnx34efdj" path="res://EntityComponents/BWShaderSetter.tscn" id="3_oj7qx"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mjv2y"]
-atlas = ExtResource("2_777cb")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_knqm7"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mjv2y")
-}],
-"loop": false,
-"name": &"default",
-"speed": 5.0
-}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yuyy0"]
 size = Vector2(40, 100)
@@ -31,8 +16,10 @@ script = ExtResource("1_bkl3k")
 use_parent_material = true
 position = Vector2(-10, 0)
 scale = Vector2(5, 5)
-sprite_frames = SubResource("SpriteFrames_knqm7")
-autoplay = "default"
+sprite_frames = ExtResource("2_6arrv")
+animation = &"on"
+autoplay = "off"
+frame_progress = 0.269819
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-20, 0)

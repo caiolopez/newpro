@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="SFXData" load_steps=10 format=3 uid="uid://r7orin4x7b3b"]
+
+[ext_resource type="Script" uid="uid://dguxp5teonsit" path="res://AudioManager/sfx_data.gd" id="1_gcep4"]
+[ext_resource type="AudioStream" uid="uid://bdwaei5fqidbp" path="res://AudioManager/Sounds/Footsteps/0.ogg" id="2_qs1bb"]
+[ext_resource type="AudioStream" uid="uid://bvh52s8d31227" path="res://AudioManager/Sounds/Footsteps/1.ogg" id="3_0mkrr"]
+[ext_resource type="AudioStream" uid="uid://c6iq3dyrluc0b" path="res://AudioManager/Sounds/Footsteps/2.ogg" id="4_c1t4f"]
+[ext_resource type="AudioStream" uid="uid://c03p6t88b0so7" path="res://AudioManager/Sounds/Footsteps/3.ogg" id="5_pvn38"]
+[ext_resource type="AudioStream" uid="uid://dwsqkgigqbpau" path="res://AudioManager/Sounds/Footsteps/4.ogg" id="6_8gghf"]
+[ext_resource type="AudioStream" uid="uid://bgiugbe3ytpg1" path="res://AudioManager/Sounds/Footsteps/5.ogg" id="7_cmbnq"]
+[ext_resource type="AudioStream" uid="uid://q5lvj8r270vk" path="res://AudioManager/Sounds/Footsteps/6.ogg" id="8_jjdk6"]
+[ext_resource type="AudioStream" uid="uid://ca2yly0m5ed74" path="res://AudioManager/Sounds/Footsteps/7.ogg" id="9_wkppp"]
+
+[resource]
+script = ExtResource("1_gcep4")
+sounds = Array[AudioStream]([ExtResource("2_qs1bb"), ExtResource("3_0mkrr"), ExtResource("4_c1t4f"), ExtResource("5_pvn38"), ExtResource("6_8gghf"), ExtResource("7_cmbnq"), ExtResource("8_jjdk6"), ExtResource("9_wkppp")])
+playback_mode = 1
+pausable = false
+randomize_pitch_scale = true
+pitch_scale_min = 0.95
+pitch_scale_max = 1.05
+metadata/_custom_type_script = ExtResource("1_gcep4")

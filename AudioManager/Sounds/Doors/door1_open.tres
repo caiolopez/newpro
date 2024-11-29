@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="SFXData" load_steps=3 format=3 uid="uid://dgpslfsytjwa7"]
+
+[ext_resource type="Script" uid="uid://dguxp5teonsit" path="res://AudioManager/sfx_data.gd" id="1_6d3dk"]
+[ext_resource type="AudioStream" uid="uid://dv7j7512d42gd" path="res://AudioManager/Sounds/Doors/door1_open.wav" id="2_tkakw"]
+
+[resource]
+script = ExtResource("1_6d3dk")
+sound = ExtResource("2_tkakw")
+sounds = Array[AudioStream]([])
+playback_mode = 0
+pausable = false
+randomize_pitch_scale = true
+pitch_scale_min = 0.95
+pitch_scale_max = 1.05
+metadata/_custom_type_script = ExtResource("1_6d3dk")

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="SFXData" load_steps=3 format=3 uid="uid://of8md1t1cee4"]
+
+[ext_resource type="Script" uid="uid://dguxp5teonsit" path="res://AudioManager/sfx_data.gd" id="1_nsuce"]
+[ext_resource type="AudioStream" uid="uid://b0x556c7e0m42" path="res://AudioManager/Sounds/land.wav" id="2_i7c55"]
+
+[resource]
+script = ExtResource("1_nsuce")
+sound = ExtResource("2_i7c55")
+sounds = Array[AudioStream]([])
+playback_mode = 0
+pausable = false
+randomize_pitch_scale = true
+pitch_scale_min = 0.95
+pitch_scale_max = 1.05
+metadata/_custom_type_script = ExtResource("1_nsuce")

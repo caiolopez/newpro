@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="SFXData" load_steps=3 format=3 uid="uid://cqmrooank3vvn"]
+
+[ext_resource type="Script" uid="uid://dguxp5teonsit" path="res://AudioManager/sfx_data.gd" id="1_dr4qj"]
+[ext_resource type="AudioStream" uid="uid://td1l5wmn22b0" path="res://AudioManager/Sounds/respawn.wav" id="2_0el4o"]
+
+[resource]
+script = ExtResource("1_dr4qj")
+sound = ExtResource("2_0el4o")
+sounds = Array[AudioStream]([])
+playback_mode = 0
+pausable = false
+randomize_pitch_scale = false
+pitch_scale_min = 1.0
+pitch_scale_max = 1.0
+metadata/_custom_type_script = ExtResource("1_dr4qj")

@@ -72,6 +72,8 @@ func animate():
 			a = "fire"
 		Constants.BulletType.UNDERWATER:
 			a = "underwater"
+		Constants.BulletType.LIVING:
+			a = "living"
 	if dull:
 		a += "_dull"
 

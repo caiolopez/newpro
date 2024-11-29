@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="SFXData" load_steps=3 format=3 uid="uid://c3lrtlru5omoa"]
+
+[ext_resource type="Script" uid="uid://dguxp5teonsit" path="res://AudioManager/sfx_data.gd" id="1_sq7cf"]
+[ext_resource type="AudioStream" uid="uid://brd30lawqa6uf" path="res://AudioManager/Sounds/Enemy/Bosses/boss1_hurt.wav" id="2_nycio"]
+
+[resource]
+script = ExtResource("1_sq7cf")
+sound = ExtResource("2_nycio")
+sounds = Array[AudioStream]([])
+playback_mode = 0
+pausable = false
+randomize_pitch_scale = true
+pitch_scale_min = 0.9
+pitch_scale_max = 1.1
+metadata/_custom_type_script = ExtResource("1_sq7cf")

@@ -29,10 +29,12 @@ func _on_area_entered(area):
 
 func set_active():
 	is_active = true
+	$AnimatedSprite2D.play("on")
 	_blink()
 
 func set_inactive():
 	is_active = false
+	$AnimatedSprite2D.play("off")
 	if type == elevator_system.current_state:
 		sprite_shader.set_color_pair(Constants.ELEVATOR_BUTTON_UNAVAILABLE_COLORS)
 	else:

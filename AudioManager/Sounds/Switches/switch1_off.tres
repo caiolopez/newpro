@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="SFXData" load_steps=3 format=3 uid="uid://co4ep2j0mm5pq"]
+
+[ext_resource type="Script" uid="uid://dguxp5teonsit" path="res://AudioManager/sfx_data.gd" id="1_ekpdd"]
+[ext_resource type="AudioStream" uid="uid://caybjwmxnhks3" path="res://AudioManager/Sounds/Switches/switch1_off.wav" id="2_2ogif"]
+
+[resource]
+script = ExtResource("1_ekpdd")
+sound = ExtResource("2_2ogif")
+sounds = Array[AudioStream]([])
+playback_mode = 0
+pausable = false
+randomize_pitch_scale = false
+pitch_scale_min = 1.0
+pitch_scale_max = 1.0
+metadata/_custom_type_script = ExtResource("1_ekpdd")

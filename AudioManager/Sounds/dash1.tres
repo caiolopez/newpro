@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="SFXData" load_steps=3 format=3 uid="uid://c8nkmcw03ouec"]
+
+[ext_resource type="Script" uid="uid://dguxp5teonsit" path="res://AudioManager/sfx_data.gd" id="1_y1l2q"]
+[ext_resource type="AudioStream" uid="uid://c2t28dy14qm7y" path="res://AudioManager/Sounds/dash1.wav" id="2_7ifgp"]
+
+[resource]
+script = ExtResource("1_y1l2q")
+sound = ExtResource("2_7ifgp")
+sounds = Array[AudioStream]([])
+playback_mode = 0
+pausable = false
+randomize_pitch_scale = false
+pitch_scale_min = 1.0
+pitch_scale_max = 1.0
+metadata/_custom_type_script = ExtResource("1_y1l2q")

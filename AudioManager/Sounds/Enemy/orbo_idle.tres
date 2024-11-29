@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="SFXData" load_steps=3 format=3 uid="uid://b55uxdsgsnbjx"]
+
+[ext_resource type="Script" uid="uid://dguxp5teonsit" path="res://AudioManager/sfx_data.gd" id="1_q3cjn"]
+[ext_resource type="AudioStream" uid="uid://bd60a3qvjuaix" path="res://AudioManager/Sounds/Enemy/orbo_idle.wav" id="2_fvvck"]
+
+[resource]
+script = ExtResource("1_q3cjn")
+sound = ExtResource("2_fvvck")
+sounds = Array[AudioStream]([])
+playback_mode = 0
+pausable = true
+randomize_pitch_scale = true
+pitch_scale_min = 0.96
+pitch_scale_max = 1.04
+metadata/_custom_type_script = ExtResource("1_q3cjn")

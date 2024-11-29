@@ -1,0 +1,37 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://cfwaqjk7xi7r5"]
+
+[ext_resource type="Texture2D" uid="uid://csx1ugxovrq4q" path="res://SwitchesAndDoors/Gfx/switch_anim.png" id="1_gwucd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mjv2y"]
+atlas = ExtResource("1_gwucd")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6arrv"]
+atlas = ExtResource("1_gwucd")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lol0r"]
+atlas = ExtResource("1_gwucd")
+region = Rect2(32, 0, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mjv2y")
+}],
+"loop": true,
+"name": &"off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6arrv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lol0r")
+}],
+"loop": true,
+"name": &"on",
+"speed": 10.0
+}]

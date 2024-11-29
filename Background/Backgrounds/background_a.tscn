@@ -1,72 +1,21 @@
-[gd_scene load_steps=10 format=3 uid="uid://sxdpqvsx3dc1"]
+[gd_scene load_steps=5 format=3 uid="uid://sxdpqvsx3dc1"]
 
-[ext_resource type="Script" uid="uid://dq2jqhcobrv5p" path="res://Background/BackgroundComponents/constant_rotation.gd" id="1_ya4tk"]
-[ext_resource type="Script" uid="uid://ds4mh6wwrpwn4" path="res://Background/background_camera.gd" id="2_4cagp"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_o5sud"]
-
-[sub_resource type="PrismMesh" id="PrismMesh_nvk0e"]
-material = SubResource("ShaderMaterial_o5sud")
-
-[sub_resource type="TextMesh" id="TextMesh_l4088"]
-text = "HELLO"
-font_size = 58
-
-[sub_resource type="BoxMesh" id="BoxMesh_pa078"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_5c3qw"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_7xci1"]
+[ext_resource type="Script" uid="uid://di87ai28fund6" path="res://Background/background_camera.gd" id="2_4cagp"]
+[ext_resource type="Shader" uid="uid://05qxh5f086p0" path="res://Shaders/ocean.gdshader" id="3_85f7l"]
 
 [sub_resource type="Environment" id="Environment_13nke"]
 background_mode = 1
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6v1pq"]
+shader = ExtResource("3_85f7l")
+shader_parameter/bottom_color = Color(0.027451, 0.0666667, 0.207843, 0.25098)
+shader_parameter/top_color = Color(0.0313726, 0.235294, 0.368627, 0.25098)
+shader_parameter/wave_amp = 0.2
+shader_parameter/wave_size = 2.0
+shader_parameter/wave_time_mul = 0.25
+shader_parameter/total_phases = 8
+
 [node name="BackgroundA" type="Node"]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.06877)
-mesh = SubResource("PrismMesh_nvk0e")
-skeleton = NodePath("../Camera3D")
-
-[node name="RandomRotation" type="Node" parent="MeshInstance3D"]
-script = ExtResource("1_ya4tk")
-randomize_rotations = true
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.14398, 1.60424, -2.02529)
-mesh = SubResource("TextMesh_l4088")
-skeleton = NodePath("../Camera3D")
-
-[node name="RandomRotation" type="Node" parent="MeshInstance3D2"]
-script = ExtResource("1_ya4tk")
-randomize_rotations = true
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.35389, -1.57425, -3.06877)
-mesh = SubResource("BoxMesh_pa078")
-skeleton = NodePath("../Camera3D")
-
-[node name="RandomRotation" type="Node" parent="MeshInstance3D3"]
-script = ExtResource("1_ya4tk")
-randomize_rotations = true
-
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26393, 1.91909, -3.06877)
-mesh = SubResource("BoxMesh_5c3qw")
-skeleton = NodePath("../Camera3D")
-
-[node name="RandomRotation" type="Node" parent="MeshInstance3D4"]
-script = ExtResource("1_ya4tk")
-randomize_rotations = true
-
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.18896, -1.72418, -3.06877)
-mesh = SubResource("CapsuleMesh_7xci1")
-skeleton = NodePath("../Camera3D")
-
-[node name="RandomRotation" type="Node" parent="MeshInstance3D5"]
-script = ExtResource("1_ya4tk")
-randomize_rotations = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
 environment = SubResource("Environment_13nke")
@@ -75,8 +24,15 @@ size = 3.031
 script = ExtResource("2_4cagp")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-light_color = Color(0.804659, 0.000769322, 0.849138, 1)
 light_specular = 10.225
 light_bake_mode = 1
-omni_range = 4.056
-omni_attenuation = 1.503
+omni_range = 10.0
+omni_attenuation = 1.5
+
+[node name="OceanColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_6v1pq")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

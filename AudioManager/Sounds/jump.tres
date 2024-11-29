@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="SFXData" load_steps=3 format=3 uid="uid://ct1bs55ppafmd"]
+
+[ext_resource type="Script" uid="uid://dguxp5teonsit" path="res://AudioManager/sfx_data.gd" id="1_0ir23"]
+[ext_resource type="AudioStream" uid="uid://b8ha4eedxjadf" path="res://AudioManager/Sounds/jump.wav" id="2_0y7ns"]
+
+[resource]
+script = ExtResource("1_0ir23")
+sound = ExtResource("2_0y7ns")
+sounds = Array[AudioStream]([])
+playback_mode = 0
+pausable = false
+randomize_pitch_scale = true
+pitch_scale_min = 0.95
+pitch_scale_max = 1.05
+metadata/_custom_type_script = ExtResource("1_0ir23")

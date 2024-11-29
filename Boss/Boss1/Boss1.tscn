@@ -532,7 +532,10 @@ position = Vector2(128, 0)
 pellet_amount = 3
 pellet_separation_angle = 10.0
 pellet_speed = 800.0
+bullet_type = 3
 rotates_with_parent = true
+sound_fx = &"boss1_shot"
+sound_fx_volume_adjustment = -12.0
 emit_signal_upon_shooting = false
 time_between_shots = 0.2
 shot_burst_amount = 60
@@ -540,6 +543,10 @@ shot_burst_amount = 60
 [node name="DmgTaker" parent="." instance=ExtResource("7_fd85g")]
 collision_mask = 16
 HP_AMOUNT = 40
+death_sfx = &"boss1_death"
+death_sfx_volume_adjustment = -6.0
+suffer_sfx = &"boss1_hurt"
+suffer_sfx_volume_adjustment = -16.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DmgTaker"]
 shape = SubResource("RectangleShape2D_x2pkn")
@@ -594,7 +601,7 @@ script = ExtResource("20_rjmgc")
 
 [node name="PlacePropWhenDead" parent="." node_paths=PackedStringArray("color_pair_source") instance=ExtResource("25_os6h5")]
 prop_to_place = &"puff"
-amount = 10
+amount = 40
 random_radius = 120.0
 color_pair_source = NodePath("../GfxController/BwShaderSetter")
 lazy_evaluate_color_pair = true

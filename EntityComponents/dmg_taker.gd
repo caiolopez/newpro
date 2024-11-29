@@ -6,8 +6,10 @@ class_name DmgTaker extends Area2D
 @export var immune_to: Array[Constants.BulletType] = [] ## Bullet types in this list will not affect entities.
 @export var auto_regen_time: float = 0.0 ## The time it takes for it to regain one HP automatically. Set to zero to disable feature.
 @export var death_sfx: StringName = &"" ## The sound this entity makes when it dies.
+@export var death_sfx_volume_adjustment: float = 0.0
 @export var suffer_sfx: StringName = &"" ## The sound this entity makes when it loses one HP.
 @export var shake_screen_upon_death: bool = true
+@export var suffer_sfx_volume_adjustment: float = 0.0
 @onready var is_foe: bool = Utils.check_if_foe(self.get_parent()) ## If no FriendOrFoe sibling component is found, assumes is_foe = true.
 @onready var current_hp: int = HP_AMOUNT
 var currently_immune: bool = false
@@ -50,12 +52,12 @@ func take_dmg(amount: int):
 			regen_timer.stop()
 		died.emit()
 		Events.entity_died.emit(self)
-		if shake_screen_upon_death: AppManager.camera.shake(0.2, 20)
-		if death_sfx: AudioManager.play_sfx(death_sfx)
+		if shake_screen_upon_death: AppManager.camera.shake(0.1, 20)
+		if death_sfx: AudioManager.play_sfx(death_sfx, death_sfx_volume_adjustment)
 	else:
 		suffered.emit(current_hp)
 		Events.entity_suffered.emit(self)
-		if suffer_sfx: AudioManager.play_sfx(suffer_sfx)
+		if suffer_sfx: AudioManager.play_sfx(suffer_sfx, suffer_sfx_volume_adjustment)
 		if regen_timer:
 			regen_timer.stop()
 			regen_timer.start()

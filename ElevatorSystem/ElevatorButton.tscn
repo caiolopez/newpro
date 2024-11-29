@@ -1,26 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://boug41cw8taxh"]
+[gd_scene load_steps=5 format=3 uid="uid://boug41cw8taxh"]
 
 [ext_resource type="Script" uid="uid://cvl7g548p2oy8" path="res://ElevatorSystem/elevator_button.gd" id="1_3igk5"]
-[ext_resource type="Texture2D" uid="uid://b606rlw15rkvt" path="res://ElevatorSystem/Gfx/elevator_button_anim.png" id="2_mcxac"]
+[ext_resource type="SpriteFrames" uid="uid://cfwaqjk7xi7r5" path="res://SwitchesAndDoors/Gfx/switch_animation_frames.tres" id="2_cyqsh"]
 [ext_resource type="PackedScene" uid="uid://1votnx34efdj" path="res://EntityComponents/BWShaderSetter.tscn" id="3_u2tm0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t0xmj"]
 size = Vector2(40, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tnexy"]
-atlas = ExtResource("2_mcxac")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_tlx20"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tnexy")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
 
 [node name="ElevatorButton" type="Area2D"]
 collision_layer = 0
@@ -35,6 +20,7 @@ shape = SubResource("RectangleShape2D_t0xmj")
 use_parent_material = true
 position = Vector2(-10, 1.61559e-27)
 scale = Vector2(5, 5)
-sprite_frames = SubResource("SpriteFrames_tlx20")
+sprite_frames = ExtResource("2_cyqsh")
+animation = &"off"
 
 [node name="BwShaderSetter" parent="." instance=ExtResource("3_u2tm0")]

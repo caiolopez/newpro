@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="SFXData" load_steps=3 format=3 uid="uid://corwbf1b8lt8r"]
+
+[ext_resource type="Script" uid="uid://dguxp5teonsit" path="res://AudioManager/sfx_data.gd" id="1_ppqry"]
+[ext_resource type="AudioStream" uid="uid://byf54syctxmfx" path="res://AudioManager/Sounds/Enemy/Bosses/boss1_stage_change.wav" id="2_l1otf"]
+
+[resource]
+script = ExtResource("1_ppqry")
+sound = ExtResource("2_l1otf")
+sounds = Array[AudioStream]([])
+playback_mode = 0
+pausable = false
+randomize_pitch_scale = true
+pitch_scale_min = 0.95
+pitch_scale_max = 1.05
+metadata/_custom_type_script = ExtResource("1_ppqry")

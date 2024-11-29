@@ -1,33 +1,40 @@
-[gd_scene load_steps=16 format=3 uid="uid://cgntexit802at"]
+[gd_scene load_steps=18 format=3 uid="uid://cgntexit802at"]
 
-[ext_resource type="Script" uid="uid://bbt6ffj2porhu" path="res://GUI/black_curtain.gd" id="1_2fegy"]
-[ext_resource type="Script" uid="uid://bra8xqptlx1ww" path="res://GUI/ui.gd" id="1_lqxss"]
-[ext_resource type="Script" uid="uid://cwnmki2wpu7uo" path="res://AppManager/slide_reel.gd" id="5_edbe7"]
+[ext_resource type="Script" uid="uid://b34o6hvc4sfb5" path="res://GUI/black_curtain.gd" id="1_2fegy"]
+[ext_resource type="Script" uid="uid://ds04dwggool3i" path="res://GUI/ui.gd" id="1_lqxss"]
+[ext_resource type="Theme" uid="uid://dediyadnq7o1d" path="res://GUI/main.theme" id="2_b5xco"]
+[ext_resource type="Script" uid="uid://chi0okhj6omam" path="res://AppManager/slide_reel.gd" id="5_edbe7"]
 [ext_resource type="PackedScene" uid="uid://ms4uukon6dti" path="res://GUI/MainMenu.tscn" id="6_60d5t"]
 [ext_resource type="Texture2D" uid="uid://0l05qi2ha4p5" path="res://hero.png" id="6_j0bi8"]
-[ext_resource type="Script" uid="uid://dptednr1xnht5" path="res://AppManager/slide.gd" id="7_0ssnq"]
+[ext_resource type="Script" uid="uid://ddia53ohnh44e" path="res://AppManager/slide.gd" id="7_0ssnq"]
 [ext_resource type="PackedScene" uid="uid://cnil5t8gbosn3" path="res://GUI/OptionsMenu.tscn" id="7_3hcxp"]
 [ext_resource type="Texture2D" uid="uid://d2gdo5bbgykv2" path="res://icon.svg" id="8_7bl5a"]
 [ext_resource type="PackedScene" uid="uid://dst760bvjwktu" path="res://GUI/PauseMenu.tscn" id="9_u7t3d"]
 [ext_resource type="PackedScene" uid="uid://b424bvcxa2fbn" path="res://GUI/BossOverlay.tscn" id="10_coqvt"]
 [ext_resource type="PackedScene" uid="uid://y7aq3dk02d8w" path="res://GUI/ConfirmationMenu.tscn" id="10_mlc10"]
 [ext_resource type="PackedScene" uid="uid://d1h8vf2t5pgey" path="res://GUI/MiniMap.tscn" id="11_01e55"]
-[ext_resource type="Script" uid="uid://um5bikmfjsxe" path="res://GUI/on_screen_notification_label.gd" id="11_ahf6e"]
+[ext_resource type="Script" uid="uid://bn1pfy7a56sjh" path="res://GUI/on_screen_notification_label.gd" id="11_ahf6e"]
 [ext_resource type="PackedScene" uid="uid://dvk1kn7j0htsi" path="res://GUI/Dialog.tscn" id="12_kwodg"]
 [ext_resource type="Script" uid="uid://bl8fn3wgrmffv" path="res://GUI/hud.gd" id="12_qer54"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b5xco"]
+bg_color = Color(0, 0, 0, 0.627451)
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_lqxss")
 
 [node name="GameTimeLabel" type="Label" parent="."]
-visible = false
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -318.0
-offset_bottom = 78.0
+offset_bottom = 64.0
 grow_horizontal = 0
-theme_override_font_sizes/font_size = 40
+theme = ExtResource("2_b5xco")
+theme_type_variation = &"GameTimeLabel"
+theme_override_styles/normal = SubResource("StyleBoxFlat_b5xco")
+horizontal_alignment = 2
+vertical_alignment = 1
 
 [node name="BlackCurtain" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -87,7 +94,6 @@ metadata/_edit_use_anchors_ = true
 [node name="OptionsMenu" parent="." instance=ExtResource("7_3hcxp")]
 
 [node name="OnScreenNotificationLabel" type="Label" parent="."]
-visible = false
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="SFXData" load_steps=3 format=3 uid="uid://qmw1rqs2ceaq"]
+
+[ext_resource type="Script" uid="uid://dguxp5teonsit" path="res://AudioManager/sfx_data.gd" id="1_e5tip"]
+[ext_resource type="AudioStream" uid="uid://kndmmdvislg6" path="res://AudioManager/Sounds/Environment/deep_hum1.wav" id="2_j0lxh"]
+
+[resource]
+script = ExtResource("1_e5tip")
+sound = ExtResource("2_j0lxh")
+sounds = Array[AudioStream]([])
+playback_mode = 0
+pausable = true
+randomize_pitch_scale = true
+pitch_scale_min = 0.97
+pitch_scale_max = 1.03
+metadata/_custom_type_script = ExtResource("1_e5tip")

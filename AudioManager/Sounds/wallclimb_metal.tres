@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="SFXData" load_steps=3 format=3 uid="uid://j7855fdhonli"]
+
+[ext_resource type="Script" uid="uid://dguxp5teonsit" path="res://AudioManager/sfx_data.gd" id="1_cnqnm"]
+[ext_resource type="AudioStream" uid="uid://qljmkewnk1yh" path="res://AudioManager/Sounds/wallclimb_metal.wav" id="2_bu4kp"]
+
+[resource]
+script = ExtResource("1_cnqnm")
+sound = ExtResource("2_bu4kp")
+sounds = Array[AudioStream]([])
+playback_mode = 0
+pausable = false
+randomize_pitch_scale = true
+pitch_scale_min = 0.95
+pitch_scale_max = 1.05
+metadata/_custom_type_script = ExtResource("1_cnqnm")
