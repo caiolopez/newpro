@@ -29,4 +29,7 @@ const BOSS_STAGE1_COLORS:Array[Color] = 		[Color("3f160b"),		Color("f67f00")]
 const BOSS_STAGE2_COLORS:Array[Color] = 		[Color("3f0511"),		Color("f94a22")]
 const BOSS_STAGE3_COLORS:Array[Color] = 		[Color("040414"),		Color("fe074e")]
 
-const ZONE_1_BG_COLOR : Color = Color("040414")
+const REGION1_COLORS: Array[Color] = [Color("091645"), Color("0a4e7b")]
+const REGION1_TILE_LIGHT: Color = Color("0a4e7b")
+const REGION1_TILE_DARK: Color = Color("091645")
+const ZONE_1_BG_COLOR: Color = Color("040414")

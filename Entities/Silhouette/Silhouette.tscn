@@ -95,8 +95,8 @@ frame = 1
 script = ExtResource("2_76cm4")
 
 [node name="BwShaderSetter" parent="." instance=ExtResource("2_fcpdr")]
-dark_color_name = &"ZONE_1_BG_COLOR"
 light_color = Color(0.996078, 0.027451, 0.305882, 1)
+dark_color_name = &"ZONE_1_BG_COLOR"
 
 [node name="BlinkTimer" type="Timer" parent="."]
 one_shot = true
