@@ -595,7 +595,7 @@ script = ExtResource("20_rjmgc")
 
 [node name="PlacePropWhenDead" parent="." node_paths=PackedStringArray("color_pair_source") instance=ExtResource("25_os6h5")]
 prop_to_place = &"puff"
-amount = 10
+amount = 40
 random_radius = 120.0
 color_pair_source = NodePath("../GfxController/BwShaderSetter")
 lazy_evaluate_color_pair = true
