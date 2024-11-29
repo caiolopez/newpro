@@ -1,11 +1,13 @@
 extends Node
 
 var bullet_res = preload("res://Bullet/Bullet.tscn")
+const BULLET_POOL_SIZE: int = 50
 
 func _ready():
 	Events.hero_respawned_at_checkpoint.connect(return_all_bullets)
 
 	for i in range(Constants.BULLET_POOL_SIZE):
+	for i in range(BULLET_POOL_SIZE):
 		var bullet: Bullet = bullet_res.instantiate()
 		$FreeBullets.add_child(bullet)
 		bullet.visible = false
