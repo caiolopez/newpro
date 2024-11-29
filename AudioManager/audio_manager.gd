@@ -192,8 +192,11 @@ func _is_sfx_in_cooldown(sfx_name: StringName) -> bool:
 			return true
 	return false
 
-func play_positional_sfx(sfx_name: StringName, position: Vector2, source_object: Node, max_distance: float = 10000.0, volume_adjustment: float = 0.0) -> AudioStreamPlayer2D:
+func play_positional_sfx(sfx_name: StringName, position: Vector2, source_object: Node, max_distance: float = 10000.0, volume_adjustment: float = 0.0) -> SFXPlayer2D:
 	var sfx_data: SFXData = audio_banks.get_sfx_data(sfx_name)
+	if !sfx_data:
+		print_debug("Error: No " + sfx_name + "found in AudioBanks")
+		return
 
 	if source_object in positional_sfx_players:
 		var existing_player: SFXPlayer2D = positional_sfx_players[source_object]
@@ -206,7 +209,7 @@ func play_positional_sfx(sfx_name: StringName, position: Vector2, source_object:
 		existing_player.play()
 		return existing_player
 
-	var new_player = SFXPlayer2D.new()
+	var new_player: SFXPlayer2D = SFXPlayer2D.new()
 	add_child(new_player)
 	new_player.bus = "SFX"
 	new_player.process_mode = Node.PROCESS_MODE_PAUSABLE
