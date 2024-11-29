@@ -12,7 +12,7 @@ func _ready():
 
 
 func place_bullet(facing_direction: int = 1, origin: Vector2 = Vector2(0, 0),\
-vel:  Vector2 = Vector2(200, 0), is_foe: bool = true, bullet_type = Constants.BulletType.REGULAR, angle: float = 0.0, time_before_visible: float = 0, underwater_ammo: bool = false, owner_muzzle: Node2D = null):
+vel:  Vector2 = Vector2(200, 0), is_foe: bool = true, bullet_type = Constants.BulletTypes.REGULAR, angle: float = 0.0, time_before_visible: float = 0, underwater_ammo: bool = false, owner_muzzle: Node2D = null):
 	var bullet: Bullet
 	if $FreeBullets.get_child_count() <= 0:
 		bullet = bullet_res.instantiate()

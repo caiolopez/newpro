@@ -3,7 +3,7 @@ class_name DmgTaker extends Area2D
 @export var HP_AMOUNT: int = 1
 @export var RESET_UPON_RESPAWN: bool = true ## When set to true, entities will have all their attributes reset when the Hero respawns.
 @export var QUEUE_FREE_ON_CHECKPOINT: bool = true ## When set to true, will prevent dead entities from reappearing when the Hero respawns.
-@export var immune_to: Array[Constants.BulletType] = [] ## Bullet types in this list will not affect entities.
+@export var immune_to: Array[Constants.BulletTypes] = [] ## Bullet types in this list will not affect entities.
 @export var auto_regen_time: float = 0.0 ## The time it takes for it to regain one HP automatically. Set to zero to disable feature.
 @export var death_sfx: StringName = &"" ## The sound this entity makes when it dies.
 @export var death_sfx_volume_adjustment: float = 0.0

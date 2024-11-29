@@ -13,7 +13,7 @@ func _ready() -> void:
 				area.ignite()
 				if DebugTools.print_stuff: print(area, " was ignited by ", self)
 		elif area is Bullet\
-		and area.bullet_type == Constants.BulletType.FIRE:
+		and area.bullet_type == Constants.BulletTypes.FIRE:
 			self.ignite()
 	)
 	dmg_taker.died.connect(on_died)

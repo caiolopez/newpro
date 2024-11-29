@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ca18mmoda2mp"]
 
-[ext_resource type="Script" path="res://AudioManager/music_trigger.gd" id="1_6t351"]
+[ext_resource type="Script" uid="uid://cqis00fomih5a" path="res://AudioManager/music_trigger.gd" id="1_6t351"]
 
 [node name="MusicTrigger" type="Area2D"]
 collision_layer = 0
