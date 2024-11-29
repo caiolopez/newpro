@@ -69,16 +69,16 @@ func boss1_fight_start_sfx():
 	pass
 
 func boss1_pre_dash_sfx():
-	pass
+	AudioManager.play_sfx(&"boss1_charge_start", -14.0)
 
 func boss1_dash_sfx():
-	pass
+	AudioManager.play_sfx(&"boss1_charge", -8.0)
 
 func boss1_post_dash_sfx(): # Boss1 hits head against the wall
-	pass
+	AudioManager.play_sfx(&"boss1_hits_wall", -12.0)
 
 func boss1_change_level_sfx():
-	pass
+	AudioManager.play_sfx(&"boss1_stage_change", -8.0)
 
 # Boss1 shooting: set in Boss1 Shooter Component
 # Boss1 suffer: set in Boss1 DmgTaker Component

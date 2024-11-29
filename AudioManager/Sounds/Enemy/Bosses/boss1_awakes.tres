@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="SFXData" load_steps=3 format=3 uid="uid://cq7wtosycgcty"]
+
+[ext_resource type="Script" uid="uid://dguxp5teonsit" path="res://AudioManager/sfx_data.gd" id="1_a4521"]
+[ext_resource type="AudioStream" uid="uid://b6rffna6osoi0" path="res://AudioManager/Sounds/Enemy/Bosses/boss1_awakes.wav" id="2_04iot"]
+
+[resource]
+script = ExtResource("1_a4521")
+sound = ExtResource("2_04iot")
+sounds = Array[AudioStream]([])
+playback_mode = 0
+pausable = false
+randomize_pitch_scale = false
+pitch_scale_min = 1.0
+pitch_scale_max = 1.0
+metadata/_custom_type_script = ExtResource("1_a4521")

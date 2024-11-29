@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="SFXData" load_steps=3 format=3 uid="uid://d258pl3oedtk4"]
+
+[ext_resource type="Script" uid="uid://dguxp5teonsit" path="res://AudioManager/sfx_data.gd" id="1_aecm8"]
+[ext_resource type="AudioStream" uid="uid://d0um275l25g5q" path="res://AudioManager/Sounds/Enemy/Bosses/boss1_shot.wav" id="2_rmc8y"]
+
+[resource]
+script = ExtResource("1_aecm8")
+sound = ExtResource("2_rmc8y")
+sounds = Array[AudioStream]([])
+playback_mode = 0
+pausable = false
+randomize_pitch_scale = true
+pitch_scale_min = 0.95
+pitch_scale_max = 1.05
+metadata/_custom_type_script = ExtResource("1_aecm8")
