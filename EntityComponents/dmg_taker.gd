@@ -50,7 +50,7 @@ func take_dmg(amount: int):
 			regen_timer.stop()
 		died.emit()
 		Events.entity_died.emit(self)
-		if shake_screen_upon_death: AppManager.camera.shake(0.1, 20)
+		if shake_screen_upon_death: AppManager.camera.shake(0.2, 20)
 		if death_sfx: AudioManager.play_sfx(death_sfx)
 	else:
 		suffered.emit(current_hp)

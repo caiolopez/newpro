@@ -34,11 +34,10 @@ var hero_vel: Vector2
 var hero_dir: int
 var la_timer: Timer
 var last_hero_dir: int
-var camera_pos_when_hero_died: Vector2
+var meta_position: Vector2
 
 func _ready():
 	state_machine.start()
-	Events.hero_died.connect(func(): camera_pos_when_hero_died = position)
 	Events.hero_entered_camera_locker.connect(lock_camera)
 	Events.hero_exited_camera_locker.connect(unlock_camera)
 	Events.hero_first_spawned.connect(func():
@@ -84,11 +83,7 @@ func is_hero_just_reduced_velocity(threshold, axes: Constants.Axes) -> bool:
 	hero_last_velocity = Vector2(hero.velocity.x, hero.velocity.y)
 	return is_breaking
 
-func step_shake(delta: float):
-	var pos = position
-	if not AppManager.hero.state_machine.current_state.death_prone:
-		pos = camera_pos_when_hero_died
-	
+func step_shake(delta: float):	
 	if _current_shake_duration > 0:
 		_current_shake_duration -= delta
 
@@ -97,18 +92,17 @@ func step_shake(delta: float):
 			var magnitude_multiplier = _current_shake_duration / _shake_duration
 			current_amount *= magnitude_multiplier
 
-		position = pos + Vector2(
+		position = position + Vector2(
 			randf_range(-current_amount, current_amount), 
 			randf_range(-current_amount, current_amount)
 		)
-		
 
 func step_lookahead_y(delta: float):
 	if hero_vel.y > 0:
 		current_lookahead.y = lerp(0.0, lookahead_amount.y, minf(abs(hero_vel.y), lookahead_activation_vel.y) / lookahead_activation_vel.y)
 	else: current_lookahead.y = lerp(current_lookahead.y, 0.0, clampf(10 * delta, 0, 1))
 
-func shake(duration: float = 0.2, amount: float = 40, reducing_magnitude: bool = true):
+func shake(duration: float = 0.2, amount: float = 60, reducing_magnitude: bool = true):
 	if AppManager.is_accessibility_mode: return
 	_shake_amount = amount
 	_shake_duration = duration
@@ -145,7 +139,9 @@ func step_camera_position(delta: float):
 	if hero:
 		target = hero.global_position + current_lookahead
 	step_camera_lockers()
-	position = lerp_vector2(position, target, current_lerp_speed, delta)
+	meta_position = lerp_vector2(meta_position, target, current_lerp_speed, delta)
+	position = meta_position
+	step_shake(delta)
 
 func debug_gizmos():
 	target_marker.global_position = target
