@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="SFXData" load_steps=3 format=3 uid="uid://dd4skpvhnanqm"]
+
+[ext_resource type="Script" uid="uid://dguxp5teonsit" path="res://AudioManager/sfx_data.gd" id="1_6v3fh"]
+[ext_resource type="AudioStream" uid="uid://d0ah8t1qlb4hu" path="res://AudioManager/Sounds/Elevators/elevator1_start.wav" id="2_j04n5"]
+
+[resource]
+script = ExtResource("1_6v3fh")
+sound = ExtResource("2_j04n5")
+sounds = Array[AudioStream]([])
+playback_mode = 0
+pausable = false
+randomize_pitch_scale = true
+pitch_scale_min = 0.97
+pitch_scale_max = 1.03
+metadata/_custom_type_script = ExtResource("1_6v3fh")
