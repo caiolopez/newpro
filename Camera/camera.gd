@@ -34,9 +34,11 @@ var hero_vel: Vector2
 var hero_dir: int
 var la_timer: Timer
 var last_hero_dir: int
+var camera_pos_when_hero_died: Vector2
 
 func _ready():
 	state_machine.start()
+	Events.hero_died.connect(func(): camera_pos_when_hero_died = position)
 	Events.hero_entered_camera_locker.connect(lock_camera)
 	Events.hero_exited_camera_locker.connect(unlock_camera)
 	Events.hero_first_spawned.connect(func():
@@ -83,8 +85,11 @@ func is_hero_just_reduced_velocity(threshold, axes: Constants.Axes) -> bool:
 	return is_breaking
 
 func step_shake(delta: float):
+	var pos = position
+	if not AppManager.hero.state_machine.current_state.death_prone:
+		pos = camera_pos_when_hero_died
+	
 	if _current_shake_duration > 0:
-		current_lerp_speed = Vector2.ZERO
 		_current_shake_duration -= delta
 
 		var current_amount = _shake_amount
@@ -92,10 +97,11 @@ func step_shake(delta: float):
 			var magnitude_multiplier = _current_shake_duration / _shake_duration
 			current_amount *= magnitude_multiplier
 
-		position = position + Vector2(
+		position = pos + Vector2(
 			randf_range(-current_amount, current_amount), 
 			randf_range(-current_amount, current_amount)
 		)
+		
 
 func step_lookahead_y(delta: float):
 	if hero_vel.y > 0:
