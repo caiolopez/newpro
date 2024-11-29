@@ -12,7 +12,9 @@ enum State {ORIGIN, DESTINATION, MOVING_TO_ORIGIN, MOVING_TO_DESTINATION}
 @export var savable: bool = false ## If true and reached end, will save its status upon checkpoint. Note: will not save state if hasn't gone all the way to end.
 @export_category("Audio")
 @export var start_sfx: StringName = &""
+@export var start_sfx_volume_adjustment: float = 0.0
 @export var stop_sfx: StringName = &""
+@export var stop_sfx_volume_adjustment: float = 0.0
 @export var set_pitch_to_speed: bool = true ## Causes an optional AudioEmiter attached to Elevator Node to change its pitch with motion, simulating an engine sound.
 @onready var starting_position: Vector2 = elevator_node.position if elevator_node else Vector2.ZERO
 var audio_emiter: AudioEmiter = null
@@ -139,13 +141,13 @@ func _set_all_buttons_to_inactive():
 func _sfx_start():
 	if not is_moving:
 		is_moving = true
-		if start_sfx: AudioManager.play_sfx(start_sfx)
+		if start_sfx: AudioManager.play_sfx(start_sfx, start_sfx_volume_adjustment)
 		if audio_emiter: audio_emiter.activate()
 
 func _sfx_stop():
 	if is_moving:
 		is_moving = false
-		if stop_sfx: AudioManager.play_sfx(stop_sfx)
+		if stop_sfx: AudioManager.play_sfx(stop_sfx, stop_sfx_volume_adjustment)
 		if audio_emiter: audio_emiter.deactivate()
 
 func _step_sfx_pitch():
