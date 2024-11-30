@@ -6,6 +6,7 @@ extends CanvasLayer
 @onready var confirmation_menu = $ConfirmationMenu
 @onready var game_time_label = $GameTimeLabel
 @onready var curtain = $BlackCurtain
+@onready var screen_flash = $ScreenFlash
 @onready var notification_label = $OnScreenNotificationLabel
 
 func _ready():

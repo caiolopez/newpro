@@ -1600,8 +1600,6 @@ cloning_frequence = 60
 target = NodePath("../Gfx/AnimatedSprite2D")
 
 [node name="BwShaderSetter" parent="BlurFX" instance=ExtResource("27_8ng6k")]
-dark_color = Color(1, 0, 1, 1)
-light_color = Color(0, 1, 1, 1)
 transparency = 0.85
 
 [node name="IsInWaterNotifier_GUN" parent="." instance=ExtResource("49_p6sxx")]

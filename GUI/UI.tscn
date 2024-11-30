@@ -1,8 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://cgntexit802at"]
+[gd_scene load_steps=19 format=3 uid="uid://cgntexit802at"]
 
 [ext_resource type="Script" uid="uid://bbt6ffj2porhu" path="res://GUI/black_curtain.gd" id="1_2fegy"]
 [ext_resource type="Script" uid="uid://bra8xqptlx1ww" path="res://GUI/ui.gd" id="1_lqxss"]
 [ext_resource type="Theme" uid="uid://dediyadnq7o1d" path="res://GUI/main.theme" id="2_b5xco"]
+[ext_resource type="Script" uid="uid://nyaswtnmu7ku" path="res://GUI/screen_flash.gd" id="4_7iao3"]
 [ext_resource type="Script" uid="uid://cwnmki2wpu7uo" path="res://AppManager/slide_reel.gd" id="5_edbe7"]
 [ext_resource type="PackedScene" uid="uid://ms4uukon6dti" path="res://GUI/MainMenu.tscn" id="6_60d5t"]
 [ext_resource type="Texture2D" uid="uid://0l05qi2ha4p5" path="res://hero.png" id="6_j0bi8"]
@@ -44,6 +45,14 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 script = ExtResource("1_2fegy")
+
+[node name="ScreenFlash" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_7iao3")
 
 [node name="Hud" type="Node" parent="."]
 script = ExtResource("12_qer54")

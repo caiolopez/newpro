@@ -81,6 +81,7 @@ func place_prop(global_pos: Vector2, prop_name: StringName, color_pair: Array[Co
 		prop = prop_pools[prop_name].pop_back()
 	
 	prop.visible = true
+	prop.z_index = 1
 	prop.global_position = global_pos
 	if auto_play: prop.play()
 	if color_pair.size() == 2: _color_prop(prop, color_pair)

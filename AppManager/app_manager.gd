@@ -7,7 +7,7 @@ var hero: Hero = null
 var camera: Camera2D = null
 var minimap_node
 var is_speedrun_mode: bool = false
-var is_accessibility_mode: bool = false
+var is_accessibility_mode: bool = false # Currently only changes hero colors
 var dedicated_blunder_button: bool = true
 var game_time: float = 0.0
 var teleporters_are_active: bool = false

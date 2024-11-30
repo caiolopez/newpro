@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bricuoof7bhn1"]
 
-[ext_resource type="Script" path="res://EntityComponents/blur_fx.gd" id="1_3c2qd"]
+[ext_resource type="Script" uid="uid://bamt46fgya231" path="res://EntityComponents/blur_fx.gd" id="1_3c2qd"]
 
 [node name="BlurFX" type="Node2D"]
 script = ExtResource("1_3c2qd")
