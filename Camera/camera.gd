@@ -105,7 +105,7 @@ func step_lookahead_y(delta: float):
 	else: current_lookahead.y = lerp(current_lookahead.y, 0.0, clampf(10 * delta, 0, 1))
 
 func shake(duration: float = 0.2, amount: float = 60, reducing_magnitude: bool = true):
-	if AppManager.is_accessibility_mode: return
+	if UI.options_menu.options_data["no_shake"]: return
 	_shake_amount = amount
 	_shake_duration = duration
 	_current_shake_duration = duration

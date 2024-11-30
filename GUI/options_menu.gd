@@ -20,7 +20,9 @@ var options_data = {
 	"speedrun_mode": false,
 	"render_background": true,
 	"accessibility_mode": true,
-	"fullscreen": false
+	"fullscreen": false,
+	"no_shake": false,
+	"no_flash": false
 }
 
 func _ready():
