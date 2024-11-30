@@ -6,6 +6,7 @@ var death_prone: bool = false
 var curr_sign: int = 1
 
 func on_enter():
+	UI.screen_flash.flash(1, Color(1.0, 0.0, 0.0, 0.1))
 	Events.hero_respawned_at_checkpoint.emit()
 	AudioManager.hooks.hero_respawn_sfx()
 
