@@ -1,7 +1,7 @@
 class_name Bullet extends Area2D
 
 var is_foe: bool
-var bullet_type: Constants.BulletType
+var bullet_type: Constants.BulletTypes
 var DMG_AMOUNT: int = 1
 var WATER_DRAG = 0.8
 var AIR_DRAG = 0
@@ -53,7 +53,7 @@ func _physics_process(delta):
 	global_position += delta*velocity
 
 func on_water_status_changed(is_in_water: bool, water: Water):
-	if is_in_water != (bullet_type == Constants.BulletType.UNDERWATER):
+	if is_in_water != (bullet_type == Constants.BulletTypes.UNDERWATER):
 		current_drag = WATER_DRAG
 		current_gravity = gravity
 		dull = true
@@ -66,13 +66,13 @@ func on_water_status_changed(is_in_water: bool, water: Water):
 func animate():
 	var a: String
 	match bullet_type:
-		Constants.BulletType.REGULAR:
+		Constants.BulletTypes.REGULAR:
 			a = "regular"
-		Constants.BulletType.FIRE:
+		Constants.BulletTypes.FIRE:
 			a = "fire"
-		Constants.BulletType.UNDERWATER:
+		Constants.BulletTypes.UNDERWATER:
 			a = "underwater"
-		Constants.BulletType.LIVING:
+		Constants.BulletTypes.LIVING:
 			a = "living"
 	if dull:
 		a += "_dull"

@@ -3,7 +3,7 @@ class_name Shooter extends Node2D
 @export var pellet_amount: int = 1 ## The amount of projectiles released in a shot.
 @export var pellet_separation_angle: float = 30 ## The amount of projectiles released in a shot.
 @export var pellet_speed: float = 500
-@export var bullet_type: Constants.BulletType
+@export var bullet_type: Constants.BulletTypes
 @export var shoots_underwater_ammo: bool = false
 @export var rotates_with_parent: bool = false
 @export var time_before_visible: float = 0.01 ## The time it takes for the bullet to become visible after being shot. Useful to hide bullets before they left the barrel, for instance.
@@ -85,7 +85,7 @@ func shoot(speed: float = pellet_speed, angle: float = 0, amount: int = pellet_a
 
 	var b_type = bullet_type
 	if shoots_underwater_ammo and is_in_water:
-		b_type = Constants.BulletType.UNDERWATER
+		b_type = Constants.BulletTypes.UNDERWATER
 
 	for i in range(amount):
 		var bullet: Area2D = BulletManager.place_bullet(

@@ -8,7 +8,7 @@ var stunned_time_after_dash: float = 1
 func _ready():
 	$DmgTaker.suffered.connect(on_suffered)
 	$DmgTaker.died.connect(func(): state_machine.set_state("BStateDying"))
-	$DmgTaker.resurrected.connect(func(): state_machine.set_state("BStateDormant"))
+	$DmgTaker.restored.connect(func(): state_machine.set_state("BStateDormant"))
 	$Area2D.area_entered.connect(_on_area_2d_area_entered)
 
 func _on_area_2d_area_entered(area):

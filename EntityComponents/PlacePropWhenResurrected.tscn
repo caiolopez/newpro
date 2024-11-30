@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://hdsytneyu0fx"]
+
+[ext_resource type="Script" uid="uid://bqg8afsqfiq31" path="res://EntityComponents/place_prop_when_resurrected.gd" id="1_c5845"]
+
+[node name="PlacePropWhenResurrected" type="Node"]
+script = ExtResource("1_c5845")

@@ -3,7 +3,7 @@ class_name DmgTaker extends Area2D
 @export var HP_AMOUNT: int = 1
 @export var RESET_UPON_RESPAWN: bool = true ## When set to true, entities will have all their attributes reset when the Hero respawns.
 @export var QUEUE_FREE_ON_CHECKPOINT: bool = true ## When set to true, will prevent dead entities from reappearing when the Hero respawns.
-@export var immune_to: Array[Constants.BulletType] = [] ## Bullet types in this list will not affect entities.
+@export var immune_to: Array[Constants.BulletTypes] = [] ## Bullet types in this list will not affect entities.
 @export var auto_regen_time: float = 0.0 ## The time it takes for it to regain one HP automatically. Set to zero to disable feature.
 @export var death_sfx: StringName = &"" ## The sound this entity makes when it dies.
 @export var death_sfx_volume_adjustment: float = 0.0
@@ -16,9 +16,10 @@ var currently_immune: bool = false
 var regen_timer: Timer = null
 
 signal died
-signal resurrected
-signal suffered(hp: int)
-signal regenerated
+signal restored ## When the entity is reset
+signal resurrected ## When the entity restored was previously dead
+signal regenerated ## When the entity is added one hp, automatically
+signal suffered(hp: int) ## When the entity takes any damage, except for the last
 
 func _ready():
 	Events.hero_reached_checkpoint.connect(commit_status)
@@ -39,7 +40,7 @@ func regen_dmg():
 		current_hp = mini(current_hp + 1, HP_AMOUNT)
 		regenerated.emit()
 		Events.entity_regenerated.emit(self)
-		if DebugTools.print_stuff: print(get_parent().name, ": HP restored: 1. Current HP: ", current_hp)
+		if DebugTools.print_stuff: print(get_parent().name, ": HP regained: 1. Current HP: ", current_hp)
 
 func take_dmg(amount: int):
 	if currently_immune\
@@ -83,8 +84,10 @@ func commit_status():
 
 func reset_status():
 	if not RESET_UPON_RESPAWN: return
+	if current_hp == 0:
+		resurrected.emit()
 	current_hp = HP_AMOUNT
 	if regen_timer:
 		regen_timer.start()
-	resurrected.emit()
-	Events.entity_resurrected.emit(self)
+	restored.emit()
+	Events.entity_restored.emit(self)

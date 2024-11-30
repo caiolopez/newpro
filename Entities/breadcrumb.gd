@@ -8,12 +8,12 @@ func _ready() -> void:
 	if dmg_taker != null:
 		dmg_taker.died.connect(_on_died)
 		dmg_taker.suffered.connect(func(_hp): Utils.colorize_silhouette(true, self, 0.1))
-		dmg_taker.resurrected.connect(_on_resurrected)
+		dmg_taker.restored.connect(_on_restored)
 
 func _on_died() -> void:
 	animation = &"interacted"
 
-func _on_resurrected() -> void:
+func _on_restored() -> void:
 	animation = &"default"
 	
 func set_as_interacted() -> void:
@@ -30,6 +30,6 @@ func _geld_entity() -> void:
 		Events.hero_reached_checkpoint.disconnect(commit_status)
 	if dmg_taker.died.is_connected(_on_died):
 		dmg_taker.died.disconnect(_on_died)
-	if dmg_taker.resurrected.is_connected(_on_resurrected):
-		dmg_taker.resurrected.disconnect(_on_resurrected)
+	if dmg_taker.restored.is_connected(_on_restored):
+		dmg_taker.restored.disconnect(_on_restored)
 	dmg_taker.set_deferred("disabled", true)

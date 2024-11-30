@@ -249,7 +249,7 @@ func handle_powerups(type: StringName):
 		"NONE":
 			return
 		"INCENDIARY_AMMO":
-			shooter.bullet_type = Constants.BulletType.FIRE
+			shooter.bullet_type = Constants.BulletTypes.FIRE
 			SaveManager.log_hero_change("got_incendiary_ammo", true)
 		"UNDERWATER_AMMO":
 			shooter.shoots_underwater_ammo = true
@@ -278,7 +278,7 @@ func reset_all_variables() -> void:
 	last_water_color = []
 	current_checkpoint_path = NodePath()
 	can_dive = false
-	shooter.bullet_type = Constants.BulletType.REGULAR
+	shooter.bullet_type = Constants.BulletTypes.REGULAR
 	shooter.shoots_underwater_ammo = false
 	resize_collider_to_regular()
 	shooter.is_in_water = false

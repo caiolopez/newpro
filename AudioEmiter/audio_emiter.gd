@@ -25,7 +25,7 @@ func _ready():
 	for child in get_parent().get_children():
 		if child is DmgTaker:
 			child.died.connect(deactivate)
-			child.resurrected.connect(activate)
+			child.restored.connect(activate)
 			break
 
 func _process(_delta: float) -> void:

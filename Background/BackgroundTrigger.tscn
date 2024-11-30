@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b44gelsmm85o0"]
 
-[ext_resource type="Script" path="res://Background/background_trigger.gd" id="1_dgffw"]
+[ext_resource type="Script" uid="uid://s713jvhuuy6g" path="res://Background/background_trigger.gd" id="1_dgffw"]
 
 [node name="BGTrigger" type="Area2D"]
 collision_layer = 0

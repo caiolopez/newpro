@@ -17,7 +17,7 @@ func _ready() -> void:
 	if _monitor_entity_suffer:
 		Events.entity_suffered.connect( _on_entity_suffered)
 	if _monitor_entity_resurrect:
-		Events.entity_resurrected.connect(_on_entity_resurrected)
+		Events.entity_restored.connect(_on_entity_restored)
 	if _monitor_entity_regenerated:
 		Events.entity_regenerated.connect(_on_entity_regenerated)
 	if _monitor_entity_shot:
@@ -39,7 +39,7 @@ func _on_entity_died(_entity: Node):
 func _on_entity_suffered(_entity: Node):
 	pass
 
-func _on_entity_resurrected(_entity: Node):
+func _on_entity_restored(_entity: Node):
 	pass
 
 func _on_entity_regenerated(_entity: Node):

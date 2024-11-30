@@ -18,7 +18,7 @@ signal hero_first_spawned()  # When the hero is first placed in the map.
 # For background animations
 signal entity_died(entity: Node)
 signal entity_suffered(entity: Node)
-signal entity_resurrected(entity: Node)
+signal entity_restored(entity: Node)
 signal entity_regenerated(entity: Node)
 signal entity_shot(entity: Node)
 signal boss_changed_stage(boss: Node)

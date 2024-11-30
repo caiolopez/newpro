@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://4s6dlxxxx05e"]
 
-[ext_resource type="Script" path="res://EntityComponents/place_prop_when_dead.gd" id="1_0vgaq"]
+[ext_resource type="Script" uid="uid://cux7tkb2ccv4l" path="res://EntityComponents/place_prop_when_dead.gd" id="1_0vgaq"]
 
 [node name="PlacePropWhenDead" type="Node"]
 script = ExtResource("1_0vgaq")

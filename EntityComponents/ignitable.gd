@@ -13,11 +13,11 @@ func _ready() -> void:
 				area.ignite()
 				if DebugTools.print_stuff: print(area, " was ignited by ", self)
 		elif area is Bullet\
-		and area.bullet_type == Constants.BulletType.FIRE:
+		and area.bullet_type == Constants.BulletTypes.FIRE:
 			self.ignite()
 	)
 	dmg_taker.died.connect(on_died)
-	dmg_taker.resurrected.connect(on_resurrected)
+	dmg_taker.restored.connect(on_restored)
 	
 	ignition_timer = Timer.new()
 	ignition_timer.one_shot = true
@@ -36,6 +36,6 @@ func on_died():
 	ignition_timer.stop()
 	is_ignited = false
 
-func on_resurrected():
+func on_restored():
 	ignition_timer.stop()
 	is_ignited = false

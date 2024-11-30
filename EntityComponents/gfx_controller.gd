@@ -20,7 +20,7 @@ func _ready():
 
 	if dmg_taker != null:
 		dmg_taker.died.connect(on_died)
-		dmg_taker.resurrected.connect(on_resurrected)
+		dmg_taker.restored.connect(on_restored)
 		dmg_taker.suffered.connect(on_suffered)
 		dmg_taker.regenerated.connect(on_regenerated)
 
@@ -55,7 +55,7 @@ func on_died():
 	if hide_when_dead:
 		visible = false
 
-func on_resurrected():
+func on_restored():
 	visible = true
 
 func on_suffered(_hp):

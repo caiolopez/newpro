@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://77ftnof8ow4w"]
+[gd_scene load_steps=24 format=3 uid="uid://77ftnof8ow4w"]
 
 [ext_resource type="PackedScene" uid="uid://upm0adhb85ik" path="res://EntityComponents/DmgDealer.tscn" id="1_5drfc"]
 [ext_resource type="PackedScene" uid="uid://box2ff3vwcc7w" path="res://EntityComponents/DmgTaker.tscn" id="2_kompw"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dcoepnhhviad0" path="res://EntityComponents/Figure8Mover.tscn" id="8_20wvu"]
 [ext_resource type="Script" uid="uid://dij16f1j6bf1s" path="res://AudioEmiter/audio_emiter.gd" id="9_7s6el"]
 [ext_resource type="PackedScene" uid="uid://dqho171mcdsmr" path="res://EntityComponents/FaceHero.tscn" id="9_qg6oe"]
+[ext_resource type="PackedScene" uid="uid://hdsytneyu0fx" path="res://EntityComponents/PlacePropWhenResurrected.tscn" id="10_e18np"]
 [ext_resource type="PackedScene" uid="uid://4s6dlxxxx05e" path="res://EntityComponents/PlacePropWhenDead.tscn" id="10_gt7jv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v2koo"]
@@ -143,6 +144,10 @@ width = 25.0
 [node name="PlacePropWhenDead" parent="." node_paths=PackedStringArray("color_pair_source") instance=ExtResource("10_gt7jv")]
 prop_to_place = &"puff"
 random_radius = 40.0
+color_pair_source = NodePath("../GfxController/BwShaderSetter")
+
+[node name="PlacePropWhenResurrected" parent="." node_paths=PackedStringArray("color_pair_source") instance=ExtResource("10_e18np")]
+prop_to_place = &"puff"
 color_pair_source = NodePath("../GfxController/BwShaderSetter")
 
 [node name="AudioEmiter" type="Node2D" parent="."]

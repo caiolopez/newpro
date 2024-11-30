@@ -73,6 +73,7 @@ func _physics_process(delta):
 			current_state = State.MOVING_TO_DESTINATION
 	else:
 		if current_velocity.length() > 0:
+			AppManager.camera.shake(0.1, 10)
 			_sfx_stop()
 		elevator_node.position = target_position
 		current_velocity = Vector2.ZERO
