@@ -31,7 +31,6 @@ func _place_next_prop():
 			prop_color_pair = color_pair_source.get_color()
 		if random_radius > 0:
 			placement_position += Vector2(randf_range(-random_radius, random_radius), randf_range(-random_radius, random_radius))
-		await get_tree().physics_frame # Physics interpolation fix
 		PropManager.place_prop(placement_position, prop_to_place, prop_color_pair)
 		_props_placed += 1
 		

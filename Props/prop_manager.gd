@@ -85,8 +85,8 @@ func place_prop(global_pos: Vector2, prop_name: StringName, color_pair: Array[Co
 	if auto_play: prop.play()
 	if color_pair.size() == 2: _color_prop(prop, color_pair)
 	last_placement[prop_name] = {"position": global_pos, "time": current_time}
-	await get_tree().physics_frame # Physics interpolation fix
 	prop.visible = true
+	prop.reset_physics_interpolation()
 
 	return prop
 
