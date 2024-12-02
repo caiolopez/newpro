@@ -1,34 +1,23 @@
-extends Node2D
+class_name DoorLookAtPlayer extends VisibleOnScreenEnabler2D
 
 @onready var door_sprite: AnimatedSprite2D = get_parent()
 var target: Node2D
 
-func _physics_process(_delta: float) -> void:
-	if !target:
-		door_sprite.animation = "open"
-		return
-
-	# Probably not the best way to do this, but I wrote this at 4AM so uuuuh...
-	# - Hexany
-	if target.global_position.x < self.global_position.x:
-		if target.global_position.y < self.global_position.y - 80.0:
-			door_sprite.animation = "look_left_up"
-		elif target.global_position.y > self.global_position.y + 80.0:
-			door_sprite.animation = "look_left_down"
-		else:
-			door_sprite.animation = "look_left"
+func _ready() -> void:
+	if AppManager.hero:
+		target = AppManager.hero
 	else:
-		if target.global_position.y < self.global_position.y - 80.0:
-			door_sprite.animation = "look_right_up"
-		elif target.global_position.y > self.global_position.y + 80.0:
-			door_sprite.animation = "look_right_down"
-		else:
-			door_sprite.animation = "look_right"
+		AppManager.hero_ready.connect(func():
+			target = AppManager.hero
+			)
 
+func _physics_process(_delta: float) -> void:
+	var x_dir: int = sign(target.global_position.x - self.global_position.x)
+	var y_diff: int = target.global_position.y - self.global_position.y
 
-func _on_smart_area_2d_body_entered(body: Node2D) -> void:
-	target = body
+	var animation_name: StringName = &""
+	animation_name = &"look_left" if x_dir == -1 else &"look_right"
+	if y_diff < -80: animation_name += &"_up"
+	elif y_diff > 80: animation_name += &"_down"
 
-
-func _on_smart_area_2d_body_exited(_body: Node2D) -> void:
-	target = null
+	door_sprite.animation = animation_name

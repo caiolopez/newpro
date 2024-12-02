@@ -1,17 +1,16 @@
-[gd_scene load_steps=24 format=3 uid="uid://ruri8ytnt6k"]
+[gd_scene load_steps=22 format=3 uid="uid://ruri8ytnt6k"]
 
 [ext_resource type="Script" uid="uid://dnvc0muxjskkx" path="res://SwitchesAndDoors/door.gd" id="1_bavxp"]
-[ext_resource type="Script" uid="uid://dnpyqmg5e03hs" path="res://state_machine.gd" id="3_vgayv"]
+[ext_resource type="Script" uid="uid://nx0nm05072bl" path="res://state_machine.gd" id="3_vgayv"]
 [ext_resource type="Script" uid="uid://bfgoxj0jef0x2" path="res://SwitchesAndDoors/state_open.gd" id="4_qyouu"]
-[ext_resource type="Script" uid="uid://c45mumgqc6g06" path="res://SwitchesAndDoors/state_closed.gd" id="4_vsukd"]
+[ext_resource type="Script" uid="uid://cmuedsb6wno2w" path="res://SwitchesAndDoors/state_closed.gd" id="4_vsukd"]
 [ext_resource type="Script" uid="uid://fxxiwenoiem4" path="res://SwitchesAndDoors/state_opening.gd" id="5_dl3qx"]
 [ext_resource type="Script" uid="uid://dnduix8avk80r" path="res://SwitchesAndDoors/state_closing.gd" id="6_fh1vt"]
 [ext_resource type="Script" uid="uid://ddoigraqtywoq" path="res://SwitchesAndDoors/state_rev_from_closing.gd" id="8_blgy7"]
 [ext_resource type="Texture2D" uid="uid://bafy7qdnjv6t5" path="res://SwitchesAndDoors/Gfx/door_anim.png" id="9_14l4i"]
-[ext_resource type="Script" uid="uid://dfjkf3nppqaq4" path="res://SwitchesAndDoors/door_look_at_player.gd" id="9_iqyh2"]
+[ext_resource type="PackedScene" uid="uid://c51o14wratpd3" path="res://SwitchesAndDoors/DoorLookAtPlayer.tscn" id="9_iqyh2"]
 [ext_resource type="PackedScene" uid="uid://1votnx34efdj" path="res://EntityComponents/BWShaderSetter.tscn" id="10_c6eg3"]
 [ext_resource type="Texture2D" uid="uid://mvtvu0ch35er" path="res://SwitchesAndDoors/Gfx/door_stop.png" id="10_wbtyf"]
-[ext_resource type="Script" uid="uid://bt8tr6bf8c2lp" path="res://_smart_area_2d.gd" id="11_r8x4p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_an4kw"]
 size = Vector2(80, 240)
@@ -115,9 +114,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_iqyh2"]
-size = Vector2(512, 512)
-
 [node name="Door" type="AnimatableBody2D" groups=["kills_bullets", "sticky"]]
 script = ExtResource("1_bavxp")
 
@@ -151,21 +147,10 @@ z_index = -1
 use_parent_material = true
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_q4n6f")
-animation = &"look_right"
+animation = &"closed"
 
-[node name="DoorLookAtPlayer" type="Node2D" parent="AnimatedSprite2D"]
-script = ExtResource("9_iqyh2")
-
-[node name="SmartArea2D" type="Area2D" parent="AnimatedSprite2D/DoorLookAtPlayer"]
-collision_layer = 0
-collision_mask = 8
-monitorable = false
-script = ExtResource("11_r8x4p")
-metadata/init_time = 15909789
-metadata/_custom_type_script = ExtResource("11_r8x4p")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/DoorLookAtPlayer/SmartArea2D"]
-shape = SubResource("RectangleShape2D_iqyh2")
+[node name="DoorLookAtPlayer2" parent="AnimatedSprite2D" instance=ExtResource("9_iqyh2")]
+scale = Vector2(1, 1)
 
 [node name="DoorStop" type="Sprite2D" parent="."]
 use_parent_material = true
@@ -175,6 +160,3 @@ texture = ExtResource("10_wbtyf")
 [node name="BwShaderSetter" parent="." instance=ExtResource("10_c6eg3")]
 dark_color = Color(0.211765, 0.133333, 0.105882, 1)
 light_color = Color(0.878431, 0.67451, 0.235294, 1)
-
-[connection signal="body_entered" from="AnimatedSprite2D/DoorLookAtPlayer/SmartArea2D" to="AnimatedSprite2D/DoorLookAtPlayer" method="_on_smart_area_2d_body_entered"]
-[connection signal="body_exited" from="AnimatedSprite2D/DoorLookAtPlayer/SmartArea2D" to="AnimatedSprite2D/DoorLookAtPlayer" method="_on_smart_area_2d_body_exited"]

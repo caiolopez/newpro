@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c51o14wratpd3"]
+
+[ext_resource type="Script" uid="uid://dfjkf3nppqaq4" path="res://SwitchesAndDoors/door_look_at_player.gd" id="1_dydo8"]
+
+[node name="DoorLookAtPlayer" type="VisibleOnScreenEnabler2D"]
+enable_node_path = NodePath(".")
+script = ExtResource("1_dydo8")
