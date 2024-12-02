@@ -7,6 +7,7 @@ var WATER_DRAG = 0.8
 var AIR_DRAG = 0
 var current_dark_color: Color
 var current_light_color: Color
+var current_muzzle: Node
 var velocity: Vector2
 var current_drag: float
 var current_gravity: float
@@ -16,36 +17,42 @@ var time_before_visible: float = 0.05
 var timer_before_visible: Timer
 var dull: bool = false
 var handled: bool = true
+var active: bool = false
 
 func _ready():
 	$IsInWaterNotifier.water_state_changed.connect(on_water_status_changed)
-	$VisibleOnScreenNotifier2D.screen_exited.connect(func(): BulletManager.release_bullet(self))
+	$VisibleOnScreenNotifier2D.screen_exited.connect(func(): BulletManager.return_bullet(self))
 
 	body_entered.connect(func(body):
 		if body.is_in_group("kills_bullets"):
 			kill_bullet()
 	)
 
-	timer_before_visible = Timer.new()
-	add_child(timer_before_visible)
-	timer_before_visible.timeout.connect(func(): visible = true)
-
 	current_drag = AIR_DRAG
 	current_gravity = 0
 	visible = false
 	await get_tree().process_frame # TODO: Come up with a way to prevent those bullets from being instantiated instead.
 	if not $VisibleOnScreenNotifier2D.is_on_screen():
-		BulletManager.release_bullet(self)
+		BulletManager.return_bullet(self)
 
-func restart():
-	timer_before_visible.start(time_before_visible)
+func activate():
 	current_drag = AIR_DRAG
 	current_gravity = 0
 	dull = false
 	handled = false
-	animate()
+	active = true
+	set_up_colors_and_animation()
+	color_muzzle(current_muzzle)
+	show()
+	reset_physics_interpolation()
+
+func deactivate():
+	active = false
+	hide()
+	$AnimatedSprite2D.stop()
 
 func _physics_process(delta):
+	if not active: return
 	var drag: Vector2
 	drag = -velocity * current_drag
 	acceleration = drag + current_gravity * Vector2.DOWN
@@ -58,12 +65,13 @@ func on_water_status_changed(is_in_water: bool, water: Water):
 		current_gravity = gravity
 		dull = true
 
-	animate()
+	set_up_colors_and_animation()
 
 	if water:
 		if abs(global_position.y - water.get_surface_global_position()) <= 16:
 			PropManager.place_prop(Vector2(global_position.x, water.get_surface_global_position()), &"splash", water.bw_shader_setter.get_color())
-func animate():
+
+func set_up_colors_and_animation():
 	var a: String
 	match bullet_type:
 		Constants.BulletTypes.REGULAR:
@@ -87,13 +95,14 @@ func animate():
 	
 	$BwShaderSetter.set_color(current_dark_color, current_light_color)
 
-func color_owner_muzzle(muzzle: Node2D):
+func color_muzzle(muzzle: Node2D):
 	if muzzle:
 		muzzle.get_node("BwShaderSetter").set_color(current_dark_color, current_light_color)
+		print(current_dark_color, current_light_color)
 
 func kill_bullet():
 	handled = true
-	var color_pair: Array[Color] = [current_dark_color, current_light_color]
 	AudioManager.hooks.bullet_die_sfx()
+	var color_pair: Array[Color] = [current_dark_color, current_light_color]
 	PropManager.place_prop(global_position, &"bullet_dies", color_pair)
-	BulletManager.release_bullet(self)
+	BulletManager.return_bullet(self)

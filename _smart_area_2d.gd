@@ -10,6 +10,9 @@ func _init():
 	if Engine.is_editor_hint():
 		child_entered_tree.connect(_make_collision_shape_unique)
 		set_meta("init_time", Time.get_ticks_msec())
+
+func _ready():
+	if Engine.is_editor_hint():
 		queue_redraw()
 
 func _make_all_collision_shapes_unique() -> void:
