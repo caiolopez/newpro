@@ -80,16 +80,10 @@ func update_clones(delta: float):
 				sprite.visible = false
 				times[i] = -1.0  # Deactivate the clone
 			else:
-				# Set visible on next frame using a call_deferred
-				if not sprite.visible:
-					_make_sprite_visible(sprite)
+				sprite.visible = true
+				sprite.reset_physics_interpolation()
 		else:
 			sprite.visible = false
-
-func _make_sprite_visible(sprite: Sprite2D) -> void:
-	await get_tree().physics_frame
-	if is_instance_valid(sprite):
-		sprite.visible = true
 
 func clear_trail() -> void:
 	for i in range(cloning_frequence):
