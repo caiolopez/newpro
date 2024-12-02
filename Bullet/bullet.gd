@@ -24,7 +24,7 @@ func _ready():
 	$VisibleOnScreenNotifier2D.screen_exited.connect(func(): BulletManager.return_bullet(self))
 
 	body_entered.connect(func(body):
-		if body.is_in_group("kills_bullets"):
+		if body.is_in_group("kills_bullets") and self.active:
 			kill_bullet()
 	)
 
