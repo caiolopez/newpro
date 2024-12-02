@@ -81,7 +81,7 @@ func update_clones(delta: float):
 				times[i] = -1.0  # Deactivate the clone
 			else:
 				sprite.visible = true
-				sprite.reset_physics_interpolation()
+				sprite.reset_physics_interpolation() # Important.
 		else:
 			sprite.visible = false
 

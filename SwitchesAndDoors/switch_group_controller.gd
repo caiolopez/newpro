@@ -20,11 +20,9 @@ func _ready() -> void:
 	if auto_off_time > 0:
 		Events.hero_died.connect(func():
 			_stop_auto_off()
-			print("HERO DIED")
 			)
 		auto_off_timer.timeout.connect(func():
 			close_whole_group()
-			print("ffffffffffffffffffffffff")
 			)
 		beep_timer.timeout.connect(func():
 			AudioManager.hooks.timed_door_beep_sfx()

@@ -56,6 +56,7 @@ func reset_behavior():
 	currently_dead = false
 	parent.global_position = parent_og_global_pos
 	inertia_only = false
+	parent.reset_physics_interpolation()
 
 
 func step_mov(delta: float):

@@ -49,14 +49,14 @@ func _on_shoot():
 		if c is AnimatedSprite2D:
 			c.play(&"shoot")
 
-			print(c.animation)
-
 func on_died():
 	if hide_when_dead:
 		visible = false
 
 func on_restored():
 	visible = true
+	reset_physics_interpolation()
+	get_parent().reset_physics_interpolation()
 
 func on_suffered(_hp):
 	Utils.colorize_silhouette(true, self, 0.1)

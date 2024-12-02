@@ -95,3 +95,4 @@ func reset_behavior():
 	velocity = Vector2(SPEED, 0.0)
 	face_hero_node.update.emit((1 if clockwise else -1), 0)
 	global_position = parent_og_global_pos
+	parent.reset_physics_interpolation()

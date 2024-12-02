@@ -44,6 +44,7 @@ func _reset_behavior():
 	time = 0.0
 	_randomize_time()
 	is_moving = true
+	parent.reset_physics_interpolation()
 
 func _on_died():
 	_stop_movement()
