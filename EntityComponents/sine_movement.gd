@@ -1,8 +1,7 @@
 class_name SineMovement
 extends Node
 
-@onready var parent := get_parent()
-
+@onready var parent: Node2D = get_parent()
 @export var frequency: float = 2.0
 @export var amplitude: float = 10.0
 
