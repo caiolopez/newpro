@@ -57,7 +57,7 @@ _data = {
 &"spin": SubResource("Animation_57aj2")
 }
 
-[node name="BigFan" type="StaticBody2D"]
+[node name="BigFan" type="StaticBody2D" groups=["kills_bullets"]]
 script = ExtResource("1_57aj2")
 
 [node name="BwShaderSetter" parent="." instance=ExtResource("3_gv6i1")]
