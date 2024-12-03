@@ -71,8 +71,7 @@ func boss1_fight_start_sfx():
 func boss1_pre_dash_sfx():
 	AudioManager.play_sfx(&"boss1_charge_start", -14.0)
 
-func boss1_dash_sfx():
-	AudioManager.play_sfx(&"boss1_charge", -8.0)
+# Boss1 dash: set it in b_state_dashing
 
 func boss1_post_dash_sfx(): # Boss1 hits head against the wall
 	AudioManager.play_sfx(&"boss1_hits_wall", -12.0)

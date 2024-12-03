@@ -12,13 +12,14 @@ func _ready():
 	add_child(_timer)
 
 func on_enter():
-	AudioManager.hooks.boss1_dash_sfx()
+	AudioManager.play_sfx(&"boss1_charge", -8.0)
 	$"../../Flier".process_mode = Node.PROCESS_MODE_DISABLED
 	$"../../MoveStraight".process_mode = Node.PROCESS_MODE_INHERIT
 	$"../../MoveStraight".set_static_target_pos_to_curr_target_pos()
 	_timer.start()
 
 func on_exit():
+	AudioManager.stop_sfx(&"boss1_charge")
 	if _timer.time_left > 0:
 		_timer.stop()
 	$"../../MoveStraight".process_mode = Node.PROCESS_MODE_DISABLED

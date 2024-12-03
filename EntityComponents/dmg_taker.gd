@@ -71,6 +71,7 @@ func on_area_entered(area):
 
 	if area is Bullet:
 		if area.handled: return
+		if not area.active: return
 		area.kill_bullet()
 		if area.bullet_type in immune_to: return
 
