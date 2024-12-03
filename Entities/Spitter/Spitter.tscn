@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cupxj14lcnr75" path="res://EntityComponents/Shooter.tscn" id="6_xwwbl"]
 [ext_resource type="PackedScene" uid="uid://dqho171mcdsmr" path="res://EntityComponents/FaceHero.tscn" id="7_vqtqv"]
 [ext_resource type="PackedScene" uid="uid://4s6dlxxxx05e" path="res://EntityComponents/PlacePropWhenDead.tscn" id="10_galw1"]
-[ext_resource type="Script" uid="uid://dij16f1j6bf1s" path="res://AudioEmiter/audio_emiter.gd" id="11_43kix"]
+[ext_resource type="Script" uid="uid://dij16f1j6bf1s" path="res://AudioEmitter/audio_emitter.gd" id="11_43kix"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v2koo"]
 size = Vector2(80, 80)

@@ -15,9 +15,9 @@ enum State {ORIGIN, DESTINATION, MOVING_TO_ORIGIN, MOVING_TO_DESTINATION}
 @export var start_sfx_volume_adjustment: float = 0.0
 @export var stop_sfx: StringName = &""
 @export var stop_sfx_volume_adjustment: float = 0.0
-@export var set_pitch_to_speed: bool = true ## Causes an optional AudioEmiter attached to Elevator Node to change its pitch with motion, simulating an engine sound.
+@export var set_pitch_to_speed: bool = true ## Causes an optional AudioEmitter attached to Elevator Node to change its pitch with motion, simulating an engine sound.
 @onready var starting_position: Vector2 = elevator_node.position if elevator_node else Vector2.ZERO
-var audio_emiter: AudioEmiter = null
+var audio_emitter: AudioEmitter = null
 var elevator_button_list: Array[ElevatorButton] = []
 var current_state: State = State.ORIGIN
 var current_velocity: Vector2 = Vector2.ZERO
@@ -28,8 +28,8 @@ var _is_saved: bool = false
 func _ready():
 	if elevator_node:
 		for child in elevator_node.get_children():
-			if child is AudioEmiter:
-				audio_emiter = child
+			if child is AudioEmitter:
+				audio_emitter = child
 				break
 
 	Events.hero_reached_checkpoint.connect(_commit_status)
@@ -107,8 +107,8 @@ func _reset_status() -> void:
 	_set_all_buttons_to_inactive()
 	current_velocity = Vector2.ZERO
 	is_moving = false
-	if audio_emiter:
-		audio_emiter.deactivate()
+	if audio_emitter:
+		audio_emitter.deactivate()
 
 func _commit_status() -> void:
 	if not savable: return
@@ -146,18 +146,18 @@ func _sfx_start():
 	if not is_moving:
 		is_moving = true
 		if start_sfx: AudioManager.play_sfx(start_sfx, start_sfx_volume_adjustment)
-		if audio_emiter: audio_emiter.activate()
+		if audio_emitter: audio_emitter.activate()
 
 func _sfx_stop():
 	if is_moving:
 		is_moving = false
 		if stop_sfx: AudioManager.play_sfx(stop_sfx, stop_sfx_volume_adjustment)
-		if audio_emiter: audio_emiter.deactivate()
+		if audio_emitter: audio_emitter.deactivate()
 
 func _step_sfx_pitch():
 	if set_pitch_to_speed\
-	and audio_emiter\
-	and audio_emiter.currently_active\
+	and audio_emitter\
+	and audio_emitter.currently_active\
 	and current_state in [State.MOVING_TO_ORIGIN, State.MOVING_TO_DESTINATION]:
 		var normalized_pitch = lerp(0.15, 1.0, current_velocity.length() / max_speed)
-		AudioManager.update_positional_sfx_pitch(audio_emiter, normalized_pitch)
+		AudioManager.update_positional_sfx_pitch(audio_emitter, normalized_pitch)

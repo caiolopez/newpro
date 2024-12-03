@@ -70,7 +70,7 @@ func _process_audio_distances():
 					player.stop()
 					player.stream = null
 			else:
-				if distance < (player.max_distance / 1.1) and source_object is AudioEmiter and source_object.currently_active:
+				if distance < (player.max_distance / 1.1) and source_object is AudioEmitter and source_object.currently_active:
 					var sfx_data: SFXData = audio_banks.get_sfx_data(source_object.sfx_name)
 					player.stream = sfx_data.pick_sound()
 					player.play()
