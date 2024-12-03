@@ -102,10 +102,17 @@ func parse_time_as_string(time: float, colon_separated: bool = true) -> String:
 	var m = int(time / 60) % 60
 	var s = int(time) % 60
 	var ms = int((time - floor(time)) * 1000)
+	
 	if colon_separated:
-		return "%02d:%02d:%02d:%03d" % [h, m, s, ms]
+		if h > 0:
+			return "%02d:%02d:%02d:%03d" % [h, m, s, ms]
+		else:
+			return "%02d:%02d:%03d" % [m, s, ms]
 	else:
-		return "%02dh%02d'%02d.%03d\"" % [h, m, s, ms]
+		if h > 0:
+			return "%02dh%02d'%02d.%03d\"" % [h, m, s, ms]
+		else:
+			return "%02d'%02d.%03d\"" % [m, s, ms]
 
 func get_polygon_extents(points: PackedVector2Array) -> Rect2:
 	var min_x = INF
