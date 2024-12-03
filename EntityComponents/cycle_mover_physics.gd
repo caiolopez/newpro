@@ -93,6 +93,7 @@ func reset_behavior():
 	pos_direction = 1
 	get_parent().rotation_degrees = original_angle
 	get_parent().position = original_position
+	get_parent().reset_physics_interpolation()
 
 func on_died():
 	stop_movement()

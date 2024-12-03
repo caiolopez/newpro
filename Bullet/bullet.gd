@@ -24,7 +24,7 @@ func _ready():
 	$VisibleOnScreenNotifier2D.screen_exited.connect(func(): BulletManager.return_bullet(self))
 
 	body_entered.connect(func(body):
-		if body.is_in_group("kills_bullets"):
+		if body.is_in_group("kills_bullets") and self.active:
 			kill_bullet()
 	)
 
@@ -44,7 +44,7 @@ func activate():
 	set_up_colors_and_animation()
 	color_muzzle(current_muzzle)
 	show()
-	reset_physics_interpolation()
+	reset_physics_interpolation() # Important.
 
 func deactivate():
 	active = false
@@ -98,7 +98,6 @@ func set_up_colors_and_animation():
 func color_muzzle(muzzle: Node2D):
 	if muzzle:
 		muzzle.get_node("BwShaderSetter").set_color(current_dark_color, current_light_color)
-		print(current_dark_color, current_light_color)
 
 func kill_bullet():
 	handled = true

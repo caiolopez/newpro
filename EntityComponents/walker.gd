@@ -73,6 +73,7 @@ func _ready():
 
 func reset_behavior():
 	parent.global_position = parent_og_global_pos
+	parent.reset_physics_interpolation()
 	state_machine.set_state("WStateIdle")
 
 func on_died():

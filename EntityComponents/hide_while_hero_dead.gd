@@ -10,4 +10,5 @@ func _ready():
 		)
 	Events.hero_respawned_at_checkpoint.connect(func():
 		get_parent().visible = parent_og_visibility
+		get_parent().reset_physics_interpolation()
 		)

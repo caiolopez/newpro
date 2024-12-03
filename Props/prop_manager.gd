@@ -86,7 +86,7 @@ func place_prop(global_pos: Vector2, prop_name: StringName, color_pair: Array[Co
 	if color_pair.size() == 2: _color_prop(prop, color_pair)
 	last_placement[prop_name] = {"position": global_pos, "time": current_time}
 	prop.visible = true
-	prop.reset_physics_interpolation()
+	prop.reset_physics_interpolation() # Important.
 
 	return prop
 

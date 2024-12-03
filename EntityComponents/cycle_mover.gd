@@ -64,6 +64,7 @@ func reset_behavior():
 	if rot_tween: rot_tween.play()
 	
 	get_parent().position = original_position
+	get_parent().parent.reset_physics_interpolation()
 	if pos_tween: pos_tween.play()
 
 

@@ -13,7 +13,7 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	var x_dir: int = sign(target.global_position.x - self.global_position.x)
-	var y_diff: int = target.global_position.y - self.global_position.y
+	var y_diff: int = int(target.global_position.y - self.global_position.y)
 
 	var animation_name: StringName = &""
 	animation_name = &"look_left" if x_dir == -1 else &"look_right"

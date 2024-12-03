@@ -6,6 +6,7 @@ func on_enter():
 	boss.current_stage = 0
 	boss.reparametrize_boss()
 	boss.rotation = 0
+	boss.reset_physics_interpolation()
 	t.stop()
 	$"../../DmgDealer".process_mode = Node.PROCESS_MODE_DISABLED
 	$"../../DmgTaker".currently_immune = true
