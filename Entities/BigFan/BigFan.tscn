@@ -57,34 +57,28 @@ _data = {
 &"spin": SubResource("Animation_57aj2")
 }
 
-[node name="BigFan" type="StaticBody2D"]
+[node name="BigFan" type="StaticBody2D" groups=["kills_bullets"]]
 script = ExtResource("1_57aj2")
 
+[node name="BwShaderSetter" parent="." instance=ExtResource("3_gv6i1")]
+inherit_color_from = 2
+
 [node name="UnderSprite2D" type="Sprite2D" parent="."]
+use_parent_material = true
 scale = Vector2(5, 5)
 texture = SubResource("AtlasTexture_57aj2")
 
-[node name="BwShaderSetter" parent="UnderSprite2D" instance=ExtResource("3_gv6i1")]
-dark_color = Color(0.027451, 0.0666667, 0.207843, 1)
-light_color = Color(0.0313726, 0.235294, 0.368627, 1)
-
 [node name="BladeSprite2D" type="Sprite2D" parent="."]
 texture_repeat = 1
+use_parent_material = true
 scale = Vector2(5, 5)
 texture = SubResource("AtlasTexture_wh0u7")
 offset = Vector2(0, 1)
 
-[node name="BwShaderSetter" parent="BladeSprite2D" instance=ExtResource("3_gv6i1")]
-dark_color = Color(0.027451, 0.0666667, 0.207843, 1)
-light_color = Color(0.0313726, 0.235294, 0.368627, 1)
-
 [node name="OverSprite2D" type="Sprite2D" parent="."]
+use_parent_material = true
 scale = Vector2(5, 5)
 texture = SubResource("AtlasTexture_gv6i1")
-
-[node name="BwShaderSetter" parent="OverSprite2D" instance=ExtResource("3_gv6i1")]
-dark_color = Color(0.027451, 0.0666667, 0.207843, 1)
-light_color = Color(0.0313726, 0.235294, 0.368627, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_gv6i1")

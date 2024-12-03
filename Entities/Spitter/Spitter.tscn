@@ -138,8 +138,9 @@ effect = 3
 next_animation_name = &"idle"
 
 [node name="BwShaderSetter" parent="GfxController" instance=ExtResource("6_bou2g")]
-dark_color_name = &"ZONE_1_BG_COLOR"
 light_color = Color(0.996078, 0.027451, 0.305882, 1)
+dark_color_name = &"ZONE_1_BG_COLOR"
+light_color_name = &"ENEMY_LIGHT"
 
 [node name="Shooter" parent="." instance=ExtResource("6_xwwbl")]
 position = Vector2(20, 0)

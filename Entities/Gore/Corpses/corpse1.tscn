@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://dp3k54vx45ce"]
+
+[ext_resource type="Texture2D" uid="uid://1ksjntdct3rq" path="res://Entities/Gore/Corpses/corpse1.png" id="1_l8slp"]
+[ext_resource type="Script" uid="uid://ma13gmr8da28" path="res://Entities/Gore/Corpses/corpse.gd" id="2_1vvqh"]
+[ext_resource type="Texture2D" uid="uid://dlk4u6mj003do" path="res://Particles/1x1_particle.png" id="2_af4o7"]
+
+[sub_resource type="Curve" id="Curve_dbgh7"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.251232, 1), 0.0, 0.0, 0, 0, Vector2(0.492611, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_bbx78"]
+curve = SubResource("Curve_dbgh7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gj7wc"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(12, 3, 1)
+direction = Vector3(0, 0, 0)
+gravity = Vector3(2.45, -9.8, 0)
+linear_accel_min = -4.0
+linear_accel_max = 8.0
+radial_accel_min = -2.0
+radial_accel_max = 2.0
+scale_min = 5.0
+scale_max = 5.0
+alpha_curve = SubResource("CurveTexture_bbx78")
+
+[node name="Corpse" type="Sprite2D"]
+scale = Vector2(5, 5)
+texture = ExtResource("1_l8slp")
+flip_h = true
+script = ExtResource("2_1vvqh")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(0, 6)
+amount = 16
+lifetime = 4.0
+preprocess = 10.0
+texture = ExtResource("2_af4o7")
+process_material = SubResource("ParticleProcessMaterial_gj7wc")

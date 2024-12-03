@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://bpvdllp0rrnq7"]
+[gd_scene load_steps=2 format=3 uid="uid://bpvdllp0rrnq7"]
+
+[ext_resource type="Script" uid="uid://du6m76cxnan5t" path="res://EntityComponents/collect_on_touch.gd" id="1_w755s"]
 
 [node name="CollectOnTouch" type="Area2D"]
+script = ExtResource("1_w755s")

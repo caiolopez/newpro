@@ -1,0 +1,147 @@
+[gd_scene load_steps=21 format=3 uid="uid://7cewwq0qhrvt"]
+
+[ext_resource type="Script" uid="uid://cl07nnvuebj4g" path="res://Entities/PDA/pda.gd" id="1_v7p0v"]
+[ext_resource type="Texture2D" uid="uid://cqhupjlopb5hx" path="res://Entities/PDA/pda.png" id="1_ygoy2"]
+[ext_resource type="Script" uid="uid://dhl4lyf00ra13" path="res://EntityComponents/sine_movement.gd" id="2_ndk63"]
+[ext_resource type="PackedScene" uid="uid://bpvdllp0rrnq7" path="res://EntityComponents/CollectOnTouch.tscn" id="4_q24ki"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ndk63"]
+atlas = ExtResource("1_ygoy2")
+region = Rect2(0, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v7p0v"]
+atlas = ExtResource("1_ygoy2")
+region = Rect2(40, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q24ki"]
+atlas = ExtResource("1_ygoy2")
+region = Rect2(80, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ypwh4"]
+atlas = ExtResource("1_ygoy2")
+region = Rect2(120, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k4g72"]
+atlas = ExtResource("1_ygoy2")
+region = Rect2(160, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b35na"]
+atlas = ExtResource("1_ygoy2")
+region = Rect2(200, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ncau"]
+atlas = ExtResource("1_ygoy2")
+region = Rect2(240, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o26qp"]
+atlas = ExtResource("1_ygoy2")
+region = Rect2(280, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lpw5w"]
+atlas = ExtResource("1_ygoy2")
+region = Rect2(320, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lh7v2"]
+atlas = ExtResource("1_ygoy2")
+region = Rect2(360, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rhnm1"]
+atlas = ExtResource("1_ygoy2")
+region = Rect2(400, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6hbwy"]
+atlas = ExtResource("1_ygoy2")
+region = Rect2(440, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6kdx0"]
+atlas = ExtResource("1_ygoy2")
+region = Rect2(480, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jqtkw"]
+atlas = ExtResource("1_ygoy2")
+region = Rect2(520, 0, 40, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t8jlx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ndk63")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ndk63")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v7p0v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q24ki")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ypwh4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k4g72")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b35na")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ncau")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o26qp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lpw5w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lh7v2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rhnm1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6hbwy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6kdx0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jqtkw")
+}],
+"loop": false,
+"name": &"pickup",
+"speed": 60.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ndk63"]
+size = Vector2(120, 120)
+
+[node name="PDA" type="Node2D"]
+script = ExtResource("1_v7p0v")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_t8jlx")
+animation = &"pickup"
+
+[node name="SineMovement" type="Node" parent="AnimatedSprite2D"]
+script = ExtResource("2_ndk63")
+amplitude = 5.0
+
+[node name="CollectOnTouch" parent="AnimatedSprite2D" instance=ExtResource("4_q24ki")]
+scale = Vector2(0.2, 0.2)
+collision_layer = 0
+collision_mask = 8
+monitorable = false
+type = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/CollectOnTouch"]
+shape = SubResource("RectangleShape2D_ndk63")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
