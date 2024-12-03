@@ -6,6 +6,6 @@ extends MeshInstance3D
 
 var time: float = 0.0
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	time += delta
 	position.z = sin(time * frequency) * amplitude + initial_z

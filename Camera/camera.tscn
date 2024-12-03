@@ -16,6 +16,7 @@ colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
 gradient = SubResource("Gradient_pg0w2")
 
 [node name="Camera" type="Camera2D"]
+process_callback = 0
 editor_draw_limits = true
 editor_draw_drag_margin = true
 script = ExtResource("1_465f0")
