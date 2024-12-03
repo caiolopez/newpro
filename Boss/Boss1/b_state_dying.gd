@@ -1,5 +1,6 @@
 extends BossState
 
+var animation_prefix: StringName = &"idle"
 
 func on_enter():
 	Utils.create_blinking_timer(boss, 0.08, 4)

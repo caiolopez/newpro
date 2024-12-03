@@ -464,7 +464,7 @@ force_children_to_use_parent_material = false
 use_parent_material = true
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_ymqwu")
-animation = &"pre_dash_stage0"
+animation = &"dormant"
 autoplay = "dormant"
 
 [node name="BwShaderSetter" parent="GfxController" instance=ExtResource("22_6vlhg")]
@@ -553,7 +553,6 @@ shape = SubResource("RectangleShape2D_x2pkn")
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("1_hm4cg")
-auto_start = true
 does_print = false
 
 [node name="BStateDormant" type="Node" parent="StateMachine"]

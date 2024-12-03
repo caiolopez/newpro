@@ -1,5 +1,6 @@
 extends BossState
 
+var animation_prefix: StringName = &"idle"
 
 func on_enter():
 	AudioManager.hooks.boss1_post_dash_sfx()

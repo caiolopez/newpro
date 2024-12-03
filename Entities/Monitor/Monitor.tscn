@@ -82,47 +82,6 @@ tracks/1/keys = {
 "update": 1,
 "values": [1, 0]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("BwShaderSetter:light_color")
-tracks/2/interp = 0
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [Color(0.964706, 0.498039, 0, 1), Color(0.0313726, 0.235294, 0.368627, 1)]
-}
-tracks/3/type = "method"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("BwShaderSetter")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"_update_color"
-}, {
-"args": [],
-"method": &"_update_color"
-}]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("BwShaderSetter:dark_color")
-tracks/4/interp = 0
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [Color(0.247059, 0.0862745, 0.0431373, 1), Color(0.027451, 0.0666667, 0.207843, 1)]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_22a52"]
 _data = {
@@ -137,8 +96,8 @@ autoplay = "default"
 script = ExtResource("2_xs7ga")
 
 [node name="BwShaderSetter" parent="." instance=ExtResource("2_hgbpf")]
-dark_color = Color(0.027451, 0.0666667, 0.207843, 1)
-light_color = Color(0.0313726, 0.235294, 0.368627, 1)
+dark_color = Color(0.247059, 0.0862745, 0.0431373, 1)
+light_color = Color(0.964706, 0.498039, 0, 1)
 inherit_color_from = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

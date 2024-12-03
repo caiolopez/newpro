@@ -1,5 +1,6 @@
 extends BossState
 
+var animation_prefix: StringName = &"idle"
 var duration: float = 5.0
 var tn: Tween
 var clockwise: int = 1

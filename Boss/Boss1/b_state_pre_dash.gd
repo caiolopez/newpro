@@ -1,9 +1,10 @@
 extends BossState
 
+var animation_prefix: StringName = &"pre_dash"
 
 func on_enter():
 	AudioManager.hooks.boss1_pre_dash_sfx()
-	$"../../GfxController/AnimatedSprite2D".play("pre_dash_stage" + str(boss.current_stage))
+	boss.change_animation()
 	t.wait_time = 1
 	t.start()
 	t.timeout.connect(func():

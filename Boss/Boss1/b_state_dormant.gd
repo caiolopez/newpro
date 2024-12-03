@@ -1,10 +1,12 @@
 extends BossState
 
+var animation_prefix: StringName = &"dormant"
 
 func on_enter():
 	boss.z_index = 0
 	boss.current_stage = 0
 	boss.reparametrize_boss()
+	boss.change_animation()
 	boss.rotation = 0
 	boss.reset_physics_interpolation()
 	t.stop()

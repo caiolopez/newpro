@@ -1,5 +1,6 @@
 extends BossState
 
+var animation_prefix: StringName = &"idle"
 var tn
 
 func on_enter():

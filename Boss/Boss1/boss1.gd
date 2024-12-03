@@ -10,6 +10,7 @@ func _ready():
 	$DmgTaker.died.connect(func(): state_machine.set_state("BStateDying"))
 	$DmgTaker.restored.connect(func(): state_machine.set_state("BStateDormant"))
 	$Area2D.area_entered.connect(_on_area_2d_area_entered)
+	state_machine.start()
 
 func _on_area_2d_area_entered(area):
 	if area is BossFence\
@@ -62,8 +63,17 @@ func on_suffered(hp: int):
 	if prev_stage < current_stage:
 		AudioManager.hooks.boss1_change_level_sfx()
 		$GfxController/ParticleGroup.emit_particles()
+		change_animation()
 		Events.boss_changed_stage.emit(self)
 		AppManager.camera.shake()
 		if state_machine.current_state.name != "BStateSpinShooting":
 			state_machine.set_state("BStateCentering")
 	reparametrize_boss()
+
+func change_animation():
+	var prefix: StringName = state_machine.current_state.animation_prefix
+	var sufix: StringName = &""
+	if prefix != &"dormant":
+		sufix = "_stage" + str(current_stage)
+		
+	$GfxController/AnimatedSprite2D.play(prefix + sufix)
