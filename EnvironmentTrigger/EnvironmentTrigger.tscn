@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxy43lp3wd527"]
+
+[ext_resource type="Script" uid="uid://d4gynwas2p6kf" path="res://EnvironmentTrigger/environment_trigger.gd" id="1_1ye06"]
+
+[node name="EnvironmentTrigger" type="Area2D"]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("1_1ye06")

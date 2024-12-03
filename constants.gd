@@ -3,6 +3,7 @@ extends Node
 enum Axes {HORIZONTAL_LOCK, VERTICAL_LOCK, FULL_LOCK}
 enum RegName {TEST = -1, NULL = 0, INTRO = 1, HUB = 2, ICE = 3, FIRE = 4, CAVE = 5}
 enum BulletTypes {REGULAR = 0, FIRE = 1, UNDERWATER = 2, LIVING = 3}
+enum EnvironmentTypes {NORMAL = 0, GOO = 1} ## Change the sound hero makes
 
 const HERO_COLORS:Array[Color] =							[Color(0.0, 0.0, 0.0),	Color(1.0, 1.0, 1.0)]
 const HERO_ACCESSIBILITY_COLORS:Array[Color] =				[Color(0.0, 0.0, 0.0),	Color(1.0, 0.5, 1.0)]

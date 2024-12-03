@@ -59,6 +59,7 @@ var last_water_surface: float
 var last_water_color: Array[Color]
 var last_move_input: StringName = ""
 var latest_bubble_velocity: float = 0.0
+var current_environment: Constants.EnvironmentTypes = Constants.EnvironmentTypes.NORMAL
 
 func _ready():
 	AppManager.game_started.connect(func(): state_machine.start())
@@ -295,6 +296,7 @@ func reset_all_variables() -> void:
 	just_stopped_pushing_wall = false
 	is_just_in_water = false
 	just_left_water = false
+	current_environment = Constants.EnvironmentTypes.NORMAL
 
 	$StateMachine/TimerCoyoteJump.stop()
 	$StateMachine/TimerBufferJump.stop()

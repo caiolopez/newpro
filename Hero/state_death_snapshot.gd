@@ -8,6 +8,7 @@ func on_enter():
 	AppManager.camera.shake()
 	Events.hero_died.emit()
 	BulletManager.return_all_bullets()
+	hero.current_environment = Constants.EnvironmentTypes.NORMAL
 	timer_death_snapshot.start()
 	Utils.colorize_silhouette(true, $"../../Gfx")
 	AudioManager.hooks.hero_die_sfx()
