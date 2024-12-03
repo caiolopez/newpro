@@ -48,7 +48,7 @@ func _ready():
 	target_marker.visible = show_gizmo
 	camera_marker.visible = show_gizmo
 
-func _process(_delta):
+func _physics_process(_delta):
 	if show_gizmo:
 		debug_gizmos()
 

@@ -7,7 +7,7 @@ func on_enter():
 	la_timer = get_node("../TimerBeforeLookaheadX")
 
 
-func on_process(delta: float):
+func on_physics_process(delta: float):
 	if Utils.is_pushing_sides()\
 	and abs(c.hero_real_vel.x) > c.lookahead_activation_vel.x\
 	and not c.hero.is_pushing_wall()\
