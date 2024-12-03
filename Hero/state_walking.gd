@@ -2,6 +2,7 @@ extends HeroState
 
 var water_prone: bool = true
 var death_prone: bool = true
+var last_step_frame: int = -1
 
 func on_enter():
 	$"../../Gfx/AnimatedSprite2D".play("walk")
@@ -10,8 +11,10 @@ func on_process(_delta: float):
 	if hero.step_shooting():
 		return
 
-	if $"../../Gfx/AnimatedSprite2D".frame in [4, 10]:
+	var current_frame = $"../../Gfx/AnimatedSprite2D".frame
+	if current_frame in [4, 10] and not last_step_frame in [4, 10]:
 		AudioManager.hooks.hero_step_sfx()
+	last_step_frame = current_frame
 
 	if hero.is_on_floor()\
 	and not hero.pelvis_rc.is_colliding()\
