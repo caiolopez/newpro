@@ -6,6 +6,9 @@ func hero_shoot_sfx():
 func hero_blunder_shoot_sfx(): # shoots a shotgun-like spread
 	AudioManager.play_sfx(&"dash1", -6.0)
 
+func hero_machine_gun_shoot_sfx():
+	AudioManager.play_sfx(&"shot", -8.0)
+
 func hero_jump_sfx():
 	AudioManager.play_sfx(&"jump", -24.0)
 

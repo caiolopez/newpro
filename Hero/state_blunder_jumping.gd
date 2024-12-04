@@ -27,6 +27,7 @@ func on_process(delta: float):
 		shoot_hold_time += delta
 		if timer_between_blunder_jumping_shots.is_stopped():
 			hero.shooter.shoot_ad_hoc(hero.REGULAR_SHOT_SPEED, hero.current_blunder_jump_angle, true)
+			AudioManager.hooks.hero_machine_gun_shoot_sfx()
 			var new_wait_time = max(MIN_SHOT_INTERVAL, INITIAL_SHOT_INTERVAL
 			- (shoot_hold_time * SHOT_INTERVAL_DECREASE_RATE))
 			timer_between_blunder_jumping_shots.set_wait_time(new_wait_time)
