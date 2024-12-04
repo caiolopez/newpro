@@ -13,8 +13,8 @@ func on_enter():
 	AudioManager.hooks.hero_wall_grab_sfx()
 	$"../../Gfx/AnimatedSprite2D".play("wallgrab")
 	if $"../../Gfx/Muzzle".is_playing(): $"../../Gfx/Muzzle".hide()
-	$"../../Shooter".position = Vector2(88, -40)
-	$"../../Gfx/Muzzle".position = Vector2(-$"../../Shooter".position.x - 154, $"../../Shooter".position.y)
+	$"../../Shooter".position = Vector2(88, -18)
+	$"../../Gfx/Muzzle".position = Vector2(-$"../../Shooter".position.x - 105, $"../../Shooter".position.y)
 	$"../../Gfx/Muzzle".flip_h = true
 	
 	var c = hero.shoulder_rc.get_collider()
