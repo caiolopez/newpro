@@ -20,7 +20,7 @@ func _ready() -> void:
 	Events.hero_reached_checkpoint.connect(_commit_status)
 
 	body_entered.connect(func(body):
-		if !body is Hero: return
+		if not body is Hero: return
 		set_deferred("monitoring", false)
 		picked_up = true
 

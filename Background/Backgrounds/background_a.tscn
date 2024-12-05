@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://sxdpqvsx3dc1"]
 
-[ext_resource type="Script" uid="uid://di87ai28fund6" path="res://Background/background_camera.gd" id="2_4cagp"]
+[ext_resource type="Script" uid="uid://ds4mh6wwrpwn4" path="res://Background/background_camera.gd" id="2_4cagp"]
 [ext_resource type="Shader" uid="uid://05qxh5f086p0" path="res://Shaders/ocean.gdshader" id="3_85f7l"]
 
 [sub_resource type="Environment" id="Environment_13nke"]
