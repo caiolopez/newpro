@@ -17,9 +17,7 @@ func hero_fall_sfx():
 
 func hero_step_sfx():
 	var step_sound_name: StringName = "footstep_" + Constants.EnvironmentTypes.keys()[AppManager.hero.current_environment].to_lower()
-	AudioManager.play_sfx(&"footstep", -30.0)
-	# Create sounds "footstep_normal" and "footstep_goo" and call
-	# AudioManager.play_sfx(step_sound_name, -30.0)
+	AudioManager.play_sfx(step_sound_name, -30.0)
 
 func hero_blunder_jump_sfx():
 	AudioManager.play_sfx(&"blunderjump1", -16.0)

@@ -1,10 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://c62u4ryt0bunv"]
+[gd_scene load_steps=5 format=3 uid="uid://c62u4ryt0bunv"]
 
 [ext_resource type="Script" uid="uid://blg5odnywstrn" path="res://EntityComponents/bw_shader_setter.gd" id="1_fu7gg"]
 [ext_resource type="Texture2D" uid="uid://dw8exknvunady" path="res://Entities/Gore/mess1.png" id="1_vw3yq"]
+[ext_resource type="PackedScene" uid="uid://cxy43lp3wd527" path="res://EnvironmentTrigger/EnvironmentTrigger.tscn" id="3_m8cnf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b756f"]
+size = Vector2(25, 20)
 
 [node name="Mess" type="Sprite2D"]
-modulate = Color(1, 0, 0, 1)
+self_modulate = Color(1, 0, 0, 1)
 scale = Vector2(5, 5)
 texture = ExtResource("1_vw3yq")
 offset = Vector2(0, 1)
@@ -14,3 +18,10 @@ script = ExtResource("1_fu7gg")
 dark_color_name = &"GORE_DARK"
 light_color_name = &"GORE_LIGHT"
 metadata/_custom_type_script = ExtResource("1_fu7gg")
+
+[node name="EnvironmentTrigger" parent="." instance=ExtResource("3_m8cnf")]
+environment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnvironmentTrigger"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_b756f")
