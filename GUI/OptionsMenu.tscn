@@ -75,6 +75,10 @@ text = "Powershoot using triangle"
 layout_mode = 2
 text = "Physics Interpolation"
 
+[node name="VsyncToggle" type="CheckButton" parent="VBoxContainer"]
+layout_mode = 2
+text = "Vsync"
+
 [node name="SpeedrunModeToggle" type="CheckButton" parent="VBoxContainer"]
 layout_mode = 2
 text = "Speedrun mode"

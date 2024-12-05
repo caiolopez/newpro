@@ -5,6 +5,7 @@ signal options_closed
 @onready var sfx_slider = $VBoxContainer/HBoxContainerSfx/SfxSlider
 @onready var blunder_opt = $VBoxContainer/DedicatedBlunderToggle
 @onready var physics_opt = $VBoxContainer/PhysicsInterpolationToggle
+@onready var vsync_opt = $VBoxContainer/VsyncToggle
 @onready var speedrun_opt = $VBoxContainer/SpeedrunModeToggle
 @onready var background_opt = $VBoxContainer/RenderBackgroundToggle
 @onready var accessibility_opt = $VBoxContainer/AccessibilityToggle
@@ -17,6 +18,7 @@ var options_data = {
 	"sfx_volume": 1.0,
 	"dedicated_blunder": true,
 	"physics_interpolation": false,
+	"vsync": true,
 	"speedrun_mode": false,
 	"render_background": true,
 	"accessibility_mode": true,
@@ -33,6 +35,7 @@ func _ready():
 	sfx_slider.value_changed.connect(_on_sfx_volume_changed)
 	blunder_opt.toggled.connect(_on_blunder_opt_changed)
 	physics_opt.toggled.connect(_on_physics_opt_changed)
+	vsync_opt.toggled.connect(_on_vsync_opt_changed)
 	speedrun_opt.toggled.connect(_on_speedrun_opt_changed)
 	background_opt.toggled.connect(_on_render_background_changed)
 	accessibility_opt.toggled.connect(_on_accessibility_changed)
@@ -66,20 +69,40 @@ func _on_physics_opt_changed(state: bool):
 	Engine.physics_jitter_fix = 0.0 if state else 0.5
 	get_tree().physics_interpolation = state
 
+func _on_vsync_opt_changed(state: bool):
+	options_data["vsync"] = state
+	DisplayServer.window_set_vsync_mode(int(state))
+	if UI.notification_label:
+		match DisplayServer.window_get_vsync_mode():
+			0: UI.notification_label.show_notification("Vsync deactivated.")
+			1: UI.notification_label.show_notification("Vsync activated.")
+
 func _on_speedrun_opt_changed(state: bool):
 	options_data["speedrun_mode"] = state
 	AppManager.is_speedrun_mode = state
 	UI.call_deferred("set_igt_visible", state)
+	if UI.notification_label:
+		match AppManager.is_speedrun_mode:
+			true: UI.notification_label.show_notification("Speedrun mode deactivated.")
+			false: UI.notification_label.show_notification("Speedrun mode activated.")
 
 func _on_render_background_changed(state: bool):
 	options_data["render_background"] = state
 	BackgroundManager.call_deferred("set_render_backgrounds", state)
+	if UI.notification_label:
+		match state:
+			false: UI.notification_label.show_notification("3d backgrounds activated.")
+			true: UI.notification_label.show_notification("3d backgrounds deactivated.")
 
 func _on_accessibility_changed(state: bool):
 	options_data["accessibility_mode"] = state
 	AppManager.is_accessibility_mode = state
 	if AppManager.hero:
 		AppManager.hero.tint_as_accessibility()
+	if UI.notification_label:
+		match state:
+			false: UI.notification_label.show_notification("Accessibility mode activated.")
+			true: UI.notification_label.show_notification("Accessibility mode deactivated.")
 
 func _on_fullscreen_changed(state: bool):
 	options_data["fullscreen"] = state
@@ -121,6 +144,9 @@ func apply_loaded_options():
 	get_tree().physics_interpolation = options_data["physics_interpolation"]
 	Engine.physics_jitter_fix = 0.0 if options_data["physics_interpolation"] else 0.5
 	physics_opt.button_pressed = options_data["physics_interpolation"]
+
+	DisplayServer.window_set_vsync_mode(int(options_data["vsync"]))
+	vsync_opt.button_pressed = options_data["vsync"]
 
 	AppManager.is_speedrun_mode = options_data["speedrun_mode"]
 	speedrun_opt.button_pressed = options_data["speedrun_mode"]

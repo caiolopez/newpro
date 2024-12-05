@@ -2,7 +2,7 @@ extends Label
 
 var current_notification_tween: Tween = null
 
-func show_notification(notification_text: StringName, duration: float = 3.0) -> void:
+func show_notification(notification_text: StringName, duration: float = 1.0) -> void:
 	if current_notification_tween and current_notification_tween.is_valid():
 		current_notification_tween.kill()
 	self.text = notification_text
