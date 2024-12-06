@@ -10,7 +10,6 @@ func _ready():
 	
 	area_entered.connect(func(area: Area2D):
 		if area is Bullet\
-		and area.visible\
 		and not area.is_foe\
 		and is_active:
 			var destination = global_position + Vector2(signf(scale.x)*64, 0)
