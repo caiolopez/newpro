@@ -13,14 +13,18 @@ func _populate_pool():
 	for i in range(BULLET_POOL_SIZE):
 		var bullet: Bullet = bullet_res.instantiate()
 		add_child(bullet)
-		bullet.hide()
 		inactive_bullets.append(bullet)
+		bullet.global_position = Vector2(100000, 100000)
 
-func place_bullet(facing_direction: int = 1, origin: Vector2 = Vector2(0, 0),
-	vel: Vector2 = Vector2(200, 0), is_foe: bool = true, 
+func place_bullet(
+	facing_direction: int = 1,
+	origin: Vector2 = Vector2(0, 0),
+	vel: Vector2 = Vector2(200, 0),
+	is_foe: bool = true, 
 	bullet_type = Constants.BulletTypes.REGULAR, angle: float = 0.0, 
 	time_before_visible: float = 0, underwater_ammo: bool = false, 
-	owner_muzzle: Node2D = null):
+	owner_muzzle: Node2D = null
+	):
 	
 	var bullet: Bullet
 	if inactive_bullets.is_empty():
@@ -45,17 +49,19 @@ func place_bullet(facing_direction: int = 1, origin: Vector2 = Vector2(0, 0),
 	bullet.current_muzzle = owner_muzzle
 	bullet.activate()
 
+func _return_single_bullet(bullet: Bullet):
+	active_bullets.erase(bullet)
+	inactive_bullets.append(bullet)
+	bullet.global_position = Vector2(100000, 100000)
+	bullet.deactivate()
+
 func return_bullet(bullet: Bullet):
 	if bullet in active_bullets:
-		active_bullets.erase(bullet)
-		inactive_bullets.append(bullet)
-		bullet.deactivate()
+		_return_single_bullet(bullet)
 
 func return_all_bullets():
 	while not active_bullets.is_empty():
-		var bullet = active_bullets.pop_back()
-		inactive_bullets.append(bullet)
-		bullet.deactivate()
+		_return_single_bullet(active_bullets.back())
 
 func kill_all_foe_bullets():
 	for bullet in active_bullets:

@@ -14,7 +14,7 @@ var current_gravity: float
 var acceleration: Vector2
 var is_underwater_ammo: bool
 var time_before_visible: float = 0.05
-var timer_before_visible: Timer
+var time_elapsed: float = 0.0
 var dull: bool = false
 var handled: bool = true
 var active: bool = false
@@ -30,7 +30,6 @@ func _ready():
 
 	current_drag = AIR_DRAG
 	current_gravity = 0
-	visible = false
 	await get_tree().process_frame # TODO: Come up with a way to prevent those bullets from being instantiated instead.
 	if not $VisibleOnScreenNotifier2D.is_on_screen():
 		BulletManager.return_bullet(self)
@@ -43,12 +42,13 @@ func activate():
 	active = true
 	set_up_colors_and_animation()
 	color_muzzle(current_muzzle)
-	show()
 	reset_physics_interpolation() # Important.
+	time_elapsed = 0.0
+	$AnimatedSprite2D.visible = false
 
 func deactivate():
 	active = false
-	hide()
+	$AnimatedSprite2D.visible = false
 	$AnimatedSprite2D.stop()
 
 func _physics_process(delta):
@@ -58,6 +58,11 @@ func _physics_process(delta):
 	acceleration = drag + current_gravity * Vector2.DOWN
 	velocity += acceleration * delta
 	global_position += delta*velocity
+	
+	if not $AnimatedSprite2D.visible:
+		time_elapsed += delta
+		if time_elapsed >= time_before_visible:
+			$AnimatedSprite2D.visible = true
 
 func on_water_status_changed(is_in_water: bool, water: Water):
 	if is_in_water != (bullet_type == Constants.BulletTypes.UNDERWATER):
