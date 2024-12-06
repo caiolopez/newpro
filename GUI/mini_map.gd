@@ -22,7 +22,7 @@ var map_flags: Array[Node2D] = []
 enum States {ON, ANIMATING_IN, ANIMATING_OUT, OFF}
 var state: States = States.OFF
 
-func _ready():
+func _ready() -> void:
 	AppManager.minimap_node = self # self-registration
 	Events.chart_map_sector.connect(append_sector_to_map)
 	Events.unchart_map_sector.connect(delete_sector_from_map)

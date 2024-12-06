@@ -5,7 +5,7 @@ extends Node2D
 var current_stage: int = 0
 var stunned_time_after_dash: float = 1
 
-func _ready():
+func _ready() -> void:
 	$DmgTaker.suffered.connect(on_suffered)
 	$DmgTaker.died.connect(func(): state_machine.set_state("BStateDying"))
 	$DmgTaker.restored.connect(func(): state_machine.set_state("BStateDormant"))

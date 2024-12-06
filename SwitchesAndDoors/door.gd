@@ -11,7 +11,7 @@ signal should_close()
 signal stopped_moving_at_origin()
 signal stopped_moving_at_offset()
 
-func _ready():
+func _ready() -> void:
 	state_machine = $StateMachine
 	state_machine.start()
 	

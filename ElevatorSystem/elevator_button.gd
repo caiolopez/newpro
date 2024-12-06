@@ -10,7 +10,7 @@ var _blink_timer: Timer
 var _blink_timer_turn: bool = false
 
 
-func _ready():
+func _ready() -> void:
 	original_material = material
 	set_inactive()
 	area_entered.connect(_on_area_entered)

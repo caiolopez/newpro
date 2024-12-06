@@ -36,7 +36,7 @@ var la_timer: Timer
 var last_hero_dir: int
 var _meta_position: Vector2
 
-func _ready():
+func _ready() -> void:
 	state_machine.start()
 	Events.hero_entered_camera_locker.connect(lock_camera)
 	Events.hero_exited_camera_locker.connect(unlock_camera)

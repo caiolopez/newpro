@@ -17,7 +17,7 @@ var currently_dead: bool = false
 var inertia_only: bool = false ## If true, parent entity will stop adding velocity towards target entity, and will only be subjected to deceleration.
 
 
-func _ready():
+func _ready() -> void:
 	if "target" in parent:
 		target_entity = parent.target
 	else:

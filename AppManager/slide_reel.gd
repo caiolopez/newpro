@@ -6,7 +6,7 @@ var current_slide_index: int = -1
 var slides: Array[Slide] = []
 var current_tween: Tween
 
-func _ready():
+func _ready() -> void:
 	for child in get_children():
 		if child is Slide:
 			slides.append(child)

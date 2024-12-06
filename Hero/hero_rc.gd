@@ -4,7 +4,7 @@ var hero: CharacterBody2D
 var og_target_pos: Vector2
 var og_position: Vector2
 
-func _ready():
+func _ready() -> void:
 	og_target_pos = target_position
 	og_position = position
 	hero = get_node("../../Hero")

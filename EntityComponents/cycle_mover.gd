@@ -15,7 +15,7 @@ var rot_tween: Tween
 var pos_tween: Tween
 
 
-func _ready():
+func _ready() -> void:
 	if dmg_taker != null:
 		dmg_taker.died.connect(on_died)
 		dmg_taker.restored.connect(on_restored)

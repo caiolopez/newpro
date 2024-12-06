@@ -3,7 +3,7 @@ extends BossState
 var animation_prefix: StringName = &"idle"
 var _timer: Timer
 
-func _ready():
+func _ready() -> void:
 	_timer = Timer.new()
 	_timer.one_shot = true
 	_timer.wait_time = 1.0

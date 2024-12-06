@@ -42,7 +42,6 @@ AudioManager="*res://AudioManager/AudioManager.tscn"
 [debug]
 
 gdscript/warnings/unused_signal=0
-gdscript/warnings/native_method_override=1
 
 [display]
 

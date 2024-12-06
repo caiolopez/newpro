@@ -6,7 +6,7 @@ var controller: SwitchGroupController
 var original_material: Material = null
 var current_state: SwitchState
 
-func _ready():
+func _ready() -> void:
 	original_material = material
 	controller = get_parent()
 	$TimerSimultWindow.set_wait_time(controller.simult_window_duration)

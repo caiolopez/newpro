@@ -9,7 +9,7 @@ extends CanvasLayer
 @onready var screen_flash = $ScreenFlash
 @onready var notification_label = $OnScreenNotificationLabel
 
-func _ready():
+func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
 func _unhandled_input(event):

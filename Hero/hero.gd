@@ -61,7 +61,7 @@ var last_move_input: StringName = ""
 var latest_bubble_velocity: float = 0.0
 var current_environment: Constants.EnvironmentTypes = Constants.EnvironmentTypes.NORMAL
 
-func _ready():
+func _ready() -> void:
 	AppManager.game_started.connect(func(): state_machine.start())
 	Events.hero_got_collectible.connect(handle_powerups)
 	Events.hero_hit_teleporter.connect(_on_hero_hit_teleporter)

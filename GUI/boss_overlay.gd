@@ -10,7 +10,7 @@ var dt: DmgTaker:
 var _hp_bar_tween: Tween
 var original_material: Material = null
 
-func _ready():
+func _ready() -> void:
 	original_material = material
 	hide()
 	Events.boss_trigger_entered.connect(func(boss):

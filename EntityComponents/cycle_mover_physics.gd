@@ -21,7 +21,7 @@ var pos_elapsed: float = 0
 var rot_direction: int = 1
 var pos_direction: int = 1
 
-func _ready():
+func _ready() -> void:
 	if dmg_taker != null:
 		dmg_taker.died.connect(on_died)
 		dmg_taker.restored.connect(on_restored)

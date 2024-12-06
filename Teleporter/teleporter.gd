@@ -2,7 +2,7 @@ class_name Teleporter extends Area2D
 
 var is_active: bool = false
 
-func _ready():
+func _ready() -> void:
 	Events.teleporters_activated.connect(_animate_activation)
 	
 	if AppManager.teleporters_are_active:

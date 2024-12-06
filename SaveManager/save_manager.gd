@@ -8,7 +8,7 @@ var current_slot: int
 signal game_loaded_from_disk
 signal game_saved_to_disk
 
-func _ready():
+func _ready() -> void:
 	ComboParser.combo_performed.connect(func(combo):
 		if combo == "ClearAppData": clear_slot(current_slot)
 		)

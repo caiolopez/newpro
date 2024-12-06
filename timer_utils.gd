@@ -5,7 +5,7 @@ var was_stopped:= true
 var just_started:= false
 
 
-func _ready():
+func _ready() -> void:
 	if not does_print: return
 	connect("timeout", on_timeout)
 

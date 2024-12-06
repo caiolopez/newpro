@@ -25,7 +25,7 @@ var target_position: Vector2
 var is_moving: bool = false
 var _is_saved: bool = false
 
-func _ready():
+func _ready() -> void:
 	if elevator_node:
 		for child in elevator_node.get_children():
 			if child is AudioEmitter:

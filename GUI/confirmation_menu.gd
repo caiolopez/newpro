@@ -2,7 +2,7 @@ extends Control
 
 signal confirmation_made(confirmed: bool)
 
-func _ready():
+func _ready() -> void:
 	hide()
 	$VBoxContainer/YesButton.pressed.connect(func(): _on_decision_made(true))
 	$VBoxContainer/CancelButton.pressed.connect(func(): _on_decision_made(false))

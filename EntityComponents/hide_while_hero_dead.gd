@@ -2,7 +2,7 @@ class_name HideWhenHeroDead extends Node
 
 var parent_og_visibility: bool
 
-func _ready():
+func _ready() -> void:
 	parent_og_visibility = get_parent().visible
 	
 	Events.hero_died.connect(func():

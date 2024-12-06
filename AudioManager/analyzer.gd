@@ -10,7 +10,7 @@ var frequency_ranges = {
 var spectrum: AudioEffectSpectrumAnalyzerInstance
 var bus_index: int
 
-func _ready():
+func _ready() -> void:
 	bus_index = AudioServer.get_bus_index("Music")
 	if bus_index != -1:
 		spectrum = AudioServer.get_bus_effect_instance(bus_index, 0)

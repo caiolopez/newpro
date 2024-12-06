@@ -5,7 +5,7 @@ class_name DmgDealer extends Area2D
 @onready var is_foe: bool = Utils.check_if_foe(self.get_parent())
 
 
-func _ready():
+func _ready() -> void:
 	if dmg_taker != null:
 		dmg_taker.died.connect(on_died)
 		dmg_taker.restored.connect(on_restored)

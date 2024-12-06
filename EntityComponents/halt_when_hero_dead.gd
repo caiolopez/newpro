@@ -2,7 +2,7 @@ class_name HaltWhenHeroDead extends Node
 
 var parent_og_process_mode: ProcessMode
 
-func _ready():
+func _ready() -> void:
 	parent_og_process_mode = get_parent().process_mode
 	
 	Events.hero_died.connect(func():

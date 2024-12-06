@@ -30,7 +30,7 @@ var current_burst_count: int = 1
 var halt: bool = false
 signal just_shot
 
-func _ready():
+func _ready() -> void:
 	if get_parent().has_node("FaceHero"):
 		face_hero_node = get_parent().get_node("FaceHero")
 		face_hero_node.update.connect(update_direction)

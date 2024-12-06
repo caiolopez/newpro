@@ -40,7 +40,7 @@ var pit_rc: RayCast2D
 var pit_rc_og_pos: Vector2
 var is_stunned: bool = false
 
-func _ready():
+func _ready() -> void:
 	find_pit_rc()
 
 	if get_parent().has_node("FaceHero"):

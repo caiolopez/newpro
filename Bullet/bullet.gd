@@ -19,7 +19,7 @@ var dull: bool = false
 var handled: bool = true
 var active: bool = false
 
-func _ready():
+func _ready() -> void:
 	$IsInWaterNotifier.water_state_changed.connect(on_water_status_changed)
 	$VisibleOnScreenNotifier2D.screen_exited.connect(func(): BulletManager.return_bullet(self))
 

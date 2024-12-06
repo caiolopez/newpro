@@ -10,7 +10,7 @@ class_name AudioEmitter extends Node2D
 @export var deactivate_upon_leaving_activation_area: bool = false ## If an Area2D activation area was supplied, setting this variable to true will cause leaving the area to deactivate the audio emitter.
 var currently_active: bool = false
 
-func _ready():
+func _ready() -> void:
 	if activation_area:
 		activation_area.body_entered.connect(func(body):
 			if body is Hero:

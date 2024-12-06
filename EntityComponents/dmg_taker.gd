@@ -21,7 +21,7 @@ signal resurrected ## When the entity restored was previously dead
 signal regenerated ## When the entity is added one hp, automatically
 signal suffered(hp: int) ## When the entity takes any damage, except for the last
 
-func _ready():
+func _ready() -> void:
 	Events.hero_reached_checkpoint.connect(commit_status)
 	Events.hero_respawned_at_checkpoint.connect(reset_status)
 	body_entered.connect(func(_body): take_dmg(1))

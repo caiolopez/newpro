@@ -13,7 +13,7 @@ var original_position: Vector2
 var time: float = 0.0
 var is_moving: bool = true
 
-func _ready():
+func _ready() -> void:
 	if dmg_taker != null:
 		dmg_taker.died.connect(_on_died)
 		dmg_taker.restored.connect(_on_restored)

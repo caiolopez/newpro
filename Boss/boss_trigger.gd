@@ -8,7 +8,7 @@ extends Area2D
 @export var track: StringName = ""
 var is_active: bool = false
 
-func _ready():
+func _ready() -> void:
 	body_entered.connect(func(body) -> void:
 		if is_active: return
 		if not body is Hero and not body.state_machine.current_state.death_prone:

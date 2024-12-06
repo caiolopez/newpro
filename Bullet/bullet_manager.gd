@@ -5,7 +5,7 @@ const BULLET_POOL_SIZE: int = 50
 var active_bullets: Array[Bullet] = []
 var inactive_bullets: Array[Bullet] = []
 
-func _ready():
+func _ready() -> void:
 	Events.hero_respawned_at_checkpoint.connect(return_all_bullets)
 	_populate_pool()
 

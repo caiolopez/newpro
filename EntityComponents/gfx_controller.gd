@@ -7,7 +7,7 @@ var face_hero_node: FaceHero
 var shooter_node: Shooter
 var original_material: Material = null
 
-func _ready():
+func _ready() -> void:
 	original_material = material
 
 	if get_parent().has_node("FaceHero"):

@@ -27,7 +27,7 @@ var options_data = {
 	"no_flash": false
 }
 
-func _ready():
+func _ready() -> void:
 	hide()
 	load_options()
 	

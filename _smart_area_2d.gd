@@ -4,14 +4,14 @@ class_name _SmartArea2D extends Area2D
 
 ## Automatically make CollisionShape2D.shape resources unique upon duplication in the editor. Does so to reduce error proneness when resizing colliders of cloned nodes.
 
-@export_tool_button("Make all unique") var v = _make_all_collision_shapes_unique ## Makes all CollisionShape2D.shape resources unique.
+@export_tool_button("Make all unique") var v: Callable = _make_all_collision_shapes_unique ## Makes all CollisionShape2D.shape resources unique.
 
-func _init():
+func _init() -> void:
 	if Engine.is_editor_hint():
 		child_entered_tree.connect(_make_collision_shape_unique)
 		set_meta("init_time", Time.get_ticks_msec())
 
-func _ready():
+func _ready() -> void:
 	if Engine.is_editor_hint():
 		queue_redraw()
 

@@ -8,7 +8,7 @@ extends Control
 
 @onready var options_menu = $"../OptionsMenu"
 
-func _ready():
+func _ready() -> void:
 	v_box_container.modulate.a = 0
 	hide()
 	load_game_button.pressed.connect(_on_load_game_pressed)

@@ -3,7 +3,7 @@ extends Node
 @onready var timer: Timer = Timer.new()
 signal combo_performed(combo: StringName)
 
-func _ready():
+func _ready() -> void:
 	add_child(timer)
 	timer.one_shot = true
 	timer.timeout.connect(func():

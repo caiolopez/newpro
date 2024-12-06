@@ -6,7 +6,7 @@ enum Effects {FREE, RETURN_PROP, HIDE, REPLACE_ANIMATION}
 @export var next_animation_name: StringName = &"" # If set to replace animation.
 @onready var parent = get_parent()
 
-func _ready():
+func _ready() -> void:
 	get_parent().animation_finished.connect(func():
 		if animation_name and parent.animation != animation_name: return
 

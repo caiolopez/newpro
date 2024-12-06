@@ -13,7 +13,7 @@ var prop_color_pair: Array[Color] = []
 var _props_placed: int = 0
 var _timer: Timer
 
-func _ready():
+func _ready() -> void:
 	if dmg_taker != null:
 		dmg_taker.died.connect(_start_placing_props)
 	

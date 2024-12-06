@@ -40,7 +40,7 @@ const PROP_TYPE: Dictionary = {
 
 var prop_pools: Dictionary = {}
 
-func _ready():
+func _ready() -> void:
 	for prop_name in PROP_TYPE.keys():
 		prop_pools[prop_name] = []
 	populate_pools()

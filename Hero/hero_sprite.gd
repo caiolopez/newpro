@@ -4,7 +4,7 @@ extends Node2D
 @onready var hero: = get_parent()
 var original_material: Material = null
 
-func _ready():
+func _ready() -> void:
 	original_material = material
 
 func _process(_delta):

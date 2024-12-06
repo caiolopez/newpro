@@ -19,7 +19,7 @@ func start_generating():
 func stop_generating():
 	generating_clones = false
 
-func _ready():
+func _ready() -> void:
 	if not target: return
 
 	z_index = target.z_index - 1

@@ -15,7 +15,7 @@ var rot: float = 90
 var currently_dead: bool = false
 
 
-func _ready():
+func _ready() -> void:
 	global_position = parent.global_position
 	if dmg_taker != null:
 		dmg_taker.died.connect(on_died)

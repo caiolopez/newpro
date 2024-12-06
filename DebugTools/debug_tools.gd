@@ -4,7 +4,7 @@ extends Node
 @export var input_stuff: bool = true
 @export var debug_mode: bool = true
 
-func _ready():
+func _ready() -> void:
 	pass
 
 func _process(_delta):

@@ -2,7 +2,7 @@ extends Sprite2D
 
 var current_tween: Tween
 
-func _ready():
+func _ready() -> void:
 	modulate.a = 0.0
 	scale = get_viewport_rect().size / texture.get_size()
 	Events.hero_died.connect(_start_darken)

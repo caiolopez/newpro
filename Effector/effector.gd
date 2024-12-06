@@ -14,7 +14,7 @@ enum Effects {
 @export_category("Optional")
 @export var use_this_trigger_area: Area2D = null ## When not empty, will activate upon body or area entering this area as well.
 
-func _ready():
+func _ready() -> void:
 	_add_children_to_entities()
 	if effect == Effects.ENABLE:
 		_disable_entities()

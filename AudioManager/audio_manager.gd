@@ -33,7 +33,7 @@ const MUSIC_TRACKS = {
 		}
 }
 
-func _ready():
+func _ready() -> void:
 	AppManager.game_paused.connect(_on_game_paused)
 	AppManager.game_unpaused.connect(_on_game_unpaused)
 	

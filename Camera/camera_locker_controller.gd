@@ -7,7 +7,7 @@ enum LockHandles {
 	MARKER_OBJECT = 2       ## Centers the camera at a custom position provided by a Marker2D node attached to CameraTrigger.
 }
 
-func _ready():	
+func _ready() -> void:	
 	if not Engine.is_editor_hint():
 		body_shape_entered.connect(_on_body_shape_entered)
 		body_shape_exited.connect(_on_body_shape_exited)

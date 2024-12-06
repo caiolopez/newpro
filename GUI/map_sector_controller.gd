@@ -2,7 +2,7 @@ class_name MapSectorController extends Area2D
 
 enum S {UNCHARTED = 0, CHARTING = 1, CHARTED = 2}
 
-func _ready():
+func _ready() -> void:
 	if get_children().filter(func(node): return node is CollisionPolygon2D).is_empty():
 		push_error(self, " requires at least one CollisionPolygon2D node.")
 		return
