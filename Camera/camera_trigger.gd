@@ -9,8 +9,9 @@ class_name CameraTrigger extends CollisionShape2D
 	set(value):
 		axes_to_lock = value
 		if Engine.is_editor_hint():
-			debug_color_changer()
-			get_parent().queue_redraw()
+			_debug_color_changer()
+			if get_parent():
+				get_parent().queue_redraw()
 
 @export var center_at: CameraLockerController.LockHandles = CameraLockerController.LockHandles.PLACE_OF_CONTACT
 
@@ -18,14 +19,16 @@ var currently_dead: bool = false
 var center_mark: Marker2D = null
 
 func _ready() -> void:
-	Events.hero_respawned_at_checkpoint.connect(_reset_status)
-	Events.hero_reached_checkpoint.connect(_commit_status)
+	if not Engine.is_editor_hint():
+		Events.hero_respawned_at_checkpoint.connect(_reset_status)
+		Events.hero_reached_checkpoint.connect(_commit_status)
+
 	for child in get_children():
 		if child is Marker2D:
 			center_mark = child
 			break
 
-func debug_color_changer():
+func _debug_color_changer():
 	match axes_to_lock:
 		Constants.Axes.HORIZONTAL_LOCK: debug_color = Color(0, 0, 1, 0.5)
 		Constants.Axes.VERTICAL_LOCK: debug_color = Color(1, 0, 0, 0.5)

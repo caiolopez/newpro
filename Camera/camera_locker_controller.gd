@@ -8,8 +8,9 @@ enum LockHandles {
 }
 
 func _ready():	
-	body_shape_entered.connect(_on_body_shape_entered)
-	body_shape_exited.connect(_on_body_shape_exited)
+	if not Engine.is_editor_hint():
+		body_shape_entered.connect(_on_body_shape_entered)
+		body_shape_exited.connect(_on_body_shape_exited)
 
 func _on_body_shape_entered(_rid, body: Node2D, _body_shape, area_shape_index: int):
 	if not body is Hero: return

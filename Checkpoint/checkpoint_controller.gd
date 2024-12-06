@@ -2,7 +2,8 @@
 class_name CheckpointController extends _SmartArea2D
 
 func _ready():
-	body_shape_entered.connect(_on_body_shape_entered) 
+	if not Engine.is_editor_hint():
+		body_shape_entered.connect(_on_body_shape_entered) 
 
 func _on_body_shape_entered(_rid, body: Node2D, _body_shape, area_shape_index: int):
 	if not body is Hero and not body.state_machine.current_state.death_prone:
