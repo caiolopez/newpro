@@ -1,3 +1,4 @@
+@icon("res://EditorIcons/hero_positioner_icon.svg")
 class_name HeroPositioner extends Marker2D
  
 func _ready() -> void:
