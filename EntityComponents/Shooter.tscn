@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cupxj14lcnr75"]
 
-[ext_resource type="Script" path="res://EntityComponents/shooter.gd" id="1_va7cf"]
+[ext_resource type="Script" uid="uid://cr5ke672p5lyw" path="res://EntityComponents/shooter.gd" id="1_va7cf"]
 
 [node name="Shooter" type="Node2D" groups=["resetables"]]
 script = ExtResource("1_va7cf")
