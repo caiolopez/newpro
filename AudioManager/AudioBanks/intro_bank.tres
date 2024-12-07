@@ -23,6 +23,7 @@
 [ext_resource type="Resource" uid="uid://dk5g8ef6x0l7c" path="res://AudioManager/Sounds/Elevators/elevator1_stop.tres" id="22_51r6i"]
 [ext_resource type="Resource" uid="uid://c8s2q3k54paxl" path="res://AudioManager/Sounds/Elevators/elevator1_loop.tres" id="23_51r6i"]
 [ext_resource type="Resource" uid="uid://dgpslfsytjwa7" path="res://AudioManager/Sounds/Doors/door1_open.tres" id="24_k7qou"]
+[ext_resource type="Resource" uid="uid://ch6hr2rq1fj26" path="res://AudioManager/Sounds/Footsteps/Goo/footstep_goo.tres" id="25_b6sad"]
 [ext_resource type="Resource" uid="uid://duh5ryguv2l60" path="res://AudioManager/Sounds/Doors/door1_close.tres" id="25_kx8rc"]
 [ext_resource type="Resource" uid="uid://dio6ng1xqoxcl" path="res://AudioManager/Sounds/blunderjump1.tres" id="26_kx8rc"]
 [ext_resource type="Resource" uid="uid://bl8ns1550dfut" path="res://AudioManager/Sounds/Switches/switch1_on.tres" id="27_qbblg"]
@@ -39,7 +40,6 @@
 [ext_resource type="Resource" uid="uid://5fjubia17fru" path="res://AudioManager/Sounds/Enemy/Bosses/boss1_charge.tres" id="38_mc4aa"]
 [ext_resource type="Resource" uid="uid://r7orin4x7b3b" path="res://AudioManager/Sounds/Footsteps/Metal/footstep_normal.tres" id="39_b6sad"]
 [ext_resource type="Resource" uid="uid://d258pl3oedtk4" path="res://AudioManager/Sounds/Enemy/Bosses/boss1_shot.tres" id="39_durra"]
-[ext_resource type="Resource" uid="uid://ch6hr2rq1fj26" path="res://AudioManager/Sounds/Footsteps/Liquid/footstep_goo.tres" id="40_aykva"]
 
 [resource]
 script = ExtResource("1_gie4n")
@@ -64,7 +64,7 @@ sfx_dictionary = Dictionary[String, ExtResource("1_bsy3s")]({
 "elevator1_loop": ExtResource("23_51r6i"),
 "elevator1_start": ExtResource("21_ndkw5"),
 "elevator1_stop": ExtResource("22_51r6i"),
-"footstep_goo": ExtResource("40_aykva"),
+"footstep_goo": ExtResource("25_b6sad"),
 "footstep_normal": ExtResource("39_b6sad"),
 "impact1": ExtResource("8_moatu"),
 "jump": ExtResource("9_fgr03"),
