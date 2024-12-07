@@ -13,7 +13,8 @@ func hero_jump_sfx():
 	AudioManager.play_sfx(&"jump", -24.0)
 
 func hero_fall_sfx():
-	AudioManager.play_sfx(&"land", -24.0)
+	var land_sound_name: StringName = "land_" + Constants.EnvironmentTypes.keys()[AppManager.hero.current_environment].to_lower()
+	AudioManager.play_sfx(land_sound_name, -24.0)
 
 func hero_step_sfx():
 	var step_sound_name: StringName = "footstep_" + Constants.EnvironmentTypes.keys()[AppManager.hero.current_environment].to_lower()
