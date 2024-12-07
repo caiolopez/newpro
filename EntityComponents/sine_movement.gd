@@ -18,5 +18,5 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	time += delta
 
-	parent.position.y = sin(time * frequency.x) * amplitude.y + initial_position.y
-	parent.position.x = sin(time * frequency.y) * amplitude.x + initial_position.x
+	parent.position.y = sin(time * frequency.y) * amplitude.y + initial_position.y
+	parent.position.x = sin(time * frequency.x) * amplitude.x + initial_position.x
