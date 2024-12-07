@@ -11,9 +11,8 @@ var is_active: bool = false
 func _ready() -> void:
 	body_entered.connect(func(body) -> void:
 		if is_active: return
-		if not body is Hero and not body.state_machine.current_state.death_prone:
-			return
-		call_deferred("_attempt_to_activate_boss")
+		if body is Hero and body.state_machine.current_state.death_prone:
+			call_deferred("_attempt_to_activate_boss")
 		)
 
 	Events.hero_respawned_at_checkpoint.connect(func() -> void:

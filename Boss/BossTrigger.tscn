@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://d2vfkstnke1s4"]
 
-[ext_resource type="Script" path="res://Boss/boss_trigger.gd" id="1_nr8i5"]
+[ext_resource type="Script" uid="uid://cc3w0x6y885p6" path="res://Boss/boss_trigger.gd" id="1_nr8i5"]
 
 [node name="BossTrigger" type="Area2D"]
 collision_layer = 0
