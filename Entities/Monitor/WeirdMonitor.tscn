@@ -1,0 +1,277 @@
+[gd_scene load_steps=27 format=3 uid="uid://b3jiendqv3mpk"]
+
+[ext_resource type="Texture2D" uid="uid://bhdnlprbep8vc" path="res://Entities/Monitor/weird_monitor.png" id="1_acxq3"]
+[ext_resource type="PackedScene" uid="uid://1votnx34efdj" path="res://EntityComponents/BWShaderSetter.tscn" id="3_a1srm"]
+[ext_resource type="Texture2D" uid="uid://ujh3py4hpsds" path="res://Entities/Monitor/weird_monitor_eye1.png" id="4_ovoq3"]
+[ext_resource type="Texture2D" uid="uid://c7u17emaxgbg" path="res://Entities/Monitor/weird_monitor_eye2.png" id="5_7o2rv"]
+[ext_resource type="Script" uid="uid://2brk6htuh5ct" path="res://Entities/Monitor/weird_monitor_eye.gd" id="5_a1srm"]
+[ext_resource type="Script" uid="uid://dhl4lyf00ra13" path="res://EntityComponents/sine_movement.gd" id="5_vgpon"]
+[ext_resource type="Texture2D" uid="uid://c357266mr5ett" path="res://Entities/Monitor/weird_monitor_eye3.png" id="6_a1srm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ovoq3"]
+atlas = ExtResource("1_acxq3")
+region = Rect2(34, 0, 34, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7o2rv"]
+atlas = ExtResource("1_acxq3")
+region = Rect2(0, 0, 34, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_civt6"]
+animations = [{
+"frames": [{
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_ovoq3")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_7o2rv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a1srm"]
+atlas = ExtResource("4_ovoq3")
+region = Rect2(0, 0, 10, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vgpon"]
+atlas = ExtResource("4_ovoq3")
+region = Rect2(10, 0, 10, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jdnu3"]
+atlas = ExtResource("4_ovoq3")
+region = Rect2(20, 0, 10, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_710jb"]
+atlas = ExtResource("4_ovoq3")
+region = Rect2(30, 0, 10, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gxdn6"]
+atlas = ExtResource("4_ovoq3")
+region = Rect2(40, 0, 10, 9)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jxgrk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a1srm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vgpon")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jdnu3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_710jb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gxdn6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a1srm")
+}],
+"loop": false,
+"name": &"blink",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a1srm")
+}],
+"loop": false,
+"name": &"default",
+"speed": 20.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jxgrk"]
+atlas = ExtResource("5_7o2rv")
+region = Rect2(0, 0, 8, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l3h6r"]
+atlas = ExtResource("5_7o2rv")
+region = Rect2(8, 0, 8, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m383k"]
+atlas = ExtResource("5_7o2rv")
+region = Rect2(16, 0, 8, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0mq3b"]
+atlas = ExtResource("5_7o2rv")
+region = Rect2(24, 0, 8, 6)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_flirx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jxgrk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l3h6r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m383k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0mq3b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jxgrk")
+}],
+"loop": false,
+"name": &"blink",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jxgrk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_flirx"]
+atlas = ExtResource("6_a1srm")
+region = Rect2(0, 0, 7, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x6m5r"]
+atlas = ExtResource("6_a1srm")
+region = Rect2(7, 0, 7, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jeh22"]
+atlas = ExtResource("6_a1srm")
+region = Rect2(14, 0, 7, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rk2r3"]
+atlas = ExtResource("6_a1srm")
+region = Rect2(21, 0, 7, 6)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lf173"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_flirx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x6m5r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jeh22")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rk2r3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_flirx")
+}],
+"loop": false,
+"name": &"blink",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_flirx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="WeirdMonitor" type="AnimatedSprite2D"]
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_civt6")
+autoplay = "default"
+frame_progress = 0.956012
+
+[node name="BwShaderSetter" parent="." instance=ExtResource("3_a1srm")]
+inherit_color_from = 2
+
+[node name="BigEye" type="AnimatedSprite2D" parent="."]
+use_parent_material = true
+position = Vector2(-4, 1)
+sprite_frames = SubResource("SpriteFrames_jxgrk")
+animation = &"blink"
+autoplay = "default"
+script = ExtResource("5_a1srm")
+
+[node name="BlinkTimer" type="Timer" parent="BigEye"]
+one_shot = true
+
+[node name="SineMovement" type="Node" parent="BigEye"]
+script = ExtResource("5_vgpon")
+frequency = Vector2(44, 2.5)
+amplitude = Vector2(0.5, 0.25)
+randomize_starting_time = true
+metadata/_custom_type_script = ExtResource("5_vgpon")
+
+[node name="SmallEye" type="AnimatedSprite2D" parent="."]
+use_parent_material = true
+position = Vector2(-3, -7)
+sprite_frames = SubResource("SpriteFrames_flirx")
+autoplay = "default"
+script = ExtResource("5_a1srm")
+
+[node name="BlinkTimer" type="Timer" parent="SmallEye"]
+one_shot = true
+
+[node name="SineMovement" type="Node" parent="SmallEye"]
+script = ExtResource("5_vgpon")
+frequency = Vector2(36, 5)
+amplitude = Vector2(0.5, 0.25)
+randomize_starting_time = true
+metadata/_custom_type_script = ExtResource("5_vgpon")
+
+[node name="SmallEye2" type="AnimatedSprite2D" parent="."]
+use_parent_material = true
+position = Vector2(4, -14)
+sprite_frames = SubResource("SpriteFrames_flirx")
+autoplay = "default"
+script = ExtResource("5_a1srm")
+
+[node name="BlinkTimer" type="Timer" parent="SmallEye2"]
+one_shot = true
+
+[node name="SineMovement" type="Node" parent="SmallEye2"]
+script = ExtResource("5_vgpon")
+frequency = Vector2(32, 12)
+amplitude = Vector2(0.5, 0.25)
+randomize_starting_time = true
+metadata/_custom_type_script = ExtResource("5_vgpon")
+
+[node name="SmallEye3" type="AnimatedSprite2D" parent="."]
+use_parent_material = true
+position = Vector2(5, 0)
+rotation = 1.5708
+scale = Vector2(1, 1)
+sprite_frames = SubResource("SpriteFrames_flirx")
+autoplay = "default"
+script = ExtResource("5_a1srm")
+
+[node name="BlinkTimer" type="Timer" parent="SmallEye3"]
+one_shot = true
+
+[node name="SineMovement" type="Node" parent="SmallEye3"]
+script = ExtResource("5_vgpon")
+frequency = Vector2(50, 1)
+amplitude = Vector2(0.5, 0.25)
+randomize_starting_time = true
+metadata/_custom_type_script = ExtResource("5_vgpon")
+
+[node name="SmallerEye" type="AnimatedSprite2D" parent="."]
+use_parent_material = true
+position = Vector2(5, -8)
+sprite_frames = SubResource("SpriteFrames_lf173")
+animation = &"blink"
+autoplay = "default"
+script = ExtResource("5_a1srm")
+
+[node name="BlinkTimer" type="Timer" parent="SmallerEye"]
+one_shot = true
+
+[node name="SineMovement" type="Node" parent="SmallerEye"]
+script = ExtResource("5_vgpon")
+frequency = Vector2(45, 4)
+amplitude = Vector2(0.5, 0.25)
+randomize_starting_time = true
+metadata/_custom_type_script = ExtResource("5_vgpon")

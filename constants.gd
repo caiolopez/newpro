@@ -20,7 +20,7 @@ const SWITCH_ON_COLORS:Array[Color] = 						[Color("36221b"), Color("e0ac3c")]
 const SWITCH_TEMP_ON_COLORS:Array[Color] = 					[Color("36221b"), Color("e0ac3c")]
 
 const ELEVATOR_BUTTON_MOVING_COLORS:Array[Color] = 			[Color("36221b"), Color("e0ac3c")]
-const ELEVATOR_BUTTON_UNAVAILABLE_COLORS:Array[Color] =		[Color("071135"), Color("083c5e")]
+const ELEVATOR_BUTTON_UNAVAILABLE_COLORS:Array[Color] =		[Color("040414"), Color("091645")]
 const ELEVATOR_BUTTON_AVAILABLE_COLORS:Array[Color] =		[Color("3f160b"), Color("f67f00")]
 
 const BOSS_STAGE0_COLORS:Array[Color] = 					[Color("36221b"),		Color("e0ac3c")]
@@ -33,5 +33,8 @@ const REGION1_TILE_LIGHT: Color = Color("0a4e7b")
 const REGION1_TILE_DARK: Color = Color("091645")
 const ZONE_1_BG_COLOR: Color = Color("040414")
 const GORE_LIGHT: Color = Color("8e0b4a")
-const GORE_DARK: Color = Color("201020")#3B0D1B
+const GORE_DARK: Color = Color("201020")
 const ENEMY_LIGHT: Color = Color("fe074e")
+const ELEVATOR_LIGHT: Color = Color("f67f00")
+const ELEVATOR_DARK: Color = Color("3f160b")
+const ELEVATOR_BG: Color = Color("140404")

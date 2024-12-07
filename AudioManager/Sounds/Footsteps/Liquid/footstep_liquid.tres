@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="SFXData" load_steps=6 format=3 uid="uid://d0astt6sxjeak"]
+
+[ext_resource type="Script" uid="uid://dguxp5teonsit" path="res://AudioManager/sfx_data.gd" id="1_ycf6f"]
+[ext_resource type="AudioStream" uid="uid://ciybhjy7gjsel" path="res://AudioManager/Sounds/Footsteps/Liquid/0.ogg" id="2_7meor"]
+[ext_resource type="AudioStream" uid="uid://cx328cmoupscs" path="res://AudioManager/Sounds/Footsteps/Liquid/1.ogg" id="3_qoinq"]
+[ext_resource type="AudioStream" uid="uid://fcyndypqufvi" path="res://AudioManager/Sounds/Footsteps/Liquid/2.ogg" id="4_1puyn"]
+[ext_resource type="AudioStream" uid="uid://cfi75h5ruuejy" path="res://AudioManager/Sounds/Footsteps/Liquid/4.ogg" id="5_bvqv1"]
+
+[resource]
+script = ExtResource("1_ycf6f")
+sounds = Array[AudioStream]([ExtResource("2_7meor"), ExtResource("3_qoinq"), ExtResource("4_1puyn"), ExtResource("5_bvqv1")])
+playback_mode = 1
+pausable = false
+randomize_pitch_scale = true
+pitch_scale_min = 0.95
+pitch_scale_max = 1.05
+metadata/_custom_type_script = ExtResource("1_ycf6f")

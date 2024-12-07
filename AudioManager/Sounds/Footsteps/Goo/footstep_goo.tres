@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="SFXData" load_steps=7 format=3 uid="uid://ch6hr2rq1fj26"]
+
+[ext_resource type="Script" uid="uid://dguxp5teonsit" path="res://AudioManager/sfx_data.gd" id="1_jc2uf"]
+[ext_resource type="AudioStream" uid="uid://b2wqrhgsw5wp4" path="res://AudioManager/Sounds/Footsteps/Goo/0.wav" id="2_60aba"]
+[ext_resource type="AudioStream" uid="uid://dkhpabrx2fxgm" path="res://AudioManager/Sounds/Footsteps/Goo/1.wav" id="3_1cew8"]
+[ext_resource type="AudioStream" uid="uid://2foxlq76g1ln" path="res://AudioManager/Sounds/Footsteps/Goo/2.wav" id="4_i5n41"]
+[ext_resource type="AudioStream" uid="uid://6d8x1yhh8yb6" path="res://AudioManager/Sounds/Footsteps/Goo/3.wav" id="5_welsn"]
+[ext_resource type="AudioStream" uid="uid://5kqsth774tvs" path="res://AudioManager/Sounds/Footsteps/Goo/4.wav" id="6_pjkdu"]
+
+[resource]
+script = ExtResource("1_jc2uf")
+sounds = Array[AudioStream]([ExtResource("2_60aba"), ExtResource("3_1cew8"), ExtResource("4_i5n41"), ExtResource("5_welsn"), ExtResource("6_pjkdu")])
+playback_mode = 1
+pausable = false
+randomize_pitch_scale = true
+pitch_scale_min = 0.95
+pitch_scale_max = 1.05
+metadata/_custom_type_script = ExtResource("1_jc2uf")

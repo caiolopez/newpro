@@ -1,6 +1,8 @@
 extends Sprite2D
 
 @export var particles: PackedScene
+@export var spawn_particles_to: Node = null
+@export var particles_offset: Vector2 = Vector2.ZERO
 @export var environment_trigger: PackedScene
 
 var particles_instance: GPUParticles2D
@@ -12,7 +14,11 @@ func _ready() -> void:
 
 	if particles:
 		particles_instance = particles.instantiate()
-		add_child(particles_instance)
+		if !spawn_particles_to:
+			add_child(particles_instance)
+		else:
+			particles_instance.global_position = global_position + particles_offset
+			spawn_particles_to.add_child(particles_instance)
 
 	if environment_trigger:
 		var environment_trigger_instance: EnvironmentalTrigger = environment_trigger.instantiate()

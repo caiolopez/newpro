@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://dp3k54vx45ce"]
 
-[ext_resource type="Shader" path="res://Shaders/dissolve.gdshader" id="1_gxsqh"]
+[ext_resource type="Shader" uid="uid://dw13oglhtdqo4" path="res://Shaders/dissolve.gdshader" id="1_gxsqh"]
 [ext_resource type="Texture2D" uid="uid://1ksjntdct3rq" path="res://Entities/Gore/Corpses/corpse1.png" id="1_l8slp"]
 [ext_resource type="Script" uid="uid://ma13gmr8da28" path="res://Entities/Gore/Corpses/corpse.gd" id="2_1vvqh"]
-[ext_resource type="PackedScene" path="res://Particles/CorpseFadeParticles.tscn" id="3_1vvqh"]
-[ext_resource type="PackedScene" path="res://EnvironmentTrigger/CorpseEnvironmentTrigger.tscn" id="4_4x4a5"]
+[ext_resource type="PackedScene" uid="uid://bmbw0mtdfhssj" path="res://Particles/CorpseFadeParticles.tscn" id="3_1vvqh"]
+[ext_resource type="PackedScene" uid="uid://b3dl1tfhsp8eo" path="res://EnvironmentTrigger/CorpseEnvironmentTrigger.tscn" id="4_4x4a5"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_4x4a5"]
 

@@ -132,7 +132,8 @@ animation = &"pickup"
 
 [node name="SineMovement" type="Node" parent="AnimatedSprite2D"]
 script = ExtResource("2_ndk63")
-amplitude = 5.0
+amplitude = Vector2(0, 6)
+randomize_starting_time = true
 
 [node name="CollectOnTouch" parent="." instance=ExtResource("4_q24ki")]
 collision_layer = 0
