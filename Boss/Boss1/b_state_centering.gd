@@ -4,6 +4,8 @@ var animation_prefix: StringName = &"idle"
 var tn
 
 func on_enter():
+	Utils.create_blinking_timer(boss, 0.08, 2)
+	$"../../DmgTaker".currently_immune = true
 	$"../../Flier".process_mode = Node.PROCESS_MODE_DISABLED
 	$"../../MoveStraight".process_mode = Node.PROCESS_MODE_DISABLED
 	var duration: float = 2.0
@@ -22,4 +24,5 @@ func on_enter():
 
 
 func on_exit():
+	$"../../DmgTaker".currently_immune = false
 	tn.kill()

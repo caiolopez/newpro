@@ -13,8 +13,17 @@ class_name Shooter extends Node2D
 @export var emit_signal_upon_shooting: bool = true
 @export_group("autoshoot")
 @export var auto_shoots: bool = true
-@export var time_between_shots: float = 1
-@export var shot_burst_amount: int = 3
+@export var time_between_shots: float = 1:
+	set(value):
+		time_between_shots = value
+		if timer_shot_cooldown:
+			timer_shot_cooldown.wait_time = value
+
+@export var shot_burst_amount: int = 3:
+	set(value):
+		shot_burst_amount = value
+		if timer_burst_cooldown:
+			timer_burst_cooldown.wait_time = time_between_bursts
 @export_range(0.001, 5) var time_between_bursts: float = 1
 @export_group("")
 @onready var dmg_taker: DmgTaker = Utils.find_dmg_taker(self.get_parent())
