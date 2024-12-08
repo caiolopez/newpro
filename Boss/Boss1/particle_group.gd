@@ -20,3 +20,11 @@ func emit_particles() -> void:
 
 func set_amount_for_each(amount: int) -> void:
 	particle_amount = amount
+
+func free_all_particles(imediately: bool = true) -> void:
+	for child in get_children():
+		if child is GPUParticles2D:
+			child.emitting = false
+			if not imediately:
+				await child.finished
+			child.queue_free()
