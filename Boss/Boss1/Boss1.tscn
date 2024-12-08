@@ -469,9 +469,10 @@ autoplay = "dormant"
 [node name="BwShaderSetter" parent="GfxController" instance=ExtResource("22_6vlhg")]
 
 [node name="ParticleGroup" type="Node2D" parent="GfxController"]
-use_parent_material = true
 script = ExtResource("6_kg2o2")
 particle_scenes = Array[PackedScene]([ExtResource("6_ku5wi"), ExtResource("8_qk2p7"), ExtResource("9_ubj5k"), ExtResource("10_imdvy")])
+
+[node name="BwShaderSetter" parent="GfxController/ParticleGroup" instance=ExtResource("22_6vlhg")]
 
 [node name="DmgDealer" parent="." instance=ExtResource("2_ahp3q")]
 process_mode = 4
