@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://7teblr87y0tj"]
+[gd_scene load_steps=3 format=3 uid="uid://0m2405efpgiu"]
 
-[ext_resource type="Texture2D" uid="uid://b6ner0fb6ycks" path="res://Boss/Boss1/Gfx/boss_bits.png" id="1_w2gx1"]
+[ext_resource type="Texture2D" uid="uid://c7gdlnygjxcq8" path="res://Boss/Boss1/Gfx/boss1_bits_c.png" id="1_80qye"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gg825"]
 particle_flag_disable_z = true
@@ -20,5 +20,5 @@ amount = 50
 one_shot = true
 explosiveness = 1.0
 fixed_fps = 20
-texture = ExtResource("1_w2gx1")
+texture = ExtResource("1_80qye")
 process_material = SubResource("ParticleProcessMaterial_gg825")

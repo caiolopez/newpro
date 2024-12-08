@@ -1,16 +1,22 @@
 extends Node2D
 
-var _particles: Array[GPUParticles2D] = []
+@export var particle_scenes: Array[PackedScene] = []
 
-func _ready() -> void:
-	for child in get_children():
-		if child is GPUParticles2D:
-			_particles.append(child)
+var particle_amount: int = 5
 
 func emit_particles() -> void:
-	for particle in _particles:
-		particle.emitting = true
+	for particles_scene in particle_scenes:
+		var particles_instance: GPUParticles2D = particles_scene.instantiate()
+		add_child(particles_instance)
+		particles_instance.amount = particle_amount
+		particles_instance.emitting = true
+		particles_instance.use_parent_material = true
+
+		particles_instance.finished.connect(func(): 
+			particles_instance.queue_free()
+			print(particles_instance.name + " killed!")
+		)
+
 
 func set_amount_for_each(amount: int) -> void:
-	for particle in _particles:
-		particle.amount = amount
+	particle_amount = amount
