@@ -16,7 +16,7 @@ func on_enter():
 			$"../../Flier".inertia_only = true, CONNECT_ONE_SHOT)
 
 func on_physics_process(_delta):
-	if AppManager.hero.is_on_floor():
+	if AppManager.hero.is_on_floor() or AppManager.hero.is_on_wall():
 		$"../../Flier".target_offset = Vector2(0.0, 0.0)
 	else:
 		$"../../Flier".target_offset = Vector2(0.0, 160.0)

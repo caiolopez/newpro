@@ -43,7 +43,7 @@ func reparametrize_boss():
 		2:
 			$Shooter.pellet_amount = 3
 			$Shooter.pellet_separation_angle = 10
-			$Shooter.time_between_shots = 0.1
+			$Shooter.time_between_shots = 0.15
 			$Flier.SPEED = 800
 			$MoveStraight.SPEED = 3000
 			stunned_time_after_dash = 0.5
