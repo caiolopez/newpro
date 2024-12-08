@@ -3,6 +3,8 @@ extends BossState
 var animation_prefix: StringName = &"dormant"
 
 func on_enter():
+	if boss.blinking_timer:
+		boss.blinking_timer.queue_free()
 	boss.z_index = 0
 	boss.current_stage = 0
 	boss.reparametrize_boss()

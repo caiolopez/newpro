@@ -80,7 +80,8 @@ func create_blinking_timer(target: Node2D, duration: float = 0.8, auto_stop_time
 		auto_stop_timer.wait_time = auto_stop_time
 		auto_stop_timer.one_shot = true
 		auto_stop_timer.timeout.connect(func():
-			timer.queue_free()
+			if timer:
+				timer.queue_free()
 			auto_stop_timer.queue_free())
 		auto_stop_timer.start()
 
