@@ -4,11 +4,11 @@ var animation_prefix: StringName = &"idle"
 var tn
 
 func on_enter():
-	Utils.create_blinking_timer(boss, 0.08, 2)
+	Utils.create_blinking_timer($"../../GfxController/AnimatedSprite2D", 0.08, 1)
 	$"../../DmgTaker".currently_immune = true
 	$"../../Flier".process_mode = Node.PROCESS_MODE_DISABLED
 	$"../../MoveStraight".process_mode = Node.PROCESS_MODE_DISABLED
-	var duration: float = 2.0
+	var duration: float = 1.0
 	var tween = create_tween()
 	tn = tween
 	tween.tween_property(
