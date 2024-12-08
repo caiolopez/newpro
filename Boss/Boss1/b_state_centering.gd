@@ -4,7 +4,7 @@ var animation_prefix: StringName = &"idle"
 var tn
 
 func on_enter():
-	Utils.create_blinking_timer($"../../GfxController/AnimatedSprite2D", 0.08, 1)
+	boss.blinking_timer = Utils.create_blinking_timer($"../../GfxController/AnimatedSprite2D", 0.08, 1)
 	$"../../DmgTaker".currently_immune = true
 	$"../../Flier".process_mode = Node.PROCESS_MODE_DISABLED
 	$"../../MoveStraight".process_mode = Node.PROCESS_MODE_DISABLED
