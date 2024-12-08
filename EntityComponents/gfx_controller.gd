@@ -2,6 +2,9 @@ class_name GfxController extends Node2D
 
 @export var hide_when_dead: bool = true
 @export var force_children_to_use_parent_material: bool = true
+@export_category("Optional")
+@export var _overridden_silhouette_target: Node2D = null ## If empty, self will flash white upon damage.
+
 @onready var dmg_taker: DmgTaker = Utils.find_dmg_taker(self.get_parent())
 var face_hero_node: FaceHero
 var shooter_node: Shooter
@@ -59,7 +62,10 @@ func on_restored():
 	get_parent().reset_physics_interpolation()
 
 func on_suffered(_hp):
-	Utils.colorize_silhouette(true, self, 0.1)
+	if _overridden_silhouette_target:
+		Utils.colorize_silhouette(true, _overridden_silhouette_target, 0.1)
+	else:
+		Utils.colorize_silhouette(true, self, 0.1)
 
 func on_regenerated():
 	Utils.colorize_silhouette(true, self, 0.02, Color.RED)
