@@ -20,6 +20,8 @@ func _ready() -> void:
 	if color_pair_source:
 		prop_color_pair = color_pair_source.get_color()
 
+	Events.hero_died.connect(_interrupt_prop_placement)
+
 func _start_placing_props():
 	_props_placed = 0
 	_place_next_prop()
@@ -41,3 +43,10 @@ func _place_next_prop():
 				add_child(_timer)
 			_timer.start(interval_between_placements)
 			_timer.timeout.connect(_place_next_prop, CONNECT_ONE_SHOT)
+
+func _interrupt_prop_placement() -> void:
+	if _timer:
+		_timer.stop()
+		if _timer.timeout.is_connected(_place_next_prop):
+			_timer.timeout.disconnect(_place_next_prop)
+	_props_placed = amount
