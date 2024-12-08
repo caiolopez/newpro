@@ -32,8 +32,7 @@ func hero_wall_jump_sfx():
 func hero_wall_climb_sfx():
 	AudioManager.play_sfx(&"wallclimb_metal", -24.0)
 
-func hero_glide_start_sfx():
-	AudioManager.play_sfx(&"parachute_open", -20.0)
+# Hero Glide (parachute_open): now handled in hero.state_machine.StateGliding
 
 func hero_wall_grab_sfx():
 	AudioManager.play_sfx(&"footstep", -30.0)

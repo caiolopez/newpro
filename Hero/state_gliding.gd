@@ -7,7 +7,7 @@ func on_enter():
 	$"../../Gfx/ParachuteAnim".show()
 	$"../../Gfx/ParachuteAnim".play("deploy_parachute")
 	$"../../Gfx/AnimatedSprite2D".play("glide")
-	AudioManager.hooks.hero_glide_start_sfx()
+	AudioManager.play_sfx(&"parachute_open", -20.0)
 
 	if not hero.is_on_wall() and Input.is_action_just_pressed("jump"):
 		timer_buffer_climbing.start()
@@ -54,6 +54,7 @@ func on_physics_process(delta: float):
 	hero.move_and_slide()
 
 func on_exit():
+	AudioManager.stop_sfx(&"parachute_open")
 	if $"../../Gfx/ParachuteAnim".get_frame() > 9:
 		$"../../Gfx/ParachuteAnim".play("hide_parachute")
 	else:
