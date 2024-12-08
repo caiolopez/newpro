@@ -1,6 +1,7 @@
 class_name ElevatorButton extends Area2D
 
 @export var type: button_type
+@export var use_region_bg_color_when_inactive: bool = true ## If set to true, the color of the inactive button will be the same as stated in the Region.REGION_COLOR_THEME_BG constant.
 @onready var elevator_system: ElevatorSystem = _find_elevator_system()
 @onready var sprite_shader: BwShaderSetter = $BwShaderSetter
 enum button_type {ORIGIN, DESTINATION}
@@ -8,9 +9,13 @@ var is_active: bool
 var original_material: Material = null
 var _blink_timer: Timer
 var _blink_timer_turn: bool = false
+var _from_region: Region = null
+var _active_color_pair: Array[Color]
+var _inactive_color_pair: Array[Color]
 
 
 func _ready() -> void:
+	_evaluate_colors()
 	original_material = material
 	set_inactive()
 	area_entered.connect(_on_area_entered)
@@ -27,6 +32,15 @@ func _on_area_entered(area):
 	Utils.colorize_silhouette(true, self, 0.1)
 	area.kill_bullet()
 
+func _evaluate_colors() -> void:
+	_active_color_pair = Constants.ELEVATOR_BUTTON_AVAILABLE_COLORS
+	_inactive_color_pair = Constants.ELEVATOR_BUTTON_UNAVAILABLE_COLORS
+	if use_region_bg_color_when_inactive:
+		_from_region = RegionManager.get_region_from_node(self)
+		if _from_region and _from_region.REGION_COLOR_THEME_BG:
+			_inactive_color_pair = _from_region.REGION_COLOR_THEME_BG
+			
+
 func set_active():
 	is_active = true
 	$AnimatedSprite2D.play("on")
@@ -36,9 +50,9 @@ func set_inactive():
 	is_active = false
 	$AnimatedSprite2D.play("off")
 	if type == elevator_system.current_state:
-		sprite_shader.set_color_pair(Constants.ELEVATOR_BUTTON_UNAVAILABLE_COLORS)
+		sprite_shader.set_color_pair(_inactive_color_pair)
 	else:
-		sprite_shader.set_color_pair(Constants.ELEVATOR_BUTTON_AVAILABLE_COLORS)
+		sprite_shader.set_color_pair(_active_color_pair)
 
 func _find_elevator_system() -> ElevatorSystem:
 	var current_parent = get_parent()
@@ -64,6 +78,7 @@ func _on_blink_timeout():
 	if is_active:
 		_blink_timer_turn = !_blink_timer_turn
 		if _blink_timer_turn:
-			sprite_shader.set_color_pair(Constants.ELEVATOR_BUTTON_AVAILABLE_COLORS)
+			sprite_shader.set_color_pair(_active_color_pair)
 		else:
-			sprite_shader.set_color_pair(Constants.ELEVATOR_BUTTON_UNAVAILABLE_COLORS)
+			sprite_shader.set_color_pair(_inactive_color_pair)
+			
