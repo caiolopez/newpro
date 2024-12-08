@@ -5,6 +5,5 @@ class_name KillFoeBulletsIfDead extends Node
 func _ready() -> void:
 	if dmg_taker != null:
 		dmg_taker.died.connect(func():
-			if AppManager.hero.is_currently_dead(): return
 			BulletManager.kill_all_foe_bullets()
 			)

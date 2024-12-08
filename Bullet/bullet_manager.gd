@@ -64,6 +64,6 @@ func return_all_bullets():
 		_return_single_bullet(active_bullets.back())
 
 func kill_all_foe_bullets():
-	for bullet in active_bullets:
-		if bullet.is_foe:
-			bullet.kill_bullet()
+	var bullets_to_kill = active_bullets.filter(func(bullet): return bullet.is_foe)
+	for bullet in bullets_to_kill:
+		bullet.kill_bullet()
