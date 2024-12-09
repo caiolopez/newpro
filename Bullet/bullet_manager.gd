@@ -26,7 +26,7 @@ func place_bullet(
 	owner_muzzle: Node2D = null,
 	free_out_of_screen: bool = true
 	):
-	
+	if not Utils.is_on_screen(origin): return
 	var bullet: Bullet
 	if inactive_bullets.is_empty():
 		bullet = bullet_res.instantiate()

@@ -34,7 +34,8 @@ func _ready() -> void:
 
 	current_drag = AIR_DRAG
 	current_gravity = 0
-	await get_tree().process_frame # TODO: Come up with a way to prevent those bullets from being instantiated instead.
+
+	await get_tree().process_frame
 	if not $VisibleOnScreenNotifier2D.is_on_screen():
 		BulletManager.return_bullet(self)
 

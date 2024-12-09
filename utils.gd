@@ -177,3 +177,18 @@ func get_collision_polygon_by_index(parent_area: Area2D, shape_index: int) -> Co
 		if node is CollisionPolygon2D:
 			return node
 	return null
+
+func is_on_screen(pos: Vector2) -> bool:
+	var viewport_rect = get_viewport().get_visible_rect()
+	
+	var camera_pos = AppManager.camera.global_position
+	var screen_left = camera_pos.x - viewport_rect.size.x/2
+	var screen_right = camera_pos.x + viewport_rect.size.x/2
+	var screen_top = camera_pos.y - viewport_rect.size.y/2
+	var screen_bottom = camera_pos.y + viewport_rect.size.y/2
+	
+	var margin = 50.0
+	return (pos.x >= screen_left - margin and 
+			pos.x <= screen_right + margin and 
+			pos.y >= screen_top - margin and 
+			pos.y <= screen_bottom + margin)
