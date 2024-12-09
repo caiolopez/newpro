@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://1jofyd1fb13e"]
+[gd_scene load_steps=13 format=3 uid="uid://1jofyd1fb13e"]
 
 [ext_resource type="Script" uid="uid://d2nqrriy82kki" path="res://AppManager/app_manager.gd" id="1_3s7ri"]
 [ext_resource type="Script" uid="uid://nx0nm05072bl" path="res://state_machine.gd" id="1_uyv8v"]
@@ -10,6 +10,8 @@
 [ext_resource type="Script" uid="uid://c4yrme7nvii55" path="res://AppManager/app_state_load_game_init.gd" id="6_myns1"]
 [ext_resource type="Script" uid="uid://dqrufw6uc7cmy" path="res://AppManager/app_state_minimap.gd" id="9_t1nyb"]
 [ext_resource type="Script" uid="uid://cpfyq5hju474l" path="res://AppManager/app_state_quitting_to_main.gd" id="9_y3jwa"]
+[ext_resource type="Script" uid="uid://bli8pigtcxfyf" path="res://AppManager/app_state_quitting_to_ending.gd" id="10_kx3ha"]
+[ext_resource type="Script" uid="uid://ox2xv26qulwh" path="res://AppManager/app_state_ending.gd" id="12_hw8le"]
 
 [node name="AppManager" type="Node"]
 script = ExtResource("1_3s7ri")
@@ -39,12 +41,16 @@ script = ExtResource("4_ywd8t")
 [node name="AppStateQuittingToMain" type="Node" parent="StateMachine"]
 script = ExtResource("9_y3jwa")
 
+[node name="AppStateQuittingToEnding" type="Node" parent="StateMachine"]
+script = ExtResource("10_kx3ha")
+
 [node name="AppStateMinimap" type="Node" parent="StateMachine"]
 script = ExtResource("9_t1nyb")
 
 [node name="AppStateIntro" type="Node" parent="StateMachine"]
 
 [node name="AppStateEnding" type="Node" parent="StateMachine"]
+script = ExtResource("12_hw8le")
 
 [node name="AppStateCredits" type="Node" parent="StateMachine"]
 

@@ -64,3 +64,6 @@ func instantiate_hero() -> void:
 	hero = hero_instance
 	hero.tint_as_accessibility()
 	call_deferred("emit_signal", "hero_ready")
+
+func transition_to_game_ending() -> void:
+	state_machine.set_state("AppStateQuittingToEnding")
