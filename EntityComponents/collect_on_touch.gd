@@ -21,6 +21,7 @@ func _ready() -> void:
 
 	body_entered.connect(func(body):
 		if not body is Hero: return
+		if not body.state_machine.current_state.death_prone: return
 		set_deferred("monitoring", false)
 		picked_up = true
 
