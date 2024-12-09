@@ -16,6 +16,7 @@ class_name CameraTrigger extends CollisionShape2D
 @export var center_at: CameraLockerController.LockHandles = CameraLockerController.LockHandles.PLACE_OF_CONTACT
 
 var currently_dead: bool = false
+var permanently_dead: bool = false
 var center_mark: Marker2D = null
 
 func _ready() -> void:
@@ -40,9 +41,10 @@ func set_currently_dead():
 
 func _commit_status() -> void:
 	if currently_dead:
-		SaveManager.log_entity_change(self, "dead")
-		queue_free()
+		SaveManager.log_entity_change(self, "disabled")
+		permanently_dead = true
 
 func _reset_status() -> void:
+	if permanently_dead: return
 	currently_dead = false
 	set_deferred("disabled", false)

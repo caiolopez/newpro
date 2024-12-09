@@ -110,6 +110,9 @@ func inject_changes_into_regions():
 						"elevator_at_destination":
 							if has_node(key):
 								get_node(key).force_loaded_state()
+						"disabled":
+							if has_node(key):
+								get_node(key).disabled = true
 
 
 func inject_changes_into_hero():
