@@ -5,6 +5,7 @@ var tn
 
 func on_enter():
 	boss.blinking_timer = Utils.create_blinking_timer($"../../GfxController/AnimatedSprite2D", 0.08, 1)
+	$"../../DmgDealer".process_mode = Node.PROCESS_MODE_DISABLED
 	$"../../DmgTaker".currently_immune = true
 	$"../../Flier".process_mode = Node.PROCESS_MODE_DISABLED
 	$"../../MoveStraight".process_mode = Node.PROCESS_MODE_DISABLED
@@ -24,5 +25,6 @@ func on_enter():
 
 
 func on_exit():
+	$"../../DmgDealer".process_mode = Node.PROCESS_MODE_INHERIT
 	$"../../DmgTaker".currently_immune = false
 	tn.kill()
