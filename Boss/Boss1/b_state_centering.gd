@@ -7,7 +7,7 @@ var immunity_timer: Timer
 func _ready():
 	immunity_timer = Timer.new()
 	immunity_timer.one_shot = true
-	immunity_timer.wait_time = 0.05
+	immunity_timer.wait_time = 0.1
 	immunity_timer.timeout.connect(func():
 		if machine.current_state.name == "BStateCentering":
 			$"../../DmgTaker".currently_immune = true
