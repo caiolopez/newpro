@@ -2,12 +2,21 @@ class_name SineMovement
 extends Node
 
 @onready var parent: Node2D = get_parent()
-@export var frequency: float = 2.0
-@export var amplitude: float = 10.0
+@onready var initial_position: Vector2 = parent.position
+
+@export var frequency: Vector2 = Vector2(0.0, 2.0)
+@export var amplitude: Vector2 = Vector2(0.0, 10.0)
+@export var randomize_starting_time: bool = false
 
 var time: float = 0.0
-var initial_position: Vector3 = Vector3.ZERO
+
+func _ready() -> void:
+	if randomize_starting_time:
+		time += randf()
+
 
 func _physics_process(delta: float) -> void:
 	time += delta
-	parent.position.y = sin(time * frequency) * amplitude + initial_position.y
+
+	parent.position.y = sin(time * frequency.y) * amplitude.y + initial_position.y
+	parent.position.x = sin(time * frequency.x) * amplitude.x + initial_position.x
