@@ -23,7 +23,8 @@ func place_bullet(
 	is_foe: bool = true, 
 	bullet_type = Constants.BulletTypes.REGULAR, angle: float = 0.0, 
 	time_before_visible: float = 0, underwater_ammo: bool = false, 
-	owner_muzzle: Node2D = null
+	owner_muzzle: Node2D = null,
+	free_out_of_screen: bool = true
 	):
 	
 	var bullet: Bullet
@@ -47,6 +48,7 @@ func place_bullet(
 	bullet.time_before_visible = time_before_visible
 	bullet.is_underwater_ammo = underwater_ammo
 	bullet.current_muzzle = owner_muzzle
+	bullet.free_out_of_screen = free_out_of_screen
 	bullet.activate()
 
 func _return_single_bullet(bullet: Bullet):

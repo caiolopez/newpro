@@ -71,7 +71,15 @@ func automate_shooting():
 	current_burst_count += 1
 	shoot()
 
-func shoot(speed: float = pellet_speed, angle: float = 0, amount: int = pellet_amount, ignore_facing_direction: bool = false, inverted: bool = false) -> Array[Area2D]:
+func shoot(
+	speed: float = pellet_speed,
+	angle: float = 0,
+	amount: int = pellet_amount,
+	ignore_facing_direction: bool = false,
+	inverted: bool = false,
+	free_out_of_screen: bool = true
+	) -> Array[Area2D]:
+
 	var cur_rotation: float = 0
 
 	if not ignore_facing_direction:
@@ -106,7 +114,8 @@ func shoot(speed: float = pellet_speed, angle: float = 0, amount: int = pellet_a
 			(top_angle - pellet_separation_angle * i) + cur_rotation + angle,
 			time_before_visible,
 			shoots_underwater_ammo,
-			muzzle
+			muzzle,
+			free_out_of_screen
 		)
 		bullets.append(bullet)
 	if emit_signal_upon_shooting:
@@ -117,8 +126,8 @@ func shoot(speed: float = pellet_speed, angle: float = 0, amount: int = pellet_a
 	if emit_signal_upon_shooting: just_shot.emit()
 	return bullets
 
-func shoot_ad_hoc(speed: float = 200, angle: float = 0, ignore_facing_direction: bool = false, inverted: bool = false) -> Array[Area2D]:
-	return shoot(speed, angle, 1, ignore_facing_direction, inverted)
+func shoot_ad_hoc(speed: float = 200, angle: float = 0, ignore_facing_direction: bool = false, inverted: bool = false, free_out_of_screen: bool = true) -> Array[Area2D]:
+	return shoot(speed, angle, 1, ignore_facing_direction, inverted, free_out_of_screen)
 
 func update_direction(dir: int):
 	if dir != 0:

@@ -7,7 +7,6 @@ func on_enter():
 	$"../../Gfx/AnimatedSprite2D".play("blunderjump")
 	hero.velocity = Vector2.ZERO
 	hero.dmg_taker.currently_immune = true
-	print(Utils.parse_time_as_string(AppManager.game_time, false))
 
 func on_physics_process(delta: float):
 	if Input.is_action_just_released("Debug Action 2"):

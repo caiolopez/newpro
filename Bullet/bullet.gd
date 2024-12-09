@@ -18,10 +18,14 @@ var time_elapsed: float = 0.0
 var dull: bool = false
 var handled: bool = true
 var active: bool = false
+var free_out_of_screen: bool = true
+var time_before_freeing_out_of_screen: float = 1
 
 func _ready() -> void:
 	$IsInWaterNotifier.water_state_changed.connect(on_water_status_changed)
-	$VisibleOnScreenNotifier2D.screen_exited.connect(func(): BulletManager.return_bullet(self))
+	$VisibleOnScreenNotifier2D.screen_exited.connect(func():
+		if free_out_of_screen:
+			BulletManager.return_bullet(self))
 
 	body_entered.connect(func(body):
 		if body.is_in_group("kills_bullets") and self.active:
@@ -59,10 +63,15 @@ func _physics_process(delta):
 	velocity += acceleration * delta
 	global_position += delta*velocity
 	
-	if not $AnimatedSprite2D.visible:
-		time_elapsed += delta
-		if time_elapsed >= time_before_visible:
-			$AnimatedSprite2D.visible = true
+	
+	time_elapsed += delta
+	if time_elapsed >= time_before_visible:
+		$AnimatedSprite2D.visible = true
+	
+	if not $VisibleOnScreenNotifier2D.is_on_screen()\
+	and not free_out_of_screen\
+	and time_elapsed > time_before_freeing_out_of_screen:
+		BulletManager.return_bullet(self)
 
 func on_water_status_changed(is_in_water: bool, water: Water):
 	if is_in_water != (bullet_type == Constants.BulletTypes.UNDERWATER):

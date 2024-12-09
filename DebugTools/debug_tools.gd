@@ -15,6 +15,7 @@ func input_bin():
 	if not input_stuff: return
 	if Input.is_action_just_pressed("Debug Action 1"):
 		pass #SaveManager.print_all_dics()
+		print("Active bullets: ", BulletManager.active_bullets.size(), " | Inactive bullets: ", BulletManager.inactive_bullets.size())
 
 	if DebugTools.debug_mode\
 	and Input.is_action_just_pressed("Debug Action 2")\
