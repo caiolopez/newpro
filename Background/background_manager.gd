@@ -4,6 +4,7 @@ var render_backgrounds: bool = true
 var current_background: Node = null
 var shutter: ColorRect = null
 var intended_background_name: StringName = ""
+var is_transitioning: bool = false
 
 const BACKGROUNDS = {
 	"pink": "res://Background/Backgrounds/background_a.tscn",
@@ -25,6 +26,7 @@ func set_render_backgrounds(state: bool) -> void:
 			change_background(intended_background_name)
 
 func change_background(new_bg_name: StringName) -> void:
+	if is_transitioning: return
 	if not BACKGROUNDS.has(new_bg_name):
 		push_error("Invalid background name: " + new_bg_name)
 		return
@@ -33,6 +35,7 @@ func change_background(new_bg_name: StringName) -> void:
 	SaveManager.log_hero_change("current_background", intended_background_name)
 	if not render_backgrounds: return
 
+	is_transitioning = true
 	await shutter.close()
 	var background_scene = load(BACKGROUNDS[new_bg_name]).instantiate()
 	if current_background: current_background.queue_free()
@@ -40,9 +43,11 @@ func change_background(new_bg_name: StringName) -> void:
 	move_child(background_scene, 0)
 	current_background = background_scene
 	await shutter.open()
+	is_transitioning = false
 
 func reset() -> void:
 	intended_background_name = ""
+	is_transitioning = false
 	if current_background:
 		current_background.queue_free()
 		current_background = null
