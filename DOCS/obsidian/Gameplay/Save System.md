@@ -1,4 +1,0 @@
-- The game has 3 save slots;
-- Game is saved automatically to the current save slot. Saving occurs whenever the hero activates a [[Checkpoints|checkpoint]];
-- Collecting a COLLECTIBLE will cause the game to save. Active Checkpoint information is not altered;
-- Bear in mind that save files must be uploaded to all cloud save systems provided by several game stores, so size  matters.

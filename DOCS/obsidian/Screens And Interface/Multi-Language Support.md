@@ -1,1 +1,0 @@
-All game text must be easily translated to other languages, including languages that use non-latin character sets.
