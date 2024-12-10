@@ -4,7 +4,6 @@ var render_backgrounds: bool = true
 var current_background: Node = null
 var shutter: ColorRect = null
 var intended_background_name: StringName = ""
-var background_instances: Dictionary = {} 
 
 const BACKGROUNDS = {
 	"pink": "res://Background/Backgrounds/background_a.tscn",
@@ -14,15 +13,16 @@ const BACKGROUNDS = {
 func _ready() -> void:
 	shutter = $Shutter
 	shutter.modulate.a = 0.0
-	_instantiate_backgrounds_and_disable()
 
-func _instantiate_backgrounds_and_disable() -> void:
-	for bg_name in BACKGROUNDS:
-		var background_scene = load(BACKGROUNDS[bg_name]).instantiate()
-		background_scene.process_mode = Node.PROCESS_MODE_DISABLED
-		add_child(background_scene)
-		move_child(background_scene, 0)
-		background_instances[bg_name] = background_scene
+func set_render_backgrounds(state: bool) -> void:
+	render_backgrounds = state
+	if not state:
+		if current_background:
+			current_background.queue_free()
+			current_background = null
+	else:
+		if intended_background_name:
+			change_background(intended_background_name)
 
 func change_background(new_bg_name: StringName) -> void:
 	if not BACKGROUNDS.has(new_bg_name):
@@ -34,21 +34,12 @@ func change_background(new_bg_name: StringName) -> void:
 	if not render_backgrounds: return
 
 	await shutter.close()
-	if current_background:
-		current_background.process_mode = Node.PROCESS_MODE_DISABLED
-	current_background = background_instances[new_bg_name]
-	current_background.process_mode = Node.PROCESS_MODE_INHERIT
+	var background_scene = load(BACKGROUNDS[new_bg_name]).instantiate()
+	if current_background: current_background.queue_free()
+	add_child(background_scene)
+	move_child(background_scene, 0)
+	current_background = background_scene
 	await shutter.open()
-
-func set_render_backgrounds(state: bool) -> void:
-	render_backgrounds = state
-	if not state:
-		if current_background:
-			current_background.queue_free()
-			current_background = null
-	else:
-		if intended_background_name:
-			change_background(intended_background_name)
 
 func reset() -> void:
 	intended_background_name = ""
